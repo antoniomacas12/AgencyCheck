@@ -1,35 +1,33 @@
+/**
+ * /api/admin/leads/[id]/send
+ *
+ * GET  — returns the full list of agency contacts (for the send-lead UI).
+ * POST — sends a lead to one or more selected agencies, records send history.
+ *
+ * Agency registry lives in lib/agencies.ts — NOT exported from here.
+ * Next.js App Router only allows HTTP-method handlers and a small set of
+ * config constants (dynamic, runtime, revalidate …) as named exports from
+ * route files. Any other export causes a build error.
+ */
+
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminRequest, unauthorizedJson } from "@/lib/adminAuth";
 import { prisma } from "@/lib/prisma";
 import { sendEmail, buildLeadEmail } from "@/lib/emailService";
+import { getAllAgencyContacts } from "@/lib/agencies";
 
-// ─── Agency registry ──────────────────────────────────────────────────────────
+export const dynamic = "force-dynamic";
 
-interface AgencyContact {
-  slug: string;
-  name: string;
-  email: string;
-}
+// ─── GET /api/admin/leads/[id]/send ──────────────────────────────────────────
+// Returns the agency registry so the admin UI can render the checkbox list.
 
-const AGENCY_CONTACTS: AgencyContact[] = [
-  { slug: "hobij",                  name: "HOBIJ",                 email: process.env.AGENCY_EMAIL_HOBIJ                   ?? "" },
-  { slug: "nl-jobs",                name: "NL Jobs",               email: process.env.AGENCY_EMAIL_NL_JOBS                 ?? "" },
-  { slug: "westflex",               name: "Westflex",              email: process.env.AGENCY_EMAIL_WESTFLEX                ?? "" },
-  { slug: "carriere",               name: "Carrière",              email: process.env.AGENCY_EMAIL_CARRIERE                ?? "" },
-  { slug: "international-flex-job", name: "International Flex Job", email: process.env.AGENCY_EMAIL_INTERNATIONAL_FLEX_JOB ?? "" },
-  { slug: "covebo",                 name: "Covebo",                email: process.env.AGENCY_EMAIL_COVEBO                  ?? "" },
-  { slug: "otto-workforce",         name: "Otto Work Force",       email: process.env.AGENCY_EMAIL_OTTO_WORKFORCE           ?? "" },
-  { slug: "randstad-nederland",     name: "Randstad Nederland",    email: process.env.AGENCY_EMAIL_RANDSTAD                ?? "" },
-  { slug: "tempo-team",             name: "Tempo-Team",            email: process.env.AGENCY_EMAIL_TEMPO_TEAM               ?? "" },
-];
-
-export function getAllAgencyContacts(): AgencyContact[] {
-  return AGENCY_CONTACTS;
+export async function GET(_req: NextRequest) {
+  if (!(await verifyAdminRequest())) return unauthorizedJson();
+  return NextResponse.json({ agencies: getAllAgencyContacts() });
 }
 
 // ─── POST /api/admin/leads/[id]/send ─────────────────────────────────────────
-
-export const dynamic = "force-dynamic";
+// Sends the lead to each selected agency by email and persists a LeadSend row.
 
 export async function POST(
   req: NextRequest,
@@ -47,23 +45,32 @@ export async function POST(
     const lead = await prisma.lead.findUnique({ where: { id: params.id } });
     if (!lead) return NextResponse.json({ error: "not_found" }, { status: 404 });
 
-    const agenciesToSend = (body.agencies as unknown[]).filter(
-      (a): a is { slug: string; name: string; email: string } =>
-        typeof a === "object" && a !== null &&
-        typeof (a as Record<string, unknown>).slug === "string" &&
-        typeof (a as Record<string, unknown>).name === "string" &&
-        typeof (a as Record<string, unknown>).email === "string"
-    ).slice(0, 10);
+    // Validate each agency object from the request body (max 10 per call).
+    const agenciesToSend = (body.agencies as unknown[])
+      .filter(
+        (a): a is { slug: string; name: string; email: string } =>
+          typeof a === "object" && a !== null &&
+          typeof (a as Record<string, unknown>).slug  === "string" &&
+          typeof (a as Record<string, unknown>).name  === "string" &&
+          typeof (a as Record<string, unknown>).email === "string"
+      )
+      .slice(0, 10);
 
     if (agenciesToSend.length === 0) {
       return NextResponse.json({ error: "no_valid_agencies" }, { status: 400 });
     }
 
-    // Build email payloads + send + collect results in a single pass
+    // Build email payloads, send them, and capture results in a single pass so
+    // we can persist LeadSend rows without a second call to buildLeadEmail.
     const results: Array<{
-      agencySlug: string; agencyName: string;
-      ok: boolean; method: string; error?: string; pending?: boolean;
-      emailSubject: string; emailBody: string;
+      agencySlug:   string;
+      agencyName:   string;
+      ok:           boolean;
+      method:       string;
+      error?:       string;
+      pending?:     boolean;
+      emailSubject: string;
+      emailBody:    string;
     }> = [];
 
     for (const agency of agenciesToSend) {
@@ -72,27 +79,28 @@ export async function POST(
           leadId:              lead.id,
           fullName:            lead.fullName,
           phone:               lead.phone,
-          email:               lead.email ?? undefined,
-          nationality:         lead.nationality ?? undefined,
-          currentCountry:      lead.currentCountry ?? undefined,
-          alreadyInNL:         lead.alreadyInNL ?? undefined,
-          preferredWorkType:   lead.preferredWorkType ?? undefined,
-          preferredRegion:     lead.preferredRegion ?? undefined,
-          accommodationNeeded: lead.accommodationNeeded ?? undefined,
-          driversLicense:      lead.driversLicense ?? undefined,
-          canWorkWeekends:     lead.canWorkWeekends ?? undefined,
-          experienceLevel:     lead.experienceLevel ?? undefined,
+          email:               lead.email               ?? undefined,
+          nationality:         lead.nationality          ?? undefined,
+          currentCountry:      lead.currentCountry       ?? undefined,
+          alreadyInNL:         lead.alreadyInNL          ?? undefined,
+          preferredWorkType:   lead.preferredWorkType    ?? undefined,
+          preferredRegion:     lead.preferredRegion      ?? undefined,
+          accommodationNeeded: lead.accommodationNeeded  ?? undefined,
+          driversLicense:      lead.driversLicense       ?? undefined,
+          canWorkWeekends:     lead.canWorkWeekends       ?? undefined,
+          experienceLevel:     lead.experienceLevel       ?? undefined,
           availableFrom:       lead.availableFrom?.toISOString().split("T")[0],
-          notes:               lead.notes ?? undefined,
+          notes:               lead.notes                ?? undefined,
           sourcePage:          lead.sourcePage,
           submittedAt:         lead.createdAt.toISOString(),
           agencyName:          agency.name,
-          internalNotes:       lead.internalNotes ?? undefined,
+          internalNotes:       lead.internalNotes        ?? undefined,
         },
         agency.email
       );
 
       const sendResult = await sendEmail(emailData);
+
       results.push({
         agencySlug:   agency.slug,
         agencyName:   agency.name,
@@ -105,8 +113,7 @@ export async function POST(
       });
     }
 
-    // ── Persist send history to DB ───────────────────────────────────────────
-    // Create one LeadSend row per agency so the admin detail page shows history.
+    // Persist one LeadSend row per agency so the admin detail page shows history.
     for (let i = 0; i < agenciesToSend.length; i++) {
       const agency = agenciesToSend[i];
       const result = results[i];
@@ -126,11 +133,12 @@ export async function POST(
       });
     }
 
-    // Update lead in database
-    const currentAgencies: string[] = JSON.parse((lead.assignedAgencies as unknown as string) || "[]");
-    const allSlugs        = agenciesToSend.map((a) => a.slug);
-    const mergedSlugs     = [...new Set([...currentAgencies, ...allSlugs])];
-    const anySuccess      = results.some((r) => r.ok);
+    // Merge newly contacted agency slugs into the lead's assignedAgencies list.
+    const currentAgencies: string[] = JSON.parse(
+      (lead.assignedAgencies as unknown as string) || "[]"
+    );
+    const mergedSlugs = [...new Set([...currentAgencies, ...agenciesToSend.map((a) => a.slug)])];
+    const anySuccess  = results.some((r) => r.ok);
 
     await prisma.lead.update({
       where: { id: params.id },
@@ -147,9 +155,4 @@ export async function POST(
     console.error("[POST /api/admin/leads/[id]/send]", err);
     return NextResponse.json({ error: "server_error" }, { status: 500 });
   }
-}
-
-export async function GET(_req: NextRequest) {
-  if (!(await verifyAdminRequest())) return unauthorizedJson();
-  return NextResponse.json({ agencies: getAllAgencyContacts() });
 }
