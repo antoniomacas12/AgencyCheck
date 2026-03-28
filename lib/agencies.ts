@@ -36,6 +36,6 @@ const AGENCY_CONTACTS: AgencyContact[] = [
  * Returns all configured agency contacts.
  * Used by the admin "send lead" endpoint and the agencies list endpoint.
  */
- function getAllAgencyContacts(): AgencyContact[] {
+export function getAllAgencyContacts(): AgencyContact[] {
   return AGENCY_CONTACTS;
 }

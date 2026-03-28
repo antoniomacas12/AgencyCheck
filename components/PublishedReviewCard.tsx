@@ -102,6 +102,7 @@ function PhotoStrip({ photos }: { photos: ReviewPhoto[] }) {
             className="w-20 h-20 rounded-lg overflow-hidden border border-gray-200 hover:opacity-80 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label="View photo"
           >
+            {/* eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo with dynamic URL; next/image requires known dimensions */}
             <img
               src={p.fileUrl}
               alt={p.caption ?? "Review photo"}
@@ -121,6 +122,7 @@ function PhotoStrip({ photos }: { photos: ReviewPhoto[] }) {
             className="relative max-w-2xl w-full"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element -- user-uploaded photo lightbox; next/image requires known dimensions */}
             <img
               src={photos[open].fileUrl}
               alt={photos[open].caption ?? "Review photo"}

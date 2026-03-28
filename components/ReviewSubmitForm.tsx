@@ -558,6 +558,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
               <div className="grid grid-cols-3 gap-2">
                 {photoPreviews.map((src, i) => (
                   <div key={i} className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- local blob URL photo preview; next/image does not support blob: URLs */}
                     <img
                       src={src}
                       alt={`Photo ${i + 1}`}
