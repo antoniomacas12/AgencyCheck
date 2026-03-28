@@ -1,0 +1,57 @@
+[
+  {
+    "id_a": 163,
+    "name_a": "HCA Project Support",
+    "id_b": 171,
+    "name_b": "Hölscher Project Support",
+    "norm_a": "hca project support",
+    "norm_b": "holscher project support",
+    "score": 0.837,
+    "same_domain": false,
+    "auto_merge": false
+  },
+  {
+    "id_a": 98,
+    "name_a": "dNM Interim",
+    "id_b": 262,
+    "name_b": "P&M interim-zorg",
+    "norm_a": "dnm interim",
+    "norm_b": "p m interim",
+    "score": 0.818,
+    "same_domain": false,
+    "auto_merge": false
+  },
+  {
+    "id_a": 36,
+    "name_a": "A-Flex",
+    "id_b": 133,
+    "name_b": "Flex Personeel",
+    "norm_a": "a flex",
+    "norm_b": "flex",
+    "score": 0.8,
+    "same_domain": false,
+    "auto_merge": false
+  },
+  {
+    "id_a": 41,
+    "name_a": "AltiFlex Personeelsdiensten",
+    "id_b": 50,
+    "name_b": "Axiflex",
+    "norm_a": "altiflex",
+    "norm_b": "axiflex",
+    "score": 0.8,
+    "same_domain": false,
+    "auto_merge": false
+  },
+  {
+    "id_a": 185,
+    "name_a": "IQ Select",
+    "id_b": 303,
+    "name_b": "Select Uitzendbureau",
+    "norm_a": "iq select",
+    "norm_b": "select",
+    "score": 0.8,
+    "same_domain": false,
+    "auto_merge": false
+  }
+]

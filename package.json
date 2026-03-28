@@ -1,0 +1,42 @@
+{
+  "name": "agencycheck",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "db:seed:leads": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed-leads.ts",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:setup": "prisma generate && prisma migrate deploy && ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "db:setup:fresh": "prisma migrate reset --force && prisma migrate deploy && ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "postinstall": "DATABASE_URL=${DATABASE_URL:-postgresql://localhost/placeholder} DIRECT_URL=${DIRECT_URL:-postgresql://localhost/placeholder} prisma generate || echo 'Prisma generate skipped — run: npm run db:generate'",
+    "data:pipeline": "python3 scripts/dedupe-pipeline.py && python3 scripts/generate-seed-data.py",
+    "data:generate": "python3 scripts/generate-seed-data.py",
+    "data:inspect": "python3 -c \"import json,pathlib; d=json.loads(pathlib.Path('scripts/data/00_summary.json').read_text()); [print(f'{k}: {v}') for k,v in d.items()]\"",
+    "data:full": "npm run data:pipeline && npx prisma db push && npm run db:seed"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "next": "^14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^3.4.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

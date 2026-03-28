@@ -1,0 +1,2498 @@
+[
+  {
+    "duplicate_row_id": 2,
+    "duplicate_name": "2gether People",
+    "canonical_id": "agency_000",
+    "canonical_name": "2gether People",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 113,
+    "duplicate_name": "EG Personeelsdiensten",
+    "canonical_id": "agency_000",
+    "canonical_name": "2gether People",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 129,
+    "duplicate_name": "Fix Personeelsdiensten",
+    "canonical_id": "agency_000",
+    "canonical_name": "2gether People",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 3,
+    "duplicate_name": "365Werk",
+    "canonical_id": "agency_001",
+    "canonical_name": "365Werk",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 4,
+    "duplicate_name": "365Werk Contracting",
+    "canonical_id": "agency_001",
+    "canonical_name": "365Werk",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 5,
+    "duplicate_name": "365Werk Facility Services",
+    "canonical_id": "agency_001",
+    "canonical_name": "365Werk",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 6,
+    "duplicate_name": "365Werk Hospitality",
+    "canonical_id": "agency_001",
+    "canonical_name": "365Werk",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 13,
+    "duplicate_name": "AB Werkt Service I",
+    "canonical_id": "agency_002",
+    "canonical_name": "AB Werkt Service",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 14,
+    "duplicate_name": "AB Werkt Service III",
+    "canonical_id": "agency_002",
+    "canonical_name": "AB Werkt Service",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 15,
+    "duplicate_name": "AB Werkt Service V",
+    "canonical_id": "agency_002",
+    "canonical_name": "AB Werkt Service",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 17,
+    "duplicate_name": "Abeos Administratief Personeel",
+    "canonical_id": "agency_003",
+    "canonical_name": "Abeos",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 18,
+    "duplicate_name": "Abeos Agrarisch Bedrijf Service",
+    "canonical_id": "agency_003",
+    "canonical_name": "Abeos",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 19,
+    "duplicate_name": "Abeos Agrarisch Personeel",
+    "canonical_id": "agency_003",
+    "canonical_name": "Abeos",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 20,
+    "duplicate_name": "Abeos Bouwflex",
+    "canonical_id": "agency_003",
+    "canonical_name": "Abeos",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 21,
+    "duplicate_name": "Abeos Bouwservice",
+    "canonical_id": "agency_003",
+    "canonical_name": "Abeos",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 22,
+    "duplicate_name": "Abeos Cross Border Services",
+    "canonical_id": "agency_003",
+    "canonical_name": "Abeos",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 23,
+    "duplicate_name": "Abeos Zakelijke Dienstverlening",
+    "canonical_id": "agency_003",
+    "canonical_name": "Abeos",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 25,
+    "duplicate_name": "Abiant Bouwservice",
+    "canonical_id": "agency_004",
+    "canonical_name": "Abiant",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 26,
+    "duplicate_name": "Abiant EU Service",
+    "canonical_id": "agency_004",
+    "canonical_name": "Abiant",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 27,
+    "duplicate_name": "Actief Werkt! Projecten",
+    "canonical_id": "agency_005",
+    "canonical_name": "Actief Werkt!",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 28,
+    "duplicate_name": "Actief Werkt! Techniek",
+    "canonical_id": "agency_005",
+    "canonical_name": "Actief Werkt!",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 33,
+    "duplicate_name": "Aethon Kids",
+    "canonical_id": "agency_006",
+    "canonical_name": "Aethon",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 34,
+    "duplicate_name": "Aethon Publica",
+    "canonical_id": "agency_006",
+    "canonical_name": "Aethon",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 35,
+    "duplicate_name": "Aethon Zorgt",
+    "canonical_id": "agency_006",
+    "canonical_name": "Aethon",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 44,
+    "duplicate_name": "ANSINGER",
+    "canonical_id": "agency_007",
+    "canonical_name": "ANSINGER",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 45,
+    "duplicate_name": "ANSINGER West",
+    "canonical_id": "agency_007",
+    "canonical_name": "ANSINGER",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 54,
+    "duplicate_name": "BAS Detachering",
+    "canonical_id": "agency_008",
+    "canonical_name": "BAS",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 55,
+    "duplicate_name": "BAS Payroll",
+    "canonical_id": "agency_008",
+    "canonical_name": "BAS",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 56,
+    "duplicate_name": "BAS Uitzenden en ZZP",
+    "canonical_id": "agency_008",
+    "canonical_name": "BAS",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 71,
+    "duplicate_name": "Carrière Detachering",
+    "canonical_id": "agency_009",
+    "canonical_name": "Carrière",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 72,
+    "duplicate_name": "Carrière Personeelsdiensten",
+    "canonical_id": "agency_009",
+    "canonical_name": "Carrière",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 73,
+    "duplicate_name": "Cervo Dienstverlening",
+    "canonical_id": "agency_010",
+    "canonical_name": "Cervo",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 74,
+    "duplicate_name": "Cervo Transport & Logistiek",
+    "canonical_id": "agency_010",
+    "canonical_name": "Cervo",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 77,
+    "duplicate_name": "Conflex / Flexspecialisten Formule Personeel",
+    "canonical_id": "agency_011",
+    "canonical_name": "Flexspecialisten",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 140,
+    "duplicate_name": "Flexspecialisten II",
+    "canonical_id": "agency_011",
+    "canonical_name": "Flexspecialisten",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 141,
+    "duplicate_name": "Flexspecialisten III",
+    "canonical_id": "agency_011",
+    "canonical_name": "Flexspecialisten",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 142,
+    "duplicate_name": "Flexspecialisten IV",
+    "canonical_id": "agency_011",
+    "canonical_name": "Flexspecialisten",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 143,
+    "duplicate_name": "Flexspecialisten Tempsolution III",
+    "canonical_id": "agency_011",
+    "canonical_name": "Flexspecialisten",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 144,
+    "duplicate_name": "Flexspecialisten Tempsolution Nederland",
+    "canonical_id": "agency_011",
+    "canonical_name": "Flexspecialisten",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 80,
+    "duplicate_name": "Consolid Openbaar Vervoer",
+    "canonical_id": "agency_012",
+    "canonical_name": "Consolid",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 81,
+    "duplicate_name": "Consolid Personeelsdiensten",
+    "canonical_id": "agency_012",
+    "canonical_name": "Consolid",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 82,
+    "duplicate_name": "Consolid Transport & Logistiek",
+    "canonical_id": "agency_012",
+    "canonical_name": "Consolid",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 86,
+    "duplicate_name": "Covebo Bouw",
+    "canonical_id": "agency_013",
+    "canonical_name": "Covebo",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 87,
+    "duplicate_name": "Covebo Productie en Logistiek",
+    "canonical_id": "agency_013",
+    "canonical_name": "Covebo",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 88,
+    "duplicate_name": "Covebo Techniek",
+    "canonical_id": "agency_013",
+    "canonical_name": "Covebo",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 94,
+    "duplicate_name": "DEG en Egberts Dienstverlening",
+    "canonical_id": "agency_014",
+    "canonical_name": "GTX",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 130,
+    "duplicate_name": "Flex Franchise 1",
+    "canonical_id": "agency_014",
+    "canonical_name": "GTX",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 131,
+    "duplicate_name": "Flex Franchise 2",
+    "canonical_id": "agency_014",
+    "canonical_name": "GTX",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 132,
+    "duplicate_name": "Flex Franchise 3",
+    "canonical_id": "agency_014",
+    "canonical_name": "GTX",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 137,
+    "duplicate_name": "Flexible Human Services",
+    "canonical_id": "agency_014",
+    "canonical_name": "GTX",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 159,
+    "duplicate_name": "GTX",
+    "canonical_id": "agency_014",
+    "canonical_name": "GTX",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 100,
+    "duplicate_name": "Driessen Overheid",
+    "canonical_id": "agency_015",
+    "canonical_name": "Driessen",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 101,
+    "duplicate_name": "Driessen Overheid Plus",
+    "canonical_id": "agency_015",
+    "canonical_name": "Driessen",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 102,
+    "duplicate_name": "Driessen Payroll",
+    "canonical_id": "agency_015",
+    "canonical_name": "Driessen",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 103,
+    "duplicate_name": "Driessen Payroll Plus",
+    "canonical_id": "agency_015",
+    "canonical_name": "Driessen",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 104,
+    "duplicate_name": "Driessen Publiek",
+    "canonical_id": "agency_015",
+    "canonical_name": "Driessen",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 105,
+    "duplicate_name": "Driessen Uitzendbureau",
+    "canonical_id": "agency_015",
+    "canonical_name": "Driessen",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 106,
+    "duplicate_name": "Driessen Zorg & Welzijn",
+    "canonical_id": "agency_015",
+    "canonical_name": "Driessen",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 107,
+    "duplicate_name": "Driessen Zorg & Welzijn Plus",
+    "canonical_id": "agency_015",
+    "canonical_name": "Driessen",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 122,
+    "duplicate_name": "Exact Detachering",
+    "canonical_id": "agency_016",
+    "canonical_name": "Exact",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 123,
+    "duplicate_name": "Exact personeelsintermediair",
+    "canonical_id": "agency_016",
+    "canonical_name": "Exact",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 189,
+    "duplicate_name": "Jigler",
+    "canonical_id": "agency_017",
+    "canonical_name": "Jigler",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 190,
+    "duplicate_name": "Jigler payroll",
+    "canonical_id": "agency_017",
+    "canonical_name": "Jigler",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 191,
+    "duplicate_name": "Jigler uitzenden",
+    "canonical_id": "agency_017",
+    "canonical_name": "Jigler",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 199,
+    "duplicate_name": "Kennemer Uitzend",
+    "canonical_id": "agency_018",
+    "canonical_name": "Kennemer Uitzend",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 200,
+    "duplicate_name": "Kennemerland Uitzendorganisatie",
+    "canonical_id": "agency_018",
+    "canonical_name": "Kennemer Uitzend",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 209,
+    "duplicate_name": "Level One Payroll",
+    "canonical_id": "agency_019",
+    "canonical_name": "Level One",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 210,
+    "duplicate_name": "Level One Uitzendbureau",
+    "canonical_id": "agency_019",
+    "canonical_name": "Level One",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 214,
+    "duplicate_name": "Manpower",
+    "canonical_id": "agency_020",
+    "canonical_name": "Manpower",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 215,
+    "duplicate_name": "Manpower Business Services",
+    "canonical_id": "agency_020",
+    "canonical_name": "Manpower",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 216,
+    "duplicate_name": "Manpower Flexibility",
+    "canonical_id": "agency_020",
+    "canonical_name": "Manpower",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 217,
+    "duplicate_name": "Manpower Flexwork",
+    "canonical_id": "agency_020",
+    "canonical_name": "Manpower",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 218,
+    "duplicate_name": "Manpower Logistics",
+    "canonical_id": "agency_020",
+    "canonical_name": "Manpower",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 228,
+    "duplicate_name": "Mondial Detachering",
+    "canonical_id": "agency_021",
+    "canonical_name": "Mondial",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 229,
+    "duplicate_name": "Mondial Uitzend",
+    "canonical_id": "agency_021",
+    "canonical_name": "Mondial",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 232,
+    "duplicate_name": "Nedflex",
+    "canonical_id": "agency_022",
+    "canonical_name": "Nedflex",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 233,
+    "duplicate_name": "Nedflex Uitzendbureau",
+    "canonical_id": "agency_022",
+    "canonical_name": "Nedflex",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 234,
+    "duplicate_name": "Nedflex Work Detachering",
+    "canonical_id": "agency_022",
+    "canonical_name": "Nedflex",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 239,
+    "duplicate_name": "NL Jobs UZB",
+    "canonical_id": "agency_023",
+    "canonical_name": "NL Jobs UZB",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 254,
+    "duplicate_name": "Oranjevliet Nederland",
+    "canonical_id": "agency_023",
+    "canonical_name": "NL Jobs UZB",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 244,
+    "duplicate_name": "Olympia Personeelsbeheer",
+    "canonical_id": "agency_024",
+    "canonical_name": "Olympia",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 245,
+    "duplicate_name": "Olympia Services",
+    "canonical_id": "agency_024",
+    "canonical_name": "Olympia",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 246,
+    "duplicate_name": "Olympia Uitzendbureau",
+    "canonical_id": "agency_024",
+    "canonical_name": "Olympia",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 257,
+    "duplicate_name": "OTTO Work Force",
+    "canonical_id": "agency_025",
+    "canonical_name": "OTTO Work Force",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 258,
+    "duplicate_name": "OTTO Work Force I",
+    "canonical_id": "agency_025",
+    "canonical_name": "OTTO Work Force",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 259,
+    "duplicate_name": "OTTO Work Force III",
+    "canonical_id": "agency_025",
+    "canonical_name": "OTTO Work Force",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 260,
+    "duplicate_name": "OTTO Work Force IV",
+    "canonical_id": "agency_025",
+    "canonical_name": "OTTO Work Force",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 274,
+    "duplicate_name": "Power Company",
+    "canonical_id": "agency_026",
+    "canonical_name": "Power Company",
+    "match_reason": "same_domain",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 275,
+    "duplicate_name": "Power Company Payrolling",
+    "canonical_id": "agency_026",
+    "canonical_name": "Power Company",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 282,
+    "duplicate_name": "Pro Industry Chemical",
+    "canonical_id": "agency_027",
+    "canonical_name": "Pro Industry",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 283,
+    "duplicate_name": "Pro Industry Food",
+    "canonical_id": "agency_027",
+    "canonical_name": "Pro Industry",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 284,
+    "duplicate_name": "Pro Industry Pharma",
+    "canonical_id": "agency_027",
+    "canonical_name": "Pro Industry",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 285,
+    "duplicate_name": "ProfCore Business Services",
+    "canonical_id": "agency_028",
+    "canonical_name": "ProfCore",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 286,
+    "duplicate_name": "ProfCore Detachering",
+    "canonical_id": "agency_028",
+    "canonical_name": "ProfCore",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 290,
+    "duplicate_name": "Randstad Payroll Publiek",
+    "canonical_id": "agency_029",
+    "canonical_name": "Randstad",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 291,
+    "duplicate_name": "Randstad Payroll Solutions",
+    "canonical_id": "agency_029",
+    "canonical_name": "Randstad",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 292,
+    "duplicate_name": "Randstad Transport",
+    "canonical_id": "agency_029",
+    "canonical_name": "Randstad",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 294,
+    "duplicate_name": "SBA Flex Food Specialists",
+    "canonical_id": "agency_030",
+    "canonical_name": "SBA Flex",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 295,
+    "duplicate_name": "SBA Flex Logistic Specialists",
+    "canonical_id": "agency_030",
+    "canonical_name": "SBA Flex",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 296,
+    "duplicate_name": "SBA Flex Metal Specialists",
+    "canonical_id": "agency_030",
+    "canonical_name": "SBA Flex",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 301,
+    "duplicate_name": "Select Arbeidsbemiddeling",
+    "canonical_id": "agency_031",
+    "canonical_name": "Select",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 302,
+    "duplicate_name": "Select Nederland",
+    "canonical_id": "agency_031",
+    "canonical_name": "Select",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 307,
+    "duplicate_name": "Simulinc Onderwijs",
+    "canonical_id": "agency_032",
+    "canonical_name": "Simulinc",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 308,
+    "duplicate_name": "Simulinc Personeel",
+    "canonical_id": "agency_032",
+    "canonical_name": "Simulinc",
+    "match_reason": "same_domain",
+    "is_canonical": false
+  },
+  {
+    "duplicate_row_id": 0,
+    "duplicate_name": "010 Personeel",
+    "canonical_id": "agency_033",
+    "canonical_name": "010 Personeel",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 1,
+    "duplicate_name": "24/7 drive",
+    "canonical_id": "agency_034",
+    "canonical_name": "24/7 drive",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 7,
+    "duplicate_name": "3rothers",
+    "canonical_id": "agency_035",
+    "canonical_name": "3rothers",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 8,
+    "duplicate_name": "A12 Personeelsdiensten",
+    "canonical_id": "agency_036",
+    "canonical_name": "A12 Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 9,
+    "duplicate_name": "Aan Het Werk Uitzendburo",
+    "canonical_id": "agency_037",
+    "canonical_name": "Aan Het Werk Uitzendburo",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 10,
+    "duplicate_name": "AB Service Midden Nederland",
+    "canonical_id": "agency_038",
+    "canonical_name": "AB Service Midden Nederland",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 11,
+    "duplicate_name": "AB Service Zuid-Holland",
+    "canonical_id": "agency_039",
+    "canonical_name": "AB Service Zuid-Holland",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 12,
+    "duplicate_name": "AB Vakwerk Uitzendorganisatie",
+    "canonical_id": "agency_040",
+    "canonical_name": "AB Vakwerk Uitzendorganisatie",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 16,
+    "duplicate_name": "AB-AZ Vervoersregie",
+    "canonical_id": "agency_041",
+    "canonical_name": "AB-AZ Vervoersregie",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 24,
+    "duplicate_name": "abflexkracht uitzenden",
+    "canonical_id": "agency_042",
+    "canonical_name": "abflexkracht uitzenden",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 29,
+    "duplicate_name": "Actief Werkt! Uitzendbureau BV",
+    "canonical_id": "agency_043",
+    "canonical_name": "Actief Werkt! Uitzendbureau BV",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 30,
+    "duplicate_name": "Activus Technisch Personeel",
+    "canonical_id": "agency_044",
+    "canonical_name": "Activus Technisch Personeel",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 31,
+    "duplicate_name": "Adams Multilingual Recruitment",
+    "canonical_id": "agency_045",
+    "canonical_name": "Adams Multilingual Recruitment",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 32,
+    "duplicate_name": "Adecco HR Solutions",
+    "canonical_id": "agency_046",
+    "canonical_name": "Adecco HR Solutions",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 36,
+    "duplicate_name": "A-Flex",
+    "canonical_id": "agency_047",
+    "canonical_name": "A-Flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 37,
+    "duplicate_name": "AFS Uitzendbureau",
+    "canonical_id": "agency_048",
+    "canonical_name": "AFS Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 38,
+    "duplicate_name": "Agrarisch Loonbedrijf Asmaa",
+    "canonical_id": "agency_049",
+    "canonical_name": "Agrarisch Loonbedrijf Asmaa",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 39,
+    "duplicate_name": "Agripersoneel Personeelsdiensten",
+    "canonical_id": "agency_050",
+    "canonical_name": "Agripersoneel Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 40,
+    "duplicate_name": "Allroad Projecten",
+    "canonical_id": "agency_051",
+    "canonical_name": "Allroad Projecten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 41,
+    "duplicate_name": "AltiFlex Personeelsdiensten",
+    "canonical_id": "agency_052",
+    "canonical_name": "AltiFlex Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 42,
+    "duplicate_name": "Always Action Uitzendbureau",
+    "canonical_id": "agency_053",
+    "canonical_name": "Always Action Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 43,
+    "duplicate_name": "AmbuCare",
+    "canonical_id": "agency_054",
+    "canonical_name": "AmbuCare",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 46,
+    "duplicate_name": "Antenna Uitzendburo",
+    "canonical_id": "agency_055",
+    "canonical_name": "Antenna Uitzendburo",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 47,
+    "duplicate_name": "ask Felix HR-Solutions",
+    "canonical_id": "agency_056",
+    "canonical_name": "ask Felix HR-Solutions",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 48,
+    "duplicate_name": "Attract Flex",
+    "canonical_id": "agency_057",
+    "canonical_name": "Attract Flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 49,
+    "duplicate_name": "AutoJobs Professionals",
+    "canonical_id": "agency_058",
+    "canonical_name": "AutoJobs Professionals",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 50,
+    "duplicate_name": "Axiflex",
+    "canonical_id": "agency_059",
+    "canonical_name": "Axiflex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 51,
+    "duplicate_name": "Baanbreed",
+    "canonical_id": "agency_060",
+    "canonical_name": "Baanbreed",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 52,
+    "duplicate_name": "Baan-Perspectief B.V.",
+    "canonical_id": "agency_061",
+    "canonical_name": "Baan-Perspectief B.V.",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 53,
+    "duplicate_name": "Backoffice Plus",
+    "canonical_id": "agency_062",
+    "canonical_name": "Backoffice Plus",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 57,
+    "duplicate_name": "Basic Interim",
+    "canonical_id": "agency_063",
+    "canonical_name": "Basic Interim",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 58,
+    "duplicate_name": "BC Group Payroll",
+    "canonical_id": "agency_064",
+    "canonical_name": "BC Group Payroll",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 59,
+    "duplicate_name": "Befaflex",
+    "canonical_id": "agency_065",
+    "canonical_name": "Befaflex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 60,
+    "duplicate_name": "Best Flex",
+    "canonical_id": "agency_066",
+    "canonical_name": "Best Flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 61,
+    "duplicate_name": "BOEG Bouw & Installatietechniek",
+    "canonical_id": "agency_067",
+    "canonical_name": "BOEG Bouw & Installatietechniek",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 62,
+    "duplicate_name": "BOEG Financieel",
+    "canonical_id": "agency_068",
+    "canonical_name": "BOEG Financieel",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 63,
+    "duplicate_name": "Bouwselect",
+    "canonical_id": "agency_069",
+    "canonical_name": "Bouwselect",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 64,
+    "duplicate_name": "BUDDO",
+    "canonical_id": "agency_070",
+    "canonical_name": "BUDDO",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 65,
+    "duplicate_name": "Building Careers",
+    "canonical_id": "agency_071",
+    "canonical_name": "Building Careers",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 66,
+    "duplicate_name": "Building Heroes Professionals BV",
+    "canonical_id": "agency_072",
+    "canonical_name": "Building Heroes Professionals BV",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 67,
+    "duplicate_name": "Bureau Techniek",
+    "canonical_id": "agency_073",
+    "canonical_name": "Bureau Techniek",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 68,
+    "duplicate_name": "Capital Spring",
+    "canonical_id": "agency_074",
+    "canonical_name": "Capital Spring",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 69,
+    "duplicate_name": "Care4Flex",
+    "canonical_id": "agency_075",
+    "canonical_name": "Care4Flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 70,
+    "duplicate_name": "CareAbout Detachering",
+    "canonical_id": "agency_076",
+    "canonical_name": "CareAbout Detachering",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 75,
+    "duplicate_name": "Cirrus Flexible Staffing",
+    "canonical_id": "agency_077",
+    "canonical_name": "Cirrus Flexible Staffing",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 76,
+    "duplicate_name": "Code Deta",
+    "canonical_id": "agency_078",
+    "canonical_name": "Code Deta",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 78,
+    "duplicate_name": "ConnectAir",
+    "canonical_id": "agency_079",
+    "canonical_name": "ConnectAir",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 79,
+    "duplicate_name": "Consolid Groep / Oudstanding",
+    "canonical_id": "agency_080",
+    "canonical_name": "Consolid Groep / Oudstanding",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 83,
+    "duplicate_name": "Continu",
+    "canonical_id": "agency_081",
+    "canonical_name": "Continu",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 84,
+    "duplicate_name": "Corpo Mission Groep",
+    "canonical_id": "agency_082",
+    "canonical_name": "Corpo Mission Groep",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 85,
+    "duplicate_name": "Cova Personeelsdiensten",
+    "canonical_id": "agency_083",
+    "canonical_name": "Cova Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 89,
+    "duplicate_name": "CTS Techniek",
+    "canonical_id": "agency_084",
+    "canonical_name": "CTS Techniek",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 90,
+    "duplicate_name": "Dailyflex Personeelsdiensten",
+    "canonical_id": "agency_085",
+    "canonical_name": "Dailyflex Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 91,
+    "duplicate_name": "De Jager Detachering",
+    "canonical_id": "agency_086",
+    "canonical_name": "De Jager Detachering",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 92,
+    "duplicate_name": "De Werkunie",
+    "canonical_id": "agency_087",
+    "canonical_name": "De Werkunie",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 93,
+    "duplicate_name": "De Zorg",
+    "canonical_id": "agency_088",
+    "canonical_name": "De Zorg",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 95,
+    "duplicate_name": "Dekra People",
+    "canonical_id": "agency_089",
+    "canonical_name": "Dekra People",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 96,
+    "duplicate_name": "DEP WORKS",
+    "canonical_id": "agency_090",
+    "canonical_name": "DEP WORKS",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 97,
+    "duplicate_name": "Detaconcept Uitzendgroep",
+    "canonical_id": "agency_091",
+    "canonical_name": "Detaconcept Uitzendgroep",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 98,
+    "duplicate_name": "dNM Interim",
+    "canonical_id": "agency_092",
+    "canonical_name": "dNM Interim",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 99,
+    "duplicate_name": "DoctorConnect Interim",
+    "canonical_id": "agency_093",
+    "canonical_name": "DoctorConnect Interim",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 108,
+    "duplicate_name": "Duijndam Works",
+    "canonical_id": "agency_094",
+    "canonical_name": "Duijndam Works",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 109,
+    "duplicate_name": "E&A Uitzendbureau / E & A Logistiek",
+    "canonical_id": "agency_095",
+    "canonical_name": "E&A Uitzendbureau / E & A Logistiek",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 110,
+    "duplicate_name": "Easy Way Flex",
+    "canonical_id": "agency_096",
+    "canonical_name": "Easy Way Flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 111,
+    "duplicate_name": "easyworx flex",
+    "canonical_id": "agency_097",
+    "canonical_name": "easyworx flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 112,
+    "duplicate_name": "Effect Uitzendbureau",
+    "canonical_id": "agency_098",
+    "canonical_name": "Effect Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 114,
+    "duplicate_name": "ELRO.Work",
+    "canonical_id": "agency_099",
+    "canonical_name": "ELRO.Work",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 115,
+    "duplicate_name": "Enginear",
+    "canonical_id": "agency_100",
+    "canonical_name": "Enginear",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 116,
+    "duplicate_name": "Etran",
+    "canonical_id": "agency_101",
+    "canonical_name": "Etran",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 117,
+    "duplicate_name": "Euro Planit",
+    "canonical_id": "agency_102",
+    "canonical_name": "Euro Planit",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 118,
+    "duplicate_name": "Eurojob",
+    "canonical_id": "agency_103",
+    "canonical_name": "Eurojob",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 119,
+    "duplicate_name": "EU-Roots Uitzendbureau",
+    "canonical_id": "agency_104",
+    "canonical_name": "EU-Roots Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 120,
+    "duplicate_name": "Europlus",
+    "canonical_id": "agency_105",
+    "canonical_name": "Europlus",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 121,
+    "duplicate_name": "Europrofessionals Oost",
+    "canonical_id": "agency_106",
+    "canonical_name": "Europrofessionals Oost",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 124,
+    "duplicate_name": "F.G. Progress / PRO-GRESS",
+    "canonical_id": "agency_107",
+    "canonical_name": "F.G. Progress / PRO-GRESS",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 125,
+    "duplicate_name": "Faam Werkt",
+    "canonical_id": "agency_108",
+    "canonical_name": "Faam Werkt",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 126,
+    "duplicate_name": "Faber Personeelsdiensten",
+    "canonical_id": "agency_109",
+    "canonical_name": "Faber Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 127,
+    "duplicate_name": "Factory4Work",
+    "canonical_id": "agency_110",
+    "canonical_name": "Factory4Work",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 128,
+    "duplicate_name": "Fides Personeelsdiensten",
+    "canonical_id": "agency_111",
+    "canonical_name": "Fides Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 133,
+    "duplicate_name": "Flex Personeel",
+    "canonical_id": "agency_112",
+    "canonical_name": "Flex Personeel",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 134,
+    "duplicate_name": "Flexclick",
+    "canonical_id": "agency_113",
+    "canonical_name": "Flexclick",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 135,
+    "duplicate_name": "Flexdirect Uitzendgroep",
+    "canonical_id": "agency_114",
+    "canonical_name": "Flexdirect Uitzendgroep",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 136,
+    "duplicate_name": "Flex-Employment",
+    "canonical_id": "agency_115",
+    "canonical_name": "Flex-Employment",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 138,
+    "duplicate_name": "Flexjob024",
+    "canonical_id": "agency_116",
+    "canonical_name": "Flexjob024",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 139,
+    "duplicate_name": "Flex-Online",
+    "canonical_id": "agency_117",
+    "canonical_name": "Flex-Online",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 145,
+    "duplicate_name": "Flexsupport",
+    "canonical_id": "agency_118",
+    "canonical_name": "Flexsupport",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 146,
+    "duplicate_name": "FlexToday",
+    "canonical_id": "agency_119",
+    "canonical_name": "FlexToday",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 147,
+    "duplicate_name": "Flexurity",
+    "canonical_id": "agency_120",
+    "canonical_name": "Flexurity",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 148,
+    "duplicate_name": "FlexVet",
+    "canonical_id": "agency_121",
+    "canonical_name": "FlexVet",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 149,
+    "duplicate_name": "Flexwinkl B.V.",
+    "canonical_id": "agency_122",
+    "canonical_name": "Flexwinkl B.V.",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 150,
+    "duplicate_name": "FlexWorx! Uitzendbureau",
+    "canonical_id": "agency_123",
+    "canonical_name": "FlexWorx! Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 151,
+    "duplicate_name": "Flexycare Uitzenden",
+    "canonical_id": "agency_124",
+    "canonical_name": "Flexycare Uitzenden",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 152,
+    "duplicate_name": "ForeignFlex",
+    "canonical_id": "agency_125",
+    "canonical_name": "ForeignFlex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 153,
+    "duplicate_name": "Frenq Personeelsdiensten",
+    "canonical_id": "agency_126",
+    "canonical_name": "Frenq Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 154,
+    "duplicate_name": "Gero Flexpartner",
+    "canonical_id": "agency_127",
+    "canonical_name": "Gero Flexpartner",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 155,
+    "duplicate_name": "Gi Group Temp",
+    "canonical_id": "agency_128",
+    "canonical_name": "Gi Group Temp",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 156,
+    "duplicate_name": "Green Resource Group",
+    "canonical_id": "agency_129",
+    "canonical_name": "Green Resource Group",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 157,
+    "duplicate_name": "GreenFox Social Return",
+    "canonical_id": "agency_130",
+    "canonical_name": "GreenFox Social Return",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 158,
+    "duplicate_name": "Groenendijk Flex Service / IPPON Flex",
+    "canonical_id": "agency_131",
+    "canonical_name": "Groenendijk Flex Service / IPPON Flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 160,
+    "duplicate_name": "GZ-academy",
+    "canonical_id": "agency_132",
+    "canonical_name": "GZ-academy",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 161,
+    "duplicate_name": "HappyNurse Uitzendbureau",
+    "canonical_id": "agency_133",
+    "canonical_name": "HappyNurse Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 162,
+    "duplicate_name": "Hattrick Uitzendbureau",
+    "canonical_id": "agency_134",
+    "canonical_name": "Hattrick Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 163,
+    "duplicate_name": "HCA Project Support",
+    "canonical_id": "agency_135",
+    "canonical_name": "HCA Project Support",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 164,
+    "duplicate_name": "HEAD Uitzendbureau",
+    "canonical_id": "agency_136",
+    "canonical_name": "HEAD Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 165,
+    "duplicate_name": "HelloFlex People 200",
+    "canonical_id": "agency_137",
+    "canonical_name": "HelloFlex People 200",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 166,
+    "duplicate_name": "Herenbos Uitzendorganisatie",
+    "canonical_id": "agency_138",
+    "canonical_name": "Herenbos Uitzendorganisatie",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 167,
+    "duplicate_name": "Heroyam",
+    "canonical_id": "agency_139",
+    "canonical_name": "Heroyam",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 168,
+    "duplicate_name": "Het Groen Werkt",
+    "canonical_id": "agency_140",
+    "canonical_name": "Het Groen Werkt",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 169,
+    "duplicate_name": "Het Onderwijshuis Detachering",
+    "canonical_id": "agency_141",
+    "canonical_name": "Het Onderwijshuis Detachering",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 170,
+    "duplicate_name": "Het Onderwijshuis Opleidingen",
+    "canonical_id": "agency_142",
+    "canonical_name": "Het Onderwijshuis Opleidingen",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 171,
+    "duplicate_name": "Hölscher Project Support",
+    "canonical_id": "agency_143",
+    "canonical_name": "Hölscher Project Support",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 172,
+    "duplicate_name": "HOOP4EU",
+    "canonical_id": "agency_144",
+    "canonical_name": "HOOP4EU",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 173,
+    "duplicate_name": "Hurde Wurkers",
+    "canonical_id": "agency_145",
+    "canonical_name": "Hurde Wurkers",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 174,
+    "duplicate_name": "IBC Europe / Recolo Hospitality",
+    "canonical_id": "agency_146",
+    "canonical_name": "IBC Europe / Recolo Hospitality",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 175,
+    "duplicate_name": "ICE Agency",
+    "canonical_id": "agency_147",
+    "canonical_name": "ICE Agency",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 176,
+    "duplicate_name": "Impact Personeel",
+    "canonical_id": "agency_148",
+    "canonical_name": "Impact Personeel",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 177,
+    "duplicate_name": "In Person Franchise Diensten",
+    "canonical_id": "agency_149",
+    "canonical_name": "In Person Franchise Diensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 178,
+    "duplicate_name": "Interchange Detacheren",
+    "canonical_id": "agency_150",
+    "canonical_name": "Interchange Detacheren",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 179,
+    "duplicate_name": "Interim Services & Projects",
+    "canonical_id": "agency_151",
+    "canonical_name": "Interim Services & Projects",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 180,
+    "duplicate_name": "Intermediair Uitzendbureau",
+    "canonical_id": "agency_152",
+    "canonical_name": "Intermediair Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 181,
+    "duplicate_name": "International Flex Job",
+    "canonical_id": "agency_153",
+    "canonical_name": "International Flex Job",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 182,
+    "duplicate_name": "Introbouw Services",
+    "canonical_id": "agency_154",
+    "canonical_name": "Introbouw Services",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 183,
+    "duplicate_name": "Invite Jobs",
+    "canonical_id": "agency_155",
+    "canonical_name": "Invite Jobs",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 184,
+    "duplicate_name": "i-Pharm Consulting Limited",
+    "canonical_id": "agency_156",
+    "canonical_name": "i-Pharm Consulting Limited",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 185,
+    "duplicate_name": "IQ Select",
+    "canonical_id": "agency_157",
+    "canonical_name": "IQ Select",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 186,
+    "duplicate_name": "ITSync Services",
+    "canonical_id": "agency_158",
+    "canonical_name": "ITSync Services",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 187,
+    "duplicate_name": "JDU",
+    "canonical_id": "agency_159",
+    "canonical_name": "JDU",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 188,
+    "duplicate_name": "Jeff & Jill",
+    "canonical_id": "agency_160",
+    "canonical_name": "Jeff & Jill",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 192,
+    "duplicate_name": "Job Flex",
+    "canonical_id": "agency_161",
+    "canonical_name": "Job Flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 193,
+    "duplicate_name": "Job Investment",
+    "canonical_id": "agency_162",
+    "canonical_name": "Job Investment",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 194,
+    "duplicate_name": "Jobdrive Uitzendburo Hoorn",
+    "canonical_id": "agency_163",
+    "canonical_name": "Jobdrive Uitzendburo Hoorn",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 195,
+    "duplicate_name": "Jupiter Uitzendbureau Westland",
+    "canonical_id": "agency_164",
+    "canonical_name": "Jupiter Uitzendbureau Westland",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 196,
+    "duplicate_name": "Kamphorst Detachering",
+    "canonical_id": "agency_165",
+    "canonical_name": "Kamphorst Detachering",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 197,
+    "duplicate_name": "Kamphorst Flex",
+    "canonical_id": "agency_166",
+    "canonical_name": "Kamphorst Flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 198,
+    "duplicate_name": "Kees Werkt",
+    "canonical_id": "agency_167",
+    "canonical_name": "Kees Werkt",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 201,
+    "duplicate_name": "Key4Work",
+    "canonical_id": "agency_168",
+    "canonical_name": "Key4Work",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 202,
+    "duplicate_name": "Kleurrijk Sociaal Pedagogische Hulpverlening",
+    "canonical_id": "agency_169",
+    "canonical_name": "Kleurrijk Sociaal Pedagogische Hulpverlening",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 203,
+    "duplicate_name": "Knikkers Uitzendwerk",
+    "canonical_id": "agency_170",
+    "canonical_name": "Knikkers Uitzendwerk",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 204,
+    "duplicate_name": "Koers Oost",
+    "canonical_id": "agency_171",
+    "canonical_name": "Koers Oost",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 205,
+    "duplicate_name": "KOMM Professionals",
+    "canonical_id": "agency_172",
+    "canonical_name": "KOMM Professionals",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 206,
+    "duplicate_name": "Kompas Backoffice Services",
+    "canonical_id": "agency_173",
+    "canonical_name": "Kompas Backoffice Services",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 207,
+    "duplicate_name": "KSD-groep",
+    "canonical_id": "agency_174",
+    "canonical_name": "KSD-groep",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 208,
+    "duplicate_name": "L&M Detacheringsbureau",
+    "canonical_id": "agency_175",
+    "canonical_name": "L&M Detacheringsbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 211,
+    "duplicate_name": "Luba Uitzendbureau",
+    "canonical_id": "agency_176",
+    "canonical_name": "Luba Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 212,
+    "duplicate_name": "Lucell",
+    "canonical_id": "agency_177",
+    "canonical_name": "Lucell",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 213,
+    "duplicate_name": "Maestro Bedrijfsdiensten",
+    "canonical_id": "agency_178",
+    "canonical_name": "Maestro Bedrijfsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 219,
+    "duplicate_name": "Matchpoint Banen",
+    "canonical_id": "agency_179",
+    "canonical_name": "Matchpoint Banen",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 220,
+    "duplicate_name": "Matsch Werving en Selectie",
+    "canonical_id": "agency_180",
+    "canonical_name": "Matsch Werving en Selectie",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 221,
+    "duplicate_name": "Megatech",
+    "canonical_id": "agency_181",
+    "canonical_name": "Megatech",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 222,
+    "duplicate_name": "Menso Detacheren",
+    "canonical_id": "agency_182",
+    "canonical_name": "Menso Detacheren",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 223,
+    "duplicate_name": "Metaal Flex Nederland",
+    "canonical_id": "agency_183",
+    "canonical_name": "Metaal Flex Nederland",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 224,
+    "duplicate_name": "Metafoor Onderwijs",
+    "canonical_id": "agency_184",
+    "canonical_name": "Metafoor Onderwijs",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 225,
+    "duplicate_name": "Mijn MAVEIN",
+    "canonical_id": "agency_185",
+    "canonical_name": "Mijn MAVEIN",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 226,
+    "duplicate_name": "MJH-flex",
+    "canonical_id": "agency_186",
+    "canonical_name": "MJH-flex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 227,
+    "duplicate_name": "Mobiwerk",
+    "canonical_id": "agency_187",
+    "canonical_name": "Mobiwerk",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 230,
+    "duplicate_name": "Mr. Jobs",
+    "canonical_id": "agency_188",
+    "canonical_name": "Mr. Jobs",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 231,
+    "duplicate_name": "Multiman HR",
+    "canonical_id": "agency_189",
+    "canonical_name": "Multiman HR",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 235,
+    "duplicate_name": "NestrX",
+    "canonical_id": "agency_190",
+    "canonical_name": "NestrX",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 236,
+    "duplicate_name": "New Accord",
+    "canonical_id": "agency_191",
+    "canonical_name": "New Accord",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 237,
+    "duplicate_name": "NEXST Staffing",
+    "canonical_id": "agency_192",
+    "canonical_name": "NEXST Staffing",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 238,
+    "duplicate_name": "Nivo",
+    "canonical_id": "agency_193",
+    "canonical_name": "Nivo",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 240,
+    "duplicate_name": "NL People",
+    "canonical_id": "agency_194",
+    "canonical_name": "NL People",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 241,
+    "duplicate_name": "No Brothers Nederland",
+    "canonical_id": "agency_195",
+    "canonical_name": "No Brothers Nederland",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 242,
+    "duplicate_name": "NoordWest3",
+    "canonical_id": "agency_196",
+    "canonical_name": "NoordWest3",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 243,
+    "duplicate_name": "NOWJOBS",
+    "canonical_id": "agency_197",
+    "canonical_name": "NOWJOBS",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 247,
+    "duplicate_name": "Omzien Uitzenden",
+    "canonical_id": "agency_198",
+    "canonical_name": "Omzien Uitzenden",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 248,
+    "duplicate_name": "One PB",
+    "canonical_id": "agency_199",
+    "canonical_name": "One PB",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 249,
+    "duplicate_name": "OnlyHuman",
+    "canonical_id": "agency_200",
+    "canonical_name": "OnlyHuman",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 250,
+    "duplicate_name": "Opstap",
+    "canonical_id": "agency_201",
+    "canonical_name": "Opstap",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 251,
+    "duplicate_name": "Oradeo Recruitment Limited",
+    "canonical_id": "agency_202",
+    "canonical_name": "Oradeo Recruitment Limited",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 252,
+    "duplicate_name": "OrangeJobs",
+    "canonical_id": "agency_203",
+    "canonical_name": "OrangeJobs",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 253,
+    "duplicate_name": "Oranje Kracht Uitzendbureau",
+    "canonical_id": "agency_204",
+    "canonical_name": "Oranje Kracht Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 255,
+    "duplicate_name": "ORCA Crew Services",
+    "canonical_id": "agency_205",
+    "canonical_name": "ORCA Crew Services",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 256,
+    "duplicate_name": "Orion Engineering",
+    "canonical_id": "agency_206",
+    "canonical_name": "Orion Engineering",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 261,
+    "duplicate_name": "Oxford Global Resources",
+    "canonical_id": "agency_207",
+    "canonical_name": "Oxford Global Resources",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 262,
+    "duplicate_name": "P&M interim-zorg",
+    "canonical_id": "agency_208",
+    "canonical_name": "P&M interim-zorg",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 263,
+    "duplicate_name": "Page Interim",
+    "canonical_id": "agency_209",
+    "canonical_name": "Page Interim",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 264,
+    "duplicate_name": "Passie HR",
+    "canonical_id": "agency_210",
+    "canonical_name": "Passie HR",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 265,
+    "duplicate_name": "Paszend",
+    "canonical_id": "agency_211",
+    "canonical_name": "Paszend",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 266,
+    "duplicate_name": "Pegasus Holland",
+    "canonical_id": "agency_212",
+    "canonical_name": "Pegasus Holland",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 267,
+    "duplicate_name": "People Work Service",
+    "canonical_id": "agency_213",
+    "canonical_name": "People Work Service",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 268,
+    "duplicate_name": "PerfectFlex",
+    "canonical_id": "agency_214",
+    "canonical_name": "PerfectFlex",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 269,
+    "duplicate_name": "Personeelsdiensten Twente",
+    "canonical_id": "agency_215",
+    "canonical_name": "Personeelsdiensten Twente",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 270,
+    "duplicate_name": "PIDZ Uitzend",
+    "canonical_id": "agency_216",
+    "canonical_name": "PIDZ Uitzend",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 271,
+    "duplicate_name": "PlanB Werkt",
+    "canonical_id": "agency_217",
+    "canonical_name": "PlanB Werkt",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 272,
+    "duplicate_name": "PMU-Work Apply",
+    "canonical_id": "agency_218",
+    "canonical_name": "PMU-Work Apply",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 273,
+    "duplicate_name": "Polned Uitzendbureau",
+    "canonical_id": "agency_219",
+    "canonical_name": "Polned Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 276,
+    "duplicate_name": "PP Personeelsdiensten",
+    "canonical_id": "agency_220",
+    "canonical_name": "PP Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 277,
+    "duplicate_name": "Praktijkopleiding Bouw zf Personeelsdiensten",
+    "canonical_id": "agency_221",
+    "canonical_name": "Praktijkopleiding Bouw zf Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 278,
+    "duplicate_name": "Prestatie Personeelsdiensten",
+    "canonical_id": "agency_222",
+    "canonical_name": "Prestatie Personeelsdiensten",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 279,
+    "duplicate_name": "Primadeta Staffing",
+    "canonical_id": "agency_223",
+    "canonical_name": "Primadeta Staffing",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 280,
+    "duplicate_name": "Prime Option",
+    "canonical_id": "agency_224",
+    "canonical_name": "Prime Option",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 281,
+    "duplicate_name": "PrismaWorx Uitzend",
+    "canonical_id": "agency_225",
+    "canonical_name": "PrismaWorx Uitzend",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 287,
+    "duplicate_name": "Projectburo Staffable",
+    "canonical_id": "agency_226",
+    "canonical_name": "Projectburo Staffable",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 288,
+    "duplicate_name": "Projob",
+    "canonical_id": "agency_227",
+    "canonical_name": "Projob",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 289,
+    "duplicate_name": "Raaak Personeel",
+    "canonical_id": "agency_228",
+    "canonical_name": "Raaak Personeel",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 293,
+    "duplicate_name": "Samco",
+    "canonical_id": "agency_229",
+    "canonical_name": "Samco",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 297,
+    "duplicate_name": "SD Worx Payrolling / Easymatch",
+    "canonical_id": "agency_230",
+    "canonical_name": "SD Worx Payrolling / Easymatch",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 298,
+    "duplicate_name": "SD Worx Staffing Solutions",
+    "canonical_id": "agency_231",
+    "canonical_name": "SD Worx Staffing Solutions",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 299,
+    "duplicate_name": "Secretary Plus Management Support",
+    "canonical_id": "agency_232",
+    "canonical_name": "Secretary Plus Management Support",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 300,
+    "duplicate_name": "Seesing Personeel",
+    "canonical_id": "agency_233",
+    "canonical_name": "Seesing Personeel",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 303,
+    "duplicate_name": "Select Uitzendbureau",
+    "canonical_id": "agency_234",
+    "canonical_name": "Select Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 304,
+    "duplicate_name": "Selenay Uitzendbureau",
+    "canonical_id": "agency_235",
+    "canonical_name": "Selenay Uitzendbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 305,
+    "duplicate_name": "Selexions",
+    "canonical_id": "agency_236",
+    "canonical_name": "Selexions",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 306,
+    "duplicate_name": "Serycon Services",
+    "canonical_id": "agency_237",
+    "canonical_name": "Serycon Services",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 309,
+    "duplicate_name": "Simytech Uitzend- en Detacheringsbureau",
+    "canonical_id": "agency_238",
+    "canonical_name": "Simytech Uitzend- en Detacheringsbureau",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 310,
+    "duplicate_name": "Snoeijs-Schrauwen",
+    "canonical_id": "agency_239",
+    "canonical_name": "Snoeijs-Schrauwen",
+    "match_reason": "singleton",
+    "is_canonical": true
+  },
+  {
+    "duplicate_row_id": 311,
+    "duplicate_name": "Solsbury Labour Group",
+    "canonical_id": "agency_240",
+    "canonical_name": "Solsbury Labour Group",
+    "match_reason": "singleton",
+    "is_canonical": true
+  }
+]

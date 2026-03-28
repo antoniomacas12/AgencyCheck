@@ -1,0 +1,350 @@
+// AgencyCheck — Prisma Schema v5 (PostgreSQL / Supabase)
+// All enum fields stored as String for portability.
+// Arrays/objects stored as String (JSON-serialised) for compatibility.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Models ───────────────────────────────────────────────────────────────────
+
+model Agency {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  description String?
+  website     String?
+  email       String?
+  phone       String?
+  logoUrl     String?
+
+  // Housing & transport — values: "YES" | "NO" | "UNKNOWN"
+  housing     String  @default("UNKNOWN")
+  housingType String  @default("UNKNOWN")
+  transport   String  @default("UNKNOWN")
+
+  // Location
+  city             String  @default("unknown")
+  cities           String  @default("[]")
+
+  // Enriched fields
+  jobTypes         String?
+  salaryRange      String?
+
+  // Structured classification (v4)
+  agencyType        String  @default("general-staffing")
+  jobFocus          String  @default("[]")
+  transparencyScore Int     @default(0)
+  accommodation     String  @default("unknown")
+  supportedCities   String  @default("[]")
+
+  // Deduplication & provenance
+  canonicalId      String?
+  aliases          String  @default("[]")
+  duplicateCount   Int     @default(1)
+  confidenceScore  Int     @default(100)
+  sourceUrl        String?
+  // values: "ABU_REGISTER" | "SNCU_REGISTER" | "OFFICIAL_WEBSITE" | "WORKER_REPORTED" | "UNKNOWN"
+  sourceType       String  @default("UNKNOWN")
+  lastCheckedAt    DateTime?
+
+  housingVerification   String?
+  transportVerification String?
+  webPages              String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  jobListings   JobListing[]
+  reviews       Review[]
+  salaryReports SalaryReport[]
+  issueReports  IssueReport[]
+  score         AgencyScore?
+
+  @@map("agencies")
+}
+
+// ─── Job Listings ─────────────────────────────────────────────────────────────
+
+model JobListing {
+  id          String  @id @default(cuid())
+  slug        String  @unique
+
+  title       String
+  jobType     String
+  description String?
+
+  city     String
+  agency   Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  agencyId String
+
+  salaryMin Float
+  salaryMax Float
+
+  // values: "YES" | "NO" | "UNKNOWN"
+  housing   String @default("UNKNOWN")
+  transport String @default("UNKNOWN")
+
+  sourceUrl String?
+  isActive  Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([agencyId])
+  @@index([city])
+  @@index([jobType])
+  @@index([isActive])
+  @@map("job_listings")
+}
+
+model Review {
+  id String @id @default(cuid())
+
+  agency   Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  agencyId String
+
+  // values: "PENDING" | "APPROVED" | "REJECTED" | "PUBLISHED"
+  status        String  @default("PENDING")
+  isPublished   Boolean @default(false)
+  internalNotes String?
+  moderatedAt   DateTime?
+  moderatedBy   String?
+
+  // values: "ANONYMOUS" | "VERIFIED_WORKER"
+  reviewType String @default("ANONYMOUS")
+
+  // values: "CURRENT" | "FORMER" | "UNKNOWN"
+  workerStatus     String @default("UNKNOWN")
+  experiencePeriod String?
+
+  jobType  String?
+  jobTitle String?
+  city     String?
+  title    String?
+
+  overallRating Int @default(3)
+
+  salaryRating          Int  @default(3)
+  housingRating         Int?
+  managementRating      Int  @default(3)
+  contractClarityRating Int  @default(3)
+  transportRating       Int?
+  salaryAccuracyRating  Int?
+
+  // values: "YES" | "NO" | "UNKNOWN"
+  accommodationProvided String @default("UNKNOWN")
+  // values: "PRIVATE" | "SHARED" | "UNKNOWN"
+  roomType              String @default("UNKNOWN")
+  weeklyRent            Float?
+  peopleInHouse         Int?
+
+  // values: "YES" | "NO" | "UNSURE"
+  wouldRecommend String  @default("UNSURE")
+  comment        String?
+
+  issueTags String @default("[]")
+
+  // values: "VERIFIED" | "WORKER_REPORTED" | "UNKNOWN"
+  verificationStatus String @default("UNKNOWN")
+  // values: "ABU_REGISTER" | "SNCU_REGISTER" | "OFFICIAL_WEBSITE" | "WORKER_REPORTED" | "UNKNOWN"
+  sourceType         String @default("WORKER_REPORTED")
+
+  createdAt DateTime @default(now())
+
+  photos ReviewPhoto[]
+
+  @@index([agencyId])
+  @@index([status])
+  @@index([isPublished])
+  @@index([overallRating])
+  @@map("reviews")
+}
+
+// ─── Review Photos ────────────────────────────────────────────────────────────
+
+model ReviewPhoto {
+  id String @id @default(cuid())
+
+  review   Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  reviewId String
+
+  fileUrl   String
+  fileName  String
+  fileType  String
+  fileSize  Int
+
+  caption   String?
+  sortOrder Int @default(0)
+
+  uploadedAt DateTime @default(now())
+
+  @@index([reviewId])
+  @@map("review_photos")
+}
+
+model SalaryReport {
+  id String @id @default(cuid())
+
+  agency   Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  agencyId String
+
+  jobTitle  String
+  city      String
+  hourlyPay Float
+  // values: "YES" | "NO" | "UNKNOWN"
+  housing   String @default("UNKNOWN")
+
+  createdAt DateTime @default(now())
+
+  @@map("salary_reports")
+}
+
+model IssueReport {
+  id String @id @default(cuid())
+
+  agency   Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  agencyId String
+
+  // values: "MISSING_OVERTIME" | "MISSING_SUNDAY_PAY" | "LATE_PAYMENT" | "BAD_HOUSING" | "CONTRACT_ISSUE" | "TRANSPORT_ISSUE" | "PAYSLIP_PROBLEM"
+  issueType     String
+  description   String
+  amountMissing Float?
+  // values: "OPEN" | "RESOLVED" | "DISMISSED"
+  status        String @default("OPEN")
+
+  createdAt DateTime @default(now())
+
+  @@map("issue_reports")
+}
+
+model AgencyScore {
+  id String @id @default(cuid())
+
+  agency   Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  agencyId String @unique
+
+  score Int @default(100)
+
+  updatedAt DateTime @updatedAt
+
+  @@map("agency_scores")
+}
+
+// ─── Lead Capture ─────────────────────────────────────────────────────────────
+
+model Lead {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sourcePage  String
+  // values: "jobs_with_housing" | "job_page" | "agency_page" | "general_apply"
+  sourceType  String  @default("general_apply")
+  sourceSlug  String?
+  sourceLabel String?
+
+  fullName     String
+  phone        String
+  email        String?
+  whatsappSame Boolean @default(false)
+
+  nationality    String?
+  currentCountry String?
+  alreadyInNL    Boolean?
+
+  preferredWorkType   String?
+  preferredRegion     String?
+  accommodationNeeded Boolean?
+  driversLicense      Boolean?
+  canWorkWeekends     Boolean?
+  experienceLevel     String?
+  availableFrom       DateTime?
+  notes               String?
+
+  // values: "new" | "reviewed" | "waiting_for_match" | "potential_fit" | "agency_contact_pending" | "approved" | "sent" | "converted" | "confirmed" | "paid" | "rejected"
+  status          String @default("new")
+  tags            String @default("[]")
+  assignedTo      String?
+  lastContactedAt DateTime?
+  internalNotes   String?
+
+  assignedAgencies String    @default("[]")
+  sentAt           DateTime?
+
+  // ── Payout / conversion tracking ──────────────────────────────────────────
+  // confirmedAt: date worker was confirmed as started at agency
+  // workerStartDate: actual first working day (if known)
+  // payoutAmount: agreed fee in EUR (e.g. €150 per placed worker)
+  // paidAt: date payment was received from agency
+  confirmedAt     DateTime?
+  workerStartDate DateTime?
+  payoutAmount    Float?
+  paidAt          DateTime?
+
+  sends LeadSend[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([sourceType])
+  @@index([accommodationNeeded])
+  @@map("leads")
+}
+
+// ─── Worker Experience Reports ────────────────────────────────────────────────
+// Anonymous salary/housing transparency reports submitted by workers.
+
+model WorkerExperience {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  agencyName String
+  city       String
+  jobType    String
+
+  agreedGross String?   // what agency advertised
+  actualKeep  String?   // what worker actually kept
+
+  hasHousing     Boolean @default(false)
+  housingRating  Int?    // 1–5 if hasHousing
+
+  salaryAccurate Boolean @default(false)
+  wouldRecommend Boolean @default(false)
+
+  comment     String?
+  submittedAt String?   // ISO string from client
+
+  @@index([agencyName])
+  @@index([createdAt])
+  @@map("worker_experiences")
+}
+
+// ─── Lead Send Log ─────────────────────────────────────────────────────────────
+
+model LeadSend {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  leadId String
+
+  agencySlug  String
+  agencyName  String
+  agencyEmail String?
+
+  method   String @default("email")
+  status   String @default("sent")
+  errorMsg String?
+
+  emailSubject String?
+  emailBody    String?
+
+  @@index([leadId])
+  @@map("lead_sends")
+}

@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-03-11",
+  "raw_rows_imported": 312,
+  "duplicates_removed": 71,
+  "unique_canonical_agencies": 241,
+  "domain_merge_groups": 33,
+  "fuzzy_auto_merged": 0,
+  "pairs_flagged_for_review": 5,
+  "agencies_housing_yes": 7,
+  "agencies_housing_unknown": 234,
+  "agencies_transport_yes": 3,
+  "agencies_with_job_types": 30,
+  "agencies_with_multi_cities": 3,
+  "total_aliases": 93
+}
