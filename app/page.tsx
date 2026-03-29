@@ -80,7 +80,7 @@ export default async function HomePage() {
   ];
 
   /* ── Latest 3 reviews for Section 6 ──────────────────────────────────── */
-  const latestReviews = getLatestReviews(3).map((r, i) => {
+  const latestReviews = getLatestReviews(3).map((r, any, i  ) => {
     const agencyName = AGENCY_MAP[r.agencySlug]?.name ?? r.agencySlug;
     return {
       review: {
