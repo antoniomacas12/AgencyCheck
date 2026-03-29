@@ -9,19 +9,34 @@
     /* Prevent font size inflation on mobile */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Ensure Inter variable font is active globally */
+    font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
   }
 
   body {
     @apply bg-gray-50 text-gray-900;
+    /* Baseline layout — prevents full-width unstyled flash */
+    min-height: 100vh;
   }
 
-  * {
+  *, *::before, *::after {
     box-sizing: border-box;
   }
+
+  /* Heading defaults — ensure visual hierarchy even on CSS partial-load */
+  h1 { @apply text-3xl font-black leading-tight; }
+  h2 { @apply text-xl font-black leading-snug; }
+  h3 { @apply text-base font-bold; }
 
   /* Improve tap targets on mobile */
   button, a {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Ensure links don't look like plain text by default */
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 

@@ -220,48 +220,50 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════
           HERO — Jobs with housing + real salary truth
       ══════════════════════════════════════════ */}
-      <section className="bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white pt-10 pb-8 px-4">
+      <section className="bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-white pt-14 pb-12 px-4">
         <div className="max-w-3xl mx-auto text-center">
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-1 text-xs font-medium mb-5">
+          {/* Trust badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-4 py-1.5 text-xs font-semibold mb-6 tracking-wide">
             🇳🇱 {t("homepage.badge", { housingCount: String(housingCount) })}
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-black leading-tight mb-4">
-            <span className="text-green-400">{t("homepage.hero_gross")}</span><br className="hidden sm:block" />
-            <span className="text-red-400">{t("homepage.hero_net")}</span>
+          {/* Main headline — large on mobile, larger on desktop */}
+          <h1 className="text-3xl sm:text-5xl font-black leading-[1.15] mb-5 tracking-tight">
+            <span className="text-green-400 block">{t("homepage.hero_gross")}</span>
+            <span className="text-red-400 block mt-1">{t("homepage.hero_net")}</span>
           </h1>
 
-          <p className="text-gray-400 text-sm sm:text-base mb-7 max-w-xl mx-auto leading-relaxed">
+          <p className="text-gray-300 text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
             {t("homepage.hero_sub")}
           </p>
 
-          {/* Primary CTAs — housing first, salary second */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-7">
+          {/* Primary CTAs — large, visible on mobile */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
             <Link href="/jobs-with-accommodation"
-              className="bg-green-600 hover:bg-green-500 text-white text-sm font-black px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-green-900/40">
-              {t("homepage.cta_housing")}
+              className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-white text-sm font-black px-8 py-4 rounded-xl transition-colors shadow-lg shadow-green-900/50">
+              🏠 {t("homepage.cta_housing")}
             </Link>
             <Link href="/tools/real-income-calculator"
-              className="bg-white/10 hover:bg-white/20 text-white text-sm font-semibold px-7 py-3.5 rounded-xl transition-colors border border-white/15">
-              {t("homepage.cta_salary")}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold px-8 py-4 rounded-xl transition-colors border border-white/20">
+              🧮 {t("homepage.cta_salary")}
             </Link>
           </div>
 
+          {/* Search bar */}
           <SmartSearch suggestions={searchSuggestions} size="large" />
 
-          {/* Quick links */}
-          <div className="flex flex-wrap justify-center gap-2 mt-5">
+          {/* Quick-nav links */}
+          <div className="flex flex-wrap justify-center gap-2 mt-6">
             {[
-              { href: "/jobs-with-accommodation",     label: "🏠 Jobs with housing" },
-              { href: "/agencies-with-housing",       label: "🏢 Housing agencies" },
-              { href: "/reach-truck-jobs",             label: "🚜 Forklift jobs" },
+              { href: "/jobs-with-accommodation",          label: "🏠 Jobs with housing" },
+              { href: "/agencies-with-housing",            label: "🏢 Housing agencies" },
+              { href: "/reach-truck-jobs",                  label: "🚜 Forklift jobs" },
               { href: "/warehouse-jobs-with-accommodation", label: "🏭 Warehouse jobs" },
               { href: "/work-in-netherlands-for-foreigners", label: "🌍 For foreigners" },
             ].map((link) => (
               <Link key={link.href} href={link.href}
-                className="bg-white/8 hover:bg-white/15 text-gray-300 text-xs font-medium px-3 py-1.5 rounded-full transition-colors border border-white/8">
+                className="bg-white/10 hover:bg-white/20 text-gray-300 text-xs font-medium px-3.5 py-1.5 rounded-full transition-colors border border-white/10">
                 {link.label}
               </Link>
             ))}
@@ -269,20 +271,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ══ SECTION A — GET MATCHED CTA ══════════════════════════════════════
-           Replaces: red "Reality Check" banner (duplicate salary message removed)
-      ══════════════════════════════════════════════════════════════════════ */}
-      <div className="bg-gradient-to-r from-brand-800 via-brand-700 to-brand-800 text-white px-4 py-9 border-y border-brand-600">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-300 mb-3">
+      {/* ══ SECTION A — GET MATCHED CTA ══════════════════════════════════════ */}
+      <div className="bg-gradient-to-r from-brand-800 via-brand-700 to-brand-800 text-white px-4 py-10 border-y border-brand-600/50">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-200 mb-3">
             Looking for work with accommodation in the Netherlands?
           </p>
-          <h2 className="text-xl sm:text-2xl font-black text-white mb-3 leading-snug">
-            Tell us what you&apos;re looking for — we&apos;ll find the match
+          <h2 className="text-2xl sm:text-3xl font-black text-white mb-4 leading-snug">
+            Tell us what you&apos;re looking for —<br className="hidden sm:block" /> we&apos;ll find the match
           </h2>
-          <p className="text-brand-200 text-sm mb-7 max-w-md mx-auto leading-relaxed">
-            Submit your preferences once. We save your profile and match you with suitable
-            jobs and agencies that include housing — then notify you when there&apos;s a fit.
+          <p className="text-blue-200 text-sm mb-8 max-w-sm mx-auto leading-relaxed">
+            Submit your preferences once. We match you with suitable jobs and agencies
+            that include housing — then notify you when there&apos;s a fit.
           </p>
           <ApplyBar
             context={{
@@ -294,10 +294,10 @@ export default async function HomePage() {
             ctaText="Find me a job"
             buttonOnly
           />
-          <div className="flex flex-wrap justify-center gap-4 mt-6 text-xs text-brand-300">
-            <span>✓ Free — no fees</span>
-            <span>✓ No commitment until you accept</span>
-            <span>✓ Your data stays private</span>
+          <div className="flex flex-wrap justify-center gap-5 mt-6 text-xs text-blue-200">
+            <span className="flex items-center gap-1.5">✓ Free — no fees</span>
+            <span className="flex items-center gap-1.5">✓ No commitment until you accept</span>
+            <span className="flex items-center gap-1.5">✓ Your data stays private</span>
           </div>
         </div>
       </div>
@@ -331,51 +331,54 @@ export default async function HomePage() {
           {/* ── Main content ── */}
           <div className="flex-1 min-w-0 space-y-12">
 
-        {/* ══ SECTION B — HOW IT WORKS ═══════════════════════════════════
-             Replaces: duplicate €600 vs €243 salary comparison
-             (already shown in full in the hero section above)
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ SECTION B — HOW IT WORKS ═══════════════════════════════════ */}
         <section>
           <p className="text-[11px] font-bold uppercase tracking-widest text-brand-600 mb-1">How it works</p>
-          <h2 className="text-xl font-black text-gray-900 mb-6 leading-snug">
+          <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-6 leading-snug">
             Three steps to a job with accommodation
           </h2>
           <div className="grid sm:grid-cols-3 gap-4 mb-6">
             {/* Step 1 */}
-            <div className="rounded-2xl border border-gray-200 bg-white p-5">
-              <div className="w-9 h-9 rounded-full bg-brand-600 text-white text-sm font-black flex items-center justify-center mb-3">1</div>
-              <p className="text-sm font-bold text-gray-900 mb-1.5">Submit your preferences</p>
-              <p className="text-xs text-gray-500 leading-relaxed">
-                Tell us your work type, region, availability, and whether you need accommodation.
-                Takes 2 minutes. No commitment.
-              </p>
+            <div className="rounded-2xl border-2 border-gray-200 bg-white p-5 flex flex-col gap-3">
+              <div className="w-10 h-10 rounded-full bg-brand-600 text-white text-sm font-black flex items-center justify-center shrink-0">1</div>
+              <div>
+                <p className="text-sm font-bold text-gray-900 mb-1.5">Submit your preferences</p>
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  Tell us your work type, region, availability, and whether you need accommodation.
+                  Takes 2 minutes. No commitment.
+                </p>
+              </div>
             </div>
             {/* Step 2 */}
-            <div className="rounded-2xl border border-brand-200 bg-brand-50 p-5">
-              <div className="w-9 h-9 rounded-full bg-brand-600 text-white text-sm font-black flex items-center justify-center mb-3">2</div>
-              <p className="text-sm font-bold text-gray-900 mb-1.5">We match your profile</p>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                We compare your profile against jobs and agencies that include housing. We only
-                consider matches that fit your criteria.
-              </p>
+            <div className="rounded-2xl border-2 border-brand-200 bg-brand-50 p-5 flex flex-col gap-3">
+              <div className="w-10 h-10 rounded-full bg-brand-600 text-white text-sm font-black flex items-center justify-center shrink-0">2</div>
+              <div>
+                <p className="text-sm font-bold text-gray-900 mb-1.5">We match your profile</p>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  We compare your profile against jobs and agencies that include housing. We only
+                  consider matches that fit your criteria.
+                </p>
+              </div>
             </div>
             {/* Step 3 */}
-            <div className="rounded-2xl border border-green-200 bg-green-50 p-5">
-              <div className="w-9 h-9 rounded-full bg-green-600 text-white text-sm font-black flex items-center justify-center mb-3">3</div>
-              <p className="text-sm font-bold text-gray-900 mb-1.5">You get notified</p>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                When a suitable match is found, we contact you directly. You decide whether to
-                proceed — no pressure, no fees.
-              </p>
+            <div className="rounded-2xl border-2 border-green-200 bg-green-50 p-5 flex flex-col gap-3">
+              <div className="w-10 h-10 rounded-full bg-green-600 text-white text-sm font-black flex items-center justify-center shrink-0">3</div>
+              <div>
+                <p className="text-sm font-bold text-gray-900 mb-1.5">You get notified</p>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  When a suitable match is found, we contact you directly. You decide whether to
+                  proceed — no pressure, no fees.
+                </p>
+              </div>
             </div>
           </div>
-          {/* Inline CTA to trigger the lead form */}
-          <div className="bg-gray-900 rounded-xl px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Inline CTA */}
+          <div className="bg-gray-900 rounded-2xl px-5 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <p className="text-sm text-white font-bold leading-snug">
+              <p className="text-base text-white font-black leading-snug">
                 Ready to find your next job?
               </p>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <p className="text-xs text-gray-400 mt-1">
                 Your profile stays private — we never share it without your knowledge.
               </p>
             </div>
@@ -722,32 +725,32 @@ export default async function HomePage() {
 
         {/* ══ Community impact counter ══════════════════════════════════ */}
         <section>
-          <div className="bg-gradient-to-r from-brand-700 to-brand-800 rounded-2xl p-5 text-white">
-            <p className="text-xs font-semibold text-brand-200 uppercase tracking-wider mb-3">Community impact</p>
-            <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className="bg-gradient-to-br from-brand-700 via-brand-700 to-brand-800 rounded-2xl p-6 text-white">
+            <p className="text-[10px] font-bold text-blue-200 uppercase tracking-widest mb-4">Community impact</p>
+            <div className="grid grid-cols-3 gap-4 mb-5">
               {[
                 { value: totalReviews,            label: "Worker reviews",        icon: "⭐" },
                 { value: housingCount,             label: "Housing agencies",      icon: "🏠" },
-                { value: agenciesNeedingReviews,   label: "Agencies need reviews", icon: "✍️" },
+                { value: agenciesNeedingReviews,   label: "Need reviews",          icon: "✍️" },
               ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p className="text-2xl mb-0.5">{stat.icon}</p>
-                  <p className="text-xl font-black text-white">{stat.value}</p>
-                  <p className="text-[10px] text-brand-200 leading-snug">{stat.label}</p>
+                <div key={stat.label} className="text-center py-3 px-2 bg-white/10 rounded-xl">
+                  <p className="text-2xl mb-1">{stat.icon}</p>
+                  <p className="text-2xl font-black text-white leading-none">{stat.value}</p>
+                  <p className="text-[10px] text-blue-200 mt-1 leading-snug">{stat.label}</p>
                 </div>
               ))}
             </div>
             {/* Live activity ticker */}
-            <div className="bg-white/10 rounded-xl px-3 py-2">
+            <div className="bg-white/10 rounded-xl px-3 py-2 mb-4">
               <LiveActivityFeed variant="ticker" maxItems={8} />
             </div>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               <Link href="/agencies"
-                className="text-xs font-semibold bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-lg transition-colors">
+                className="inline-flex items-center text-xs font-semibold bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-colors">
                 {t("common.see_all_agencies")} →
               </Link>
               <Link href="/reviews"
-                className="text-xs font-semibold bg-white text-brand-700 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition-colors">
+                className="inline-flex items-center text-xs font-semibold bg-white text-brand-700 hover:bg-brand-50 px-4 py-2 rounded-lg transition-colors">
                 ✍️ Share your experience
               </Link>
             </div>
@@ -943,26 +946,26 @@ export default async function HomePage() {
 
         {/* ══ Platform explanation ═════════════════════════════════════ */}
         <section>
-          <div className="bg-gray-50 border border-gray-100 rounded-2xl p-6">
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="text-[9px] font-black uppercase tracking-widest bg-green-100 text-green-700 rounded-full px-2.5 py-1">📊 Based on real worker data</span>
-              <span className="text-[9px] font-black uppercase tracking-widest bg-red-100 text-red-600 rounded-full px-2.5 py-1">🚫 Not agency advertising</span>
-              <span className="text-[9px] font-black uppercase tracking-widest bg-blue-100 text-blue-700 rounded-full px-2.5 py-1">👷 Reported by workers</span>
-              <span className="text-[9px] font-black uppercase tracking-widest bg-gray-100 text-gray-600 rounded-full px-2.5 py-1">✅ Independent platform</span>
+          <div className="bg-gray-950 rounded-2xl p-6 sm:p-8">
+            <div className="flex flex-wrap items-center gap-2 mb-5">
+              <span className="text-[9px] font-black uppercase tracking-widest bg-green-900/60 text-green-400 border border-green-800 rounded-full px-2.5 py-1">📊 Real worker data</span>
+              <span className="text-[9px] font-black uppercase tracking-widest bg-red-900/60 text-red-400 border border-red-800 rounded-full px-2.5 py-1">🚫 Not agency ads</span>
+              <span className="text-[9px] font-black uppercase tracking-widest bg-blue-900/60 text-blue-400 border border-blue-800 rounded-full px-2.5 py-1">👷 Worker-reported</span>
+              <span className="text-[9px] font-black uppercase tracking-widest bg-gray-800 text-gray-400 border border-gray-700 rounded-full px-2.5 py-1">✅ Independent</span>
             </div>
-            <h2 className="text-base font-bold text-gray-900 mb-3">About AgencyCheck</h2>
-            <div className="grid sm:grid-cols-3 gap-4 text-sm text-gray-600 leading-relaxed">
+            <h2 className="text-lg font-black text-white mb-4">About AgencyCheck</h2>
+            <div className="grid sm:grid-cols-3 gap-5 text-sm text-gray-400 leading-relaxed">
               <p>
                 AgencyCheck is an independent worker transparency platform. We help workers in the Netherlands
                 understand their rights, compare agencies, and make informed decisions before starting work.
               </p>
               <p>
-                Our agency data comes from the official ABU (employment agency federation) member register.
+                Our agency data comes from the official ABU member register.
                 Housing, transport, and salary data is supplemented with worker-reported experiences.
               </p>
               <p>
-                We do not charge agencies for listings. We are not affiliated with any employment agency.
-                Our goal is to help workers, not agencies. All data is clearly labeled by source and verification status.
+                We do not charge agencies for listings. We are not affiliated with any agency.
+                Our goal is to help workers, not agencies.
               </p>
             </div>
           </div>
