@@ -35,6 +35,13 @@ const config: Config = {
     "bg-orange-50", "border-orange-100", "bg-orange-100", "text-orange-700",
     "bg-green-50",  "border-green-100",  "bg-green-100",  "text-green-700",
     "bg-purple-50", "border-purple-100", "bg-purple-100", "text-purple-700",
+    // ── Homepage hero gradient + section backgrounds ───────────────────────
+    "from-gray-950", "via-gray-900", "to-gray-800",
+    "from-blue-900", "via-blue-950", "to-gray-950",
+    "bg-blue-700", "bg-blue-600", "hover:bg-blue-700",
+    "border-white/15", "border-white/25", "border-white/40",
+    "shadow-green-900/40", "shadow-green-900/30",
+    "bg-white/8",
   ],
   theme: {
     extend: {
