@@ -189,7 +189,7 @@ export function PublishedReviewCard({ review }: { review: PublishedReview }) {
             )}
           </div>
           {review.title && (
-            <p className="text-sm font-semibold text-gray-800">"{review.title}"</p>
+            <p className="text-sm font-semibold text-gray-800">&quot;{review.title}&quot;</p>
           )}
         </div>
         <div className="text-xs text-gray-400 shrink-0">{displayDate}</div>

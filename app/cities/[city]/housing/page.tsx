@@ -224,7 +224,7 @@ export default function CityHousingPage({ params }: { params: { city: string } }
             subtitle="Housing status not confirmed — contact them directly to find out"
           />
           <div className="bg-amber-50 border border-amber-100 rounded-lg px-4 py-2.5 mb-3 text-xs text-amber-800">
-            ℹ️ These agencies haven't publicly confirmed whether they provide housing.
+            ℹ️ These agencies haven&apos;t publicly confirmed whether they provide housing.
             Call or email them before visiting to ask about accommodation availability.
           </div>
           <div className="grid sm:grid-cols-2 gap-3">

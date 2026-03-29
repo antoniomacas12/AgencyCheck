@@ -237,7 +237,7 @@ export default function AdminReviewsPage() {
                         <span className="text-gray-300">ID: {r.id.slice(-8)}</span>
                       </div>
                       {r.title && (
-                        <p className="text-sm font-medium text-gray-800 mb-1">"{r.title}"</p>
+                        <p className="text-sm font-medium text-gray-800 mb-1">&quot;{r.title}&quot;</p>
                       )}
                       {r.comment && (
                         <p className="text-sm text-gray-600 line-clamp-2">{r.comment}</p>

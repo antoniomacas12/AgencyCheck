@@ -20,7 +20,7 @@ function SubmitPageInner() {
     return (
       <div className="text-center py-20">
         <p className="text-gray-500 text-sm mb-4">
-          No agency specified. Please go to an agency page and click "Write a review" there.
+          No agency specified. Please go to an agency page and click &quot;Write a review&quot; there.
         </p>
         <Link href="/agencies" className="text-blue-600 hover:underline text-sm">
           Browse agencies →

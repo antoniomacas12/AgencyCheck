@@ -80,7 +80,7 @@ export default async function HomePage() {
   ];
 
   /* ── Latest 3 reviews for Section 6 ──────────────────────────────────── */
-  const latestReviews = getLatestReviews(3).map((r, any, i  ) => {
+  const latestReviews = getLatestReviews(3).map((r, i) => {
     const agencyName = AGENCY_MAP[r.agencySlug]?.name ?? r.agencySlug;
     return {
       review: {
@@ -379,12 +379,15 @@ export default async function HomePage() {
 
             <div className="grid sm:grid-cols-3 gap-4">
               {latestReviews.map((item) => (
-                <WorkerReviewCard
-                  key={item.review.id}
-                  review={item.review}
-                  agencySlug={item.agencySlug}
-                  agencyName={item.agencyName}
-                />
+                <div key={item.review.id}>
+                  <Link
+                    href={`/agencies/${item.agencySlug}`}
+                    className="block text-xs font-semibold text-brand-600 hover:text-brand-700 mb-2 truncate"
+                  >
+                    {item.agencyName} →
+                  </Link>
+                  <WorkerReviewCard review={item.review} />
+                </div>
               ))}
             </div>
 

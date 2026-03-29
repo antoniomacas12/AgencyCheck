@@ -85,7 +85,7 @@ export default function JobsInNetherlandsPage() {
 
         <p className="text-gray-600 text-sm leading-relaxed max-w-3xl">
           Find warehouse, logistics, production, and factory jobs in the Netherlands.
-          Many positions offer <strong>housing included</strong> — ideal if you're relocating
+          Many positions offer <strong>housing included</strong> — ideal if you&apos;re relocating
           from Poland, Romania, Bulgaria, or elsewhere in the EU.
           All listings are sourced from verified Dutch employment agencies (uitzendbureaus).
         </p>
