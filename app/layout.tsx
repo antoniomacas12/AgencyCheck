@@ -13,7 +13,6 @@ import type { Locale } from "@/lib/i18n";
 // window.scrollY, window.location) on mount. SSR-ing them causes React
 // hydration mismatch errors #418/#423 because server and client render
 // differ. ssr:false ensures they only mount after hydration completes.
-const ShockPopup        = nDynamic(() => import("@/components/ShockPopup"),        { ssr: false });
 const StickyIncomeStrip = nDynamic(() => import("@/components/StickyIncomeStrip"), { ssr: false });
 const WorkerQAPanel     = nDynamic(() => import("@/components/WorkerQAPanel"),     { ssr: false });
 const FloatingStack     = nDynamic(() => import("@/components/FloatingStack"),     { ssr: false });
@@ -69,7 +68,6 @@ export default function RootLayout({
         {!isAdmin && <Navbar locale={locale} />}
         <main className={isAdmin ? "flex-1" : "flex-1 pb-14"}>{children}</main>
         {!isAdmin && <Footer />}
-        {!isAdmin && <ShockPopup />}
         {!isAdmin && <StickyIncomeStrip />}
         {!isAdmin && <WorkerQAPanel hideTrigger />}
         {!isAdmin && <FloatingStack />}
