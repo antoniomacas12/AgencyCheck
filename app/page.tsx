@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import nDynamic from "next/dynamic";
 import SmartSearch from "@/components/SmartSearch";
 import ApplyBar from "@/components/ApplyBar";
 import AgencyCard from "@/components/AgencyCard";
 import WorkerReviewCard from "@/components/WorkerReviewCard";
-import LiveActivityFeed from "@/components/LiveActivityFeed";
 import RealSalaryBlock from "@/components/RealSalaryBlock";
+
+// LiveActivityFeed is a pure client-side ticker — it has no SEO value and
+// its animation state can differ between server and client render.
+// ssr:false prevents any hydration mismatch from the animated ticker.
+const LiveActivityFeed = nDynamic(() => import("@/components/LiveActivityFeed"), { ssr: false });
 import WorkerHousingStrip from "@/components/WorkerHousingStrip";
 import { AGENCIES, AGENCIES_WITH_HOUSING, AGENCY_MAP } from "@/lib/agencyData";
 import { TOP_CITIES } from "@/lib/seoData";

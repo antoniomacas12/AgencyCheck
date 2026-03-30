@@ -2,15 +2,21 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import Script from "next/script";
+import nDynamic from "next/dynamic";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ShockPopup from "@/components/ShockPopup";
-import StickyIncomeStrip from "@/components/StickyIncomeStrip";
-import WorkerQAPanel from "@/components/WorkerQAPanel";
-import FloatingStack from "@/components/FloatingStack";
 import { BLUR_PLACEHOLDER_IMAGES } from "@/lib/siteConfig";
 import type { Locale } from "@/lib/i18n";
+
+// These widgets start hidden and access browser APIs (sessionStorage,
+// window.scrollY, window.location) on mount. SSR-ing them causes React
+// hydration mismatch errors #418/#423 because server and client render
+// differ. ssr:false ensures they only mount after hydration completes.
+const ShockPopup        = nDynamic(() => import("@/components/ShockPopup"),        { ssr: false });
+const StickyIncomeStrip = nDynamic(() => import("@/components/StickyIncomeStrip"), { ssr: false });
+const WorkerQAPanel     = nDynamic(() => import("@/components/WorkerQAPanel"),     { ssr: false });
+const FloatingStack     = nDynamic(() => import("@/components/FloatingStack"),     { ssr: false });
 
 // GA4 — only injected when NEXT_PUBLIC_GA_ID is set. Safe to leave unset in dev.
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
