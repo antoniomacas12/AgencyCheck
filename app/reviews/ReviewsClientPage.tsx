@@ -429,72 +429,58 @@ function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, str
 
   return (
     <div>
-      {/* Filters */}
-      <div className="bg-gray-50 border border-gray-100 rounded-xl p-4 mb-6">
-        <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">{t("reviews_page.filter_title")}</p>
-        <div className="grid sm:grid-cols-2 gap-3 mb-3">
-          <div>
-            <label className="block text-xs text-gray-600 mb-1">{t("reviews_page.filter_agency")}</label>
-            <select
-              value={agencyFilter}
-              onChange={(e) => { setAgencyFilter(e.target.value); setShowCount(12); }}
-              className="w-full text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-gray-700 focus:outline-none focus:border-gray-400"
+      {/* Compact filter bar — single row, no background box */}
+      <div className="flex flex-wrap items-center gap-2 mb-4 pb-3 border-b border-gray-100">
+        <select
+          value={agencyFilter}
+          onChange={(e) => { setAgencyFilter(e.target.value); setShowCount(12); }}
+          className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-gray-700 focus:outline-none focus:border-gray-400"
+        >
+          <option value="">{t("reviews_page.filter_agency_all")}</option>
+          {FILTER_AGENCIES.map((slug) => (
+            <option key={slug} value={slug}>
+              {agencyDisplayName(slug)}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          value={cityFilter}
+          onChange={(e) => { setCityFilter(e.target.value); setShowCount(12); }}
+          placeholder={t("reviews_page.filter_city_placeholder")}
+          className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-gray-400 w-28"
+        />
+        {/* Housing pills */}
+        <div className="flex items-center gap-1">
+          {(["", "yes", "no"] as const).map((v) => (
+            <button
+              key={v || "all"}
+              onClick={() => { setHousingFilter(v); setShowCount(12); }}
+              className={`text-[10px] font-semibold rounded-full px-2.5 py-1 border transition-all ${
+                housingFilter === v
+                  ? "bg-gray-900 text-white border-gray-900"
+                  : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
+              }`}
             >
-              <option value="">{t("reviews_page.filter_agency_all")}</option>
-              {FILTER_AGENCIES.map((slug) => (
-                <option key={slug} value={slug}>
-                  {agencyDisplayName(slug)}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-xs text-gray-600 mb-1">{t("reviews_page.filter_city")}</label>
-            <input
-              type="text"
-              value={cityFilter}
-              onChange={(e) => { setCityFilter(e.target.value); setShowCount(12); }}
-              placeholder={t("reviews_page.filter_city_placeholder")}
-              className="w-full text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-gray-400"
-            />
-          </div>
+              {v === "" ? t("reviews_page.filter_housing_all") : v === "yes" ? t("reviews_page.filter_housing_with") : t("reviews_page.filter_housing_without")}
+            </button>
+          ))}
         </div>
-        <div className="flex items-center gap-3 flex-wrap">
-          {/* Housing filter */}
-          <div className="flex items-center gap-1.5">
-            <p className="text-xs text-gray-500">{t("reviews_page.filter_housing")}</p>
-            {(["", "yes", "no"] as const).map((v) => (
-              <button
-                key={v || "all"}
-                onClick={() => { setHousingFilter(v); setShowCount(12); }}
-                className={`text-[10px] font-semibold rounded-full px-2.5 py-1 border transition-all ${
-                  housingFilter === v
-                    ? "bg-gray-900 text-white border-gray-900"
-                    : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
-                }`}
-              >
-                {v === "" ? t("reviews_page.filter_housing_all") : v === "yes" ? t("reviews_page.filter_housing_with") : t("reviews_page.filter_housing_without")}
-              </button>
-            ))}
-          </div>
-
-          {/* Sort */}
-          <div className="flex items-center gap-1.5 ml-auto">
-            <p className="text-xs text-gray-500">{t("reviews_page.filter_sort")}</p>
-            {(["newest", "worst", "best"] as const).map((s) => (
-              <button
-                key={s}
-                onClick={() => setSortKey(s)}
-                className={`text-[10px] font-semibold rounded-full px-2.5 py-1 border transition-all capitalize ${
-                  sortKey === s
-                    ? "bg-gray-900 text-white border-gray-900"
-                    : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
-                }`}
-              >
-                {s === "newest" ? t("reviews_page.filter_sort_newest") : s === "worst" ? t("reviews_page.filter_sort_worst") : t("reviews_page.filter_sort_best")}
-              </button>
-            ))}
-          </div>
+        {/* Sort pills */}
+        <div className="flex items-center gap-1 ml-auto">
+          {(["newest", "worst", "best"] as const).map((s) => (
+            <button
+              key={s}
+              onClick={() => setSortKey(s)}
+              className={`text-[10px] font-semibold rounded-full px-2.5 py-1 border transition-all capitalize ${
+                sortKey === s
+                  ? "bg-gray-900 text-white border-gray-900"
+                  : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
+              }`}
+            >
+              {s === "newest" ? t("reviews_page.filter_sort_newest") : s === "worst" ? t("reviews_page.filter_sort_worst") : t("reviews_page.filter_sort_best")}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -558,18 +544,18 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
   ).length;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-6">
 
       {/* Breadcrumb */}
-      <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">
+      <nav className="text-xs text-gray-400 mb-3 flex items-center gap-1.5 flex-wrap">
         <Link href="/" className="hover:text-brand-600">{t("common.home")}</Link>
         <span>›</span>
         <span className="text-gray-800 font-medium">{t("nav.reviews")}</span>
       </nav>
 
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 mb-3 flex-wrap">
+      {/* Compact header — badges + title + subheading in one tight block */}
+      <div className="mb-5">
+        <div className="flex items-center gap-2 mb-2 flex-wrap">
           <span className="text-[10px] font-black uppercase tracking-widest bg-amber-100 text-amber-800 rounded-full px-2.5 py-1">
             {t("reviews_page.badge_reviews", { count: totalReviews })}
           </span>
@@ -580,37 +566,20 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
             {t("reviews_page.badge_not_advertising")}
           </span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight mb-2">
+        <h1 className="text-xl sm:text-2xl font-black text-gray-900 leading-tight mb-1">
           {t("reviews_page.heading")}
         </h1>
-        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
+        <p className="text-gray-500 text-sm leading-relaxed max-w-2xl">
           {t("reviews_page.subheading")}
         </p>
       </div>
 
-      {/* Trust badges */}
-      <div className="grid sm:grid-cols-3 gap-3 mb-8">
-        {[
-          { icon: "👤", title: t("reviews_page.trust_1_title"), desc: t("reviews_page.trust_1_desc") },
-          { icon: "📊", title: t("reviews_page.trust_2_title"), desc: t("reviews_page.trust_2_desc") },
-          { icon: "🚫", title: t("reviews_page.trust_3_title"), desc: t("reviews_page.trust_3_desc") },
-        ].map((item) => (
-          <div key={item.title} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-3 flex items-start gap-3">
-            <span className="text-xl shrink-0">{item.icon}</span>
-            <div>
-              <p className="text-xs font-bold text-gray-800">{item.title}</p>
-              <p className="text-[10px] text-gray-500 mt-0.5 leading-relaxed">{item.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Two-column layout — flex so sticky sidebar works naturally */}
+      <div className="lg:flex lg:items-start lg:gap-8">
 
-      {/* 2-column layout on large screens */}
-      <div className="lg:grid lg:grid-cols-5 lg:gap-8">
-
-        {/* Left: Review form */}
-        <div className="lg:col-span-2 mb-10 lg:mb-0">
-          <div className="bg-white border-2 border-gray-900 rounded-2xl p-5 sticky top-20">
+        {/* LEFT — sticky form (desktop: fixed width, sticks while right scrolls) */}
+        <div className="lg:w-[360px] lg:shrink-0 mb-8 lg:mb-0 lg:sticky lg:top-20">
+          <div className="bg-white border-2 border-gray-900 rounded-2xl p-5 lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto">
             <div className="mb-5">
               <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-1">
                 {t("reviews_page.share_experience_label")}
@@ -623,19 +592,37 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
               </p>
             </div>
             <ReviewSubmitForm t={t} />
+
+            {/* Trust signals — tucked inside form card, below submit */}
+            <div className="mt-6 pt-5 border-t border-gray-100 space-y-3">
+              {[
+                { icon: "👤", title: t("reviews_page.trust_1_title"), desc: t("reviews_page.trust_1_desc") },
+                { icon: "📊", title: t("reviews_page.trust_2_title"), desc: t("reviews_page.trust_2_desc") },
+                { icon: "🚫", title: t("reviews_page.trust_3_title"), desc: t("reviews_page.trust_3_desc") },
+              ].map((item) => (
+                <div key={item.title} className="flex items-start gap-2">
+                  <span className="text-base shrink-0 mt-0.5">{item.icon}</span>
+                  <div>
+                    <p className="text-xs font-bold text-gray-700">{item.title}</p>
+                    <p className="text-[10px] text-gray-400 leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Right: Reviews feed */}
-        <div className="lg:col-span-3">
+        {/* RIGHT — reviews feed, immediately visible above the fold */}
+        <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-base font-black text-gray-900">
               {t("reviews_page.recent_title")}
             </h2>
             <p className="text-xs text-gray-400">{t("reviews_page.total_count", { count: totalReviews })}</p>
           </div>
-          <WorkerDisclaimer variant="reviews" size="banner" className="mb-4" />
           <ReviewsFeed t={t} locale={locale} />
+          {/* Disclaimer banner after first batch of reviews, not before */}
+          <WorkerDisclaimer variant="reviews" size="banner" className="mt-6" />
         </div>
       </div>
 
