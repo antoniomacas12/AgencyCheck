@@ -53,13 +53,11 @@ const SALARY_ROWS = [
   { label: "You keep",           amount: "€243",  highlight: true,  green: true  },
 ] as const;
 
-// ─── Quick nav links ─────────────────────────────────────────────────────────
+// ─── Quick nav links — kept to 3 most relevant, below search ─────────────────
 const QUICK_LINKS = [
-  { href: "/jobs-with-accommodation",            label: "🏠 Jobs with housing"  },
-  { href: "/agencies-with-housing",              label: "🏢 Housing agencies"   },
-  { href: "/reach-truck-jobs",                   label: "🚜 Forklift jobs"      },
-  { href: "/warehouse-jobs-with-accommodation",  label: "🏭 Warehouse jobs"     },
-  { href: "/work-in-netherlands-for-foreigners", label: "🌍 For foreigners"     },
+  { href: "/agencies-with-housing",              label: "🏢 Agencies with housing" },
+  { href: "/tools/real-income-calculator",       label: "🧮 Salary calculator"     },
+  { href: "/work-in-netherlands-for-foreigners", label: "🌍 For foreigners"        },
 ];
 
 export default async function HomePage() {
@@ -158,19 +156,20 @@ export default async function HomePage() {
               compare agencies that are actually honest about costs.
             </p>
 
-            {/* Primary CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+            {/* CTA — single primary action above the fold */}
+            <div className="flex flex-col items-center gap-3 justify-center mb-10">
               <Link
                 href="/jobs-with-accommodation"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 px-8 py-4 text-base font-black text-white shadow-lg shadow-green-900/40 transition-colors hover:bg-green-400"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 px-10 py-4 text-base font-black text-white shadow-lg shadow-green-900/40 transition-colors hover:bg-green-400"
               >
                 🏠 Find jobs with housing
               </Link>
+              {/* Secondary — text-weight link so it doesn't compete with primary */}
               <Link
                 href="/tools/real-income-calculator"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/25 bg-white/10 px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-white/20 hover:border-white/40"
+                className="text-sm text-gray-400 hover:text-white transition-colors underline underline-offset-2"
               >
-                🧮 See real salary after costs
+                🧮 See my real salary after costs →
               </Link>
             </div>
 
@@ -365,11 +364,12 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-10 text-center">
+            {/* Secondary action — ghost style so it doesn't compete with the primary hero CTA */}
             <Link
               href="/tools/real-income-calculator"
-              className="inline-flex items-center gap-2 rounded-xl bg-green-500 px-8 py-4 text-base font-black text-white shadow-lg shadow-green-900/30 transition-colors hover:bg-green-400"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-3.5 text-sm font-semibold text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
             >
-              🧮 Calculate my real salary
+              🧮 Open full salary calculator →
             </Link>
           </div>
 
@@ -422,9 +422,10 @@ export default async function HomePage() {
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/reviews"        className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50">📋 Read all {totalReviews} reviews</Link>
-              <Link href="/submit-review"  className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700">✍️ Submit your review</Link>
+            {/* Single CTA — "submit review" demoted to text link; one button per section */}
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center">
+              <Link href="/reviews" className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50">📋 Read all {totalReviews} reviews</Link>
+              <Link href="/submit-review" className="text-sm text-blue-600 hover:text-blue-800 transition-colors font-medium">✍️ Submit yours →</Link>
             </div>
           </div>
 
@@ -455,9 +456,10 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
             <Link href="/agencies-with-housing" className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-base font-black text-white shadow-sm transition-colors hover:bg-blue-700">🏢 All {housingCount} housing agencies</Link>
-            <Link href="/agencies"              className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-8 py-4 text-base font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50">📋 All {totalAgencies} agencies</Link>
+            {/* Secondary — text link weight, "all agencies" is a navigation aid not a conversion CTA */}
+            <Link href="/agencies" className="text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium">All {totalAgencies} agencies →</Link>
           </div>
 
         </div>
@@ -479,13 +481,8 @@ export default async function HomePage() {
               Built for workers — not recruiters.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link
-                href="/jobs-with-accommodation"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 px-8 py-4 text-base font-black text-white shadow-lg shadow-green-900/40 transition-colors hover:bg-green-400"
-              >
-                🏠 Find jobs with housing
-              </Link>
+            {/* Primary = apply form. Directory link demoted to text. */}
+            <div className="flex flex-col items-center gap-3 justify-center mb-12">
               <ApplyBar
                 context={{
                   sourcePage:           "/",
@@ -493,9 +490,15 @@ export default async function HomePage() {
                   sourceLabel:          "Homepage — final CTA",
                   defaultAccommodation: true,
                 }}
-                ctaText="Get matched now"
+                ctaText="🏠 Find me a job with housing"
                 buttonOnly
               />
+              <Link
+                href="/jobs-with-accommodation"
+                className="text-sm text-blue-300 hover:text-white transition-colors underline underline-offset-2"
+              >
+                Browse jobs with housing →
+              </Link>
             </div>
 
             <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-blue-300">
