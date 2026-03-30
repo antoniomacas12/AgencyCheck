@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AgencyCheck — Praca z Zakwaterowaniem Holandia — Realne Zarobki",
     description:
-      "Zarobki brutto kontra netto, zdjęcia zakwaterowania i opinie pracowników dla 127 agencji pracy w Holandii. Sprawdź prawdę zanim przyjedziesz.",
+      "Zarobki brutto kontra netto, zdjęcia zakwaterowania i opinie pracowników dla 150+ agencji pracy w Holandii. Sprawdź prawdę zanim przyjedziesz.",
     locale: "pl_PL",
   },
 };

@@ -245,7 +245,7 @@ export default function ToolsPage() {
             {[
               { href: "/agencies-with-housing",           icon: "🏠", label: "Find agencies with housing" },
               { href: "/salary/warehouse-worker-netherlands", icon: "📈", label: "Salary data by job type" },
-              { href: "/agencies",                        icon: "🔍", label: "Browse 127 verified agencies" },
+              { href: "/agencies",                        icon: "🔍", label: "Browse 150+ verified agencies" },
               { href: "/tools/payslip-checker#resources", icon: "🛡️", label: "Worker rights resources" },
             ].map((r) => (
               <Link

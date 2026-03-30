@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AgencyCheck — See What You REALLY Keep After All Costs",
     description:
-      "Real salary breakdowns, real housing photos and worker reviews for 127 employment agencies in the Netherlands. Know the truth before you sign.",
+      "Real salary breakdowns, real housing photos and worker reviews for 150+ employment agencies in the Netherlands. Know the truth before you sign.",
   },
 };
 
@@ -299,7 +299,7 @@ export default async function HomePage() {
 
           <div className="grid gap-6 sm:grid-cols-3">
             {[
-              { step: "01", icon: "🔍", title: "Search & compare",    body: "Browse 127 verified agencies. Filter by housing, salary, city and worker ratings. See who actually has decent conditions." },
+              { step: "01", icon: "🔍", title: "Search & compare",    body: "Browse 150+ verified agencies. Filter by housing, salary, city and worker ratings. See who actually has decent conditions." },
               { step: "02", icon: "💶", title: "See your real pay",    body: "Our salary calculator shows exactly what you keep after housing, insurance, transport and all deductions. No more surprises." },
               { step: "03", icon: "✅", title: "Apply with confidence", body: "Read real worker reviews. Get matched through our free service. Sign knowing the numbers are honest and the agency is verified." },
             ].map((item) => (

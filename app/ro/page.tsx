@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AgencyCheck — Locuri de Muncă cu Cazare Olanda — Salariu Real",
     description:
-      "Salariu brut vs net, poze cazare și recenzii de la muncitori pentru 127 agenții de muncă din Olanda. Află adevărul înainte de a semna.",
+      "Salariu brut vs net, poze cazare și recenzii de la muncitori pentru 150+ agenții de muncă din Olanda. Află adevărul înainte de a semna.",
     locale: "ro_RO",
   },
 };

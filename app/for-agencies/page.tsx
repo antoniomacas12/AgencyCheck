@@ -16,7 +16,7 @@ export default function ForAgenciesPage() {
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-gray-900 mb-3">For Employment Agencies</h1>
         <p className="text-gray-600 text-sm leading-relaxed">
-          AgencyCheck lists 127 verified employment agencies operating in the Netherlands.
+          AgencyCheck lists 150+ verified employment agencies operating in the Netherlands.
           This page explains how our platform works, what your profile contains, and how to
           respond if information about your agency is incorrect.
         </p>

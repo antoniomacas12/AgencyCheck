@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s | AgencyCheck",
   },
   description:
-    "Compare 127 verified employment agencies in the Netherlands by worker reviews, housing, salary, and transport. Find agencies near you and know your real take-home pay before signing.",
+    "Compare 150+ verified employment agencies in the Netherlands by worker reviews, housing, salary, and transport. Find agencies near you and know your real take-home pay before signing.",
   keywords: [
     "employment agency netherlands", "uitzendbureau", "werk met huisvesting",
     "warehouse jobs netherlands", "agency housing worker", "looncheck",

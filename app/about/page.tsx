@@ -183,7 +183,7 @@ export default function AboutPage() {
         <p className="text-sm text-gray-500 mb-4">Explore AgencyCheck:</p>
         <div className="flex flex-wrap gap-3">
           <Link href="/agencies" className="text-xs text-brand-600 border border-brand-200 rounded-full px-3 py-1.5 hover:bg-brand-50 transition-colors">
-            Browse 127 agencies →
+            Browse 150+ agencies →
           </Link>
           <Link href="/agencies-with-housing" className="text-xs text-brand-600 border border-brand-200 rounded-full px-3 py-1.5 hover:bg-brand-50 transition-colors">
             Agencies with housing →

@@ -127,7 +127,7 @@ export default function ShareExperiencePage() {
           Select an agency below to open its profile, then scroll to &ldquo;Share your experience&rdquo;.
           Don&apos;t see yours?{" "}
           <Link href="/agencies" className="text-brand-600 underline hover:text-brand-800">
-            Browse all 127 agencies →
+            Browse all 150+ agencies →
           </Link>
         </p>
 
@@ -159,7 +159,7 @@ export default function ShareExperiencePage() {
             href="/agencies"
             className="text-sm font-semibold text-brand-600 hover:text-brand-800 underline"
           >
-            View all 127 agencies →
+            View all 150+ agencies →
           </Link>
         </div>
       </section>

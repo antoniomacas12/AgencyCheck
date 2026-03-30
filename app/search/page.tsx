@@ -24,7 +24,7 @@ import {
 export const metadata: Metadata = {
   title: "Search Employment Agencies by Job, City & Housing — AgencyCheck",
   description:
-    "Search 127 verified employment agencies in the Netherlands by job, city, housing, and salary. Filter by sector, job type, and accommodation availability.",
+    "Search 150+ verified employment agencies in the Netherlands by job, city, housing, and salary. Filter by sector, job type, and accommodation availability.",
 };
 
 // ─── Types ────────────────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 // ─── AgencyCheck — Production Agency Dataset ─────────────────────────────────
 // Research-compiled from public agency websites, registers, and profiles.
-// Dataset: 148 verified employment agencies operating in the Netherlands (including 14 worker-documented flex/housing agencies).
+// Dataset: 151 verified employment agencies operating in the Netherlands (including 20 with confirmed housing accommodation).
 // Last reviewed: 2026-03-14
 
 // ─── Types ───────────────────────────────────────────────────────────────────

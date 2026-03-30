@@ -197,15 +197,24 @@ const _stubs: EnrichedAgency[] = _reviewSlugs
   .filter((slug) => !_baseMap.has(slug))
   .map(buildStub);
 
-/** All verified agencies + stubs for review-referenced agencies not yet fully catalogued */
-export const ALL_AGENCIES: EnrichedAgency[] = [..._BASE_AGENCIES, ..._stubs];
+/**
+ * All VERIFIED agencies only (from data/agencies.ts).
+ * This is the display array — use this for counts, cards, and public stats.
+ * Stubs (auto-generated from review slugs) are intentionally excluded so that
+ * ALL_AGENCIES.length reflects the real verified dataset, not routing artefacts.
+ */
+export const ALL_AGENCIES: EnrichedAgency[] = _BASE_AGENCIES;
 
-/** Fast slug lookup by slug — O(1) */
+/**
+ * Fast slug lookup — includes both verified agencies AND review-referenced stubs
+ * so that /agencies/[slug] never 404s even for agencies not yet fully catalogued.
+ * Do NOT use this for counting or displaying agency lists.
+ */
 export const ALL_AGENCY_MAP: Record<string, EnrichedAgency> = Object.fromEntries(
-  ALL_AGENCIES.map((a) => [a.slug, a])
+  [..._BASE_AGENCIES, ..._stubs].map((a) => [a.slug, a])
 );
 
-/** Agencies with confirmed housing (housing === "YES") */
+/** Agencies with confirmed housing (housing === "YES") — verified dataset only */
 export const HOUSING_AGENCIES = ALL_AGENCIES.filter((a) => a.housing === "YES");
 
 /** Agencies grouped by sector */

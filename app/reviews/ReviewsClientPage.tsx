@@ -651,7 +651,7 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
           href="/agencies"
           className="shrink-0 bg-white text-gray-900 font-black text-sm px-5 py-3 rounded-xl hover:bg-gray-100 transition-colors whitespace-nowrap"
         >
-          {t("reviews_page.cta_button", { count: 127 })}
+          {t("reviews_page.cta_button", { count: "150+" })}
         </Link>
       </div>
 
