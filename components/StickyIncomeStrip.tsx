@@ -19,6 +19,11 @@ export default function StickyIncomeStrip() {
   const { locale }     = stripLocalePrefix(pathname);
   const t              = useT(locale);
 
+  // Agency detail pages render StickyReviewBar on mobile (sm:hidden) which
+  // already occupies bottom-0. Suppress this strip on mobile for those pages
+  // to avoid a double-bar clash — it's still shown on sm+ screens.
+  const isAgencyPage = /^(\/[a-z]{2})?\/agencies\/[^/]+/.test(pathname);
+
   useEffect(() => {
     const onScroll = () => {
       if (window.scrollY > 120) setShow(true);
@@ -30,7 +35,10 @@ export default function StickyIncomeStrip() {
   if (!show || dismissed) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-gray-950 border-t-2 border-red-800/60" style={{ zIndex: 20 }}>
+    <div
+      className={`fixed bottom-0 left-0 right-0 bg-gray-950 border-t-2 border-red-800/60${isAgencyPage ? " hidden sm:block" : ""}`}
+      style={{ zIndex: 20 }}
+    >
       <div className="max-w-4xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3 flex-wrap">
         {/* Message */}
         <div className="flex items-center gap-2 min-w-0">

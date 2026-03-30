@@ -11,7 +11,7 @@
  *   3. Share          → inline share panel (copy / WhatsApp / Telegram / Email)
  *
  * Positioning:
- *   - Mobile : bottom-[5.5rem] right-3 — above StickyIncomeStrip (bottom-0 h-14)
+ *   - Mobile : bottom-28 right-3 — clears StickyIncomeStrip (56px) and StickyReviewBar (~90px)
  *   - Desktop: sm:bottom-8 sm:right-5
  *   - z-40   — above sticky strips (z-20), QA panel trigger (z-30), below modals (z-50)
  *
@@ -187,7 +187,7 @@ export default function FloatingStack() {
       <div
         className={`
           fixed
-          right-3 bottom-[5.5rem]
+          right-3 bottom-28
           sm:right-5 sm:bottom-8
           z-40
           flex flex-col items-end gap-2
