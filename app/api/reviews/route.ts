@@ -262,29 +262,58 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const agencySlug = searchParams.get("agencySlug");
-    const limit = Math.min(parseInt(searchParams.get("limit") ?? "20", 10) || 20, 50);
+    const limit = Math.min(parseInt(searchParams.get("limit") ?? "50", 10) || 50, 100);
 
-    if (!agencySlug) return NextResponse.json({ error: "agencySlug is required" }, { status: 400 });
-
-    const agency = await db.agency.findUnique({ where: { slug: agencySlug }, select: { id: true } });
-    if (!agency) return NextResponse.json({ error: "Agency not found" }, { status: 404 });
-
-    const reviews = await db.review.findMany({
-      where: {
-        agencyId:    agency.id,
-        isPublished: true,
-        status:      "PUBLISHED",
+    const baseWhere = { isPublished: true, status: "PUBLISHED" } as const;
+    const includePhotos = {
+      photos: {
+        select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
+        orderBy: { sortOrder: "asc" as const },
       },
+    };
+
+    if (agencySlug) {
+      // Per-agency view (existing behaviour)
+      const agency = await db.agency.findUnique({ where: { slug: agencySlug }, select: { id: true } });
+      if (!agency) return NextResponse.json({ error: "Agency not found" }, { status: 404 });
+
+      const reviews = await db.review.findMany({
+        where: { ...baseWhere, agencyId: agency.id },
+        orderBy: { createdAt: "desc" },
+        take: limit,
+        include: includePhotos,
+      });
+      return NextResponse.json({ reviews });
+    }
+
+    // Global feed — returns all published reviews, newest first
+    // Used by the reviews page to surface real user submissions above seed data.
+    const reviews = await db.review.findMany({
+      where: baseWhere,
       orderBy: { createdAt: "desc" },
       take: limit,
-      include: {
-        photos: {
+      select: {
+        id:                    true,
+        reviewType:            true,
+        title:                 true,
+        overallRating:         true,
+        salaryRating:          true,
+        housingRating:         true,
+        managementRating:      true,
+        contractClarityRating: true,
+        issueTags:             true,
+        verificationStatus:    true,
+        comment:               true,
+        jobTitle:              true,
+        city:                  true,
+        createdAt:             true,
+        agency:                { select: { slug: true, name: true } },
+        photos:                {
           select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
           orderBy: { sortOrder: "asc" },
         },
       },
     });
-
     return NextResponse.json({ reviews });
   } catch (error) {
     console.error("[GET /api/reviews]", error);

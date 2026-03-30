@@ -741,6 +741,49 @@ const FILTER_JOB_TYPES = Array.from(
   new Set(REVIEW_SEED_DATA.map((r) => r.jobTitle).filter(Boolean))
 ).sort() as string[];
 
+// Shape returned by GET /api/reviews (global feed)
+interface DbReview {
+  id:                    string;
+  reviewType:            string;
+  title?:                string | null;
+  overallRating:         number;
+  salaryRating:          number;
+  housingRating?:        number | null;
+  managementRating:      number;
+  contractClarityRating: number;
+  issueTags:             string;
+  verificationStatus:    string;
+  comment?:              string | null;
+  jobTitle?:             string | null;
+  city?:                 string | null;
+  createdAt:             string;
+  agency:                { slug: string; name: string };
+}
+
+function dbToCard(r: DbReview): WorkerReview & { agencySlug: string; agencyName: string; isReal: true } {
+  let tags: string[] = [];
+  try { tags = JSON.parse(r.issueTags) as string[]; } catch { tags = []; }
+  return {
+    id:                    r.id,
+    reviewType:            (r.reviewType as "ANONYMOUS" | "VERIFIED_WORKER") ?? "ANONYMOUS",
+    title:                 r.title,
+    overallRating:         r.overallRating,
+    salaryRating:          r.salaryRating,
+    housingRating:         r.housingRating ?? null,
+    managementRating:      r.managementRating,
+    contractClarityRating: r.contractClarityRating,
+    issueTags:             tags,
+    verificationStatus:    (r.verificationStatus as "VERIFIED" | "WORKER_REPORTED" | "UNKNOWN") ?? "UNKNOWN",
+    comment:               r.comment,
+    jobTitle:              r.jobTitle,
+    city:                  r.city,
+    createdAt:             r.createdAt,
+    agencySlug:            r.agency.slug,
+    agencyName:            r.agency.name,
+    isReal:                true,
+  };
+}
+
 function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, string | number>) => string; locale: Locale }) {
   const [agencyFilter,  setAgencyFilter]  = useState("");
   const [cityFilter,    setCityFilter]    = useState("");
@@ -748,33 +791,52 @@ function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, str
   const [sortKey,       setSortKey]       = useState<SortKey>("newest");
   const [showCount,     setShowCount]     = useState(12);
 
-  const filtered = useMemo(() => {
-    let reviews = [...REVIEW_SEED_DATA];
+  // Real user-submitted reviews from the database — always pinned first
+  const [dbReviews, setDbReviews] = useState<ReturnType<typeof dbToCard>[]>([]);
+  useEffect(() => {
+    fetch("/api/reviews")
+      .then((r) => r.ok ? r.json() : { reviews: [] })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .then((data: { reviews: DbReview[] }) => {
+        setDbReviews((data.reviews ?? []).map(dbToCard));
+      })
+      .catch(() => {/* silently ignore — seed data still shown */});
+  }, []);
 
-    if (agencyFilter) {
-      reviews = reviews.filter((r) => r.agencySlug === agencyFilter);
-    }
-    if (cityFilter) {
-      reviews = reviews.filter((r) =>
-        r.city?.toLowerCase().includes(cityFilter.toLowerCase())
-      );
-    }
-    if (housingFilter === "yes") {
-      reviews = reviews.filter((r) => r.housingRating != null);
-    } else if (housingFilter === "no") {
-      reviews = reviews.filter((r) => r.housingRating == null);
-    }
+  const { filteredDb, filteredSeed } = useMemo(() => {
+    // Apply filters to seed data
+    let seed = [...REVIEW_SEED_DATA];
+    if (agencyFilter) seed = seed.filter((r) => r.agencySlug === agencyFilter);
+    if (cityFilter)   seed = seed.filter((r) => r.city?.toLowerCase().includes(cityFilter.toLowerCase()));
+    if (housingFilter === "yes") seed = seed.filter((r) => r.housingRating != null);
+    if (housingFilter === "no")  seed = seed.filter((r) => r.housingRating == null);
 
     switch (sortKey) {
-      case "newest": reviews.sort((a, b) => b.createdAt.localeCompare(a.createdAt)); break;
-      case "worst":  reviews.sort((a, b) => a.overallRating - b.overallRating); break;
-      case "best":   reviews.sort((a, b) => b.overallRating - a.overallRating); break;
+      case "newest": seed.sort((a, b) => b.createdAt.localeCompare(a.createdAt)); break;
+      case "worst":  seed.sort((a, b) => a.overallRating - b.overallRating); break;
+      case "best":   seed.sort((a, b) => b.overallRating - a.overallRating); break;
     }
 
-    return reviews;
-  }, [agencyFilter, cityFilter, housingFilter, sortKey]);
+    // Apply same filters to DB reviews (real submissions)
+    let db = [...dbReviews];
+    if (agencyFilter) db = db.filter((r) => r.agencySlug === agencyFilter);
+    if (cityFilter)   db = db.filter((r) => r.city?.toLowerCase().includes(cityFilter.toLowerCase()));
+    if (housingFilter === "yes") db = db.filter((r) => r.housingRating != null);
+    if (housingFilter === "no")  db = db.filter((r) => r.housingRating == null);
 
-  const visible = filtered.slice(0, showCount);
+    // DB reviews keep their own newest-first ordering regardless of sort
+    // (they're always pinned at top — users see real reviews first)
+    return { filteredDb: db, filteredSeed: seed };
+  }, [agencyFilter, cityFilter, housingFilter, sortKey, dbReviews]);
+
+  const totalCount = filteredDb.length + filteredSeed.length;
+  const visible = useMemo(() => {
+    const combined = [
+      ...filteredDb,   // real submissions always first
+      ...filteredSeed.map((r, i) => ({ ...seedToCard(r, i), agencySlug: r.agencySlug, agencyName: agencyDisplayName(r.agencySlug), isReal: false as const })),
+    ];
+    return combined.slice(0, showCount);
+  }, [filteredDb, filteredSeed, showCount]);
 
   return (
     <div>
@@ -835,8 +897,13 @@ function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, str
 
       {/* Result count */}
       <p className="text-xs text-gray-400 mb-4">
-        {t("reviews_page.showing_count", { shown: Math.min(showCount, filtered.length), total: filtered.length, plural: filtered.length !== 1 ? "s" : "" })}
+        {t("reviews_page.showing_count", { shown: Math.min(showCount, totalCount), total: totalCount, plural: totalCount !== 1 ? "s" : "" })}
         {agencyFilter && ` for ${agencyDisplayName(agencyFilter)}`}
+        {filteredDb.length > 0 && (
+          <span className="ml-2 text-emerald-600 font-semibold">
+            · {filteredDb.length} real submission{filteredDb.length !== 1 ? "s" : ""} shown first
+          </span>
+        )}
       </p>
 
       {/* Cards */}
@@ -849,28 +916,36 @@ function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, str
       ) : (
         <div className="space-y-3">
           {visible.map((r, i) => (
-            <div key={`${r.agencySlug}-${r.createdAt}-${i}`}>
-              {/* Agency label above card */}
+            <div key={`${r.id}-${i}`}>
+              {/* Agency label + real-submission badge */}
               <div className="flex items-center gap-2 mb-1.5">
                 <Link
                   href={`/agencies/${r.agencySlug}`}
                   className="text-xs font-semibold text-brand-600 hover:underline"
                 >
-                  🏢 {agencyDisplayName(r.agencySlug)}
+                  🏢 {r.agencyName ?? agencyDisplayName(r.agencySlug)}
                 </Link>
+                {r.isReal && (
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">
+                    <svg className="w-2.5 h-2.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Real submission
+                  </span>
+                )}
               </div>
-              <WorkerReviewCard review={seedToCard(r, i)} locale={locale} />
+              <WorkerReviewCard review={r} locale={locale} />
             </div>
           ))}
 
           {/* Load more */}
-          {showCount < filtered.length && (
+          {showCount < totalCount && (
             <div className="text-center pt-4">
               <button
                 onClick={() => setShowCount((n) => n + 12)}
                 className="text-sm font-semibold text-gray-700 border border-gray-300 rounded-full px-6 py-2 hover:bg-gray-50 transition-colors"
               >
-                {t("reviews_page.load_more", { remaining: filtered.length - showCount })}
+                {t("reviews_page.load_more", { remaining: totalCount - showCount })}
               </button>
             </div>
           )}
