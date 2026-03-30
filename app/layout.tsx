@@ -1,16 +1,17 @@
 /**
- * DIAGNOSTIC Phase 2: Inter font + locale detection + Footer.
- * Still NO Navbar, NO floating widgets, NO GA4 scripts.
+ * DIAGNOSTIC Phase 3: + Navbar (client component under test).
+ * Still NO floating widgets, NO GA4 scripts.
  *
- * Tests: next/font/google, headers(), getLocale(), getT(), Footer render.
- * If stable → none of those cause the crash → add Navbar next.
- * If crashes → crash is in font injection, headers(), or Footer.
+ * Tests: Navbar SSR with usePathname()/useT()/LanguageSwitcher.
+ * If crashes → Navbar or LanguageSwitcher is the culprit.
+ * If stable  → crash is in floating widgets or GA4.
  */
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import type { Locale } from "@/lib/i18n";
 
@@ -43,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang={locale} className={inter.variable}>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
+        <Navbar locale={locale} />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
