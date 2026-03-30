@@ -231,7 +231,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // ── 2. Agency profile pages (127) ─────────────────────────────────────────
+  // ── 2. Agency profile pages (150+) ─────────────────────────────────────────
   const agencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
     url:             `${BASE_URL}/agencies/${agency.slug}`,
     lastModified:    AGENCY_DATE,
