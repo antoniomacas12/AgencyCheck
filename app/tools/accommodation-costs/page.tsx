@@ -242,8 +242,9 @@ export default function AccommodationCostsPage() {
       </div>
 
       <p className="text-xs text-gray-400 text-center mt-6">
-        Tax estimates use simplified 2026 loonheffing brackets without heffingskortingen.
-        All data stays in your browser only.
+        Tax uses 2026 loonheffing brackets. Heffingskorting not applied here — actual take-home is higher.{" "}
+        <a href="/methodology" className="underline hover:text-gray-600">Full methodology →</a>
+        {" "}All data stays in your browser only.
       </p>
     </div>
   );

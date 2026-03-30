@@ -242,8 +242,8 @@ export default function SalaryCalculatorPage() {
       </div>
 
       <p className="text-xs text-gray-400 text-center mt-6">
-        Tax uses simplified 2026 loonheffing brackets. Does not include tax credits (heffingskortingen).
-        For accurate figures, consult a belastingadviseur.
+        Tax uses 2026 loonheffing brackets. Heffingskorting (tax credits) not applied here — actual take-home is higher.{" "}
+        <a href="/methodology" className="underline hover:text-gray-600">Full methodology →</a>
       </p>
     </div>
   );

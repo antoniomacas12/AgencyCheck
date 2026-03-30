@@ -495,8 +495,9 @@ export default function RealSalaryCalculatorPage() {
       </div>
 
       <p className="mt-6 text-[11px] text-gray-400 text-center leading-relaxed">
-        Estimates based on loonheffing 2026 brackets. Does not include heffingskorting (tax credits),
-        which can increase net pay by €150–300/month. Consult your payslip or a belastingadviseur for exact figures.
+        Estimates based on loonheffing 2026 brackets including heffingskorting (AHK + arbeidskorting).
+        Assumes loonheffingskorting verklaring is active (primary employer).{" "}
+        <a href="/methodology" className="underline hover:text-gray-600">Full methodology & sources →</a>
       </p>
     </div>
   );
