@@ -195,6 +195,7 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
     accommodationNeeded: initialAccommodation,
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [formError, setFormError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -235,6 +236,8 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
   // ── Submit ─────────────────────────────────────────────────────────────────
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (submitting) return; // guard against double-fire
+    setFormError(null);
     if (!validate()) return;
     setSubmitting(true);
 
@@ -286,14 +289,14 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
           typeof data.error === "string"
             ? data.error
             : t("apply_modal.error_submit_failed");
-        setErrors({ fullName: msg });
+        setFormError(msg);
         setSubmitting(false);
         return;
       }
 
       setSuccess(true);
     } catch {
-      setErrors({ fullName: t("apply_modal.error_network") });
+      setFormError(t("apply_modal.error_network"));
     } finally {
       setSubmitting(false);
     }
@@ -569,10 +572,19 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
 
         {/* Footer CTA */}
         <div className="px-5 pt-3 pb-5 border-t border-gray-100 shrink-0 bg-white rounded-b-2xl">
+          {/* Form-level error — shown near submit button so it's always visible */}
+          {formError && (
+            <div className="mb-3 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5">
+              <svg className="h-4 w-4 text-red-500 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+              </svg>
+              <p className="text-xs text-red-700 font-medium">{formError}</p>
+            </div>
+          )}
+          {/* Single event handler via form onSubmit — onClick removed to prevent double-fire */}
           <button
             type="submit"
             form="apply-form"
-            onClick={handleSubmit}
             disabled={submitting}
             className="w-full py-3.5 rounded-xl bg-brand-600 text-white font-bold text-sm hover:bg-brand-700 active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
           >
