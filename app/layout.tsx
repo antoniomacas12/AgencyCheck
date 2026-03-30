@@ -1,29 +1,31 @@
 /**
- * DIAGNOSTIC: layout.tsx stripped to absolute minimum.
+ * DIAGNOSTIC Phase 2: Inter font + locale detection + Footer.
+ * Still NO Navbar, NO floating widgets, NO GA4 scripts.
  *
- * Removed: Navbar, Footer, ShockPopup, StickyIncomeStrip, WorkerQAPanel,
- *          FloatingStack, Inter font, GA4 scripts, locale detection, headers().
- *
- * Only: globals.css import + html + body + {children}.
- *
- * If production is stable after this deploy the crash lives in one of the
- * removed layout components.  Re-add them one at a time in this order:
- *   1. Inter font (next/font/google)
- *   2. Navbar
- *   3. Footer
- *   4. ShockPopup / StickyIncomeStrip / WorkerQAPanel / FloatingStack (ssr:false)
- *   5. GA4 Script tags
- *   6. locale detection via headers() + locale prop threading
- *
- * Restore original layout:
- *   git show HEAD~1:app/layout.tsx > app/layout.tsx
+ * Tests: next/font/google, headers(), getLocale(), getT(), Footer render.
+ * If stable → none of those cause the crash → add Navbar next.
+ * If crashes → crash is in font injection, headers(), or Footer.
  */
 
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
+import Footer from "@/components/Footer";
+import type { Locale } from "@/lib/i18n";
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
-  title: "AgencyCheck — Employment Agencies Netherlands",
+  metadataBase: new URL("https://agencycheck.nl"),
+  title: {
+    default: "AgencyCheck — Employment Agencies Netherlands",
+    template: "%s | AgencyCheck",
+  },
   description:
     "Compare verified employment agencies in the Netherlands by worker reviews, housing, salary, and transport.",
 };
@@ -35,9 +37,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const headersList = headers();
+  const locale = (headersList.get("x-ac-locale") ?? "en") as Locale;
+
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang={locale} className={inter.variable}>
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
