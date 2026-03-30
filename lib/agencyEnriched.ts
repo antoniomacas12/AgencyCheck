@@ -129,8 +129,76 @@ function verifiedToEnriched(v: VerifiedAgency): EnrichedAgency {
 
 // ─── Exports ──────────────────────────────────────────────────────────────────
 
-/** All 127 verified agencies, fully enriched */
-export const ALL_AGENCIES: EnrichedAgency[] = VERIFIED_AGENCIES.map(verifiedToEnriched);
+/** All verified agencies, fully enriched */
+const _BASE_AGENCIES: EnrichedAgency[] = VERIFIED_AGENCIES.map(verifiedToEnriched);
+
+// ─── Stub generation for review-referenced agencies ───────────────────────────
+// Some review seed entries reference agencies whose slugs don't yet exist in
+// data/agencies.ts (different slug format, or not yet fully catalogued).
+// Rather than 404, we generate a minimal stub so the agency page resolves.
+// Stubs are populated with whatever the review data reveals (city, jobType).
+
+import { REVIEW_SEED_DATA } from "@/lib/reviewData";
+
+const _baseMap = new Map(_BASE_AGENCIES.map((a) => [a.slug, a]));
+
+function slugToName(slug: string): string {
+  return slug
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+function buildStub(slug: string): EnrichedAgency {
+  // Derive what we can from reviews mentioning this slug
+  const reviews = REVIEW_SEED_DATA.filter((r) => r.agencySlug === slug);
+  const city = reviews.find((r) => r.city)?.city ?? "Netherlands";
+  const hasHousingReview = reviews.some((r) => r.housingRating != null);
+  const housing: "YES" | "NO" | "UNKNOWN" = hasHousingReview ? "YES" : "UNKNOWN";
+
+  return {
+    id:                    `stub_${slug}`,
+    name:                  slugToName(slug),
+    slug,
+    description:           null,
+    website:               null,
+    housing,
+    transport:             "UNKNOWN",
+    city,
+    cities:                [city.toLowerCase().replace(/\s+/g, "-")],
+    score:                 0,
+    reviewCount:           reviews.length,
+    avgSalaryRating:       null,
+    avgHourlyPay:          null,
+    avgHousingRating:      null,
+    issueCount:            0,
+    jobTitles:             [],
+    aliases:               [],
+    jobTypes:              null,
+    sourceUrl:             null,
+    phone:                 null,
+    email:                 null,
+    address:               null,
+    webPages:              {},
+    housingVerification:   { value: housing, status: "unknown", source_url: "", source_type: "UNKNOWN" },
+    transportVerification: { value: "UNKNOWN", status: "unknown", source_url: "", source_type: "UNKNOWN" },
+    sector:                "general-staffing" as AgencySector,
+    jobFocus:              [],
+    transparencyScore:     0,
+    accommodation:         hasHousingReview ? "unverified_claim" : "unknown",
+    supportedCities:       [city],
+    confidenceLevel:       "very_low",
+  };
+}
+
+// Build stubs only for review slugs not already in the base dataset
+const _reviewSlugs = [...new Set(REVIEW_SEED_DATA.map((r) => r.agencySlug))];
+const _stubs: EnrichedAgency[] = _reviewSlugs
+  .filter((slug) => !_baseMap.has(slug))
+  .map(buildStub);
+
+/** All verified agencies + stubs for review-referenced agencies not yet fully catalogued */
+export const ALL_AGENCIES: EnrichedAgency[] = [..._BASE_AGENCIES, ..._stubs];
 
 /** Fast slug lookup by slug — O(1) */
 export const ALL_AGENCY_MAP: Record<string, EnrichedAgency> = Object.fromEntries(
