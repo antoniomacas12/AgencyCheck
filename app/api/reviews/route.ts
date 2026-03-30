@@ -2,7 +2,7 @@
  * POST /api/reviews
  * Accepts multipart/form-data with all review fields + optional photo files.
  * Saves review to database via Prisma ORM. Photos saved to /public/uploads/reviews/.
- * All reviews start as status='PENDING', isPublished=false.
+ * Reviews are published immediately on submit: status='PUBLISHED', isPublished=true.
  *
  * GET /api/reviews?agencySlug=<slug>
  * Returns only PUBLISHED reviews with their photos.
@@ -144,8 +144,8 @@ export async function POST(req: NextRequest) {
         issueTags:         JSON.stringify([]),
         verificationStatus: "WORKER_REPORTED",
         sourceType:         "WORKER_REPORTED",
-        status:             "PENDING",
-        isPublished:        false,
+        status:             "PUBLISHED",
+        isPublished:        true,
       },
     });
 

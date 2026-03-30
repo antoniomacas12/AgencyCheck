@@ -162,7 +162,12 @@ export default function AdminReviewsPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Review moderation</h1>
           <p className="text-sm text-gray-500 mt-0.5">
-            {pagination.total} total — pending reviews must be approved and published manually.
+            {pagination.total} total
+            {reviews.filter(r => Date.now() - new Date(r.createdAt).getTime() < 24 * 60 * 60 * 1000).length > 0 && (
+              <span className="ml-2 inline-flex items-center gap-1 text-xs font-bold bg-blue-100 text-blue-700 rounded-full px-2.5 py-0.5">
+                🔔 {reviews.filter(r => Date.now() - new Date(r.createdAt).getTime() < 24 * 60 * 60 * 1000).length} new in last 24h
+              </span>
+            )}
           </p>
         </div>
       </div>
@@ -220,6 +225,9 @@ export default function AdminReviewsPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-1">
                         <StatusBadge status={r.status} />
+                        {Date.now() - new Date(r.createdAt).getTime() < 24 * 60 * 60 * 1000 && (
+                          <span className="text-[10px] font-bold bg-blue-100 text-blue-700 rounded-full px-2 py-0.5">NEW</span>
+                        )}
                         <span className="text-sm font-semibold text-gray-900 truncate">
                           {r.agency.name}
                         </span>

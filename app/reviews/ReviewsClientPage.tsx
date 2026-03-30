@@ -695,8 +695,8 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
                 >
                   🏢 {agencyDisplayName(pendingReview.agencySlug)}
                 </Link>
-                <span className="text-[10px] font-bold bg-amber-100 text-amber-800 rounded-full px-2 py-0.5">
-                  ⏳ Pending moderation
+                <span className="text-[10px] font-bold bg-green-100 text-green-800 rounded-full px-2 py-0.5">
+                  ✓ Just published
                 </span>
               </div>
               <WorkerReviewCard review={pendingReview.review} locale={locale} />
