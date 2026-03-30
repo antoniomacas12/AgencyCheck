@@ -766,6 +766,7 @@
   },
   "floating_stack": {
     "ask_workers": "Ask workers",
-    "share_btn": "Share"
+    "share_btn": "Share",
+    "add_review": "Add review"
   }
 }

@@ -578,7 +578,7 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
       <div className="lg:flex lg:items-start lg:gap-8">
 
         {/* LEFT — sticky form (desktop: fixed width, sticks while right scrolls) */}
-        <div className="lg:w-[360px] lg:shrink-0 mb-8 lg:mb-0 lg:sticky lg:top-20">
+        <div id="review-form" className="lg:w-[360px] lg:shrink-0 mb-8 lg:mb-0 lg:sticky lg:top-20">
           <div className="bg-white border-2 border-gray-900 rounded-2xl p-5 lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto">
             <div className="mb-5">
               <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-1">

@@ -766,6 +766,7 @@
   },
   "floating_stack": {
     "ask_workers": "Întreabă muncitorii",
-    "share_btn": "Distribuie"
+    "share_btn": "Distribuie",
+    "add_review": "Adaugă recenzie"
   }
 }
