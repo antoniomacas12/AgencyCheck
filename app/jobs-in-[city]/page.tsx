@@ -38,7 +38,10 @@ export function generateStaticParams() {
   return SEO_ALL_CITIES.map((c) => ({ city: c.slug }));
 }
 
-export const dynamicParams = false;
+// Allow any city slug to be resolved dynamically — the page's own
+// `if (!city) notFound()` guard handles unknown slugs correctly.
+// dynamicParams=false was causing 404s in force-dynamic (layout) mode.
+export const dynamicParams = true;
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 

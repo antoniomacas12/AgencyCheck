@@ -46,7 +46,10 @@ export async function generateStaticParams() {
   return getAllComboParams();
 }
 
-export const dynamicParams = false;
+// Allow dynamic resolution — parseComboSlug() returns null for unknown combos
+// and the page calls notFound() in that case. dynamicParams=false was 404-ing
+// valid combo slugs in force-dynamic (layout) mode.
+export const dynamicParams = true;
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
