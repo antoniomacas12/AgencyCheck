@@ -84,7 +84,7 @@ const JOB_TYPE_OPTIONS = [
 ];
 
 interface FormState {
-  agencyName: string;
+  agencySlug: string;
   city: string;
   jobType: string;
   rating: number;
@@ -97,7 +97,7 @@ interface FormState {
 }
 
 const INITIAL_FORM: FormState = {
-  agencyName: "",
+  agencySlug: "",
   city: "",
   jobType: "",
   rating: 0,
@@ -113,9 +113,10 @@ function ReviewSubmitForm({ t }: { t: (key: string, vars?: Record<string, string
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const isValid =
-    form.agencyName.trim().length > 0 &&
+    form.agencySlug.length > 0 &&
     form.rating > 0 &&
     form.comment.trim().length > 10;
 
@@ -127,10 +128,39 @@ function ReviewSubmitForm({ t }: { t: (key: string, vars?: Record<string, string
     e.preventDefault();
     if (!isValid) return;
     setLoading(true);
-    // Simulate submission (no backend in this build)
-    await new Promise((r) => setTimeout(r, 600));
-    setLoading(false);
-    setSubmitted(true);
+    setSubmitError(null);
+    try {
+      const ACCOM_MAP: Record<string, string> = { yes: "YES", no: "NO", unknown: "UNKNOWN" };
+      const RECOMMEND_MAP: Record<string, string> = { yes: "YES", no: "NO", neutral: "UNSURE" };
+
+      const fd = new FormData();
+      fd.set("agencySlug",            form.agencySlug);
+      // Map single rating to all three required rating fields
+      fd.set("salaryRating",          String(form.rating));
+      fd.set("managementRating",      String(form.rating));
+      fd.set("contractClarityRating", String(form.rating));
+      fd.set("overallRating",         String(form.rating));
+      fd.set("accommodationProvided", ACCOM_MAP[form.housingIncluded] ?? "UNKNOWN");
+      fd.set("wouldRecommend",        RECOMMEND_MAP[form.wouldRecommend] ?? "UNSURE");
+      if (form.city.trim())    fd.set("city",        form.city.trim());
+      if (form.jobType.trim()) fd.set("jobType",      form.jobType.trim());
+      if (form.comment.trim()) fd.set("comment",      form.comment.trim());
+      if (form.housingIncluded === "yes") {
+        if (form.housingCost.trim())    fd.set("weeklyRent",    form.housingCost.trim());
+        if (form.peoplePerRoom.trim())  fd.set("peopleInHouse", form.peoplePerRoom.trim());
+      }
+
+      const res = await fetch("/api/reviews", { method: "POST", body: fd });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Submission failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -153,21 +183,29 @@ function ReviewSubmitForm({ t }: { t: (key: string, vars?: Record<string, string
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Agency name */}
+      {/* Submit error */}
+      {submitError && (
+        <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+          {submitError}
+        </div>
+      )}
+
+      {/* Agency select */}
       <div>
         <label className="block text-sm font-bold text-gray-800 mb-1.5">
           {t("reviews_page.form_agency_label")} <span className="text-red-500">*</span>
         </label>
-        <input
-          type="text"
-          value={form.agencyName}
-          onChange={(e) => set("agencyName", e.target.value)}
-          placeholder="e.g. Otto Workforce, Randstad, Covebo…"
-          maxLength={120}
+        <select
+          value={form.agencySlug}
+          onChange={(e) => set("agencySlug", e.target.value)}
           className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl bg-white
-            text-gray-900 placeholder:text-gray-400
-            focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
-        />
+            text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+        >
+          <option value="">Select agency…</option>
+          {FILTER_AGENCIES.map((slug) => (
+            <option key={slug} value={slug}>{agencyDisplayName(slug)}</option>
+          ))}
+        </select>
       </div>
 
       {/* City + Job type */}
