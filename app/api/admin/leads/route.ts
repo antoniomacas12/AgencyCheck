@@ -68,7 +68,10 @@ export async function GET(req: NextRequest) {
     const pages = Math.max(1, Math.ceil(total / limit));
     return NextResponse.json({ leads: leads.map(parseLead), total, page, pages });
   } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
     console.error("[GET /api/admin/leads]", err);
-    return NextResponse.json({ error: "server_error" }, { status: 500 });
+    // Return the actual error message so the admin UI can show the real cause
+    // (e.g. "table leads does not exist" → run prisma db push)
+    return NextResponse.json({ error: "server_error", detail: msg }, { status: 500 });
   }
 }

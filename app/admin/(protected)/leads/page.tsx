@@ -74,8 +74,11 @@ export default function LeadsDashboard() {
       if (sourceF) p.set("sourceType", sourceF);
       const res = await fetch(`/api/admin/leads?${p}`);
       if (res.status === 401) { window.location.href = "/admin/login"; return; }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const detail = typeof data.detail === "string" ? ` — ${data.detail}` : "";
+        throw new Error(`HTTP ${res.status}${detail}`);
+      }
       setLeads(data.leads ?? []); setTotal(data.total ?? 0); setPages(data.pages ?? 1);
     } catch (e) { setError(e instanceof Error ? e.message : "Failed to load"); }
     finally { setLoading(false); }

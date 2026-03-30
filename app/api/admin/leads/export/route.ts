@@ -133,7 +133,8 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
     console.error("[GET /api/admin/leads/export]", err);
-    return NextResponse.json({ error: "server_error" }, { status: 500 });
+    return NextResponse.json({ error: "server_error", detail: msg }, { status: 500 });
   }
 }
