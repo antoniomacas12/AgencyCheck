@@ -705,6 +705,16 @@ function ReviewSubmitForm({
         </p>
       )}
 
+      {/* ── Legal disclaimer ─────────────────────────────────────────────────── */}
+      <p className="text-[10px] text-gray-400 leading-relaxed border-t border-gray-100 pt-3">
+        By submitting you confirm this review is based on your own personal experience and is
+        truthful to the best of your knowledge. Deliberately false statements that damage an
+        agency&apos;s reputation may constitute defamation under Dutch law. Do not include
+        personal data of other individuals. See our{" "}
+        <a href="/terms" className="underline hover:text-gray-600">Terms of Use</a>{" "}
+        for our content moderation policy.
+      </p>
+
       <p className="text-[10px] text-gray-400 text-center leading-relaxed">
         {t("reviews_page.form_anon_note")}
       </p>

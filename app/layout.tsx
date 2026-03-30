@@ -16,6 +16,7 @@ import type { Locale } from "@/lib/i18n";
 const StickyIncomeStrip = nDynamic(() => import("@/components/StickyIncomeStrip"), { ssr: false });
 const WorkerQAPanel     = nDynamic(() => import("@/components/WorkerQAPanel"),     { ssr: false });
 const FloatingStack     = nDynamic(() => import("@/components/FloatingStack"),     { ssr: false });
+const CookieNotice      = nDynamic(() => import("@/components/CookieNotice"),      { ssr: false });
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -71,6 +72,7 @@ export default function RootLayout({
         {!isAdmin && <StickyIncomeStrip />}
         {!isAdmin && <WorkerQAPanel hideTrigger />}
         {!isAdmin && <FloatingStack />}
+        {!isAdmin && <CookieNotice />}
         <Analytics />
       </body>
     </html>
