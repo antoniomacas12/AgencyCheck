@@ -538,6 +538,25 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
         )}
       </section>
 
+      {/* ── City job links — internal linking to /jobs-in-[city] pages ─────── */}
+      {agency.supportedCities.length > 0 && (
+        <div className="mb-5 flex flex-wrap gap-2 items-center">
+          <span className="text-xs text-gray-400 font-medium shrink-0">Jobs by city:</span>
+          {agency.supportedCities.slice(0, 8).map((citySlug) => (
+            <Link
+              key={citySlug}
+              href={`/jobs-in-${citySlug}`}
+              className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1 hover:border-brand-300 hover:text-brand-700 transition-colors"
+            >
+              💼 {citySlug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+            </Link>
+          ))}
+          {agency.supportedCities.length > 8 && (
+            <span className="text-xs text-gray-400">+{agency.supportedCities.length - 8} more</span>
+          )}
+        </div>
+      )}
+
       {/* ══ WORKER REVIEWS ══ */}
       <section className="mb-5">
         <div className="flex items-center justify-between mb-3">

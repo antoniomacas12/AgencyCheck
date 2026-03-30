@@ -466,6 +466,32 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
+          §7b  JOBS BY CITY — internal linking grid
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-gray-50 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Browse jobs by city</p>
+          <div className="flex flex-wrap gap-2">
+            {TOP_CITIES.slice(0, 16).map((c) => (
+              <Link
+                key={c.slug}
+                href={`/jobs-in-${c.slug}`}
+                className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-brand-300 hover:text-brand-700 transition-colors"
+              >
+                💼 {c.name}
+              </Link>
+            ))}
+            <Link
+              href="/jobs-in-netherlands"
+              className="inline-flex items-center text-xs font-semibold bg-brand-50 border border-brand-200 text-brand-700 rounded-full px-3 py-1.5 hover:bg-brand-100 transition-colors"
+            >
+              🇳🇱 All cities
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
           §8  FINAL CTA
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gradient-to-b from-blue-900 via-blue-950 to-gray-950 text-white">
