@@ -1,99 +1,43 @@
+/**
+ * DIAGNOSTIC: layout.tsx stripped to absolute minimum.
+ *
+ * Removed: Navbar, Footer, ShockPopup, StickyIncomeStrip, WorkerQAPanel,
+ *          FloatingStack, Inter font, GA4 scripts, locale detection, headers().
+ *
+ * Only: globals.css import + html + body + {children}.
+ *
+ * If production is stable after this deploy the crash lives in one of the
+ * removed layout components.  Re-add them one at a time in this order:
+ *   1. Inter font (next/font/google)
+ *   2. Navbar
+ *   3. Footer
+ *   4. ShockPopup / StickyIncomeStrip / WorkerQAPanel / FloatingStack (ssr:false)
+ *   5. GA4 Script tags
+ *   6. locale detection via headers() + locale prop threading
+ *
+ * Restore original layout:
+ *   git show HEAD~1:app/layout.tsx > app/layout.tsx
+ */
+
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { headers } from "next/headers";
-import Script from "next/script";
-import nDynamic from "next/dynamic";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { BLUR_PLACEHOLDER_IMAGES } from "@/lib/siteConfig";
-import type { Locale } from "@/lib/i18n";
-
-// These widgets start hidden and access browser APIs (sessionStorage,
-// window.scrollY, window.location) on mount. SSR-ing them causes React
-// hydration mismatch errors #418/#423 because server and client render
-// differ. ssr:false ensures they only mount after hydration completes.
-const ShockPopup        = nDynamic(() => import("@/components/ShockPopup"),        { ssr: false });
-const StickyIncomeStrip = nDynamic(() => import("@/components/StickyIncomeStrip"), { ssr: false });
-const WorkerQAPanel     = nDynamic(() => import("@/components/WorkerQAPanel"),     { ssr: false });
-const FloatingStack     = nDynamic(() => import("@/components/FloatingStack"),     { ssr: false });
-
-// GA4 — only injected when NEXT_PUBLIC_GA_ID is set. Safe to leave unset in dev.
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
-
-const inter = Inter({
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://agencycheck.nl"),
-  title: {
-    default: "AgencyCheck — Employment Agencies Netherlands — Worker Reviews & Salary Data",
-    template: "%s | AgencyCheck",
-  },
+  title: "AgencyCheck — Employment Agencies Netherlands",
   description:
-    "Compare 127 verified employment agencies in the Netherlands by worker reviews, housing, salary, and transport. Find agencies near you and know your real take-home pay before signing.",
-  keywords: [
-    "employment agency netherlands", "uitzendbureau", "werk met huisvesting",
-    "warehouse jobs netherlands", "agency housing worker", "looncheck",
-    "employment agency reviews", "agency worker rights netherlands",
-  ],
-  openGraph: {
-    type: "website",
-    siteName: "AgencyCheck",
-    locale: "en_NL",
-  },
-  robots: {
-    index:  true,
-    follow: true,
-  },
+    "Compare verified employment agencies in the Netherlands by worker reviews, housing, salary, and transport.",
 };
+
+export const dynamic = "force-dynamic";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Read locale set by middleware (x-ac-locale header).
-  // Defaults to "en" for all existing English routes.
-  // /pl/* routes get "pl", /ro/* routes get "ro".
-  const headersList = headers();
-  const locale  = (headersList.get("x-ac-locale") ?? "en") as Locale;
-  // Admin routes: suppress public navigation / widgets
-  const isAdmin = headersList.get("x-ac-admin") === "true";
-
   return (
-    <html lang={locale} className={inter.variable}>
-      <head>
-        {/* GA4 — injected only when NEXT_PUBLIC_GA_ID env var is set */}
-        {GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">{`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}', { page_path: window.location.pathname });
-            `}</Script>
-          </>
-        )}
-      </head>
-      <body className={`${inter.className} flex flex-col min-h-screen${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
-        {!isAdmin && <Navbar locale={locale} />}
-        <main className={isAdmin ? "flex-1" : "flex-1 pb-14"}>{children}</main>
-        {!isAdmin && <Footer />}
-        {!isAdmin && <ShockPopup />}
-        {!isAdmin && <StickyIncomeStrip />}
-        {!isAdmin && <WorkerQAPanel hideTrigger />}
-        {!isAdmin && <FloatingStack />}
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }
