@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
-import Script from "next/script";
 import nDynamic from "next/dynamic";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,9 +17,6 @@ const ShockPopup        = nDynamic(() => import("@/components/ShockPopup"),     
 const StickyIncomeStrip = nDynamic(() => import("@/components/StickyIncomeStrip"), { ssr: false });
 const WorkerQAPanel     = nDynamic(() => import("@/components/WorkerQAPanel"),     { ssr: false });
 const FloatingStack     = nDynamic(() => import("@/components/FloatingStack"),     { ssr: false });
-
-// GA4 — only injected when NEXT_PUBLIC_GA_ID is set. Safe to leave unset in dev.
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -76,22 +73,7 @@ export default function RootLayout({
         {!isAdmin && <StickyIncomeStrip />}
         {!isAdmin && <WorkerQAPanel hideTrigger />}
         {!isAdmin && <FloatingStack />}
-        {/* GA4 — next/script manages its own placement; no <head> wrapper needed.
-            strategy="afterInteractive" defers execution until hydration is complete. */}
-        {GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">{`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}', { page_path: window.location.pathname });
-            `}</Script>
-          </>
-        )}
+        <Analytics />
       </body>
     </html>
   );
