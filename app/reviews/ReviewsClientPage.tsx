@@ -109,7 +109,13 @@ const INITIAL_FORM: FormState = {
   comment: "",
 };
 
-function ReviewSubmitForm({ t }: { t: (key: string, vars?: Record<string, string | number>) => string }) {
+function ReviewSubmitForm({
+  t,
+  onSubmitSuccess,
+}: {
+  t: (key: string, vars?: Record<string, string | number>) => string;
+  onSubmitSuccess?: (data: { agencySlug: string; review: WorkerReview }) => void;
+}) {
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -151,11 +157,30 @@ function ReviewSubmitForm({ t }: { t: (key: string, vars?: Record<string, string
       }
 
       const res = await fetch("/api/reviews", { method: "POST", body: fd });
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
         throw new Error(data.error ?? `HTTP ${res.status}`);
       }
       setSubmitted(true);
+      // Optimistic display: pass the submitted review up so it appears at top of feed immediately
+      onSubmitSuccess?.({
+        agencySlug: form.agencySlug,
+        review: {
+          id:                    (data.reviewId as string) ?? `pending-${Date.now()}`,
+          reviewType:            "ANONYMOUS",
+          overallRating:         form.rating,
+          salaryRating:          form.rating,
+          managementRating:      form.rating,
+          contractClarityRating: form.rating,
+          housingRating:         null,
+          comment:               form.comment.trim() || null,
+          city:                  form.city.trim() || null,
+          jobTitle:              form.jobType || null,
+          createdAt:             new Date().toISOString(),
+          verificationStatus:    "WORKER_REPORTED",
+          issueTags:             [],
+        },
+      });
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Submission failed. Please try again.");
     } finally {
@@ -575,6 +600,7 @@ function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, str
 
 export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }) {
   const t = useT(locale);
+  const [pendingReview, setPendingReview] = useState<{ agencySlug: string; review: WorkerReview } | null>(null);
 
   const totalReviews = REVIEW_SEED_DATA.length;
   const verifiedCount = REVIEW_SEED_DATA.filter(
@@ -629,7 +655,7 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
                 {t("reviews_page.form_sub")}
               </p>
             </div>
-            <ReviewSubmitForm t={t} />
+            <ReviewSubmitForm t={t} onSubmitSuccess={setPendingReview} />
 
             {/* Trust signals — tucked inside form card, below submit */}
             <div className="mt-6 pt-5 border-t border-gray-100 space-y-3">
@@ -658,6 +684,25 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
             </h2>
             <p className="text-xs text-gray-400">{t("reviews_page.total_count", { count: totalReviews })}</p>
           </div>
+
+          {/* Optimistic preview — newly submitted review shown immediately at top */}
+          {pendingReview && (
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-1.5">
+                <Link
+                  href={`/agencies/${pendingReview.agencySlug}`}
+                  className="text-xs font-semibold text-brand-600 hover:underline"
+                >
+                  🏢 {agencyDisplayName(pendingReview.agencySlug)}
+                </Link>
+                <span className="text-[10px] font-bold bg-amber-100 text-amber-800 rounded-full px-2 py-0.5">
+                  ⏳ Pending moderation
+                </span>
+              </div>
+              <WorkerReviewCard review={pendingReview.review} locale={locale} />
+            </div>
+          )}
+
           <ReviewsFeed t={t} locale={locale} />
           {/* Disclaimer banner after first batch of reviews, not before */}
           <WorkerDisclaimer variant="reviews" size="banner" className="mt-6" />
