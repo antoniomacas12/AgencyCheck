@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getLocale } from "@/lib/getLocale";
 import { getT } from "@/lib/i18n";
+import { LEGAL } from "@/lib/legalConfig";
 
 const TOP_CITIES = [
   { name: "Amsterdam",  slug: "amsterdam"  },
@@ -179,16 +180,34 @@ export default async function Footer() {
           </div>
         </div>
 
+        {/* Legal entity strip — required by Dutch law (Wet elektronische handel) */}
+        <div className="border-t border-gray-100 pt-5 mb-4">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-gray-400">
+            <span className="font-medium text-gray-500">{LEGAL.legalName}</span>
+            {LEGAL.kvkNumber
+              ? <span>KvK {LEGAL.kvkNumber}</span>
+              : <span className="text-amber-500 font-medium">⚠ KvK number not set — add to lib/legalConfig.ts</span>
+            }
+            {LEGAL.vatNumber && <span>BTW {LEGAL.vatNumber}</span>}
+            {LEGAL.address.street
+              ? <span>{LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}</span>
+              : <span className="text-amber-500 font-medium">⚠ Address not set — add to lib/legalConfig.ts</span>
+            }
+            <a href={`mailto:${LEGAL.emailGeneral}`} className="hover:text-brand-600">{LEGAL.emailGeneral}</a>
+          </div>
+        </div>
+
         {/* Bottom bar */}
-        <div className="border-t border-gray-100 pt-5 text-xs text-gray-400 flex flex-col md:flex-row justify-between gap-2">
+        <div className="border-t border-gray-100 pt-4 text-xs text-gray-400 flex flex-col md:flex-row justify-between gap-2">
           <p>
             {t("footer.copyright", { year: new Date().getFullYear() })}
           </p>
-          <div className="flex gap-4">
-            <Link href="/about"   className="hover:text-brand-600">{t("footer.about_link")}</Link>
-            <Link href="/contact" className="hover:text-brand-600">{t("footer.contact_link")}</Link>
-            <Link href="/privacy" className="hover:text-brand-600">{t("footer.privacy_link")}</Link>
-            <Link href="/terms"   className="hover:text-brand-600">{t("footer.terms_link")}</Link>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/about"        className="hover:text-brand-600">{t("footer.about_link")}</Link>
+            <Link href="/contact"      className="hover:text-brand-600">{t("footer.contact_link")}</Link>
+            <Link href="/privacy"      className="hover:text-brand-600">{t("footer.privacy_link")}</Link>
+            <Link href="/terms"        className="hover:text-brand-600">{t("footer.terms_link")}</Link>
+            <Link href="/methodology"  className="hover:text-brand-600">Methodology</Link>
           </div>
         </div>
       </div>
