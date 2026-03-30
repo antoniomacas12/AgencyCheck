@@ -14,6 +14,20 @@ import path from "path";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 
+// ─── Slug generator (for worker-reported agencies) ────────────────────────────
+
+function generateSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")    // strip diacritics
+    .replace(/[^a-z0-9\s-]/g, "")       // keep alphanumeric, spaces, hyphens
+    .trim()
+    .replace(/\s+/g, "-")               // spaces → hyphens
+    .replace(/-+/g, "-")                // collapse consecutive hyphens
+    .slice(0, 80);
+}
+
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const MAX_FILE_SIZE = 8 * 1024 * 1024; // 8 MB
@@ -67,13 +81,64 @@ export async function POST(req: NextRequest) {
     try { fd = await req.formData(); }
     catch { return NextResponse.json({ error: "Invalid form data" }, { status: 400 }); }
 
-    // ── Agency lookup ──────────────────────────────────────────────────────────
-    const agencySlug = str(fd.get("agencySlug"), 100);
-    if (!agencySlug) return NextResponse.json({ error: "agencySlug is required" }, { status: 400 });
+    // ── Agency lookup (existing slug) or create (new name) ────────────────────
+    const agencySlugInput = str(fd.get("agencySlug"), 100);
+    const agencyNameInput = str(fd.get("agencyName"), 200);
 
-    const agency = await db.agency.findUnique({ where: { slug: agencySlug }, select: { id: true } });
-    if (!agency) return NextResponse.json({ error: "Agency not found" }, { status: 404 });
-    const agencyId: string = agency.id;
+    let agencyId: string;
+    let resolvedSlug: string;
+
+    if (agencySlugInput) {
+      // Caller selected an existing agency by slug
+      const found = await db.agency.findUnique({
+        where:  { slug: agencySlugInput },
+        select: { id: true, slug: true },
+      });
+      if (!found) return NextResponse.json({ error: "Agency not found" }, { status: 404 });
+      agencyId      = found.id;
+      resolvedSlug  = found.slug;
+
+    } else if (agencyNameInput) {
+      // Caller typed a free-form agency name — find or create
+      const normalized = agencyNameInput.trim();
+
+      // 1. Try exact name match (case-insensitive)
+      let found = await db.agency.findFirst({
+        where:  { name: { equals: normalized, mode: "insensitive" } },
+        select: { id: true, slug: true },
+      });
+
+      // 2. Try contains match as fuzzy fallback
+      if (!found) {
+        found = await db.agency.findFirst({
+          where:  { name: { contains: normalized, mode: "insensitive" } },
+          select: { id: true, slug: true },
+        });
+      }
+
+      // 3. Create a new worker-reported agency
+      if (!found) {
+        const baseSlug = generateSlug(normalized) || `agency-${Date.now()}`;
+        const existing = await db.agency.findUnique({ where: { slug: baseSlug }, select: { id: true } });
+        const finalSlug = existing ? `${baseSlug}-${Date.now()}` : baseSlug;
+
+        found = await db.agency.create({
+          data: {
+            name:            normalized,
+            slug:            finalSlug,
+            sourceType:      "WORKER_REPORTED",
+            confidenceScore: 30,
+          },
+          select: { id: true, slug: true },
+        });
+      }
+
+      agencyId     = found.id;
+      resolvedSlug = found.slug;
+
+    } else {
+      return NextResponse.json({ error: "agencySlug or agencyName is required" }, { status: 400 });
+    }
 
     // ── Required ratings ───────────────────────────────────────────────────────
     const salaryRating          = int(fd.get("salaryRating"));
@@ -183,7 +248,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ success: true, reviewId: review.id }, { status: 201 });
+    return NextResponse.json({ success: true, reviewId: review.id, agencySlug: resolvedSlug }, { status: 201 });
 
   } catch (error) {
     console.error("[POST /api/reviews]", error);

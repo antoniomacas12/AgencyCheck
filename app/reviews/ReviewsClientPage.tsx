@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { REVIEW_SEED_DATA, type ReviewSeed } from "@/lib/reviewData";
 import WorkerReviewCard, { type WorkerReview } from "@/components/WorkerReviewCard";
@@ -83,8 +83,20 @@ const JOB_TYPE_OPTIONS = [
   "Greenhouse Worker", "Driver", "Cleaner", "Other",
 ];
 
+const PHOTO_TYPES = new Set(["image/jpeg", "image/jpg", "image/png", "image/webp"]);
+const MAX_PHOTO_SIZE = 8 * 1024 * 1024; // 8 MB
+const MAX_PHOTOS = 6;
+
+interface AgencySuggestion {
+  id: string;
+  name: string;
+  slug: string;
+}
+
 interface FormState {
-  agencySlug: string;
+  agencySearch: string;   // text typed in combobox
+  agencySlug: string;     // slug of confirmed-existing agency, or "" if new
+  agencyIsNew: boolean;   // true = user confirmed "add as new agency"
   city: string;
   jobType: string;
   rating: number;
@@ -97,7 +109,9 @@ interface FormState {
 }
 
 const INITIAL_FORM: FormState = {
+  agencySearch: "",
   agencySlug: "",
+  agencyIsNew: false,
   city: "",
   jobType: "",
   rating: 0,
@@ -108,6 +122,15 @@ const INITIAL_FORM: FormState = {
   wouldRecommend: "neutral",
   comment: "",
 };
+
+// Read a File as a data-URL (for preview thumbnails)
+function readAsDataURL(file: File): Promise<string> {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => resolve((e.target?.result as string) ?? "");
+    reader.readAsDataURL(file);
+  });
+}
 
 function ReviewSubmitForm({
   t,
@@ -121,14 +144,96 @@ function ReviewSubmitForm({
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const isValid =
-    form.agencySlug.length > 0 &&
-    form.rating > 0 &&
-    form.comment.trim().length > 10;
+  // ── Agency combobox state ──────────────────────────────────────────────────
+  const [suggestions,     setSuggestions]     = useState<AgencySuggestion[]>([]);
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const [suggestLoading,  setSuggestLoading]  = useState(false);
+  const comboboxRef  = useRef<HTMLDivElement>(null);
+  const debounceRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // ── Photo upload state ─────────────────────────────────────────────────────
+  const [photoFiles,    setPhotoFiles]    = useState<File[]>([]);
+  const [photoPreviews, setPhotoPreviews] = useState<string[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Close suggestions on outside click
+  useEffect(() => {
+    function onOutside(e: MouseEvent) {
+      if (comboboxRef.current && !comboboxRef.current.contains(e.target as Node)) {
+        setSuggestionsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onOutside);
+    return () => document.removeEventListener("mousedown", onOutside);
+  }, []);
+
+  // ── Validation ────────────────────────────────────────────────────────────
+  const agencyOk = form.agencySlug.length > 0 || (form.agencyIsNew && form.agencySearch.trim().length > 2);
+  const isValid  = agencyOk && form.rating > 0 && form.comment.trim().length > 10;
 
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
+
+  // ── Agency combobox helpers ────────────────────────────────────────────────
+
+  const fetchSuggestions = useCallback((query: string) => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (query.trim().length < 2) {
+      setSuggestions([]);
+      setSuggestionsOpen(false);
+      return;
+    }
+    debounceRef.current = setTimeout(async () => {
+      setSuggestLoading(true);
+      try {
+        const res = await fetch(`/api/agencies/search?q=${encodeURIComponent(query.trim())}`);
+        if (res.ok) {
+          const data = await res.json();
+          setSuggestions(data.agencies ?? []);
+          setSuggestionsOpen(true);
+        }
+      } catch { /* ignore network errors */ }
+      finally { setSuggestLoading(false); }
+    }, 280);
+  }, []);
+
+  function handleAgencyInput(value: string) {
+    setForm((prev) => ({ ...prev, agencySearch: value, agencySlug: "", agencyIsNew: false }));
+    fetchSuggestions(value);
+  }
+
+  function selectExistingAgency(ag: AgencySuggestion) {
+    setForm((prev) => ({ ...prev, agencySearch: ag.name, agencySlug: ag.slug, agencyIsNew: false }));
+    setSuggestionsOpen(false);
+  }
+
+  function selectNewAgency() {
+    setForm((prev) => ({ ...prev, agencyIsNew: true, agencySlug: "" }));
+    setSuggestionsOpen(false);
+  }
+
+  // ── Photo helpers ──────────────────────────────────────────────────────────
+
+  async function handlePhotoSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    const newFiles = Array.from(e.target.files ?? []).filter(
+      (f) => PHOTO_TYPES.has(f.type.toLowerCase()) && f.size <= MAX_PHOTO_SIZE
+    );
+    const combined = [...photoFiles, ...newFiles].slice(0, MAX_PHOTOS);
+    setPhotoFiles(combined);
+    const previews = await Promise.all(combined.map(readAsDataURL));
+    setPhotoPreviews(previews);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  function removePhoto(index: number) {
+    const nextFiles    = photoFiles.filter((_, i) => i !== index);
+    const nextPreviews = photoPreviews.filter((_, i) => i !== index);
+    setPhotoFiles(nextFiles);
+    setPhotoPreviews(nextPreviews);
+  }
+
+  // ── Submit ─────────────────────────────────────────────────────────────────
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -136,35 +241,45 @@ function ReviewSubmitForm({
     setLoading(true);
     setSubmitError(null);
     try {
-      const ACCOM_MAP: Record<string, string> = { yes: "YES", no: "NO", unknown: "UNKNOWN" };
-      const RECOMMEND_MAP: Record<string, string> = { yes: "YES", no: "NO", neutral: "UNSURE" };
+      const ACCOM_MAP:     Record<string, string> = { yes: "YES",  no: "NO",  unknown: "UNKNOWN" };
+      const RECOMMEND_MAP: Record<string, string> = { yes: "YES",  no: "NO",  neutral: "UNSURE"  };
 
       const fd = new FormData();
-      fd.set("agencySlug",            form.agencySlug);
-      // Map single rating to all three required rating fields
+
+      // Agency: either existing slug or free-text name (API will create it)
+      if (form.agencyIsNew) {
+        fd.set("agencyName", form.agencySearch.trim());
+      } else {
+        fd.set("agencySlug", form.agencySlug);
+      }
+
       fd.set("salaryRating",          String(form.rating));
       fd.set("managementRating",      String(form.rating));
       fd.set("contractClarityRating", String(form.rating));
       fd.set("overallRating",         String(form.rating));
-      fd.set("accommodationProvided", ACCOM_MAP[form.housingIncluded] ?? "UNKNOWN");
+      fd.set("accommodationProvided", ACCOM_MAP[form.housingIncluded]  ?? "UNKNOWN");
       fd.set("wouldRecommend",        RECOMMEND_MAP[form.wouldRecommend] ?? "UNSURE");
-      if (form.city.trim())    fd.set("city",        form.city.trim());
-      if (form.jobType.trim()) fd.set("jobType",      form.jobType.trim());
-      if (form.comment.trim()) fd.set("comment",      form.comment.trim());
+      if (form.city.trim())    fd.set("city",    form.city.trim());
+      if (form.jobType.trim()) fd.set("jobType", form.jobType.trim());
+      if (form.comment.trim()) fd.set("comment", form.comment.trim());
       if (form.housingIncluded === "yes") {
-        if (form.housingCost.trim())    fd.set("weeklyRent",    form.housingCost.trim());
-        if (form.peoplePerRoom.trim())  fd.set("peopleInHouse", form.peoplePerRoom.trim());
+        if (form.housingCost.trim())   fd.set("weeklyRent",    form.housingCost.trim());
+        if (form.peoplePerRoom.trim()) fd.set("peopleInHouse", form.peoplePerRoom.trim());
       }
 
-      const res = await fetch("/api/reviews", { method: "POST", body: fd });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(data.error ?? `HTTP ${res.status}`);
+      // Append photos
+      for (const file of photoFiles) {
+        fd.append("photos", file);
       }
+
+      const res  = await fetch("/api/reviews", { method: "POST", body: fd });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
+
+      const resolvedSlug: string = (data.agencySlug as string) || form.agencySlug || "unknown";
       setSubmitted(true);
-      // Optimistic display: pass the submitted review up so it appears at top of feed immediately
       onSubmitSuccess?.({
-        agencySlug: form.agencySlug,
+        agencySlug: resolvedSlug,
         review: {
           id:                    (data.reviewId as string) ?? `pending-${Date.now()}`,
           reviewType:            "ANONYMOUS",
@@ -188,6 +303,8 @@ function ReviewSubmitForm({
     }
   }
 
+  // ── Success screen ─────────────────────────────────────────────────────────
+
   if (submitted) {
     return (
       <div className="bg-green-50 border border-green-200 rounded-2xl px-5 py-8 text-center">
@@ -197,7 +314,12 @@ function ReviewSubmitForm({
           {t("reviews_page.form_success_sub")}
         </p>
         <button
-          onClick={() => { setForm(INITIAL_FORM); setSubmitted(false); }}
+          onClick={() => {
+            setForm(INITIAL_FORM);
+            setPhotoFiles([]);
+            setPhotoPreviews([]);
+            setSubmitted(false);
+          }}
           className="mt-4 text-xs text-green-700 border border-green-300 rounded-full px-4 py-1.5 hover:bg-green-100 transition-colors"
         >
           {t("reviews_page.form_submit_another")}
@@ -206,8 +328,11 @@ function ReviewSubmitForm({
     );
   }
 
+  // ── Form ───────────────────────────────────────────────────────────────────
+
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+
       {/* Submit error */}
       {submitError && (
         <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
@@ -215,25 +340,96 @@ function ReviewSubmitForm({
         </div>
       )}
 
-      {/* Agency select */}
-      <div>
+      {/* ── Agency combobox ─────────────────────────────────────────────────── */}
+      <div ref={comboboxRef} className="relative">
         <label className="block text-sm font-bold text-gray-800 mb-1.5">
           {t("reviews_page.form_agency_label")} <span className="text-red-500">*</span>
         </label>
-        <select
-          value={form.agencySlug}
-          onChange={(e) => set("agencySlug", e.target.value)}
-          className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl bg-white
-            text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
-        >
-          <option value="">Select agency…</option>
-          {FILTER_AGENCIES.map((slug) => (
-            <option key={slug} value={slug}>{agencyDisplayName(slug)}</option>
-          ))}
-        </select>
+        <div className={`flex items-center rounded-xl border overflow-hidden transition-all ${
+          form.agencySlug
+            ? "border-green-400 ring-2 ring-green-100"
+            : form.agencyIsNew
+            ? "border-amber-400 ring-2 ring-amber-100"
+            : "border-gray-300"
+        }`}>
+          <input
+            type="text"
+            value={form.agencySearch}
+            onChange={(e) => handleAgencyInput(e.target.value)}
+            onFocus={() => { if (suggestions.length > 0) setSuggestionsOpen(true); }}
+            placeholder="Type agency name…"
+            autoComplete="off"
+            className="flex-1 px-3.5 py-2.5 text-sm bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none"
+          />
+          <span className="pr-3 shrink-0">
+            {suggestLoading
+              ? <span className="text-gray-400 text-xs animate-pulse">…</span>
+              : form.agencySlug
+              ? <span className="text-green-500 text-sm">✓</span>
+              : form.agencyIsNew
+              ? <span className="text-amber-500 text-sm">✦</span>
+              : null}
+          </span>
+        </div>
+
+        {/* Status line below input */}
+        {form.agencySlug && (
+          <p className="text-[10px] text-green-600 mt-1 flex items-center gap-1">
+            ✓ Found in database
+          </p>
+        )}
+        {form.agencyIsNew && form.agencySearch.trim().length > 2 && (
+          <p className="text-[10px] text-amber-600 mt-1 flex items-center gap-1">
+            ✦ Will be added as a new agency — thank you!
+          </p>
+        )}
+
+        {/* Suggestions dropdown */}
+        {suggestionsOpen && (
+          <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden">
+            {suggestions.length > 0 && (
+              <ul>
+                {suggestions.map((ag) => (
+                  <li key={ag.id}>
+                    <button
+                      type="button"
+                      onMouseDown={() => selectExistingAgency(ag)}
+                      className="w-full text-left px-4 py-2.5 text-sm text-gray-900 hover:bg-gray-50 transition-colors flex items-center gap-2.5"
+                    >
+                      <span className="shrink-0">🏢</span>
+                      <span className="font-medium">{ag.name}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {/* "Add as new" option */}
+            {form.agencySearch.trim().length > 2 && (
+              <>
+                {suggestions.length > 0 && <div className="border-t border-gray-100" />}
+                <button
+                  type="button"
+                  onMouseDown={selectNewAgency}
+                  className="w-full text-left px-4 py-2.5 text-sm hover:bg-amber-50 transition-colors flex items-center gap-2.5 text-amber-700"
+                >
+                  <span className="shrink-0">➕</span>
+                  <span>Add &ldquo;{form.agencySearch.trim()}&rdquo; as new agency</span>
+                </button>
+              </>
+            )}
+
+            {suggestions.length === 0 && form.agencySearch.trim().length < 3 && (
+              <p className="px-4 py-3 text-sm text-gray-400">Keep typing to search…</p>
+            )}
+            {suggestions.length === 0 && form.agencySearch.trim().length >= 3 && !suggestLoading && (
+              <p className="px-4 py-2 text-xs text-gray-400">No matches — use &ldquo;Add as new&rdquo; below.</p>
+            )}
+          </div>
+        )}
       </div>
 
-      {/* City + Job type */}
+      {/* ── City + Job type ──────────────────────────────────────────────────── */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">
@@ -268,7 +464,7 @@ function ReviewSubmitForm({
         </div>
       </div>
 
-      {/* Overall rating */}
+      {/* ── Overall rating ───────────────────────────────────────────────────── */}
       <div className="bg-gray-50 rounded-xl p-4">
         <StarSelector
           value={form.rating}
@@ -286,7 +482,7 @@ function ReviewSubmitForm({
         )}
       </div>
 
-      {/* Housing */}
+      {/* ── Housing ─────────────────────────────────────────────────────────── */}
       <div>
         <p className="text-xs font-bold text-gray-700 mb-2">{t("reviews_page.form_housing_label")}</p>
         <div className="flex gap-2 flex-wrap">
@@ -345,7 +541,7 @@ function ReviewSubmitForm({
         </div>
       )}
 
-      {/* Transport cost */}
+      {/* ── Transport cost ───────────────────────────────────────────────────── */}
       <div>
         <label className="block text-xs font-medium text-gray-700 mb-1">
           {t("reviews_page.form_transport_cost")}{" "}
@@ -364,7 +560,7 @@ function ReviewSubmitForm({
         />
       </div>
 
-      {/* Would recommend */}
+      {/* ── Would recommend ──────────────────────────────────────────────────── */}
       <div>
         <p className="text-xs font-bold text-gray-700 mb-2">{t("reviews_page.form_recommend_label")}</p>
         <div className="flex gap-2 flex-wrap">
@@ -389,7 +585,7 @@ function ReviewSubmitForm({
         </div>
       </div>
 
-      {/* Comment */}
+      {/* ── Comment ──────────────────────────────────────────────────────────── */}
       <div>
         <label className="block text-sm font-bold text-gray-800 mb-1.5">
           {t("reviews_page.form_comment_label")} <span className="text-red-500">*</span>
@@ -413,7 +609,86 @@ function ReviewSubmitForm({
         </div>
       </div>
 
-      {/* Submit */}
+      {/* ── Photo upload ─────────────────────────────────────────────────────── */}
+      <div>
+        <p className="text-xs font-bold text-gray-700 mb-2">
+          Photos{" "}
+          <span className="font-normal text-gray-400">(optional, max {MAX_PHOTOS})</span>
+        </p>
+
+        {/* Preview grid — shown once photos are chosen */}
+        {photoFiles.length > 0 && (
+          <div className="grid grid-cols-3 gap-2 mb-2">
+            {photoPreviews.map((src, i) => (
+              <div
+                key={i}
+                className="relative aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-100"
+              >
+                {src && (
+                  <img
+                    src={src}
+                    alt={`Upload ${i + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+                <button
+                  type="button"
+                  onClick={() => removePhoto(i)}
+                  aria-label="Remove photo"
+                  className="absolute top-1 right-1 w-5 h-5 rounded-full bg-gray-900/70 text-white
+                    text-[10px] flex items-center justify-center hover:bg-red-600 transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+
+            {/* Add-more slot */}
+            {photoFiles.length < MAX_PHOTOS && (
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                aria-label="Add photo"
+                className="aspect-square rounded-xl border-2 border-dashed border-gray-300
+                  flex items-center justify-center text-gray-400 text-2xl
+                  hover:border-gray-400 hover:text-gray-600 transition-colors bg-gray-50"
+              >
+                +
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Upload trigger — shown when no photos yet */}
+        {photoFiles.length === 0 && (
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="w-full border-2 border-dashed border-gray-200 rounded-xl py-3.5
+              text-xs text-gray-400 hover:border-gray-300 hover:text-gray-600
+              transition-colors flex items-center justify-center gap-2"
+          >
+            <span>📷</span>
+            <span>Add photos (JPG / PNG / WebP, max 8 MB each)</span>
+          </button>
+        )}
+
+        {/* Hidden file input */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/jpeg,image/jpg,image/png,image/webp"
+          multiple
+          className="hidden"
+          onChange={handlePhotoSelect}
+        />
+
+        <p className="text-[10px] text-gray-400 mt-1.5">
+          Photos help verify your experience. No faces or personal information.
+        </p>
+      </div>
+
+      {/* ── Submit ───────────────────────────────────────────────────────────── */}
       <button
         type="submit"
         disabled={!isValid || loading}
@@ -451,6 +726,7 @@ const FILTER_CITIES = Array.from(
   new Set(REVIEW_SEED_DATA.map((r) => r.city).filter(Boolean))
 ).sort() as string[];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FILTER_JOB_TYPES = Array.from(
   new Set(REVIEW_SEED_DATA.map((r) => r.jobTitle).filter(Boolean))
 ).sort() as string[];
