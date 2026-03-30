@@ -77,7 +77,7 @@ export default function ShockPopup() {
             <span className="text-2xl">⚠️</span>
             <button
               onClick={dismiss}
-              className="text-gray-500 hover:text-gray-300 transition-colors text-lg leading-none p-1"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-700 active:bg-gray-600 text-gray-300 hover:text-white transition-colors text-base font-bold shrink-0"
               aria-label="Close"
             >
               ✕
