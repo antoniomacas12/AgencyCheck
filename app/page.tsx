@@ -222,7 +222,7 @@ export default async function HomePage() {
                   🇳🇱 Netherlands · Zero paid rankings
                 </div>
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase text-blue-300">
-                  👤 Built by Antonio Macas
+                  🏗 Built for agency workers in the Netherlands
                 </div>
               </div>
 

@@ -161,8 +161,8 @@ export default function HomepageLeadForm() {
             },
             {
               n: "2",
-              title: "An agency coordinator contacts you",
-              body:  "Within 24 hours (Mon–Fri, 08:00–18:00 CET). They will introduce themselves by name and state which agency they represent.",
+              title: "We will contact you shortly",
+              body:  "A coordinator will introduce themselves by name and state which agency they represent.",
             },
             {
               n: "3",
@@ -244,7 +244,7 @@ export default function HomepageLeadForm() {
           <p className="text-[11px] text-blue-800 leading-relaxed">
             <strong>Next step:</strong> You&apos;ll tell us the best way to reach you.
             We then share your request with <strong>1–3 registered agencies</strong> that
-            have matching openings. A coordinator will contact you within 24 hours —
+            have matching openings. A coordinator will contact you shortly —
             no anonymous calls, no automated messages.
           </p>
         </div>
@@ -276,9 +276,9 @@ export default function HomepageLeadForm() {
         <p className="text-xs font-bold text-gray-800 mb-1">Who will contact you and when</p>
         <p className="text-[11px] text-gray-600 leading-relaxed">
           A <strong>coordinator from a registered Dutch labour agency</strong> — not a bot,
-          not a broker — will message you on WhatsApp or email within{" "}
-          <strong>24 hours (Mon–Fri 08:00–18:00 CET)</strong>. They will give their name
-          and the agency name in the first message. We share your details with{" "}
+          not a broker — will message you on WhatsApp or email shortly.
+          They will give their name and the agency name in the first message.
+          We share your details with{" "}
           <strong>maximum 3 agencies</strong>. You can block any agency at any time.
         </p>
       </div>

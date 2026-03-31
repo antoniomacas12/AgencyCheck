@@ -7,7 +7,7 @@ import { LEGAL } from "@/lib/legalConfig";
 export const metadata: Metadata = {
   title: "About AgencyCheck — Who We Are and Why We Built This",
   description:
-    "AgencyCheck is an independent platform that publishes real take-home salary data, worker reviews, and housing conditions for employment agencies in the Netherlands. Built by someone who has seen workers get exploited firsthand.",
+    "AgencyCheck is an independent platform built for agency workers in the Netherlands. Real take-home salary data, unfiltered worker reviews, and housing conditions — free, no paid rankings.",
   alternates: { canonical: "/about" },
 };
 
@@ -27,11 +27,11 @@ export default function AboutPage() {
             Independent · No paid rankings · Netherlands
           </div>
           <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-4">
-            AgencyCheck is built and run by Antonio Macas
+            Built for agency workers in the Netherlands
           </h1>
           <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
             Not a VC-funded startup. Not a recruiter. Not a job board.
-            One person, Netherlands, after watching workers arrive thinking they&apos;d earn
+            An independent platform built after watching workers arrive thinking they&apos;d earn
             €550–€600 a week and take home €280.
           </p>
         </div>
@@ -41,18 +41,18 @@ export default function AboutPage() {
 
         {/* ── Founder story ──────────────────────────────────────────────── */}
         <section>
-          <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">The founder</p>
-          <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5">Why this was built</h2>
+          <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Why we built this</p>
+          <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5">The problem AgencyCheck solves</h2>
 
           <div className="bg-blue-50 border border-blue-100 rounded-2xl px-6 py-5 mb-6">
             <p className="text-sm text-blue-900 leading-relaxed italic">
-              &ldquo;I have worked alongside agency workers in the Netherlands. I have watched people arrive with high
-              expectations, sign contracts they didn&apos;t understand, live in overcrowded rooms, and receive payslips
-              with deductions that were never explained. Most of them didn&apos;t know what they were legally entitled to.
-              Most of them didn&apos;t know they could report illegal deductions. AgencyCheck exists to change that.&rdquo;
+              &ldquo;Agency workers in the Netherlands arrive with high expectations, sign contracts they don&apos;t
+              understand, live in overcrowded rooms, and receive payslips with deductions that were never explained.
+              Most don&apos;t know what they are legally entitled to. Most don&apos;t know they can report illegal
+              deductions. AgencyCheck exists to change that.&rdquo;
             </p>
             <p className="text-xs text-blue-600 font-bold mt-3">
-              — Antonio Macas, Founder · AgencyCheck · Netherlands
+              AgencyCheck · Netherlands
               {LEGAL.kvkNumber ? ` · KvK ${LEGAL.kvkNumber}` : ""}
             </p>
           </div>
