@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import {
+  agencyOrganizationSchema,
+  faqPageSchema,
+  breadcrumbSchema,
+  buildAgencyFaqs,
+} from "@/lib/schemaMarkup";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ScoreBadge from "@/components/ScoreBadge";
@@ -37,13 +43,18 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const cityStr = agency.supportedCities.length > 1
     ? `${agency.city} and ${agency.supportedCities.length - 1} other cities`
     : agency.city;
+  const reviews = getReviewsByAgency(agency.slug);
+  const count   = reviews.length;
+  const avgStr  = count > 0
+    ? ` Rated ${(reviews.reduce((s, r) => s + r.overallRating, 0) / count).toFixed(1)}/5 by ${count} workers.`
+    : "";
   return {
-    title: `${agency.name} Review — Housing, Salary & Worker Reports — AgencyCheck`,
-    description: `Worker transparency report for ${agency.name} in ${cityStr}.${housingStr} Score: ${agency.transparencyScore}/100.`,
+    title: `${agency.name} Reviews Netherlands — Salary, Housing & Worker Reports`,
+    description: `Read real worker reviews of ${agency.name} in ${cityStr}.${housingStr}${avgStr} Salary reality, housing conditions, and transparency score ${agency.transparencyScore}/100.`,
     alternates: { canonical: `/agencies/${agency.slug}` },
     openGraph: {
-      title: `${agency.name} — AgencyCheck Worker Report`,
-      description: `Is ${agency.name} reliable? See worker reviews, housing info, and transparency data.`,
+      title: `${agency.name} Reviews Netherlands — AgencyCheck`,
+      description: `Real worker reviews of ${agency.name}. Salary accuracy, housing conditions, transport — reported by workers, published unfiltered.`,
     },
   };
 }
@@ -202,6 +213,41 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
 
   const allQAs = getQAsForContext(params.slug);
 
+  // ── JSON-LD schemas ──────────────────────────────────────────────────────────
+  const orgSchema  = agencyOrganizationSchema(
+    {
+      name:        agency.name,
+      slug:        params.slug,
+      city:        cityDisplay,
+      address:     agency.address ?? null,
+      website:     agency.website ?? null,
+      description: agency.description ?? null,
+    },
+    seedReviews,
+  );
+
+  const agencyFaqs = buildAgencyFaqs(
+    {
+      name:              agency.name,
+      city:              cityDisplay,
+      housing:           agency.housing,
+      transport:         agency.transport,
+      transparencyScore: agency.transparencyScore,
+      avgHourlyPay:      agency.avgHourlyPay,
+    },
+    reviewCount,
+  );
+  const faqSchema = faqPageSchema(agencyFaqs);
+
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",     url: "/" },
+    { name: "Agencies", url: "/agencies" },
+    ...(agency.city && agency.city !== "unknown"
+      ? [{ name: agency.city, url: `/cities/${agency.city.toLowerCase().replace(/\s+/g, "-")}` }]
+      : []),
+    { name: agency.name, url: `/agencies/${params.slug}` },
+  ]);
+
   const reviews: WorkerReview[] = seedReviews
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
     .slice(0, 5)
@@ -225,6 +271,11 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 pb-24 sm:pb-8">
 
+      {/* ── JSON-LD structured data ── */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)   }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema)   }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
+
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">
         <Link href="/" className="hover:text-brand-600">{t("agency_detail.breadcrumb_home")}</Link>
@@ -242,7 +293,12 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
         <div className="flex items-start gap-4">
           <ScoreBadge score={agency.score} reviewCount={agency.reviewCount} size="lg" showLabel showBar />
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl font-bold text-gray-900 leading-tight">{agency.name}</h1>
+            <h1 className="text-xl font-bold text-gray-900 leading-tight">
+              {agency.name}
+              <span className="block text-xs font-normal text-gray-400 mt-0.5 tracking-wide">
+                Reviews &amp; Worker Reports · Netherlands
+              </span>
+            </h1>
             <div className="flex items-center gap-2 mt-1 flex-wrap">
               <p className="text-sm text-gray-500">
                 📍 {cityDisplay}

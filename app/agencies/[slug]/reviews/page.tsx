@@ -10,6 +10,7 @@ import { getReviewsByAgency } from "@/lib/reviewData";
 import { getLocale } from "@/lib/getLocale";
 import { getT } from "@/lib/i18n";
 import { AgencyReviewsSection } from "@/components/AgencyReviewsSection";
+import { agencyOrganizationSchema, breadcrumbSchema } from "@/lib/schemaMarkup";
 
 export const dynamic = "force-dynamic";
 
@@ -24,9 +25,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     : null;
   const ratingStr = avg ? ` Rated ${avg}/5 by ${count} workers.` : "";
   return {
-    title:       `${agency.name} — Worker Reviews & Salary Reports — AgencyCheck`,
-    description: `Worker reviews, salary reports, and issue reports for ${agency.name}.${ratingStr} Community-reported data.`,
+    title:       `${agency.name} Reviews Netherlands — Worker Reports & Salary Data — AgencyCheck`,
+    description: `${count > 0 ? `${count} worker reviews` : "Worker reviews"} for ${agency.name} in the Netherlands.${ratingStr} Salary accuracy, housing conditions, and contract transparency — reported by workers.`,
     alternates:  { canonical: `/agencies/${agency.slug}/reviews` },
+    openGraph: {
+      title:       `${agency.name} Worker Reviews Netherlands`,
+      description: `Real worker reviews of ${agency.name}. Salary, housing, and management — reported unfiltered.`,
+    },
   };
 }
 
@@ -122,8 +127,22 @@ export default async function AgencyReviewsPage({ params }: { params: { slug: st
     count: reviews.filter((r) => (r.overallRating ?? 0) >= star - 0.5 && (r.overallRating ?? 0) < star + 0.5).length,
   }));
 
+  // JSON-LD — only pass reviews that have a numeric overallRating
+  const orgSchema = agencyOrganizationSchema(
+    { name: agency.name, slug: agency.slug, city: agency.city, address: agency.address ?? null, website: agency.website ?? null, description: agency.description ?? null },
+    reviews.filter((r): r is typeof r & { overallRating: number } => typeof r.overallRating === "number"),
+  );
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",     url: "/" },
+    { name: "Agencies", url: "/agencies" },
+    { name: agency.name, url: `/agencies/${agency.slug}` },
+    { name: "Reviews",   url: `/agencies/${agency.slug}/reviews` },
+  ]);
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)   }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
 
       {/* ── Breadcrumb ── */}
       <nav className="text-xs text-gray-400 mb-5 flex items-center gap-1.5 flex-wrap">
@@ -141,7 +160,10 @@ export default async function AgencyReviewsPage({ params }: { params: { slug: st
         <div className="flex items-start gap-4">
           <ScoreBadge score={agency.score} size="lg" showLabel />
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl font-bold text-gray-900">{agency.name}</h1>
+            <h1 className="text-xl font-bold text-gray-900">
+              {agency.name}
+              <span className="block text-xs font-normal text-gray-400 mt-0.5">Worker Reviews · Netherlands</span>
+            </h1>
             <div className="flex flex-wrap items-center gap-2 mt-2">
               <HousingBadge housing={agency.housing} />
               <span className="text-xs text-gray-400">

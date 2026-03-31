@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { breadcrumbSchema } from "@/lib/schemaMarkup";
 import AgencyCard from "@/components/AgencyCard";
 import SectionHeader from "@/components/SectionHeader";
 import WorkerReviewCard, { type WorkerReview } from "@/components/WorkerReviewCard";
@@ -163,8 +164,15 @@ export default function CityPage({ params }: { params: { city: string } }) {
     confirmed.length >= 1 ? "some" :
     "low";
 
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",   url: "/" },
+    { name: "Cities", url: "/agencies" },
+    { name: city.name, url: `/cities/${params.city}` },
+  ]);
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
 
       {/* ── Breadcrumb ── */}
       <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">

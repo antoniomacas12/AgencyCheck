@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { VERIFIED_AGENCIES } from "@/data/agencies";
 import { CITIES, JOB_SALARY_DATA } from "@/lib/seoData";
 import { ALL_AGENCIES } from "@/lib/agencyEnriched";
+import { GUIDES } from "@/lib/guideData";
 import {
   filterEligibleComparisons,
   filterEligibleAgencyCityPairs,
@@ -163,6 +164,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url:              `${BASE_URL}/real-salary-netherlands-after-rent`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/guides`,
       lastModified:     STATIC_DATE,
       changeFrequency:  "monthly",
       priority:         0.85,
@@ -371,6 +378,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  // ── 13. Guide pages (3 data-backed worker guides) ─────────────────────────
+  const guidePages: MetadataRoute.Sitemap = GUIDES.map((g) => ({
+    url:             `${BASE_URL}/guides/${g.slug}`,
+    lastModified:    g.dateModified,
+    changeFrequency: "monthly" as const,
+    priority:        0.8,
+  }));
+
   return [
     ...corePages,
     ...agencyPages,
@@ -385,5 +400,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...agencyCityPages,
     ...cityJobPages,
     ...comboPageEntries,
+    ...guidePages,
   ];
 }
