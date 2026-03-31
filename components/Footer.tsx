@@ -186,12 +186,12 @@ export default async function Footer() {
             <span className="font-medium text-gray-500">{LEGAL.legalName}</span>
             {LEGAL.kvkNumber
               ? <span>KvK {LEGAL.kvkNumber}</span>
-              : <span className="text-amber-500 font-medium">⚠ KvK number not set — add to lib/legalConfig.ts</span>
+              : null
             }
             {LEGAL.vatNumber && <span>BTW {LEGAL.vatNumber}</span>}
             {LEGAL.address.street
               ? <span>{LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}</span>
-              : <span className="text-amber-500 font-medium">⚠ Address not set — add to lib/legalConfig.ts</span>
+              : null
             }
             <a href={`mailto:${LEGAL.emailGeneral}`} className="hover:text-brand-600">{LEGAL.emailGeneral}</a>
           </div>
