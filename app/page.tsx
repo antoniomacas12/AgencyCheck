@@ -216,7 +216,7 @@ export default async function HomePage() {
               {/* Independence badge */}
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                🇳🇱 Netherlands · Independent · No paid rankings
+                🇳🇱 Netherlands · Independent · Zero paid rankings
               </div>
 
               {/* Headline */}
@@ -228,19 +228,24 @@ export default async function HomePage() {
                 <span className="text-red-400">€345.</span>
               </h1>
 
+              {/* Authority sub-line */}
+              <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-4">
+                Based on {totalReviews}+ worker reports &amp; 1,200+ payslip analyses across {totalAgencies}+ Dutch agencies
+              </p>
+
               {/* Subheadline */}
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
                 Housing, insurance, transport and admin fees are deducted before you touch your pay.
-                See your <strong className="text-white">real take-home</strong>, compare agencies
+                See your <strong className="text-white">real take-home</strong>, compare agencies,
                 and get matched with verified offers —{" "}
-                <strong className="text-emerald-400">free</strong>.
+                <strong className="text-emerald-400">free, no obligation</strong>.
               </p>
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <a href="#lead-form"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/50">
-                  🛡 Get matched safely
+                  Get matched — free →
                 </a>
                 <a href="#calculator"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
@@ -432,10 +437,10 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7">
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-1.5">
-                🛡 Free worker protection service
+                Free matching service — no fees, no obligation
               </p>
               <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">
-                Get matched with safe, verified agencies
+                Find a verified agency that shows real deductions
               </h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-xl">
                 <span className="font-semibold text-gray-700">Transparent deductions</span> ·{" "}
@@ -620,7 +625,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="#lead-form"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
-              🛡 See verified offers
+              See verified offers →
             </a>
             <Link href="/agencies-with-housing"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
@@ -634,6 +639,61 @@ export default async function HomePage() {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §8b  HOW AGENCYCHECK WORKS (business model transparency)
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+
+          <div className="text-center mb-7">
+            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5">
+              How AgencyCheck works — and how we make money
+            </p>
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+              Honest about how this works
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-4 mb-6">
+            {[
+              {
+                icon: "📋",
+                title: "What AgencyCheck does",
+                body: "We collect worker reviews, analyse payslips, and publish independent rankings of Dutch employment agencies. We do not recruit workers — we help you make an informed choice.",
+              },
+              {
+                icon: "💰",
+                title: "How we make money",
+                body: "If you use our matching service and are successfully placed, the agency pays us a finder's fee. This fee comes from the agency — never from you. Workers pay nothing, ever.",
+              },
+              {
+                icon: "⚖️",
+                title: "Why rankings stay honest",
+                body: "Agencies cannot pay to rank higher, remove reviews, or influence their scores. Paying agencies get no placement advantage. Only worker ratings determine their position.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl bg-white border border-gray-100 p-5">
+                <div className="text-2xl mb-3">{item.icon}</div>
+                <p className="text-sm font-black text-gray-900 mb-2">{item.title}</p>
+                <p className="text-xs text-gray-600 leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-2xl border border-amber-100 bg-amber-50/40 px-5 py-4">
+            <p className="text-xs text-amber-900 leading-relaxed">
+              <strong>Conflict of interest disclosure:</strong> Agencies that partner with us for matching do not receive higher ratings or preferential search placement.
+              Our rankings are calculated purely from verified worker submissions. You can{" "}
+              <Link href="/methodology" className="underline hover:text-amber-700">read our full methodology</Link>{" "}
+              and{" "}
+              <Link href="/reviews" className="underline hover:text-amber-700">browse all unfiltered reviews</Link>{" "}
+              — including negative ones — at any time.
+            </p>
+          </div>
+
         </div>
       </section>
 
@@ -706,15 +766,28 @@ export default async function HomePage() {
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
-              Verified job opportunities
+              Research-checked agencies
             </p>
             <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">
               Transparent offers — real net income shown
             </h2>
-            <p className="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed">
+            <p className="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed mb-4">
               Every card shows estimated net weekly income after Dutch tax and deductions.
               No inflated gross numbers.
             </p>
+            {/* Verification level legend */}
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 text-[10px] font-semibold border border-gray-100 bg-gray-50 rounded-xl px-4 py-2.5">
+              <span className="text-gray-400 font-black uppercase tracking-wider">What the badges mean:</span>
+              <span className="inline-flex items-center gap-1 text-gray-500 bg-white border border-gray-200 rounded-full px-2.5 py-1">
+                <span className="text-gray-400">👤</span> Worker-reported — reviews from workers only
+              </span>
+              <span className="inline-flex items-center gap-1 text-blue-700 bg-blue-50 border border-blue-100 rounded-full px-2.5 py-1">
+                <span className="text-blue-400">🔍</span> Research-checked — confirmed KvK + team review
+              </span>
+              <span className="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-full px-2.5 py-1">
+                <span className="text-emerald-500">✓</span> SNA-registered — certified by Stichting Normering Arbeid
+              </span>
+            </div>
           </div>
 
           {/* Enhanced job cards */}
@@ -736,8 +809,8 @@ export default async function HomePage() {
                         </h3>
                         <p className="text-xs text-gray-400 mt-0.5">📍 {agency.city}</p>
                       </div>
-                      <span className="shrink-0 text-[9px] font-black uppercase tracking-wider text-emerald-400 bg-emerald-400/15 border border-emerald-400/25 rounded-full px-2 py-1 whitespace-nowrap">
-                        ✓ Verified
+                      <span className="shrink-0 text-[9px] font-black uppercase tracking-wider text-blue-300 bg-blue-400/15 border border-blue-400/20 rounded-full px-2 py-1 whitespace-nowrap">
+                        🔍 Research-checked
                       </span>
                     </div>
                     <Link href={`/agencies/${agency.slug}`}
@@ -986,7 +1059,7 @@ export default async function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
               <a href="#lead-form"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
-                🛡 Get matched safely
+                Get matched — free →
               </a>
               <a href="#calculator"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-200 active:scale-[0.98]">

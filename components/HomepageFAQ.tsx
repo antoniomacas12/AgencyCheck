@@ -5,7 +5,7 @@ import { useState } from "react";
 const FAQ_ITEMS = [
   {
     q: "How much salary do I actually keep after rent and deductions in the Netherlands?",
-    a: "It depends heavily on your agency. At the legal minimum wage (€14.71/hr, 40h/week), your gross weekly pay is around €600. After Dutch income tax (with heffingskorting credits), agency housing (€95/wk), transport (€25/wk), health insurance (€35/wk), and admin fees, most workers keep between €280–€340/week. That is 47–57% of gross. Our salary calculator on this page gives you an exact breakdown based on your specific situation.",
+    a: "It depends heavily on your agency. At the legal minimum wage (€14.71/hr, 40h/week), your gross weekly pay is €588. After Dutch income tax (with heffingskorting credits — reducing your tax to around €63/week), agency housing (€95/wk), transport (€25/wk), health insurance (€35/wk), and admin fees, most workers keep between €300–€370/week. That is 51–63% of gross. Our salary calculator on this page gives you an exact breakdown based on your specific situation.",
   },
   {
     q: "Are agency deductions from salary legal in the Netherlands?",
