@@ -294,13 +294,27 @@ export default function HomepageCalculator() {
             </div>
           )}
 
-          {/* CTA */}
-          <Link
-            href="#lead-form"
-            className="w-full text-center rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors text-white font-black py-3.5 text-sm shadow-sm shadow-blue-200"
-          >
-            Find better verified offers →
-          </Link>
+          {/* Pain → conversion bridge */}
+          <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 p-5 text-white text-center">
+            <p className="text-xs font-black uppercase tracking-widest text-blue-200 mb-1">
+              {keepPct < 50 ? "You deserve better" : "Maximise what you keep"}
+            </p>
+            <p className="text-base font-black mb-1 leading-snug">
+              {keepPct < 50
+                ? "You're keeping under half your gross. Want better conditions?"
+                : "Want verified offers with the best conditions?"}
+            </p>
+            <p className="text-xs text-blue-200 mb-4">
+              Agencies with transparent deductions keep workers longer. See verified offers now.
+            </p>
+            <a
+              href="#lead-form"
+              className="inline-flex items-center justify-center gap-2 w-full rounded-xl bg-white text-blue-700 font-black py-3 text-sm hover:bg-blue-50 transition-colors active:scale-[0.98]"
+            >
+              🛡 See verified offers →
+            </a>
+          </div>
+
           <Link
             href="/tools/real-income-calculator"
             className="text-xs text-center text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-2"
