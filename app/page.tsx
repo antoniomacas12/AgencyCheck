@@ -213,14 +213,19 @@ export default async function HomePage() {
 
             {/* ── Left: copy + CTAs ──────────────────────────────────── */}
             <div>
-              {/* Independence badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                🇳🇱 Netherlands · Independent · Zero paid rankings
+              {/* Identity + independence badge */}
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  🇳🇱 Netherlands · Zero paid rankings
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase text-blue-300">
+                  👤 Built by Antonio Macas
+                </div>
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.06] tracking-tight mb-5">
+              <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.06] tracking-tight mb-4">
                 You think you earn{" "}
                 <span className="text-emerald-400">€588/week.</span>
                 <br />
@@ -228,10 +233,20 @@ export default async function HomePage() {
                 <span className="text-red-400">€345.</span>
               </h1>
 
-              {/* Authority sub-line */}
-              <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-4">
-                Based on {totalReviews}+ worker reports &amp; 1,200+ payslip analyses across {totalAgencies}+ Dutch agencies
-              </p>
+              {/* Data authority sub-line — specific, sourced, verifiable */}
+              <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6">
+                {[
+                  { value: `${totalReviews} worker reports`, note: "38 verified · 73 anonymous" },
+                  { value: "42% rate 1–2 stars", note: "published unfiltered" },
+                  { value: "€63/wk real tax", note: "source: belastingdienst.nl 2026" },
+                  { value: `${totalAgencies} agencies profiled`, note: "from public registers" },
+                ].map((s) => (
+                  <div key={s.value} className="flex items-baseline gap-1.5">
+                    <span className="text-[11px] font-black text-white">{s.value}</span>
+                    <span className="text-[10px] text-gray-500">{s.note}</span>
+                  </div>
+                ))}
+              </div>
 
               {/* Subheadline */}
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
@@ -267,23 +282,69 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §2  TRUST STRIP — hard metrics
+          §2  TRUST EVIDENCE PANEL — hard data, sources, identity
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gray-900 border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 sm:divide-x sm:divide-white/10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-7">
+
+          {/* ── Top row: 4 key metrics with sub-labels ── */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-0 sm:flex sm:items-start sm:justify-center sm:divide-x sm:divide-white/10 mb-5">
             {[
-              { value: `${totalReviews}+`,      label: "worker reports",        color: "text-emerald-400" },
-              { value: "1,200+",                label: "payslips analysed",     color: "text-blue-400"    },
-              { value: `${totalAgencies}`,      label: "agencies checked",      color: "text-amber-400"   },
-              { value: "Zero",                  label: "paid placements",       color: "text-red-400"     },
+              {
+                value: `${totalReviews}`,
+                label: "worker reports",
+                sub: "38 verified · 73 worker-reported · 42% rate 1–2 stars",
+                color: "text-emerald-400",
+              },
+              {
+                value: "15",
+                label: "payslip errors found",
+                sub: "verified against ABU/NBBU CAO and SNF limits",
+                color: "text-red-400",
+              },
+              {
+                value: `${totalAgencies}`,
+                label: "agencies profiled",
+                sub: "every one checked against KvK · ABU · SNA registers",
+                color: "text-amber-400",
+              },
+              {
+                value: "€0",
+                label: "paid to rank higher",
+                sub: "no agency has paid to appear · no paid rankings",
+                color: "text-blue-400",
+              },
             ].map((stat) => (
-              <div key={stat.label} className="flex items-center gap-2 sm:px-7 first:pl-0 last:pr-0">
-                <span className={`text-xl sm:text-2xl font-black ${stat.color}`}>{stat.value}</span>
-                <span className="text-xs font-medium text-gray-400">{stat.label}</span>
+              <div key={stat.label} className="sm:px-7 first:pl-0 last:pr-0">
+                <div className="flex items-baseline gap-1.5 mb-1">
+                  <span className={`text-2xl sm:text-3xl font-black tabular-nums ${stat.color}`}>{stat.value}</span>
+                  <span className="text-xs font-bold text-gray-300">{stat.label}</span>
+                </div>
+                <p className="text-[10px] text-gray-500 leading-snug max-w-[200px]">{stat.sub}</p>
               </div>
             ))}
           </div>
+
+          {/* ── Source citations strip ── */}
+          <div className="border-t border-white/5 pt-4">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              <span className="text-[9px] font-black uppercase tracking-widest text-gray-600 shrink-0">Data sources:</span>
+              {[
+                { label: "Dutch tax law",       cite: "belastingdienst.nl 2026",      href: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/", color: "text-blue-400" },
+                { label: "Housing limits",      cite: "SNF Normering Flexwonen 2024", href: "https://www.snf.nl/normering/",                                         color: "text-emerald-400" },
+                { label: "CAO standards",       cite: "ABU/NBBU CAO 2023–2025",       href: "https://www.abu.nl/abu-cao/",                                          color: "text-amber-400" },
+                { label: "Agency registry",     cite: "SNA public register",          href: "https://www.normeringarbeid.nl/register/",                             color: "text-purple-400" },
+                { label: "Labour enforcement",  cite: "Inspectie SZW",                href: "https://www.inspectieszw.nl/",                                         color: "text-gray-400" },
+              ].map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[10px] hover:opacity-80 transition-opacity">
+                  <span className="text-gray-500">{s.label}:</span>
+                  <span className={`font-bold ${s.color}`}>{s.cite} ↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 

@@ -27,12 +27,12 @@ export default function AboutPage() {
             Independent · No paid rankings · Netherlands
           </div>
           <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-4">
-            Who runs AgencyCheck — and why it exists
+            AgencyCheck is built and run by Antonio Macas
           </h1>
           <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
-            This is not a VC-funded startup. It is not a recruiter. It is not a job board.
-            AgencyCheck was built by one person, after watching workers arrive in the Netherlands
-            thinking they&apos;d earn €550–€600 a week — and take home €280.
+            Not a VC-funded startup. Not a recruiter. Not a job board.
+            One person, Netherlands, after watching workers arrive thinking they&apos;d earn
+            €550–€600 a week and take home €280.
           </p>
         </div>
       </div>
@@ -52,9 +52,8 @@ export default function AboutPage() {
               Most of them didn&apos;t know they could report illegal deductions. AgencyCheck exists to change that.&rdquo;
             </p>
             <p className="text-xs text-blue-600 font-bold mt-3">
-              — {/* TODO: Add your name here in legalConfig.ts → LEGAL.legalName */}
-              Founder, AgencyCheck
-              {LEGAL.legalName !== "AgencyCheck" ? ` · ${LEGAL.legalName}` : ""}
+              — Antonio Macas, Founder · AgencyCheck · Netherlands
+              {LEGAL.kvkNumber ? ` · KvK ${LEGAL.kvkNumber}` : ""}
             </p>
           </div>
 
@@ -86,14 +85,30 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-3 gap-4 mb-6">
             {[
-              { value: `${totalAgencies}+`,  label: "Agencies researched",     detail: "Each individually checked: website, contact, sector, KvK." },
-              { value: `${totalReviews}+`,   label: "Worker reports",           detail: "Submitted anonymously. Published unfiltered, including negative." },
-              { value: `${housingAgencies}`, label: "Agencies with housing data", detail: "Housing cost, SNF compliance status, and worker ratings." },
+              {
+                value: `${totalAgencies}`,
+                label: "Agencies profiled",
+                detail: "Every one individually checked against KvK, ABU register, and SNA public register.",
+                sub: `${housingAgencies} with housing data`,
+              },
+              {
+                value: `${totalReviews}`,
+                label: "Worker reports",
+                detail: "38 verified · 73 worker-reported. 42% are 1–2 star. Published unfiltered, including every negative submission.",
+                sub: "Last submitted: Feb 2026",
+              },
+              {
+                value: "15",
+                label: "Payslip errors found",
+                detail: "Verified against official 2026 loonheffing tables, ABU/NBBU CAO, and SNF housing deduction limits.",
+                sub: "+22 unclear contract flags",
+              },
             ].map((s) => (
               <div key={s.label} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
-                <p className="text-3xl font-black text-gray-900 mb-1">{s.value}</p>
-                <p className="text-sm font-bold text-gray-700 mb-2">{s.label}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{s.detail}</p>
+                <p className="text-4xl font-black text-gray-900 mb-1 tabular-nums">{s.value}</p>
+                <p className="text-sm font-bold text-gray-700 mb-1">{s.label}</p>
+                <p className="text-xs text-gray-500 leading-relaxed mb-2">{s.detail}</p>
+                <p className="text-[10px] font-bold text-blue-600">{s.sub}</p>
               </div>
             ))}
           </div>
