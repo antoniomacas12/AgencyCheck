@@ -6,6 +6,31 @@
 
 import { useT, type Locale } from "@/lib/i18n";
 
+// ─── Relative date helper (pure — no React hooks required) ───────────────────
+
+function relativeDate(iso: string): string {
+  try {
+    const ms   = Date.now() - new Date(iso).getTime();
+    const secs = Math.floor(ms / 1000);
+    if (secs < 60)  return "just now";
+    const mins = Math.floor(secs / 60);
+    if (mins < 60)  return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24)   return `${hrs}h ago`;
+    const days = Math.floor(hrs / 24);
+    if (days === 1) return "yesterday";
+    if (days < 7)   return `${days} days ago`;
+    if (days < 14)  return "last week";
+    if (days < 30)  return `${Math.floor(days / 7)} weeks ago`;
+    if (days < 60)  return "last month";
+    if (days < 365) return `${Math.floor(days / 30)} months ago`;
+    const yrs = Math.floor(days / 365);
+    return yrs === 1 ? "1 year ago" : `${yrs} years ago`;
+  } catch {
+    return iso.slice(0, 10); // fallback to YYYY-MM-DD
+  }
+}
+
 export type ReviewType          = "ANONYMOUS" | "VERIFIED_WORKER";
 export type VerificationStatus  = "VERIFIED" | "WORKER_REPORTED" | "UNKNOWN";
 
@@ -130,31 +155,49 @@ export default function WorkerReviewCard({
   const positiveTags = (review.issueTags ?? []).filter((tag) => !negativeTags.includes(tag));
   const sortedTags   = [...negativeTags, ...positiveTags];
 
-  return (
-    <div className="card p-4">
+  // Left-border accent colour based on overall rating
+  const borderAccent =
+    displayRating >= 4 ? "border-l-green-400"
+    : displayRating <= 2 ? "border-l-red-400"
+    : "border-l-amber-300";
 
-      {/* ── Header ── */}
+  return (
+    <div className={`card p-4 border-l-4 ${borderAccent}`}>
+
+      {/* ── Header: rating (most important signal) + meta ── */}
       <div className="flex items-start justify-between gap-3 mb-2">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className={`inline-flex items-center gap-1 text-xs font-medium rounded-full px-2 py-0.5 ${cfg.badge}`}>
+        {/* Overall score — prominent, left-anchored */}
+        <div className="flex items-center gap-2 min-w-0">
+          <span className={`text-lg font-black tabular-nums leading-none ${
+            displayRating >= 4 ? "text-green-600"
+            : displayRating <= 2 ? "text-red-600"
+            : "text-amber-600"
+          }`}>
+            {displayAvg}
+          </span>
+          <Stars value={displayRating} size="sm" />
+        </div>
+        {/* Verification badge + meta — right */}
+        <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
+          <span className={`inline-flex items-center gap-1 text-[10px] font-medium rounded-full px-2 py-0.5 ${cfg.badge}`}>
             {cfg.icon} {cfg.label}
           </span>
-          {review.jobTitle && (
-            <span className="text-xs text-gray-500">{review.jobTitle}</span>
-          )}
-          {review.city && (
-            <span className="text-xs text-gray-400">📍 {review.city}</span>
-          )}
-        </div>
-        <div className="flex items-center gap-1 shrink-0">
-          <Stars value={displayRating} size="sm" />
-          <span className="text-xs font-medium text-gray-700">{displayAvg}</span>
+          <span className="text-[10px] text-gray-400">{relativeDate(review.createdAt)}</span>
         </div>
       </div>
 
+      {/* ── Job + city context line ── */}
+      {(review.jobTitle || review.city) && (
+        <p className="text-[10px] text-gray-500 mb-2">
+          {review.jobTitle && <span>{review.jobTitle}</span>}
+          {review.jobTitle && review.city && <span className="mx-1 text-gray-300">·</span>}
+          {review.city && <span>📍 {review.city}</span>}
+        </p>
+      )}
+
       {/* ── Title ── */}
       {review.title && (
-        <p className="text-sm font-semibold text-gray-900 mb-2 leading-snug">
+        <p className="text-sm font-bold text-gray-900 mb-2 leading-snug">
           {review.title}
         </p>
       )}
@@ -179,32 +222,43 @@ export default function WorkerReviewCard({
         </div>
       )}
 
-      {/* ── Rating grid ── */}
-      <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 mb-3">
+      {/* ── Rating grid — compact 2-column with mini star rows ── */}
+      <div className="grid grid-cols-2 gap-x-4 gap-y-1 mb-3">
         {ratings.map(([key, val]) => (
-          <div key={key} className="flex items-center justify-between gap-2">
-            <span className="text-xs text-gray-500 truncate">
+          <div key={key} className="flex items-center gap-1.5">
+            <span className="text-[10px] text-gray-400 w-16 shrink-0 truncate">
               {RATING_LABELS[key] ?? key}
             </span>
-            <Stars value={val} />
+            <div className="flex items-center gap-0.5">
+              {Array.from({ length: 5 }, (_, i) => (
+                <div
+                  key={i}
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    i < val
+                      ? val >= 4 ? "bg-green-400" : val <= 2 ? "bg-red-400" : "bg-amber-400"
+                      : "bg-gray-200"
+                  }`}
+                />
+              ))}
+              <span className="text-[10px] text-gray-500 ml-0.5">{val}</span>
+            </div>
           </div>
         ))}
       </div>
 
       {/* ── Comment ── */}
       {review.comment && (
-        <blockquote className="border-l-2 border-gray-200 pl-3 text-sm text-gray-700 leading-relaxed italic">
+        <blockquote className="border-l-2 border-gray-100 pl-3 text-xs text-gray-600 leading-relaxed">
           &ldquo;{review.comment}&rdquo;
         </blockquote>
       )}
 
-      {/* ── Footer ── */}
-      <p className="text-[10px] text-gray-400 mt-3">
-        {review.createdAt}
-        {review.verificationStatus === "VERIFIED"
-          ? ` · ✅ ${t("review_card.verified_review")}`
-          : ` · ${t("review_card.not_verified")}`}
-      </p>
+      {/* ── Footer verification line ── */}
+      {review.verificationStatus === "VERIFIED" && (
+        <p className="text-[10px] text-green-600 font-medium mt-2">
+          ✅ {t("review_card.verified_review")}
+        </p>
+      )}
     </div>
   );
 }

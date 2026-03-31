@@ -234,12 +234,12 @@ export default function FloatingStack() {
           onClick={handleOpenJob}
           aria-label="Find me a job"
           className="
-            flex items-center gap-1.5
-            px-4 py-2.5 rounded-full
+            flex items-center gap-2
+            px-5 py-3 rounded-full
             bg-red-600 text-white
-            text-[11px] font-extrabold tracking-wide
-            shadow-lg shadow-red-900/30
-            hover:bg-red-700 hover:shadow-xl hover:shadow-red-900/40
+            text-xs font-black tracking-wide
+            shadow-xl shadow-red-900/40
+            hover:bg-red-700 hover:shadow-2xl hover:shadow-red-900/50
             active:scale-95 transition-all whitespace-nowrap
           "
         >

@@ -969,12 +969,40 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
 // Page
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }) {
+export default function ReviewsClientPage({
+  locale        = "en",
+  initialTotal   = 0,
+  initialVerified = 0,
+}: {
+  locale?:          Locale;
+  initialTotal?:    number;
+  initialVerified?: number;
+}) {
   const t = useT(locale);
   const [pendingReview,     setPendingReview]     = useState<{ agencySlug: string; review: WorkerReview } | null>(null);
   // Incremented each time a review is successfully submitted — causes ReviewsFeed
   // to immediately re-fetch from the DB so the new review appears at the top.
   const [feedRefreshSignal, setFeedRefreshSignal] = useState(0);
+
+  // Live review counts — seeded from server-side fetch, kept fresh by polling
+  const [totalReviews,  setTotalReviews]  = useState(initialTotal);
+  const [verifiedCount, setVerifiedCount] = useState(initialVerified);
+
+  // Poll /api/reviews/stats every 60s to keep counts accurate after admin publishes
+  useEffect(() => {
+    let cancelled = false;
+    async function pollStats() {
+      try {
+        const res = await fetch("/api/reviews/stats");
+        if (!res.ok || cancelled) return;
+        const data = await res.json();
+        if (typeof data.total         === "number") setTotalReviews(data.total);
+        if (typeof data.verifiedCount === "number") setVerifiedCount(data.verifiedCount);
+      } catch { /* network error — keep last known values */ }
+    }
+    const id = setInterval(pollStats, 60_000);
+    return () => { cancelled = true; clearInterval(id); };
+  }, []);
 
   const handleSubmitSuccess = useCallback(
     (data: { agencySlug: string; review: WorkerReview }) => {
@@ -983,11 +1011,6 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
     },
     []
   );
-
-  const totalReviews = REVIEW_SEED_DATA.length;
-  const verifiedCount = REVIEW_SEED_DATA.filter(
-    (r) => r.verificationStatus === "VERIFIED"
-  ).length;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
@@ -1020,11 +1043,23 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
         </p>
       </div>
 
+      {/* Mobile-only "Write a review" jump button — sits above reviews feed */}
+      <div className="lg:hidden mb-4">
+        <a
+          href="#review-form"
+          className="inline-flex items-center gap-2 rounded-xl border-2 border-gray-900 bg-white text-gray-900 font-black text-sm px-5 py-2.5 hover:bg-gray-50 transition-colors"
+        >
+          ✏ Write a review ↓
+        </a>
+      </div>
+
       {/* Two-column layout — flex so sticky sidebar works naturally */}
+      {/* On mobile: reviews first (order-first), form below (order-last) */}
       <div className="lg:flex lg:items-start lg:gap-8">
 
         {/* LEFT — sticky form (desktop: fixed width, sticks while right scrolls) */}
-        <div id="review-form" className="lg:w-[360px] lg:shrink-0 mb-8 lg:mb-0 lg:sticky lg:top-20">
+        {/* order-last on mobile → appears below reviews feed on small screens */}
+        <div id="review-form" className="order-last lg:order-first lg:w-[360px] lg:shrink-0 mt-8 lg:mt-0 lg:sticky lg:top-20">
           <div className="bg-white border-2 border-gray-900 rounded-2xl p-5 lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto">
             <div className="mb-5">
               <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-1">
@@ -1059,7 +1094,8 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
         </div>
 
         {/* RIGHT — reviews feed, immediately visible above the fold */}
-        <div className="flex-1 min-w-0">
+        {/* order-first on mobile → reviews appear before the form */}
+        <div className="order-first lg:order-last flex-1 min-w-0">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-base font-black text-gray-900">
               {t("reviews_page.recent_title")}
@@ -1103,7 +1139,7 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
           href="/agencies"
           className="shrink-0 bg-white text-gray-900 font-black text-sm px-5 py-3 rounded-xl hover:bg-gray-100 transition-colors whitespace-nowrap"
         >
-          {t("reviews_page.cta_button", { count: "150+" })}
+          {t("reviews_page.cta_button", { count: "151" })}
         </Link>
       </div>
 

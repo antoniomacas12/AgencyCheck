@@ -7,6 +7,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { verifyAdminRequest, unauthorizedJson } from "@/lib/adminAuth";
 
@@ -48,6 +49,10 @@ export async function POST(req: NextRequest, { params }: Params) {
       moderatedBy: "admin",
     },
   });
+
+  // Invalidate Next.js cache so public pages show updated counts immediately
+  revalidatePath("/reviews");
+  revalidatePath("/");
 
   return NextResponse.json({ review: { id: params.id, status: newStatus, isPublished: shouldPublish } });
 }

@@ -8,7 +8,8 @@ import HomepageFAQ from "@/components/HomepageFAQ";
 import ApplyBar from "@/components/ApplyBar";
 import { AGENCIES, AGENCIES_WITH_HOUSING, AGENCY_MAP } from "@/lib/agencyData";
 import { TOP_CITIES } from "@/lib/seoData";
-import { getLatestReviews, REVIEW_SEED_DATA } from "@/lib/reviewData";
+import { getLatestReviews } from "@/lib/reviewData";
+import { getPublishedReviewStats } from "@/lib/reviewStats";
 import { JOB_TYPE_META, getJobCountForAgency } from "@/lib/jobData";
 import { RANDSTAD_STATS } from "@/lib/randstadData";
 import { TEMPO_TEAM_STATS } from "@/lib/tempoTeamData";
@@ -161,7 +162,8 @@ function StarRating({ value }: { value: number }) {
 export default async function HomePage() {
   const totalAgencies = AGENCIES.length;
   const housingCount  = AGENCIES_WITH_HOUSING.length;
-  const totalReviews  = REVIEW_SEED_DATA.length;
+  const reviewStats   = await getPublishedReviewStats();
+  const totalReviews  = reviewStats.total || 111; // fallback to seed count if DB unavailable
 
   const housingAgencies = AGENCIES_WITH_HOUSING.slice(0, 3);
 

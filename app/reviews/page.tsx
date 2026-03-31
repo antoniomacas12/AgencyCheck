@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ReviewsClientPage from "./ReviewsClientPage";
 import { getLocale } from "@/lib/getLocale";
+import { getPublishedReviewStats } from "@/lib/reviewStats";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ReviewsPage() {
+export default async function ReviewsPage() {
   const locale = getLocale();
-  return <ReviewsClientPage locale={locale} />;
+  const stats  = await getPublishedReviewStats();
+
+  return (
+    <ReviewsClientPage
+      locale={locale}
+      initialTotal={stats.total}
+      initialVerified={stats.verifiedCount}
+    />
+  );
 }
