@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import nDynamic from "next/dynamic";
 import { requireAdmin } from "@/lib/adminAuth";
+
+// Client component — polls for review counts every 30s
+const AdminReviewsBadge = nDynamic(
+  () => import("@/components/AdminReviewsBadge"),
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
   title: "Admin — AgencyCheck",
@@ -46,9 +53,9 @@ export default async function AdminLayout({
             </a>
             <a
               href="/admin/reviews"
-              className="px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition"
+              className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/10 transition flex items-center gap-1"
             >
-              Reviews
+              <AdminReviewsBadge />
             </a>
             <a
               href="/admin/launch-checklist"

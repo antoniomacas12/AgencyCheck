@@ -784,16 +784,19 @@ function dbToCard(r: DbReview): WorkerReview & { agencySlug: string; agencyName:
   };
 }
 
-function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, string | number>) => string; locale: Locale }) {
+function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Record<string, string | number>) => string; locale: Locale; refreshSignal: number }) {
   const [agencyFilter,  setAgencyFilter]  = useState("");
   const [cityFilter,    setCityFilter]    = useState("");
   const [housingFilter, setHousingFilter] = useState<"" | "yes" | "no">(""); // "" = all
   const [sortKey,       setSortKey]       = useState<SortKey>("newest");
   const [showCount,     setShowCount]     = useState(12);
 
-  // Real user-submitted reviews from the database — always pinned first
+  // Real user-submitted reviews from the database — always pinned first.
+  // Re-fetches when `refreshSignal` increments (immediate after new submit) and
+  // also polls every 60 seconds so the feed stays up to date automatically.
   const [dbReviews, setDbReviews] = useState<ReturnType<typeof dbToCard>[]>([]);
-  useEffect(() => {
+
+  const fetchDbReviews = useCallback(() => {
     fetch("/api/reviews")
       .then((r) => r.ok ? r.json() : { reviews: [] })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -802,6 +805,13 @@ function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, str
       })
       .catch(() => {/* silently ignore — seed data still shown */});
   }, []);
+
+  useEffect(() => {
+    fetchDbReviews();
+    // Auto-poll every 60 s
+    const interval = setInterval(fetchDbReviews, 60_000);
+    return () => clearInterval(interval);
+  }, [fetchDbReviews, refreshSignal]); // refreshSignal triggers immediate re-fetch after submit
 
   const { filteredDb, filteredSeed } = useMemo(() => {
     // Apply filters to seed data
@@ -961,7 +971,18 @@ function ReviewsFeed({ t, locale }: { t: (key: string, vars?: Record<string, str
 
 export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }) {
   const t = useT(locale);
-  const [pendingReview, setPendingReview] = useState<{ agencySlug: string; review: WorkerReview } | null>(null);
+  const [pendingReview,     setPendingReview]     = useState<{ agencySlug: string; review: WorkerReview } | null>(null);
+  // Incremented each time a review is successfully submitted — causes ReviewsFeed
+  // to immediately re-fetch from the DB so the new review appears at the top.
+  const [feedRefreshSignal, setFeedRefreshSignal] = useState(0);
+
+  const handleSubmitSuccess = useCallback(
+    (data: { agencySlug: string; review: WorkerReview }) => {
+      setPendingReview(data);
+      setFeedRefreshSignal((s) => s + 1);
+    },
+    []
+  );
 
   const totalReviews = REVIEW_SEED_DATA.length;
   const verifiedCount = REVIEW_SEED_DATA.filter(
@@ -1016,7 +1037,7 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
                 {t("reviews_page.form_sub")}
               </p>
             </div>
-            <ReviewSubmitForm t={t} onSubmitSuccess={setPendingReview} />
+            <ReviewSubmitForm t={t} onSubmitSuccess={handleSubmitSuccess} />
 
             {/* Trust signals — tucked inside form card, below submit */}
             <div className="mt-6 pt-5 border-t border-gray-100 space-y-3">
@@ -1064,7 +1085,7 @@ export default function ReviewsClientPage({ locale = "en" }: { locale?: Locale }
             </div>
           )}
 
-          <ReviewsFeed t={t} locale={locale} />
+          <ReviewsFeed t={t} locale={locale} refreshSignal={feedRefreshSignal} />
           {/* Disclaimer banner after first batch of reviews, not before */}
           <WorkerDisclaimer variant="reviews" size="banner" className="mt-6" />
         </div>
