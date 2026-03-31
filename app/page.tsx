@@ -62,14 +62,17 @@ const VERIFIED_JOB_META: Record<string, {
 };
 
 // ─── Salary breakdown rows (static payslip illustration) ─────────────────────
+// Real 2026 Dutch tax at WML (€14.71/hr × 40h = €588/wk):
+// Loonheffing after AHK (€3,015/yr) + AK (€5,000/yr) credits = ≈€3,264/yr = ≈€63/wk
+// Source: belastingdienst.nl 2026 brackets + heffingskortingen
 const SALARY_ROWS = [
-  { label: "Gross pay",        amount: "+€600", green: true,  bold: false },
-  { label: "Tax & social",     amount: "−€162", green: false, bold: false },
-  { label: "Agency housing",   amount: "−€95",  green: false, bold: false },
-  { label: "Health insurance", amount: "−€35",  green: false, bold: false },
-  { label: "Transport",        amount: "−€25",  green: false, bold: false },
-  { label: "Admin fees",       amount: "−€40",  green: false, bold: false },
-  { label: "💶 You keep",      amount: "€243",  green: true,  bold: true  },
+  { label: "Gross pay (WML €14.71 × 40h)",  amount: "+€588", green: true,  bold: false },
+  { label: "Tax & social (loonheffing)",     amount: "−€63",  green: false, bold: false },
+  { label: "Agency housing (SNF standard)", amount: "−€95",  green: false, bold: false },
+  { label: "Health insurance",              amount: "−€35",  green: false, bold: false },
+  { label: "Transport (agency bus)",        amount: "−€25",  green: false, bold: false },
+  { label: "Admin fees",                    amount: "−€25",  green: false, bold: false },
+  { label: "💶 You keep",                   amount: "€345",  green: true,  bold: true  },
 ] as const;
 
 // ─── Authentic broken-English testimonials ────────────────────────────────────
@@ -219,10 +222,10 @@ export default async function HomePage() {
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.06] tracking-tight mb-5">
                 You think you earn{" "}
-                <span className="text-emerald-400">€600/week.</span>
+                <span className="text-emerald-400">€588/week.</span>
                 <br />
                 You actually keep{" "}
-                <span className="text-red-400">€243.</span>
+                <span className="text-red-400">€345.</span>
               </h1>
 
               {/* Subheadline */}
@@ -320,31 +323,34 @@ export default async function HomePage() {
               </p>
             </div>
             <div className="p-6 space-y-3">
+              {/* Bar 1: Gross (100% baseline) */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-xs font-bold text-gray-600">What the agency advertises (gross)</span>
-                  <span className="text-sm font-black text-gray-900">€600/week</span>
+                  <span className="text-sm font-black text-gray-900">€588/week</span>
                 </div>
                 <div className="h-3 rounded-full bg-gray-200 w-full" />
               </div>
+              {/* Bar 2: After Dutch tax — €588 − €63 tax = €525 (89% of gross) */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">After Dutch tax (with credits)</span>
-                  <span className="text-sm font-black text-gray-700">€438/week</span>
+                  <span className="text-xs font-bold text-gray-600">After Dutch tax (incl. heffingskorting credits)</span>
+                  <span className="text-sm font-black text-gray-700">€525/week</span>
                 </div>
-                <div className="h-3 rounded-full bg-amber-300" style={{ width: "73%" }} />
+                <div className="h-3 rounded-full bg-amber-300" style={{ width: "89%" }} />
               </div>
+              {/* Bar 3: Real take-home — €525 − €95 − €35 − €25 − €25 = €345 (59% of gross) */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-xs font-bold text-red-700">What you actually take home</span>
-                  <span className="text-sm font-black text-red-600">€243/week</span>
+                  <span className="text-sm font-black text-red-600">€345/week</span>
                 </div>
-                <div className="h-3 rounded-full bg-red-400" style={{ width: "40%" }} />
+                <div className="h-3 rounded-full bg-red-400" style={{ width: "59%" }} />
               </div>
             </div>
             <div className="px-6 pb-4 flex items-center justify-between">
               <p className="text-[11px] text-gray-400">
-                Deductions: €95 housing + €35 insurance + €25 transport + €40 admin fees.{" "}
+                Deductions: €63 tax + €95 housing + €35 insurance + €25 transport + €25 admin fees.{" "}
                 <Link href="/methodology" className="text-blue-600 underline">See full methodology →</Link>
               </p>
               <a href="#lead-form"
@@ -568,7 +574,7 @@ export default async function HomePage() {
             <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
               <div className="bg-gray-900 px-5 py-3">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                  Example: WML worker · €14.71/hr · 40h/wk
+                  Example: WML worker · €14.71/hr · 40h/wk · 2026 real tax
                 </p>
               </div>
               <div className="divide-y divide-gray-100">
@@ -584,7 +590,7 @@ export default async function HomePage() {
               </div>
               <div className="bg-gray-50 px-5 py-3 border-t border-gray-100">
                 <p className="text-[10px] text-gray-400">
-                  Includes €95/wk housing + €25/wk transport + €35/wk insurance + €40/wk admin.{" "}
+                  Tax −€63 (real 2026 loonheffing after AHK+AK credits) + €95 housing + €25 transport + €35 insurance + €25 admin.{" "}
                   <Link href="/methodology" className="text-blue-600 underline">Full methodology</Link>
                 </p>
               </div>
@@ -876,10 +882,11 @@ export default async function HomePage() {
                 <p>
                   The Dutch minimum wage (<em>Wettelijk Minimumloon</em>) stands at{" "}
                   <strong className="text-gray-900">€14.71/hour in 2026</strong> for workers
-                  aged 21+. At 40 hours per week this gives a gross of approximately €600/week.
-                  But after Dutch income tax, agency housing, health insurance and transport,
-                  most workers keep between <strong className="text-gray-900">€250–€340</strong> —
-                  often less than 50% of their gross.
+                  aged 21+. At 40 hours per week this gives a gross of exactly €588/week
+                  (€14.71 × 40 hours). But after Dutch income tax, agency housing, health
+                  insurance and transport, most workers keep between{" "}
+                  <strong className="text-gray-900">€300–€370</strong> —
+                  roughly 50–63% of their gross, depending on the agency.
                 </p>
                 <p>
                   The key legal protections to know: the <strong className="text-gray-900">ABU / NBBU CAO</strong>{" "}
