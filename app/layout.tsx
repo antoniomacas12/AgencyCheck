@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     index:  true,
     follow: true,
   },
+  verification: {
+    google: "DWZA4IknSEh6vJWfUUmo_KacL4aYYCMhFYKOqNKyW38",
+  },
 };
 
 export const dynamic = "force-dynamic";
