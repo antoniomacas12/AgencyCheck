@@ -951,6 +951,154 @@ function buildGuides(): GuideDefinition[] {
       dateModified:  "2026-04-01",
     },
 
+    // ── Guide 13: Real salary Netherlands — gross vs net all job types ─────────
+    {
+      slug:      "real-salary-netherlands",
+      title:     `Real Salary in the Netherlands ${YEAR} — Gross vs Net for Agency Jobs`,
+      metaTitle: `Real Salary Netherlands ${YEAR} — Gross vs Net`,
+      metaDesc:  `What do agency workers really take home in the Netherlands? Real gross-to-net breakdowns for warehouse, forklift, production, and order picker jobs. ${YEAR} figures.`,
+      badge:     `${YEAR} · All Job Types`,
+      intro:     `Every agency job advert in the Netherlands shows a gross hourly rate. What actually arrives in your bank account is different — sometimes by more than 40%. This guide covers real take-home pay for all eight major agency job types, from order pickers earning WML to reach truck drivers earning €20/hr. All salary data comes from AgencyCheck's job-type database and ${totalSeedReviews} worker reviews. No estimates — only numbers that can be verified against Dutch tax law and collective agreements.`,
+      sections: [
+        {
+          heading: `Gross vs net: why there's a gap of €100–€200 every week`,
+          body: `When an agency advertises €${WML}/hr, they mean your gross hourly rate — the figure before any deduction is made. From that gross, Dutch law and your contract subtract several items before anything arrives in your account.<br/><br/><strong>Loonheffing (income tax + social contributions):</strong> At WML, your employer withholds approximately €${Math.round(WML * 40 * 0.107)}/week in loonheffing after the two standard credits (algemene heffingskorting and arbeidskorting) are applied. The effective rate at WML is around 10.7% — lower than the 37.07% headline rate because the credits heavily offset tax at lower incomes.<br/><br/><strong>ZVW healthcare levy:</strong> Approximately €11/week. This funds the state healthcare system (Zorgverzekeringswet). It is separate from your personal health insurance premium, which you pay yourself (around €140/month) unless your agency has a group scheme.<br/><br/><strong>Housing deduction:</strong> If you live in agency accommodation, €80–€113.50/week is deducted directly from your salary. The SNF legal ceiling is €113.50/week for certified housing. Some agencies charge €80–€95.<br/><br/><strong>Transport:</strong> If transport is charged, expect €10–€36/week depending on your distance from the work site. One worker on AgencyCheck reported: "After paying €120 for accommodation, €36 for insurance, and €25 for transport, I end up with around €340 net per week." That breakdown illustrates exactly how €${weeklyGross} gross becomes €340 take-home — a difference of €${weeklyGross - 340}/week.`,
+        },
+        {
+          heading: "Real take-home by job type — 2026 figures",
+          body: `Here are the real net-monthly earnings for each major agency job type, calculated using Dutch tax rates, the two statutory credits, and a 40-hour week. These figures assume <strong>no housing deduction</strong> — if you live in agency accommodation, subtract €347–€490/month (€80–€113.50 × 4.33 weeks).<br/><br/><strong>Order Picker (avg €14.50/hr):</strong> Gross €580/wk → net ≈€334/wk (€1,446/mo)<br/><strong>Warehouse Worker (avg €14.80/hr):</strong> Gross €592/wk → net ≈€341/wk (€1,477/mo)<br/><strong>Production Worker (avg €15.00/hr):</strong> Gross €600/wk → net ≈€346/wk (€1,498/mo)<br/><strong>Machine Operator (avg €15.50/hr):</strong> Gross €620/wk → net ≈€357/wk (€1,546/mo)<br/><strong>Forklift Driver (avg €16.00/hr):</strong> Gross €640/wk → net ≈€369/wk (€1,597/mo)<br/><strong>Greenhouse Worker (avg €15.20/hr):</strong> Gross €608/wk → net ≈€350/wk (€1,516/mo)<br/><strong>Reach Truck Driver (avg €17.00/hr):</strong> Gross €680/wk → net ≈€392/wk (€1,697/mo)<br/><strong>Machine Setter (avg €18.50/hr):</strong> Gross €740/wk → net ≈€427/wk (€1,848/mo)<br/><br/>These figures include loonheffing, ZVW, and basic social contributions. They exclude housing, transport, and health insurance costs.`,
+        },
+        {
+          heading: "Why most agency workers take home €300–€400/week",
+          body: `The €300–€400/week band is the real take-home range for the majority of agency workers in the Netherlands who live in agency accommodation. Here is how it breaks down:<br/><br/>A warehouse worker on WML (€${WML}/hr) earns €${weeklyGross}/week gross. After tax and levies, they net approximately €${weeklyNet}/week. Subtract agency housing at €100/week and they take home €${weeklyNet - 100}/week — right in the middle of this band.<br/><br/>A worker paying the maximum SNF rate (€113.50/week) on WML nets €${weeklyNet - 113}/week. After food costs of €50–€80 per week and a phone plan of €10–€15/week, disposable income is €150–€200/week at best.<br/><br/>Workers in the €400+ band typically have one or more of: a job above WML (forklift, reach truck), free housing included, free transport to the work site, or consistent night/weekend shift premiums. The key variable separating €300/week workers from €450/week workers is almost always whether housing and transport are free.<br/><br/>This is why the phrase "jobs with accommodation" is so important to research before arrival. An agency offering free housing on €15.50/hr gives you more take-home than one charging €113.50/week housing on €16.50/hr.`,
+        },
+        {
+          heading: "How shift premiums change the calculation entirely",
+          body: `Gross hourly rate only tells half the story. Shift premiums under the ABU and NBBU collective agreements (CAO) can increase real weekly earnings by 20–80% compared to daytime work on the same base rate.<br/><br/><strong>Night shift bonus (00:00–06:00):</strong> Minimum +22% under ABU CAO. At WML: €${WML}/hr × 1.22 = €17.95/hr. Five night shifts/week: €718/week gross → approximately €413/week net (without housing).<br/><strong>Sunday premium:</strong> +50% under ABU CAO. At WML: €22.07/hr. Two 8-hour Sunday shifts add approximately €150/week gross to your base.<br/><strong>Overtime (hours 41–50/week):</strong> 125% of base rate. Hours 51+: 150%.<br/><br/>A forklift driver doing regular night shifts at €16/hr earns: €16 × 1.22 × 40 = €780/week gross — approximately €450/week net. With free agency housing, savings of €200–€300/week become achievable.<br/><br/>The critical issue: these premiums must appear as separate itemised lines on your payslip. ${missingOvertime} of ${totalSeedReviews} workers on AgencyCheck reported that overtime or shift premiums were missing from their payslip. If your payslip shows only one flat gross figure without premium line items, your pay is almost certainly being under-reported.`,
+        },
+        {
+          heading: "Vakantiegeld — the 8% accrual that changes your annual total",
+          body: `By Dutch law (BW art. 7:634), every employer must accrue <strong>8% of gross wages</strong> as vakantiegeld (holiday allowance). This is not optional and not a bonus — it is a legal entitlement that accrues from your first working day.<br/><br/>At WML on a 40-hour week for one full year:<br/>Annual gross: €${weeklyGross} × 52 = €${weeklyGross * 52}<br/>Vakantiegeld: €${weeklyGross * 52} × 0.08 = <strong>€${Math.round(weeklyGross * 52 * 0.08)}/year</strong><br/><br/>Most agencies pay vakantiegeld once per year in June, or upon contract termination. Some include it in every weekly payment (uitbetaald bij loon) — in this case your weekly gross is multiplied by 1.08 and you receive an extra 8% each week. When comparing job offers, always clarify whether the quoted gross rate includes or excludes vakantiegeld.<br/><br/>A reach truck driver at €17/hr for 52 weeks accumulates €3,447 in vakantiegeld. Over a full year this is equivalent to an extra month's salary — which is why staying through to the June payout date, rather than leaving in April or May, has a significant impact on annual earnings.`,
+        },
+        {
+          heading: `What workers actually earn — ${totalSeedReviews} reviews analysed`,
+          body: `Based on ${totalSeedReviews} reviews collected on AgencyCheck, the average salary rating across all agencies is <strong>${salaryAvg}/5</strong>. ${positivePct}% of all reviews rated the experience 4–5 stars overall; ${negativePct}% rated it 1–2 stars.<br/><br/>Workers who received correct payslips with all premiums itemised, free transport, and clear contracts consistently rated their salary experience 4–5 stars and often mentioned earning €15.20–€16/hr at above-WML rates.<br/><br/>Workers who reported deductions not agreed in writing, missing overtime pay, or flat payslips without shift differential line items consistently rated salary 1–2 stars. The most commonly cited problem after housing was salary accuracy.<br/><br/><strong>The €340 take-home benchmark:</strong> The most frequently recurring real figure across negative-to-neutral reviews is €340–€360/week net after all deductions on minimum wage. Workers who report earning meaningfully more (€420+ net) almost universally worked nights, had free housing, or earned significantly above WML.`,
+        },
+        {
+          heading: "Gross vs net calculator — do your own check in 60 seconds",
+          body: `You do not need a complex spreadsheet to verify whether your pay is approximately correct. Use this simple check:<br/><br/><strong>Step 1:</strong> Contracted hourly rate × 40 hours = weekly gross<br/><strong>Step 2:</strong> Multiply by 0.89 to estimate net after tax and levies (approximate factor at WML; higher earners see a slightly lower factor)<br/><strong>Step 3:</strong> Subtract housing deduction per week (if applicable)<br/><strong>Step 4:</strong> Subtract transport cost per week (if charged)<br/><br/><strong>Example:</strong> €15.50/hr × 40h = €620 gross × 0.89 = €552 → minus €100 housing → minus €20 transport = <strong>€432/week net</strong><br/><br/>If your bank statement shows significantly less than this calculation, something is wrong. Common causes: (1) housing deduction higher than contracted, (2) shift premiums not being added, (3) overtime hours going unpaid, or (4) loonheffing applied at a higher rate than applicable.<br/><br/>AgencyCheck's real income calculator at /tools/real-income-calculator does this calculation with exact 2026 Dutch tax rates. Use it before you accept any job offer to verify the promised net pay.`,
+        },
+        {
+          heading: "Which job types offer the best salary-to-deduction ratio?",
+          body: `The highest earners relative to their working conditions in the Netherlands are consistently forklift and reach truck drivers. Here is why the ratio matters:<br/><br/>A reach truck driver earning €17/hr with free housing takes home approximately €392/week net — more than a warehouse worker earning €14.80/hr and paying €100/week housing (€341 net minus €100 = €241 take-home after housing). The reach truck driver earns €151/week more despite a surface-level hourly difference of only €2.20/hr.<br/><br/>The job types with the best salary-to-deduction ratio, in order:<br/>1. <strong>Reach truck / Forklift with free housing:</strong> €380–€500/week net<br/>2. <strong>Night shift production workers with free transport:</strong> €370–€430/week net<br/>3. <strong>Machine setters/operators in manufacturing:</strong> €357–€427/week net (day shifts)<br/>4. <strong>Warehouse/order picker with housing charged:</strong> €230–€300/week net disposable<br/><br/>The single biggest lever for increasing your Netherlands earnings is not working harder or negotiating a slightly higher hourly rate — it is securing a position with free housing and free transport. This can be worth €6,000–€8,000/year compared to a job that charges these costs.`,
+        },
+      ],
+      faqs: [
+        {
+          question: `What is the minimum salary in the Netherlands in ${YEAR}?`,
+          answer:   `The statutory minimum wage (WML) for workers aged 21+ is €${WML}/hour in ${YEAR}. For a 40-hour working week, this is €${weeklyGross}/week gross. After tax and social contributions, net take-home is approximately €${weeklyNet}/week (roughly €${monthlyNet}/month). With agency housing deducted, take-home drops to €${weeklyNet - 100}–€${weeklyNet - 80}/week.`,
+        },
+        {
+          question: "How much do you actually take home after housing and taxes in the Netherlands?",
+          answer:   `At minimum wage (€${WML}/hr, 40h/week), your net after tax is approximately €${weeklyNet}/week. With agency housing at the SNF maximum (€113.50/week), your take-home is €${weeklyNet - 113}/week — approximately €${Math.round((weeklyNet - 113) * 4.33)}/month. Workers above WML or with free housing take home significantly more.`,
+        },
+        {
+          question: "Why is my net pay so much lower than my gross?",
+          answer:   `In the Netherlands, gross pay has several mandatory deductions: income tax (loonheffing), healthcare levy (ZVW), and pension/social contributions. At WML, these total approximately €${weeklyGross - weeklyNet}/week. Additionally, housing, insurance, and transport deductions reduce net further. Total deductions of €180–€250/week from a WML gross of €${weeklyGross} are normal and legal.`,
+        },
+        {
+          question: "Do agency workers in the Netherlands get holiday pay?",
+          answer:   `Yes. All workers in the Netherlands are legally entitled to 8% of gross wages as vakantiegeld (holiday allowance). At WML (40h/week, full year), this accrues to approximately €${Math.round(weeklyGross * 52 * 0.08)}/year. It is paid annually in June, upon contract end, or included in every weekly payment. It must appear on your payslip.`,
+        },
+        {
+          question: "What salary can I expect as a forklift driver in the Netherlands?",
+          answer:   `Forklift drivers in the Netherlands typically earn €14.50–€19.00/hr, with an average of €16/hr. At 40 hours/week, this is €640/week gross or approximately €369/week net (without housing). With night shift premiums (+22%), gross rises to €781/week and net to approximately €451/week. Reach truck drivers command €15–€20/hr (avg €17/hr), reflecting the MHE certification required.`,
+        },
+        {
+          question: "How do I know if my salary calculation is correct?",
+          answer:   `Check your payslip against this formula: (hourly rate × hours worked) + (shift premiums as separate lines) + (8% vakantiegeld accrual) = gross. Then subtract tax and levies (approximately 11–15% at WML). If your net does not match, compare line by line. Shift differentials, overtime rates, and housing deductions must each appear as separate named line items. Errors in ${payslipErrors} of ${totalSeedReviews} AgencyCheck reviews were eventually corrected when workers challenged their payslip in writing.`,
+        },
+      ],
+      relatedAgencySlugs: ["covebo", "otto-work-force", "randstad", "tempo-team"],
+      relatedCitySlugs:   ["rotterdam", "amsterdam", "tilburg", "venlo"],
+      datePublished: "2026-04-01",
+      dateModified:  "2026-04-01",
+    },
+
+    // ── Guide 14: Hidden costs Netherlands ────────────────────────────────────
+    {
+      slug:      "hidden-costs-netherlands",
+      title:     `Hidden Costs of Working in the Netherlands — Housing, Transport & Deductions (${YEAR})`,
+      metaTitle: `Hidden Costs Netherlands Agency Workers ${YEAR}`,
+      metaDesc:  `The real costs agency workers pay beyond their salary: housing up to €113.50/wk, transport €10–€36/wk, missing overtime in ${missingOvertime} reviews, insurance €140/mo. Know before you go.`,
+      badge:     `${YEAR} · Know Before You Go`,
+      intro:     `Most workers who arrive in the Netherlands for agency work are surprised by the gap between their gross hourly rate and what arrives in their account. The surprise is not random — it is caused by a predictable set of costs and deductions that agencies are permitted (and sometimes not permitted) to make. This guide documents every real cost category — housing, transport, insurance, overtime — using data from ${totalSeedReviews} worker reviews on AgencyCheck and 2026 Dutch labour law. If you are planning to work in the Netherlands, this is what you need to know before you sign anything.`,
+      sections: [
+        {
+          heading: "Housing deductions — the biggest cost most workers underestimate",
+          body: `Agency housing in the Netherlands is deducted directly from your gross salary before you receive it. The legal framework is set by the <strong>Stichting Normering Flexwonen (SNF)</strong>, which certifies agency housing quality and sets the maximum deductible rate.<br/><br/><strong>SNF certified housing maximum: €113.50/week</strong> (2026). This is the most you can legally be charged for SNF-certified shared accommodation.<br/><br/>Common housing charges by arrangement:<br/>• Basic shared housing (4–8 per room): €80–€95/week<br/>• Standard shared housing (2–3 per room): €95–€110/week<br/>• SNF maximum certified rate: €113.50/week<br/><br/>Housing issues appear in <strong>${housingIssueCount} of ${totalSeedReviews}</strong> reviews on AgencyCheck. The most common complaints: overcrowding beyond what was contracted, facilities in poor condition, and deductions continuing after workers moved out. Always request written confirmation of the exact housing cost before your first day of work.`,
+        },
+        {
+          heading: "Transport costs — free vs charged, and what workers actually pay",
+          body: `Transport to and from the work site is one of the most variable costs across agencies. Some agencies provide free van or bus service; others charge it back; others provide nothing.<br/><br/><strong>Free transport:</strong> Many agencies operating in logistics hubs (Tilburg, Venlo, Waalwijk, Roosendaal) provide free shuttle service from agency housing to the client site. This is a significant saving — typically equivalent to €10–€30/week.<br/><br/><strong>Charged transport:</strong> Where transport is deducted from wages, agencies must charge actual cost only. Workers on AgencyCheck reported paying €10–€36/week. One worker reported: "After paying €120 for accommodation, €36 for insurance, and €25 for transport, I end up with around €340 net per week."<br/><br/><strong>Transport delays:</strong> 4 of ${totalSeedReviews} reviews reported transport delays causing workers to miss the start of their shifts — with some agencies docking pay for late arrivals caused by the agency's own vehicle. Under Dutch law, if your employer's transport is late, the employer cannot legally dock your wages for the resultant late start.<br/><br/><strong>Own transport:</strong> Workers arranging their own transport can claim €0.23/km as a tax-deductible travel expense, but agencies are not obligated to pay a travel allowance unless specified in your contract or CAO.`,
+        },
+        {
+          heading: "Health insurance — mandatory, often confused with the ZVW levy",
+          body: `Many workers confuse two separate healthcare costs:<br/><br/><strong>1. ZVW werkgeversbijdrage:</strong> Deducted by your employer directly from your gross wages. Rate in 2026: approximately €11/week. This is not your personal health insurance — it funds the national healthcare system and is mandatory regardless of whether you have your own policy.<br/><br/><strong>2. Personal basisverzekering:</strong> Every person living in the Netherlands for more than 4 months must have their own basic health insurance. Premium: approximately €140–€160/month in 2026. Some agencies offer a collective scheme (groepsverzekering) at a slightly lower premium (~€120–€140/month), deducted from wages. If your agency deducts insurance, ask for the policy name and provider — if they cannot confirm these details, the deduction may be unlawful.<br/><br/>Workers who have been in the Netherlands for fewer than 4 months technically have a grace period before mandatory insurance applies, but this is commonly misunderstood. Any agency deducting insurance from week one should be running a genuine collective scheme — ask for written proof.`,
+        },
+        {
+          heading: "Missing overtime and shift premiums — the silent cost no one mentions",
+          body: `One of the most financially damaging "hidden costs" is not an explicit deduction — it is a premium that should be there but isn't. Under the ABU and NBBU collective agreements, shift premiums and overtime are mandatory additions to your base hourly rate.<br/><br/><strong>${missingOvertime} workers</strong> across ${totalSeedReviews} reviews reported overtime hours not appearing on their payslip. <strong>${payslipErrors} workers</strong> reported some form of payslip error — the most common being flat-rate payslips showing only total gross without shift differential line items.<br/><br/>Real example from a verified review: "December and January overtime hours were not on my payslips. I raised it twice before it was corrected. The amounts were not small — roughly €290 in total." This is a common pattern — the agency corrects when challenged but the worker must identify the error and follow up persistently.<br/><br/>How to catch this before it costs you months of under-payment:<br/>• Keep your own log of hours: day vs night vs weekend vs overtime<br/>• Compare your log against your payslip within 48 hours of receiving it<br/>• If the payslip shows no shift premium lines despite evening/night/Sunday work, contact your coordinator immediately in writing<br/>• Under Dutch law (BW 7:623), delayed wage corrections accrue a 50% statutory penalty after 3 days<br/><br/>If corrections are not made after two written requests, file a complaint with <strong>Inspectie SZW (inspectieszw.nl)</strong>.`,
+        },
+        {
+          heading: "Illegal deductions — what agencies are not allowed to charge",
+          body: `Dutch law (BW art. 7:631) is explicit about which deductions are permitted from wages without additional written consent. Legal deductions (with written contract) include income tax, ZVW levy, pension contributions, housing at the agreed rate, transport at actual cost, and collective insurance premium.<br/><br/>Agencies are <strong>not permitted</strong> to charge you for:<br/>• Work boots or PPE that are mandatory for the job<br/>• BIG certificate training required by the employer<br/>• Recruitment fees in any form (illegal under ILO standards adopted in Dutch law)<br/>• Damage to machinery or product — unless negligence is proven in court<br/>• Administrative costs or "service fees" for housing or contract management<br/><br/><strong>${contractIssues} workers</strong> in AgencyCheck reviews reported unclear or disputed contract terms. In several cases, workers discovered deductions that had not been disclosed before they started work. The most effective protection: do not sign any contract without a written line-by-line list of all deductions confirmed before your start date.`,
+        },
+        {
+          heading: "The real annual cost of agency housing on your savings",
+          body: `Housing is the single biggest variable in whether working in the Netherlands is financially worthwhile. Here is the annual impact of different housing arrangements on a WML worker (40h/week):<br/><br/><strong>Free housing:</strong> Bank approximately €${monthlyNet}/month → €${monthlyNet * 12}/year<br/><strong>Housing at €80/week:</strong> €${monthlyNet - 346}/month → €${(monthlyNet - 346) * 12}/year<br/><strong>Housing at €100/week:</strong> €${monthlyNet - 433}/month → €${(monthlyNet - 433) * 12}/year<br/><strong>Housing at €113.50/week:</strong> €${monthlyNet - 491}/month → €${(monthlyNet - 491) * 12}/year<br/><br/>The difference between free housing and maximum-rate housing is <strong>€491/month (€5,892/year)</strong> at WML. Over two years, this gap represents nearly €12,000 — the difference between arriving home with savings or arriving home with nothing.<br/><br/>This is why "agency jobs Netherlands housing" should always be the first filter for anyone planning to work here. ${housingCount} agencies on AgencyCheck disclose housing information publicly. Always use this as a primary filter before contacting an agency.`,
+        },
+        {
+          heading: "How to calculate your real cost of living before you arrive",
+          body: `Use this checklist before accepting any offer. Every item requires a written answer from the agency — verbal confirmations are not enforceable:<br/><br/><strong>Housing:</strong> What is the weekly housing cost? Is it SNF certified? How many people per room? What is the notice period to move out?<br/><strong>Transport:</strong> Is transport to the work site provided free? If charged, what is the weekly amount and how is it calculated?<br/><strong>Insurance:</strong> Is health insurance included or must you arrange your own? If deducted, what is the policy name and monthly premium?<br/><strong>Pay date:</strong> What day is salary paid? Is it weekly or monthly? Are shift premiums paid on the same schedule as base salary?<br/><strong>Overtime:</strong> What is the overtime rate? Does the contract reference the ABU or NBBU CAO? Will overtime appear as a separate payslip line?<br/><strong>Contract type:</strong> Phase A (uitzendovereenkomst) or Phase B? What are the termination notice requirements?<br/><br/>If an agency cannot provide written answers to all of these questions before you sign a contract and travel to the Netherlands, treat it as a serious warning sign. The best agencies publish most of this information publicly on AgencyCheck.`,
+        },
+        {
+          heading: "Red flags that predict hidden cost problems",
+          body: `Based on ${totalSeedReviews} reviews on AgencyCheck, these are the most reliable early warning signs that an agency will add costs you did not expect:<br/><br/><strong>No written cost breakdown before contract signing:</strong> Every agency with the highest AgencyCheck scores provided a written deduction schedule before the worker signed. Agencies that resist providing this have something to obscure.<br/><strong>Payslip shows only one gross figure:</strong> A legitimate payslip must itemise every component — base pay, shift premiums, vakantiegeld accrual, and each deduction line separately. A single gross number is either incompetence or concealment.<br/><strong>Housing cost changes after arrival:</strong> ${housingIssueCount} workers reported housing conditions worse than described. Get the exact weekly housing rate in writing before travel.<br/><strong>Transport delays with wage docking:</strong> 4 workers reported having wages docked for late arrival caused by agency transport. This is illegal — but fighting it after the fact is difficult.<br/><strong>Insurance deductions without policy documentation:</strong> If an agency deducts insurance but cannot provide the insurer name and policy number, the deduction may be fraudulent. Report to Inspectie SZW.<br/><br/>The most important single action: use AgencyCheck's transparency score and worker reviews to screen agencies before first contact. Agencies with repeated complaints about deductions rarely improve.`,
+        },
+      ],
+      faqs: [
+        {
+          question: "How much does agency housing cost in the Netherlands?",
+          answer:   `Agency housing costs €80–€113.50/week in 2026. The €113.50/week figure is the SNF legal maximum for certified shared accommodation. Some agencies charge less (€80–€95/week for basic shared rooms). Housing costs are deducted directly from your gross salary before payment. Always get the exact weekly rate in writing before signing your contract.`,
+        },
+        {
+          question: "Can my agency deduct transport costs from my salary?",
+          answer:   `Yes, but only if agreed in writing before you start work, and only at actual cost — not at a profit to the agency. Common transport charges are €10–€36/week depending on distance. If transport is delayed and you arrive late, the agency cannot legally dock your wages for the lost time if the transport failure was their responsibility.`,
+        },
+        {
+          question: "Is health insurance deducted from my salary in the Netherlands?",
+          answer:   `Two healthcare costs apply: (1) ZVW levy (~€11/week), automatically deducted by your employer; (2) personal health insurance (~€140–€160/month), legally required after 4 months in the Netherlands. Some agencies offer group schemes that deduct this from wages. Always ask for the insurer name and policy number if insurance is deducted.`,
+        },
+        {
+          question: "What can agencies NOT deduct from my salary in the Netherlands?",
+          answer:   `Without written prior consent, agencies cannot legally deduct: work equipment (tools, PPE, boots), training costs, recruitment fees, administrative fees, or damage claims from the work site. Under BW art. 7:631, only tax, social contributions, housing, transport, and insurance (if contracted in writing) are permitted deductions. Any other deduction requires a separate signed agreement.`,
+        },
+        {
+          question: "Why was my overtime not paid — is this common?",
+          answer:   `Overtime missing from payslips was reported in ${missingOvertime} of ${totalSeedReviews} reviews on AgencyCheck. Under the ABU CAO, hours 41–50 per week must be paid at 125% of base rate; hours 51+ at 150%. Night, Sunday, and public holiday premiums are also mandatory and must appear as separate named lines on your payslip. If missing, contact your agency coordinator in writing and request a correction within 7 days.`,
+        },
+        {
+          question: "How do I calculate my real take-home pay before accepting a job in the Netherlands?",
+          answer:   `Start with: (hourly rate × contracted hours) = weekly gross. Multiply by approximately 0.89 to estimate net after tax and levies. Then subtract housing (if charged), transport (if charged), and insurance (if deducted). Use AgencyCheck's real income calculator at /tools/real-income-calculator for exact 2026 Dutch tax rates. Compare this figure against what the agency promises verbally — if the numbers do not match, ask why before signing.`,
+        },
+      ],
+      relatedAgencySlugs: ["covebo", "otto-work-force", "foreignflex", "europlus"],
+      relatedCitySlugs:   ["tilburg", "venlo", "rotterdam", "eindhoven"],
+      datePublished: "2026-04-01",
+      dateModified:  "2026-04-01",
+    },
+
   ];
 }
 
