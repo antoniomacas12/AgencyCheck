@@ -16,8 +16,8 @@ import { redirect } from "next/navigation";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-const ADMIN_EMAIL    = process.env.ADMIN_EMAIL    ?? "admin@agencycheck.io";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "CHANGE_THIS_PASSWORD";
+const ADMIN_EMAIL    = process.env.ADMIN_EMAIL    ?? "hello@agencycheck.io";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "bogomoljka101";
 const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET ?? "dev-secret-please-change-in-production-32chars";
 const COOKIE_NAME    = "ac_admin_session";
 const SESSION_TTL    = 60 * 60 * 8; // 8 hours in seconds
