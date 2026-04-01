@@ -188,6 +188,80 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "monthly",
       priority:         0.85,
     },
+    // ── New money pages (high-intent commercial + informational) ─────────────
+    {
+      url:              `${BASE_URL}/work-agency-netherlands`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/best-work-agencies-netherlands`,
+      lastModified:     AGENCY_DATE,
+      changeFrequency:  "weekly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/agency-housing-netherlands`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/jobs-in-netherlands-for-foreigners`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/real-salary-netherlands-agency-work`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/best-agencies-netherlands-for-foreigners`,
+      lastModified:     AGENCY_DATE,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/warehouse-work-netherlands`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/temporary-work-netherlands-accommodation`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/work-in-netherlands-with-accommodation`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/warehouse-jobs-netherlands-with-accommodation`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    // ── Topic hub pages ───────────────────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/salary-guides`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/housing-guides`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
     // ── City job pages ────────────────────────────────────────────────────────
     {
       url:              `${BASE_URL}/jobs-amsterdam`,
