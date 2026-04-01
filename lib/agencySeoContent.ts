@@ -36,7 +36,7 @@ export const AGENCY_SEO_CONTENT: Record<string, AgencySeoContent> = {
       "Tempo-Team is one of the largest staffing groups in the Netherlands, operating under the Randstad Group umbrella. It places thousands of workers each year across logistics, production, and food-processing — roles that typically start at WML (€14.71/hr in 2026) and rely heavily on agency-provided housing. The scale means fast placements but inconsistent experiences depending on which inhouse location manages your contract.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Wages and Payslip Breakdown",
         body: `Tempo-Team contracts for production and logistics roles start at the 2026 Statutory Minimum Wage: €14.71 gross per hour. On a standard 40-hour week that is €588.40 gross before deductions. After loonheffing (approximately 10.7% at WML) and with vakantiegeld (8% holiday pay) accruing separately, workers take home roughly €340–€355 per week in cash — before housing is deducted.
 
 Shift premiums under the ABU CAO apply when Tempo-Team places workers on non-standard hours: 22% uplift for night shifts (between 00:00 and 06:00), 50% for Sunday work, and 125% for the first two hours of overtime. These premiums can push weekly gross to €650–€700 for workers doing full night-shift rotations. The difference between a day-shift and a regular night-shift week is approximately €100 net.
@@ -44,15 +44,15 @@ Shift premiums under the ABU CAO apply when Tempo-Team places workers on non-sta
 Workers in Phase A (weeks 1–78) earn no paid public holidays. Phase B workers (from week 79 under the ABU CAO) receive improved conditions including holiday pay-out rights and sick pay entitlement after 26 weeks.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Provision and Deductions",
         body: `Tempo-Team provides housing for many of its logistics and production placements in the Netherlands, typically through SNF-registered (Stichting Normering Flexwonen) accommodation. The legal maximum deduction under SNF norms is €113.50 per week in 2026. Tempo-Team charges within this range, though the exact figure varies by location.
 
-Accommodation is typically shared: four to six workers per room, shared bathroom and kitchen facilities. In high-demand periods near major logistics hubs such as the Tilburg–Venlo corridor or the Rotterdam port area, housing quality drops and occupancy rises. Workers report that accommodation near Amazon and Rhenus fulfilment centres is functional but basic — shared sleeping rooms, a communal kitchen, and shuttle access to the site.
+Accommodation is typically shared: four to six workers per room, shared bathroom and kitchen facilities. In high-demand periods near major logistics hubs such as the Tilburg–Venlo corridor or the Rotterdam port area, housing quality drops and occupancy rises. Agency workers here describe that accommodation near Amazon and Rhenus fulfilment centres is functional but basic — shared sleeping rooms, a communal kitchen, and shuttle access to the site.
 
 If housing is deducted at €113.50/week, a worker taking home €345/week net is left with approximately €231 after rent — roughly €1,000/month disposable income before food and transport.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Work Environment and Transport",
         body: `Transport to site is typically provided by Tempo-Team for inhouse logistics placements. The shuttle runs on shift timings, and workers with non-standard shift hours report occasional gaps between the last bus and shift end. Workers placed without inhouse transport arrangements should budget €10–€20/week for public transport.
 
 Work conditions in logistics roles are physically demanding: standing, lifting (up to 25kg), and repetitive scanning tasks for 8–10 hour shifts. Temperature-controlled warehouses can be cold in winter. Safety gear (gloves, safety shoes) is provided on day one at most sites, though workers report variation in the quality of provided footwear.
@@ -60,7 +60,7 @@ Work conditions in logistics roles are physically demanding: standing, lifting (
 Contracts are standard ABU Phase A initially — zero-hours with weekly renewal. Most workers placed at major sites transition to fixed weekly hours after two to four weeks once site managers confirm availability.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "The Case For and Against",
         body: `The clearest advantage of working through Tempo-Team is speed: placement can happen within 48 hours of registration, and housing is arranged simultaneously. For workers arriving from abroad with no existing accommodation, this removes the main barrier to starting work. The Randstad Group's compliance infrastructure also means tax registrations (BSN, DigiD, bank account) are handled systematically.
 
 The main disadvantage is inconsistency. Tempo-Team operates through dozens of inhouse and branch locations across the Netherlands. Experiences at a Tilburg logistics site can differ substantially from those at an Amsterdam distribution centre — different local managers, different housing stock, different attention to payslip accuracy. Workers report that payslip queries can take several weeks to resolve when escalated to a central team rather than a responsive local coordinator.
@@ -68,7 +68,7 @@ The main disadvantage is inconsistency. Tempo-Team operates through dozens of in
 Salary is reliably at or above WML, but night and overtime premiums are occasionally absent from payslips. Workers should check every payslip against their shift schedule, particularly in the first four weeks.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Our Assessment for 2026",
         body: `Tempo-Team is a workable first step into the Dutch labour market, particularly for workers who need both employment and housing arranged quickly. The Randstad Group backing ensures regulatory compliance is generally maintained. Realistic expectations: approximately €340/week cash in hand at WML day shifts, €440–€460 on regular night shifts. After SNF housing (€113.50), disposable income is approximately €230–€350/week depending on shifts.
 
 The risks are payslip errors on premium shifts and variable housing quality. Workers should register with SNF's complaints channel if housing falls below standard, and use the payslip checker tool to verify deductions before signing the first contract.`,
@@ -87,9 +87,9 @@ The risks are payslip errors on premium shifts and variable housing quality. Wor
       "Housing stock quality varies significantly by region",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Real salary for all job types in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions" },
-      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
     ],
   },
 
@@ -102,31 +102,31 @@ The risks are payslip errors on premium shifts and variable housing quality. Wor
       "Randstad is the world's largest staffing company and the benchmark agency in the Dutch market. Its Netherlands operation covers everything from warehouse workers at WML through to technical specialists earning €20+/hr — the experience of a logistics worker placed through a Randstad inhouse team differs substantially from a professional placed through a Randstad Professionals branch. This review focuses on the warehouse, production, and general labour segment, where most international workers first encounter the brand.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Gross to Net: What Workers Keep",
         body: `Randstad pays at WML minimum for entry-level logistics and production placements: €14.71 gross/hr in 2026. On a 40-hour week this equals €588.40 gross. Net take-home after loonheffing and with vakantiegeld accruing is approximately €345–€360/week. Workers with contractual night or Sunday shifts receive the applicable ABU CAO premiums (22% night, 50% Sunday).
 
-Randstad's payslip record is generally better than smaller agencies. The company's centralised payroll systems mean errors are less frequent, and the online payslip portal allows workers to check their deductions in detail. Workers report that when payslip errors do occur — typically on premium shift hours — they are resolved within two pay cycles when escalated via the app.
+Randstad's payslip record is generally better than smaller agencies. The company's centralised payroll systems mean errors are less frequent, and the online payslip portal allows workers to check their deductions in detail. Employees note that when payslip errors do occur — typically on premium shift hours — they are resolved within two pay cycles when escalated via the app.
 
 Above-WML roles do exist through Randstad, particularly in technical, maintenance, and skilled food-processing. Workers placed in these roles report hourly rates of €16–€19, with net take-home of €380–€440/week before housing.`,
       },
       {
-        heading: "Housing Conditions",
-        body: `Randstad provides housing for its logistics and production placements in most regions. Accommodation is SNF-certified; the maximum legal deduction is €113.50/week. Workers report deductions in the €95–€113 range depending on the location and occupancy level.
+        heading: "Where to Live and What It Costs",
+        body: `Randstad provides housing for its logistics and production placements in most regions. Accommodation is SNF-certified; the maximum legal deduction is €113.50/week. Those who have worked here say deductions in the €95–€113 range depending on the location and occupancy level.
 
 Housing quality at Randstad is rated marginally better than smaller competitors by workers who have used both. Rooms typically house three to four workers, with shared facilities. Sites in the Rotterdam Rijnmond, Amsterdam Westpoort, and North Brabant logistics corridor are the most frequently reported housing locations. Maintenance response times are described as adequate — broken facilities are typically repaired within a week.
 
 Workers seeking to arrange their own accommodation can do so from Phase A onwards, though Randstad advises using agency housing for the first month while getting settled. Workers who opt out of agency housing do not receive a housing supplement in lieu.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Commute and Workplace Conditions",
         body: `Randstad inhouse teams at major logistics sites provide shuttle transport. Bus times align with shift start and end, though workers on split or unusual shifts report the service as less reliable at off-peak hours. Workers without shuttle access budget approximately €10–€25/week for OV-chipkaart travel depending on location.
 
-Production and logistics work is physical: standing for 8–10 hours, repetitive movement, lifting. Randstad's larger clients (DHL, PostNL, cooling storage operations) maintain reasonably well-equipped break rooms and provide mandatory safety briefings. Workers report that induction quality varies: some sites provide full on-site tours and multi-language safety materials, others give only a brief orientation.
+Production and logistics work is physical: standing for 8–10 hours, repetitive movement, lifting. Randstad's larger clients (DHL, PostNL, cooling storage operations) maintain reasonably well-equipped break rooms and provide mandatory safety briefings. Agency workers here describe that induction quality varies: some sites provide full on-site tours and multi-language safety materials, others give only a brief orientation.
 
 The Randstad app allows workers to view shifts, accept or decline extra hours, and track holiday hour accumulation. Workers rate the app positively for transparency.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Where They Excel and Where They Fall Short",
         body: `Randstad's primary advantage is institutional reliability. Payslips are accessible, CAO compliance is generally maintained, and the brand's scale means there is always someone available when issues arise. Workers transitioning from smaller agencies frequently report the contrast in payslip accuracy and communication responsiveness.
 
 The disadvantage is scale itself: workers can feel like a number rather than a person. Local inhouse teams vary significantly in how engaged they are with individual workers. Workers placed at very large sites (5,000+ workers) report less personal contact with their coordinator than those at smaller sites. Some workers also report that overtime is offered unevenly — coordinators favour workers with higher availability ratings in the app.
@@ -134,10 +134,10 @@ The disadvantage is scale itself: workers can feel like a number rather than a p
 Randstad is not the cheapest for workers in terms of housing deduction — smaller agencies sometimes offer lower deductions to attract workers. However, the overall package including payslip accuracy and housing maintenance standard makes the total worker experience competitive.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Our Take for 2026",
         body: `For workers who want a structured, compliant agency experience in the Netherlands, Randstad is the benchmark. Payslip accuracy, housing that meets SNF standards, and a functioning app make the day-to-day experience less stressful than many alternatives.
 
-Realistic take-home: €345/week day shifts at WML, rising to €420–€460 on regular night rotations. After SNF housing at maximum rate, disposable income is approximately €230–€350. Workers looking to save substantially should target above-WML placements through Randstad's skilled/technical branches from month three onwards.`,
+Workers typically end up with: €345/week day shifts at WML, rising to €420–€460 on regular night rotations. After SNF housing at maximum rate, disposable income is approximately €230–€350. Workers looking to save substantially should target above-WML placements through Randstad's skilled/technical branches from month three onwards.`,
       },
     ],
     pros: [
@@ -153,9 +153,9 @@ Realistic take-home: €345/week day shifts at WML, rising to €420–€460 on
       "Phase A conditions apply for first 78 weeks",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Real salary guide for all job types" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport costs in detail" },
-      { href: "/tools/payslip-checker", label: "Check your Randstad payslip for errors" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
     ],
   },
 
@@ -165,10 +165,10 @@ Realistic take-home: €345/week day shifts at WML, rising to €420–€460 on
     metaDescription:
       "Covebo workers review 2026. Logistics specialist agency. WML salary, SNF housing, Fase A/B progression, Tilburg–Venlo corridor experience.",
     intro:
-      "Covebo is a mid-size Dutch staffing agency specialising in logistics, production, and warehouse roles. Unlike generalist agencies, Covebo operates almost exclusively in the supply chain sector, with a strong presence in the Tilburg–Venlo logistics corridor and the North Brabant and Limburg regions. Workers report that Covebo's sector focus produces better-prepared coordinators and more accurate payslips than generalist competitors placing workers in the same sites.",
+      "Covebo is a mid-size Dutch staffing agency specialising in logistics, production, and warehouse roles. Unlike generalist agencies, Covebo operates almost exclusively in the supply chain sector, with a strong presence in the Tilburg–Venlo logistics corridor and the North Brabant and Limburg regions. Staff who have worked here describe that Covebo's sector focus produces better-prepared coordinators and more accurate payslips than generalist competitors placing workers in the same sites.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Rates and Weekly Take-Home",
         body: `Covebo contracts start at WML: €14.71/hr in 2026. On a standard 40-hour week, gross pay is €588.40. Net take-home after loonheffing is approximately €345/week, with vakantiegeld (8%) accruing separately. Night and Sunday shift premiums under the applicable CAO (ABU or sector-specific logistics CAO where applicable) add €20–€60/week for workers on regular premium shifts.
 
 Workers at Covebo report a notably higher rate of correct payslip generation than the sector average. Shift premiums appear correctly from the first pay cycle in the majority of cases. Workers recommend keeping a personal shift log (start/end times, break durations) to verify against the payslip — Covebo's coordinators are responsive to corrections when documented evidence is provided.
@@ -176,15 +176,15 @@ Workers at Covebo report a notably higher rate of correct payslip generation tha
 Vakantiegeld is paid out at the end of the Fase A period (or annually if requested). At WML, 8% of €588.40/week over 48 working weeks equals approximately €2,260 in accumulated holiday pay — a significant sum for workers planning to save.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Agency Housing: What to Expect",
         body: `Covebo arranges housing through SNF-certified accommodation. The housing deduction is consistently reported at €100–€113.50/week — within the legal SNF maximum. Rooms are shared (three to four workers), with shared bathroom and kitchen. Covebo's logistics focus means most housing is positioned within 10–20 minutes of a Tilburg, Venlo, or Eindhoven logistics site.
 
-Workers report that Covebo housing is clean and functional. Specific locations near major DHL and Geodis sites in North Brabant receive consistently positive mentions for maintenance response. Workers who have moved from other agencies report that the condition-on-arrival is better than average.
+Reviews on AgencyCheck indicate that Covebo housing is clean and functional. Specific locations near major DHL and Geodis sites in North Brabant receive consistently positive mentions for maintenance response. Workers who have moved from other agencies report that the condition-on-arrival is better than average.
 
 One pattern in worker reports: housing during peak periods (October to January, driven by e-commerce volumes) becomes tighter. Shared rooms that normally house three workers may temporarily accommodate four. This is above the SNF guideline maximum and workers are advised to raise it formally via SNF's complaints mechanism if it persists.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Site Access and Working Environment",
         body: `Transport to logistics sites is provided for most Covebo placements. The shuttle runs on shift times. Workers at Covebo's Venlo-area placements report that transport is reliable — the coordinator network in this region is experienced and responsive to last-minute shift changes.
 
 Work conditions reflect the logistics sector: standing shifts, lifting, pick-and-pack tasks. Covebo's inhouse teams at large sites conduct daily briefings and have a visible floor presence, which workers rate positively. Health and safety compliance is reported as above average by workers who have also worked with other agencies at the same client sites.
@@ -192,7 +192,7 @@ Work conditions reflect the logistics sector: standing shifts, lifting, pick-and
 Workers transitioning from Phase A to Phase B (after 78 weeks of employment) with Covebo gain improved conditions under the ABU CAO: paid public holidays, sick pay entitlement from week 26, and the right to request a fixed-hours contract. Covebo coordinators are described as proactive about informing workers when they are approaching Phase B.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "What This Agency Does Well",
         body: `Covebo's specialisation in logistics is its clearest advantage. Coordinators know the sector, the clients, and the typical issues (peak planning, WML compliance, overtime regulations) better than generalist agencies. Workers get faster resolutions to payslip queries and better-timed housing arrangements because the agency operates a predictable regional model rather than placing workers nationally across multiple sectors.
 
 The main constraint is geographic — Covebo's work is concentrated in North Brabant and Limburg. Workers who need or want to relocate to other regions of the Netherlands will find fewer options through Covebo than through a national generalist.
@@ -200,10 +200,10 @@ The main constraint is geographic — Covebo's work is concentrated in North Bra
 Payslip record is the highest-rated aspect across multiple worker reviews. Workers rarely report missing overtime or incorrect deductions, which is the single most common complaint at larger agencies.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Is It Worth Registering?",
         body: `Covebo is the recommended choice for workers who are certain they want logistics or production work in North Brabant or Limburg and value payslip reliability above all else. The combination of sector expertise, accurate payslips, and SNF housing in close proximity to major sites makes it a strong option for workers planning to stay in the Netherlands for 12+ months and build toward Phase B conditions.
 
-Realistic take-home: €345/week day shifts at WML, approximately €400–€420 on night shifts. After housing at €110–€113.50, disposable income is approximately €230–€305/week.`,
+After all deductions, workers receive: €345/week day shifts at WML, approximately €400–€420 on night shifts. After housing at €110–€113.50, disposable income is approximately €230–€305/week.`,
       },
     ],
     pros: [
@@ -218,9 +218,9 @@ Realistic take-home: €345/week day shifts at WML, approximately €400–€42
       "Peak-period housing can become crowded",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Real salary: what logistics workers earn" },
-      { href: "/guides/hidden-costs-netherlands", label: "SNF housing deductions explained" },
-      { href: "/tools/real-income-calculator", label: "Calculate net pay with shift premiums" },
+      { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
     ],
   },
 
@@ -233,23 +233,23 @@ Realistic take-home: €345/week day shifts at WML, approximately €400–€42
       "Adecco is the world's third-largest staffing company, with a broad Netherlands operation spanning from warehouse workers to technical specialists. In the Dutch market, Adecco tends to attract workers for higher-skilled production, technical maintenance, and facilities roles — often paying above WML — as well as standard logistics placements. The distinction matters: Adecco's experience for a machine operator at €17/hr differs substantially from that of a packer at WML.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Earnings Breakdown for 2026",
         body: `Entry-level logistics roles through Adecco start at WML: €14.71/hr in 2026. However, Adecco's job mix includes a higher proportion of technical and skilled production roles than most general staffing agencies. Workers in roles such as forklift operator, maintenance technician, or quality inspector typically earn €16.00–€19.50/hr. Net take-home at €17/hr on a 40-hour week is approximately €400–€420, before housing.
 
 At WML (€14.71/hr), standard 40-hour net take-home is approximately €345/week. Shift premiums under the ABU CAO apply: 22% for nights, 50% for Sundays. Workers on regular night shifts report gross earnings of €640–€680/week, translating to approximately €430–€450 net.
 
-Workers report that Adecco's payslip system is reliable for standard roles but less consistent for complex technical CAOs with multiple premium rates. Workers in technical placements are advised to check the applicable sector CAO and compare it to their payslip in the first month.`,
+Reviews on AgencyCheck indicate that Adecco's payslip system is reliable for standard roles but less consistent for complex technical CAOs with multiple premium rates. Workers in technical placements are advised to check the applicable sector CAO and compare it to their payslip in the first month.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Living Conditions and Housing Cost",
         body: `Adecco sources housing through third-party housing providers rather than managing accommodation directly. This means the housing experience varies based on which provider is contracted in the worker's region. SNF-certified accommodation is standard, with deductions in the €100–€113.50 range.
 
-The third-party housing model has a practical downside: the chain of accountability is longer. When housing issues arise — maintenance delays, overcrowding, billing errors — the response path runs: worker → Adecco coordinator → housing provider. Workers report this creates delays of up to two weeks for non-urgent repairs. Adecco coordinators are described as responsive at intake but less engaged with ongoing housing issues once placement is confirmed.
+The third-party housing model has a practical downside: the chain of accountability is longer. When housing issues arise — maintenance delays, overcrowding, billing errors — the response path runs: worker → Adecco coordinator → housing provider. People placed through this agency say this creates delays of up to two weeks for non-urgent repairs. Adecco coordinators are described as responsive at intake but less engaged with ongoing housing issues once placement is confirmed.
 
 Workers who can arrange their own accommodation (particularly those in the Netherlands for a second or subsequent contract) benefit from opting out of agency housing and keeping the full €113.50/week in their own pocket.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Daily Work Reality",
         body: `Transport arrangements depend on the client site. Major logistics clients with Adecco inhouse presence provide shuttle transport. Technical and skilled placements at smaller manufacturers typically do not include transport, requiring workers to use public transport or arrange their own (budget €15–€30/week in most industrial areas).
 
 Work conditions for technical roles are generally safer and more ergonomic than pure logistics work. Machine operation, quality checking, and maintenance roles involve less sustained physical loading. Adecco's induction process for technical roles is more thorough than for logistics: workers report multi-day client orientations, equipment certifications, and structured health and safety training.
@@ -257,7 +257,7 @@ Work conditions for technical roles are generally safer and more ergonomic than 
 Contract terms for above-WML technical roles often include a six-week evaluation period followed by a direct offer from the client, creating a potential direct-hire pathway — one of Adecco's stated selling points.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Worth Considering or Worth Avoiding?",
         body: `Adecco's biggest advantage for workers is access to above-WML roles that are less common at smaller agencies. The global brand's relationships with multinational manufacturers mean Adecco often gets first access to technical placements. Workers with vocational qualifications (forklift, reach truck, HACCP, electrical) or relevant experience should register specifically as skilled rather than general labour.
 
 The main drawback is the third-party housing model. Workers who place high importance on housing quality and accountability are better served by agencies that manage accommodation directly. Housing billing errors — charged for days not occupied, deductions continuing after contract end — are reported more frequently with third-party providers.
@@ -265,10 +265,10 @@ The main drawback is the third-party housing model. Workers who place high impor
 Payslip accuracy for standard roles is good. The Adecco app allows workers to view payslips and holiday accrual. Multi-language support is available at registration centres in Amsterdam, Rotterdam, and Eindhoven.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Who This Agency Works For",
         body: `Adecco is best suited to workers with skills that qualify them for above-WML placements — technical, skilled production, or specialist roles. For standard logistics at WML, the experience is comparable to Randstad or Tempo-Team but with less direct housing management.
 
-Realistic take-home: €345/week (WML day shift) to €420+/week (above-WML technical). After third-party housing at the SNF maximum, disposable income is €230–€310/week at WML, rising to €310–€380 at above-WML rates. Workers should verify housing billing carefully each month, particularly during the first two pay cycles.`,
+Net weekly income in practice: €345/week (WML day shift) to €420+/week (above-WML technical). After third-party housing at the SNF maximum, disposable income is €230–€310/week at WML, rising to €310–€380 at above-WML rates. Workers should verify housing billing carefully each month, particularly during the first two pay cycles.`,
       },
     ],
     pros: [
@@ -284,9 +284,9 @@ Realistic take-home: €345/week (WML day shift) to €420+/week (above-WML tech
       "Transport not included for most non-logistics placements",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Salary ranges for all job types in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing deductions: what the law allows" },
-      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
     ],
   },
 
@@ -299,7 +299,7 @@ Realistic take-home: €345/week (WML day shift) to €420+/week (above-WML tech
       "Timing is a mid-size Dutch staffing agency with its strongest presence in production, food processing, and light manufacturing. It operates inhouse teams at a number of food factories and packaging facilities across the Netherlands. Timing's workforce is predominantly placed at WML, and the agency's housing provision is a key part of its offering for workers arriving from abroad.",
     sections: [
       {
-        heading: "Housing Conditions",
+        heading: "Living Conditions and Housing Cost",
         body: `Housing is the first topic most workers raise when discussing Timing. The agency provides accommodation through SNF-registered facilities, with deductions in the €95–€113.50 range. However, the housing quality reported by Timing workers is more variable than that reported by workers at Randstad or Covebo.
 
 Workers at food processing placements in the eastern Netherlands (Gelderland, Overijssel) describe housing that is functional but dated — shared rooms of four to six, older bathroom facilities, and maintenance response times of one to two weeks. Workers near major food industry clusters in the west (Rotterdam area) report marginally better conditions, likely due to higher housing investment in areas with more worker competition.
@@ -307,7 +307,7 @@ Workers at food processing placements in the eastern Netherlands (Gelderland, Ov
 Workers who experience below-standard housing conditions should document them with photographs and report to SNF directly. The SNF maximum deduction of €113.50 is conditional on the accommodation meeting SNF's minimum standards — if it does not, workers have grounds to dispute the full deduction amount.`,
       },
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Earnings Breakdown for 2026",
         body: `Timing pays at WML for production and food processing roles: €14.71/hr in 2026. On 40 hours per week, gross is €588.40. Net take-home is approximately €340–€355/week after loonheffing, with vakantiegeld (8%) accumulating for payout at period end.
 
 Shift premiums apply for night and weekend work under the food industry CAO. Night premium rates are typically 22–30% (food sector CAOs often exceed the ABU minimum), Sunday premiums are 50%. Workers on regular night shifts in food production report weekly gross earnings of €620–€680.
@@ -315,7 +315,7 @@ Shift premiums apply for night and weekend work under the food industry CAO. Nig
 Payslip complaints are above average for Timing. Workers frequently report that Sunday or bank holiday premiums are missing from one or more payslips. The pattern suggests a payroll system error rather than deliberate underpayment — but the practical result is the same. Workers are strongly advised to keep a shift log and cross-check every payslip against it.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Daily Work Reality",
         body: `Transport to food processing sites is provided for most Timing inhouse placements. The shuttle schedule aligns with shift times for standard shifts but is less reliable for split or non-standard hours. Workers without transport provided should budget €10–€25/week.
 
 Food processing work is physically demanding in different ways from logistics: cold environments, repetitive cutting or packaging tasks, strict hygiene requirements. Personal protective equipment (hairnets, gloves, waterproof footwear) is provided at most Timing sites. Workers report that footwear quality varies — some sites provide quality waterproof boots, others provide basic covers that wear quickly.
@@ -323,7 +323,7 @@ Food processing work is physically demanding in different ways from logistics: c
 HACCP and food safety induction is conducted at all Timing food placements, usually on day one. Workers with previous food processing experience note that the training quality at Timing is adequate but basic.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Worth Considering or Worth Avoiding?",
         body: `The advantage of Timing is its food sector specialisation: the coordinators understand food processing CAOs, shift patterns, and hygiene requirements. Workers with food industry experience find placement faster than at generalist agencies. Timing's inhouse presence at major food facilities means less time between registration and first shift.
 
 The main concern is payslip accuracy. A higher-than-average proportion of Timing workers report needing to query one or more payslips during their placement. Workers who do not track their own shifts will likely receive the incorrect amount and not notice. This is not unique to Timing but is reported more frequently here than at the larger agencies.
@@ -331,10 +331,10 @@ The main concern is payslip accuracy. A higher-than-average proportion of Timing
 Housing quality is variable. Workers should ask specifically about SNF certification, occupancy numbers, and recent inspection scores before signing.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Who This Agency Works For",
         body: `Timing is a practical option for workers with food industry or production experience who want fast placement. The sector expertise and inhouse presence at established food sites provides stability. However, payslip vigilance is non-negotiable: check every payslip against your shifts, particularly for premium rates.
 
-Realistic take-home: €340–€355/week at WML day shifts, €410–€440 on regular night shifts. After housing deduction (€95–€113.50), disposable income is approximately €225–€345 depending on shifts and housing rate.`,
+After all deductions, workers receive: €340–€355/week at WML day shifts, €410–€440 on regular night shifts. After housing deduction (€95–€113.50), disposable income is approximately €225–€345 depending on shifts and housing rate.`,
       },
     ],
     pros: [
@@ -348,9 +348,9 @@ Realistic take-home: €340–€355/week at WML day shifts, €410–€440 on 
       "Workers must track own shifts to verify payslips",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Food processing salary: what workers actually earn" },
-      { href: "/guides/hidden-costs-netherlands", label: "Understanding your housing deduction" },
-      { href: "/tools/payslip-checker", label: "Verify shift premiums on your Timing payslip" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
 
@@ -363,7 +363,7 @@ Realistic take-home: €340–€355/week at WML day shifts, €410–€440 on 
       "Olympia is the oldest staffing agency still operating in the Netherlands, founded in 1964. Its longevity reflects a broad sector reach — logistics, production, hospitality, retail, and office — and a national branch network. This breadth is both Olympia's strength and its main variability factor: a worker placed by Olympia in a Groningen warehouse will have a different experience from one placed in a Rotterdam port operation, and both will differ from a worker in an Amsterdam hospitality role.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "What the Payslip Shows",
         body: `Olympia applies the relevant sector CAO to each placement. For logistics and production roles — which represent the majority of international worker placements — this means the ABU CAO at WML minimum: €14.71/hr in 2026. Net take-home on a standard 40-hour week is approximately €345/week.
 
 For hospitality and retail placements, the applicable CAO (Horeca CAO or Retail CAO) may provide different overtime and premium structures. Workers in these sectors should confirm their applicable CAO at registration — the premium rates differ from the ABU CAO and the holiday accrual calculation can also vary.
@@ -371,7 +371,7 @@ For hospitality and retail placements, the applicable CAO (Horeca CAO or Retail 
 Workers at Olympia report generally reliable salary payments. Payslip accuracy is rated as average to good — better than Timing, comparable to Adecco for standard roles. Workers note that responses to payslip queries are typically two to three working days, faster than the industry average.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation: Reality vs Promise",
         body: `Olympia provides housing for production and logistics placements. SNF certification applies and deductions are within the €95–€113.50 range. Housing quality reports vary significantly by region. Workers placed in the Randstad (Amsterdam, Rotterdam, The Hague areas) generally report better facilities than those in rural or smaller-city placements. This likely reflects both housing stock age and the level of investment Olympia makes in high-demand areas.
 
 Workers placed through Olympia in northern Netherlands (Groningen, Friesland) report older accommodation — often converted houses rather than purpose-built worker housing. Shared rooms of three to four, functional but dated. Workers in North Brabant and Zeeland for agricultural or food placements report accommodation near worksites but with limited transport connectivity.
@@ -379,7 +379,7 @@ Workers placed through Olympia in northern Netherlands (Groningen, Friesland) re
 Olympia workers mention that communication about housing — deduction breakdown, SNF registration number, inspection history — is not always proactively provided. Workers should ask specifically for this information before committing to a placement that includes agency housing.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Physical Demands and Transport Setup",
         body: `Transport provision depends on the placement type. Olympia inhouse logistics placements include shuttle transport to site. Branch placements (where a worker registers at a local Olympia branch rather than being managed inhouse at a client site) often do not include transport. Workers in these arrangements should clarify transport from the outset.
 
 Work conditions reflect the sector: logistics roles are physically demanding, hospitality roles require flexible hours including evenings and weekends. Olympia's broad sector coverage means coordinators may not have deep expertise in every sector they place workers into — a coordinator managing both a hotel kitchen and a packing line in the same week will necessarily be more generalist in their knowledge.
@@ -387,7 +387,7 @@ Work conditions reflect the sector: logistics roles are physically demanding, ho
 Olympia's longevity means it has established relationships with long-standing clients. This can translate into more stable placement availability — fewer sudden contract terminations — compared with newer agencies trying to win market share.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Sets Them Apart — and What Doesn't",
         body: `The advantage of Olympia is breadth and stability. Workers who want options across multiple sectors, or who are uncertain which type of role suits them, benefit from registering with a genuinely cross-sector agency. Workers also benefit from Olympia's long client relationships — placements at established clients are less likely to be disrupted by the agency changing commercial strategy.
 
 The main limitation is regional variation. Olympia's quality is more consistent at high-demand regional hubs than at smaller branches. Workers in low-demand regions may find coordinator support thinner and housing stock older.
@@ -395,10 +395,10 @@ The main limitation is regional variation. Olympia's quality is more consistent 
 Payslip accuracy is average — better than the sector worst but not as strong as Covebo or Randstad. Workers should check their first three payslips carefully.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Worth Your Time in 2026?",
         body: `Olympia is a reliable mid-tier choice for workers who value sector flexibility and regional presence across the Netherlands. The 60-year history means established processes and stable client relationships. For workers who know they want logistics in North Brabant or food processing in Limburg specifically, a logistics-specialist agency like Covebo will provide a tighter experience. For workers who want options and flexibility, Olympia's breadth is an asset.
 
-Realistic take-home: €345/week at WML day shifts. After SNF housing, disposable income is approximately €230–€345 depending on housing rate and shifts.`,
+Real weekly income works out to: €345/week at WML day shifts. After SNF housing, disposable income is approximately €230–€345 depending on housing rate and shifts.`,
       },
     ],
     pros: [
@@ -413,9 +413,9 @@ Realistic take-home: €345/week at WML day shifts. After SNF housing, disposabl
       "Housing information not always proactively disclosed",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Which sectors pay above WML in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "Transport and housing cost breakdown" },
-      { href: "/tools/real-income-calculator", label: "Estimate your net take-home by sector" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -428,7 +428,7 @@ Realistic take-home: €345/week at WML day shifts. After SNF housing, disposabl
       "Carrière is a smaller Dutch staffing agency offering a more personal service model than the national giants. Its regional focus and smaller workforce means individual attention from coordinators is more common — workers are less likely to feel like a number. However, the smaller scale also means fewer active placements, more reliance on third-party housing providers, and less leverage with clients on worker complaints.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Structure and Real Income",
         body: `Carrière pays at WML for most of its production and logistics placements: €14.71/hr in 2026. Net take-home on a 40-hour week is approximately €340–€355. Shift premiums apply under the applicable CAO. Workers placed in smaller manufacturing or food operations may fall under sector-specific CAOs with premium structures that differ slightly from ABU norms.
 
 Workers at Carrière report that payslips are generally accurate for standard hours. Premium shifts — particularly irregular overtime and weekend work — are more likely to generate queries. The smaller payroll team at Carrière means resolution times can be longer than at larger agencies, typically three to five working days rather than one to two.
@@ -436,15 +436,15 @@ Workers at Carrière report that payslips are generally accurate for standard ho
 Vakantiegeld (8% holiday pay) accrues and is paid out at period end. Workers who stay for a full year accumulate approximately €2,260 at WML rates — a meaningful saving figure.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Standards and SNF Compliance",
         body: `Carrière uses third-party housing providers for worker accommodation. The agency does not manage housing stock directly. This creates the same accountability gap as seen with Adecco's housing model: when issues arise, the response chain is worker → Carrière coordinator → housing provider → maintenance.
 
-Housing deductions are within the SNF maximum of €113.50/week. Workers report deductions in the €95–€110 range depending on location and contract. SNF certification applies to the third-party providers used — workers should ask for the SNF registration number of their specific accommodation at the start of their contract.
+Housing deductions are within the SNF maximum of €113.50/week. People placed through this agency say deductions in the €95–€110 range depending on location and contract. SNF certification applies to the third-party providers used — workers should ask for the SNF registration number of their specific accommodation at the start of their contract.
 
 The most common housing complaint from Carrière workers relates not to conditions but to billing: deductions continuing after contract end, or the first week being charged even when arrival was mid-week. Workers are advised to photograph their arrival and departure conditions, and to formally confirm via written message (WhatsApp to coordinator counts) both the start date and the end date of housing occupancy.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Transport to Site and Physical Demands",
         body: `Transport to site is variable at Carrière. Larger client placements include shuttle transport; smaller manufacturing sites do not. Workers should confirm transport arrangements at registration before committing to a placement. Budget approximately €15–€25/week for public transport if it is not provided.
 
 Work conditions in Carrière's placements are typical of light manufacturing and regional food processing: standing work, repetitive tasks, moderate physical demand. Coordinators at Carrière typically have smaller portfolios than their counterparts at national agencies — 40–80 workers rather than 150+. This translates to more personal contact and faster responses to individual questions.
@@ -452,7 +452,7 @@ Work conditions in Carrière's placements are typical of light manufacturing and
 The smaller agency model also means fewer buffer options when a client reduces headcount. Workers placed at a single client site via Carrière have less guarantee of being moved to another placement quickly if that site reduces orders, compared with workers at agencies with dozens of active client relationships.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Workers Say: Good and Bad",
         body: `Carrière's primary advantage is the personal service model. Workers who have experience of being ignored or underserved by coordinators at large agencies find the smaller-team approach significantly better. Queries get personal responses, and coordinators know their workers individually.
 
 The main limitation is scale. Fewer active placements, fewer housing options, less leverage with clients. Workers who need maximum employment flexibility or want to move between sectors or cities regularly will find Carrière's network constraining compared with Randstad or Olympia.
@@ -460,10 +460,10 @@ The main limitation is scale. Fewer active placements, fewer housing options, le
 Third-party housing billing errors are the most significant practical risk. Workers must document housing start and end dates carefully and follow up on final billing within the first two weeks after contract end.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Best Suited For",
         body: `Carrière is a good choice for workers who prioritise personal service and are placing themselves in a region where Carrière has strong client relationships. The reduced anonymity improves the day-to-day experience compared with national giants. Workers should approach housing billing with care — document everything, confirm dates in writing, and verify the final payslip after contract end.
 
-Realistic take-home: €340–€355/week at WML day shifts. After third-party housing at €95–€110/week, disposable income is approximately €230–€260. Workers on regular night or weekend shifts can add €60–€100 to this figure.`,
+In practice, workers keep: €340–€355/week at WML day shifts. After third-party housing at €95–€110/week, disposable income is approximately €230–€260. Workers on regular night or weekend shifts can add €60–€100 to this figure.`,
       },
     ],
     pros: [
@@ -478,9 +478,9 @@ Realistic take-home: €340–€355/week at WML day shifts. After third-party h
       "Premium shift payslip accuracy requires worker verification",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Real take-home at WML for all job types" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing billing errors: what to watch for" },
-      { href: "/tools/payslip-checker", label: "Verify your final payslip after contract end" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
+      { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
     ],
   },
 
@@ -497,7 +497,7 @@ Realistic take-home: €340–€355/week at WML day shifts. After third-party h
       "Workstead is a Dutch staffing agency placing workers in logistics, warehouse, and light production roles across the Netherlands. Its model combines online registration with regional coordinators — workers complete intake remotely and are matched to sites in their preferred region. Housing is provided for most placements, with the full SNF package available from day one.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Earnings Breakdown for 2026",
         body: `Workstead pays at the 2026 Statutory Minimum Wage for its logistics and production placements: €14.71 gross per hour. On a standard 40-hour week, gross pay is €588.40. After loonheffing (approximately 10.7% effective rate at WML) and with vakantiegeld (8%) accruing, workers take home approximately €340–€355 per week in cash.
 
 Shift premiums apply under the ABU CAO: 22% for night shifts (00:00–06:00), 50% for Sunday work, and 125% for the first two overtime hours. Workers on regular night rotations see weekly gross rise to €630–€670, netting approximately €420–€445 before housing.
@@ -505,7 +505,7 @@ Shift premiums apply under the ABU CAO: 22% for night shifts (00:00–06:00), 50
 Workstead workers report that the online payslip portal is accessible and readable, though first-payslip queries (particularly for workers whose first week includes mixed day/night shifts) are common. Workers are advised to confirm the shift premium rate in writing at registration.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Living Conditions and Housing Cost",
         body: `Workstead provides SNF-certified housing for most of its out-of-region placements. Deductions fall in the €95–€113.50 range — within the 2026 SNF maximum. Accommodation is shared: typically three to four workers per room, shared kitchen and bathroom.
 
 Workers placed at logistics hubs in South Holland and North Brabant report housing that is functional and well-maintained. Rooms are cleaned weekly and maintenance issues are addressed within five to seven days in most reports. Workers note that the proximity of housing to site is a particular strength — most Workstead housing is within a 15-minute shuttle ride of the work location.
@@ -513,15 +513,15 @@ Workers placed at logistics hubs in South Holland and North Brabant report housi
 Workers who plan to stay for more than three months and want more privacy can enquire about single-room options. These are available at select locations for an additional weekly cost above the standard SNF rate, agreed separately and documented in an addendum to the housing contract.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Daily Work Reality",
         body: `Shuttle transport is included for Workstead's inhouse logistics placements. The shuttle schedule is aligned to shift times. Workers placed at sites without inhouse arrangements should budget €10–€20/week for public transport, depending on the region.
 
-Work conditions match the logistics sector: standing shifts of 8–10 hours, repetitive tasks, moderate lifting (up to 23kg at most sites). Safety induction is conducted on day one. Workers report receiving adequate safety footwear and PPE at most Workstead client sites, with a clearer onboarding process than at some smaller agencies.
+Work conditions match the logistics sector: standing shifts of 8–10 hours, repetitive tasks, moderate lifting (up to 23kg at most sites). Safety induction is conducted on day one. Most placements report receiving adequate safety footwear and PPE at most Workstead client sites, with a clearer onboarding process than at some smaller agencies.
 
 Zero-hours contracts apply in Phase A (first 78 weeks under ABU CAO). Workers typically receive 3–5 days' work per week during the initial placement period, rising to fixed weekly hours once the client confirms demand. Workers placed at busy fulfilment centres may receive work offers exceeding 40 hours in peak periods (October–January).`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Worth Considering or Worth Avoiding?",
         body: `The online registration model is Workstead's most distinctive advantage. Workers can complete intake documentation remotely — including ID verification, BSN registration assistance, and bank account setup guidance — before they arrive in the Netherlands. This reduces the uncertainty of the first week significantly.
 
 The main reported issue is coordinator responsiveness after placement. Workers describe intake coordinators as thorough and helpful; ongoing support coordinators at client sites are described as less engaged. For workers who need active support during their first months, the follow-up contact frequency can feel insufficient.
@@ -529,10 +529,10 @@ The main reported issue is coordinator responsiveness after placement. Workers d
 Housing quality is above average for the price point, and proximity to site is rated as one of the best aspects of the Workstead placement model. Workers who have used larger agencies at the same client sites often report that Workstead's housing is comparable in quality at a similar or slightly lower deduction rate.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Who This Agency Works For",
         body: `Workstead suits workers who are organised, can handle the digital registration process, and prioritise housing quality close to site. The above-average housing standard and reliable SNF compliance make it a sound choice for workers planning a 6–12 month stint in the Dutch logistics sector.
 
-Realistic take-home: €340–€355/week at WML day shifts, approximately €420–€445 on night shifts. After SNF housing (€95–€113.50), disposable income is approximately €225–€350 depending on shifts and housing rate.`,
+Net weekly income in practice: €340–€355/week at WML day shifts, approximately €420–€445 on night shifts. After SNF housing (€95–€113.50), disposable income is approximately €225–€350 depending on shifts and housing rate.`,
       },
     ],
     pros: [
@@ -547,9 +547,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €42
       "Zero-hours in Phase A — hours not guaranteed beyond agreed minimums",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Real salary for logistics workers in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "What SNF housing deductions actually cover" },
-      { href: "/tools/real-income-calculator", label: "Calculate your net weekly take-home" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -562,7 +562,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €42
       "Flexcraft operates in the skilled trades and technical manufacturing segment of the Dutch staffing market. Unlike agencies focused purely on logistics at WML, Flexcraft places workers with vocational qualifications — welders, machine operators, electricians, and maintenance technicians — in roles that typically pay €16–€22/hr. This above-WML positioning means workers who qualify for Flexcraft placements can achieve meaningfully different take-home figures than the standard logistics minimum.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Weekly Pay and Deductions Explained",
         body: `Flexcraft's strength is above-WML placement. For skilled trades and technical roles, hourly rates range from €16.00 (entry-level machine operator) to €21.50 (experienced maintenance technician or licensed electrician). On 40 hours at €17/hr, gross weekly pay is €680. Net take-home after loonheffing (approximately 13–14% at this income level) is approximately €390–€415 per week, before housing.
 
 At the top of the Flexcraft pay scale — an electrician or industrial mechanic at €20–€21.50/hr — weekly gross reaches €840. Net take-home is approximately €490–€520/week. After housing at SNF maximum (€113.50), disposable income is approximately €375–€410/week — a substantially better financial outcome than the WML logistics worker.
@@ -570,7 +570,7 @@ At the top of the Flexcraft pay scale — an electrician or industrial mechanic 
 WML baseline roles do exist in Flexcraft's portfolio (general production workers at manufacturing clients), but these are a minority. Workers with vocational qualifications should specify their certifications at registration to access the higher-paid tier of placements.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Room Quality and Housing Deductions",
         body: `Flexcraft provides housing for workers in manufacturing and construction placements, though not universally. Technical workers placed at urban sites (Rotterdam, Eindhoven, Breda) may be offered housing or may be expected to arrange their own. Workers placed at rural industrial sites or in regions with high accommodation demand are more reliably offered agency housing.
 
 Where housing is provided, SNF certification applies and deductions are within the €100–€113.50 range. Workers in higher-paid technical roles often share accommodation with workers on WML contracts at the same site — the housing standard does not vary by pay rate, only by occupancy and location.
@@ -578,7 +578,7 @@ Where housing is provided, SNF certification applies and deductions are within t
 Flexcraft workers report that for skilled/technical roles, housing is less central to the recruitment pitch than at logistics-focused agencies. Workers who negotiate their placement may have more flexibility to opt out of agency housing and receive a travel/housing allowance in lieu — this is worth discussing at intake for workers who already have accommodation in the Netherlands.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Work Site Access and Safety",
         body: `Transport arrangements for skilled trades placements are site-dependent. Large manufacturing clients often provide transport. Smaller workshops and specialist manufacturers typically expect workers to arrange their own. Flexcraft workers at construction sites usually travel independently, with fuel costs reimbursed at the standard Dutch rate of €0.23/km (2026) under the metal/construction sector CAO.
 
 Work conditions vary by role. Welding and metalwork involve exposure to fumes and heat — PPE including welding screens, gloves, and appropriate footwear is mandatory and provided at reputable client sites. Machine operators typically work in controlled factory environments, often cleaner and more ergonomic than logistics warehouses.
@@ -586,7 +586,7 @@ Work conditions vary by role. Welding and metalwork involve exposure to fumes an
 Technical placements frequently come with a structured trial period (3–6 weeks) after which the client may offer a direct employment contract. Flexcraft workers in skilled roles describe the direct-hire pathway as one of the most realistic routes to a permanent position in the Netherlands.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "The Full Picture",
         body: `The clear advantage is pay. Workers with vocational skills who use Flexcraft can earn 15–45% more per hour than the WML logistics worker. After 12 months at an above-WML technical rate, savings potential is significantly higher — a worker at €18/hr retaining €420/week after housing saves approximately €15,000 over a year, versus €10,000–€12,000 for the WML logistics worker.
 
 The limitation is that Flexcraft is not the right agency for workers without certified skills. General labour placements exist but are not the core offering. Workers who register as general labour at a skills-focused agency often find themselves waiting longer for placement than they would at an agency with deeper logistics or production volume.
@@ -594,10 +594,10 @@ The limitation is that Flexcraft is not the right agency for workers without cer
 Housing provision is less consistent than at logistics-specialist agencies — workers with skills that qualify them for above-WML roles should clarify housing arrangements before committing to a placement, particularly for rural site locations.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Recommendation for 2026",
         body: `Flexcraft is the recommended route for workers with vocational certifications — forklift, reach truck, welding, electrical, mechanical maintenance — who want to convert their skills into above-WML pay in the Dutch market. The direct-hire pathway at technical clients is real and frequently used.
 
-Realistic take-home: €390–€520/week depending on skill level and hourly rate. After housing (where provided at €100–€113.50), disposable income is approximately €275–€410/week — the widest range of any agency in this review series, reflecting the breadth of Flexcraft's pay scale.`,
+What actually lands in the bank: €390–€520/week depending on skill level and hourly rate. After housing (where provided at €100–€113.50), disposable income is approximately €275–€410/week — the widest range of any agency in this review series, reflecting the breadth of Flexcraft's pay scale.`,
       },
     ],
     pros: [
@@ -612,9 +612,9 @@ Realistic take-home: €390–€520/week depending on skill level and hourly ra
       "Fewer placements for general labour than logistics-specialist agencies",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Technical and skilled trade salary ranges" },
-      { href: "/guides/hidden-costs-netherlands", label: "Transport costs and reimbursement rules" },
-      { href: "/tools/real-income-calculator", label: "Net pay calculator for above-WML rates" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
     ],
   },
 
@@ -627,7 +627,7 @@ Realistic take-home: €390–€520/week depending on skill level and hourly ra
       "Luba is an established Dutch staffing agency with a national branch network covering production, logistics, technical, and office roles. Its regional branch model — rather than purely inhouse operations at large client sites — means workers interact with a local coordinator who manages relationships across multiple client companies in a region. This creates a different dynamic from purely inhouse agencies: more flexibility between clients, but potentially less depth of knowledge of any single work site.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "What the Payslip Shows",
         body: `Luba pays at the applicable sector CAO for each placement. For production and logistics roles, this is typically the ABU CAO at WML: €14.71/hr in 2026. On 40 hours, gross is €588.40/week. Net take-home after loonheffing is approximately €345/week, with vakantiegeld (8%) accruing for separate payout.
 
 Luba's branch coordinators have access to a wider range of clients than inhouse agencies, which sometimes means workers can be placed in above-WML technical or specialist production roles that a pure logistics agency would not have. Workers with relevant experience should describe their full skill set at intake — Luba's multi-sector client base means there may be a better-paying match than the first offered role.
@@ -635,15 +635,15 @@ Luba's branch coordinators have access to a wider range of clients than inhouse 
 Shift premiums apply under the ABU CAO or relevant sector CAO. Workers on night and Sunday shifts see the standard uplifts: 22% night, 50% Sunday. Workers placed at food or chemical manufacturing sites may fall under sector-specific CAOs with different premium structures — always confirm which CAO applies to your role at intake.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation: Reality vs Promise",
         body: `Luba provides housing for logistics and production placements through SNF-certified accommodation. The branch model means housing stock varies by region. Workers in urbanised regions (Randstad) report more modern accommodation; workers in agricultural and rural regions report older stock with more variable maintenance standards.
 
-Housing deductions fall within the SNF maximum of €113.50/week. Workers report deductions in the €90–€110 range for standard shared accommodation. Luba's regional coordinators manage housing directly rather than through third-party providers at most locations, which workers generally report as a positive — issues are addressed more directly.
+Housing deductions fall within the SNF maximum of €113.50/week. Most placements report deductions in the €90–€110 range for standard shared accommodation. Luba's regional coordinators manage housing directly rather than through third-party providers at most locations, which workers generally report as a positive — issues are addressed more directly.
 
 Workers who have been with Luba for three months or more and have demonstrated reliable attendance report being offered improved accommodation options at some regional branches — smaller rooms with fewer occupants, or options with private bathroom access at a higher but still SNF-compliant rate.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Physical Demands and Transport Setup",
         body: `Transport varies by placement type. Luba's inhouse teams at larger client sites provide shuttle transport. Branch placements — where a worker is placed at a smaller client without an inhouse operation — may or may not include transport. Workers should confirm this at the point of job offer.
 
 The multi-client branch model also means workers can be placed at different client sites in the same week if one client reduces hours. This provides employment stability that inhouse-only placements cannot offer — a client reducing orders affects the worker less directly when the coordinator has alternative sites available.
@@ -651,7 +651,7 @@ The multi-client branch model also means workers can be placed at different clie
 Work conditions are sector-dependent. Luba places workers across a wider range of physical environments than logistics-specialist agencies: from cold food storage, through heated plastics manufacturing, to light assembly work. Workers should specify any physical limitations at registration to avoid placement in environments incompatible with their health.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Sets Them Apart — and What Doesn't",
         body: `Luba's primary advantage is the multi-client branch model. Workers who value employment flexibility — the ability to be placed at different clients when one site reduces hours — find Luba more resilient than single-site inhouse agencies. The broader client base also means workers with specific skills have a better chance of being matched to a higher-paying role.
 
 The limitation is consistency. A branch model with many clients means coordinator expertise is spread across sectors and sites. Workers at complex manufacturing sites with detailed safety requirements sometimes report that their Luba coordinator is less knowledgeable about site-specific conditions than the inhouse coordinator at a competitor agency.
@@ -659,10 +659,10 @@ The limitation is consistency. A branch model with many clients means coordinato
 Housing is generally well-managed due to the direct (rather than third-party) model, but quality varies meaningfully between regions.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Worth Your Time in 2026?",
         body: `Luba is a solid choice for workers who want a stable, multi-option placement rather than being tied to a single client site. The branch network provides employment resilience and access to above-WML opportunities for workers with relevant skills.
 
-Realistic take-home: €345/week at WML, rising with experience and role type. After housing at €90–€110/week, disposable income is approximately €235–€255 at WML day shifts.`,
+Real weekly income works out to: €345/week at WML, rising with experience and role type. After housing at €90–€110/week, disposable income is approximately €235–€255 at WML day shifts.`,
       },
     ],
     pros: [
@@ -677,9 +677,9 @@ Realistic take-home: €345/week at WML, rising with experience and role type. A
       "Transport not always included for branch (non-inhouse) placements",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Which job types pay above WML in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing deductions: SNF rules and your rights" },
-      { href: "/tools/payslip-checker", label: "Check your CAO shift premiums on your payslip" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 
@@ -695,20 +695,20 @@ Realistic take-home: €345/week at WML, rising with experience and role type. A
         heading: "What Workers Report About AB Midden",
         body: `Because AB Midden operates without a significant online presence, most available information comes from workers who have been placed by the agency. The picture is consistent: AB Midden fills warehouse and production roles in the Nieuwegein corridor, pays at or near WML (€14.71/hr in 2026), and provides housing at affiliated properties nearby.
 
-Workers report that AB Midden's operations are functional but minimal. Payslips are provided, housing is arranged, and work placements at warehouse clients in the Nieuwegein industrial zones are available. The experience is lean: less app infrastructure, less proactive communication, and fewer multi-language support options than the national agencies. Workers who speak Dutch or are comfortable operating with limited administrative support manage better than those who need extensive guidance.
+Staff who have worked here describe that AB Midden's operations are functional but minimal. Payslips are provided, housing is arranged, and work placements at warehouse clients in the Nieuwegein industrial zones are available. The experience is lean: less app infrastructure, less proactive communication, and fewer multi-language support options than the national agencies. Workers who speak Dutch or are comfortable operating with limited administrative support manage better than those who need extensive guidance.
 
 The transparency score of 42/100 reflects the lack of verifiable public information — not necessarily poor worker treatment. Workers should approach this as a trade-off: less visible, less polished, but locally functional for the Nieuwegein area.`,
       },
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Real Earnings vs Contract Rate",
         body: `AB Midden places workers at WML for warehouse and production roles. At €14.71/hr (2026) on a 40-hour week, gross is €588.40. Net take-home after loonheffing is approximately €340–€355/week. Vakantiegeld (8%) accrues and is paid at period end.
 
-Workers report that payslips are provided on a regular cycle, though the payslip format is basic compared with larger agencies. Workers with premium shift hours — nights, Sundays — should verify their payslip carefully against the applicable CAO rate, as smaller agencies with less automated payroll infrastructure are more likely to generate errors on non-standard hours.
+Staff who have worked here describe that payslips are provided on a regular cycle, though the payslip format is basic compared with larger agencies. Workers with premium shift hours — nights, Sundays — should verify their payslip carefully against the applicable CAO rate, as smaller agencies with less automated payroll infrastructure are more likely to generate errors on non-standard hours.
 
 The ABU CAO applies to AB Midden placements. Workers should confirm this at intake — a small number of agencies in this size tier operate under non-standard collective agreements that provide different or weaker conditions.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "What the Housing Package Looks Like",
         body: `AB Midden provides housing at affiliated addresses in and around Nieuwegein. Housing is confirmed as provided with deduction — the SNF maximum of €113.50/week sets the legal ceiling, and workers report deductions in the €95–€113 range.
 
 The affiliated housing model means AB Midden does not use SNF-registered third-party providers in the same way as national agencies — the accommodation is directly linked to the agency's own network. Workers should ask specifically for the SNF registration details of their accommodation before committing, as SNF certification is the key quality assurance mechanism for small-agency housing.
@@ -716,18 +716,18 @@ The affiliated housing model means AB Midden does not use SNF-registered third-p
 Workers who do confirm SNF registration should then verify occupancy: the SNF standard sets a per-worker minimum floor space and maximum occupancy per room. Workers housed above these limits are entitled to a reduced or zero housing deduction for the duration of the non-compliant period.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Getting There and Working There",
         body: `Transport to Nieuwegein warehouse sites is typically provided or the sites are accessible by bicycle from the affiliated housing addresses. Workers placed in the Nieuwegein industrial zone report that the commute infrastructure is practical — the area is designed for worker logistics.
 
-Work conditions in Nieuwegein warehouses are typical for the sector: shift work, standing, repetitive tasks, safety footwear required. Client sites in the area include distribution operations for consumer goods, e-commerce, and food distribution. Workers report standard health and safety conditions at the client sites — the quality of workplace conditions at the end client is largely independent of the agency.
+Work conditions in Nieuwegein warehouses are typical for the sector: shift work, standing, repetitive tasks, safety footwear required. Client sites in the area include distribution operations for consumer goods, e-commerce, and food distribution. Agency workers here describe standard health and safety conditions at the client sites — the quality of workplace conditions at the end client is largely independent of the agency.
 
 AB Midden's smaller scale means the coordinator-to-worker ratio is lower than at national agencies — workers typically have more direct access to their coordinator for day-to-day questions.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "The Honest Summary",
         body: `AB Midden is a practical option for workers specifically targeting the Nieuwegein and Utrecht region who are comfortable operating with minimal agency infrastructure. The lean model keeps costs lower and allows more direct coordinator contact than at national agencies. The risk is reduced verifiability — workers should confirm SNF housing registration and CAO compliance in writing before starting.
 
-Realistic take-home: €340–€355/week at WML. After housing at €95–€113, disposable income is approximately €227–€260/week. Workers on night or Sunday shifts add €60–€100 to this figure.`,
+What actually lands in the bank: €340–€355/week at WML. After housing at €95–€113, disposable income is approximately €227–€260/week. Workers on night or Sunday shifts add €60–€100 to this figure.`,
       },
     ],
     pros: [
@@ -742,9 +742,9 @@ Realistic take-home: €340–€355/week at WML. After housing at €95–€11
       "Always verify SNF certification of housing before committing",
     ],
     internalLinks: [
-      { href: "/guides/hidden-costs-netherlands", label: "How to verify SNF housing compliance" },
-      { href: "/guides/real-salary-netherlands", label: "WML salary and what you actually take home" },
-      { href: "/tools/payslip-checker", label: "Check your payslip for missing shift premiums" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
     ],
   },
 
@@ -765,7 +765,7 @@ This start-to-finish coordination has real value for first-time arrivals. Worker
 The trade-off is dependency: the housing, the job, the transport, and the paperwork are all managed by the same organisation. Workers who develop any dispute with Euro Planit (about pay, housing conditions, or contract terms) have fewer independent footholds than workers who arranged their own housing and banking separately.`,
       },
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Your Actual Weekly Income",
         body: `Euro Planit placements start at WML: €14.71/hr in 2026. On a 40-hour week, gross pay is €588.40. Net take-home after loonheffing is approximately €340–€355/week. Vakantiegeld (8%) accrues and is paid at period end or annually.
 
 Shift premiums under the ABU CAO apply: 22% for nights, 50% for Sundays. Workers placed in production and food processing roles with regular night shifts report weekly gross of €630–€670, netting approximately €420–€440.
@@ -773,26 +773,26 @@ Shift premiums under the ABU CAO apply: 22% for nights, 50% for Sundays. Workers
 Workers specifically report checking payslips after the first month. Euro Planit's payroll is reportedly reliable for standard hours but generates queries more frequently on premium shifts — a pattern common across agencies that place high volumes of workers from multiple countries simultaneously. Workers should note that the payslip will be in Dutch — Euro Planit does provide translation support on request, but workers benefit from learning the basic Dutch payslip terms (bruto, netto, loonheffing, vakantiegeld) before arrival.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "The Housing Deal: Costs and Conditions",
         body: `Housing is central to Euro Planit's offering and is provided for all out-of-region placements. Accommodation is SNF-certified and deductions fall within the €100–€113.50 range. Shared rooms of four to six workers are typical.
 
-Workers report that Euro Planit's housing is functional and compliant. The proximity to work sites is a consistent positive — accommodation is selected based on site location, so commutes are short (typically 10–20 minutes by shuttle or bicycle). Workers arriving from countries with different housing standards sometimes describe the conditions as basic but acceptable for the purpose and price point.
+Agency workers here describe that Euro Planit's housing is functional and compliant. The proximity to work sites is a consistent positive — accommodation is selected based on site location, so commutes are short (typically 10–20 minutes by shuttle or bicycle). Workers arriving from countries with different housing standards sometimes describe the conditions as basic but acceptable for the purpose and price point.
 
 The main housing-related concern reported by Euro Planit workers is the bundled contract structure. Housing and employment are often in a single document — if the work contract ends, housing ends simultaneously. Workers should clarify the notice period for both components: the employment contract notice and the housing vacating requirement. Dutch law requires written notice and a reasonable period to find alternative accommodation.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "How You Get to Work",
         body: `Transport from accommodation to work site is included for all Euro Planit placements. This is a consistent positive across worker reports. The shuttle service runs on shift times and workers report it as reliable at most sites.
 
-Work conditions are typical of logistics and food processing: standing work, lifting, repetitive tasks. The majority of Euro Planit placements are at established, compliant client sites where safety standards are externally audited. Workers report adequate safety briefings, provided PPE, and visible safety management at most client locations.
+Work conditions are typical of logistics and food processing: standing work, lifting, repetitive tasks. The majority of Euro Planit placements are at established, compliant client sites where safety standards are externally audited. Staff who have worked here describe adequate safety briefings, provided PPE, and visible safety management at most client locations.
 
 Multi-language coordinator support is available — Polish, Romanian, Bulgarian, and English — at Euro Planit intake and throughout the placement. This is a material advantage for workers who are not confident in Dutch or English.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Right Agency for You?",
         body: `Euro Planit is well-suited to first-time arrivals in the Netherlands who want a fully managed start — housing, job, and administration arranged before they land. The integrated model reduces first-week friction substantially. Workers should understand the trade-off: dependency on one organisation for multiple critical needs. Maintaining independent financial and administrative records from day one provides important security.
 
-Realistic take-home: €340–€355/week at WML day shifts. After housing at €100–€113.50/week, disposable income is approximately €227–€255. Night shift rotations add €65–€90/week net.`,
+Real weekly income works out to: €340–€355/week at WML day shifts. After housing at €100–€113.50/week, disposable income is approximately €227–€255. Night shift rotations add €65–€90/week net.`,
       },
     ],
     pros: [
@@ -807,9 +807,9 @@ Realistic take-home: €340–€355/week at WML day shifts. After housing at �
       "Premium shift payslip errors require worker verification",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "What migrant workers actually earn in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing contract terms: what to check before signing" },
-      { href: "/tools/payslip-checker", label: "Understand your Dutch payslip" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
     ],
   },
 
@@ -822,7 +822,7 @@ Realistic take-home: €340–€355/week at WML day shifts. After housing at �
       "Uitzendbureau NL operates as an online-first Dutch staffing intermediary, connecting workers to placements across multiple sectors through a digital registration and matching platform. The broad name reflects its positioning: a general-purpose, national-reach agency for workers who want a quick path to employment in the Netherlands without the geographic constraint of a local branch. For workers already in the Netherlands with their own accommodation, this model offers flexibility. For workers arriving from abroad who need the full housing-and-work package, the experience is different.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Take-Home Pay in Practice",
         body: `Uitzendbureau NL matches workers to client companies across sectors — the applicable salary and CAO depend on the role and client, not the platform itself. For logistics and production placements (the most common for international workers), the ABU CAO applies and pay starts at WML: €14.71/hr in 2026. On 40 hours per week, gross is €588.40; net take-home is approximately €340–€355.
 
 Workers who specify skills at registration — forklift certification, food HACCP, construction qualifications — are matched to roles with higher hourly rates. Workers without specific qualifications are directed to general labour pools at WML.
@@ -830,7 +830,7 @@ Workers who specify skills at registration — forklift certification, food HACC
 The platform model means the worker's direct employment contract is with the end client or with a partner employment entity, not with Uitzendbureau NL itself. Workers should verify who their legal employer is at intake — this determines which CAO applies, which payroll system is used, and where to direct disputes.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Worker Housing in Practice",
         body: `Uitzendbureau NL does not universally provide housing — accommodation arrangements depend on whether the matched placement includes housing provision. Workers matched to placements through partner agencies or clients that offer housing will receive SNF-certified accommodation at the standard deduction rate. Workers matched to placements without housing provision receive no housing support through the platform.
 
 Workers arriving from abroad who need housing must confirm this is included before accepting a match. The platform's national-reach model means matches may include placements across multiple regions — a worker registering in Amsterdam may be matched to a role in Venlo or Tilburg, which only makes sense with housing included.
@@ -838,7 +838,7 @@ Workers arriving from abroad who need housing must confirm this is included befo
 Workers who have their own accommodation in the Netherlands benefit most from the platform model — the quick matching time and sector breadth allow workers to find placements faster than through traditional branch registration, without needing the full agency package.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Shift Life: Transport and Environment",
         body: `Transport provision follows the same logic as housing: it depends on the matched placement, not the platform. Inhouse placements at large logistics sites include shuttle transport; smaller-site matches do not. Workers must clarify at the point of match acceptance.
 
 Work conditions are entirely determined by the end client and the applicable sector CAO. The platform model means Uitzendbureau NL has less ability to intervene in day-to-day work conditions than a fully inhouse agency team. Workers who have issues with work conditions should raise them through the named employment entity in their contract, which may be a partner agency or the client directly.
@@ -846,7 +846,7 @@ Work conditions are entirely determined by the end client and the applicable sec
 The platform does provide coordinator contact — workers are not left with no support — but the coordinator's role is matching and contract management rather than on-site support.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Good Reasons to Register — and Reasons to Think Twice",
         body: `The platform's main advantage is speed and reach. Workers with clear skill profiles can receive placement matches quickly, across a wider range of clients and sectors than a single regional branch could offer. For workers who are already settled in the Netherlands and want to find their next placement without visiting a physical branch, the digital process is convenient.
 
 The main limitation is the variable package. Housing, transport, and ongoing support quality depend on which partner agency or client is involved in the matched placement. Workers who need certainty about housing and transport before accepting should require written confirmation of all package components.
@@ -854,10 +854,10 @@ The main limitation is the variable package. Housing, transport, and ongoing sup
 Workers should also verify ABU CAO coverage. Platform-mediated placements occasionally use non-standard employment structures that may provide different conditions than ABU CAO workers at the same client site.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Worth It For These Workers",
         body: `Uitzendbureau NL works best for workers who are already in the Netherlands, have their own accommodation, and want a fast path to a new placement. It is less suited to first-time arrivals who need housing, transport, and full administrative support arranged as a package.
 
-Realistic take-home: variable by placement, but typically €340–€355/week for standard logistics at WML. Skilled placements can reach €390–€440+. Workers must verify the full package — housing, transport, CAO, employer entity — before accepting any match.`,
+Real weekly income works out to: variable by placement, but typically €340–€355/week for standard logistics at WML. Skilled placements can reach €390–€440+. Workers must verify the full package — housing, transport, CAO, employer entity — before accepting any match.`,
       },
     ],
     pros: [
@@ -871,9 +871,9 @@ Realistic take-home: variable by placement, but typically €340–€355/week f
       "Less on-site support than traditional inhouse agencies",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Real salary for all Dutch job types" },
-      { href: "/guides/hidden-costs-netherlands", label: "What to check before accepting any agency placement" },
-      { href: "/tools/real-income-calculator", label: "Calculate take-home for any hourly rate" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
     ],
   },
 
@@ -886,7 +886,7 @@ Realistic take-home: variable by placement, but typically €340–€355/week f
       "In Person is an Amsterdam-based staffing agency specialising in hospitality (horeca), production, and retail placements in the Amsterdam metropolitan area. Its focus on the city's service and production sectors gives it a different character from the logistics-heavy agencies in this series: workers placed through In Person are as likely to be in a hotel kitchen or a retail stockroom as in a warehouse. This sector mix produces a different set of experiences, working hours, and salary structures.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "How Much Workers Earn in 2026",
         body: `In Person placements span three sectors with different applicable CAOs. Hospitality workers fall under the Horeca CAO; production workers under the ABU CAO; retail workers under the Retail CAO. Each has different minimum rates, holiday accrual rules, and shift premium structures.
 
 For hospitality placements in Amsterdam, hourly rates typically start at WML (€14.71/hr in 2026) for kitchen assistant and service support roles, rising to €16–€18 for experienced kitchen staff with specific qualifications. Production roles pay at WML. Retail roles pay at WML for basic picking and packing, rising with responsibility level.
@@ -902,7 +902,7 @@ Production placements through In Person are at smaller Amsterdam-area facilities
 In Person's Amsterdam focus means most workers are placed within cycling or OV distance of their work location. The agency does not typically provide shuttle transport — the urban setting and public transport network are assumed to handle worker commuting.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation and Weekly Rent",
         body: `In Person does not universally provide housing — the Amsterdam-focused model assumes many workers already have accommodation in the city or have arranged it independently. For out-of-city workers and new arrivals, housing through affiliated providers can be arranged, but this is less central to In Person's offering than at logistics agencies in rural or suburban locations.
 
 Workers who need housing should confirm availability explicitly at intake. Amsterdam's rental market makes agency-provided housing in the city expensive — SNF maximum deductions apply (€113.50/week), but the accommodation quality for this price in Amsterdam is lower than the same rate in Tilburg or Venlo, where housing stock is cheaper.
@@ -910,7 +910,7 @@ Workers who need housing should confirm availability explicitly at intake. Amste
 Workers who already have accommodation in Amsterdam or surroundings find In Person's placement model straightforward — the hospitality and retail sectors offer regular, predictable shift patterns and consistent hours once placement is established.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Upsides and Watch Points",
         body: `In Person's advantage is its Amsterdam sector specialisation. Workers who want hospitality or retail work in the city, and who have existing accommodation, find the agency's local client relationships produce faster placement than using a national agency with weaker Amsterdam networks.
 
 The limitation is sector scope. In Person does not cover logistics, technical, or agricultural sectors — workers who want the flexibility to move between sectors or regions are better served by a national generalist. Workers who are committed to hospitality or urban production work in Amsterdam find In Person a useful and appropriately specialised option.
@@ -918,10 +918,10 @@ The limitation is sector scope. In Person does not cover logistics, technical, o
 Pay in hospitality can include tips and service charges in some client arrangements — these are not counted in the formal payslip but can supplement take-home meaningfully for front-of-house roles.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Summary Verdict",
         body: `In Person is the right agency for workers in Amsterdam who want hospitality, production, or retail work and have their own accommodation sorted. The city-focused model means sector-specific expertise and faster placement in the Amsterdam market than national generalists.
 
-Realistic take-home: €340–€360/week at WML, rising to €380–€420 for experienced hospitality roles with late-night and Sunday premiums. Housing not typically provided — workers need their own Amsterdam accommodation.`,
+In practice, workers keep: €340–€360/week at WML, rising to €380–€420 for experienced hospitality roles with late-night and Sunday premiums. Housing not typically provided — workers need their own Amsterdam accommodation.`,
       },
     ],
     pros: [
@@ -937,9 +937,9 @@ Realistic take-home: €340–€360/week at WML, rising to €380–€420 for 
       "Limited value for workers outside Amsterdam area",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Hospitality and production salary: what to expect" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing costs in Amsterdam vs. other regions" },
-      { href: "/tools/payslip-checker", label: "Verify Horeca CAO premiums on your payslip" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -952,7 +952,7 @@ Realistic take-home: €340–€360/week at WML, rising to €380–€420 for 
       "WerkTalent is a Dutch staffing agency that positions itself around worker skill matching — connecting workers with roles that align with their experience and development goals rather than simply filling headcount at any available site. This approach produces a different intake experience: more questions about skills, goals, and availability; less emphasis on immediate volume placement. Workers who take the time to complete a thorough intake at WerkTalent report better role alignment than those who rush through registration.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Take-Home Pay in Practice",
         body: `WerkTalent placements span multiple salary levels depending on the role and qualifications. Entry-level production and logistics workers are placed at WML: €14.71/hr in 2026, netting approximately €340–€355/week. Workers placed in skilled or specialist roles earn €15.50–€19/hr, with net take-home of €370–€435/week before housing.
 
 The skills-matching model means workers with documented qualifications — forklift certification, HACCP, NEN 3140, or relevant trade certificates — are actively directed toward higher-paying placements rather than being defaulted to WML logistics. Workers who have invested in Dutch labour market certifications find the WerkTalent matching process translates that investment into pay more reliably than volume-placement agencies.
@@ -960,15 +960,15 @@ The skills-matching model means workers with documented qualifications — forkl
 ABU CAO shift premiums apply: 22% night, 50% Sunday. Workers confirm the applicable CAO at intake based on the role and client sector. WerkTalent coordinates confirm which sector CAO applies before contract signing — a standard that is not maintained consistently at all agencies.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Worker Housing in Practice",
         body: `WerkTalent provides housing for workers in out-of-region placements. SNF-certified accommodation with deductions in the €95–€113.50 range applies. The agency's skill-matching focus means workers are not always placed at the closest available site — they may be placed at a site 50–100km from the main registration area if that is where the best role match exists. In such cases, housing is always provided.
 
-Workers report that WerkTalent's housing is standard quality — shared rooms, shared facilities, functional rather than exceptional. The smaller agency scale means housing stock is more limited than at Randstad or Tempo-Team: workers may have fewer choices about location within a given region.
+Reviews on AgencyCheck indicate that WerkTalent's housing is standard quality — shared rooms, shared facilities, functional rather than exceptional. The smaller agency scale means housing stock is more limited than at Randstad or Tempo-Team: workers may have fewer choices about location within a given region.
 
 Workers placed in skills-matched above-WML roles sometimes receive different housing options — smaller rooms or facilities with fewer occupants — as an acknowledgement that the worker profile justifies better accommodation. This is not guaranteed but is worth enquiring about at intake if the worker's skills justify an above-WML placement.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Shift Life: Transport and Environment",
         body: `Transport is provided for inhouse-style placements at larger client sites. For skills-matched placements at smaller specialist manufacturers or technical operations, transport may not be included — workers placed in above-WML technical roles often travel to work independently, with kilometre reimbursement where the applicable CAO provides it.
 
 Work conditions match the placement type. Logistics roles are physically demanding; technical and skilled roles involve different physical requirements and environments. WerkTalent's intake process includes a health and capability assessment — workers with physical restrictions that affect certain role types are directed away from incompatible placements rather than placed regardless.
@@ -976,7 +976,7 @@ Work conditions match the placement type. Logistics roles are physically demandi
 Induction quality at client sites varies independently of the agency, but workers report that WerkTalent provides pre-placement briefings about the specific client's environment, safety requirements, and working culture before the first shift. This reduces first-day uncertainty.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Good Reasons to Register — and Reasons to Think Twice",
         body: `The skills-matching approach is WerkTalent's clearest differentiator. Workers who invest time in a thorough intake are better matched to roles that fit their profile, which reduces placement churn — fewer early contract terminations due to mismatch, better relationship with the client, and a clearer path toward Phase B and improved conditions.
 
 The limitation is intake time. Workers who need immediate placement and income cannot afford a thorough matching process. WerkTalent is not the fastest agency for emergency placement — workers who need to start within 48 hours are better served by volume-placement agencies with immediate availability.
@@ -984,7 +984,7 @@ The limitation is intake time. Workers who need immediate placement and income c
 Housing and transport are functional but not distinctive. The agency's value is in the placement quality, not in ancillary services.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Worth It For These Workers",
         body: `WerkTalent suits workers with documented skills who want to be placed in a role that matches their profile and pays above WML. The investment in a thorough intake pays off over a 6–12 month placement. Workers who need immediate placement without the matching process should use a volume agency first and switch to WerkTalent once settled.
 
 Realistic take-home: €340–€435/week depending on skill level and role type. After housing at €95–€113.50, disposable income is approximately €225–€320/week — or higher for above-WML placements.`,
@@ -1002,9 +1002,9 @@ Realistic take-home: €340–€435/week depending on skill level and role type
       "Transport not always included for technical or specialist placements",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "How qualifications affect salary in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "Transport costs: when agencies pay and when you do" },
-      { href: "/tools/real-income-calculator", label: "Net pay for above-WML skilled roles" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
     ],
   },
 
@@ -1017,7 +1017,7 @@ Realistic take-home: €340–€435/week depending on skill level and role type
       "UBN (Uitzendbureau Nederland) is a regional Dutch staffing agency focusing on production, logistics, and general labour placements. Operating with a smaller footprint than national agencies, UBN concentrates on specific regional industrial zones and builds deep client relationships within those areas. Workers placed through UBN often have a more direct relationship with both the agency coordinator and the client site than is typical at large national agencies.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Rates and Weekly Take-Home",
         body: `UBN places workers at WML for general production and logistics roles: €14.71/hr in 2026. On 40 hours per week, gross is €588.40. Net take-home after loonheffing is approximately €340–€355/week, with vakantiegeld (8%) accruing for payout at period end.
 
 The ABU CAO applies to UBN placements. Shift premiums (22% nights, 50% Sundays) are reported as accurately applied by most workers, though smaller payroll operations are more likely to generate premium errors on non-standard hours. Workers should track their own shifts and compare against payslips for the first two months.
@@ -1025,15 +1025,15 @@ The ABU CAO applies to UBN placements. Shift premiums (22% nights, 50% Sundays) 
 Above-WML placements are limited at UBN — the regional model with smaller client base provides fewer specialist or technical roles than national agencies with broader portfolios. Workers with vocational qualifications may find better-paying matches at larger agencies with more diverse client networks.`,
       },
       {
-        heading: "Housing Conditions",
-        body: `UBN provides housing for workers in its regional placements. SNF-certified accommodation with deductions in the €90–€113 range is typical. Shared rooms of three to four workers, shared facilities. Workers report that UBN's housing is maintained to a functional standard, with maintenance issues addressed within five to seven days at most locations.
+        heading: "Agency Housing: What to Expect",
+        body: `UBN provides housing for workers in its regional placements. SNF-certified accommodation with deductions in the €90–€113 range is typical. Shared rooms of three to four workers, shared facilities. Agency workers here describe that UBN's housing is maintained to a functional standard, with maintenance issues addressed within five to seven days at most locations.
 
 The regional focus means housing and work sites are closely matched geographically — a consistent positive in worker reports. Transport from housing to work is short, reducing fatigue and transport costs. Workers placed through UBN rarely report the long commute times that sometimes occur with national agencies that place workers far from available housing.
 
-Workers report that UBN coordinators are accessible for housing issues — the smaller portfolio means a housing problem gets direct attention rather than being escalated through a multi-layer support system.`,
+People placed through this agency say that UBN coordinators are accessible for housing issues — the smaller portfolio means a housing problem gets direct attention rather than being escalated through a multi-layer support system.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Site Access and Working Environment",
         body: `Transport to client sites is included for most UBN placements. The regional model means all UBN client sites are within the agency's transport infrastructure, so shuttle provision is more consistent than at national agencies where transport coverage varies by region.
 
 Work conditions are typical of the production and logistics sectors. Physically demanding standing work, safety footwear and PPE provided at client sites. Workers report that UBN's client base consists of established regional manufacturers and distribution operations with good safety standards — UBN does not place workers at sites with poor compliance records.
@@ -1041,7 +1041,7 @@ Work conditions are typical of the production and logistics sectors. Physically 
 The smaller agency scale means new workers are known personally to the coordinator from day one. This produces faster issue resolution — pay queries, scheduling problems, housing concerns — than working through the support channels of a national agency.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "What This Agency Does Well",
         body: `UBN's main advantage is the regional depth model: close housing-to-site geography, personal coordinator relationships, and consistent transport provision. Workers who value predictability and direct access to support over the breadth of options find the UBN model significantly less stressful than large national agencies.
 
 The limitation is scale. Fewer active placements mean workers may wait longer to be placed if demand at UBN's client sites is low. Workers who need guaranteed continuous employment regardless of market conditions need a national agency with more client diversity.
@@ -1049,7 +1049,7 @@ The limitation is scale. Fewer active placements mean workers may wait longer to
 Payslip accuracy is average — above the sector worst but no better than the national mid-tier. Workers should verify premium shifts in the first two months.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Is It Worth Registering?",
         body: `UBN is a good choice for workers committed to a specific region who value personal service and close housing-to-work geography over maximum flexibility. The direct coordinator model produces better day-to-day support than national agencies at equivalent roles.
 
 Realistic take-home: €340–€355/week at WML. After housing at €90–€113/week, disposable income is approximately €227–€265. Workers on regular night shifts add €60–€95/week.`,
@@ -1067,9 +1067,9 @@ Realistic take-home: €340–€355/week at WML. After housing at €90–€11
       "No national coverage for workers who want to relocate",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Production and logistics salary in 2026" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport: the real weekly cost" },
-      { href: "/tools/payslip-checker", label: "Check your shift premiums are correctly applied" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -1082,18 +1082,18 @@ Realistic take-home: €340–€355/week at WML. After housing at €90–€11
       "Djops is a newer entrant to the Dutch staffing market, built with digital tools and app-based shift management at the core. The name references the Dutch-English 'do jobs' — the agency pitches itself as a simpler, more transparent way to find and manage work in the Netherlands. For workers comfortable with digital processes, Djops offers a fast registration and clear shift visibility. For workers who prefer in-person support, the leaner model requires adjustment.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Structure and Real Income",
         body: `Djops places workers in production and logistics roles at WML: €14.71/hr in 2026. On a standard 40-hour week, gross is €588.40. Net take-home after loonheffing is approximately €340–€355/week. Vakantiegeld (8%) accrues and is visible in the Djops app, building transparency for workers tracking their full earnings picture.
 
-Shift premiums under the ABU CAO are flagged in the app when shifts qualify — night shifts, Sunday work, overtime. Workers report that the app's shift confirmation system creates a useful record for payslip verification: if a premium shift is confirmed in the app but missing from the payslip, there is a clear documented record for the query.
+Shift premiums under the ABU CAO are flagged in the app when shifts qualify — night shifts, Sunday work, overtime. Reviews on AgencyCheck indicate that the app's shift confirmation system creates a useful record for payslip verification: if a premium shift is confirmed in the app but missing from the payslip, there is a clear documented record for the query.
 
 Workers placed at above-standard roles (skilled production, quality roles) earn above WML. Djops does not limit its portfolio to WML placements, but the majority of current placements are in the standard logistics and production tier.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Standards and SNF Compliance",
         body: `Djops provides SNF-certified housing for workers who require it, with deductions within the €100–€113.50 range. The housing side of the operation is managed through partner providers — Djops coordinates housing allocation but does not manage accommodation stock directly.
 
-Workers report that Djops housing is adequate and SNF compliant. The main worker concern is the partner-managed model: when housing issues arise, the resolution path runs through Djops coordination to the housing partner, adding a step compared with agencies that manage their own accommodation. Workers should save the housing partner's direct contact details at check-in for use in case of maintenance or billing issues.
+Agency workers here describe that Djops housing is adequate and SNF compliant. The main worker concern is the partner-managed model: when housing issues arise, the resolution path runs through Djops coordination to the housing partner, adding a step compared with agencies that manage their own accommodation. Workers should save the housing partner's direct contact details at check-in for use in case of maintenance or billing issues.
 
 The app tracks housing costs and deductions, giving workers a clear view of the full deduction breakdown each pay period. Workers rate this transparency positively.`,
       },
@@ -1106,7 +1106,7 @@ Work conditions at Djops' client sites are standard for the logistics and produc
 Workers placed at Djops' current client base report physical work conditions comparable to Randstad or Tempo-Team placements at the same client sites. The agency does not currently have inhouse presence at very large sites; most placements are at mid-size logistics and production facilities.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Workers Say: Good and Bad",
         body: `Djops' clearest advantage is digital transparency. Workers who use the app actively know their shift premium breakdown, housing deduction, holiday accrual, and net pay in real time rather than waiting for the monthly payslip. This is genuinely useful for workers who want to track their financial position week by week.
 
 The limitation is scale and history. As a newer agency, Djops has fewer client relationships, less historical worker data, and fewer housing options than agencies with decades of Dutch market experience. Workers who need maximum placement options or want certainty about work availability year-round may find Djops' current portfolio limiting.
@@ -1114,10 +1114,10 @@ The limitation is scale and history. As a newer agency, Djops has fewer client r
 The partner-managed housing model introduces the same accountability gap as Adecco's third-party housing — workers should document housing start and end dates carefully and verify billing.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Best Suited For",
         body: `Djops is a genuine option for tech-comfortable workers who value real-time transparency over the breadth of options. The app-based model, shift confirmation records, and visible deduction breakdown provide better week-to-week financial clarity than most traditional agencies. As the agency grows its client base and housing stock, the portfolio limitation will reduce.
 
-Realistic take-home: €340–€355/week at WML day shifts, approximately €415–€440 on regular night shifts. After housing at €100–€113.50, disposable income is approximately €227–€340.`,
+Real weekly income works out to: €340–€355/week at WML day shifts, approximately €415–€440 on regular night shifts. After housing at €100–€113.50, disposable income is approximately €227–€340.`,
       },
     ],
     pros: [
@@ -1132,9 +1132,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Less inhouse presence at very large logistics sites",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "What logistics workers actually take home in 2026" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing billing errors: how to protect yourself" },
-      { href: "/tools/payslip-checker", label: "Verify your payslip against your confirmed shifts" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
     ],
   },
 
@@ -1151,24 +1151,24 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Synergie is the Netherlands arm of the Synergie Group, a French staffing multinational with operations across Western Europe. In the Dutch market it targets industrial, technical, and logistics placements — a profile that overlaps with both the generalist agencies and the technical specialists. Workers at Synergie Netherlands typically encounter a more structured, process-driven agency experience than at purely Dutch regional players, with clearer documentation standards but occasionally more bureaucratic issue resolution.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "From Gross to Net: The Numbers",
         body: `Synergie Netherlands pays at the applicable sector CAO for each placement. Logistics and production roles start at WML: €14.71/hr in 2026. On a standard 40-hour week, gross earnings are €588.40. After loonheffing (approximately 10.7% effective at WML) and with vakantiegeld (8%) accruing separately, cash take-home is approximately €345/week.\n\nTechnical and industrial maintenance roles — Synergie's differentiated offering in the Dutch market — pay above WML. Machine operators and maintenance technicians report hourly rates of €16–€19. At €17/hr on 40 hours, gross is €680; net take-home is approximately €400–€415/week before housing.\n\nThe ABU CAO applies to standard flex placements. Synergie Netherlands workers report that payslips are professionally formatted and accessible through an online portal. Payslip accuracy for standard hours is rated as good; errors on premium shifts (night, Sunday) are reported less frequently than the sector average.`,
       },
       {
-        heading: "Housing Conditions",
-        body: `Synergie provides SNF-certified housing for workers in its logistics and industrial placements. Deductions fall within the €100–€113.50/week range. Accommodation is shared — three to four workers per room, shared bathroom and kitchen — with facilities maintained to a standard that workers consistently describe as above average for the price.\n\nThe French parent company's quality standards influence Synergie's housing management approach. Unlike some Dutch agencies where housing is managed with minimal oversight, Synergie conducts periodic facility checks and has a formal complaints process for housing issues. Workers report that maintenance requests are actioned within five working days at most locations.\n\nWorkers who have used multiple agencies cite Synergie's housing documentation as unusually clear — deduction amounts, SNF registration numbers, and check-in/check-out procedures are all provided in writing at intake, without the worker needing to request them.`,
+        heading: "SNF Housing: What Workers Get",
+        body: `Synergie provides SNF-certified housing for workers in its logistics and industrial placements. Deductions fall within the €100–€113.50/week range. Accommodation is shared — three to four workers per room, shared bathroom and kitchen — with facilities maintained to a standard that workers consistently describe as above average for the price.\n\nThe French parent company's quality standards influence Synergie's housing management approach. Unlike some Dutch agencies where housing is managed with minimal oversight, Synergie conducts periodic facility checks and has a formal complaints process for housing issues. People placed through this agency say that maintenance requests are actioned within five working days at most locations.\n\nWorkers who have used multiple agencies cite Synergie's housing documentation as unusually clear — deduction amounts, SNF registration numbers, and check-in/check-out procedures are all provided in writing at intake, without the worker needing to request them.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Working Conditions on Site",
         body: `Transport to site is provided for Synergie's inhouse logistics placements. For branch placements at industrial clients without an inhouse team, transport may not be included — workers should clarify at the point of job offer. In most industrial regions, public transport alternatives are available at a cost of €10–€20/week.\n\nWork conditions at Synergie's industrial clients are generally well-managed. Synergie maintains a health and safety review process for client sites, which workers report produces better on-site PPE provision and safety briefing quality than at agencies that conduct no independent client auditing.\n\nThe induction process includes a pre-placement briefing specific to the client site, covering PPE requirements, shift patterns, break entitlements, and the contact chain for reporting issues. Workers describe this level of preparation as more thorough than they received at other agencies at the same client sites.`,
       },
       {
-        heading: "Pros and Cons",
-        body: `Synergie's primary advantage is institutional quality. The multinational background produces better documentation, more reliable payroll infrastructure, and a more formal approach to housing management than most Dutch-only competitors. Workers who place high value on clarity and process find the Synergie experience significantly less stressful.\n\nThe limitation is responsiveness speed. The formal process structure that produces good documentation also means issue escalation goes through more steps. Workers report that urgent problems take slightly longer to resolve than at smaller agencies where a coordinator can make an immediate decision.\n\nFor above-WML technical placements, Synergie is well-regarded — the combination of clear contracts, accurate payroll, and structured client relationships makes it one of the better-organised options in the industrial sector.`,
+        heading: "Before You Sign: What to Know",
+        body: `Synergie's primary advantage is institutional quality. The multinational background produces better documentation, more reliable payroll infrastructure, and a more formal approach to housing management than most Dutch-only competitors. Workers who place high value on clarity and process find the Synergie experience significantly less stressful.\n\nThe limitation is responsiveness speed. The formal process structure that produces good documentation also means issue escalation goes through more steps. Reviews on AgencyCheck indicate that urgent problems take slightly longer to resolve than at smaller agencies where a coordinator can make an immediate decision.\n\nFor above-WML technical placements, Synergie is well-regarded — the combination of clear contracts, accurate payroll, and structured client relationships makes it one of the better-organised options in the industrial sector.`,
       },
       {
-        heading: "Final Verdict for 2026",
-        body: `Synergie Netherlands is a strong choice for workers who prioritise process clarity, documented housing terms, and accurate payslips over raw speed of placement. The multinational infrastructure produces reliably good outcomes for workers who engage with it correctly.\n\nRealistic take-home: €345/week at WML (day shifts), rising to €400–€415 for technical roles at €17/hr. After SNF housing at €100–€113.50, disposable income is approximately €230–€315/week.`,
+        heading: "Should You Register Here?",
+        body: `Synergie Netherlands is a strong choice for workers who prioritise process clarity, documented housing terms, and accurate payslips over raw speed of placement. The multinational infrastructure produces reliably good outcomes for workers who engage with it correctly.\n\nActual cash in hand runs to: €345/week at WML (day shifts), rising to €400–€415 for technical roles at €17/hr. After SNF housing at €100–€113.50, disposable income is approximately €230–€315/week.`,
       },
     ],
     pros: [
@@ -1183,9 +1183,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Branch placement transport not always included",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Industrial and technical salary ranges in 2026" },
-      { href: "/guides/hidden-costs-netherlands", label: "SNF housing: what good documentation looks like" },
-      { href: "/tools/payslip-checker", label: "Verify your Synergie payslip" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
 
@@ -1198,24 +1198,24 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Sagius is a Dutch staffing agency with a focus on sustainable employment placements — the agency positions itself around longer-term worker relationships rather than volume turnover. This means a more selective intake process, emphasis on matching workers to roles that suit their skills and circumstances, and active management of Phase A to Phase B progression. Workers who fit the Sagius model well report significantly better placement stability than they experienced at volume-focused agencies.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
-        body: `Sagius pays at the applicable sector CAO for each placement. For production and logistics roles, the ABU CAO applies and pay starts at WML: €14.71/hr in 2026. On a 40-hour week, gross is €588.40 and net take-home after loonheffing is approximately €345/week.\n\nThe sustainable placement model means Sagius actively works to move workers into Phase B (after 78 weeks under the ABU CAO), which provides improved conditions: paid public holidays, sick pay from week 26, and the right to request a fixed-hours contract. Workers report that Sagius coordinators flag Phase B eligibility proactively and support the documentation process.\n\nFor workers who achieve Phase B status, paid public holidays (typically 8–9 days/year in the Netherlands) represent approximately €500/year in additional earnings at WML rates that Phase A workers do not receive.`,
+        heading: "What You Actually Earn",
+        body: `Sagius pays at the applicable sector CAO for each placement. For production and logistics roles, the ABU CAO applies and pay starts at WML: €14.71/hr in 2026. On a 40-hour week, gross is €588.40 and net take-home after loonheffing is approximately €345/week.\n\nThe sustainable placement model means Sagius actively works to move workers into Phase B (after 78 weeks under the ABU CAO), which provides improved conditions: paid public holidays, sick pay from week 26, and the right to request a fixed-hours contract. Registered workers note that Sagius coordinators flag Phase B eligibility proactively and support the documentation process.\n\nFor workers who achieve Phase B status, paid public holidays (typically 8–9 days/year in the Netherlands) represent approximately €500/year in additional earnings at WML rates that Phase A workers do not receive.`,
       },
       {
-        heading: "Housing Conditions",
-        body: `Sagius provides SNF-certified housing for workers in placements that require it. Deductions are within the €95–€113.50 range. Housing quality is rated as adequate to good by workers, with no significant negative patterns in reports. Maintenance is handled within a week in the majority of cases.\n\nThe longer-term placement focus influences housing management. Because Sagius aims to keep workers for 12+ months, there is more incentive to maintain housing to a standard that keeps workers satisfied. Workers report that housing quality at Sagius is noticeably better than at agencies with high turnover and large-scale accommodation blocks.\n\nShared rooms of three to four are typical. Workers at Sagius housing describe a quieter, more stable environment than at larger-agency accommodation — fewer new arrivals each week, more established co-residents.`,
+        heading: "Accommodation Quality and Cost",
+        body: `Sagius provides SNF-certified housing for workers in placements that require it. Deductions are within the €95–€113.50 range. Housing quality is rated as adequate to good by workers, with no significant negative patterns in reports. Maintenance is handled within a week in the majority of cases.\n\nThe longer-term placement focus influences housing management. Because Sagius aims to keep workers for 12+ months, there is more incentive to maintain housing to a standard that keeps workers satisfied. Registered workers note that housing quality at Sagius is noticeably better than at agencies with high turnover and large-scale accommodation blocks.\n\nShared rooms of three to four are typical. Workers at Sagius housing describe a quieter, more stable environment than at larger-agency accommodation — fewer new arrivals each week, more established co-residents.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Getting to Work and Daily Conditions",
         body: `Transport provision depends on the placement. Sagius manages a mix of inhouse and branch placements. Inhouse logistics placements include shuttle transport; branch placements at smaller manufacturers may require independent travel. Workers should confirm at intake.\n\nWork conditions in Sagius placements are described as well-managed. The agency's sustainable employment focus means it selects clients with decent working conditions. Workers who have worked at the same client sites through other agencies report better coordinator attention and faster issue escalation when placed through Sagius.\n\nPhase A workers receive weekly contract renewals; Phase B workers receive fixed-term or open-ended contracts with formal notice periods. This contract security matters for workers who want to plan beyond the next week.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Strengths and Weaknesses",
         body: `Sagius's defining advantage is the genuine focus on longer-term placements. Workers who want stability — a fixed work location, a known coordinator, consistent hours — find the Sagius model delivers this better than agencies treating flex workers as interchangeable units. The Phase B progression support is a genuine and valuable differentiator.\n\nThe limitation is the selectivity of intake. Workers with irregular availability or who need immediate placement may not fit the Sagius model. The agency is not the fastest option for workers who need to start tomorrow.\n\nWorkers also note that Sagius's client base is smaller than national agencies. This provides depth in the regions and sectors where Sagius operates, but limits options if the worker wants to change sector or move to a different city.`,
       },
       {
-        heading: "Final Verdict for 2026",
-        body: `Sagius is the right choice for workers who plan to stay in the Netherlands for at least 12 months and want stable working conditions. The Phase B progression pathway makes Sagius financially attractive over a long placement — the effective earnings improvement from paid holidays and sick pay at Phase B is worth approximately €700–€1,000 per year at WML rates.\n\nRealistic take-home: €345/week at WML day shifts. After housing at €95–€113/week, disposable income is approximately €232–€250. Phase B workers add approximately €500/year through paid public holiday entitlement.`,
+        heading: "Bottom Line for 2026",
+        body: `Sagius is the right choice for workers who plan to stay in the Netherlands for at least 12 months and want stable working conditions. The Phase B progression pathway makes Sagius financially attractive over a long placement — the effective earnings improvement from paid holidays and sick pay at Phase B is worth approximately €700–€1,000 per year at WML rates.\n\nIn practice, workers keep: €345/week at WML day shifts. After housing at €95–€113/week, disposable income is approximately €232–€250. Phase B workers add approximately €500/year through paid public holiday entitlement.`,
       },
     ],
     pros: [
@@ -1230,9 +1230,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Not the fastest agency for first-week start",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Phase A vs Phase B: real earnings difference" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing conditions and your SNF rights" },
-      { href: "/tools/real-income-calculator", label: "Calculate your weekly take-home" },
+      { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
     ],
   },
 
@@ -1245,24 +1245,24 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Maintec is a Dutch technical staffing specialist placing maintenance engineers, electricians, mechanical technicians, and industrial mechanics in manufacturing and infrastructure projects across the Netherlands. It operates at the premium end of the flex labour market — the majority of Maintec placements are above WML, often significantly so. Workers without technical qualifications will not find relevant roles here; workers with verifiable technical credentials find Maintec one of the most financially rewarding agency routes in the Dutch market.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Earnings Breakdown for 2026",
         body: `Maintec placements pay well above WML. The agency's core roles — maintenance technician, industrial electrician, mechanical engineer, instrument technician — command hourly rates of €18–€28/hr depending on qualifications, sector, and experience level. Entry-level technical placements (MBO level 2–3 with relevant experience) start at €16–€18/hr. Senior NEN 3140-qualified electricians or certified instrument technicians can reach €24–€28/hr.\n\nAt €20/hr on a 40-hour week, gross earnings are €800. After loonheffing (approximately 14–16% at this income level), net take-home is approximately €455–€475/week before housing. At €26/hr, weekly gross reaches €1,040 and net take-home approaches €600.\n\nThe applicable CAO varies by sector. Workers in metal and manufacturing fall under the Metal CAO; workers at utilities or chemical plants fall under their respective sector CAOs. Maintec confirms and documents the applicable agreement at intake.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Living Conditions and Housing Cost",
         body: `Maintec provides housing primarily for out-of-region project placements — where a maintenance project at a refinery, chemical plant, or industrial facility requires workers to be near the site for the duration. For workers placed at client sites near their home region, housing is not typically provided.\n\nWhere provided, housing is SNF-certified and deductions are within the €100–€113.50 range. Workers on project placements (typically 3–6 months at a specific site) report that Maintec's housing for technical workers is marginally better quality than the standard logistics agency accommodation — fewer occupants per room, sites selected for proximity to the project location.\n\nWorkers at above-WML technical rates (€20+/hr) who also receive SNF housing retain substantially more than logistics workers after deduction. At €20/hr net take-home of €465 minus housing at €113.50, disposable income is approximately €350/week.`,
       },
       {
         heading: "Technical Qualifications and Direct-Hire Pathway",
-        body: `Maintec's core value to workers is the direct-hire pathway. The agency's model — place, evaluate, convert — means a substantial proportion of Maintec workers transition to direct employment contracts with the client within 3–6 months. For maintenance workers, a direct employment contract at a large Dutch manufacturer typically includes pension contributions, travel expense reimbursement, and fixed annual salary.\n\nWorkers report that Maintec actively prepares workers for direct-hire conversations. The coordinator communicates client feedback, highlights areas for development, and facilitates the direct contract discussion when the client signals readiness. Workers describe this as one of Maintec's most valued services.\n\nWorkers who want to maximise their direct-hire chances should maintain NEN certifications current (NEN 3140 for electrical, VCA for safety) and should proactively request additional client-side training during the placement period.`,
+        body: `Maintec's core value to workers is the direct-hire pathway. The agency's model — place, evaluate, convert — means a substantial proportion of Maintec workers transition to direct employment contracts with the client within 3–6 months. For maintenance workers, a direct employment contract at a large Dutch manufacturer typically includes pension contributions, travel expense reimbursement, and fixed annual salary.\n\nAgency workers here describe that Maintec actively prepares workers for direct-hire conversations. The coordinator communicates client feedback, highlights areas for development, and facilitates the direct contract discussion when the client signals readiness. Workers describe this as one of Maintec's most valued services.\n\nWorkers who want to maximise their direct-hire chances should maintain NEN certifications current (NEN 3140 for electrical, VCA for safety) and should proactively request additional client-side training during the placement period.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Worth Considering or Worth Avoiding?",
         body: `The overwhelming advantage of Maintec is pay. Workers with the right technical qualifications earn 25–100% more per hour than the WML logistics worker. The cumulative savings difference over a 12-month placement is €10,000–€25,000 depending on the hourly rate.\n\nThe direct-hire pathway is a genuine and frequently used route. Workers who perform well and maintain their certifications have a realistic chance of converting to a permanent Dutch employment contract within 6–9 months.\n\nThe limitation is entry requirement. Workers without current and verifiable technical certifications will not be placed at the rates described. Workers who want to eventually work at the Maintec level but do not currently have qualifications should consider investing in Dutch-recognised certification (MBO qualification or sector certificate) before registering.`,
       },
       {
-        heading: "Final Verdict for 2026",
-        body: `Maintec is the best agency in this review series for workers with technical maintenance qualifications. The pay differential, direct-hire pathway, and structured placement model make it the highest-financial-outcome option for qualified workers.\n\nRealistic take-home: €455–€600/week depending on qualifications and hourly rate. After project housing where provided (€100–€113.50/week), disposable income is €340–€490/week — 50–100% more than the WML logistics worker.`,
+        heading: "Who This Agency Works For",
+        body: `Maintec is the best agency in this review series for workers with technical maintenance qualifications. The pay differential, direct-hire pathway, and structured placement model make it the highest-financial-outcome option for qualified workers.\n\nActual cash in hand runs to: €455–€600/week depending on qualifications and hourly rate. After project housing where provided (€100–€113.50/week), disposable income is €340–€490/week — 50–100% more than the WML logistics worker.`,
       },
     ],
     pros: [
@@ -1277,9 +1277,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Workers without current NEN/VCA certificates will not access top rates",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Technical and maintenance salary: the real numbers" },
-      { href: "/tools/real-income-calculator", label: "Net take-home at €18, €20, €24/hr" },
-      { href: "/guides/hidden-costs-netherlands", label: "Project housing: what deductions apply on short placements" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -1292,23 +1292,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "BaanMeesters — Dutch for 'job masters' — is a Dutch staffing agency positioning itself around personalised placement and active worker support. Its model is closer to the smaller regional agency than to the national generalist giant, with coordinators managing smaller portfolios and placing emphasis on matching the worker to the right role rather than filling vacancies as fast as possible. For workers who have felt underserved by the impersonal scale of national agencies, BaanMeesters represents a different kind of relationship with their employment agency.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
-        body: `BaanMeesters pays at the applicable sector CAO for each placement. Production and logistics roles follow the ABU CAO at WML: €14.71/hr in 2026. On a 40-hour week, gross is €588.40 and net take-home after loonheffing is approximately €345/week.\n\nWorkers with specific skills or qualifications are matched to above-WML roles where available in the BaanMeesters client base. Hourly rates for semi-skilled production roles range from €15.50 to €17.50. At €16/hr on 40 hours, net take-home is approximately €375–€385/week.\n\nWorkers report that payslip accuracy is good for standard hours. The smaller payroll team means premium shift errors are possible — workers should verify their first three payslips against their shift records, particularly if the role involves regular night or weekend work.`,
+        heading: "What You Actually Earn",
+        body: `BaanMeesters pays at the applicable sector CAO for each placement. Production and logistics roles follow the ABU CAO at WML: €14.71/hr in 2026. On a 40-hour week, gross is €588.40 and net take-home after loonheffing is approximately €345/week.\n\nWorkers with specific skills or qualifications are matched to above-WML roles where available in the BaanMeesters client base. Hourly rates for semi-skilled production roles range from €15.50 to €17.50. At €16/hr on 40 hours, net take-home is approximately €375–€385/week.\n\nReviews on AgencyCheck indicate that payslip accuracy is good for standard hours. The smaller payroll team means premium shift errors are possible — workers should verify their first three payslips against their shift records, particularly if the role involves regular night or weekend work.`,
       },
       {
-        heading: "Housing Conditions",
-        body: `BaanMeesters provides SNF-certified housing for out-of-region placements. Deductions fall in the €90–€110/week range, slightly below the SNF maximum. Workers report that BaanMeesters housing is well-maintained — the lower occupancy model (two to three workers per room at several locations) is repeatedly cited as an advantage over the four-to-six person rooms at larger agencies.\n\nThe 'job masters' positioning extends to housing: BaanMeesters coordinators make a point of visiting housing locations periodically and are described as more personally invested in the worker's overall living situation than the coordinator at a high-volume national agency.\n\nWorkers who prefer to arrange their own accommodation are not penalised — BaanMeesters does not apply pressure to accept agency housing.`,
+        heading: "Accommodation Quality and Cost",
+        body: `BaanMeesters provides SNF-certified housing for out-of-region placements. Deductions fall in the €90–€110/week range, slightly below the SNF maximum. Employees note that BaanMeesters housing is well-maintained — the lower occupancy model (two to three workers per room at several locations) is repeatedly cited as an advantage over the four-to-six person rooms at larger agencies.\n\nThe 'job masters' positioning extends to housing: BaanMeesters coordinators make a point of visiting housing locations periodically and are described as more personally invested in the worker's overall living situation than the coordinator at a high-volume national agency.\n\nWorkers who prefer to arrange their own accommodation are not penalised — BaanMeesters does not apply pressure to accept agency housing.`,
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Getting to Work and Daily Conditions",
         body: `Transport to client sites is provided for inhouse placements. For workers at smaller client locations, transport may need to be arranged independently. BaanMeesters coordinators are clear about transport arrangements at the point of job offer.\n\nBaanMeesters places workers at a mix of food processing, general manufacturing, and warehouse operations. Coordinators perform client site visits to maintain awareness of conditions — workers who raise work environment concerns receive a faster response than typical of national agencies.\n\nBaanMeesters applies Phase A contract terms for the first 78 weeks. Workers approaching Phase B receive active coordinator support for the transition, including documentation assistance.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Strengths and Weaknesses",
         body: `BaanMeesters' core advantage is the genuinely personal service model. Smaller coordinator portfolios mean workers are known individually, queries receive direct responses, and housing conditions receive personal attention. Workers who have rotated through multiple agencies frequently describe the BaanMeesters experience as substantially less impersonal.\n\nThe housing occupancy model (two to three per room at select locations) is a material quality-of-life improvement. The housing deduction is also slightly below the SNF maximum, which adds €3–€23/week of disposable income compared with agencies charging the full rate.\n\nThe limitation is scale — fewer active placements than national agencies means potential waiting time when BaanMeesters client demand is low.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Bottom Line for 2026",
         body: `BaanMeesters is well-suited to workers who have had frustrating experiences with impersonal national agency coordinators and want a more human placement experience. The smaller rooms, personal coordinator attention, and active Phase B management are genuine advantages for workers planning a 6–18 month placement.\n\nRealistic take-home: €345/week at WML, rising to €375–€385 for semi-skilled roles. After housing at €90–€110/week, disposable income is approximately €235–€295. The lower housing deduction rate slightly improves outcomes compared with agencies charging the SNF maximum.`,
       },
     ],
@@ -1324,9 +1324,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited geographic coverage outside core regions",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Production and logistics salary in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "SNF housing: what the maximum deduction means" },
-      { href: "/tools/payslip-checker", label: "Verify your BaanMeesters payslip" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -1339,7 +1339,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "FlevoDirect is a regional staffing agency rooted in Flevoland — the Netherlands' youngest province, home to some of the country's most productive agricultural land and a growing logistics hub around Almere and Lelystad. The agency places workers in agricultural, food processing, logistics, and light production roles specific to the Flevoland economy. For workers who want regional depth rather than national breadth, FlevoDirect's knowledge of local employers, seasonal patterns, and transport infrastructure is a genuine advantage.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Earnings Breakdown for 2026",
         body: `FlevoDirect placements span two distinct pay tiers. Agricultural and food processing roles typically pay at WML: €14.71/hr in 2026. On a 40-hour week, gross is €588.40 and net take-home is approximately €340–€355/week. Seasonal agricultural work may involve variable hours — volumes fluctuate with harvests — so guaranteed weekly hours should be confirmed at intake.\n\nLogistics roles at Almere and Lelystad distribution facilities pay at WML with shift premiums under the ABU CAO. Workers on regular Sunday distribution shifts report weekly gross of €650–€680, netting approximately €430–€450.\n\nWorkers in cold storage and refrigerated distribution may fall under the Koelveem CAO, which provides conditions specific to cold environment work including temperature allowances and additional break entitlements. Workers should confirm which CAO applies at intake if working in refrigerated or frozen storage.`,
       },
       {
@@ -1347,15 +1347,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: `Flevoland is one of the Netherlands' primary vegetable and flower-growing regions. FlevoDirect places workers in tulip, potato, carrot, and onion operations — seasonal work that differs significantly from year-round logistics placements. Workers considering agricultural placements should understand the seasonal nature: high demand from March through October, significantly reduced availability in winter.\n\nAgricultural work involves outdoor exposure in variable weather, physical tasks, and often early morning starts. Pay is at WML but weekly hours are variable — a dry harvest week may provide 50+ hours; a cold wet week may provide 25. Workers who need a guaranteed minimum weekly income should ask FlevoDirect for a minimum hours commitment in writing.\n\nFood processing roles (onion sorting, potato grading, asparagus preparation) are indoor and year-round at large facilities in the Dronten and Emmeloord areas, providing more stable earnings than field work.`,
       },
       {
-        heading: "Housing Conditions",
-        body: `FlevoDirect provides housing for workers in its agricultural and logistics placements. SNF-certified accommodation with deductions in the €90–€110/week range applies. Housing is positioned near work sites — agricultural housing is near farm and processing operations; logistics housing is near the Almere and Lelystad distribution zones.\n\nWorkers report that FlevoDirect housing in Flevoland is functional and generally well-maintained. The province's relatively modern infrastructure (most of Flevoland was built after 1960) means housing stock is newer than in many other Dutch regions.\n\nWorkers on agricultural placements should clarify whether housing continues during off-season low-work periods. Some FlevoDirect agricultural housing is seasonal — workers may need to arrange alternative accommodation between November and February if agricultural work volume drops below a viable weekly total.`,
+        heading: "Living Conditions and Housing Cost",
+        body: `FlevoDirect provides housing for workers in its agricultural and logistics placements. SNF-certified accommodation with deductions in the €90–€110/week range applies. Housing is positioned near work sites — agricultural housing is near farm and processing operations; logistics housing is near the Almere and Lelystad distribution zones.\n\nReviews on AgencyCheck indicate that FlevoDirect housing in Flevoland is functional and generally well-maintained. The province's relatively modern infrastructure (most of Flevoland was built after 1960) means housing stock is newer than in many other Dutch regions.\n\nWorkers on agricultural placements should clarify whether housing continues during off-season low-work periods. Some FlevoDirect agricultural housing is seasonal — workers may need to arrange alternative accommodation between November and February if agricultural work volume drops below a viable weekly total.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Worth Considering or Worth Avoiding?",
         body: `FlevoDirect's primary advantage is regional expertise. No national agency knows the Flevoland employment market as deeply — the seasonal agricultural rhythm, the specific client relationships with major Flevoland food producers, and the local transport infrastructure are areas where FlevoDirect's knowledge adds real value.\n\nFor workers interested in the agricultural sector specifically, FlevoDirect provides access to placements that larger logistics-focused agencies do not cover. The different CAO conditions and seasonal patterns suit workers who prefer outdoor environments to warehouse logistics.\n\nThe limitation is geographic — FlevoDirect's value diminishes entirely for workers who want to work elsewhere in the Netherlands.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Who This Agency Works For",
         body: `FlevoDirect is the right agency for workers who want agricultural, food processing, or Flevoland logistics work and are committed to living and working in the province. The regional knowledge, agricultural sector access, and newer housing stock are genuine advantages that national agencies cannot match in this specific area.\n\nRealistic take-home: €340–€355/week at WML for standard roles. Cold storage or Sunday logistics workers add €60–€90/week. After housing at €90–€110/week, disposable income is approximately €230–€265. Seasonal agricultural workers should budget conservatively for the November–February low period.`,
       },
     ],
@@ -1371,9 +1371,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Seasonal housing may not cover the full year",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Agricultural and food processing salary in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "Seasonal work: budgeting for low-hours periods" },
-      { href: "/tools/real-income-calculator", label: "Calculate take-home for variable weekly hours" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -1386,23 +1386,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Perflexxion is a Dutch staffing agency built around the flexibility model — the name combines 'per' (by) and 'flexxion' (flexibility). The agency targets workers who want to manage their own availability and hours, offering a zero-to-full-hours contract structure that allows workers to accept or decline shifts based on their schedule. For workers who have dependants, other commitments, or who simply want to test the Dutch labour market before committing to a fixed placement, Perflexxion's flexibility pitch has genuine appeal.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Earnings Breakdown for 2026",
         body: `Perflexxion pays at WML for production and logistics roles: €14.71/hr in 2026. The variable-hours model means weekly earnings fluctuate with the shifts the worker accepts. A worker accepting 40 hours per week earns approximately €345 net (after loonheffing), with vakantiegeld (8%) accruing. A worker accepting only 25 hours earns approximately €215 net — a significant reduction that workers entering the flexible model need to factor into their budget planning.\n\nThe upside is overtime willingness. Workers available for last-minute shifts during the October–January peak logistics period can exceed 48 hours/week, pushing weekly gross above €700 with overtime premiums. Workers with high availability ratings in the app are the first offered additional shift hours.\n\nABU CAO shift premiums apply: 22% for nights, 50% for Sundays. Workers who build a pattern of accepting weekend and night shifts see their effective hourly rate rise significantly above WML even on standard contract terms.`,
       },
       {
-        heading: "Housing Conditions",
-        body: `Perflexxion provides SNF-certified housing for workers who require it. Deductions fall in the €95–€113.50 range. The flexibility model creates a housing complication: workers who reduce their hours during lower-demand periods still pay full housing costs. The housing contract typically runs independently of the work contract.\n\nWorkers who want to exit housing early should understand the notice period in the housing contract before signing. Perflexxion housing contracts typically require two to four weeks' written notice before the deduction ceases.\n\nHousing quality is standard for the sector: shared rooms, shared facilities, functional and SNF-compliant. Workers report adequate maintenance response times.`,
+        heading: "Living Conditions and Housing Cost",
+        body: `Perflexxion provides SNF-certified housing for workers who require it. Deductions fall in the €95–€113.50 range. The flexibility model creates a housing complication: workers who reduce their hours during lower-demand periods still pay full housing costs. The housing contract typically runs independently of the work contract.\n\nWorkers who want to exit housing early should understand the notice period in the housing contract before signing. Perflexxion housing contracts typically require two to four weeks' written notice before the deduction ceases.\n\nHousing quality is standard for the sector: shared rooms, shared facilities, functional and SNF-compliant. Reviews on AgencyCheck indicate adequate maintenance response times.`,
       },
       {
-        heading: "Transport and Work Conditions",
-        body: `Transport is provided for Perflexxion's logistics site placements. The flexibility model means shift times vary week to week — shuttle schedules accommodate this by running for all major shift windows. Workers report the shuttle service as adequate for standard shift windows but less reliable for unusual shift start times accepted at short notice.\n\nWork conditions in Perflexxion's logistics and production placements are standard for the sector. Workers with consistent high availability transition to fixed weekly hours arrangements at most Perflexxion clients within six to eight weeks, which stabilises the schedule without losing the formal flexibility right.`,
+        heading: "Daily Work Reality",
+        body: `Transport is provided for Perflexxion's logistics site placements. The flexibility model means shift times vary week to week — shuttle schedules accommodate this by running for all major shift windows. Registered workers note the shuttle service as adequate for standard shift windows but less reliable for unusual shift start times accepted at short notice.\n\nWork conditions in Perflexxion's logistics and production placements are standard for the sector. Workers with consistent high availability transition to fixed weekly hours arrangements at most Perflexxion clients within six to eight weeks, which stabilises the schedule without losing the formal flexibility right.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Worth Considering or Worth Avoiding?",
         body: `The flexibility model is Perflexxion's core selling point and primary limitation simultaneously. Workers who genuinely need schedule flexibility find the model valuable. Workers who end up accepting every available shift would be better served by a fixed-hours placement from the start, which would provide more schedule certainty and equivalent pay.\n\nThe housing deduction-when-low-hours situation is the main financial risk. Workers who accept a housing arrangement and then find work hours drop continue to pay housing costs from reduced earnings. This can create a negative net position in low-hours weeks.\n\nWorkers who thrive with Perflexxion are those with clear availability patterns who use the flexibility to supplement income alongside other commitments.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Who This Agency Works For",
         body: `Perflexxion works best as a supplementary or initial-testing placement rather than a primary full-time employment arrangement. Workers who want to test the Dutch market or manage their own availability find the model useful. Workers who need predictable full-time income from week one should use a fixed-placement agency.\n\nRealistic take-home: €215/week (25 hours) to €345/week (40 hours) at WML, rising with overtime and premium shifts. After housing at €95–€113.50, disposable income varies widely by hours worked.`,
       },
     ],
@@ -1417,9 +1417,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Fixed-placement agencies provide better income certainty for full-time workers",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Understanding variable hours and weekly earnings" },
-      { href: "/guides/hidden-costs-netherlands", label: "Housing contracts: notice periods and deduction rules" },
-      { href: "/tools/real-income-calculator", label: "Calculate net pay at different weekly hour totals" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
 
@@ -1432,7 +1432,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Techvisie — 'technical vision' — is a Dutch staffing agency focusing on technical professionals: IT specialists, process engineers, automation technicians, and industrial IT workers. It occupies a narrower niche than Maintec (which focuses on physical maintenance) by targeting the intersection of technical knowledge and digital systems — SCADA operators, PLC programmers, industrial network engineers. This is a high-value segment of the Dutch labour market where day rates and hourly rates are significantly above WML.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "From Gross to Net: The Numbers",
         body: `Techvisie placements are consistently above WML. The agency's core roles — PLC/SCADA programmer, automation engineer, process control technician, industrial IT specialist — command hourly rates of €22–€40/hr for experienced workers. Entry-level technical graduates in relevant fields start at €17–€20/hr.\n\nAt €25/hr on a 40-hour week, gross earnings are €1,000/week. After loonheffing (approximately 18–20% at this income level), net take-home is approximately €545–€570/week. At the top of the Techvisie scale (€35–€40/hr for senior automation specialists), weekly net take-home approaches €800–€900.\n\nThe applicable CAO depends on the client sector. Techvisie confirms and documents the applicable agreement at intake. Workers should verify that the stated CAO is correctly applied — the premium structures and holiday entitlements vary significantly between sector CAOs at these income levels.`,
       },
       {
@@ -1444,11 +1444,11 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: `Techvisie provides housing for project placements where the client site is distant from the worker's home. Where project housing is provided, it is in a different category from logistics agency accommodation — Techvisie's technical workers are typically housed in serviced apartments or single/double occupancy rooms rather than shared six-person rooms.\n\nWorkers on project placements often receive a daily or weekly travel allowance in addition to their hourly rate. At Dutch rates (€0.23/km standard), a project 100km from home generates approximately €230/week in tax-free travel allowance.\n\nDeductions for technical project housing may be €150–€200/week rather than the SNF-standard €113.50, though this is paid from a significantly higher income base.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "Before You Sign: What to Know",
         body: `Techvisie's advantage is access to the highest-paying technical segment of the Dutch flex market. Workers with automation, process control, or industrial IT skills earn two to three times the WML logistics worker's take-home. The project variety also provides faster skill development than a fixed placement at a single client.\n\nThe limitation is qualification requirement. Workers without demonstrable technical qualifications in the relevant fields will not access Techvisie placements. The minimum entry requirement is an MBO level 4 or HBO qualification in a technical or engineering discipline with relevant practical experience.\n\nThe project model also means periodic periods between placements. Workers should maintain a financial buffer for these transition periods.`,
       },
       {
-        heading: "Final Verdict for 2026",
+        heading: "Should You Register Here?",
         body: `Techvisie is the highest-earning segment of the Dutch agency market for workers with the right qualifications. The combination of above-WML hourly rates, travel allowances, shift premiums, and project variety makes it financially and professionally rewarding.\n\nRealistic take-home: €545–€900/week depending on hourly rate and project type. After project housing (where provided), disposable income is €350–€700/week — the highest range in this entire review series.`,
       },
     ],
@@ -1464,9 +1464,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Project CAO verification required at each new placement",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Technical and engineering salary in the Netherlands" },
-      { href: "/tools/real-income-calculator", label: "Calculate net take-home at any hourly rate" },
-      { href: "/guides/hidden-costs-netherlands", label: "Project travel allowances: how they work" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
     ],
   },
 
@@ -1483,20 +1483,20 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: `Agriculture and horticulture work through Artiflex involves tasks specific to the Dutch growing season and greenhouse sector. Greenhouse work — tomato and pepper cultivation, rose and lily production — is year-round due to the heated glasshouse environment. Workers perform plant training, harvesting, leaf removal, and quality sorting in warm (20–28°C) environments with high humidity.\n\nOpen field work is seasonal: potato planting and harvesting, onion cultivation, asparagus cutting (April–June), and sugar beet harvesting (September–November). Hours are weather-dependent — good harvest weeks may produce 50+ hours; rain or frost weeks may provide under 20. Workers considering open field placements need to plan their finances around this variability.\n\nFood processing roles — onion peeling, potato sorting, flower sorting for export — are typically indoor, year-round, and provide more stable hours. These roles involve cold, damp environments and strong smells.`,
       },
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Structure and Real Income",
         body: `Artiflex pays at WML for agricultural and food processing roles: €14.71/hr in 2026. The applicable CAO depends on the sector. Greenhouse workers fall under the Glastuinbouw CAO; open field workers under the Open Teelt CAO; food processing workers may fall under the ABU CAO or a sector-specific agreement.\n\nOn a reliable 40-hour week in greenhouse or processing work, net take-home is approximately €340–€355/week. Workers in the Glastuinbouw CAO receive an end-of-season bonus in some arrangements — typically 2–3% of annual earnings for workers completing a full growing season contract, adding approximately €350–€500 to annual earnings.\n\nWorkers in open field roles with variable hours should discuss a guaranteed minimum hours clause at intake. A minimum of 25 hours per week in writing protects against weeks when weather dramatically reduces work availability.`,
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Standards and SNF Compliance",
         body: `Artiflex provides SNF-certified housing for most of its agricultural placements. Deductions fall in the €90–€110/week range. Agricultural housing tends to be in rural locations — converted farmhouses, purpose-built worker accommodation on or near farm properties — rather than in urban or industrial estates.\n\nWorkers in rural agricultural housing report a different quality-of-life profile from urban logistics workers: quieter, more space, but further from public transport, shops, and social infrastructure. Workers who want urban amenity access should specifically request housing in nearby market towns (Westland for greenhouse workers, Emmeloord for Flevoland field work).\n\nWorkers in greenhouse operations near Westland, Aalsmeer, or the Bleiswijk complex report better public transport access and more housing options than workers in remote eastern or northern agricultural zones.`,
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Workers Say: Good and Bad",
         body: `Artiflex's primary advantage is specialist agricultural sector knowledge. No generalist logistics agency can match Artiflex's understanding of greenhouse CAO conditions, growing season rhythms, and the specific physical demands of horticultural work.\n\nThe end-of-season completion bonus available through the Glastuinbouw CAO is a genuine financial incentive that most other sectors and agencies do not offer. Workers completing a full growing season with reliable attendance access this bonus.\n\nThe limitation for some workers is the work environment itself. Greenhouse work is warm, humid, and involves sustained standing. Open field work involves outdoor exposure in variable Dutch weather. Workers should be honest about their physical comfort zone when registering.`,
       },
       {
-        heading: "Final Verdict for 2026",
-        body: `Artiflex is the specialist of choice for workers who want to work in Dutch agriculture, horticulture, or food processing and who are comfortable with the physical and seasonal realities of those sectors.\n\nRealistic take-home: €340–€355/week on reliable 40-hour weeks. Open field seasonal workers should budget for weeks of €200–€250 during weather-disrupted periods. End-of-season bonus adds approximately €350–€500 for greenhouse season completers. After housing at €90–€110/week, disposable income is approximately €230–€265 on reliable weeks.`,
+        heading: "Best Suited For",
+        body: `Artiflex is the specialist of choice for workers who want to work in Dutch agriculture, horticulture, or food processing and who are comfortable with the physical and seasonal realities of those sectors.\n\nWorkers typically end up with: €340–€355/week on reliable 40-hour weeks. Open field seasonal workers should budget for weeks of €200–€250 during weather-disrupted periods. End-of-season bonus adds approximately €350–€500 for greenhouse season completers. After housing at €90–€110/week, disposable income is approximately €230–€265 on reliable weeks.`,
       },
     ],
     pros: [
@@ -1511,9 +1511,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Greenhouse environment not suitable for all workers (heat, humidity)",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Agricultural and horticulture salary in the Netherlands" },
-      { href: "/guides/hidden-costs-netherlands", label: "Seasonal work budgeting: handling variable hours" },
-      { href: "/tools/real-income-calculator", label: "Calculate weekly take-home for part-time hours" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
     ],
   },
 
@@ -1529,23 +1529,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Start People is one of the Netherlands' largest staffing agencies, part of Recruit Holdings alongside Unique. It spans a genuinely wide spectrum — production line shifts at food factories through to office temping at corporate HQ. That breadth makes Start People harder to summarise than a logistics-only agency: your experience depends heavily on which branch, which client, and which sector places you.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Structure and Real Income",
         body: "Start People operates under the ABU CAO. Phase A workers are paid at WML (€14.71/hr in 2026) unless the client's own CAO is more generous. On a 40-hour week that's gross monthly earnings of approximately €2,549. After loonheffing (~10.7%), net is around €2,277. Vakantiegeld (8%) accrues separately.\n\nIf you're in agency accommodation, deductions of €85–€113.50/week reduce effective take-home to approximately €1,550–€1,680/month. Night premiums (+22%) and Sunday rates (+50%) apply under ABU CAO and materially improve weekly pay for workers on those shifts. It's worth asking explicitly which CAO applies to your specific placement — Start People is legally required to disclose this, but not all branches volunteer it proactively.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Standards and SNF Compliance",
         body: "Not all Start People placements include accommodation. For admin, retail, or hospitality roles, housing is not arranged — you source your own. For production and logistics placements attracting EU migrant workers, Start People partners with SNF-certified housing providers.\n\nQuality varies by partner: Rotterdam and Den Haag placements typically report shared rooms (4–6 per room) with basic kitchen and bathroom. The housing deduction is itemised on payslips. Before accepting a relocation, ask specifically: which housing partner, how many occupants per room, and what the exact weekly deduction will be. These are required disclosures — vagueness here is a practical red flag.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Transport to Site and Physical Demands",
         body: "For out-of-city placements at distribution centres and industrial parks, most branches arrange shared transport from accommodation to worksite. Many Dutch logistics parks (Schiphol zone, Rotterdam Waalhaven, Breda industrial) are not accessible by public transport — confirm site location before accepting.\n\nContracts in Phase A are zero-hours or min-max. Shift patterns range from three-shift rotation (06:00/14:00/22:00) in production to standard office hours in admin. Confirm your specific shift pattern before committing to relocation — the difference in day-to-day life is significant.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Workers Say: Good and Bad",
         body: "Start People's main strength is breadth: fast placements across sectors nationwide with ABU CAO protections and transparent Phase A/B progression. Some placements convert to permanent client contracts after Phase B, and admin roles are available for workers with Dutch or English skills.\n\nThe weaknesses are consistency: housing quality varies by partner (not directly managed by Start People), zero-hours contracts leave income vulnerable in slow periods, and not all branches communicate deduction details clearly upfront. Relocation to a specific area can leave workers exposed if client demand drops unexpectedly.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Best Suited For",
         body: "Always ask which specific client, which housing partner, and which CAO applies before committing to a Start People relocation. Workers comparing Start People with Manpower should note that Start People has stronger presence in semi-professional and admin temp work, while Manpower skews more toward industrial manufacturing. For production roles with housing included, compare Start People's offered deduction directly with agencies that specialise in accommodation packages.\n\nHave you worked with Start People? Leave a review on this page — your experience helps other workers make an informed decision.",
       },
     ],
@@ -1564,8 +1564,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Relocation risk if client demand drops in the region you've moved to",
     ],
     internalLinks: [
-      { href: "/agencies", label: "See all work agencies in the Netherlands" },
-      { href: "/tools/real-income-calculator", label: "Calculate your real take-home pay" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
     ],
   },
 
@@ -1578,23 +1578,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "ManpowerGroup is one of the world's three largest staffing firms, with major Dutch operations. Workers encounter two distinct Manpower experiences: Experis (IT, engineering, finance) and Manpower core (production, logistics, manufacturing). This review focuses on temporary production and logistics placements — the roles that represent the majority of migrant worker experiences with Manpower in the Netherlands.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Hourly Rate and Net Income",
         body: "Manpower operates under the ABU CAO for general temporary placements. WML in 2026 is €14.71/hr. On a 40-hour week that's gross monthly earnings of approximately €2,549 and net after loonheffing (~10.7%) of around €2,277 before any housing deduction.\n\nProgression beyond WML within Phase A is realistic at Manpower. Placements at client sites with sector CAOs — metalworking, food processing, chemical, semiconductor logistics — push hourly rates to €16–€20 depending on role and shift. Workers with a forklift licence typically start at €15.50–€16.50/hr. Night shift premiums (+22% under ABU CAO; many Manpower clients pay +30–35% under their own CAO) significantly increase weekly pay for workers who accept antisocial hours.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Where Workers Sleep",
         body: "Manpower provides accommodation for some placements — typically where temporary housing for international workers is scarce or for large-scale batch recruitment. Accommodation is SNF-certified and deductions are itemised on payslips at up to €113.50/week.\n\nFor major city placements (Amsterdam, Rotterdam, Eindhoven), Manpower generally does not arrange housing. For EU workers relocating specifically for a Manpower placement, this gap is real: the housing question is not always addressed at the offer stage. Ask explicitly before accepting: 'Will housing be arranged, and what is the weekly deduction?' Silence or vagueness is a practical warning sign.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Commute, Tools, and On-Site Reality",
         body: "For large industrial sites outside city centres, Manpower or the client arranges transport. Eindhoven-area technical placements often have shuttle buses from central Eindhoven. Rotterdam-area warehouse placements vary — some sites run employer transport, others expect independent commuting.\n\nWork contracts at production sites are typically 40 hours per week. Shift patterns at manufacturing clients are generally fixed — you know your schedule in advance. The largest worker complaints at Manpower production placements centre on communication gaps between agency, client site HR, and worker when problems arise, rather than on pay accuracy.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Honest Assessment",
         body: "Major client relationships mean above-WML sector CAO rates and generally better working conditions than small agencies can arrange. Real Phase B progression happens; permanent conversion exists at some long-running placements. Multinational payroll infrastructure means payslips are generally accurate. The Experis arm provides a pathway for technically qualified workers.\n\nThe downsides: experience quality depends entirely on the client site; housing is not universally arranged; large-scale operations mean impersonal service with slower complaint resolution; and waiting periods between assignments can be 1–3 weeks without pay in Phase A.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Who Should Register Here",
         body: "Manpower is a credible choice for workers seeking production or logistics work at well-known Dutch manufacturers — the major-client relationships mean better baseline conditions than smaller agencies can offer. The critical variable is housing: if Manpower is not providing it, you need to budget carefully before relocating. Confirm in writing: exact weekly housing deduction, number of room-mates, and which CAO applies to your specific placement.\n\nWorkers comparing Manpower with Randstad and Tempo-Team should note that Manpower's strength is in longer-term placements at industrial manufacturing clients; for short-term high-volume logistics, Randstad or Tempo-Team may place faster. Share your Manpower experience below — salary accuracy, housing quality, communication reality.",
       },
     ],
@@ -1613,8 +1613,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Waiting periods between assignments: 1–3 weeks without pay in Phase A",
     ],
     internalLinks: [
-      { href: "/agencies", label: "Compare agency conditions across the Netherlands" },
-      { href: "/tools/payslip-checker", label: "Check your payslip deductions" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
     ],
   },
 
@@ -1631,7 +1631,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Unique placements pay above WML in most cases. Administrative temps earn €15–€22/hr depending on role and language requirements. Management support and bilingual secretarial roles reach €24–€28/hr for experienced workers. At €18/hr on a standard 36-hour Dutch office week, gross monthly income is approximately €2,808. After loonheffing at this bracket (~24–27% combined), net monthly is around €2,050–€2,150 plus separately accrued vakantiegeld.\n\nOne important nuance: Unique contracts are typically 36 or 38 hours per week, not 40. Calculate your income on actual contracted hours — at 36 hours rather than 40, €18/hr produces approximately €250/month less gross. Dutch B2 proficiency is strongly preferred; workers with English-only are routed to international companies and English-language call centres, which exist but are fewer and more competitive.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Room Quality and Housing Deductions",
         body: "Unique does not offer or arrange housing. Workers must source private rental accommodation independently. In Amsterdam that means €900–€1,500/month for a shared flat or studio; Utrecht and Den Haag are somewhat lower (€800–€1,200/month shared).\n\nThe absence of a housing deduction means Unique workers keep their full net pay. At €18/hr net (~€2,100/month) minus private rent of €900/month, effective disposable income is approximately €1,200/month. This is structurally different from production agencies where housing is deducted at €85–€113/week — the earnings ceiling is higher at Unique but so is the housing cost floor.",
       },
       {
@@ -1639,11 +1639,11 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Unique placements are in offices. Working conditions are standard Dutch office environments — hybrid or in-person, Dutch or English working language, laptop and workspace provided. Hours are predictable: typically 09:00–17:00 or equivalent flexible schedule. Sick leave and holiday entitlement apply under the ABU CAO; many Unique clients exceed the ABU minimum.\n\nThe most consistent complaints from Unique workers: contract extension uncertainty (endemic to all temp work), role-task mismatches where an advertised 'management assistant' role turns out to be largely basic admin, and difficulty converting placements into permanent contracts — clients often prefer rolling Unique temps over direct hire. These are structural features of white-collar temp work, not unique to this agency.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "The Full Picture",
         body: "The case for Unique is clear: above-WML hourly rates, professional working environments, no housing deduction, and institutional stability from 60 years of operation. For workers already based in the Netherlands with their own housing, it provides well-paid flexible work with standard Dutch office conditions.\n\nThe case against: Dutch B2 is effectively required for most placements; no housing support; contract uncertainty is the norm; role-task mismatches are common; and permanent conversion is rare. Workers who need housing arranged or who are at WML level should look at other agencies.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Recommendation for 2026",
         body: "Unique is the right agency for workers with Dutch language skills who want above-WML office work on a flexible basis. It's not the right starting point if you need housing arranged, don't have sufficient Dutch, or are looking for production and logistics roles. Register with multiple white-collar agencies simultaneously — Randstad Professionals and Start People are natural parallel applications alongside Unique.\n\nHave you worked through Unique Uitzendbureau? Leave a review — particularly on whether the placed role matched what was advertised and how your take-home compared to expectations.",
       },
     ],
@@ -1662,8 +1662,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Permanent conversion is rare — clients value the temp flexibility",
     ],
     internalLinks: [
-      { href: "/agencies", label: "Compare all staffing agencies in the Netherlands" },
-      { href: "/tools/salary-guide", label: "See salary benchmarks by sector" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -1676,23 +1676,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Timing's Amsterdam West branch covers the Sloterdijk and Westpoort industrial areas — one of Amsterdam's most active employer zones for warehousing, food production, light manufacturing, and cold storage. Unlike Timing's Inhouse RAI operation (which serves the events sector), Amsterdam West placements are year-round production and logistics roles serving the western industrial ring from Sloterdijk station to the Westpoort port area.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "From Gross to Net: The Numbers",
         body: "Timing operates under the ABU CAO. At WML (€14.71/hr in 2026), a 40-hour week produces gross monthly earnings of approximately €2,549. After loonheffing (~10.7%), net monthly take-home is around €2,277. Night shifts earn +22% and Sunday shifts earn +50% under ABU CAO — both are common in the food production and cold-storage client mix at Westpoort.\n\nWorkers consistently on night or weekend shifts can reach effective hourly averages of €16–€18/hr. A worker doing 40% of hours on night shifts adds approximately €140–€180/month gross compared to a pure day-shift equivalent. Phase B workers (after 78 weeks) earn at or above the client CAO rate — the step change can be €0.50–€1.50/hr for many Amsterdam food and logistics clients.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "SNF Housing: What Workers Get",
         body: "Timing Amsterdam West does not provide housing. Workers are expected to arrange their own accommodation in or around Amsterdam. With Amsterdam studio flats starting from €1,100+/month and shared rooms from €700–€900/month, this is a significant cost constraint for workers at WML. Net take-home of €2,277 minus €800+/month housing leaves limited disposable income.\n\nFor this reason, Amsterdam West placements tend to attract workers already based in the greater Amsterdam area rather than newly arriving international workers. If you're relocating from abroad, a logistics agency with included SNF accommodation (like Workstead or AB Midden) may offer better initial financial conditions.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Working Conditions on Site",
         body: "The Amsterdam West branch serves one of the most transport-accessible industrial areas in the Netherlands. Sloterdijk station connects to Amsterdam Centraal in 6 minutes and Schiphol in 12 minutes, with metro, train, and bus services. Many Sloterdijk-area production facilities are walkable or cyclable from the station — a genuine practical advantage over agencies placing workers at remote logistics parks.\n\nWestpoort itself is less accessible: cycling from Sloterdijk to the furthest sites takes 20–30 minutes. Early-morning starts (06:00) often begin before local bus frequencies are reliable. Confirm your specific client site location and whether employer transport is provided before accepting a Westpoort placement.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Before You Sign: What to Know",
         body: "The clear advantage is accessibility: Sloterdijk hub makes Amsterdam West production work reachable without a car for workers already in the city. Year-round demand, night/Sunday premiums, and ABU protections with Phase A/B progression round out the positives. Part of the national Timing network means access to other branches if Amsterdam work volumes drop.\n\nThe negatives are Amsterdam-specific: no housing support, expensive rental market absorbing a large share of take-home at WML, and early Westpoort starts conflicting with public transport timing. Food production and cold storage are also physically demanding environments — not a small consideration across a full shift.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Should You Register Here?",
         body: "Timing Amsterdam West makes sense if you're already based in Amsterdam and want consistent production or logistics work without a long commute. The Sloterdijk transport hub is a genuine advantage. It is not the right entry point if you're relocating from abroad and need housing arranged.\n\nWorkers interested in events-sector temp work (RAI, AFAS Live, Ziggo Dome) should contact the Timing Inhouse RAI branch separately — Amsterdam West covers production and warehouse, not events. Use the pay calculator to verify your shift premiums if something on your payslip looks off.",
       },
     ],
@@ -1711,8 +1711,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Amsterdam cost of living limits effective savings potential at WML",
     ],
     internalLinks: [
-      { href: "/agencies?city=amsterdam", label: "See all Amsterdam area agencies" },
-      { href: "/tools/real-income-calculator", label: "Verify your night-shift premium calculation" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -1725,23 +1725,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "HOBIJ is a South Holland-based temp agency focused on logistics and warehousing placements in the greater Den Haag and Zoetermeer region. The agency places workers primarily at distribution centres and production facilities in Haaglanden, provides accommodation for incoming international workers, and operates largely with EU migrant labour. Not a nationally known name, but workers searching specifically in the Den Haag area encounter HOBIJ regularly on Dutch job platforms.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Structure and Real Income",
         body: "HOBIJ operates under the ABU CAO. At WML (€14.71/hr), a 40-hour week produces gross weekly earnings of approximately €589. After loonheffing (~10.7%), net weekly is around €526. With housing deducted at the SNF maximum (€113.50/week), net-of-housing weekly take-home drops to approximately €412 — roughly €1,650/month.\n\nForklift-certified workers (heftruck/reachtruck VCA) earn €15.50–€16/hr at HOBIJ logistics placements. At €16/hr with loonheffing and housing (~€100/week), effective weekly disposable income is approximately €466 — around €1,864/month. ABU CAO shift premiums for night and weekend work apply. Den Haag's logistics zone includes major retailer distribution operations with regular weekend shifts and associated premiums.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Standards and SNF Compliance",
         body: "HOBIJ provides accommodation for workers relocating to the Den Haag area. Based on agency information and worker reports, accommodation is in shared properties — typically 2–4 workers per room — in residential areas of Den Haag Zuid or nearby municipalities including Rijswijk and Leidschendam. The deduction is itemised on payslips within the SNF maximum of €113.50/week.\n\nWorker reviews on accommodation are mixed: SNF-compliant (regular inspections ensure legal baseline), but shared bathrooms and kitchens are standard, and private space is minimal. Workers who have experienced individual-room agencies (like Select Uitzendbureau in Haarlem) find the shared arrangement a notable step down. The upside: Den Haag residential-area properties are generally quieter and more socially integrated than industrial-park housing near larger national agencies.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Transport to Site and Physical Demands",
         body: "Den Haag is well-served by tram, bus, and RandstadRail. Zoetermeer and Rijswijk distribution facilities are generally accessible by public transport during regular hours. For early-start shifts before 06:00 or industrial park locations off direct tram routes, HOBIJ or the client typically arranges transport.\n\nDen Haag's cost of living outside housing is notably lower than Amsterdam — groceries, daily transport costs, and social expenses are more affordable. A HOBIJ worker at €1,650/month net-of-housing will find remaining disposable income goes further in Den Haag than the equivalent figure would in Amsterdam.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Workers Say: Good and Bad",
         body: "HOBIJ provides housing for incoming workers — a real practical necessity in the Den Haag area. The lower cost of living across the city reduces pressure on take-home pay, and Den Haag's tram network provides reasonable public transport access to the logistics zone. Forklift certification is available through the agency and directly increases the hourly rate.\n\nThe downsides are the shared-room accommodation limiting privacy, a smaller placement pool compared to national agencies, geographic restriction to South Holland, and limited third-party review availability for independent verification of current conditions.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Best Suited For",
         body: "HOBIJ fills a clear niche: workers who want logistics or warehouse work in the Den Haag area with housing included. For workers targeting South Holland specifically, it's worth contacting alongside larger agencies. The cost-of-living advantage of Den Haag over Amsterdam is real — quantify it in your budget before deciding between regional placements.\n\nIf shared accommodation is a firm dealbreaker, HOBIJ may not fit. If you can manage shared rooms and want the Den Haag region with legal housing protections in place, it's a viable entry point. Leave a review if you've worked with HOBIJ — housing conditions and payslip accuracy are the most useful data points for other workers.",
       },
     ],
@@ -1760,8 +1760,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Lower brand recognition — less useful as a CV reference than national agencies",
     ],
     internalLinks: [
-      { href: "/agencies?accommodation=confirmed", label: "Compare housing-included agencies in the Netherlands" },
-      { href: "/agencies?city=den-haag", label: "See agency reviews for the Den Haag region" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
     ],
   },
 
@@ -1774,23 +1774,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Select Uitzendbureau is a Haarlem-based agency that stands out in the Dutch flex-worker market for one specific reason: it offers modern, purpose-built accommodation with individual rooms rather than the shared dormitory arrangements common to most housing-providing agencies. For workers who place high value on personal space, this single differentiator makes Select worth examining carefully against larger agencies offering cheaper but denser housing.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Earnings Breakdown for 2026",
         body: "Select's logistics and production placements operate under the ABU CAO. At WML (€14.71/hr in 2026), a 40-hour week produces gross monthly earnings of approximately €2,549. Net after loonheffing (~10.7%) is around €2,277 before housing.\n\nSelect charges the SNF maximum for housing: €113.50/week (approximately €454/month). Net-of-housing effective take-home: approximately €1,823/month. Compared with a shared-room agency deducting the same €113.50 but providing 4–6 occupants per room, Select gives you genuinely more for the same deduction — but you are paying the full maximum for that privacy. Overtime at peak production periods earns 125% for the first 8 hours above the weekly standard, 150% further — potentially adding €100–€150/week during busy periods.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Living Conditions and Housing Cost",
         body: "Select operates modern housing blocks where workers have individual rooms with their own lock. Shared facilities (kitchen, bathroom) are arranged per cluster of 4–6 residents — a meaningful improvement over the 10–15 sharing common in older converted houses used by other agencies. Workers consistently identify this as a real quality-of-life differentiator.\n\nThe Haarlem location adds value beyond the housing itself: Haarlem train station provides a 15-minute direct service to Amsterdam Centraal and a 25-minute connection to Schiphol. Workers who want agency housing with access to Amsterdam's social infrastructure will find Haarlem a substantially better base than remote logistics-park accommodation.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Daily Work Reality",
         body: "Select placements are primarily in the Haarlem and South Kennemerland industrial area: food production, packaging operations, and distribution logistics. Transport from accommodation to work is typically arranged. Shift patterns vary by client: some are fixed two-shift (06:00–14:00 / 14:00–22:00), others are day-only.\n\nSelect's smaller size means placements are typically with a single client for an extended period — stability for workers who prefer familiarity, but a vulnerability if that client's demand drops. The food production sector in South Kennemerland has consistent year-round demand, reducing this risk compared to more seasonal clients.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Worth Considering or Worth Avoiding?",
         body: "Select's individual-room housing at the same SNF maximum deduction as shared-room agencies is the clearest differentiator in the Dutch flex-worker market. Modern purpose-built facilities, Haarlem's Amsterdam rail connection, and SNF/ABU certification round out the positives. Overtime opportunities at peak production periods provide meaningful income boosts above the WML base.\n\nThe trade-offs: full SNF maximum deduction regardless of housing quality tier, limited to Haarlem and the immediate region, smaller placement pool than national agencies, and limited independent third-party reviews to verify current conditions.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Who This Agency Works For",
         body: "Select Uitzendbureau makes a compelling case for workers who prioritise housing quality. Individual rooms at the full SNF deduction still represent more value per euro than shared-room agencies at the same rate. The Haarlem location — with direct Amsterdam and Schiphol rail access — adds to the practical appeal.\n\nThe trade-off is scale: Select's smaller placement pool means less flexibility than Randstad or Tempo-Team. For workers who want a stable logistics or production placement with above-average housing and can accept a single-client arrangement in the Haarlem area, it's a serious candidate. Leave a review if you've worked with Select — housing quality and payslip accuracy are particularly useful for other workers.",
       },
     ],
@@ -1809,8 +1809,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited third-party reviews for independent verification of current conditions",
     ],
     internalLinks: [
-      { href: "/agencies?accommodation=confirmed", label: "Find agencies with included accommodation" },
-      { href: "/tools/real-income-calculator", label: "Compare salary and deductions across agencies" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
     ],
   },
 
@@ -1823,7 +1823,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "SkyHire is a Schiphol-specialist staffing agency founded in 2017, operating exclusively within the Amsterdam Airport Schiphol ecosystem. Placements cover baggage handling, cargo operations, aircraft ground services, and security hosting — all requiring a Schiphol Airside Pass (Schipholpas) and a five-year background check. SkyHire is one of the most process-intensive agencies to start with, but places workers into roles with structured shift systems and consistently above-WML pay.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Take-Home Pay in Practice",
         body: "Airport roles at Schiphol pay above WML due to physical demands and antisocial hours. Baggage handlers start at €15.50–€17/hr depending on the ground handler (Swissport, Menzies, dnata, Viggo, WFS). Cargo roles — cold storage, pharmaceutical cargo, fresh-produce handling — start at €16–€18/hr. Security hosting starts around €15–€16/hr.\n\nAt €16/hr on a 40-hour week, gross monthly earnings are approximately €2,773. Net after loonheffing (~12%) is around €2,440. Night shift premiums (+22% under ABU CAO minimum; many Schiphol clients pay +30–35% under ground handling CAOs) substantially increase take-home for workers accepting antisocial hours. A worker doing 60% nights at a client paying +30% sees an effective average rate of approximately €17.60/hr — around €3,050/month gross.",
       },
       {
@@ -1831,15 +1831,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Before any airside work at Schiphol, a Schipholpas (airside pass) is mandatory. Requirements: valid EU or Schengen identity document, five-year verifiable background check including employment and residence history, and a clean criminal record. Processing takes 3–6 weeks. During this time, SkyHire may place you in landside roles (cargo scanning, sorting) — but this is not guaranteed. Some workers report waiting at home without paid work during pass processing.\n\nOnce issued, the Schipholpas is linked to continuous employment at Schiphol. Employment gaps beyond a defined period can expire the pass, requiring the process to repeat. Loss of a Schipholpas for conduct reasons bars you from all Schiphol airside work across all ground handlers — not just from SkyHire. This is the most significant risk factor specific to airport employment.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Worker Housing in Practice",
         body: "SkyHire does not provide housing. Workers must source accommodation near Schiphol independently. Key options within commuting range: Hoofddorp (10–15 minutes by bus or bike), Nieuw-Vennep, Haarlem (25 minutes by train), Amstelveen, or Amsterdam. Shared rooms in Hoofddorp start from around €650–€900/month; Amsterdam is significantly higher.\n\nFor workers relocating internationally, the absence of housing is a real barrier. Some Schiphol workers connect via expat and migrant Facebook groups specifically for airport employees, which can source room shares faster than standard rental platforms. Budget a minimum of €700–€900/month for housing costs in the Schiphol vicinity before accepting a SkyHire placement.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Good Reasons to Register — and Reasons to Think Twice",
         body: "Above-WML rates for all primary roles, structured shift systems (you receive your schedule in advance), genuine skill development in aviation procedures, and SkyHire's sector specialisation providing better-informed HR support — these are the real advantages. Schiphol employment demand is relatively stable outside major travel crises.\n\nThe negatives are substantial: 3–6 weeks of pass processing before airside work begins, no housing provided in an expensive area, antisocial hours unavoidable, and Schipholpas revocation for conduct issues bars you from the entire airport. The processing gap is the biggest practical risk — workers without 4–6 weeks of living costs in reserve before their first shift are in a genuinely difficult position.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Worth It For These Workers",
         body: "SkyHire is worth considering if you're specifically targeting airport work. The sector specialisation, above-WML rates, and structured scheduling are genuine advantages over general temp agencies for this type of work. But the barriers are real and need pre-planning: pass processing gap, no housing support, expensive Schiphol-area rent.\n\nThe pass processing gap is a non-negotiable financial risk: have 4–6 weeks of living costs in reserve before you commit to relocating. Workers who underestimate this specific issue sometimes find themselves in financial difficulty before earning their first airside shift. Share your SkyHire experience below — particularly on pass processing timelines and actual payslip accuracy.",
       },
     ],
@@ -1858,8 +1858,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Pass processing gap: potential weeks without income after registration",
     ],
     internalLinks: [
-      { href: "/agencies?city=schiphol", label: "See all Schiphol-area agencies" },
-      { href: "/tools/payslip-checker", label: "Understand your aviation-sector CAO rights" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
     ],
   },
 
@@ -1872,23 +1872,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Ruigrok Personeel is an Aalsmeer-based agency specialising in temporary staffing for the Dutch flower and horticulture industry. Aalsmeer is home to Royal FloraHolland — the world's largest flower auction by transaction volume — and a dense network of growers, packagers, and logistics operators supplying cut flowers and plants across Europe. Work here is fast-paced, physically specific, and sharply seasonal, with peak demand in February–April (Valentine's, Mother's Day) and October–December (Christmas period).",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Real Earnings vs Contract Rate",
         body: "Ruigrok placements in flower processing, grading, and packaging start at WML (€14.71/hr, 2026). Logistics roles at FloraHolland or adjacent warehouses — forklift, pallet operations, dispatch — often earn €15–€16/hr depending on certification. Greenhouse growing roles (planting, pruning, harvesting at Aalsmeer-adjacent growers) start at WML under the Glastuinbouw CAO, which includes some sector-specific allowances above the ABU baseline.\n\nOn a 40-hour week at WML, gross monthly is €2,549 and net after loonheffing is approximately €2,277. Ruigrok's hotel-style accommodation is charged at or near the SNF maximum (~€113/week), giving an effective net-of-housing take-home of approximately €1,823/month. Peak season substantially changes the picture: workers in February's Valentine's surge regularly clock 48–55 hours at FloraHolland. Overtime earns 125% for the first 8 hours above 40 weekly, 150% beyond — adding approximately €120 extra gross per peak week at WML.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "What the Housing Package Looks Like",
         body: "Ruigrok provides hotel-style accommodation — a positioning in the market that implies individual rooms and a standard above the sector's typical converted-house dormitories. Worker reports support this: Ruigrok housing is consistently mentioned as a quality-of-life differentiator, with individual sleeping arrangements, reasonable cleanliness, and no severe overcrowding.\n\nAalsmeer is well-positioned geographically: good bus connections to Schiphol airport (approximately 20 minutes) and Amsterdam (35 minutes by bus and train). For workers who want agency accommodation near both a major airport and Amsterdam while avoiding Amsterdam's cost of living, Aalsmeer is a viable base.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Getting There and Working There",
         body: "Royal FloraHolland's Aalsmeer complex is one of the largest buildings in the world by footprint. Ruigrok arranges transport to the complex and to nearby grower facilities. Most client sites are within the Aalsmeer and Amstelveen area. Early-morning auction shifts (starting 04:00–05:00 during peak periods) precede public transport — agency transport is essential for these shifts.\n\nFlower processing work involves standing, fast repetitive movements, and cold environments — cut-flower storage areas are maintained at 3–7°C. Product quality is sensitive, so pace and care are both required simultaneously. Logistics roles at FloraHolland-adjacent facilities are closer to standard warehouse work: forklift, pallet jack, loading and unloading at ambient or refrigerated temperatures.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Benefits and Drawbacks",
         body: "Hotel-style individual room accommodation above the Dutch sector average, peak-season overtime significantly boosting earnings, a unique sector in a globally significant market, and good Schiphol and Amsterdam accessibility from Aalsmeer — these make Ruigrok a genuinely differentiated option for workers open to horticulture and flower work.\n\nThe trade-offs: WML base rate outside peak periods, sharply seasonal demand (volume drops in summer), cold working environments in flower processing, very early starts during peak auction periods, and limited social infrastructure in Aalsmeer itself.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "The Honest Summary",
         body: "Ruigrok Personeel offers something distinct in the Dutch temp-agency market. The accommodation quality combined with the FloraHolland sector experience and Aalsmeer's geographic positioning make it worth a direct application if you're interested in horticulture and flower-sector work. Time your start for January or October to enter directly into peak demand — starting in June or July means a slower entry with fewer guaranteed hours.\n\nCompare Ruigrok against Artiflex and Westflex if the horticulture sector appeals — each agency covers a different crop type and geographic sub-region of Dutch greenhouse and flower production. Have you worked at FloraHolland or at a Ruigrok grower client? Reviews on peak-season hours and payslip accuracy are particularly useful.",
       },
     ],
@@ -1907,8 +1907,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Aalsmeer's social and commercial infrastructure is limited (small municipality)",
     ],
     internalLinks: [
-      { href: "/agencies?sector=horticulture", label: "See all horticulture and agricultural agencies" },
-      { href: "/tools/real-income-calculator", label: "Calculate your earnings with overtime at peak season" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
     ],
   },
 
@@ -1921,23 +1921,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "JTS Work is a Zeeland-based staffing agency in Bruinisse, a municipality in Schouwen-Duiveland known for mussel cultivation, oyster farming, and delta-region agricultural production. JTS places workers in agricultural and production roles and provides accommodation in a holiday park — chalets and mobile homes rather than residential housing. For workers specifically seeking seasonal agricultural work in a distinctive coastal region, JTS Work is a small but notable option.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Structure and Real Income",
         body: "JTS Work placements start at WML (€14.71/hr in 2026), consistent with the Dutch agricultural labour market. Under the Open Teelt or Glastuinbouw CAO (depending on specific employer), minimum rates are WML-level with some sector allowances for early starts or specific conditions. On a 40-hour week, gross monthly is €2,549 and net after loonheffing is approximately €2,277.\n\nChalet-style holiday-park accommodation is typically deducted at below-maximum SNF rates — around €85–€100/week — as this accommodation type is assessed at a lower quality tier than purpose-built flex housing. At a €90/week deduction, net-of-housing effective take-home is approximately €1,917/month, marginally better than the full-maximum deduction scenario. Agricultural work in Zeeland is significantly seasonal: mussel and oyster season peaks in specific months, and out-of-season hours may drop considerably.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Standards and SNF Compliance",
         body: "Accommodation in a Zeeland holiday park is genuinely unusual for a work placement. Holiday parks are built for leisure, not year-round residence: communal toilets, showers, and small kitchen areas, with minimal private space and seasonal-tourism infrastructure throughout the site. In summer, when the park also hosts paying holiday guests, workers and tourists share the same facilities.\n\nThe practical upside: some chalet units offer a small separate sleeping area for 2 people, which is more private than a 6-person dormitory in a converted residential house. The Zeeland countryside setting — flat polder landscape, proximity to the Oosterschelde tidal inlet — is genuinely scenic for workers who value outdoor space over urban amenities.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Transport to Site and Physical Demands",
         body: "Bruinisse is remote by Dutch standards. There is no direct train connection; the nearest rail-accessible towns are Zierikzee and Bergen op Zoom, both requiring a bus transfer. Workers without a car have very limited mobility outside agency-arranged work transport. JTS Work provides transport from accommodation to work sites for shifts. Independent mobility in Zeeland essentially requires a bicycle or car.\n\nAgricultural work in the Zeeland delta involves outdoor work in a windswept coastal climate. Mussel processing, oyster cultivation, and field harvesting are the primary activities depending on season and client. The physical nature is generally entry-level but requires consistency and reliability over the season — irregular attendance is not viable in agricultural processing operations.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Workers Say: Good and Bad",
         body: "Below-maximum housing deduction (€85–€100/week vs €113.50 maximum) is the clearest financial advantage. The rural Zeeland environment is genuinely peaceful and different from urban agency placements. Specialised maritime and agricultural sector experience (mussels, oysters, delta agriculture) is available, and the lower cost of living in Zeeland means remaining disposable income goes further than in Amsterdam or Utrecht.\n\nThe negatives are significant for workers who need urban infrastructure: very remote location without a car, sharply seasonal work with income volatility, holiday-park accommodation not designed for year-round residency, and minimal social amenities in Bruinisse itself.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Best Suited For",
         body: "JTS Work suits a specific worker profile: those who actively want rural, coastal, or agricultural work in a quiet environment and can accept seasonal income variability. Workers needing consistent year-round hours and urban accessibility will be better served by national logistics agencies. For workers who want a genuinely different Dutch experience — working by the Oosterschelde, in Europe's seafood delta — JTS Work offers something that no Amsterdam logistics agency can match.\n\nZeeland is one of the most rural Dutch provinces. If you need regular urban amenities, Bruinisse will feel isolating within weeks. If you prefer exactly that quiet, this may be the right placement. Have you worked with JTS Work? Reviews on seasonal hour patterns and holiday-park accommodation conditions are particularly useful.",
       },
     ],
@@ -1956,8 +1956,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Minimal social and commercial infrastructure in Bruinisse",
     ],
     internalLinks: [
-      { href: "/agencies?sector=agriculture", label: "See agricultural agencies across the Netherlands" },
-      { href: "/agencies", label: "Compare regional agencies by location" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
     ],
   },
 
@@ -1970,23 +1970,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Westflex is based in Wateringen, in the Westland municipality — the Netherlands' most intensive greenhouse horticulture region. Westland grows a substantial share of the Netherlands' commercially exported tomatoes, peppers, cucumbers, and houseplants, almost entirely under glass. Westflex places workers in both greenhouse production roles and logistics operations along the Rotterdam–Utrecht corridor, giving it a dual-sector footprint uncommon among regional Dutch agencies.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Real Earnings vs Contract Rate",
         body: "Greenhouse workers at Westflex placements often fall under the Glastuinbouw CAO rather than the standard ABU framework, depending on the specific client employer. Glastuinbouw CAO rates start at WML (€14.71/hr, 2026) but include sector provisions: early-start premiums for shifts before 06:00, some temperature-based allowances at specific employers, and vacation day accrual that can exceed the ABU minimum.\n\nOn a 40-hour week at WML, gross monthly is €2,549 and net is approximately €2,277. Where Glastuinbouw CAO early-start premiums apply, effective gross can reach €15.50–€16.50/hr. Rotterdam logistics placements via Westflex (Naaldwijk/Poeldijk cold-storage, Rotterdam distribution) start at €14.71–€16/hr depending on VCA certification and specific operation.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "What the Housing Package Looks Like",
         body: "Westflex does not appear to provide agency housing directly. Workers in the Westland area typically live in Den Haag, Delft, Naaldwijk, or surrounding municipalities and commute by bicycle or car. The absence of housing deduction means workers keep their full net pay.\n\nAt WML net (~€2,277/month) minus privately arranged housing at €80–€130/week (~€320–€520/month), effective disposable income is approximately €1,757–€1,957/month. This is comparable to a housing-included agency at maximum deduction, but with full autonomy over your living arrangement. The Westland area has an established migrant worker community (Portuguese, Polish, Romanian), which often facilitates informal room-share connections faster than standard rental platforms.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Getting There and Working There",
         body: "Westland is almost entirely dependent on bicycle or car for movement within the greenhouse zone. The area is flat (ideal for cycling) but sprawling — greenhouse complexes, auction halls, and packing facilities cover a large geographic area with limited bus frequency between individual sites. Most workers cycle directly to their specific greenhouse client from nearby accommodation, or are collected from a central meeting point by employer transport.\n\nGreenhouse work involves repetitive tasks in warm (20–28°C), humid environments: pruning tomato plants, harvesting peppers, grading and packaging cut flowers, transplanting young plants. The physical rhythm is consistent across the shift. Greenhouses operate year-round — unlike open-field agriculture — which significantly reduces the seasonal income risk compared to field crop agencies.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Benefits and Drawbacks",
         body: "Year-round greenhouse operations, Glastuinbouw CAO allowances potentially exceeding standard ABU rates, dual-sector placement capacity, no housing deduction (keep full net pay), and Rotterdam proximity for logistics career pathways — these are the genuine advantages of Westflex for the right worker profile.\n\nThe downsides: no agency housing requires independent sourcing, greenhouse heat and humidity are demanding across full shifts, Westland depends entirely on bike or car transport, early starts limit public transport as a realistic commuting option, and smaller agency size limits placement options outside the immediate Westland area.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "The Honest Summary",
         body: "Westflex is worth contacting if you're targeting the Westland greenhouse region and don't need agency accommodation. The year-round operation, Glastuinbouw CAO provisions, and Rotterdam logistics access make it more versatile than purely seasonal agricultural agencies. Compare it directly with Artiflex — which covers overlapping horticultural regions — to assess which has better current placement volume for your specific skills and availability.\n\nFor workers new to greenhouse work: the environment differs enough from warehousing that a trial shift before full relocation commitment is genuinely useful. The heat, humidity, and repetitive nature of greenhouse tasks are manageable for most workers but worth experiencing before signing a full contract. Share your Westflex experience below — particularly on Glastuinbouw CAO application in practice and what the housing search process was like without agency support.",
       },
     ],
@@ -2005,8 +2005,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Smaller regional agency — fewer placement options outside the Westland area",
     ],
     internalLinks: [
-      { href: "/agencies?city=westland", label: "See all Westland and greenhouse region agencies" },
-      { href: "/agencies?sector=horticulture", label: "Compare greenhouse agency conditions" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
     ],
   },
 
@@ -2019,7 +2019,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "OTTO Workforce is one of the Netherlands' largest and most prominent agencies for migrant workers in logistics, production, and warehouse operations. Headquartered in Venlo — the heart of the Netherlands' largest logistics zone — OTTO has placed tens of thousands of Polish, Romanian, Bulgarian, and other EU national workers in Dutch distribution centres and factories. It operates its own housing subsidiary (OTTO Housing) and is ABU-certified. For many migrant workers, OTTO is either the first agency they hear about or the first they use when arriving in the Netherlands.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Wages and Payslip Breakdown",
         body: `OTTO Workforce pays at WML for its logistics and production placements: €14.71 gross per hour in 2026. On a standard 40-hour week, gross earnings are €588.40. After loonheffing (approximately 10.7% effective rate at WML) and with vakantiegeld (8%) accruing separately, workers take home approximately €345–€355 per week in cash, before housing deductions.\n\nOTTO operates at major logistics clients including Amazon, DHL, PostNL, Rhenus, and Gorillas distribution centres. Workers placed at clients with night, Sunday, or significant overtime requirements receive the applicable ABU CAO shift premiums: 22% for night shifts, 50% for Sunday work, and 125% for the first two overtime hours. Workers on regular night rotations at Amazon Fulfilment Centres report weekly gross of €640–€680, netting approximately €425–€450.\n\nPhase A workers (weeks 1–78 under the ABU CAO) receive no paid public holidays and limited sick pay. OTTO coordinators are described as inconsistent in proactively informing workers about Phase B eligibility; workers should track their own ABU Phase A start date and raise Phase B transition with their coordinator directly.`,
       },
       {
@@ -2032,11 +2032,11 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       },
       {
         heading: "Multi-Language Support and Arrival Process",
-        body: `OTTO Workforce's registration process is available in Polish, Romanian, Bulgarian, and English in addition to Dutch. This reflects the agency's predominantly Eastern European worker base and is a practical advantage for workers who are not yet confident in Dutch.\n\nThe arrival process is structured: workers receive a pre-arrival information pack covering the work placement, OTTO Housing address, first-shift schedule, and what to bring. BSN registration, DigiD setup guidance, and Dutch bank account opening are supported by OTTO staff. Workers report that the administrative start is efficient.\n\nWorkers should note that the housing and employment contracts are often linked — if the work contract ends, the housing contract typically ends simultaneously with a defined notice period. Workers should read the housing contract exit terms carefully before signing, and should set up an independent Dutch bank account early in their placement.`,
+        body: `OTTO Workforce's registration process is available in Polish, Romanian, Bulgarian, and English in addition to Dutch. This reflects the agency's predominantly Eastern European worker base and is a practical advantage for workers who are not yet confident in Dutch.\n\nThe arrival process is structured: workers receive a pre-arrival information pack covering the work placement, OTTO Housing address, first-shift schedule, and what to bring. BSN registration, DigiD setup guidance, and Dutch bank account opening are supported by OTTO staff. Staff who have worked here describe that the administrative start is efficient.\n\nWorkers should note that the housing and employment contracts are often linked — if the work contract ends, the housing contract typically ends simultaneously with a defined notice period. Workers should read the housing contract exit terms carefully before signing, and should set up an independent Dutch bank account early in their placement.`,
       },
       {
         heading: "Common Worker Concerns and Final Verdict",
-        body: `OTTO Workforce receives mixed reviews, which is partly a function of scale — with tens of thousands of placements, even a small percentage of negative experiences generates substantial online commentary. The specific concerns that appear across multiple sources: payslip accuracy on shift premiums (workers should log their own shifts and cross-check every payslip); Phase B transition not proactively managed (workers must initiate this themselves at week 70–75); and peak-period housing occupancy rising above comfortable levels from October to January.\n\nFor many migrant workers, OTTO is the path of least resistance into the Dutch labour market. The scale, multi-language support, own-brand housing, and inhouse presence at major logistics clients make the initial placement fast and administratively supported. Workers who engage actively — tracking their own shifts, monitoring payslips, initiating Phase B conversations — have significantly better financial outcomes than workers who passively accept each week as it comes.\n\nRealistic take-home: €345–€355/week at WML day shifts, €425–€450 on regular night shifts. After OTTO Housing deduction at SNF maximum (€113.50/week), disposable income is approximately €230–€340 depending on shifts. Over a 12-month night-shift rotation, a worker can save approximately €12,000–€15,000 after all deductions.`,
+        body: `OTTO Workforce receives mixed reviews, which is partly a function of scale — with tens of thousands of placements, even a small percentage of negative experiences generates substantial online commentary. The specific concerns that appear across multiple sources: payslip accuracy on shift premiums (workers should log their own shifts and cross-check every payslip); Phase B transition not proactively managed (workers must initiate this themselves at week 70–75); and peak-period housing occupancy rising above comfortable levels from October to January.\n\nFor many migrant workers, OTTO is the path of least resistance into the Dutch labour market. The scale, multi-language support, own-brand housing, and inhouse presence at major logistics clients make the initial placement fast and administratively supported. Workers who engage actively — tracking their own shifts, monitoring payslips, initiating Phase B conversations — have significantly better financial outcomes than workers who passively accept each week as it comes.\n\nWhat actually lands in the bank: €345–€355/week at WML day shifts, €425–€450 on regular night shifts. After OTTO Housing deduction at SNF maximum (€113.50/week), disposable income is approximately €230–€340 depending on shifts. Over a 12-month night-shift rotation, a worker can save approximately €12,000–€15,000 after all deductions.`,
       },
     ],
     pros: [
@@ -2053,9 +2053,9 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Peak-period housing occupancy can exceed comfortable levels",
     ],
     internalLinks: [
-      { href: "/guides/real-salary-netherlands", label: "Real salary for logistics workers in 2026" },
-      { href: "/guides/hidden-costs-netherlands", label: "OTTO Housing deductions: what the SNF maximum means" },
-      { href: "/tools/payslip-checker", label: "Verify your shift premiums on your OTTO payslip" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
       { href: "/tools/real-income-calculator", label: "Calculate your actual weekly take-home at OTTO" },
     ],
   },
@@ -2071,7 +2071,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Brunel was founded in Amsterdam in 1975 and still operates its global headquarters from the Dutch capital. The agency specialises exclusively in engineering, IT, life sciences, energy, and construction placements — if you're a mechanical engineer, process technician, software architect, or project manager, Brunel is one of the five agencies in the Netherlands most likely to have a relevant active vacancy. Workers are typically seconded to major industrial clients (Shell, ASML, Philips, TenneT, Tata Steel) on medium-to-long assignments of 6–24 months.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Structure and Real Income",
         body: "Brunel placements pay well above WML. Engineers with HBO or WO qualifications and 2–5 years' experience earn €30–€50/hr gross. Senior engineers with specific specialisations (process, electrical HV/MV, structural) and 10+ years' experience reach €55–€80/hr. IT professionals with in-demand skills (cloud architecture, cybersecurity, SAP, embedded software) typically start at €40/hr and exceed €90/hr at senior contractor level.\n\nBrunel operates both payroll (employed by Brunel, placed at client) and contracting (via own BV or as freelancer) models. For payroll workers at €40/hr, combined loonheffing and social insurance runs 40–50%. Net effective hourly after tax is roughly €22–€24/hr. For own-BV contractors, the effective rate improves but requires accounting for pension, insurance, and healthcare deductible personally. Consult a Dutch belastingadviseur before structuring any contractor arrangement.",
       },
       {
@@ -2079,15 +2079,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Brunel does not operate SNF-scheme accommodation. Engineering professionals arrange their own housing — in Amsterdam and the Randstad, a studio or one-bed apartment costs €1,200–€1,800/month. For international workers relocating for a Brunel assignment, relocation support is often negotiated in the contract: a one-time relocation allowance (typically €2,000–€5,000), temporary housing for the first 4–8 weeks, or assistance finding permanent rental housing.\n\nWorkers qualifying for the 30% ruling (kennismigranten) gain a significant net income improvement — effectively 30% of gross salary is exempt from Dutch income tax for up to five years. Brunel's HR team is experienced with the kennismigrant permit process, which is a practical advantage for international technical workers over self-navigating Dutch immigration requirements.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Transport to Site and Physical Demands",
         body: "Brunel placements are at industrial and technical client sites: refineries in Rotterdam (Botlek, Maasvlakte), semiconductor fabs near Eindhoven, offshore platforms for energy sector workers, data centres, and corporate engineering offices. Industrial zone sites are generally not accessible by public transport — workers commute by car or use client shuttle services.\n\nVCA certification is required on most industrial client sites. Site-specific safety inductions are mandatory for each new assignment. Working conditions are professional and structured: fixed project phases, clear reporting lines, Dutch or English working language depending on client and team composition.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "What Workers Say: Good and Bad",
         body: "Brunel's premium is access: major Dutch and multinational technical clients that are simply not reachable through general temp agencies. Salary rates are genuinely high — engineers earn multiples of WML, and experienced specialists earn contractor rates among the best available in the Dutch market. The 50-year track record and Amsterdam HQ mean deep placement relationships.\n\nThe entry barrier is real: professional technical qualifications and experience are required. No housing support, long assignment entry timelines (2–6 weeks from application to start), VCA and site induction friction, and the complexity of the own-BV contractor model for workers unfamiliar with Dutch tax are the main downsides.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Best Suited For",
         body: "Brunel is the agency to contact if you are a qualified engineer or technical IT professional seeking placement at major Dutch industrial or technology clients. For international technical workers, Brunel's familiarity with the kennismigrant visa, 30% ruling, and expat employment contracts makes it operationally smoother than approaching Dutch clients directly from abroad. Register alongside comparable agencies (Hays Engineering, Randstad Engineering, Yacht) for broad market coverage.\n\nHave you worked through Brunel in the Netherlands? A review on placement timelines, contract accuracy, and actual hourly rates vs advertised would be genuinely useful for other technical professionals.",
       },
     ],
@@ -2106,8 +2106,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Own-BV contractor model requires Dutch tax knowledge — not suitable for all workers",
     ],
     internalLinks: [
-      { href: "/agencies?sector=engineering", label: "Compare all engineering and technical agencies" },
-      { href: "/tools/real-income-calculator", label: "Check your payroll deductions and net rate" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
     ],
   },
 
@@ -2124,19 +2124,19 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Hays is primarily a permanent placement and interim/contract agency for professional roles — not a traditional production or logistics uitzendbureau. There is no Phase A/B progression structure for most placements because Hays places workers directly into permanent or fixed-term roles with the client, not through an ongoing agency employment contract.\n\nFor interim and contract placements, Hays operates a detachment model: the worker is employed by Hays (payroll) or operates via their own entity, and is placed at the client for the assignment duration. Permanent placement is the other main track — Hays charges the client a fee on successful hire; the worker pays nothing and starts directly with the employer.",
       },
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Real Earnings vs Contract Rate",
         body: "Finance professionals: junior accountant €32,000–€42,000 permanent, senior controller €55,000–€80,000+. IT professionals: junior developer €40,000–€52,000, senior architect €70,000–€95,000+. HR professionals: HR advisor €40,000–€55,000, HR manager €60,000–€80,000. Engineering: project engineer €45,000–€65,000.\n\nFor interim day rates: finance interim €350–€600/day, IT interim €400–€700/day, senior management €600–€1,000/day. At these income levels, loonheffing runs 40–50% for payroll-employed interims. Own-BV contractors should model effective tax rate with a belastingadviseur before accepting. No housing deductions apply — workers arrange their own accommodation with Amsterdam/Utrecht rental budgets of €1,100–€1,800+/month.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Getting There and Working There",
         body: "Hays placements are office and hybrid-work environments in Amsterdam, Rotterdam, Utrecht, Eindhoven, and Arnhem at corporate offices, financial institutions, or tech headquarters. Public transport access is generally good; the OV-chipkaart travel allowance or NS-business card is standard in Dutch professional employment.\n\nWorking conditions at Hays client organisations are standard Dutch professional environments: 36–40 hour weeks, hybrid working 2–3 days from home typical, modern office facilities. Interim roles sometimes involve travel between client locations.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Benefits and Drawbacks",
         body: "Hays's sector-specialist consultants are a genuine differentiator — a dedicated finance consultant placing 50 accountants per year has sharper market intelligence than a generalist covering ten disciplines. Access to permanent roles at recognisable Dutch employers, 35+ year track record with established client relationships, and both permanent and interim models are the clear strengths.\n\nThe commercial incentive of consultants (placement fee) means advice may favour faster-to-place options over best-fit roles. Dutch language is often expected for non-tech roles. Permanent placements take 4–12 weeks — not a fast-entry option. Salary ranges are not always disclosed transparently during the recruitment process.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "The Honest Summary",
         body: "Hays is a legitimate top-tier option for qualified professionals seeking permanent or interim work in the Netherlands. Register alongside Michael Page, Robert Half, and Randstad Professionals for maximum sector coverage — using one agency exclusively limits your market exposure. Maintain your own direct applications to target companies in parallel with any recruiter relationship.\n\nHave you been placed through Hays in the Netherlands? Reviews on consultant responsiveness, job description accuracy, and whether salary matched what was discussed help other professionals evaluating this agency.",
       },
     ],
@@ -2155,8 +2155,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Salary transparency during the recruitment process is sometimes limited",
     ],
     internalLinks: [
-      { href: "/agencies?sector=office-admin", label: "See all professional and office staffing agencies" },
-      { href: "/tools/salary-guide", label: "Compare interim day rates by sector" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -2169,23 +2169,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "HappyNurse is a national healthcare staffing agency founded in 2008, headquartered in The Hague. The Amsterdam – Regio West branch serves hospitals, mental health (GGZ) institutions, elderly care homes (verpleeghuizen), home care (thuiszorg), and disability care organisations across western Netherlands. It places nurses (MBO/HBO level), GGZ professionals, childcare workers, and geriatric specialists primarily on flexible and oproep (on-call) contracts — making it one of the most recognisable specialist healthcare agencies in the country.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "What You Actually Earn",
         body: "Healthcare salary at HappyNurse is governed by the CAO Zorg en Welzijn (FWG function scales). A Level 3 care assistant (helpende) earns approximately €14.71–€15.50/hr. Level 4 nursing auxiliary (verzorgende IG): €16.00–€18.50/hr. MBO-level nurse (verpleegkundige niveau 4): €18–€22/hr. HBO-registered nurse: €21–€26/hr. GGZ professionals (psychiatrisch verpleegkundige, SPV): €24–€32/hr.\n\nWhat makes healthcare work financially distinct from production or logistics is the premium structure under CAO Zorg: Saturday +50%, Sunday +100%, public holiday +100%, night shifts +30–40%. A healthcare worker doing consistent weekend shifts can earn 30–40% more per month than a weekday-only equivalent. HBO-nurse at 32 hours/week (Dutch healthcare standard) earns approximately €2,100–€2,600/month net before premiums; with regular weekend work this reaches €2,400–€3,000+ net monthly.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation Quality and Cost",
         body: "HappyNurse does not operate SNF-scheme accommodation for standard placements. Healthcare workers arrange their own housing — in Amsterdam, this means competing in a tight rental market where healthcare workers are among the groups most affected by the city's housing shortage.\n\nSome larger healthcare clients (GGZ institutions, large elderly care organisations outside Amsterdam) offer staff housing for workers willing to relocate. These are negotiated directly with the client institution, not through HappyNurse's standard agency model. Ask explicitly at registration whether any clients offer staff accommodation — particularly relevant if you're relocating from another region or from abroad.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Getting to Work and Daily Conditions",
         body: "Placements are at client institutions across the western Netherlands: hospitals (OLVG, AMC/Amsterdam UMC area), GGZ facilities (GGZ inGeest, Mentrum), elderly care homes, and home care routes. Some thuiszorg (home care) placements require car travel between multiple client homes — mileage allowance of €0.21–€0.30/km typically applies. Urban healthcare locations are accessible by OV; early-morning and night shifts require independent transport.\n\nHappyNurse places workers on oproep (on-call) contracts: you set your availability via the agency's app or planning system and receive shift offers to accept or decline. This is the core flexibility proposition — genuine schedule control. The trade-off is that income is not guaranteed; it depends on shift availability and your acceptance rate.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Strengths and Weaknesses",
         body: "CAO Zorg weekend and holiday premiums are the clear financial advantage — far exceeding ABU CAO equivalents for the same hours. The on-call flexibility model gives workers real schedule autonomy. Access to diverse healthcare settings across western Netherlands and a national network for workers willing to travel are also genuine strengths.\n\nThe counterweights: on-call contracts mean no income guarantee; Amsterdam's tight rental market creates a real housing barrier; BIG-register verification is mandatory before the first shift; and the current Dutch healthcare market means some client institutions are under significant staffing pressure — high-stress shifts are common.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Bottom Line for 2026",
         body: "HappyNurse is a credible specialist for qualified healthcare workers seeking flexible work in the western Netherlands. The weekend premium structure is a genuine financial advantage, and the on-call model delivers real schedule flexibility. The trade-off is income predictability — purely on-call work with variable acceptance creates monthly fluctuation that a structured shift pattern does not.\n\nFor healthcare workers relocating from abroad: verify your qualification with the Dutch BIG-register before contacting HappyNurse. Without BIG registration, regulated care placements are not possible. The BIG application process takes time — start it before you arrive in the Netherlands.\n\nHave you worked through HappyNurse? Reviews on shift availability, premium accuracy, and consultant responsiveness are especially valuable for healthcare professionals considering flexible work here.",
       },
     ],
@@ -2204,8 +2204,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Weekend and night availability often expected to maintain good placement frequency",
     ],
     internalLinks: [
-      { href: "/agencies?sector=healthcare", label: "See all healthcare staffing agencies in the Netherlands" },
-      { href: "/tools/real-income-calculator", label: "Calculate your earnings with weekend and night premiums" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -2222,19 +2222,19 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Salary depends entirely on which sector you're placed in. Hotel cleaning placements fall under the CAO Schoonmaak en Glazenwassers. From 2026, the CAO Schoonmaak minimum starts at WML (€14.71/hr), with experienced cleaning workers stepping up to higher periodic scales after 12+ months of CAO-covered work. The CAO also includes service-based periodieken that increase the rate annually up to a ceiling — a real benefit for workers who stay in the sector.\n\nIndustrial production placements at Klik fall under the ABU CAO at WML (€14.71/hr). On a 40-hour week, gross monthly is approximately €2,549 and net after loonheffing (~10.7%) is around €2,277. Neither hotel cleaning nor production typically includes agency housing, so workers keep the full net monthly. Hotel cleaning at 4- and 5-star Amsterdam properties carries one additional upside: guest tipping can add €20–€80/week informally on busy floors — real but unpredictable, and not something to budget.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Where Workers Sleep",
         body: "Klik does not provide or arrange housing. Workers at both cleaning and production placements are expected to source their own Amsterdam accommodation. Shared rooms in Amsterdam cost €700–€950/month at WML-income levels. Workers commuting from satellite cities — Almere, Zaandam, Purmerend, Hoofddorp — can find notably cheaper housing with acceptable commute times by train or regional bus, all within 30–45 minutes of central Amsterdam.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Commute, Tools, and On-Site Reality",
         body: "Hotel cleaning placements are in central Amsterdam — accessible by public transport from throughout the city. Hotel housekeeping starts early (07:00–08:00 for morning shifts) and involves covering 10–18 rooms per shift at busy 4- and 5-star properties, with strict cleanliness and time standards. The work is physically demanding throughout the shift: repetitive lifting, bending, and continuous movement.\n\nProduction placements are at industrial facilities in Amsterdam's western zones (Westpoort, Sloterdijk), accessible by public transport from central Amsterdam. Work is standing or moving throughout the shift — physically similar demands to logistics but with less heavy lifting than warehouse picking.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Honest Assessment",
         body: "NEN 4400-1 certification is a compliance differentiator — confirmed legal operation and tax compliance, which is not universal in the cleaning sector. Hotel cleaning placements offer tip income not available in standard production roles. Amsterdam-based placements are accessible without a car. The CAO Schoonmaak periodic step-ups reward workers who stay in the sector with real salary progression above the WML floor.\n\nNo housing provided creates real cost pressure at WML in Amsterdam. Hotel housekeeping is physically demanding with time pressure and presentation standards — some workers find this combination harder than production work. Tip income is informal and unpredictable. Production placements offer no sector CAO premium above ABU baseline.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Who Should Register Here",
         body: "Klik Uitzendbureau is a solid choice for workers specifically interested in Amsterdam hotel or commercial cleaning, or who want production work in the city. The NEN 4400-1 certification provides a compliance edge over uncertified cleaning agencies. The hotel cleaning angle is worth considering seriously if you're comfortable with the physical demands — Amsterdam's hotel sector is consistent year-round, the work is accessible by public transport, and the tip upside is a genuine bonus.\n\nFor workers deciding between hotel cleaning and production placements: hotel cleaning has more social interaction, physical variety, and the tip opportunity. Production work has more predictable conditions and possibly night-shift premium options. Both start at WML. Have you worked with Klik? Reviews on hotel placement quality and how consistent the work availability is would help other Amsterdam workers.",
       },
     ],
@@ -2253,8 +2253,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "NEN 4400-1 is a compliance floor, not a guarantee of working conditions quality",
     ],
     internalLinks: [
-      { href: "/agencies?sector=cleaning", label: "See all cleaning and hospitality agencies in Amsterdam" },
-      { href: "/tools/salary-guide", label: "Understand the CAO Schoonmaak salary scale" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -2279,11 +2279,11 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Computer Futures does not arrange housing. IT professionals must self-arrange. In Amsterdam, appropriate professional rental housing costs €1,200–€1,800/month for a studio or small apartment. Many international IT workers use specialist expat housing agencies (Expatriate Housing, Kamernet, Pararius, Funda) — expect 4–8 weeks of active searching for a well-suited rental at a fair price.\n\nThe 30% ruling, if applicable, significantly offsets Amsterdam housing costs by increasing net take-home by approximately 15 percentage points on the applicable income portion. Workers who qualify should ensure the ruling is correctly applied from their first payslip — errors here are costly and difficult to correct retroactively.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Honest Assessment",
         body: "Market-rate IT day rates, SThree global network with relationships at most major NL tech employers, genuine sector knowledge from specialist IT consultants, and strength in premium niches (cybersecurity, cloud, data engineering) are the real advantages. Both contract and permanent models are available.\n\nNot suitable without IT qualifications or portfolio. Commercial incentive toward contract placement may not align with all workers' goals. Day rate negotiations require market knowledge workers unfamiliar with IT rates may lack. No housing support in Amsterdam's tight rental market.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Who Should Register Here",
         body: "Computer Futures is legitimate and capable for experienced IT professionals entering the Dutch market. Its strength is contract and interim — if you're a senior developer, cloud architect, or security specialist looking for a 6–18 month assignment at a recognisable Dutch client, it's worth a consultation. For permanent placement, compare with Robert Half Technology, Hays IT, and Dutch boutique recruiters before committing to one channel.\n\nPlaced through Computer Futures in the Netherlands? Reviews on day rate accuracy, consultant follow-through, and how well the role matched its description help other IT professionals evaluating this agency.",
       },
     ],
@@ -2302,8 +2302,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Consultant responsiveness varies in busy periods — slower communication during peak",
     ],
     internalLinks: [
-      { href: "/agencies?sector=it-tech", label: "See all IT and technology staffing agencies" },
-      { href: "/tools/salary-guide", label: "Benchmark your IT contractor day rate" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
     ],
   },
 
@@ -2316,23 +2316,23 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "NL People Uitzendbureau is a Badhoevedorp-based staffing agency with over 12 years in the Dutch labour placement market, covering administrative roles, production and logistics, and care sector positions from its base near Schiphol in the Haarlemmermeer municipality. Unlike the large national chains, NL People operates at a regional scale — a smaller client roster, more direct account management, and a more personal placement experience. The trade-off is volume: fewer active vacancies than Randstad or Tempo-Team, so workers should typically register with multiple agencies simultaneously.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Rates and Weekly Take-Home",
         body: "NL People's placement salary depends on sector. Production and logistics placements operate under the ABU CAO at WML (€14.71/hr in 2026). On a 40-hour week, gross monthly is approximately €2,549 and net after loonheffing (~10.7%) is around €2,277. Administrative and care roles typically start at €15–€19/hr depending on role and language requirements.\n\nCare sector placements fall under CAO Zorg en Welzijn where applicable — including the significant weekend premium structure (Saturday +50%, Sunday +100%). For care workers doing consistent weekend shifts, effective monthly income can be €400–€700 higher than a weekday-only equivalent. Administrative roles at clients in the Haarlemmermeer and Schiphol business park area sometimes attract above-WML rates due to the international company concentration in the zone.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Agency Housing: What to Expect",
         body: "NL People does not provide housing. The Badhoevedorp area is part of the Haarlemmermeer municipality — housing costs here run notably lower than Amsterdam city (shared rooms from €650–€850/month in Hoofddorp and Badhoevedorp vs €750–€950+ in Amsterdam) while maintaining excellent rail and bus connections to both Amsterdam Centraal and Schiphol.\n\nFor workers considering the Haarlemmermeer as a base: this is one of the most international areas of the Netherlands, with established communities of Portuguese, Polish, and Romanian workers particularly linked to Schiphol and adjacent logistics operations. The area's internationalism makes settling easier for EU workers than many other Dutch regions.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Site Access and Working Environment",
         body: "NL People placements are in the Haarlemmermeer and greater Amsterdam region: logistics parks, production facilities, and administrative offices across Hoofddorp, Badhoevedorp, Schiphol logistics ring, and Amsterdam West. The Schiphol-area industrial zone is notably well-served by public transport compared to remote logistics parks in other regions — Hoofddorp and Schiphol stations connect to Amsterdam Centraal and Haarlem in under 20 minutes.\n\nCare sector placements may require a car or mileage-reimbursed bicycle journey depending on the specific client routes. Ask at registration which care clients NL People works with and whether transport is arranged.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "What This Agency Does Well",
         body: "Twelve-plus years of market stability, broader sector coverage than single-sector specialists, lower housing costs in the Haarlemmermeer vs Amsterdam city, and more direct personal placement coordination than large chains are the genuine advantages. Care sector placements add the weekend premium income potential.\n\nSmaller placement pool limits vacancy options; no housing provided; regional focus limits national flexibility; and lower brand recognition matters less for day-to-day work but more for long-term CV.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Is It Worth Registering?",
         body: "NL People Uitzendbureau is a competent regional option for workers in the Haarlemmermeer and greater Amsterdam area who want production, admin, or care work with more personal agency coordination. Register here alongside at least one national agency for maximum placement options across the region.\n\nThe Haarlemmermeer zone — Hoofddorp, Badhoevedorp, Nieuw-Vennep — is a significant employment hub that many overseas workers overlook. Lower rent, fast Schiphol access, and an international worker community make it worth considering as a base independently of which agency you use. Reviews on placement speed and care sector conditions are especially valuable.",
       },
     ],
@@ -2351,8 +2351,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Lower brand recognition may matter for long-term CV and employer references",
     ],
     internalLinks: [
-      { href: "/agencies?city=amsterdam", label: "See all agencies in the Amsterdam and Haarlemmermeer area" },
-      { href: "/tools/salary-guide", label: "Compare salary across sectors at your experience level" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
 
@@ -2365,7 +2365,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Pegasus Flex is a construction and bouw (building) sector staffing agency headquartered in Lijnden, near Schiphol Airport on the western edge of Amsterdam. It supplies skilled and semi-skilled construction workers across the greater Amsterdam area: painters and decorators, construction site security, on-site cleaning and waste management, and general bouw labourers. Amsterdam's construction pipeline — Zeeburgereiland, Amstelkwartier, Zuidas, A10 infrastructure — is one of Western Europe's most active, creating consistent demand for qualified bouw temp workers.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Weekly Pay and Deductions Explained",
         body: "Construction sector temp work falls under the CAO Bouwnijverheid. Rates depend on skill level: general bouw labourer €15.00–€16.00/hr, painter/decorator (schilder) with vakdiploma €16.50–€20.00/hr depending on CAO function classification B/C/D, construction site security €15.50–€17.00/hr, on-site waste management €14.71–€15.50/hr.\n\nAt €17/hr on a 40-hour bouw week, gross monthly is approximately €2,947 and net after loonheffing (~12.5%) is approximately €2,578. The CAO Bouwnijverheid includes slecht-weerregeling (bad-weather compensation) — workers sent home due to weather conditions are entitled to partial pay, a meaningful protection for outdoor construction work. Travel time allowance for job sites beyond a certain distance also applies under the CAO.",
       },
       {
@@ -2377,11 +2377,11 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Pegasus does not provide housing. Construction workers typically have existing accommodation and commute to sites — the mobile nature of construction placements (assignments changing location every few months) makes fixed agency housing impractical. The Lijnden location means workers in the Schiphol vicinity have access to Haarlemmermeer-area housing at lower cost than Amsterdam city.\n\nAmsterdam construction sites operate on 07:00–07:30 starts, aligning with peak public transport. Sites in central Amsterdam are accessible by multiple transport options; sites in development zones outside the city may require car or employer transport. Many construction workers in the Netherlands travel to sites by bike within reasonable distance, which is practical given the flat terrain.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "The Full Picture",
         body: "CAO Bouwnijverheid rates exceed WML meaningfully for skilled workers — painters earn €16.50–€20/hr, well above production floor rates. The slecht-weerregeling provides real income protection for outdoor work. High Amsterdam construction demand means good placement availability. Specialist bouw focus means better CAO knowledge than generalist agencies.\n\nOutdoor, physically demanding, and weather-exposed work is the fundamental trade-off. VCA requirement adds time and potential cost to entry. Assignment mobility means changing site locations every few months. No housing provided. Limited national presence outside the Amsterdam-area construction market.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Recommendation for 2026",
         body: "Pegasus Uitzendbureau is a solid specialist option for construction workers with VCA and relevant skills targeting the Amsterdam market. The CAO Bouwnijverheid rates, slecht-weerregeling protection, and strong Amsterdam construction pipeline make it financially competitive for qualified workers. Register alongside Randstad Bouw and Tempo-Team Bouw for maximum vacancy access across Amsterdam-area construction projects.\n\nIf VCA certification is your barrier: a VCA-B one-day course costs €150–€250. Negotiate cost-sharing with Pegasus or a client upfront — it's a standard request in the bouw temp sector. Your VCA is valid for 10 years and transferable, making it a worthwhile professional investment. Worked with Pegasus on Amsterdam construction sites? Reviews on site safety standards and payslip accuracy are particularly useful.",
       },
     ],
@@ -2400,8 +2400,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited national presence — works primarily in the greater Amsterdam construction market",
     ],
     internalLinks: [
-      { href: "/agencies?sector=construction", label: "See all construction and bouw agencies in the Netherlands" },
-      { href: "/tools/salary-guide", label: "Understand the CAO Bouwnijverheid salary scale" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 
@@ -2414,7 +2414,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Transflex Personeelsdiensten B.V. is a transport-specialist staffing agency placing professional truck and bus drivers nationally, with an Amsterdam branch. In a Dutch transport market facing a structural shortage of 20,000+ driver positions, Transflex operates in a high-demand niche: CE licence holders and Code 95-certified bus drivers are consistently among the most sought-after temp workers in the Netherlands. Professional driver placements differ fundamentally from production or logistics floor work — the entry requirements are significant, but so is the pay differential above WML.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Real Earnings vs Contract Rate",
         body: "Truck driver salaries through Transflex fall under the CAO Beroepsgoederenvervoer. For CE licence holders: €17.00–€19.50/hr for standard daytime routes, increasing with experience. Long-distance international drivers earn €18.50–€22/hr plus dagvergoedingen (daily allowances for overnight stays) of approximately €35–€50/night tax-free. Bus drivers (CAO Beroepspersonenvervoer): €15.50–€19.00/hr depending on route type.\n\nAt €18/hr on a 40-hour week, gross monthly is approximately €3,120. Net after loonheffing (~13%) is approximately €2,714/month. Night driving allowances and weekend premiums under the transport CAO add further — regular night or weekend routes add €300–€500/month gross above base. The dagvergoeding for long-distance drivers is especially valuable: €35–€50/night is broadly tax-free, meaning it represents genuine net income above salary.",
       },
       {
@@ -2426,11 +2426,11 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Transflex does not provide housing for standard local transport placements. Long-distance truck drivers on international routes manage overnight stays through cab sleep (in the truck's sleeping compartment) and occasional hotel accommodation, with dagvergoedingen designed to cover these costs. The cab lifestyle — living in a 2.4 square metre sleeping compartment for multiple nights per week — is a specific reality of long-distance haulage that workers should research carefully before accepting.\n\nFor local and regional transport (daily return home), workers arrange their own accommodation as with any professional placement. Schedule patterns vary: some placements are fixed routes at fixed times (highly predictable), others are day-by-day dispatch. Fixed-route placements are generally more sought-after for workers with family commitments.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Benefits and Drawbacks",
         body: "CE truck driver rates (€17–€22/hr) and tax-efficient dagvergoedingen for long-distance drivers significantly exceed production WML. Structural driver shortage in the Netherlands means high placement security for qualified drivers. Specialist transport agency knowledge of Code 95 and tachograph rules means better CAO compliance than generalist agencies. Dutch tachograph regulations are strictly enforced — working with an experienced transport agency reduces the risk of being placed with non-compliant clients.\n\nSignificant entry qualification barrier (CE or D licence plus active Code 95). Long-distance routes mean time away from home. Tachograph compliance violations are the driver's personal professional risk. Early-morning or overnight starts are unavoidable in distribution transport.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "The Honest Summary",
         body: "Transflex is worth contacting if you hold a CE licence and active Code 95 and want truck or transport placements in the Amsterdam area and nationally. The transport CAO rates above WML, the dagvergoeding system for long-distance work, and the structural driver shortage all make this sector financially attractive for qualified professionals.\n\nDriven for Transflex in the Netherlands? Reviews on route types, dispatch consistency, payslip accuracy (especially overnight allowances), and Code 95 renewal support are the most useful contributions from experienced drivers.",
       },
     ],
@@ -2449,8 +2449,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Early-morning or overnight starts unavoidable in distribution and passenger transport",
     ],
     internalLinks: [
-      { href: "/agencies?sector=transport", label: "See all transport and logistics agencies" },
-      { href: "/tools/real-income-calculator", label: "Calculate your earnings with overnight allowances and premiums" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
     ],
   },
 
@@ -2467,19 +2467,19 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Create a profile, upload identity documents and relevant certifications, and receive shift notifications from employers in your area and skill category. Accepting a shift is one tap — no CV submission or interview for standard logistics and hospitality shifts. From sign-up to first paid shift can be as fast as 48 hours for straightforward roles.\n\nThe flexibility cuts both ways. Because you select individual shifts rather than committing to a regular pattern, there is no income guarantee. In high-demand periods (pre-Christmas logistics peak, summer festival season for hospitality), shifts are abundant. In lower-demand periods, availability drops and income becomes unpredictable. Youbahn is designed for workers who want supplementary income or genuine flexibility — not for those needing a predictable full-time equivalent income every week.",
       },
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "What You Actually Earn",
         body: "Youbahn shifts operate at or above WML (€14.71/hr in 2026). Logistics and order picking: €14.71–€15.50/hr. Hospitality and facility: €14.71–€15.00/hr. Healthcare support: €15.00–€17.00/hr. Standard ABU CAO premiums apply: +22% nights, +50% Sundays.\n\nAt WML on a 40-hour equivalent week, gross monthly is approximately €2,549 and net after loonheffing is around €2,277. The practical reality: most Youbahn workers use the platform for 15–32 hours per week, generating €800–€1,600/month depending on hours and shifts accepted. Youbahn's digital payroll generates payslips automatically after each shift with transparent breakdowns of earnings, tax deductions, and vakantiegeld accrual — viewable in real time in the app.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation Quality and Cost",
         body: "Youbahn does not provide housing. As a platform-based model, housing arrangement is entirely the worker's responsibility. The primary worker pool is already based in Amsterdam and the Randstad region. Workers relocating from abroad specifically for Youbahn work would face the same Amsterdam housing challenges as any WML-level worker — difficult rental market, €700–€950/month minimum for shared accommodation — without any agency housing support.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Strengths and Weaknesses",
         body: "Maximum schedule flexibility is the genuine core advantage — accept only the shifts you want, when you want them, from multiple employers. Fast onboarding (first shift possible within 48 hours), real-time payroll transparency, full uitzendbureau employment protections unlike ZZP gig platforms, and multi-sector coverage in one app are all real.\n\nNo guaranteed income — shift availability varies significantly by season. Not suitable as a primary income source for workers needing reliable full-time equivalent hours. App-mediated relationship means no dedicated account manager. No housing in Amsterdam's expensive rental market. Lower per-shift earnings than specialised technical or professional placements.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Bottom Line for 2026",
         body: "Youbahn fills a specific need: maximum scheduling flexibility with full uitzendbureau protections. For students, parents, or people with other primary income sources who want 15–30 hours of paid work per week on their own terms, it's one of the best-structured Dutch options. For workers who need reliable full-time income, the shift-acceptance model introduces volatility that a traditional agency minimises.\n\nThe key comparison with Temper and YoungOnes (pure ZZP platforms): Youbahn's employment model means vakantiegeld accrual, social insurance, and WW protection — meaningfully better for consistent platform workers than ZZP status. Have you used Youbahn? Reviews on shift availability by sector and payslip accuracy help other flex workers evaluating the platform.",
       },
     ],
@@ -2498,8 +2498,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Lower per-shift earnings than specialised technical, professional, or driver roles",
     ],
     internalLinks: [
-      { href: "/agencies", label: "See all digital and app-based staffing platforms" },
-      { href: "/tools/payslip-checker", label: "Understand your vakantiegeld and WW entitlements as a platform worker" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
 
@@ -2516,7 +2516,7 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Repay HRM's digital model replaces the traditional agency branch visit with online registration. Workers upload identity documents, complete a digital profile indicating preferred work types and availability, and are matched with client vacancies via the platform. For straightforward production and logistics roles, placement can happen within a few days.\n\nThe agency also operates as a payroll bureau for clients who manage their own recruitment but want professional payroll administration. This dual function (staffing + payroll) is common among larger digital-first Dutch agencies. For workers, the relevant implication is that Repay HRM's payroll infrastructure is robust — automated, compliance-driven, and less prone to the manual errors common at smaller agencies.",
       },
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Take-Home Pay in Practice",
         body: "Repay HRM placements operate under the ABU CAO. At WML (€14.71/hr in 2026), a 40-hour week produces gross monthly earnings of approximately €2,549. Net after loonheffing (~10.7%) is approximately €2,277. Order picking and warehouse roles — the core of Repay HRM's production volume — start at WML. Workers with VCA or forklift certification typically earn €15.00–€16.00/hr at sites requiring these.\n\nPayslip processing is digital and automated — shifts logged by client site feed into the payroll system and generate payslips without manual intervention. Workers and researchers consistently report that payslip accuracy at digital-first agencies like Repay HRM is better than at smaller agencies where manual entry is standard. Discrepancies can be flagged directly through the digital portal without visiting a branch.",
       },
       {
@@ -2524,11 +2524,11 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
         body: "Repay HRM does not provide housing. With a national client portfolio, workers are placed across the Netherlands and expected to arrange their own accommodation. The digital model means there is no branch infrastructure to assist with relocation logistics — housing research is entirely the worker's responsibility. Workers registering from abroad should arrange accommodation before their first shift.\n\nTransport to client sites is also worker-managed. The digital portal provides specific client site addresses at the point of placement — verify transport options before accepting. Many Dutch logistics parks are not accessible by public transport, particularly for early-morning starts, so confirm site location and transport access as part of your placement review.",
       },
       {
-        heading: "Pros and Cons",
+        heading: "Good Reasons to Register — and Reasons to Think Twice",
         body: "Digital-first platform with online registration, automated payslips, and transparent payroll processing — payroll accuracy is a genuine advantage over smaller manual-process agencies. Large worker base (15,000+) suggests a broad national client network. ABU CAO protections with Phase A/B progression apply as standard. Real-time payslip review via portal with direct discrepancy flagging.\n\nNo housing provided and entirely self-service for relocation workers. No dedicated branch consultant — less personal support when issues arise. Limited brand visibility makes independent reputation verification harder. Standard WML for most production placements with no sector premium. Transport to industrial client sites is worker-managed.",
       },
       {
-        heading: "Final Thoughts",
+        heading: "Worth It For These Workers",
         body: "Repay HRM makes sense for workers comfortable managing their employment relationship digitally and who don't need face-to-face branch service. The payroll accuracy and transparency are genuine advantages in a market where payslip errors are a common complaint. Workers new to the Dutch labour market — unfamiliar with payslip structure, CAO rights, and tax deductions — may find a traditional branch-based agency a better starting point. Once familiar with how Dutch employment works, switching to a digital platform for efficiency is straightforward.\n\nUsed Repay HRM as a flex worker? Reviews on payslip accuracy, platform usability, and how responsive the digital support team is when things go wrong are the most useful contributions.",
       },
     ],
@@ -2547,8 +2547,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Transport to industrial client sites is worker-managed — not all sites are accessible by public transport",
     ],
     internalLinks: [
-      { href: "/agencies", label: "See all digital and online staffing agencies" },
-      { href: "/tools/payslip-checker", label: "Verify your payslip using the pay checker tool" },
+      { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
     ],
   },
 
@@ -2588,8 +2588,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing, transport, or relocation logistics support",
     ],
     internalLinks: [
-      { href: "/agencies/brunel-amsterdam", label: "Compare with Brunel for engineering and technical interim roles" },
-      { href: "/tools/payslip-checker", label: "Understand gross-to-net for professional salary levels in the Netherlands" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
     ],
   },
 
@@ -2629,8 +2629,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Irregular demand: shifts concentrated in weekends and event periods, creating income variability",
     ],
     internalLinks: [
-      { href: "/agencies/rai-amsterdam-hospitality-crewcenter-hcc", label: "See the RAI Amsterdam HCC for event-specific hospitality staffing" },
-      { href: "/tools/payslip-checker", label: "Understand vakantiegeld and ZZP tax obligations as a hospitality worker" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -2670,8 +2670,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Night shift concentration in cargo roles requires workers to be comfortable with irregular hours",
     ],
     internalLinks: [
-      { href: "/agencies/skyhire-uitzendbureau-schiphol", label: "Compare with SkyHire for Schiphol aviation staffing" },
-      { href: "/agencies/transflex-amsterdam", label: "See Transflex for transport and driver placements near Schiphol" },
+      { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -2711,8 +2711,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Application and selection process not publicly documented",
     ],
     internalLinks: [
-      { href: "/agencies/ployees", label: "See Ployees for multi-client app-based hospitality shifts in Amsterdam" },
-      { href: "/tools/payslip-checker", label: "Understand your event staffing payslip and vakantiegeld entitlements" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
 
@@ -2752,8 +2752,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing, transport, or relocation support",
     ],
     internalLinks: [
-      { href: "/agencies/michael-page-recruitment-agency-permanent-interim", label: "Compare with Michael Page for specialist finance and IT recruitment" },
-      { href: "/agencies/brunel-amsterdam", label: "See Brunel for engineering and technical interim placements" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
     ],
   },
 
@@ -2793,8 +2793,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited public transparency on pay rates, minimum guaranteed hours, and CAO coverage",
     ],
     internalLinks: [
-      { href: "/agencies/skyhire-uitzendbureau-schiphol", label: "Compare with SkyHire for broader Schiphol aviation staffing" },
-      { href: "/agencies/r-recruitment-bv", label: "See AIRR for Schiphol cargo and ground logistics placements" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
 
@@ -2834,8 +2834,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Youth minimum wage rates (for students aged 18–20) are significantly below the adult WML",
     ],
     internalLinks: [
-      { href: "/agencies/studentenbureau-amsterdam", label: "See StudentenBureau for internship and starter role placements" },
-      { href: "/tools/payslip-checker", label: "Check your student payslip and loonheffingskorting entitlement" },
+      { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
     ],
   },
 
@@ -2875,8 +2875,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing support for students relocating to Amsterdam for an internship placement",
     ],
     internalLinks: [
-      { href: "/agencies/studentalent-amsterdam", label: "See Studentalent for part-time student jobs alongside your degree" },
-      { href: "/agencies/michael-page-recruitment-agency-permanent-interim", label: "Explore Michael Page for graduate and professional starter roles" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
     ],
   },
 
@@ -2916,8 +2916,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Night shift concentration in 24-hour logistics sites requires comfort with irregular hours",
     ],
     internalLinks: [
-      { href: "/agencies/level-one", label: "Compare with Level One for production staffing with housing in Gouda" },
-      { href: "/tools/payslip-checker", label: "Check your logistics payslip and SNF housing deduction limits" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 
@@ -2957,8 +2957,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Smaller agency with limited online presence makes independent reputation verification more challenging",
     ],
     internalLinks: [
-      { href: "/agencies/charlie-works", label: "Compare with Charlie Works for Brabant logistics staffing and housing" },
-      { href: "/tools/payslip-checker", label: "Verify your SNF housing deduction and production shift payslip" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -2998,8 +2998,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited public information on fee structure and placement timeline",
     ],
     internalLinks: [
-      { href: "/agencies/michael-page-recruitment-agency-permanent-interim", label: "Compare with Michael Page for broader professional permanent placement" },
-      { href: "/agencies/lime-search", label: "See LIME Search for senior finance executive roles in the Netherlands" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -3039,8 +3039,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No flex, temp, or ZZP placements — direct employment only",
     ],
     internalLinks: [
-      { href: "/agencies/robert-walters-recruitmentbureau-amsterdam", label: "See Robert Walters for broader professional recruitment in Amsterdam" },
-      { href: "/agencies/brunel-amsterdam", label: "Compare with Brunel for engineering and energy transition technical roles" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -3080,8 +3080,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Project contract placements mean income continuity depends on project pipeline and market conditions",
     ],
     internalLinks: [
-      { href: "/agencies/brunel-amsterdam", label: "Compare with Brunel for larger-scale engineering interim placements" },
-      { href: "/agencies/computer-futures", label: "See Computer Futures for IT and technology engineering roles" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -3121,8 +3121,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No support for non-digital or traditional marketing roles",
     ],
     internalLinks: [
-      { href: "/agencies/good-company-reinventing-recruitment", label: "Compare with Good Company for tech and digital professional recruitment" },
-      { href: "/agencies/bluebird-recruitment", label: "See Bluebird Recruitment for SaaS and tech commercial roles" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
     ],
   },
 
@@ -3162,8 +3162,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited public salary benchmarking for the specific niche — ask for market data explicitly at consultation",
     ],
     internalLinks: [
-      { href: "/agencies/michael-page-recruitment-agency-permanent-interim", label: "See Michael Page for broader professional permanent placement in the Netherlands" },
-      { href: "/agencies/robert-walters-recruitmentbureau-amsterdam", label: "Compare with Robert Walters for multilingual professional recruitment in Amsterdam" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
     ],
   },
 
@@ -3203,8 +3203,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Smaller agency: fewer simultaneous vacancies than multi-sector staffing firms",
     ],
     internalLinks: [
-      { href: "/agencies/happynurse-amsterdam-regio-west", label: "See HappyNurse for direct care and healthcare worker placements" },
-      { href: "/agencies/studentalent-amsterdam", label: "See Studentalent for part-time care and admin roles for students" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -3244,8 +3244,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited publicly available information on typical assignment timelines and rate ranges",
     ],
     internalLinks: [
-      { href: "/agencies/corparis-amstelveen-detacheringsbureau-zorg-wonen", label: "See Corparis for care and housing sector secondment placements" },
-      { href: "/agencies/robert-walters-recruitmentbureau-amsterdam", label: "Compare with Robert Walters for private sector professional roles" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
     ],
   },
 
@@ -3285,8 +3285,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Horticulture seasonal demand creates periods of reduced availability outside peak growing seasons",
     ],
     internalLinks: [
-      { href: "/agencies/level-one", label: "See Level One for production staffing with housing in the western Netherlands" },
-      { href: "/tools/payslip-checker", label: "Check your construction CAO payslip and verify your hourly rate entitlements" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -3326,8 +3326,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited public information on fee structure and typical search timelines",
     ],
     internalLinks: [
-      { href: "/agencies/robert-walters-recruitmentbureau-amsterdam", label: "See Robert Walters for professional finance recruitment below director level" },
-      { href: "/agencies/michael-page-recruitment-agency-permanent-interim", label: "Compare with Michael Page for finance manager and controller recruitment" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
     ],
   },
 
@@ -3367,8 +3367,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Boutique agency: personal service but fewer resources than global hospitality staffing firms",
     ],
     internalLinks: [
-      { href: "/agencies/ployees", label: "See Ployees for operational hospitality shifts in Amsterdam" },
-      { href: "/agencies/spirit-hospitality-services", label: "Compare with Spirit Hospitality Services for VIP aviation hospitality" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
     ],
   },
 
@@ -3408,8 +3408,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or accommodation support for relocating professionals",
     ],
     internalLinks: [
-      { href: "/agencies/computer-futures", label: "Compare with Computer Futures for specialist IT contract placements" },
-      { href: "/agencies/good-company-reinventing-recruitment", label: "See Good Company for tech and professional roles in Amsterdam" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
     ],
   },
 
@@ -3449,8 +3449,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited public salary benchmark data specific to Babbage's track record",
     ],
     internalLinks: [
-      { href: "/agencies/finest-people", label: "See Finest People for specialist digital marketing and e-commerce recruitment" },
-      { href: "/agencies/good-company-reinventing-recruitment", label: "Compare with Good Company for marketing and tech professional roles" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -3490,8 +3490,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation logistics support for internationally recruited sales professionals",
     ],
     internalLinks: [
-      { href: "/agencies/jopp-recruitment", label: "Compare with Jopp Recruitment for SaaS and FinTech commercial hiring" },
-      { href: "/agencies/agile-recruitment", label: "See Agile Recruitment for broader IT and sales roles in Amsterdam" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 
@@ -3531,8 +3531,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "BIM-focused growth areas may receive less weight in an agency built on traditional construction placement",
     ],
     internalLinks: [
-      { href: "/agencies/focus-engineering", label: "Compare with Focus Engineering for technical and process industry roles" },
-      { href: "/agencies/brunel-amsterdam", label: "See Brunel for engineering and infrastructure interim placements" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
     ],
   },
 
@@ -3572,8 +3572,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited public information on specific programme costs — typically negotiated at employer level",
     ],
     internalLinks: [
-      { href: "/agencies/studentenbureau-amsterdam", label: "See StudentenBureau for structured career placement and internship support" },
-      { href: "/agencies/bij-oranje", label: "Compare with Bij Oranje for public sector interim and career transition support" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
 
@@ -3613,8 +3613,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Limited public vacancy advertising — direct outreach and profile registration is more effective",
     ],
     internalLinks: [
-      { href: "/agencies/computer-futures", label: "Compare with Computer Futures for broader IT contract placements" },
-      { href: "/agencies/agile-recruitment", label: "See Agile Recruitment for IT infrastructure and software engineering roles" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
     ],
   },
 
@@ -3654,8 +3654,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Salary ranges for support functions are below the Amsterdam tech and professional services market",
     ],
     internalLinks: [
-      { href: "/agencies/jp-gray", label: "Compare with JP Gray for finance, HR, and supply chain placement" },
-      { href: "/agencies/robert-walters-recruitmentbureau-amsterdam", label: "See Robert Walters for senior finance and professional roles in Amsterdam" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
     ],
   },
 
@@ -3695,8 +3695,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Relatively newer agency: shorter track record than established specialists",
     ],
     internalLinks: [
-      { href: "/agencies/agile-recruitment", label: "Compare with Agile Recruitment for IT infrastructure and HR roles" },
-      { href: "/agencies/bluebird-recruitment", label: "See Bluebird Recruitment for SaaS and AI commercial roles" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 
@@ -3736,8 +3736,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation support for internationally placed professionals",
     ],
     internalLinks: [
-      { href: "/agencies/robert-walters-recruitmentbureau-amsterdam", label: "Compare with Robert Walters for senior finance and HR professional placement" },
-      { href: "/agencies/computer-futures", label: "See Computer Futures (SThree Group) for IT contract roles in the Netherlands" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -3777,8 +3777,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation support for internationally recruited commercial professionals",
     ],
     internalLinks: [
-      { href: "/agencies/bluebird-recruitment", label: "Compare with Bluebird Recruitment for SaaS and AI commercial hiring" },
-      { href: "/agencies/agile-recruitment", label: "See Agile Recruitment for broader IT and sales roles in Amsterdam" },
+      { href: "/guides/hidden-costs-netherlands", label: "Hidden costs: housing, transport, deductions explained" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
     ],
   },
 
@@ -3788,15 +3788,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Finding work as a hypotheekadviseur or makelaar in the Netherlands is a different proposition than most temp-agency placements. The sector is regulated, qualification-heavy, and the agencies serving it are a world apart from the uitzendbureau model you encounter in logistics or hospitality. 2B Connected W&S voor makelaardij en hypotheek professionals is one of Amsterdam's more established niche recruiters in this space, with over 10 years of operation and a claimed track record of 700+ successful placements. This review looks at what it means financially and practically to be placed through them.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "How Much Workers Earn in 2026",
         body: "Salary expectations in the mortgage advisory and real estate brokerage sector are substantially higher than the Dutch statutory minimum wage (WML), which stands at €14.71 per hour in 2026. A junior hypotheekadviseur placed through 2B Connected will typically earn between €2,800 and €3,500 gross per month, while senior or independent advisors may command €4,000 to €5,500 gross. Makelaars in Amsterdam's competitive market often start on a base plus commission structure, meaning take-home can vary significantly month to month. For international candidates eligible for the 30% ruling, the salary threshold in 2026 is €46,660 gross annually — many senior placements here cross that line. A €3,200 gross monthly salary translates to roughly €2,500–2,650 net after loonheffing and premiums. Vakantiegeld (8%) accrues separately and is paid in May.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation and Weekly Rent",
         body: "2B Connected does not provide housing. This is consistent with the professional nature of their placements: candidates in this sector are generally established professionals with their own accommodation. Anyone relocating for a role placed through this agency should budget €1,400–2,000 per month for a one-bedroom in Amsterdam or €1,000–1,400 in surrounding areas such as Amstelveen, Almere, or Haarlem. Using a verhuurmakelaar (rental agent) typically costs one month's rent as commission.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "On the Floor: Working Conditions",
         body: "Working in the Dutch mortgage sector requires a valid WFT (Wet op het Financieel Toezicht) diploma — typically WFT Hypothecair Krediet for advisors. Without this, you cannot legally advise clients on mortgages in the Netherlands. 2B Connected confirms this requirement upfront, but candidates from other EU markets should verify whether their existing qualifications need supplementary Dutch exams. This process can take 4–8 weeks. Real estate brokerage roles require NVM or VBO membership or employer affiliation in most cases. Hours are often flexible but can extend into evenings for client appointments.",
       },
     ],
@@ -3813,8 +3813,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation support",
     ],
     internalLinks: [
-      { href: "/agencies/genius-recruitment", label: "Compare with Genius Recruitment for finance and admin roles in Amsterdam" },
-      { href: "/agencies/jp-gray", label: "See JP Gray for finance and supply chain placements in the Netherlands" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
     ],
   },
 
@@ -3824,15 +3824,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Graduating from a Dutch HBO or WO programme and then having to navigate the temp-agency market is a frustrating rite of passage for many young professionals. Acadeem Uitzendbureau Nederland B.V. exists specifically for this group, focusing exclusively on placing academic-level candidates in appropriate roles rather than routing them toward call centres or warehouse work. This review examines the financial and practical realities of working through Acadeem.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "How Much Workers Earn in 2026",
         body: "Graduate placements through Acadeem typically start in the range of €2,200 to €2,800 gross per month for entry-level positions in economics or legal support roles. Loonheffing at this income level runs at roughly 10–12%, meaning a €2,400 gross salary yields approximately €1,900–2,050 net after all deductions. Vakantiegeld of 8% accrues and is typically paid in May. Under Phase A of the ABU CAO (weeks 1–78), candidates are placed on a uitzendbeding — the contract can be terminated with one day's notice if the client assignment ends. One important nuance: academic qualification does not automatically translate to higher placement rates. Acadeem places candidates at CAO rates for the role they fill, not a graduate premium.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation and Weekly Rent",
         body: "Acadeem does not provide housing. The expectation is that candidates are Amsterdam-based residents or have their own accommodation. For recent graduates still in Amsterdam after university, shared housing is common at €700–1,000 per room in the city, with more affordable options in Diemen, Hoofddorp, or Zaandam accessible by public transit.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "On the Floor: Working Conditions",
         body: "Work placements are concentrated in the Amsterdam metropolitan area. Many temp contracts do not include travel allowance — clarify this before signing. The agency's transparency score is 32/100, indicating limited publicly verifiable information about their fee structures, active client roster, or placement volume. Candidates who register may find the active vacancy list is smaller than expected.",
       },
     ],
@@ -3848,8 +3848,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Vacancy volume may be smaller than expected given the niche positioning",
     ],
     internalLinks: [
-      { href: "/agencies/agile-recruitment", label: "Compare with Agile Recruitment for graduate IT and HR roles in Amsterdam" },
-      { href: "/agencies/good-company-reinventing-recruitment", label: "See Good Company for graduate IT and sales placements" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -3859,15 +3859,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Working past the age of 65 in the Netherlands is more common than many assume. The AOW state pension age reached 67 in 2024, and a significant portion of older workers choose to continue part-time, often through specialist agencies. Actief65+, founded in 2001 and operating nationally, is one of the few Dutch staffing agencies focused exclusively on placing workers aged 65 and above. This review covers what to expect from them financially and practically.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "What the Payslip Shows",
         body: "Working through Actief65+ while also receiving AOW creates a specific tax situation that differs substantially from younger workers. AOW recipients are exempt from AOW-premie on earned income, meaning the effective payroll deduction is lower than for workers under 67. A 65+ worker earning €14.71 per hour (WML) for 24 hours per week grosses around €1,700 per month, with a notably lower loonheffing rate due to the absence of AOW premiums. Actief65+ positions itself as a low-cost flexible staffing solution — workers should verify that the offered hourly rate complies with their sector CAO independently. Vakantiegeld (8%) and paid public holidays still apply regardless of age.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation: Reality vs Promise",
         body: "Actief65+ does not provide housing. The working assumption is that candidates aged 65+ are established residents with their own home. Transport reimbursement varies by client and assignment — candidates should confirm whether reiskosten vergoeding is included before accepting any placement. For seniors without a car, confirm whether the workplace is accessible by public transit.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Physical Demands and Transport Setup",
         body: "The national scope of Actief65+ means roles span a wide range: reception work, administrative support, retail assistance, light logistics, security, museum and cultural guides, and garden maintenance are among the most common categories. For retired professionals with specific expertise — former teachers, nurses, accountants, or engineers — the agency occasionally places candidates in advisory or training support roles. Scheduling is typically flexible, which is the core appeal for this demographic.",
       },
     ],
@@ -3885,8 +3885,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing support or relocation assistance",
     ],
     internalLinks: [
-      { href: "/agencies/amsterdam-werkt-aan-de-winkel", label: "See Amsterdam Werkt aan de Winkel for local Amsterdam employment options" },
-      { href: "/agencies/acadeem-uitzendbureau-nederland-b-v", label: "Compare with Acadeem Uitzendbureau for professional and graduate placements" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
     ],
   },
 
@@ -3896,15 +3896,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Not every agency in the Dutch labour market maintains a robust public profile, and Agile Professionals BV — registered in Amsterdam at Johan Huizingalaan 763a — is one where publicly available information is sparse. The domain agileprofessionals.nl was not active as an agency website at the time of research, and no verified details about their sector focus, fee structures, or placement track record could be confirmed. This review covers what can be said and what you should ask before engaging.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Gross to Net: What Workers Keep",
         body: "If Agile Professionals BV operates in IT or project management staffing — as the name may suggest — salary ranges for typical roles would fall between €3,500 and €6,000 gross per month depending on seniority. A junior Scrum Master or agile coach typically earns €3,800–4,500 gross; an experienced IT project manager may command €5,000–7,000 gross. These figures are illustrative of the professional IT staffing market generally, not Agile Professionals BV specifically. Any candidate should receive written confirmation of hourly rate or monthly salary, contract type, and formal employer identity before signing.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Where to Live and What It Costs",
         body: "There is no indication that Agile Professionals BV provides housing. For a professional-level agency in the IT or project management space, this is standard. Amsterdam and surrounding municipalities remain among the most expensive rental markets in the Netherlands, with one-bedroom apartments averaging €1,600–2,000 per month in the city.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Commute and Workplace Conditions",
         body: "Key questions to ask before registering: Which industries and role types have active vacancies? Are you a member of ABU or NVP, and which CAO applies? Who is the formal legal employer during a placement — the agency or the client? What is the notice period during Phase A? Has the agency placed workers in the past 12 months, and can references be provided? A legitimate Dutch uitzendbureau should answer these immediately. If responses are evasive, proceed cautiously.",
       },
     ],
@@ -3920,8 +3920,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Unverified track record requires extra due diligence before registering",
     ],
     internalLinks: [
-      { href: "/agencies/agile-recruitment", label: "Compare with Agile Recruitment for verified IT and HR staffing in Amsterdam" },
-      { href: "/agencies/eswelt-b-v", label: "See Eswelt for verified ERP and CRM staffing in Amsterdam" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 
@@ -3931,15 +3931,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Chef placements in the Netherlands sit at an interesting intersection: the Horeca CAO governs pay and conditions, the work is physically demanding, hours are anti-social by definition, and the agency model in this sector operates quite differently from tech or finance recruitment. All Star Chefs is an Amsterdam-based specialist staffing agency that places interim and freelance chefs across restaurants, catering companies, corporate kitchens, events, and private client assignments.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Earnings Breakdown for 2026",
         body: "Under the CAO Horeca, hourly rates depend on job classification. A basic production chef (Kok niveau 1) earns around €14.80–15.50 per hour gross under 2026 rates. A chef de partie or experienced freelance chef typically commands €16.50–20.00 per hour, while executive and head chef placements may exceed €22–28 per hour on day rate. All Star Chefs places workers on interim or freelance terms. Under a payroll construction, loonheffing, ZVW, and social premiums are deducted — a €18.00/hr gross rate yields approximately €13.50–14.50 net per hour depending on total annual earnings. Freelance ZZP arrangements offer higher day rates but remove social security coverage and pension accrual.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Living Conditions and Housing Cost",
         body: "All Star Chefs does not provide housing. Chef placements are typically Amsterdam and Randstad-based, so candidates need their own accommodation in a high-cost rental market. For chefs doing evening restaurant shifts, public transport becomes unreliable after midnight. Own transport — bicycle or car — is a practical necessity for many assignments.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Daily Work Reality",
         body: "Kitchens run on split shifts, weekend loads, and evening rushes. Expect shifts starting at 9–10am or 4–5pm, with service running until 10pm or later. Weekend work is common and the Horeca CAO mandates a Sunday premium of 50% and evening or night premiums from 22:00 onwards. Verify in writing that All Star Chefs correctly applies these premiums. Corporate kitchen placements and event work tend to offer more predictable hours. Physical conditions include standing for 8–10 hours, high heat environments, and fast-paced service pressure.",
       },
     ],
@@ -3956,8 +3956,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing support; Amsterdam accommodation is expensive relative to chef day rates",
     ],
     internalLinks: [
-      { href: "/agencies/be-my-guest-hospitality-events", label: "Compare with Be My Guest for hospitality and event staffing in Amsterdam" },
-      { href: "/agencies/circle-hospitality", label: "See Circle Hospitality for hotel and restaurant staffing in the Netherlands" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -3967,15 +3967,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Some agencies in the Dutch employment market operate with minimal public visibility. Amsterdam Werkt aan de Winkel, located at Steelvlietplein 73 in Amsterdam, is one of these cases. No active public website was found during research, and independently verifiable information about their sector focus, services, or staffing model is limited. The name — which translates loosely as Amsterdam Works at the Shop — suggests a retail or consumer-facing employment focus.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Hourly Rate and Net Income",
         body: "If Amsterdam Werkt aan de Winkel operates in the retail sector, the relevant wage framework is the CAO Retail Non-Food or CAO Detailhandel. Entry-level retail positions in the Netherlands in 2026 typically pay €14.71–16.50 per hour gross (at or just above WML), with classification depending on role and experience. A €15.00/hr gross retail position for a worker with 160 hours per month yields approximately €1,560 net after loonheffing and premiums. Amsterdam-area retail positions attract demand for flexible, part-time hours, particularly among students and those re-entering the labour market.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Where Workers Sleep",
         body: "No housing provision is indicated for this agency. Placements appear to be local Amsterdam-area, which means commuting by bicycle or GVB is the default. Amsterdam Nieuw-West, the area around Steelvlietplein, is well connected to the city centre via tram lines, so most assignments should be accessible without a car.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Commute, Tools, and On-Site Reality",
         body: "Key questions before engaging: Does the agency operate as a commercial uitzendbureau, a social employment service, or a community re-integration programme? What sector and type of work is currently available? What is the formal employment contract structure — agency contract, direct hire, or subsidised employment? Is the agency ABU-affiliated and does the ABU CAO apply? If Amsterdam Werkt aan de Winkel functions as a social-return or re-integration bureau, subsidised employment schemes such as Banenafspraak may be available.",
       },
     ],
@@ -3991,8 +3991,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Unverifiable track record requires in-person due diligence before registering",
     ],
     internalLinks: [
-      { href: "/agencies/actief65", label: "Compare with Actief65+ for flexible part-time work in Amsterdam" },
-      { href: "/agencies/employme", label: "See Employme for verified retail and commercial staffing options" },
+      { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
+      { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
   },
 
@@ -4002,15 +4002,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Event and hospitality staffing is one of the most flexible corners of the Dutch labour market — and one of the most variable in how it treats workers. Be My Guest, active in Amsterdam since 2014, supplies event staff for weddings, festivals, trade shows, business dinners, corporate openings, and private events. Their work looks glamorous in promotional materials but involves long prep days, late finishes, and variable income. This review looks at the financial and practical picture for staff working through them.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Real Earnings vs Contract Rate",
         body: "Event staffing in the Netherlands falls under the CAO Horeca or ABU uitzend-CAO depending on the formal employment structure. The hourly rate for bar staff, service staff, or reception staff placed through Be My Guest typically runs between €13.50 and €16.00 gross per hour for standard assignments. Specialist event roles — sommelier, floor manager, event coordinator — may command €17–22 per hour. Under the CAO Horeca, evening work from 22:00 attracts a night supplement and Sunday assignments carry a 50% surcharge. Workers should verify that Be My Guest applies these premiums in payslips. Many event agencies use oproepkracht or min-max contract constructions, meaning income is inherently variable: busy spring and summer event seasons may generate 3–4 assignments per week, while January and February tend to be lean.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "What the Housing Package Looks Like",
         body: "Be My Guest does not provide housing. Event staff in Amsterdam are expected to be local residents. Given the late-night nature of much event work, living within cycling distance of central Amsterdam assignments is a practical advantage. The Amsterdam rental market for shared housing runs €800–1,200 per room, which represents a significant portion of monthly event-staffing income for part-time workers.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Getting There and Working There",
         body: "Staff should expect events across the Amsterdam metropolitan area and occasionally further afield — hotels in the Zuidas, venues in Amstelveen or Haarlem, private estates. Transport to venues is not always reimbursed. Clarify travel reimbursement before accepting each assignment, particularly for late-night events where no public transport is available for the journey home. Dress code requirements are strict for hospitality roles; workers are generally expected to provide their own all-black professional outfit. Shifts starting at 4pm and running to 1am are common during peak season.",
       },
     ],
@@ -4027,8 +4027,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Premium pay only valuable if correctly applied — check payslips carefully",
     ],
     internalLinks: [
-      { href: "/agencies/all-star-chefs", label: "Compare with All Star Chefs for culinary staffing in Amsterdam events" },
-      { href: "/agencies/circle-hospitality", label: "See Circle Hospitality for hotel and hospitality staffing in the Netherlands" },
+      { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
     ],
   },
 
@@ -4038,15 +4038,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Detachering — the Dutch secondment model in which a worker is formally employed by one party but performs work at a client company — is a common arrangement across many sectors in the Netherlands. Berna Detacheringen B.V., registered at Jan Janzenstraat 7 in Amsterdam, operates in this space. No active public website was found during research and verifiable details about their sector focus, client base, or placement volume are limited. This review explains the detachering model, outlines the key financial considerations, and highlights what any worker should verify before signing.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Take-Home Pay in Practice",
         body: "Without knowing Berna Detacheringen B.V.'s sector focus, specific salary ranges are impossible to give accurately. In detachering, the gross rate is generally higher than equivalent temp work because the arrangement carries more overhead for the agency. A financial sector detachee might earn €3,500–5,500 gross per month; an IT detachee €4,000–7,000 gross; a healthcare detachee under CAO Zorg en Welzijn may earn €2,800–3,800 gross depending on function and classification. The agency margin in detachering is typically 15–25% of the worker bill rate to the client. Workers can legitimately request a breakdown of the client billing rate versus their gross salary. Vakantiegeld (8%) accrues as normal.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Worker Housing in Practice",
         body: "Berna Detacheringen does not appear to provide housing. Amsterdam-based detachering typically assumes workers are local residents. Client site locations vary — some detachees work at large corporate campuses in the Zuidas or Amsterdam Science Park that are well connected by public transit; others at smaller offices that require own transport.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Shift Life: Transport and Environment",
         body: "Key questions before signing any detachering agreement: What sector and client are you being placed with? What is the contract duration and notice period? Who is the formal employer for social insurance purposes? Which CAO applies? What is the process if the assignment ends before the contract end date? A legitimate detachering bureau will have clear written answers to all of these before you sign. The low transparency score (32/100) and absence of a public web presence mean candidates must do more direct due diligence than with an established bureau.",
       },
     ],
@@ -4062,8 +4062,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation support",
     ],
     internalLinks: [
-      { href: "/agencies/bluepeaks", label: "Compare with Bluepeaks for professional embedded and RPO placements" },
-      { href: "/agencies/eswelt-b-v", label: "See Eswelt for verified ERP and IT detachering in Amsterdam" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -4073,15 +4073,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Most staffing agency reviews focus on the workers placed into client businesses. Bluepeaks occupies a different niche: they place recruitment professionals themselves into client organisations on an embedded basis. As part of the Bluewave group, Bluepeaks offers RPO (Recruitment Process Outsourcing) solutions in which recruiters and talent acquisition specialists work within a client company's HR function rather than operating from a separate bureau. This review covers the financial and professional picture for recruiters working through this model.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "What the Payslip Shows",
         body: "Recruitment professionals at the level typically placed through Bluepeaks earn €3,200–5,000 gross per month depending on seniority and specialism. A junior talent acquisition specialist earns around €2,800–3,200 gross; a senior recruiter or recruitment marketeer €3,800–5,200 gross; a lead TA or RPO manager €5,000–7,000 gross. Net salary from €4,200 gross monthly works out to approximately €3,050–3,200 net after Dutch loonheffing and premiums. Vakantiegeld at 8% is standard. Confirm whether your Bluepeaks contract includes pension accrual (pensioenopbouw) — this varies between employment contracts and is worth quantifying.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation: Reality vs Promise",
         body: "Bluepeaks does not provide housing. Their placements are professional-level and Amsterdam-based, with salary levels that make the Amsterdam rental market accessible — though challenging. A €1,600–2,000 per month one-bedroom represents roughly 40–45% of gross salary at the €3,800 gross level, which is at the top of what financial planners typically recommend for housing costs.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Physical Demands and Transport Setup",
         body: "Embedded RPO work means functioning operationally as a recruiter inside the client organisation — attending their team meetings, using their ATS, and operating under their hiring processes — while remaining formally employed by Bluepeaks. Your rights under the ABU CAO or a specific employment contract apply to Bluepeaks, not to the client. The RPO market is cyclical: during hiring freezes, RPO programmes are among the first to be paused. Recruiters in embedded roles can find themselves returned to the agency quickly when a client cuts talent acquisition spend. Transport to client sites is typically the recruiter's own responsibility — many assignments are in Amsterdam or the Randstad and accessible by public transport.",
       },
     ],
@@ -4098,8 +4098,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation support",
     ],
     internalLinks: [
-      { href: "/agencies/brandpit", label: "Compare with BrandPit for digital marketing and specialist recruitment" },
-      { href: "/agencies/good-company-reinventing-recruitment", label: "See Good Company for IT and sales recruitment in Amsterdam" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 
@@ -4109,15 +4109,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Digital marketing and e-commerce recruitment in the Netherlands has become a crowded space, but BrandPit maintains a clear positioning: they operate as a specialist headhunter boutique for online marketing, e-commerce management, data analytics, digital transformation, and UX design roles. Based in Amsterdam, BrandPit places candidates in both permanent and interim positions, working primarily on retained or contingency search mandates for established Dutch and international brands.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "From Gross to Net: The Numbers",
         body: "BrandPit operates at the professional end of the digital marketing market. Salary benchmarks for roles they typically fill in 2026 are: Online Marketing Manager €3,800–5,500 gross/month; E-commerce Manager €4,000–6,000 gross/month; Data Analyst €3,500–5,000 gross/month; Digital Transformation Lead €5,500–8,000 gross/month; UX Designer €3,800–5,500 gross/month. The 30% ruling is relevant for international candidates at the €46,660+ annual salary threshold. At €5,000 gross per month, an eligible international hire sees a significantly lower effective tax burden. For interim placements, BrandPit-placed professionals typically operate at €80–160 per hour day rate depending on seniority.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "SNF Housing: What Workers Get",
         body: "BrandPit does not provide housing. Permanent hires sort their own accommodation; interim placements are expected to be locally available or cover their own relocation costs unless otherwise negotiated with the hiring employer. For international candidates relocated to Amsterdam for a BrandPit-placed role, relocation cost negotiation is standard practice at senior digital marketing levels.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Working Conditions on Site",
         body: "As a headhunter, BrandPit conducts detailed intake conversations before presenting candidates to clients. The process is selective — they prefer 2–3 highly matched candidates per role rather than sending large volumes. Headhunting timelines for permanent digital marketing roles average 6–10 weeks. Interim placements can move in 2–3 weeks depending on client urgency. Candidates should verify non-solicitation clauses in any agreement at placement — some arrangements prevent re-hiring directly by the employer for a defined period.",
       },
     ],
@@ -4134,8 +4134,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Non-solicitation clauses may limit future direct employment options",
     ],
     internalLinks: [
-      { href: "/agencies/bluepeaks", label: "Compare with Bluepeaks for RPO and recruitment marketing services" },
-      { href: "/agencies/bluebird-recruitment", label: "See Bluebird Recruitment for SaaS and digital commercial roles" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
     ],
   },
 
@@ -4145,15 +4145,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Amstelveen is home to a significant cluster of international and Dutch corporate offices, and it is where Briqxx People has operated since its incorporation in 2012. The agency works across three distinct sectors — financial services, ICT, and the food industry — which makes it an unusual hybrid in the Netherlands staffing market. Most agencies build a reputation in one vertical; Briqxx People's cross-sector approach means their value depends heavily on which of those three areas a candidate is coming from.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Pay Structure and Real Income",
         body: "Salary expectations vary enormously across Briqxx People's three sectors. In financial services, junior analyst or bookkeeper roles typically start at €2,800 to €3,500 gross per month; senior finance professionals in control, compliance, or treasury functions earn €4,500 to €7,000 gross. ICT placements mirror the broader Amsterdam tech market: a junior developer or IT support analyst earns €3,000 to €4,000 gross; a cloud engineer or data professional commands €4,500 to €7,000 gross. Food industry roles are a different story: production operators, quality inspectors, and logistics coordinators in food manufacturing typically earn €2,200 to €3,200 gross, often under the CAO Vlees, CAO Levensmiddelen, or CAO Zoetwaren depending on the client. At €2,800 gross, take-home is approximately €2,150–2,300 net. At €4,500 gross, net runs to €3,200–3,400. Vakantiegeld of 8% accrues across all placements.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Standards and SNF Compliance",
         body: "Briqxx People does not provide housing. Their placements are professional in orientation, and the Amstelveen base means most roles are accessible from Amsterdam, Schiphol-Rijk, or the wider South Amsterdam area. Shared housing in Amstelveen runs approximately €900 to €1,300 per room per month. For food industry placements at production facilities in the broader North Holland region, candidates should clarify site location before accepting.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Transport to Site and Physical Demands",
         body: "The Bavinckhouse office complex in Amstelveen is accessible by tram from Amsterdam Zuid and by bus from various metro interchange points. ICT placements tend to be at client offices in Amsterdam or the Zuidas, accessible by NS or GVB. Food industry placements may require own transport if the production facility is in an industrial park outside urban transit coverage. The cross-sector model means a recruiter serving three very different sectors may not have the deep specialisation that a single-sector boutique provides — clarify which vertical is currently most active before investing significant time in intake conversations.",
       },
     ],
@@ -4170,8 +4170,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation support",
     ],
     internalLinks: [
-      { href: "/agencies/circle-one", label: "Compare with Circle One for ICT and data specialist recruitment in Amsterdam" },
-      { href: "/agencies/jp-gray", label: "See JP Gray for finance and supply chain roles in the Netherlands" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
+      { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
     ],
   },
 
@@ -4181,16 +4181,16 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "When a corporate dinner for 300 guests needs staffing, or a three-day festival requires a consistent service team, the brief goes to a hospitality agency. Circle Hospitality, incorporated in Amsterdam in 2017, positions itself as a supplier of trained and presentable professionals for exactly these situations: festivals, events, corporate dinners, and venue operations. Their staff profile spans party managers, catering and service personnel, chefs, and event support roles.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Take-Home Pay in Practice",
         body: "Circle Hospitality operates primarily in the festive and event hospitality market under the CAO Horeca. In 2026, the base rate for service staff starts at €14.80 to €15.50 per hour gross. Party managers and floor supervisors earn €16.00 to €19.00 gross per hour; event chefs €15.50 to €22.00 depending on classification; senior catering managers €20.00 to €28.00 per hour. The real earnings story is in the premium structures: Sunday work attracts a 50% surcharge under CAO Horeca, and evening shifts past 20:00 earn supplements of 22 to 30%. A six-hour Saturday evening shift ending at 01:00 on Sunday generates a mix of Saturday evening, Saturday night, and early Sunday rates. For a worker earning €15.00 base, this can push the effective blended rate to €20.00 or higher. Workers should check that Circle Hospitality breaks out these premiums correctly on payslips. Many placements use oproepkracht or min-max arrangements — income is seasonal, with spring and summer as peak demand.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Worker Housing in Practice",
         body: "Circle Hospitality does not provide housing. Most assignments are in or around Amsterdam. Shared accommodation in Amsterdam runs €900 to €1,300 per room. For event staff who work primarily at weekends and evenings, living within cycling distance of central Amsterdam is a genuine logistical advantage, particularly for late finishes after midnight.",
       },
       {
-        heading: "Transport and Work Conditions",
-        body: "Event venues vary considerably: large Amsterdam festivals are accessible by public transit until late, but post-midnight finishes always require own transport, taxi, or ride-sharing. Corporate venue assignments at hotels in the Zuidas or Amsterdam RAI are generally accessible by metro or tram. Private estate and off-site catering assignments require reliable own transport. Workers report that briefings before premium corporate events are thorough; for larger festival volume-staffing assignments, pre-event communication can be lighter. Dress code and grooming requirements are strictly enforced — workers are expected to provide their own professional all-black service uniform unless briefed otherwise.",
+        heading: "Shift Life: Transport and Environment",
+        body: "Event venues vary considerably: large Amsterdam festivals are accessible by public transit until late, but post-midnight finishes always require own transport, taxi, or ride-sharing. Corporate venue assignments at hotels in the Zuidas or Amsterdam RAI are generally accessible by metro or tram. Private estate and off-site catering assignments require reliable own transport. Reviews on AgencyCheck indicate that briefings before premium corporate events are thorough; for larger festival volume-staffing assignments, pre-event communication can be lighter. Dress code and grooming requirements are strictly enforced — workers are expected to provide their own professional all-black service uniform unless briefed otherwise.",
       },
     ],
     pros: [
@@ -4206,8 +4206,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing support; Amsterdam accommodation is expensive relative to hospitality day rates",
     ],
     internalLinks: [
-      { href: "/agencies/be-my-guest-hospitality-events", label: "Compare with Be My Guest for Amsterdam event and hospitality staffing" },
-      { href: "/agencies/crewmates", label: "See Crewmates for flexible Amsterdam hospitality and events shifts" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
     ],
   },
 
@@ -4217,15 +4217,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "The IT recruitment market in Amsterdam is large and competitive, with dozens of agencies claiming specialism in tech. Circle One distinguishes itself with a genuinely focused proposition: Data, Cloud, and Security. This Amsterdam-based boutique recruiter does not try to cover the full IT spectrum — they operate in three of the most in-demand and best-compensated corners of the Dutch tech market. For candidates in these disciplines, that focus matters.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Gross to Net: What Workers Keep",
         body: "These three disciplines represent the highest-compensation end of the Dutch IT labour market. In 2026, benchmark gross salaries for Circle One's primary placement categories are: Data Engineer (3–6 years) €4,500–6,500 per month; Data Scientist (3–7 years) €4,800–7,000; Cloud Architect (senior) €6,000–9,000; Cloud Engineer (mid-level) €4,500–6,500; Security Analyst €4,000–5,500; Security Engineer or penetration tester €5,000–7,500. At €5,500 gross per month, net take-home after Dutch loonheffing is approximately €3,700–3,900. The 30% ruling is directly relevant at these levels for non-Dutch nationals — the 2026 annual salary threshold is €46,660, which most mid-senior Circle One placements exceed. For interim placements (ZZP or via payroll), day rates run €90–175 per hour for senior professionals.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Where to Live and What It Costs",
         body: "Circle One does not provide housing. Placements are permanent or long-term interim in the Amsterdam and Randstad market. Professionals at these salary levels can access the Amsterdam rental market, though €1,800–2,500 per month for a one-bedroom still represents 30–40% of gross income at the €5,500 gross level. International candidates relocating for a Circle One-placed role should negotiate relocation support with the hiring employer — first-month rent deposit coverage and BSN registration assistance are standard practice in Dutch tech hiring at senior levels.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Commute and Workplace Conditions",
         body: "Circle One positions itself as a personal approach specialist — smaller candidate volumes and more engaged recruiter conversations. Rather than submitting large shortlists, the boutique model presents 3–5 carefully matched candidates per mandate. Intake conversations focus on technical depth, preferred cloud platform, team size preference, and work style. The trade-off is speed and volume: a boutique IT recruiter will not have the same breadth of active mandates at any given moment as a large agency like Yacht or Experis. Candidates who are actively looking should register with Circle One alongside one or two high-volume tech agencies to maximise market coverage.",
       },
     ],
@@ -4242,8 +4242,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation support directly from the agency",
     ],
     internalLinks: [
-      { href: "/agencies/eswelt-b-v", label: "Compare with Eswelt for ERP and CRM IT staffing in Amsterdam" },
-      { href: "/agencies/briqxx-people", label: "See Briqxx People for combined finance and ICT recruitment in Amstelveen" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
     ],
   },
 
@@ -4253,15 +4253,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Class Ster Uitzendbureau B.V. is a staffing agency registered in Amsterdam at Jacob van Arteveldestraat 5-III. No active public website was found at the time of research, and independently verifiable information about their sector focus, services, or worker placement track record is limited. The name suggests a general temp-staffing model rather than a specialist recruiter, but the operational details cannot be confirmed from publicly available sources.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Your Actual Weekly Income",
         body: "Without confirmed sector information, typical general temp bureau placements in the Amsterdam area in 2026 span administrative support (€14.71–16.00 per hour gross), light industrial and logistics (€14.71–16.50 gross), and general retail support (€14.71–15.50 gross). At WML level (€14.71 per hour), a 38-hour week produces €2,224 gross per month, yielding approximately €1,800–1,900 net after standard loonheffing. Vakantiegeld of 8% and public holiday entitlements apply under ABU CAO regardless of sector. Ask explicitly before starting: what CAO applies to my placement, who is my formal employer, and what are the notice terms during Phase A?",
       },
       {
-        heading: "Housing Conditions",
+        heading: "The Housing Deal: Costs and Conditions",
         body: "There is no indication that Class Ster Uitzendbureau provides housing. The Amsterdam address suggests locally based operations with assignments in the metropolitan area. Commuting via GVB tram, metro, and bus network should cover most realistic placement locations. Travel reimbursement for temp workers is not guaranteed under all contract structures — confirm before accepting.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "How You Get to Work",
         body: "In the Netherlands, ABU or SNA membership provides meaningful accountability signals for any staffing agency. ABU members commit to the ABU CAO minimum standards for Phase A and Phase B employment, holiday pay, pension accrual in Phase B, and correct application of sector CAO supplements. For Class Ster Uitzendbureau, first verify KvK registration status and check whether they hold ABU, NEN-4400, or SNA certification via the public registers before signing anything. Dutch labour inspectorate (NLA) cases disproportionately involve small, low-visibility bureaus — these accountability steps are not bureaucratic box-ticking but genuine worker protection.",
       },
     ],
@@ -4277,8 +4277,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Extra due diligence required compared to certified agencies",
     ],
     internalLinks: [
-      { href: "/agencies/demsan-uitzendorganisatie-b-v", label: "See Demsan Uitzendorganisatie for similar Amsterdam general staffing context" },
-      { href: "/agencies/employme", label: "Compare with EmployMe for verified transport and logistics staffing near Schiphol" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 
@@ -4288,15 +4288,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Connected2talent is an Amsterdam-based staffing and recruitment agency located at John M. Keynesplein 10 in Amsterdam Nieuw-West, near Sloterdijk. Available public information indicates the agency recruits in mechanical engineering and IT disciplines. Beyond the address, phone listing, and sector indicators, public information is limited. The transparency score for Connected2talent on AgencyCheck is 32/100.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "How Much Workers Earn in 2026",
         body: "If Connected2talent operates primarily in mechanical engineering and IT, the applicable salary benchmarks differ significantly between disciplines. For mechanical engineers in the Netherlands in 2026: junior engineer (0–3 years) €2,800–3,500 gross per month; mid-level engineer (3–7 years) €3,800–5,200 gross; senior or specialist €5,000–7,000 gross. The CAO Metalektro or CAO Metaalnijverheid applies for many engineering placements, setting sector minimums above WML for most functions. For IT professionals, IT support and infrastructure €3,000–4,500 gross; software developer €4,000–6,500 gross; IT project manager €5,000–7,500 gross. At €4,500 gross monthly, net take-home after Dutch loonheffing is approximately €3,200–3,400.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation and Weekly Rent",
         body: "Connected2talent does not appear to provide housing. The Amsterdam Nieuw-West location and the professional nature of the disciplines they serve suggest that placements are for locally based or relocating professionals who arrange their own accommodation. John M. Keynesplein is accessible by NS rail from various Amsterdam metropolitan points via Sloterdijk station.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "On the Floor: Working Conditions",
         body: "Key questions before engaging: Which active vacancies do you currently have in my specific discipline? What is the client company type — manufacturing, software house, consulting firm, or infrastructure operator? Is the placement on a direct hire basis, fixed-term contract, or uitzend basis? If uitzend: which CAO applies, is the agency ABU-affiliated, and what are the Phase A notice terms? Can you provide references from previous candidates placed in similar roles? Legitimate IT and engineering recruiters should have no difficulty answering these immediately.",
       },
     ],
@@ -4312,8 +4312,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "No housing or relocation support",
     ],
     internalLinks: [
-      { href: "/agencies/circle-one", label: "Compare with Circle One for IT specialist recruitment in Amsterdam" },
-      { href: "/agencies/briqxx-people", label: "See Briqxx People for combined ICT and industrial sector placements" },
+      { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -4323,15 +4323,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Not every event staffing agency in Amsterdam has been around for decades. Crewmates is a younger, energetic bureau focused on supplying flexible hospitality workers — serving staff, hosts, dishwashers, and kitchen support — to restaurants, events, and venues in Amsterdam. The agency's positioning appeals to students, career-transitioning workers, and those who want genuinely flexible shift work without committing to a fixed employer.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "From Gross to Net: The Numbers",
         body: "Crewmates operates primarily in the Horeca sector. Under the CAO Horeca 2026, the hourly rate for serving staff starts at €14.80–15.20 gross per hour for entry level. Kitchen support and dishwasher roles classify at similar rates, typically €14.71–15.00 gross. Hosts and supervisors may earn €15.50–17.00 gross per hour. The premium structure is where real earnings variation comes from: evening shifts past 22:00 attract a night supplement; Sunday shifts earn a 50% premium. For a student working a Saturday late-night event from 19:00 to 02:00, the shift spans Saturday evening rate, then Saturday night rate, then early Sunday morning rate — pushing the effective blended hourly rate to €19.00–22.00 for hours worked past midnight. For a student or part-time worker earning €1,200–1,800 gross per month, loonheffing is relatively low at approximately 8–10% effective. Ensure the payslip reflects the correct premium breakdown, not just a flat rate for all hours.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "SNF Housing: What Workers Get",
         body: "Crewmates does not provide housing. Their Amsterdam base means most workers are local residents. For students in shared housing at €600–900 per room, the flexible income from Crewmates is typically supplemental rather than primary. For those relying more heavily on the income, the seasonal nature of event staffing means lean periods in January and February require a savings buffer.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Working Conditions on Site",
         body: "Hospitality and event work is physically demanding: serving staff stand for 6–10 hours per shift, often in warm, loud environments. Dishwashers and kitchen support work in high-heat, fast-paced conditions. Post-midnight finishes are common, making own transport, cycling, or ride-sharing necessary for the journey home. Crewmates uses oproepkracht constructions — no guaranteed hours minimum. Reliable and presentable workers who consistently deliver good shifts are called back frequently; building a positive track record with the agency is the most effective route to consistent assignment volume.",
       },
     ],
@@ -4348,8 +4348,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Premium pay must be checked against actual payslips",
     ],
     internalLinks: [
-      { href: "/agencies/circle-hospitality", label: "Compare with Circle Hospitality for premium event staffing in Amsterdam" },
-      { href: "/agencies/be-my-guest-hospitality-events", label: "See Be My Guest for hospitality and private event staffing in Amsterdam" },
+      { href: "/guides/hidden-costs-netherlands", label: "Housing and transport deductions: your rights" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
     ],
   },
 
@@ -4359,15 +4359,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Demsan Uitzendorganisatie B.V. is a staffing organisation registered in Amsterdam at Maroastraat 5 in the Slotervaart neighbourhood of Nieuw-West. No active website was found during research, and no verified public information about their sector focus, services, or workforce profile was available from reliable sources. The transparency score on AgencyCheck is 32/100.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Wages and Payslip Breakdown",
         body: "Without confirmed sector information, the common sectors for Nieuw-West based bureaus provide a likely salary context. In 2026: construction support and unskilled labour €14.71–16.50 per hour gross (CAO Bouw may apply); logistics and warehouse operator €14.71–15.50 gross; cleaning and facility services €14.71–15.20 gross (CAO Schoonmaak); care and support assistant €14.71–16.00 gross (CAO Zorg en Welzijn depending on classification). At WML (€14.71 per hour) for 38 hours per week, gross monthly income is €2,224. Net take-home is approximately €1,850–1,950 after loonheffing. Vakantiegeld (8%) accrues on top and is paid annually. Dutch workers have a legal right to a written employment contract and a detailed loonstrook each payment period — any agency that cannot provide these should not be trusted.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Provision and Deductions",
         body: "No housing is indicated for this agency. The Slotervaart neighbourhood is served by Amsterdam tram lines 1 and 17 connecting to Centraal Station. GVB bus routes serve the wider Nieuw-West district. For workers without a car, accessibility is reasonable for Amsterdam-based assignments but may be limited for assignments at industrial parks in Westpoort or Schiphol area without direct transit coverage.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Work Environment and Transport",
         body: "Before starting any work: confirm KvK registration and sector code; check whether the agency holds ABU or NEN-4400 certification (which ensures Dutch labour and tax law compliance); request written confirmation of the applicable CAO; verify that loonheffing is being withheld correctly and that a loonstrook will be issued each payment period. Agencies in Amsterdam Nieuw-West serving the local community may provide accessible employment for residents, but accountability steps are non-negotiable before accepting any placement.",
       },
     ],
@@ -4383,8 +4383,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Extra due diligence required compared to certified, publicly visible agencies",
     ],
     internalLinks: [
-      { href: "/agencies/class-ster-uitzendbureau-b-v", label: "Compare with Class Ster Uitzendbureau for similar Amsterdam general staffing context" },
-      { href: "/agencies/amsterdam-werkt-aan-de-winkel", label: "See Amsterdam Werkt aan de Winkel for other Amsterdam community employment options" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
 
@@ -4394,15 +4394,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Dutchstar B.V. occupies an interesting position in the Amsterdam hospitality market: it is both a staffing agency for chefs and hospitality personnel and a hotel technology business offering reservation systems and bookkeeping services to hotels and restaurants. This dual nature means the company has a commercial footprint in the sector beyond simply supplying labour — client relationships built through technology sales intersect with the staffing side. This review focuses on the staffing operation and what chefs and hospitality workers can expect.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "How Much Workers Earn in 2026",
         body: "Dutchstar places chefs, hotel operations staff, and general hospitality personnel, all falling under the CAO Horeca. Chef classifications under this CAO in 2026 range from Kok niveau 1 (production kitchen, €14.80–15.50 per hour gross) through chef de partie (€16.50–19.00) to sous-chef and head chef levels (€20.00–28.00+ per hour for senior hotel kitchen management). Hotel operations roles — front desk, housekeeping supervisors, F&B coordinators — classify at €14.80–18.00 gross depending on responsibility level. Night shifts between 00:00 and 06:00 attract the highest Horeca CAO premium — typically 40–50% above base rate. A front desk professional working a full night shift earns significantly more per shift than their daytime equivalent, making these roles attractive for workers willing to adapt their sleep schedules.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation and Weekly Rent",
         body: "Dutchstar does not provide housing. Amsterdam-area hotel and restaurant assignments mean workers need their own accommodation. For hospitality professionals doing irregular shifts — late nights, early breakfasts, split shifts — living close to the city centre or with easy cycling access reduces logistical stress considerably. Amsterdam South and the Zuidas area, where many large hotels are located, are accessible by bike from most of the city within 20–30 minutes.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "On the Floor: Working Conditions",
         body: "Dutchstar's hotel technology division (reservation systems, bookkeeping) creates commercial relationships with hotel operators independent of the staffing side. A hotel that uses Dutchstar's reservation system is a natural referral for their staffing arm. In practice, hotel-based assignments with established client relationships tend to be more professional and consistent than ad-hoc placements. Workers doing hotel kitchen assignments should confirm shift structure (split or double), staff meal provision, and whether late-night transport to the hotel site is covered before accepting.",
       },
     ],
@@ -4419,8 +4419,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Premium pay must be verified on payslips — Horeca sector has inconsistent application history",
     ],
     internalLinks: [
-      { href: "/agencies/all-star-chefs", label: "Compare with All Star Chefs for chef-specific staffing in the Netherlands" },
-      { href: "/agencies/circle-hospitality", label: "See Circle Hospitality for event-based hospitality assignments in Amsterdam" },
+      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
     ],
   },
 
@@ -4430,15 +4430,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Location matters in staffing, and EmployMe B.V.'s base in Lijnden — a small municipality directly adjacent to Amsterdam Schiphol — is not accidental. The Schiphol area is one of the most active logistics and industrial employment zones in the Netherlands, generating continuous demand for transport drivers, warehouse operators, and private security personnel. EmployMe carries SBI codes covering temporary employment agency activities, private security staffing, and security systems — a multi-sector positioning that mirrors the Schiphol labour market's own structure.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "Wages and Payslip Breakdown",
         body: "Transport and logistics roles in the Schiphol area operate under multiple CAOs. Freight handlers and warehouse operators typically fall under CAO Goederenvervoer or CAO Luchtvaartgrondafhandeling. In 2026: freight handling and warehouse operator €15.00–16.50 per hour gross; transport driver (category B) €16.00–18.00 gross; heavy vehicle driver (category C or CE) €17.50–22.00 gross; Schiphol ground handler €15.50–17.50 gross. Private security roles operate under the CAO Particuliere Beveiliging: security officers (niveau 1) start at €15.50 per hour gross; security supervisors and team leaders earn €17.00–21.00 gross. Night shift and weekend premiums under the private security CAO are substantial — night work (22:00–06:00) attracts a 35–40% premium; Saturday afternoon and Sunday shifts carry additional surcharges. Security officers on regular night rotations can achieve €2,800–3,200 gross monthly including premiums.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Housing Provision and Deductions",
         body: "EmployMe does not provide housing. Lijnden is adjacent to Hoofddorp and Schiphol. Workers based in Amsterdam can access the area via the A10 ring road. For international workers new to the Netherlands seeking logistics or security work near Schiphol, short-term housing in Hoofddorp (average €1,000–1,400 per room in shared housing) or Haarlemmermeer is more affordable than central Amsterdam and strategically positioned for Schiphol-area employment.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "Work Environment and Transport",
         body: "Schiphol-area logistics and ground handling involves 24-hour operations. Early morning shifts (03:00–11:00 for cargo handling) are common in the freight sector. Physical demands are significant: loading, unloading, and sorting freight in climate-controlled warehouses or open apron environments. Correct PPE (safety shoes, high-visibility vest) is mandatory at all Schiphol-area operational sites. For security roles, a valid Certificate of Conduct (VOG) is required and, for some positions, an airport security pass (Schiphol pass) which takes 4–8 weeks to obtain. Confirm with EmployMe whether they initiate this process or whether the client handles it.",
       },
     ],
@@ -4455,8 +4455,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Early morning and overnight logistics shifts require strong sleep-schedule flexibility",
     ],
     internalLinks: [
-      { href: "/agencies/demsan-uitzendorganisatie-b-v", label: "See Demsan Uitzendorganisatie for other Amsterdam-area general staffing options" },
-      { href: "/agencies/class-ster-uitzendbureau-b-v", label: "Compare with Class Ster Uitzendbureau for general Amsterdam temp agency context" },
+      { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
+      { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
     ],
   },
 
@@ -4466,15 +4466,15 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
     intro: "Werving en selectie — recruitment and selection — is the segment of the Dutch employment market where agencies act as intermediaries for permanent and fixed-term placements rather than as uitzendbureau operators managing ongoing temp contracts. Gerlof Smit Werving & Selectie is registered in Amsterdam at Wannepad 22, in the Geuzenveld-Slotermeer area of Nieuw-West. No active website was found during research, and no verified public information about their sector specialisation, client base, or placement history was available. The agency holds a transparency score of 32/100.",
     sections: [
       {
-        heading: "Salary and Real Take-Home Pay",
+        heading: "How Much Workers Earn in 2026",
         body: "Gerlof Smit Werving & Selectie operates from Amsterdam Nieuw-West, suggesting a potential focus on local employers and community-level professional placements. Common permanent placement salary ranges at entry to mid-professional level in this area in 2026: administrative coordinator €2,400–3,200 gross per month; team leader or supervisor €2,800–3,800 gross; social welfare or community work professional €2,600–3,500 gross (CAO Welzijn en Maatschappelijke Dienstverlening may apply); facilities manager €3,000–4,500 gross. The key point for any werving en selectie candidate: focus salary negotiation on the employer, not the bureau. The bureau's incentive — a percentage of your salary — is structurally aligned with placing you at the highest achievable rate.",
       },
       {
-        heading: "Housing Conditions",
+        heading: "Accommodation and Weekly Rent",
         body: "Gerlof Smit does not provide housing. Placements are direct with employers, so housing considerations are between you and the employer. The Geuzenveld-Slotermeer location is served by Amsterdam tram lines and buses connecting to the broader GVB network. For placements at local Amsterdam employers, public transit commuting is generally feasible.",
       },
       {
-        heading: "Transport and Work Conditions",
+        heading: "On the Floor: Working Conditions",
         body: "Unlike a uitzendbureau where employment rights provide a structural floor, werving en selectie requires more reliance on the bureau's professionalism. Key questions before engaging: What sectors and role types are you currently placing for? How many active mandates do you have open right now? Who are your typical client types — small businesses, housing associations, care organisations, or public sector? What is your average time-to-placement? Can you provide a reference from a previous candidate you placed? Small, locally-based werving en selectie bureaus sometimes have deep relationships with specific employer communities that larger national agencies overlook — in Nieuw-West, this might mean housing associations (woningcorporaties), community organisations, welfare services, or local SMEs.",
       },
     ],
@@ -4491,8 +4491,8 @@ Realistic take-home: €340–€355/week at WML day shifts, approximately €41
       "Geuzenveld-Slotermeer is not a primary corporate employment hub",
     ],
     internalLinks: [
-      { href: "/agencies/acadeem-uitzendbureau-nederland-b-v", label: "Compare with Acadeem Uitzendbureau for graduate and professional placements in Amsterdam" },
-      { href: "/agencies/agile-professionals-bv", label: "See Agile Professionals BV for another small Amsterdam recruitment bureau review" },
+      { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
+      { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
 };
