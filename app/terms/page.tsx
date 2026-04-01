@@ -29,7 +29,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">1. About the platform</h2>
           <p className="mb-2">
-            AgencyCheck is operated by <strong>{LEGAL.legalName}</strong>
+            AgencyCheck is operated by {LEGAL.legalName}
             {LEGAL.kvkNumber ? `, KvK ${LEGAL.kvkNumber}` : ""}, an informational platform
             providing transparency data about employment agencies in the Netherlands. Content
             includes agency research profiles, worker-submitted reviews, salary reports, and

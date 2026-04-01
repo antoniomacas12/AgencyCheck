@@ -30,8 +30,8 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">1. Who we are (data controller)</h2>
           <p className="mb-2">
-            AgencyCheck is operated by <strong>{LEGAL.legalName}</strong>
-            {LEGAL.kvkNumber ? `, registered at the Dutch Chamber of Commerce (KvK) under number ${LEGAL.kvkNumber}` : ""}.
+            AgencyCheck is operated by {LEGAL.legalName}
+            {LEGAL.kvkNumber ? `, KvK ${LEGAL.kvkNumber}` : ""}.
             {LEGAL.address.street
               ? ` Registered address: ${LEGAL.address.street}, ${LEGAL.address.postcode} ${LEGAL.address.city}, ${LEGAL.address.country}.`
               : ""}

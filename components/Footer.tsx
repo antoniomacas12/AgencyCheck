@@ -181,19 +181,15 @@ export default async function Footer() {
         </div>
 
         {/* Legal entity strip — required by Dutch law (Wet elektronische handel) */}
-        <div className="border-t border-gray-100 pt-5 mb-4">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-gray-400">
-            <span className="font-medium text-gray-500">{LEGAL.legalName}</span>
-            {LEGAL.kvkNumber
-              ? <span>KvK {LEGAL.kvkNumber}</span>
-              : null
-            }
-            {LEGAL.vatNumber && <span>BTW {LEGAL.vatNumber}</span>}
+        <div className="border-t border-gray-100 pt-4 mb-3">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[10px] text-gray-300">
+            <span>{LEGAL.legalName}</span>
+            {LEGAL.kvkNumber ? <span>KvK {LEGAL.kvkNumber}</span> : null}
+            {LEGAL.vatNumber  ? <span>BTW {LEGAL.vatNumber}</span>  : null}
             {LEGAL.address.street
               ? <span>{LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}</span>
-              : null
-            }
-            <a href={`mailto:${LEGAL.emailGeneral}`} className="hover:text-brand-600">{LEGAL.emailGeneral}</a>
+              : null}
+            <a href={`mailto:${LEGAL.emailGeneral}`} className="hover:text-gray-400">{LEGAL.emailGeneral}</a>
           </div>
         </div>
 
