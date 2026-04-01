@@ -406,17 +406,6 @@ export async function GET(req: NextRequest) {
         select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
         orderBy: { sortOrder: "asc" as const },
       },
-      mentions: {
-        where:   { confidence: { gte: 40 } },
-        select: {
-          id:            true,
-          extractedName: true,
-          confidence:    true,
-          autoCreated:   true,
-          agency: { select: { slug: true, name: true } },
-        },
-        orderBy: { confidence: "desc" as const },
-      },
     };
 
     if (agencySlug) {
@@ -458,17 +447,6 @@ export async function GET(req: NextRequest) {
         photos:                {
           select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
           orderBy: { sortOrder: "asc" },
-        },
-        mentions: {
-          where:   { confidence: { gte: 40 } },
-          select: {
-            id:            true,
-            extractedName: true,
-            confidence:    true,
-            autoCreated:   true,
-            agency: { select: { slug: true, name: true } },
-          },
-          orderBy: { confidence: "desc" },
         },
       },
     });
