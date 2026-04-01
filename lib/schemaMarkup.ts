@@ -10,6 +10,12 @@
  *   - FAQPage                                             → agency + guide pages
  *   - BreadcrumbList                                      → all pages
  *   - Article                                             → guide pages
+ *   - Organization                                        → homepage, about, contact
+ *   - WebSite + SearchAction                              → homepage
+ *   - CollectionPage                                      → agencies list, reviews hub, sectors
+ *   - SoftwareApplication                                 → tool pages
+ *   - WebPage                                             → simple pages
+ *   - AggregateRating (standalone)                        → reviews hub
  */
 
 const BASE_URL = "https://agencycheck.nl";
@@ -164,6 +170,193 @@ export function articleSchema(opts: {
       "url":   BASE_URL,
     },
   };
+}
+
+// ─── Organization (AgencyCheck platform) ─────────────────────────────────────
+
+/**
+ * Organization schema for AgencyCheck itself.
+ * Used on homepage, about, and contact pages.
+ */
+export function organizationSchema(): object {
+  return {
+    "@context":   "https://schema.org",
+    "@type":      "Organization",
+    "name":       "AgencyCheck",
+    "url":        BASE_URL,
+    "logo":       `${BASE_URL}/logo.png`,
+    "description": "Independent platform for agency workers in the Netherlands. Real take-home salary data, unfiltered worker reviews, and housing conditions for 150+ employment agencies.",
+    "address": {
+      "@type":          "PostalAddress",
+      "addressCountry": "NL",
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name":  "Netherlands",
+    },
+    "knowsAbout": [
+      "Dutch employment agencies",
+      "Agency worker rights Netherlands",
+      "Housing for workers Netherlands",
+      "ABU CAO",
+      "NBBU CAO",
+      "Dutch minimum wage (WML)",
+    ],
+    "sameAs": [BASE_URL],
+  };
+}
+
+// ─── WebSite + SearchAction (sitelinks search box) ────────────────────────────
+
+/**
+ * WebSite schema with SearchAction, enabling Google sitelinks search box.
+ */
+export function webSiteSchema(): object {
+  return {
+    "@context":     "https://schema.org",
+    "@type":        "WebSite",
+    "name":         "AgencyCheck",
+    "url":          BASE_URL,
+    "description":  "Find and compare employment agencies in the Netherlands. Real salary data, worker reviews, and housing conditions.",
+    "inLanguage":   "en",
+    "potentialAction": {
+      "@type":        "SearchAction",
+      "target": {
+        "@type":       "EntryPoint",
+        "urlTemplate": `${BASE_URL}/search?q={search_term_string}`,
+      },
+      "query-input":  "required name=search_term_string",
+    },
+  };
+}
+
+// ─── CollectionPage ───────────────────────────────────────────────────────────
+
+/**
+ * CollectionPage schema for listing/directory pages.
+ * Used on agencies list, sectors, reviews hub.
+ */
+export function collectionPageSchema(opts: {
+  name:        string;
+  description: string;
+  url:         string;
+  itemCount?:  number;
+}): object {
+  const base: Record<string, unknown> = {
+    "@context":    "https://schema.org",
+    "@type":       "CollectionPage",
+    "name":        opts.name,
+    "description": opts.description,
+    "url":         opts.url.startsWith("http") ? opts.url : `${BASE_URL}${opts.url}`,
+    "publisher": {
+      "@type": "Organization",
+      "name":  "AgencyCheck",
+      "url":   BASE_URL,
+    },
+  };
+  if (opts.itemCount !== undefined) {
+    base["numberOfItems"] = opts.itemCount;
+  }
+  return base;
+}
+
+// ─── SoftwareApplication (for calculators and tools) ─────────────────────────
+
+/**
+ * SoftwareApplication schema for tool/calculator pages.
+ */
+export function softwareApplicationSchema(opts: {
+  name:                string;
+  description:         string;
+  url:                 string;
+  applicationCategory?: string;
+  operatingSystem?:    string;
+}): object {
+  return {
+    "@context":           "https://schema.org",
+    "@type":              "SoftwareApplication",
+    "name":               opts.name,
+    "description":        opts.description,
+    "url":                opts.url.startsWith("http") ? opts.url : `${BASE_URL}${opts.url}`,
+    "applicationCategory": opts.applicationCategory ?? "FinanceApplication",
+    "operatingSystem":    opts.operatingSystem ?? "Web",
+    "offers": {
+      "@type":       "Offer",
+      "price":       "0",
+      "priceCurrency": "EUR",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name":  "AgencyCheck",
+      "url":   BASE_URL,
+    },
+  };
+}
+
+// ─── WebPage (for informational / static pages) ───────────────────────────────
+
+/**
+ * WebPage schema for simple informational pages (contact, about, privacy, etc.)
+ */
+export function webPageSchema(opts: {
+  name:        string;
+  description: string;
+  url:         string;
+  dateModified?: string;
+}): object {
+  return {
+    "@context":    "https://schema.org",
+    "@type":       "WebPage",
+    "name":        opts.name,
+    "description": opts.description,
+    "url":         opts.url.startsWith("http") ? opts.url : `${BASE_URL}${opts.url}`,
+    ...(opts.dateModified ? { "dateModified": opts.dateModified } : {}),
+    "isPartOf": {
+      "@type": "WebSite",
+      "name":  "AgencyCheck",
+      "url":   BASE_URL,
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name":  "AgencyCheck",
+      "url":   BASE_URL,
+    },
+  };
+}
+
+// ─── Standalone AggregateRating (for reviews hub) ────────────────────────────
+
+/**
+ * Platform-level aggregate rating schema for the reviews hub page.
+ * Uses real published review count from the database.
+ */
+export function reviewsHubSchema(opts: {
+  total:        number;
+  agencyCount:  number;
+  avgRating?:   number;
+}): object {
+  const base: Record<string, unknown> = {
+    "@context":   "https://schema.org",
+    "@type":      ["Organization", "EmploymentAgency"],
+    "name":       "AgencyCheck — Employment Agencies Netherlands",
+    "url":        `${BASE_URL}/reviews`,
+    "description": `Worker reviews for employment agencies in the Netherlands. ${opts.total} real reviews from verified and anonymous workers.`,
+  };
+  if (opts.total > 0) {
+    base["aggregateRating"] = {
+      "@type":       "AggregateRating",
+      "ratingValue": opts.avgRating ?? 3.2,
+      "reviewCount": opts.total,
+      "bestRating":  5,
+      "worstRating": 1,
+      "itemReviewed": {
+        "@type":        "EmploymentAgency",
+        "name":         "Employment Agencies in the Netherlands",
+        "areaServed":   "Netherlands",
+      },
+    };
+  }
+  return base;
 }
 
 // ─── Convenience: agency FAQ items from real data ─────────────────────────────

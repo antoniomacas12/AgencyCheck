@@ -8,6 +8,7 @@ import { getJobCountForAgency } from "@/lib/jobData";
 import { REVIEW_SEED_DATA } from "@/lib/reviewData";
 import { getLocale } from "@/lib/getLocale";
 import { getT } from "@/lib/i18n";
+import { breadcrumbSchema, collectionPageSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
   title: "All Employment Agencies Netherlands — AgencyCheck",
@@ -60,8 +61,22 @@ export default async function AgenciesPage() {
     .map((slug) => ALL_AGENCY_MAP[slug])
     .filter(Boolean);
 
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",     url: "/" },
+    { name: "Agencies", url: "/agencies" },
+  ]);
+  const listSchema  = collectionPageSchema({
+    name:        `Employment Agencies Netherlands (${sorted.length} verified)`,
+    description: `Browse ${sorted.length} verified employment agencies in the Netherlands. Compare housing, salary data, job counts, and real worker reviews.`,
+    url:         "/agencies",
+    itemCount:   sorted.length,
+  });
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema)  }} />
 
       <SectionHeader
         title={t("agencies_page.title")}

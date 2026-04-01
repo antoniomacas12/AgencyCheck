@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { breadcrumbSchema, collectionPageSchema, softwareApplicationSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
   title: "Worker Tools for Jobs in the Netherlands — AgencyCheck",
@@ -118,8 +119,30 @@ const WHY_ITEMS = [
 ];
 
 export default function ToolsPage() {
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",  url: "/" },
+    { name: "Tools", url: "/tools" },
+  ]);
+  const listSchema  = collectionPageSchema({
+    name:        "Worker Tools for Jobs in the Netherlands — AgencyCheck",
+    description: "Free salary calculators, accommodation cost tools, payslip checker, and shift tracker for flex workers at Dutch employment agencies.",
+    url:         "/tools",
+    itemCount:   TOOLS.length + MORE_TOOLS.length,
+  });
+  const appSchema   = softwareApplicationSchema({
+    name:                "AgencyCheck Worker Tools",
+    description:         "Free online tools for calculating real salary, housing costs, and weekly earnings when working through staffing agencies in the Netherlands.",
+    url:                 "https://agencycheck.nl/tools",
+    applicationCategory: "FinanceApplication",
+    operatingSystem:     "Web",
+  });
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema)  }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema)   }} />
 
       {/* ── Header ── */}
       <div className="mb-10">

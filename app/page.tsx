@@ -15,6 +15,12 @@ import { RANDSTAD_STATS } from "@/lib/randstadData";
 import { TEMPO_TEAM_STATS } from "@/lib/tempoTeamData";
 import type { SearchSuggestion } from "@/components/SmartSearch";
 import SmartSearch from "@/components/SmartSearch";
+import {
+  organizationSchema,
+  webSiteSchema,
+  breadcrumbSchema,
+  faqPageSchema,
+} from "@/lib/schemaMarkup";
 
 const HomepageHeroCalculator = nDynamic(() => import("@/components/HomepageHeroCalculator"), { ssr: false });
 const HomepageCalculator     = nDynamic(() => import("@/components/HomepageCalculator"),     { ssr: false });
@@ -196,8 +202,45 @@ export default async function HomePage() {
     agencyName: AGENCY_MAP[r.agencySlug]?.name ?? r.agencySlug,
   }));
 
+  // ── JSON-LD schemas ──────────────────────────────────────────────────────────
+  const orgSchema  = organizationSchema();
+  const siteSchema = webSiteSchema();
+  const crumbSchema = breadcrumbSchema([{ name: "Home", url: "/" }]);
+  const homepageFaqs = faqPageSchema([
+    {
+      question: "How much salary do I actually keep after rent and deductions in the Netherlands?",
+      answer:   `At the legal minimum wage (€14.71/hr, 40h/week), your gross weekly pay is €588. After Dutch income tax (with heffingskorting credits), agency housing (~€95/wk), transport, and health insurance, most workers keep €300–€370/week — roughly 51–63% of gross pay.`,
+    },
+    {
+      question: "Are agency deductions from salary legal in the Netherlands?",
+      answer:   "Yes — but only within strict limits set by the ABU and NBBU CAO. Agencies may deduct housing, transport, and health insurance, but amounts must be specified in your contract. Deductions for services you did not receive, or above contracted prices, are illegal. Report violations to Inspectie SZW.",
+    },
+    {
+      question: "What is the minimum wage in the Netherlands in 2026?",
+      answer:   "The Dutch statutory minimum wage (WML) is €14.71 per hour in 2026 for workers aged 21+. For 40 hours/week this is approximately €2,545/month gross. Agencies are legally required to pay at least WML regardless of nationality.",
+    },
+    {
+      question: "How do I verify if a Dutch employment agency is legitimate?",
+      answer:   "Check for SNA (Stichting Normering Arbeid) or ABU/NBBU registration and verify KvK (Chamber of Commerce) registration. On AgencyCheck, agency profiles show verification status, worker reviews, and housing conditions. Red flags include advance payment requests, no written contract, and pressure to start immediately.",
+    },
+    {
+      question: "What are average housing costs when working through a Dutch agency?",
+      answer:   "Agency housing typically costs €80–€113.50/week deducted from gross salary. The SNF maximum legal deduction for certified shared accommodation is €113.50/week (2024). Own accommodation in the Netherlands ranges from €500–€900/month depending on city.",
+    },
+    {
+      question: "What should I do if my agency is not paying me correctly?",
+      answer:   "Request a full itemised payslip (loonstrook) and compare every line against your signed contract. If discrepancies exist: contact your agency in writing, report to Inspectie SZW (inspectieszw.nl), contact FNV or CNV trade unions, and for housing issues contact SNF.",
+    },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+
+      {/* JSON-LD structured data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)       }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema)      }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema)     }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqs)    }} />
 
       {/* ════════════════════════════════════════════════════════════
           §1  HERO — simplified, with embedded live calculator

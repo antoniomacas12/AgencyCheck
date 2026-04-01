@@ -14,6 +14,7 @@ import {
   type ComparisonOverlap,
 } from "@/lib/pageEligibility";
 import { SECTOR_META } from "@/lib/agencyMeta";
+import { breadcrumbSchema, faqPageSchema } from "@/lib/schemaMarkup";
 
 // ─── Static generation — unknown pair slugs 404 immediately ─────────────────
 // Never falls through to runtime rendering — all valid pages are built ahead.
@@ -411,8 +412,31 @@ export default function ComparisonPage({
     "technical-specialist": "Technical specialist",
   };
 
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",    url: "/" },
+    { name: "Compare", url: "/compare" },
+    { name: `${agencyA.name} vs ${agencyB.name}`, url: `/compare/${params.pair}` },
+  ]);
+  const compFaqs = faqPageSchema([
+    {
+      question: `What is the difference between ${agencyA.name} and ${agencyB.name}?`,
+      answer:   `${agencyA.name} (transparency score ${agencyA.transparencyScore}/100) and ${agencyB.name} (${agencyB.transparencyScore}/100) are both employment agencies operating in the Netherlands. ${agencyA.housing === "YES" ? `${agencyA.name} provides housing.` : ""} ${agencyB.housing === "YES" ? `${agencyB.name} provides housing.` : ""} Compare worker reviews and conditions on AgencyCheck.`,
+    },
+    {
+      question: `Does ${agencyA.name} or ${agencyB.name} provide better housing?`,
+      answer:   `${agencyA.housing === "YES" ? `${agencyA.name} provides accommodation for workers` : `${agencyA.name} does not include housing`}. ${agencyB.housing === "YES" ? `${agencyB.name} provides accommodation for workers` : `${agencyB.name} does not include housing`}. Dutch SNF standards cap housing deductions at €113.50/week.`,
+    },
+    {
+      question: `Are both ${agencyA.name} and ${agencyB.name} legitimate Dutch agencies?`,
+      answer:   `Both agencies are profiled on AgencyCheck with transparency scores based on publicly verifiable data. Always verify KvK registration and check for ABU/NBBU/SNA membership before signing a contract with any Dutch employment agency.`,
+    },
+  ]);
+
   return (
     <main className="max-w-3xl mx-auto px-4 py-8">
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(compFaqs)   }} />
 
       {/* ── Breadcrumb ─────────────────────────────────────────────────────── */}
       <nav className="text-xs text-gray-400 mb-5 flex items-center gap-1.5" aria-label="Breadcrumb">

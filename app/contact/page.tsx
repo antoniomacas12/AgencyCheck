@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { organizationSchema, breadcrumbSchema, webPageSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
   title: "Contact AgencyCheck — Report Agencies, Submit Data, Ask Questions",
@@ -9,8 +10,23 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const orgSchema   = organizationSchema();
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",    url: "/" },
+    { name: "Contact", url: "/contact" },
+  ]);
+  const pageSchema  = webPageSchema({
+    name:        "Contact AgencyCheck — Report Agencies, Submit Data, Ask Questions",
+    description: "Get in touch with AgencyCheck. Report an inaccuracy, submit a missing agency, ask a question, or share your experience.",
+    url:         "/contact",
+  });
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)   }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema)  }} />
 
       {/* Header */}
       <div className="mb-10">

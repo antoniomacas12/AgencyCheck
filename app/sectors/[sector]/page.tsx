@@ -15,6 +15,7 @@ import {
 import { CITIES } from "@/lib/seoData";
 import { WML_HOURLY_2026 } from "@/lib/dutchTax";
 import type { AgencySector } from "@/lib/agencyMeta";
+import { breadcrumbSchema, collectionPageSchema, faqPageSchema } from "@/lib/schemaMarkup";
 
 // ─── Static params — one page per active sector ───────────────────────────────
 export function generateStaticParams() {
@@ -113,8 +114,45 @@ export default function SectorPage({ params }: { params: { sector: string } }) {
     .slice(0, 8)
     .map((s) => getSectorMeta(s));
 
+  // ── JSON-LD schemas ────────────────────────────────────────────────────────
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",    url: "/" },
+    { name: "Sectors", url: "/sectors" },
+    { name: meta.label, url: `/sectors/${params.sector}` },
+  ]);
+  const listSchema  = collectionPageSchema({
+    name:        `${meta.label} Agencies Netherlands — ${agencies.length} verified`,
+    description: `${agencies.length} employment ${agencies.length === 1 ? "agency" : "agencies"} in ${meta.label.toLowerCase()} across the Netherlands. Compare housing, transport, and worker reviews.`,
+    url:         `/sectors/${params.sector}`,
+    itemCount:   agencies.length,
+  });
+  const sectorFaqs  = faqPageSchema([
+    {
+      question: `How many ${meta.label.toLowerCase()} employment agencies are in the Netherlands?`,
+      answer:   `There are ${agencies.length} ${meta.label.toLowerCase()} employment agencies listed on AgencyCheck. ${withHousing.length > 0 ? `${withHousing.length} of them provide worker housing.` : ""}`,
+    },
+    {
+      question: `Do ${meta.label.toLowerCase()} agencies in the Netherlands provide housing?`,
+      answer:   withHousing.length > 0
+        ? `Yes — ${withHousing.length} out of ${agencies.length} ${meta.label.toLowerCase()} agencies on AgencyCheck offer accommodation. Housing is typically deducted from your salary at €80–€110 per week. Always get the deduction amount in writing before starting work.`
+        : `Most ${meta.label.toLowerCase()} agencies do not include housing. You will need to arrange accommodation separately. Check individual agency profiles for the latest information.`,
+    },
+    {
+      question: `What is the minimum wage for ${meta.label.toLowerCase()} workers in the Netherlands in 2026?`,
+      answer:   `The Dutch national minimum wage in 2026 is €${WML_HOURLY_2026} per hour gross. ${meta.label} agency workers placed on an ABU or NBBU CAO contract are entitled to at least this rate, plus holiday pay (vakantiegeld) of 8% on top of gross salary.`,
+    },
+    {
+      question: `What should I check before signing with a ${meta.label.toLowerCase()} agency?`,
+      answer:   `Before signing: (1) confirm your gross hourly rate is at or above €${WML_HOURLY_2026}/hr; (2) get housing deduction in writing if accommodation is included; (3) ask whether transport is included or deducted; (4) check that night and Sunday premiums appear on your payslip; (5) request your contract in a language you understand.`,
+    },
+  ]);
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema)  }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(sectorFaqs)  }} />
 
       {/* ── Breadcrumb ── */}
       <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">

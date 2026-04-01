@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AGENCIES, AGENCIES_WITH_HOUSING } from "@/lib/agencyData";
 import { REVIEW_SEED_DATA } from "@/lib/reviewData";
 import { LEGAL } from "@/lib/legalConfig";
+import { organizationSchema, breadcrumbSchema, webPageSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
   title: "About AgencyCheck — Who We Are and Why We Built This",
@@ -16,8 +17,24 @@ export default function AboutPage() {
   const housingAgencies = AGENCIES_WITH_HOUSING.length;
   const totalReviews = REVIEW_SEED_DATA.length;
 
+  const orgSchema   = organizationSchema();
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",  url: "/" },
+    { name: "About", url: "/about" },
+  ]);
+  const pageSchema  = webPageSchema({
+    name:        "About AgencyCheck — Who We Are and Why We Built This",
+    description: "AgencyCheck is an independent platform built for agency workers in the Netherlands. Real take-home salary data, unfiltered worker reviews, and housing conditions — free, no paid rankings.",
+    url:         "/about",
+    dateModified: "2026-04-01",
+  });
+
   return (
     <div className="min-h-screen bg-white">
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)   }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema)  }} />
 
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div className="bg-gray-950 text-white">

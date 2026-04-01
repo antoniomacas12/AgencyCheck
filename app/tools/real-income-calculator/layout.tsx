@@ -1,11 +1,31 @@
 import type { Metadata } from "next";
+import { breadcrumbSchema, softwareApplicationSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
-  title: "Real Income Calculator — AgencyCheck",
+  title: "Compare Two Agency Offers — Real Income Calculator — AgencyCheck",
   description:
-    "Compare two agency offers side by side after Dutch income tax, housing deductions, transport and healthcare. Find out your real take-home pay.",
+    "Compare two Dutch agency job offers side by side after income tax, housing deductions, transport and healthcare. Find out which deal leaves you with more money.",
 };
 
 export default function RealIncomeCalculatorLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  const crumbSchema = breadcrumbSchema([
+    { name: "Home",                    url: "/" },
+    { name: "Tools",                   url: "/tools" },
+    { name: "Real Income Calculator",  url: "/tools/real-income-calculator" },
+  ]);
+  const appSchema   = softwareApplicationSchema({
+    name:                "Compare Two Agency Offers — AgencyCheck",
+    description:         "Put two Dutch agency job offers side by side and factor in housing deductions, transport, and income tax to see which deal actually leaves you with more money.",
+    url:                 "https://agencycheck.nl/tools/real-income-calculator",
+    applicationCategory: "FinanceApplication",
+    operatingSystem:     "Web",
+  });
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema)   }} />
+      {children}
+    </>
+  );
 }
