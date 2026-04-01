@@ -9,6 +9,7 @@ import { REVIEW_SEED_DATA } from "@/lib/reviewData";
 import { getLocale } from "@/lib/getLocale";
 import { getT } from "@/lib/i18n";
 import { breadcrumbSchema, collectionPageSchema } from "@/lib/schemaMarkup";
+import { getRecentWorkerReportedAgencies } from "@/lib/agencyDb";
 
 export const metadata: Metadata = {
   title: "All Employment Agencies Netherlands — AgencyCheck",
@@ -28,6 +29,7 @@ export const dynamic = "force-dynamic";
 export default async function AgenciesPage() {
   const locale = getLocale();
   const t = await getT(locale);
+  const workerReported = await getRecentWorkerReportedAgencies(8);
 
   // ── Build job counts map for every agency ──────────────────────────────
   const jobCounts: Record<string, number> = {};
@@ -164,6 +166,41 @@ export default async function AgenciesPage() {
           {t("agencies_page.filter_search")}
         </Link>
       </div>
+
+      {/* ── Newly discovered agencies (reported by workers) ──────────────────── */}
+      {workerReported.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-base font-bold text-gray-900 mb-1">
+            Recently reported by workers
+          </h2>
+          <p className="text-xs text-gray-500 mb-3">
+            These agencies were mentioned in worker reviews and automatically added.
+            Official data has not yet been verified.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+            {workerReported.map((a) => (
+              <Link
+                key={a.slug}
+                href={`/agencies/${a.slug}`}
+                className="card p-3 hover:shadow-md hover:border-brand-100 transition-all"
+              >
+                <p className="text-sm font-semibold text-gray-900 truncate">{a.name}</p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  📍 {a.city !== "unknown" ? a.city : "Netherlands"}
+                </p>
+                {a.mentionCount > 0 && (
+                  <p className="text-[10px] text-gray-400 mt-1">
+                    Mentioned in {a.mentionCount} review{a.mentionCount !== 1 ? "s" : ""}
+                  </p>
+                )}
+                <span className="text-[10px] mt-1 inline-block bg-amber-50 text-amber-700 border border-amber-100 px-1.5 py-0.5 rounded-full font-medium">
+                  Unverified
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── All agencies — searchable ─────────────────────────────────────────── */}
       <h2 className="text-base font-bold text-gray-900 mb-4">{t("agencies_page.all_agencies_title")}</h2>

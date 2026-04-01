@@ -4,6 +4,7 @@ import { CITIES, JOB_SALARY_DATA } from "@/lib/seoData";
 import { ALL_AGENCIES } from "@/lib/agencyEnriched";
 import { GUIDES } from "@/lib/guideData";
 import { allWorkInCombos } from "@/lib/workInSeoData";
+import { getWorkerReportedAgencySlugs } from "@/lib/agencyDb";
 import {
   filterEligibleComparisons,
   filterEligibleAgencyCityPairs,
@@ -53,9 +54,10 @@ const STATIC_DATE  = "2026-03-14";
 // All other pages use static dates.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch dynamic lastmod maps (fail-safe — empty map if DB is unavailable)
-  const [agencyLastMod, cityLastMod] = await Promise.all([
+  const [agencyLastMod, cityLastMod, workerReportedSlugs] = await Promise.all([
     getLastReviewDates(),
     getLastCityReviewDates(),
+    getWorkerReportedAgencySlugs(),
   ]);
   // ── 1. Static core pages ──────────────────────────────────────────────────
   const corePages: MetadataRoute.Sitemap = [
@@ -376,9 +378,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // ── 2. Agency profile pages (150+) ─────────────────────────────────────────
-  // lastModified = date of most recent published review for that agency (dynamic)
-  // Falls back to AGENCY_DATE when no DB reviews exist yet.
+  // ── 2. Agency profile pages (150+ static + DB-only worker-reported) ─────────
+  // Static verified agencies get higher priority; DB-only agencies are lower
+  // priority but still indexable — they have real review data.
+  // Exclude any DB-only slug that already exists in VERIFIED_AGENCIES.
+  const verifiedSlugsSet = new Set(VERIFIED_AGENCIES.map((a) => a.slug));
+
   const agencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
     url:             `${BASE_URL}/agencies/${agency.slug}`,
     lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
@@ -389,6 +394,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ? 0.7
       : 0.5,
   }));
+
+  // DB-only (worker-reported) agency pages — auto-added as workers mention new agencies.
+  // lastModified = createdAt date; priority 0.5 (lower than verified agencies).
+  const dbAgencyPages: MetadataRoute.Sitemap = workerReportedSlugs
+    .filter((row) => !verifiedSlugsSet.has(row.slug))
+    .map((row) => ({
+      url:             `${BASE_URL}/agencies/${row.slug}`,
+      lastModified:    row.createdAt.toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority:        0.5 as const,
+    }));
 
   // ── 3. Agency sub-pages: /reviews and /jobs per agency ────────────────────
   // /reviews pages get the dynamic date (they change on every new review)
@@ -541,6 +557,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...corePages,
     ...agencyPages,
+    ...dbAgencyPages,
     ...agencySubPages,
     ...cityPages,
     ...sectorPages,

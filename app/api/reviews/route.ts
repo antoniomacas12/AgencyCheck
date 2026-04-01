@@ -309,24 +309,52 @@ export async function POST(req: NextRequest) {
             wasCreated     = true;
           }
         } else {
-          // Brand-new agency — generate slug and create
+          // Brand-new agency — deduplicate before creating:
+          // 1. Generate canonical slug from the extracted name
+          // 2. Check slug conflict — if the slug already maps to an agency, reuse it
+          //    (handles "Covebo Group" → slug "covebo-group" which may already exist)
+          // 3. Also do a case-insensitive name check to catch "covebo" vs "Covebo"
           const baseSlug = generateAgencySlug(ext.matchedName) || `agency-${Date.now()}`;
-          const slugConflict = await db.agency.findUnique({ where: { slug: baseSlug }, select: { id: true } });
-          const finalSlug    = slugConflict ? `${baseSlug}-${Date.now()}` : baseSlug;
 
-          const created = await db.agency.create({
-            data: {
-              name:            ext.matchedName,
-              slug:            finalSlug,
-              sourceType:      "WORKER_REPORTED",
-              confidenceScore: 20,  // new unverified
-            },
-            select: { id: true, slug: true, name: true },
-          });
-          targetAgencyId = created.id;
-          targetSlug     = created.slug;
-          targetName     = created.name;
-          wasCreated     = true;
+          // Check slug AND normalised name against existing records
+          const [slugMatch, nameMatch] = await Promise.all([
+            db.agency.findUnique({ where: { slug: baseSlug }, select: { id: true, slug: true, name: true } }),
+            db.agency.findFirst({
+              where: {
+                name: {
+                  equals:   ext.matchedName.trim(),
+                  mode:     "insensitive",
+                },
+              },
+              select: { id: true, slug: true, name: true },
+            }),
+          ]);
+
+          const match = slugMatch ?? nameMatch ?? null;
+
+          if (match) {
+            // Reuse the existing DB record — do not create a duplicate
+            targetAgencyId = match.id;
+            targetSlug     = match.slug;
+            targetName     = match.name;
+            wasCreated     = false;
+          } else {
+            const finalSlug = baseSlug;
+
+            const created = await db.agency.create({
+              data: {
+                name:            ext.matchedName.trim(),
+                slug:            finalSlug,
+                sourceType:      "WORKER_REPORTED",
+                confidenceScore: 20,  // new unverified
+              },
+              select: { id: true, slug: true, name: true },
+            });
+            targetAgencyId = created.id;
+            targetSlug     = created.slug;
+            targetName     = created.name;
+            wasCreated     = true;
+          }
         }
 
         // Skip if this is the same agency the review was already submitted for
