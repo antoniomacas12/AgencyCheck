@@ -138,8 +138,9 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
   const [photoPreviews, setPhotoPreviews] = useState<string[]>([]);
 
   // Submission state
-  const [submitting, setSubmitting] = useState(false);
-  const [error,      setError]      = useState<string | null>(null);
+  const [submitting,        setSubmitting]        = useState(false);
+  const [error,             setError]             = useState<string | null>(null);
+  const [mentionedAgencies, setMentionedAgencies] = useState<{ slug: string; name: string }[]>([]);
 
   // ── Photo handling ─────────────────────────────────────────────────────────
 
@@ -223,6 +224,9 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
       }
 
       // Success — only reach here if server confirmed save
+      if (Array.isArray(data.mentionedAgencies)) {
+        setMentionedAgencies(data.mentionedAgencies);
+      }
       setStep("done");
       onSuccess?.();
     } catch {
@@ -245,6 +249,24 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
           Your review is now live on the {agencyName ?? agencySlug} page.
           Thank you for helping other workers know what to expect.
         </p>
+        {mentionedAgencies.length > 0 && (
+          <div className="mt-5 pt-4 border-t border-green-200 text-left">
+            <p className="text-xs font-semibold text-green-700 mb-2">
+              We also found these agencies mentioned in your review:
+            </p>
+            <div className="flex flex-wrap gap-1.5 justify-center">
+              {mentionedAgencies.map((a) => (
+                <a
+                  key={a.slug}
+                  href={`/agency/${a.slug}`}
+                  className="text-xs bg-white text-green-700 border border-green-300 px-2.5 py-0.5 rounded-full hover:bg-green-100 transition-colors"
+                >
+                  {a.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }

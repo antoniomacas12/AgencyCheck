@@ -58,6 +58,12 @@ export default async function AdminLayout({
               <AdminReviewsBadge />
             </a>
             <a
+              href="/admin/auto-agencies"
+              className="px-3 py-1.5 rounded-lg text-purple-300 hover:text-white hover:bg-white/10 transition"
+            >
+              Auto agencies
+            </a>
+            <a
               href="/admin/launch-checklist"
               className="px-3 py-1.5 rounded-lg text-amber-400 hover:text-white hover:bg-white/10 transition font-semibold"
             >

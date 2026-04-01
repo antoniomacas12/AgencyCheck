@@ -66,6 +66,7 @@ model Agency {
   salaryReports SalaryReport[]
   issueReports  IssueReport[]
   score         AgencyScore?
+  mentions      ReviewMention[]
 
   @@map("agencies")
 }
@@ -158,13 +159,42 @@ model Review {
 
   createdAt DateTime @default(now())
 
-  photos ReviewPhoto[]
+  photos   ReviewPhoto[]
+  mentions ReviewMention[]
 
   @@index([agencyId])
   @@index([status])
   @@index([isPublished])
   @@index([overallRating])
   @@map("reviews")
+}
+
+// ─── Review Mentions — agencies extracted from review text ───────────────────
+
+model ReviewMention {
+  id      String @id @default(cuid())
+
+  review   Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  reviewId String
+
+  agency   Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  agencyId String
+
+  // Raw text fragment that triggered the match
+  extractedName   String
+  // "exact_match" | "fuzzy_match" | "text_extraction"
+  detectionMethod String  @default("text_extraction")
+  // 0–100; higher = more confident
+  confidence      Int     @default(50)
+  // true when agency record was created by this extraction (did not exist before)
+  autoCreated     Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@unique([reviewId, agencyId])
+  @@index([reviewId])
+  @@index([agencyId])
+  @@map("review_mentions")
 }
 
 // ─── Review Photos ────────────────────────────────────────────────────────────

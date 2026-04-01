@@ -17,6 +17,14 @@ export interface ReviewPhoto {
   sortOrder: number;
 }
 
+export interface ReviewMentionChip {
+  id:            string;
+  extractedName: string;
+  confidence:    number;
+  autoCreated:   boolean;
+  agency: { slug: string; name: string };
+}
+
 export interface PublishedReview {
   id:                    string;
   city?:                 string | null;
@@ -40,6 +48,7 @@ export interface PublishedReview {
   issueTags?:            string[];
   createdAt:             string;
   photos:                ReviewPhoto[];
+  mentions?:             ReviewMentionChip[];
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -250,6 +259,24 @@ export function PublishedReviewCard({ review }: { review: PublishedReview }) {
       {/* Photos */}
       {review.photos && review.photos.length > 0 && (
         <PhotoStrip photos={review.photos} />
+      )}
+
+      {/* Mentioned agencies */}
+      {review.mentions && review.mentions.length > 0 && (
+        <div className="pt-2 border-t border-gray-100">
+          <p className="text-[11px] text-gray-400 mb-1.5">Also mentioned in this review:</p>
+          <div className="flex flex-wrap gap-1.5">
+            {review.mentions.map((m) => (
+              <a
+                key={m.id}
+                href={`/agency/${m.agency.slug}`}
+                className="text-xs bg-gray-50 text-gray-600 border border-gray-200 px-2.5 py-0.5 rounded-full hover:bg-brand-50 hover:text-brand-700 hover:border-brand-200 transition-colors"
+              >
+                {m.agency.name}
+              </a>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

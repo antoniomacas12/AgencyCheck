@@ -13,6 +13,7 @@ import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
+import { extractAgencies, generateAgencySlug } from "@/lib/agencyExtractor";
 
 // ─── Slug generator (for worker-reported agencies) ────────────────────────────
 
@@ -264,7 +265,98 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ success: true, reviewId: review.id, agencySlug: resolvedSlug }, { status: 201 });
+    // ── Extract agency mentions from comment text ──────────────────────────────
+    // Runs after the review is saved so a failure here never blocks submission.
+    const mentionedAgencies: { slug: string; name: string; autoCreated: boolean }[] = [];
+
+    try {
+      const extractions = extractAgencies(comment);
+
+      for (const ext of extractions) {
+        // Skip very low confidence text_extraction results with no known match
+        if (ext.isNew && ext.confidence < 40) continue;
+
+        let targetAgencyId: string;
+        let targetSlug:     string;
+        let targetName:     string;
+        let wasCreated = false;
+
+        if (ext.matchedSlug) {
+          // Existing agency — look up in DB (may need to be created if static-only)
+          const existing = await db.agency.findUnique({
+            where:  { slug: ext.matchedSlug },
+            select: { id: true, slug: true, name: true },
+          });
+
+          if (existing) {
+            targetAgencyId = existing.id;
+            targetSlug     = existing.slug;
+            targetName     = existing.name;
+          } else {
+            // Known in static list but not in DB — create it
+            const created = await db.agency.create({
+              data: {
+                name:            ext.matchedName,
+                slug:            ext.matchedSlug,
+                sourceType:      "WORKER_REPORTED",
+                confidenceScore: 50,
+              },
+              select: { id: true, slug: true, name: true },
+            });
+            targetAgencyId = created.id;
+            targetSlug     = created.slug;
+            targetName     = created.name;
+            wasCreated     = true;
+          }
+        } else {
+          // Brand-new agency — generate slug and create
+          const baseSlug = generateAgencySlug(ext.matchedName) || `agency-${Date.now()}`;
+          const slugConflict = await db.agency.findUnique({ where: { slug: baseSlug }, select: { id: true } });
+          const finalSlug    = slugConflict ? `${baseSlug}-${Date.now()}` : baseSlug;
+
+          const created = await db.agency.create({
+            data: {
+              name:            ext.matchedName,
+              slug:            finalSlug,
+              sourceType:      "WORKER_REPORTED",
+              confidenceScore: 20,  // new unverified
+            },
+            select: { id: true, slug: true, name: true },
+          });
+          targetAgencyId = created.id;
+          targetSlug     = created.slug;
+          targetName     = created.name;
+          wasCreated     = true;
+        }
+
+        // Skip if this is the same agency the review was already submitted for
+        if (targetAgencyId === agencyId) continue;
+
+        // Upsert mention — ignore duplicates gracefully
+        await db.reviewMention.upsert({
+          where:  { reviewId_agencyId: { reviewId: review.id, agencyId: targetAgencyId } },
+          update: {},   // already exists, keep as-is
+          create: {
+            reviewId:        review.id,
+            agencyId:        targetAgencyId,
+            extractedName:   ext.extractedName,
+            detectionMethod: ext.detectionMethod,
+            confidence:      ext.confidence,
+            autoCreated:     wasCreated,
+          },
+        });
+
+        mentionedAgencies.push({ slug: targetSlug, name: targetName, autoCreated: wasCreated });
+      }
+    } catch (extractErr) {
+      // Extraction failure must never break the submission response
+      console.error("[POST /api/reviews] extraction error (non-fatal)", extractErr);
+    }
+
+    return NextResponse.json(
+      { success: true, reviewId: review.id, agencySlug: resolvedSlug, mentionedAgencies },
+      { status: 201 },
+    );
 
   } catch (error) {
     console.error("[POST /api/reviews]", error);
@@ -285,6 +377,17 @@ export async function GET(req: NextRequest) {
       photos: {
         select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
         orderBy: { sortOrder: "asc" as const },
+      },
+      mentions: {
+        where:   { confidence: { gte: 40 } },
+        select: {
+          id:            true,
+          extractedName: true,
+          confidence:    true,
+          autoCreated:   true,
+          agency: { select: { slug: true, name: true } },
+        },
+        orderBy: { confidence: "desc" as const },
       },
     };
 
@@ -327,6 +430,17 @@ export async function GET(req: NextRequest) {
         photos:                {
           select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
           orderBy: { sortOrder: "asc" },
+        },
+        mentions: {
+          where:   { confidence: { gte: 40 } },
+          select: {
+            id:            true,
+            extractedName: true,
+            confidence:    true,
+            autoCreated:   true,
+            agency: { select: { slug: true, name: true } },
+          },
+          orderBy: { confidence: "desc" },
         },
       },
     });
