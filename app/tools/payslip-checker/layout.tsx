@@ -16,7 +16,7 @@ export default function PayslipCheckerLayout({ children }: { children: React.Rea
   const appSchema   = softwareApplicationSchema({
     name:                "Payslip Checker — AgencyCheck",
     description:         "Verify your Dutch agency payslip. Enter your hours worked, hourly wage, gross salary, and deductions to check if your pay is correct. Highlights errors and unusual deductions.",
-    url:                 "https://agencycheck.nl/tools/payslip-checker",
+    url:                 "https://agencycheck.io/tools/payslip-checker",
     applicationCategory: "FinanceApplication",
     operatingSystem:     "Web",
   });

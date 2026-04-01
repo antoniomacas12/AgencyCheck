@@ -60,7 +60,7 @@ export async function generateMetadata({
   return {
     title:       `Jobs in ${city.name}, Netherlands 2026 — ${jobCount}+ Vacancies | AgencyCheck`,
     description: `Find ${jobCount}+ warehouse, logistics and production jobs in ${city.name}. Average pay €${avgSal.toFixed(2)}/hr. Many positions include housing. Verified Dutch employment agencies.`,
-    alternates:  { canonical: `https://agencycheck.nl/jobs-in-${city.slug}` },
+    alternates:  { canonical: `https://agencycheck.io/jobs-in-${city.slug}` },
     openGraph: {
       title:       `Jobs in ${city.name} Netherlands — AgencyCheck`,
       description: `Warehouse, logistics and production jobs in ${city.name}. Many include housing and transport.`,

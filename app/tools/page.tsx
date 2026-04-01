@@ -132,7 +132,7 @@ export default function ToolsPage() {
   const appSchema   = softwareApplicationSchema({
     name:                "AgencyCheck Worker Tools",
     description:         "Free online tools for calculating real salary, housing costs, and weekly earnings when working through staffing agencies in the Netherlands.",
-    url:                 "https://agencycheck.nl/tools",
+    url:                 "https://agencycheck.io/tools",
     applicationCategory: "FinanceApplication",
     operatingSystem:     "Web",
   });

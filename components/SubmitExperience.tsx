@@ -199,7 +199,7 @@ export default function SubmitExperience({
   // ── Post-submission viral loop
   if (submitted) {
     const shareText = buildShareText(form);
-    const shareUrl  = "https://agencycheck.nl";
+    const shareUrl  = "https://agencycheck.io";
 
     return (
       <div className={`${inline ? "" : "fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"}`}>

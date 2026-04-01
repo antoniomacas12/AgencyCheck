@@ -18,7 +18,7 @@
  *   - AggregateRating (standalone)                        → reviews hub
  */
 
-const BASE_URL = "https://agencycheck.nl";
+const BASE_URL = "https://agencycheck.io";
 
 // ─── Types (minimal — we only type what we actually use) ─────────────────────
 

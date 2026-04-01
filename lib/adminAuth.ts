@@ -5,7 +5,7 @@
  * Runs in Node.js (Server Components, Route Handlers, Server Actions).
  *
  * Environment variables (set in .env.local or production env):
- *   ADMIN_EMAIL            admin login email (default: admin@agencycheck.nl)
+ *   ADMIN_EMAIL            admin login email (default: admin@agencycheck.io)
  *   ADMIN_PASSWORD         admin login password (default: CHANGE_THIS_NOW)
  *   ADMIN_SESSION_SECRET   32+ char random string for HMAC signing
  */
@@ -16,7 +16,7 @@ import { redirect } from "next/navigation";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-const ADMIN_EMAIL    = process.env.ADMIN_EMAIL    ?? "admin@agencycheck.nl";
+const ADMIN_EMAIL    = process.env.ADMIN_EMAIL    ?? "admin@agencycheck.io";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "CHANGE_THIS_PASSWORD";
 const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET ?? "dev-secret-please-change-in-production-32chars";
 const COOKIE_NAME    = "ac_admin_session";

@@ -21,7 +21,7 @@ import {
 import { resolveLastmod } from "@/lib/seoPipeline";
 
 // ─── Canonical base URL ───────────────────────────────────────────────────────
-const BASE_URL = "https://agencycheck.nl";
+const BASE_URL = "https://agencycheck.io";
 
 // ─── Sector slugs ─────────────────────────────────────────────────────────────
 const SECTOR_SLUGS = [

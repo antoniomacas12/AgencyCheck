@@ -9,7 +9,7 @@ import type { Metadata } from "next";
  * Adding html/body here causes nested invalid HTML → blank page.
  */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://agencycheck.nl"),
+  metadataBase: new URL("https://agencycheck.io"),
   title: {
     default: "AgencyCheck — Agenții de Muncă Olanda — Recenzii și Salarii Reale",
     template: "%s | AgencyCheck",
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     "salariu net Olanda", "locuri de muncă Olanda pentru romani",
   ],
   alternates: {
-    canonical: "https://agencycheck.nl/ro",
+    canonical: "https://agencycheck.io/ro",
     languages: {
-      "en":        "https://agencycheck.nl/",
-      "pl":        "https://agencycheck.nl/pl",
-      "ro":        "https://agencycheck.nl/ro",
-      "x-default": "https://agencycheck.nl/",
+      "en":        "https://agencycheck.io/",
+      "pl":        "https://agencycheck.io/pl",
+      "ro":        "https://agencycheck.io/ro",
+      "x-default": "https://agencycheck.io/",
     },
   },
   openGraph: {

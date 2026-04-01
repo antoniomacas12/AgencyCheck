@@ -16,7 +16,7 @@ export default function RealIncomeCalculatorLayout({ children }: { children: Rea
   const appSchema   = softwareApplicationSchema({
     name:                "Compare Two Agency Offers — AgencyCheck",
     description:         "Put two Dutch agency job offers side by side and factor in housing deductions, transport, and income tax to see which deal actually leaves you with more money.",
-    url:                 "https://agencycheck.nl/tools/real-income-calculator",
+    url:                 "https://agencycheck.io/tools/real-income-calculator",
     applicationCategory: "FinanceApplication",
     operatingSystem:     "Web",
   });

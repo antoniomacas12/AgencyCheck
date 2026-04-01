@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   description:
     "Znajdź pracę z zakwaterowaniem w Holandii. Sprawdź realne zarobki netto po odliczeniu kosztów mieszkania, podatku i transportu. Agencje pracy — opinie pracowników.",
   alternates: {
-    canonical: "https://agencycheck.nl/pl",
+    canonical: "https://agencycheck.io/pl",
     languages: {
-      "en":        "https://agencycheck.nl/",
-      "pl":        "https://agencycheck.nl/pl",
-      "ro":        "https://agencycheck.nl/ro",
-      "x-default": "https://agencycheck.nl/",
+      "en":        "https://agencycheck.io/",
+      "pl":        "https://agencycheck.io/pl",
+      "ro":        "https://agencycheck.io/ro",
+      "x-default": "https://agencycheck.io/",
     },
   },
   openGraph: {

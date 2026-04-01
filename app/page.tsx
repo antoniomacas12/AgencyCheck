@@ -32,12 +32,12 @@ export const metadata: Metadata = {
   description:
     "Most agency jobs pay €14–€17/hr but workers keep far less after housing, insurance and transport. See real take-home pay, real housing conditions and worker reviews before you sign.",
   alternates: {
-    canonical: "https://agencycheck.nl/",
+    canonical: "https://agencycheck.io/",
     languages: {
-      "en":        "https://agencycheck.nl/",
-      "pl":        "https://agencycheck.nl/pl",
-      "ro":        "https://agencycheck.nl/ro",
-      "x-default": "https://agencycheck.nl/",
+      "en":        "https://agencycheck.io/",
+      "pl":        "https://agencycheck.io/pl",
+      "ro":        "https://agencycheck.io/ro",
+      "x-default": "https://agencycheck.io/",
     },
   },
   openGraph: {

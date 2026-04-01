@@ -292,10 +292,10 @@ export default function AboutPage() {
           <h2 className="text-xl font-black text-gray-900 mb-4">Contact</h2>
           <div className="grid sm:grid-cols-2 gap-3 mb-6">
             {[
-              { label: "General questions",  email: "hello@agencycheck.nl",    detail: "Response within 2 working days." },
-              { label: "Privacy / GDPR",     email: "privacy@agencycheck.nl",  detail: "Data requests handled within 30 days per GDPR Art. 12." },
-              { label: "Agency data errors", email: "agencies@agencycheck.nl", detail: "Factual corrections and update requests." },
-              { label: "Legal enquiries",    email: "legal@agencycheck.nl",    detail: "Legal notices and formal correspondence." },
+              { label: "General questions",  email: "hello@agencycheck.io",    detail: "Response within 2 working days." },
+              { label: "Privacy / GDPR",     email: "hello@agencycheck.io",  detail: "Data requests handled within 30 days per GDPR Art. 12." },
+              { label: "Agency data errors", email: "hello@agencycheck.io", detail: "Factual corrections and update requests." },
+              { label: "Legal enquiries",    email: "hello@agencycheck.io",    detail: "Legal notices and formal correspondence." },
             ].map((c) => (
               <div key={c.label} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
                 <p className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">{c.label}</p>

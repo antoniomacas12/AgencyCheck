@@ -16,7 +16,7 @@ export default function AccommodationCostsLayout({ children }: { children: React
   const appSchema   = softwareApplicationSchema({
     name:                "Accommodation Cost Calculator — AgencyCheck",
     description:         "Calculate how agency housing deductions affect your real weekly income in the Netherlands. Essential before accepting a job with accommodation included.",
-    url:                 "https://agencycheck.nl/tools/accommodation-costs",
+    url:                 "https://agencycheck.io/tools/accommodation-costs",
     applicationCategory: "FinanceApplication",
     operatingSystem:     "Web",
   });

@@ -15,12 +15,12 @@ export const metadata: Metadata = {
   description:
     "Find jobs with housing in the Netherlands. See real weekly take-home pay after housing deduction, tax and transport. Warehouse, production, logistics and greenhouse jobs.",
   alternates: {
-    canonical: "https://agencycheck.nl/jobs-with-accommodation",
+    canonical: "https://agencycheck.io/jobs-with-accommodation",
     languages: {
-      "en":        "https://agencycheck.nl/jobs-with-accommodation",
-      "pl":        "https://agencycheck.nl/pl/praca-z-zakwaterowaniem",
-      "ro":        "https://agencycheck.nl/ro/locuri-de-munca-cu-cazare",
-      "x-default": "https://agencycheck.nl/jobs-with-accommodation",
+      "en":        "https://agencycheck.io/jobs-with-accommodation",
+      "pl":        "https://agencycheck.io/pl/praca-z-zakwaterowaniem",
+      "ro":        "https://agencycheck.io/ro/locuri-de-munca-cu-cazare",
+      "x-default": "https://agencycheck.io/jobs-with-accommodation",
     },
   },
 };

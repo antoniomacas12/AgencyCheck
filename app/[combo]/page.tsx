@@ -65,7 +65,7 @@ export async function generateMetadata({
     return {
       title:       "Jobs with Accommodation Netherlands 2026 | AgencyCheck",
       description: "Find agency jobs in the Netherlands that include housing. Compare agencies offering SNF-certified accommodation with rent deductions from €80/week.",
-      alternates:  { canonical: `https://agencycheck.nl/${params.combo}` },
+      alternates:  { canonical: `https://agencycheck.io/${params.combo}` },
     };
   }
 
@@ -74,7 +74,7 @@ export async function generateMetadata({
     return {
       title:       `${jobType.label} Jobs Netherlands 2026 — €${jobType.salaryMin.toFixed(2)}–€${jobType.salaryMax.toFixed(2)}/hr | AgencyCheck`,
       description: `Browse ${jobType.label.toLowerCase()} jobs across the Netherlands. Compare verified agencies, salaries, and housing options. ${jobType.description}`,
-      alternates:  { canonical: `https://agencycheck.nl/${params.combo}` },
+      alternates:  { canonical: `https://agencycheck.io/${params.combo}` },
     };
   }
 
@@ -83,7 +83,7 @@ export async function generateMetadata({
     return {
       title:       `${jobType.label} Jobs in ${city.name} 2026 — €${jobType.salaryMin.toFixed(2)}–€${jobType.salaryMax.toFixed(2)}/hr | AgencyCheck`,
       description: `${jobType.label} positions in ${city.name}. See real salaries, top agencies, and housing options. Updated daily.`,
-      alternates:  { canonical: `https://agencycheck.nl/${params.combo}` },
+      alternates:  { canonical: `https://agencycheck.io/${params.combo}` },
     };
   }
 
@@ -92,7 +92,7 @@ export async function generateMetadata({
     return {
       title:       `${jobType.label} Jobs in ${city.name} with Housing 2026 | AgencyCheck`,
       description: `${jobType.label} jobs in ${city.name} with agency-arranged accommodation. Rent from €80–€130/week. Compare verified agencies.`,
-      alternates:  { canonical: `https://agencycheck.nl/${params.combo}` },
+      alternates:  { canonical: `https://agencycheck.io/${params.combo}` },
     };
   }
 

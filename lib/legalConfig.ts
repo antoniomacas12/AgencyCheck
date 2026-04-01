@@ -55,13 +55,13 @@ export const LEGAL = {
   },
 
   /** Primary contact email (shown on About / Contact pages) */
-  emailGeneral:  "hello@agencycheck.nl",
-  emailPrivacy:  "privacy@agencycheck.nl",
-  emailLegal:    "legal@agencycheck.nl",
-  emailAgencies: "agencies@agencycheck.nl",
+  emailGeneral:  "hello@agencycheck.io",
+  emailPrivacy:  "hello@agencycheck.io",
+  emailLegal:    "hello@agencycheck.io",
+  emailAgencies: "hello@agencycheck.io",
 
   /** Website URL */
-  siteUrl: "https://agencycheck.nl",
+  siteUrl: "https://agencycheck.io",
 } as const;
 
 /** Returns true when the KvK number has been filled in */

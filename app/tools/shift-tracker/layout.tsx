@@ -16,7 +16,7 @@ export default function ShiftTrackerLayout({ children }: { children: React.React
   const appSchema   = softwareApplicationSchema({
     name:                "Work Hours Tracker — AgencyCheck",
     description:         "Log your daily working hours and verify your weekly pay as a flex worker in the Netherlands. Record start time, end time, breaks, and get your estimated pay.",
-    url:                 "https://agencycheck.nl/tools/shift-tracker",
+    url:                 "https://agencycheck.io/tools/shift-tracker",
     applicationCategory: "ProductivityApplication",
     operatingSystem:     "Web",
   });

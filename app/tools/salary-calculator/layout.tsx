@@ -16,7 +16,7 @@ export default function SalaryCalculatorLayout({ children }: { children: React.R
   const appSchema   = softwareApplicationSchema({
     name:                "Weekly Salary Calculator — AgencyCheck",
     description:         "Calculate your real weekly income after Dutch income tax, agency housing deductions, insurance, and transport costs. Free, no signup required.",
-    url:                 "https://agencycheck.nl/tools/salary-calculator",
+    url:                 "https://agencycheck.io/tools/salary-calculator",
     applicationCategory: "FinanceApplication",
     operatingSystem:     "Web",
   });

@@ -25,7 +25,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://agencycheck.nl"),
+  metadataBase: new URL("https://agencycheck.io"),
   title: {
     default: "AgencyCheck — Employment Agencies Netherlands — Worker Reviews & Salary Data",
     template: "%s | AgencyCheck",

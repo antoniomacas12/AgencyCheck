@@ -16,7 +16,7 @@ export default function RealSalaryCalculatorLayout({ children }: { children: Rea
   const appSchema   = softwareApplicationSchema({
     name:                "Real Salary Calculator Netherlands 2026 — AgencyCheck",
     description:         "Full Dutch salary calculation including loonheffing income tax, overtime premiums, vakantiegeld (8% holiday pay), and deductions. See your true take-home pay as an agency worker.",
-    url:                 "https://agencycheck.nl/tools/real-salary-calculator",
+    url:                 "https://agencycheck.io/tools/real-salary-calculator",
     applicationCategory: "FinanceApplication",
     operatingSystem:     "Web",
   });

@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   description:
     "Găsești locuri de muncă cu cazare în Olanda. Verifică salariul net real după deducerea costurilor de cazare, taxe și transport. Agenții de muncă — recenzii de la muncitori.",
   alternates: {
-    canonical: "https://agencycheck.nl/ro",
+    canonical: "https://agencycheck.io/ro",
     languages: {
-      "en":        "https://agencycheck.nl/",
-      "pl":        "https://agencycheck.nl/pl",
-      "ro":        "https://agencycheck.nl/ro",
-      "x-default": "https://agencycheck.nl/",
+      "en":        "https://agencycheck.io/",
+      "pl":        "https://agencycheck.io/pl",
+      "ro":        "https://agencycheck.io/ro",
+      "x-default": "https://agencycheck.io/",
     },
   },
   openGraph: {

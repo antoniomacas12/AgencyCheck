@@ -202,7 +202,7 @@ function buildGuides(): GuideDefinition[] {
       faqs: [
         {
           question: "How many agencies in the Netherlands provide accommodation?",
-          answer:   `AgencyCheck has verified ${housingCount} agencies that provide accommodation for workers, out of ${totalAgencies} total profiled. Housing is most common in logistics, agriculture, and food production. You can browse all housing agencies at agencycheck.nl/agencies-with-housing.`,
+          answer:   `AgencyCheck has verified ${housingCount} agencies that provide accommodation for workers, out of ${totalAgencies} total profiled. Housing is most common in logistics, agriculture, and food production. You can browse all housing agencies at agencycheck.io/agencies-with-housing.`,
         },
         {
           question: "What is the maximum housing deduction in the Netherlands?",

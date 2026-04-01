@@ -137,10 +137,10 @@ export default function ForAgenciesPage() {
                   working days.
                 </p>
                 <a
-                  href="mailto:corrections@agencycheck.nl"
+                  href="mailto:hello@agencycheck.io"
                   className="inline-block text-xs border border-gray-200 text-gray-700 hover:bg-gray-50 font-semibold px-3 py-1.5 rounded-lg transition-colors"
                 >
-                  corrections@agencycheck.nl
+                  hello@agencycheck.io
                 </a>
               </div>
             </div>
@@ -157,10 +157,10 @@ export default function ForAgenciesPage() {
                   reviews because an agency disagrees with the opinion expressed.
                 </p>
                 <a
-                  href="mailto:agencies@agencycheck.nl"
+                  href="mailto:hello@agencycheck.io"
                   className="inline-block text-xs border border-gray-200 text-gray-700 hover:bg-gray-50 font-semibold px-3 py-1.5 rounded-lg transition-colors"
                 >
-                  agencies@agencycheck.nl
+                  hello@agencycheck.io
                 </a>
               </div>
             </div>
@@ -229,10 +229,10 @@ export default function ForAgenciesPage() {
           contact our team directly.
         </p>
         <a
-          href="mailto:agencies@agencycheck.nl"
+          href="mailto:hello@agencycheck.io"
           className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg transition-colors"
         >
-          agencies@agencycheck.nl
+          hello@agencycheck.io
         </a>
       </div>
 

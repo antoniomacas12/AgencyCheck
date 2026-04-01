@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 // ─── Canonical base URL ───────────────────────────────────────────────────────
-const BASE_URL = "https://agencycheck.nl";
+const BASE_URL = "https://agencycheck.io";
 
 export default function robots(): MetadataRoute.Robots {
   return {

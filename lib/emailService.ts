@@ -8,7 +8,7 @@
  *
  * Setup:
  *   RESEND_API_KEY=re_xxxxx          # From resend.com (free tier: 3000 emails/month)
- *   EMAIL_FROM=leads@agencycheck.nl  # Sender address (must be verified in Resend)
+ *   EMAIL_FROM=leads@agencycheck.io  # Sender address (must be verified in Resend)
  *   SMTP_HOST=smtp.example.com       # Alternative SMTP host
  *   SMTP_PORT=587
  *   SMTP_USER=user@example.com
@@ -30,7 +30,7 @@ export interface SendResult {
   messageId?: string;
 }
 
-const FROM_ADDRESS = process.env.EMAIL_FROM ?? "noreply@agencycheck.nl";
+const FROM_ADDRESS = process.env.EMAIL_FROM ?? "noreply@agencycheck.io";
 
 // ─── Resend API ────────────────────────────────────────────────────────────────
 
@@ -167,7 +167,7 @@ export function buildLeadEmail(
     `This lead was manually approved and sent by the AgencyCheck admin team.`,
     `To reply, contact the applicant directly at the phone/email above.`,
     ``,
-    `AgencyCheck | agencycheck.nl`,
+    `AgencyCheck | agencycheck.io`,
   ].filter((l) => l !== "").join("\n");
 
   const html = `<!DOCTYPE html>
@@ -227,7 +227,7 @@ export function buildLeadEmail(
   <div class="footer">
     This lead was manually approved and sent by the AgencyCheck admin team.<br>
     Contact the applicant directly at the phone/email above.<br><br>
-    <a href="https://agencycheck.nl">AgencyCheck</a> · agencycheck.nl
+    <a href="https://agencycheck.io">AgencyCheck</a> · agencycheck.io
   </div>
 </body>
 </html>`;
