@@ -156,7 +156,7 @@ const SECTIONS: Section[] = [
       { id: "i3", label: "Database migration is applied on the server", note: "Run npx prisma db push on server before first request" },
       { id: "i4", label: "ADMIN_PASSWORD changed from default", note: "Default is 'admin2024' — must be changed before going live" },
       { id: "i5", label: "ADMIN_SESSION_SECRET is a secure random string (≥32 chars)", note: "Do not use the placeholder from .env.local" },
-      { id: "i6", label: "NEXT_PUBLIC_BASE_URL set to real domain", note: "e.g. https://agencycheck.nl — not localhost" },
+      { id: "i6", label: "NEXT_PUBLIC_BASE_URL set to real domain", note: "e.g. https://agencycheck.io — not localhost" },
       { id: "i7", label: "RESEND_API_KEY configured if email notifications required", note: "Optional — but email-to-agency won't work without it" },
       { id: "i8", label: "No dev.db committed to Git / on server", note: "Production database must be on persistent storage, not repo" },
     ],
