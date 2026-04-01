@@ -33,12 +33,14 @@ import AgencyTrustPanel from "@/components/AgencyTrustPanel";
 import { getLocale } from "@/lib/getLocale";
 import { getT } from "@/lib/i18n";
 import { AgencyReviewsSection } from "@/components/AgencyReviewsSection";
+import { AGENCY_SEO_CONTENT } from "@/lib/agencySeoContent";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const agency = ALL_AGENCY_MAP[params.slug];
   if (!agency) return { title: "Agency not found" };
+  const seo = AGENCY_SEO_CONTENT[params.slug] ?? null;
   const housingStr = agency.housing === "YES" ? " Provides housing." : "";
   const cityStr = agency.supportedCities.length > 1
     ? `${agency.city} and ${agency.supportedCities.length - 1} other cities`
@@ -48,12 +50,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const avgStr  = count > 0
     ? ` Rated ${(reviews.reduce((s, r) => s + r.overallRating, 0) / count).toFixed(1)}/5 by ${count} workers.`
     : "";
+  const title = seo?.metaTitle
+    ?? `${agency.name} Netherlands Review – Salary, Housing, Jobs, Worker Experiences`;
+  const description = seo?.metaDescription
+    ?? `Read real worker reviews of ${agency.name} in ${cityStr}.${housingStr}${avgStr} Salary reality, housing conditions, and transparency score ${agency.transparencyScore}/100.`;
   return {
-    title: `${agency.name} Netherlands Review – Salary, Housing, Jobs, Worker Experiences`,
-    description: `Read real worker reviews of ${agency.name} in ${cityStr}.${housingStr}${avgStr} Salary reality, housing conditions, and transparency score ${agency.transparencyScore}/100.`,
+    title,
+    description,
     alternates: { canonical: `/agencies/${agency.slug}` },
     openGraph: {
-      title: `${agency.name} Netherlands Review – Salary, Housing, Jobs, Worker Experiences`,
+      title,
       description: `Real worker reviews of ${agency.name}. Salary accuracy, housing conditions, transport — reported by workers, published unfiltered.`,
     },
   };
@@ -211,7 +217,8 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
   const seedReviews = getReviewsByAgency(params.slug);
   const reviewCount = seedReviews.length;
 
-  const allQAs = getQAsForContext(params.slug);
+  const allQAs    = getQAsForContext(params.slug);
+  const seoContent = AGENCY_SEO_CONTENT[params.slug] ?? null;
 
   // ── JSON-LD schemas ──────────────────────────────────────────────────────────
   const orgSchema  = agencyOrganizationSchema(
@@ -855,6 +862,63 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
           </div>
         </div>
       </section>
+
+      {/* ══ SEO EDITORIAL CONTENT (agency-specific) ══ */}
+      {seoContent && (
+        <section className="mt-6 mb-6">
+          <div className="card p-5">
+            <p className="text-sm text-gray-600 leading-relaxed mb-5">{seoContent.intro}</p>
+
+            {seoContent.sections.map((sec) => (
+              <div key={sec.heading} className="mb-5 last:mb-0">
+                <h2 className="text-base font-bold text-gray-900 mb-2">{sec.heading}</h2>
+                {sec.body.split("\n\n").map((para, i) => (
+                  <p key={i} className="text-sm text-gray-600 leading-relaxed mb-2 last:mb-0">{para}</p>
+                ))}
+              </div>
+            ))}
+
+            {/* Pros / Cons grid */}
+            <div className="mt-5 grid sm:grid-cols-2 gap-4">
+              <div className="bg-green-50 rounded-xl p-4">
+                <p className="text-xs font-bold text-green-800 uppercase tracking-wide mb-2">Pros</p>
+                <ul className="space-y-1.5">
+                  {seoContent.pros.map((pro) => (
+                    <li key={pro} className="flex items-start gap-2 text-xs text-green-700">
+                      <span className="shrink-0 mt-0.5 text-green-500">✓</span>{pro}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-red-50 rounded-xl p-4">
+                <p className="text-xs font-bold text-red-800 uppercase tracking-wide mb-2">Cons</p>
+                <ul className="space-y-1.5">
+                  {seoContent.cons.map((con) => (
+                    <li key={con} className="flex items-start gap-2 text-xs text-red-700">
+                      <span className="shrink-0 mt-0.5 text-red-400">✗</span>{con}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Internal links */}
+            {seoContent.internalLinks.length > 0 && (
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <p className="text-xs font-semibold text-gray-500 mb-2">Related guides</p>
+                <div className="flex flex-wrap gap-2">
+                  {seoContent.internalLinks.map((lnk) => (
+                    <Link key={lnk.href} href={lnk.href}
+                      className="text-xs text-brand-600 hover:underline bg-brand-50 rounded-full px-3 py-1 border border-brand-100">
+                      {lnk.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="mt-6 mb-4">
         <div className="card p-4">
