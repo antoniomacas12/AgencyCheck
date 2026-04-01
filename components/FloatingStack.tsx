@@ -88,12 +88,13 @@ function ShareRow({
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function FloatingStack() {
-  const [visible,    setVisible]    = useState(false);
-  const [flow,       setFlow]       = useState<FlowState>("closed");
-  const [housingPref, setHousingPref] = useState<HousingPreference | undefined>(undefined);
-  const [shareOpen,  setShareOpen]  = useState(false);
-  const [copied,     setCopied]     = useState(false);
-  const [pageUrl,    setPageUrl]    = useState("");
+  const [visible,         setVisible]         = useState(false);
+  const [flow,            setFlow]            = useState<FlowState>("closed");
+  const [housingPref,     setHousingPref]     = useState<HousingPreference | undefined>(undefined);
+  const [shareOpen,       setShareOpen]       = useState(false);
+  const [copied,          setCopied]          = useState(false);
+  const [pageUrl,         setPageUrl]         = useState("");
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   const pathname       = usePathname();
   const router         = useRouter();
@@ -106,6 +107,24 @@ export default function FloatingStack() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Hide on mobile while any text input / textarea has focus (keyboard open)
+  useEffect(() => {
+    function onFocusIn(e: FocusEvent) {
+      const tag = (e.target as HTMLElement).tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") setKeyboardVisible(true);
+    }
+    function onFocusOut(e: FocusEvent) {
+      const tag = (e.target as HTMLElement).tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") setKeyboardVisible(false);
+    }
+    document.addEventListener("focusin",  onFocusIn);
+    document.addEventListener("focusout", onFocusOut);
+    return () => {
+      document.removeEventListener("focusin",  onFocusIn);
+      document.removeEventListener("focusout", onFocusOut);
+    };
   }, []);
 
   // Resolve full URL client-side
@@ -224,6 +243,7 @@ export default function FloatingStack() {
           z-40
           flex flex-col items-end gap-2
           transition-all duration-300
+          ${keyboardVisible ? "max-sm:hidden" : ""}
           ${visible
             ? "translate-y-0 opacity-100"
             : "translate-y-4 opacity-0 pointer-events-none"}
