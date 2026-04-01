@@ -7,7 +7,7 @@ import { JOB_LISTINGS } from "@/lib/jobData";
 export const metadata: Metadata = {
   title: "Praca z Zakwaterowaniem w Holandii — Realne Zarobki po Odliczeniach",
   description:
-    "Znajdź pracę z zakwaterowaniem w Holandii. Magazyn, produkcja, szklarnia, logistyka. Sprawdź realne zarobki netto po odliczeniu kosztów mieszkania, podatku i transportu. Agencycheck.nl",
+    "Znajdź pracę z zakwaterowaniem w Holandii. Magazyn, produkcja, szklarnia, logistyka. Sprawdź realne zarobki netto po odliczeniu kosztów mieszkania, podatku i transportu. AgencyCheck.io",
   keywords: [
     "praca z zakwaterowaniem Holandia", "praca Holandia z mieszkaniem",
     "agencja pracy zakwaterowanie", "magazyn Holandia zakwaterowanie",

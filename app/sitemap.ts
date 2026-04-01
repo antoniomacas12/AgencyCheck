@@ -324,6 +324,56 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "monthly",
       priority:         0.6,
     },
+    // ── Polish SEO content pages ──────────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/pl`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/pl/praca-z-zakwaterowaniem`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/pl/agencje-pracy-holandia`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/pl/zarobki-holandia`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    // ── Romanian SEO content pages ────────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/ro`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/ro/locuri-de-munca-cu-cazare`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/ro/agentii-munca-olanda`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/ro/salariu-olanda`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
   ];
 
   // ── 2. Agency profile pages (150+) ─────────────────────────────────────────

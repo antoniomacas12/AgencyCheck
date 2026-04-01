@@ -27,9 +27,9 @@ const HomepageLeadForm       = nDynamic(() => import("@/components/HomepageLeadF
 const HomepageStickyBar      = nDynamic(() => import("@/components/HomepageStickyBar"),       { ssr: false });
 
 export const metadata: Metadata = {
-  title: "AgencyCheck — Vezi Salariul TĂU REAL După Toate Costurile — Olanda",
+  title: "Agenție de Muncă Olanda — Recenzii, Salarii și Cazare Verificate 2026",
   description:
-    "Majoritatea ofertelor agenților plătesc €14–€17/oră dar lucrătorii păstrează mult mai puțin după cazare, asigurare și transport. Vezi salariul net real, condițiile de cazare și recenziile lucrătorilor.",
+    "Compară 150+ agenții de muncă din Olanda. Salariu net real după deducerea cazării, asigurării și transportului. Recenzii de la lucrători, condiții de cazare și clasamente. Înainte să semnezi — verifică aici.",
   alternates: {
     canonical: "https://agencycheck.io/ro",
     languages: {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "AgencyCheck — Vezi ce PĂSTREZI CU ADEVĂRAT După Toate Costurile",
+    title: "Agenție de Muncă Olanda — Recenzii, Salarii și Cazare 2026",
     description:
       "Defalcări salariu real, poze cazare și recenzii de la lucrători pentru 150+ agenții de muncă din Olanda. Află adevărul înainte să semnezi.",
     locale: "ro_RO",

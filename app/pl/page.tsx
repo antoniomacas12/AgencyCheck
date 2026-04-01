@@ -27,9 +27,9 @@ const HomepageLeadForm       = nDynamic(() => import("@/components/HomepageLeadF
 const HomepageStickyBar      = nDynamic(() => import("@/components/HomepageStickyBar"),       { ssr: false });
 
 export const metadata: Metadata = {
-  title: "AgencyCheck — Sprawdź REALNE Zarobki Po Kosztach — Holandia",
+  title: "Agencja Pracy Holandia — Sprawdzone Opinie, Zarobki i Zakwaterowanie 2026",
   description:
-    "Większość ofert agencyjnych to €14–€17/godz., ale po odliczeniu zakwaterowania, ubezpieczenia i transportu zostaje znacznie mniej. Sprawdź realne zarobki netto, warunki mieszkaniowe i opinie pracowników.",
+    "Porównaj 150+ agencji pracy w Holandii. Realne zarobki netto po odliczeniu zakwaterowania, ubezpieczenia i transportu. Opinie pracowników, warunki mieszkaniowe i rankingi. Przed podpisaniem — sprawdź tutaj.",
   alternates: {
     canonical: "https://agencycheck.io/pl",
     languages: {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "AgencyCheck — Sprawdź co NAPRAWDĘ zostaje Po Wszystkich Kosztach",
+    title: "Agencja Pracy Holandia — Opinie, Zarobki i Zakwaterowanie 2026",
     description:
       "Realne podziały wypłat, zdjęcia zakwaterowania i opinie pracowników dla 150+ agencji pracy w Holandii. Poznaj prawdę zanim podpiszesz.",
     locale: "pl_PL",

@@ -7,7 +7,7 @@ import { JOB_LISTINGS } from "@/lib/jobData";
 export const metadata: Metadata = {
   title: "Locuri de Muncă cu Cazare în Olanda — Salariu Real după Deduceri",
   description:
-    "Găsești locuri de muncă cu cazare în Olanda. Depozit, producție, seră, logistică. Verifică salariul net real după deducerea costurilor de cazare, taxe și transport. Agencycheck.nl",
+    "Găsești locuri de muncă cu cazare în Olanda. Depozit, producție, seră, logistică. Verifică salariul net real după deducerea costurilor de cazare, taxe și transport. AgencyCheck.io",
   keywords: [
     "locuri de munca cu cazare Olanda", "munca in Olanda cu cazare",
     "agentie de munca cu cazare", "depozit Olanda cazare",
