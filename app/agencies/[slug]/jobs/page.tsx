@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!agency) return { title: "Agency not found" };
   const jobs = getJobsByAgency(params.slug);
   return {
-    title: `Jobs at ${agency.name} — ${jobs.length} vacancies — AgencyCheck`,
+    title: `${agency.name} Netherlands Jobs – ${jobs.length} Vacancies, Salary & Worker Experiences`,
     description: `${jobs.length} active job listings at ${agency.name}. Positions in ${[...new Set(jobs.map((j) => j.city))].slice(0, 4).join(", ")}. Worker reviews and salary info included.`,
     alternates: { canonical: `/agencies/${agency.slug}/jobs` },
   };
@@ -106,7 +106,12 @@ export default function AgencyJobsPage({ params }: { params: { slug: string } })
         <div className="flex items-start gap-4">
           <ScoreBadge score={agency.score} size="lg" showLabel />
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl font-bold text-gray-900">{agency.name}</h1>
+            <h1 className="text-xl font-bold text-gray-900">
+              {agency.name} Netherlands Jobs
+              <span className="block text-xs font-normal text-gray-400 mt-0.5 tracking-wide">
+                Salary · Housing · Worker Experiences
+              </span>
+            </h1>
             <p className="text-sm text-gray-500 mt-1">
               {allJobs.length} active job listing{allJobs.length !== 1 ? "s" : ""}
               {cities.length > 0 && (

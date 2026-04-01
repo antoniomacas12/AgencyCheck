@@ -25,11 +25,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     : null;
   const ratingStr = avg ? ` Rated ${avg}/5 by ${count} workers.` : "";
   return {
-    title:       `${agency.name} Reviews Netherlands — Worker Reports & Salary Data — AgencyCheck`,
+    title:       `${agency.name} Netherlands Reviews – Worker Experiences, Salary & Housing Reports`,
     description: `${count > 0 ? `${count} worker reviews` : "Worker reviews"} for ${agency.name} in the Netherlands.${ratingStr} Salary accuracy, housing conditions, and contract transparency — reported by workers.`,
     alternates:  { canonical: `/agencies/${agency.slug}/reviews` },
     openGraph: {
-      title:       `${agency.name} Worker Reviews Netherlands`,
+      title:       `${agency.name} Netherlands Reviews – Worker Experiences & Salary Reports`,
       description: `Real worker reviews of ${agency.name}. Salary, housing, and management — reported unfiltered.`,
     },
   };
@@ -161,8 +161,8 @@ export default async function AgencyReviewsPage({ params }: { params: { slug: st
           <ScoreBadge score={agency.score} size="lg" showLabel />
           <div className="flex-1 min-w-0">
             <h1 className="text-xl font-bold text-gray-900">
-              {agency.name}
-              <span className="block text-xs font-normal text-gray-400 mt-0.5">Worker Reviews · Netherlands</span>
+              {agency.name} Netherlands Reviews
+              <span className="block text-xs font-normal text-gray-400 mt-0.5">Worker Experiences · Salary · Housing · Netherlands</span>
             </h1>
             <div className="flex flex-wrap items-center gap-2 mt-2">
               <HousingBadge housing={agency.housing} />

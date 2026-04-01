@@ -49,11 +49,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     ? ` Rated ${(reviews.reduce((s, r) => s + r.overallRating, 0) / count).toFixed(1)}/5 by ${count} workers.`
     : "";
   return {
-    title: `${agency.name} Reviews Netherlands — Salary, Housing & Worker Reports`,
+    title: `${agency.name} Netherlands Review – Salary, Housing, Jobs, Worker Experiences`,
     description: `Read real worker reviews of ${agency.name} in ${cityStr}.${housingStr}${avgStr} Salary reality, housing conditions, and transparency score ${agency.transparencyScore}/100.`,
     alternates: { canonical: `/agencies/${agency.slug}` },
     openGraph: {
-      title: `${agency.name} Reviews Netherlands — AgencyCheck`,
+      title: `${agency.name} Netherlands Review – Salary, Housing, Jobs, Worker Experiences`,
       description: `Real worker reviews of ${agency.name}. Salary accuracy, housing conditions, transport — reported by workers, published unfiltered.`,
     },
   };
@@ -294,9 +294,9 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
           <ScoreBadge score={agency.score} reviewCount={agency.reviewCount} size="lg" showLabel showBar />
           <div className="flex-1 min-w-0">
             <h1 className="text-xl font-bold text-gray-900 leading-tight">
-              {agency.name}
+              {agency.name} Netherlands Review
               <span className="block text-xs font-normal text-gray-400 mt-0.5 tracking-wide">
-                Reviews &amp; Worker Reports · Netherlands
+                Salary · Housing · Jobs · Worker Experiences
               </span>
             </h1>
             <div className="flex items-center gap-2 mt-1 flex-wrap">

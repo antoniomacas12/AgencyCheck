@@ -81,7 +81,7 @@ export async function generateMetadata({
     : "";
 
   return {
-    title: `${agency.name} in ${cityName} — Jobs, Housing & Worker Info — AgencyCheck`,
+    title: `${agency.name} ${cityName} Netherlands Review – Jobs, Housing & Worker Experiences`,
     description: `${agency.name} is a ${sectorLabel} staffing agency in ${cityName}.${housingNote} Transparency score: ${agency.transparencyScore}/100. See jobs, housing details, and worker information.`,
     alternates: { canonical: `/agencies/${params.slug}/${params.city}` },
     robots: robotsMeta,
@@ -225,7 +225,10 @@ export default function AgencyCityPage({
         <div className="flex items-start gap-3 mb-3">
           <div className="flex-1 min-w-0">
             <h1 className="text-2xl font-bold text-gray-900 leading-tight">
-              {agency.name} — {cityName}
+              {agency.name} {cityName} Netherlands Review
+              <span className="block text-sm font-normal text-gray-400 mt-0.5">
+                Jobs · Housing · Worker Experiences
+              </span>
             </h1>
             <p className="text-sm text-gray-500 mt-1">
               {sectorMeta?.icon ?? "🏢"} {sectorMeta?.label ?? agency.sector} staffing agency
