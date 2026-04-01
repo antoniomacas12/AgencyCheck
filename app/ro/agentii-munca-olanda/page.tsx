@@ -101,7 +101,7 @@ const RED_FLAGS = [
   {
     icon: "🚩",
     title: "Îți cer bani înainte de angajare",
-    desc: "Agențiile legitime nu cer taxe de procesare sau „depozit" înainte de angajare. Plata merge direct la tine.",
+    desc: "Agențiile legitime nu cer taxe de procesare sau 'depozit' înainte de angajare. Plata merge direct la tine.",
   },
   {
     icon: "🚩",
@@ -123,7 +123,7 @@ const RED_FLAGS = [
 const FAQS = [
   {
     q: "Care este cea mai bună agenție de muncă din Olanda pentru români?",
-    a: "Nu există o singură „cea mai bună" agenție. OTTO Workforce și Covebo au cei mai mulți muncitori români și procese documentate. Cel mai important este să compari salariul net real după deducerea cazării, nu salariul brut afișat.",
+    a: "Nu există o singură 'cea mai bună' agenție. OTTO Workforce și Covebo au cei mai mulți muncitori români și procese documentate. Cel mai important este să compari salariul net real după deducerea cazării, nu salariul brut afișat.",
   },
   {
     q: "Agențiile de muncă din Olanda sunt legale?",
