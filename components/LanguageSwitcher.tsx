@@ -11,10 +11,9 @@
  *         Switch to PL  → navigate to /pl
  *         Switch to RO  → navigate to /ro
  *     - On a plain English page (/agencies, /jobs, etc.):
- *         Stay on the same URL and call router.refresh().
- *         The middleware reads the new ac_locale cookie and sets the
- *         x-ac-locale header, so layout + Navbar re-render in the
- *         chosen language without losing the user's current context.
+ *         Set the cookie then call router.refresh() so Next.js
+ *         invalidates its route cache and re-fetches Server Components
+ *         with the new locale — no full browser reload required.
  */
 
 import { useState, useRef, useEffect } from "react";
@@ -85,9 +84,12 @@ export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
         router.push(LOCALE_ROOT_PATHS[locale]);
       }
     } else {
-      // We're on an English-URL page — do a full browser reload so the
-      // server definitely re-reads the new cookie through middleware.
-      window.location.reload();
+      // We're on an English-URL page — router.refresh() invalidates the
+      // Next.js route cache and re-fetches all Server Components. The new
+      // request goes through middleware which reads the updated ac_locale
+      // cookie and sets x-ac-locale, so layout + page re-render instantly
+      // in the chosen language without a full browser reload.
+      router.refresh();
     }
   }
 
