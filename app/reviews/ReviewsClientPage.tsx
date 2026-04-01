@@ -168,7 +168,7 @@ function ReviewSubmitForm({
   }, []);
 
   // ── Validation ────────────────────────────────────────────────────────────
-  const agencyOk = form.agencySlug.length > 0 || (form.agencyIsNew && form.agencySearch.trim().length > 2);
+  const agencyOk = form.agencySlug.length > 0 || (form.agencyIsNew && form.agencySearch.trim().length > 0);
   const isValid  = agencyOk && form.rating > 0 && form.comment.trim().length > 10;
 
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
@@ -179,7 +179,7 @@ function ReviewSubmitForm({
 
   const fetchSuggestions = useCallback((query: string) => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    if (query.trim().length < 2) {
+    if (query.trim().length < 1) {
       setSuggestions([]);
       setSuggestionsOpen(false);
       return;
@@ -378,7 +378,7 @@ function ReviewSubmitForm({
             ✓ Found in database
           </p>
         )}
-        {form.agencyIsNew && form.agencySearch.trim().length > 2 && (
+        {form.agencyIsNew && form.agencySearch.trim().length > 0 && (
           <p className="text-[10px] text-amber-600 mt-1 flex items-center gap-1">
             ✦ Will be added as a new agency — thank you!
           </p>
@@ -404,8 +404,8 @@ function ReviewSubmitForm({
               </ul>
             )}
 
-            {/* "Add as new" option */}
-            {form.agencySearch.trim().length > 2 && (
+            {/* "Add as new" option — always show once user has typed anything */}
+            {form.agencySearch.trim().length > 0 && (
               <>
                 {suggestions.length > 0 && <div className="border-t border-gray-100" />}
                 <button
@@ -419,11 +419,8 @@ function ReviewSubmitForm({
               </>
             )}
 
-            {suggestions.length === 0 && form.agencySearch.trim().length < 3 && (
-              <p className="px-4 py-3 text-sm text-gray-400">Keep typing to search…</p>
-            )}
-            {suggestions.length === 0 && form.agencySearch.trim().length >= 3 && !suggestLoading && (
-              <p className="px-4 py-2 text-xs text-gray-400">No matches — use &ldquo;Add as new&rdquo; below.</p>
+            {suggestions.length === 0 && !suggestLoading && form.agencySearch.trim().length > 0 && (
+              <p className="px-4 py-2 text-xs text-gray-400">No matches found — you can add it as a new agency above.</p>
             )}
           </div>
         )}
