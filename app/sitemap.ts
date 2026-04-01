@@ -14,6 +14,11 @@ import {
   SEO_JOB_TYPES,
   SEO_TOP_CITIES,
 } from "@/lib/seoRoutes";
+import {
+  getLastReviewDates,
+  getLastCityReviewDates,
+} from "@/lib/reviewAggregates";
+import { resolveLastmod } from "@/lib/seoPipeline";
 
 // ─── Canonical base URL ───────────────────────────────────────────────────────
 const BASE_URL = "https://agencycheck.nl";
@@ -43,7 +48,15 @@ const AGENCY_DATE  = "2026-03-14"; // dataset research date
 const STATIC_DATE  = "2026-03-14";
 
 // ─── Sitemap ─────────────────────────────────────────────────────────────────
-export default function sitemap(): MetadataRoute.Sitemap {
+// Async so we can query the DB for dynamic lastModified dates.
+// Agency and city pages use the date of the most recent published review.
+// All other pages use static dates.
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Fetch dynamic lastmod maps (fail-safe — empty map if DB is unavailable)
+  const [agencyLastMod, cityLastMod] = await Promise.all([
+    getLastReviewDates(),
+    getLastCityReviewDates(),
+  ]);
   // ── 1. Static core pages ──────────────────────────────────────────────────
   const corePages: MetadataRoute.Sitemap = [
     {
@@ -240,9 +253,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // ── 2. Agency profile pages (150+) ─────────────────────────────────────────
+  // lastModified = date of most recent published review for that agency (dynamic)
+  // Falls back to AGENCY_DATE when no DB reviews exist yet.
   const agencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
     url:             `${BASE_URL}/agencies/${agency.slug}`,
-    lastModified:    AGENCY_DATE,
+    lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
     changeFrequency: "monthly" as const,
     priority:        agency.confidenceLevel === "high"
       ? 0.8
@@ -252,10 +267,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // ── 3. Agency sub-pages: /reviews and /jobs per agency ────────────────────
+  // /reviews pages get the dynamic date (they change on every new review)
+  // /jobs pages keep the static agency date (jobs data does not change often)
   const agencySubPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.flatMap((agency) => [
     {
       url:             `${BASE_URL}/agencies/${agency.slug}/reviews`,
-      lastModified:    AGENCY_DATE,
+      lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
       changeFrequency: "weekly" as const,
       priority:        0.6,
     },
@@ -268,9 +285,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]);
 
   // ── 4. City pages (143) ───────────────────────────────────────────────────
+  // lastModified = date of most recent review mentioning that city (dynamic)
   const cityPages: MetadataRoute.Sitemap = CITIES.map((city) => ({
     url:             `${BASE_URL}/cities/${city.slug}`,
-    lastModified:    AGENCY_DATE,
+    lastModified:    resolveLastmod(city.slug, cityLastMod, AGENCY_DATE),
     changeFrequency: "monthly" as const,
     // Prioritise larger cities
     priority:        city.population >= 100000
