@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
 };
 
-const LAST_UPDATED = "March 2026";
+const LAST_UPDATED = "April 2026";
 
 export default function TermsPage() {
   return (
@@ -113,6 +113,17 @@ export default function TermsPage() {
             A high transparency score indicates good data availability — not that an agency is
             recommended. A low score indicates limited information, not that the agency is
             untrustworthy.
+          </p>
+          <p className="mt-3">
+            <strong>Certification status (ABU, SNA, SNF, NEN):</strong> Where AgencyCheck indicates
+            that an agency holds a certification, this is based on information available at the time
+            of our research. Certification status can change — agencies may gain or lose certification
+            at any time. <strong>Always verify current certification status directly</strong> on the
+            official registers:{" "}
+            <a href="https://www.abu.nl/leden" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">abu.nl/leden</a>,{" "}
+            <a href="https://www.sna.nl/gecertificeerde-bedrijven" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">sna.nl</a>, or{" "}
+            <a href="https://www.sncu.nl" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">sncu.nl</a>.
+            AgencyCheck accepts no liability for decisions made based on certification data shown on this platform.
           </p>
         </section>
 

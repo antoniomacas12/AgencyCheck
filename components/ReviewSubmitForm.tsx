@@ -596,6 +596,13 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
               onChange={handlePhotoSelect}
             />
 
+            <p className="text-[10px] text-gray-400 leading-relaxed pt-1">
+              By submitting you confirm this is based on your personal experience and agree to our{" "}
+              <a href="/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">Terms of Use</a>.
+              Reviews are posted anonymously. See our{" "}
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">Privacy Policy</a>.
+            </p>
+
             <div className="flex gap-3 pt-2">
               <button
                 type="button"

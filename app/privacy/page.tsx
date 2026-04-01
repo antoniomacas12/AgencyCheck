@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-const LAST_UPDATED = "March 2026";
+const LAST_UPDATED = "April 2026";
 
 export default function PrivacyPage() {
   return (

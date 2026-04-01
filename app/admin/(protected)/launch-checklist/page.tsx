@@ -161,6 +161,22 @@ const SECTIONS: Section[] = [
       { id: "i8", label: "No dev.db committed to Git / on server", note: "Production database must be on persistent storage, not repo" },
     ],
   },
+  {
+    id: "legal-identity",
+    letter: "J",
+    title: "Legal Identity (Dutch Law — Required)",
+    color: "bg-red-50 border-red-200",
+    dotColor: "bg-red-500",
+    items: [
+      { id: "j1", label: "Fill in legalName in lib/legalConfig.ts", note: "Dutch law (Wet elektronische handel) requires real legal entity name on every commercial website. e.g. 'AgencyCheck B.V.' or 'A. Macas h.o.d.n. AgencyCheck'" },
+      { id: "j2", label: "Fill in kvkNumber in lib/legalConfig.ts", note: "KvK (Chamber of Commerce) registration number — 8 digits. Register at kvk.nl if not done. Shown in Privacy Policy and Terms of Use." },
+      { id: "j3", label: "Fill in address in lib/legalConfig.ts", note: "Registered business address required by Dutch law. Can be a home address or registered office address." },
+      { id: "j4", label: "Decide on vatNumber (BTW)", note: "If turnover < €20,000/year you likely qualify for KOR (small business VAT exemption). Leave empty if exempt. Otherwise add your BTW number." },
+      { id: "j5", label: "Verify Privacy Policy email addresses are correct", note: "emailPrivacy, emailLegal, emailAgencies all point to hello@agencycheck.io — ensure this inbox is monitored for GDPR requests." },
+      { id: "j6", label: "Verify ABU/SNA certification data is current", note: "Check abu.nl/leden and sna.nl for any agencies listed as ABU/SNA certified. Data may have changed since research date." },
+      { id: "j7", label: "Confirm hello@agencycheck.io responds within 30 days to GDPR requests", note: "Under GDPR Art. 12 you must respond to access/deletion requests within one month. Set up a process for this." },
+    ],
+  },
 ];
 
 const STORAGE_KEY = "agencycheck_launch_checklist_v1";
