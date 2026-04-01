@@ -3,6 +3,7 @@ import { VERIFIED_AGENCIES } from "@/data/agencies";
 import { CITIES, JOB_SALARY_DATA } from "@/lib/seoData";
 import { ALL_AGENCIES } from "@/lib/agencyEnriched";
 import { GUIDES } from "@/lib/guideData";
+import { allWorkInCombos } from "@/lib/workInSeoData";
 import {
   filterEligibleComparisons,
   filterEligibleAgencyCityPairs,
@@ -386,6 +387,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:        0.8,
   }));
 
+  // ── 14. Work-in audience+city+job combo pages (50 pages) ──────────────────
+  // 5 job types × 5 cities × 2 audiences (foreigners, students)
+  const workInPages: MetadataRoute.Sitemap = allWorkInCombos().map(({ combo }) => ({
+    url:             `${BASE_URL}/work-in/${combo}`,
+    lastModified:    STATIC_DATE,
+    changeFrequency: "monthly" as const,
+    priority:        0.75,
+  }));
+
   return [
     ...corePages,
     ...agencyPages,
@@ -401,5 +411,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cityJobPages,
     ...comboPageEntries,
     ...guidePages,
+    ...workInPages,
   ];
 }
