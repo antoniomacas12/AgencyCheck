@@ -90,11 +90,27 @@ export async function POST(req: NextRequest) {
 
     if (agencySlugInput) {
       // Caller selected an existing agency by slug
-      const found = await db.agency.findUnique({
+      let found = await db.agency.findUnique({
         where:  { slug: agencySlugInput },
         select: { id: true, slug: true },
       });
-      if (!found) return NextResponse.json({ error: "Agency not found" }, { status: 404 });
+
+      // Agency slug not in DB yet — create it so the review can be saved
+      if (!found) {
+        const derivedName = agencySlugInput
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (c: string) => c.toUpperCase());
+        found = await db.agency.create({
+          data: {
+            name:            derivedName,
+            slug:            agencySlugInput,
+            sourceType:      "WORKER_REPORTED",
+            confidenceScore: 30,
+          },
+          select: { id: true, slug: true },
+        });
+      }
+
       agencyId      = found.id;
       resolvedSlug  = found.slug;
 

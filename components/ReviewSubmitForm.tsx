@@ -242,8 +242,8 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
           Review submitted — thank you!
         </h3>
         <p className="text-green-700 text-sm max-w-sm mx-auto">
-          Your review has been submitted and is pending moderation. Once approved by our team,
-          it will appear on the {agencyName ?? agencySlug} page.
+          Your review is now live on the {agencyName ?? agencySlug} page.
+          Thank you for helping other workers know what to expect.
         </p>
       </div>
     );
@@ -273,7 +273,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
             {agencyName ? ` with ${agencyName}` : ""}
           </h3>
           <p className="text-xs text-gray-500 mt-0.5">
-            All reviews are moderated before publishing. Your identity stays anonymous.
+            Your review goes live immediately. Your identity stays anonymous.
           </p>
         </div>
 
