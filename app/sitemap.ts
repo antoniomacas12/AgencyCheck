@@ -378,7 +378,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  // ── 13. Guide pages (3 data-backed worker guides) ─────────────────────────
+  // ── 13. Guide pages (6 long-tail SEO worker guides) ───────────────────────
   const guidePages: MetadataRoute.Sitemap = GUIDES.map((g) => ({
     url:             `${BASE_URL}/guides/${g.slug}`,
     lastModified:    g.dateModified,

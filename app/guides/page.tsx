@@ -4,14 +4,14 @@ import { GUIDES } from "@/lib/guideData";
 import { breadcrumbSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
-  title: "Worker Guides — Netherlands Agency Jobs, Salary & Housing — AgencyCheck",
+  title: "Worker Guides — Netherlands Agency Jobs, Salary & Rights — AgencyCheck",
   description:
-    "Practical guides for workers in the Netherlands. Real salary breakdowns, housing rights, agency work explained — backed by real worker review data.",
+    "6 practical guides for agency workers in the Netherlands. Real salary numbers, housing rights, ABU/NBBU contracts, forklift jobs, and how to prepare before you arrive. All backed by real worker data.",
   alternates: { canonical: "/guides" },
   openGraph: {
     title: "Worker Guides — Agency Jobs Netherlands — AgencyCheck",
     description:
-      "Real guides for agency workers in the Netherlands. Salary truth, housing limits, your rights — all grounded in real worker data.",
+      "Real guides for foreign workers in the Netherlands. Salary truth, housing deduction limits, ABU/NBBU rights, forklift earnings, and step-by-step arrival preparation — grounded in real worker reviews.",
   },
 };
 
@@ -20,7 +20,20 @@ const crumbSchema = breadcrumbSchema([
   { name: "Guides", url: "/guides" },
 ]);
 
+// Keyword clusters for topic grouping
+const TOPIC_LINKS = [
+  { href: "/guides/real-salary-netherlands-warehouse-workers",  label: "Salary after deductions" },
+  { href: "/guides/jobs-in-netherlands-with-accommodation",      label: "Jobs with housing" },
+  { href: "/guides/forklift-driver-jobs-netherlands",            label: "Forklift driver jobs" },
+  { href: "/guides/temp-agency-worker-rights-netherlands",       label: "ABU/NBBU worker rights" },
+  { href: "/guides/moving-to-netherlands-for-work",              label: "Moving to the Netherlands" },
+  { href: "/guides/is-working-in-netherlands-worth-it",          label: "Is it worth it?" },
+];
+
 export default function GuidesPage() {
+  const totalSections = GUIDES.reduce((s, g) => s + g.sections.length, 0);
+  const totalFaqs     = GUIDES.reduce((s, g) => s + g.faqs.length, 0);
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
@@ -32,24 +45,45 @@ export default function GuidesPage() {
         <span className="text-gray-800 font-medium">Guides</span>
       </nav>
 
+      {/* Hero */}
       <div className="mb-8">
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span className="text-xs bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-2.5 py-1 font-medium">
-            🇳🇱 Netherlands — 2026
+            🇳🇱 Netherlands · 2026
           </span>
           <span className="text-xs bg-brand-50 text-brand-700 border border-brand-100 rounded-full px-2.5 py-1 font-medium">
             Real worker data
+          </span>
+          <span className="text-xs bg-gray-50 text-gray-600 border border-gray-100 rounded-full px-2.5 py-1 font-medium">
+            {GUIDES.length} guides · {totalSections} sections · {totalFaqs} FAQs
           </span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight mb-3">
           Worker Guides for Agency Jobs in the Netherlands
         </h1>
         <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
-          Every guide is built from real salary data, Dutch tax law, and worker reviews
-          collected on AgencyCheck. No generic advice — numbers you can actually use.
+          Every guide is built from real salary data, Dutch tax law (2026), SNF housing standards, ABU/NBBU collective agreements,
+          and worker reviews collected on AgencyCheck. No generic advice — real numbers you can act on.
         </p>
       </div>
 
+      {/* Topic grid — helps Google understand keyword coverage */}
+      <div className="bg-gray-50 rounded-2xl p-4 mb-8">
+        <p className="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">Topics covered</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+          {TOPIC_LINKS.map((t) => (
+            <Link
+              key={t.href}
+              href={t.href}
+              className="text-xs text-brand-600 hover:text-brand-800 hover:underline py-1 leading-snug"
+            >
+              → {t.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Guide cards */}
       <div className="space-y-4 mb-10">
         {GUIDES.map((guide) => (
           <Link
@@ -87,12 +121,14 @@ export default function GuidesPage() {
         <h2 className="text-sm font-bold text-gray-700 mb-3">Also useful</h2>
         <div className="grid sm:grid-cols-2 gap-2 text-sm">
           {[
-            { href: "/agencies",                  label: "All agencies ranked by workers" },
-            { href: "/agencies-with-housing",      label: "Agencies with housing included" },
-            { href: "/reviews",                    label: "All worker reviews" },
-            { href: "/tools/real-income-calculator", label: "Real income calculator" },
+            { href: "/agencies",                           label: "All agencies ranked by workers" },
+            { href: "/agencies-with-housing",              label: "Agencies with housing included" },
+            { href: "/reviews",                            label: "All worker reviews" },
+            { href: "/tools/real-income-calculator",       label: "Real income calculator" },
+            { href: "/tools/payslip-checker",              label: "Payslip checker" },
             { href: "/work-in-netherlands-for-foreigners", label: "Complete foreigner guide" },
             { href: "/real-salary-netherlands-after-rent", label: "Salary after rent breakdown" },
+            { href: "/tools/salary-calculator",            label: "Salary calculator" },
           ].map((link) => (
             <Link
               key={link.href}
