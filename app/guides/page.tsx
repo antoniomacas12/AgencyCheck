@@ -6,7 +6,7 @@ import { breadcrumbSchema } from "@/lib/schemaMarkup";
 export const metadata: Metadata = {
   title: "Worker Guides — Netherlands Agency Jobs, Salary & Rights — AgencyCheck",
   description:
-    "6 practical guides for agency workers in the Netherlands. Real salary numbers, housing rights, ABU/NBBU contracts, forklift jobs, and how to prepare before you arrive. All backed by real worker data.",
+    "12 practical guides for agency workers in the Netherlands. Real salary numbers, housing rights, payslip breakdowns, ABU/NBBU contracts, forklift jobs, and how to prepare before you arrive. All backed by real worker data.",
   alternates: { canonical: "/guides" },
   openGraph: {
     title: "Worker Guides — Agency Jobs Netherlands — AgencyCheck",
@@ -22,12 +22,18 @@ const crumbSchema = breadcrumbSchema([
 
 // Keyword clusters for topic grouping
 const TOPIC_LINKS = [
-  { href: "/guides/real-salary-netherlands-warehouse-workers",  label: "Salary after deductions" },
-  { href: "/guides/jobs-in-netherlands-with-accommodation",      label: "Jobs with housing" },
-  { href: "/guides/forklift-driver-jobs-netherlands",            label: "Forklift driver jobs" },
-  { href: "/guides/temp-agency-worker-rights-netherlands",       label: "ABU/NBBU worker rights" },
-  { href: "/guides/moving-to-netherlands-for-work",              label: "Moving to the Netherlands" },
-  { href: "/guides/is-working-in-netherlands-worth-it",          label: "Is it worth it?" },
+  { href: "/guides/real-salary-netherlands-warehouse-workers",        label: "Salary after deductions" },
+  { href: "/guides/jobs-in-netherlands-with-accommodation",            label: "Jobs with housing" },
+  { href: "/guides/forklift-driver-jobs-netherlands",                  label: "Forklift driver jobs" },
+  { href: "/guides/temp-agency-worker-rights-netherlands",             label: "ABU/NBBU worker rights" },
+  { href: "/guides/moving-to-netherlands-for-work",                    label: "Moving to the Netherlands" },
+  { href: "/guides/is-working-in-netherlands-worth-it",                label: "Is it worth it?" },
+  { href: "/guides/working-in-netherlands-salary-after-rent",          label: "Salary after rent" },
+  { href: "/guides/agency-jobs-netherlands-worker-experience",         label: "Worker experiences" },
+  { href: "/guides/dutch-payslip-explained-agency-workers",            label: "Payslip explained" },
+  { href: "/guides/netherlands-agency-housing-conditions-rights",      label: "Housing rights" },
+  { href: "/guides/working-netherlands-without-speaking-dutch",        label: "Working without Dutch" },
+  { href: "/guides/how-to-choose-best-temp-agency-netherlands",        label: "Choose the right agency" },
 ];
 
 export default function GuidesPage() {

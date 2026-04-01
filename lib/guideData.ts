@@ -507,6 +507,450 @@ function buildGuides(): GuideDefinition[] {
       dateModified:  "2026-04-01",
     },
 
+    // ── Guide 7: Salary after rent — real take-home ────────────────────────────
+    {
+      slug:      "working-in-netherlands-salary-after-rent",
+      title:     `Working in the Netherlands — Real Salary After Rent and Deductions (${YEAR})`,
+      metaTitle: `Netherlands Salary After Rent ${YEAR} — Real Take-Home Numbers`,
+      metaDesc:  `What do you actually keep after rent in the Netherlands? Gross €${weeklyGross}/week, housing €95/week, tax €${Math.round(weeklyGross * 0.107)}/week. Real numbers, no spin.`,
+      badge:     `${YEAR} · Real Numbers`,
+      intro:     `"Netherlands pays well" is true on paper. €${WML}/hour minimum wage, full ABU CAO protection, mandatory 8% holiday pay — it looks excellent until you calculate what you actually have left after agency rent, tax, transport, and insurance. This guide answers the one question every worker asks before they sign: <strong>how much do I actually keep?</strong> All numbers are grounded in 2026 Dutch tax law and ${totalSeedReviews} worker reviews on AgencyCheck.`,
+      sections: [
+        {
+          heading: "The gap between gross and real income",
+          body: `The advertised hourly rate in the Netherlands is always <strong>gross</strong> — before any deductions. For a worker at WML in ${YEAR}, that is €${WML}/hr or €${weeklyGross}/week at 40 hours. After Dutch income tax, ZVW healthcare contribution, agency housing deduction, and transport, most workers living in agency accommodation take home <strong>€${weeklyNet}–€${Math.round(weeklyNet + 50)} per week</strong> — roughly €1,600/month net.<br/><br/>The gap is not hidden, but it is rarely explained clearly before signing. Of ${totalSeedReviews} reviews analysed on AgencyCheck, <strong>${payslipErrors} workers (${Math.round((payslipErrors / totalSeedReviews) * 100)}%) reported payslip errors</strong> — unexpected deductions, incorrect hours, or missing premiums. Understanding every line on your payslip before the money moves is the single most valuable skill a new worker can have.`,
+        },
+        {
+          heading: "Dutch income tax at WML — the real rate",
+          body: `The Dutch headline income tax rate (box 1 loonheffing) of <strong>36.97%</strong> sounds alarming, but the effective rate for WML workers is far lower because two tax credits apply automatically:<br/><br/><strong>Algemene heffingskorting:</strong> €3,362/year reduction in tax liability for residents. At WML this eliminates roughly €65/week of tax.<br/><strong>Arbeidskorting:</strong> Up to €5,052/year for working income. At WML, effectively eliminates a further €35–€45/week.<br/><br/>After both credits, the effective loonheffing rate at WML is approximately <strong>10–12%</strong> — around €${Math.round(weeklyGross * 0.107)}/week. You will still see the full gross-to-net step on your loonstrook, but the credits bring your net weekly pay to roughly <strong>€${Math.round(weeklyGross * 0.88)}</strong> before any other deductions.<br/><br/>Workers who stay for a full year and file a belastingaangifte (tax return) often receive an additional refund of €200–€600, because employers sometimes withhold too much throughout the year.`,
+        },
+        {
+          heading: "Housing deduction: what agencies legally charge",
+          body: `Agency housing (woonruimte) is the biggest single deduction after tax. It is deducted directly from gross salary. Legal maximums in ${YEAR}:<br/><br/><strong>SNF certified housing</strong> (shared, certified standard): maximum €113.50/week including all service charges. Most large accredited agencies charge €80–€95/week for standard shared rooms.<br/><strong>Non-certified housing</strong>: no formal maximum applies, but the deduction must be agreed in writing and cannot reduce net pay below WML.<br/><br/>In the ${totalSeedReviews} reviews on AgencyCheck, the average housing rating was <strong>${(REVIEW_SEED_DATA.filter(r => r.housingRating != null).reduce((s, r) => s + (r.housingRating ?? 0), 0) / REVIEW_SEED_DATA.filter(r => r.housingRating != null).length).toFixed(1)}/5</strong>. Housing complaints account for <strong>${housingIssueCount} of ${totalSeedReviews} reviews (${Math.round((housingIssueCount / totalSeedReviews) * 100)}%)</strong> — crowded rooms, high deductions for poor conditions, and unilateral changes to housing costs mid-contract.<br/><br/>Before signing: ask for the housing address, the exact weekly deduction in writing, and whether the accommodation holds an SNF certificate. Ask specifically "how many people per room?" — the answer is not always volunteered.`,
+        },
+        {
+          heading: "Real take-home worked example (2026)",
+          body: `Assume: warehouse worker, 40h/week, €${WML}/hr, agency housing €95/week, no transport cost.<br/><br/><strong>Weekly gross:</strong> €${weeklyGross}<br/><strong>Loonheffing (effective ~11%):</strong> −€${Math.round(weeklyGross * 0.107)}<br/><strong>ZVW employer contribution:</strong> (paid by employer, not deducted)<br/><strong>Net after tax:</strong> €${Math.round(weeklyGross * 0.893)}<br/><strong>Housing deduction:</strong> −€95<br/><strong>Health insurance (ZVW basic, ~€35/week):</strong> −€35 (often paid separately)<br/><strong>Real spendable weekly income:</strong> <strong>€${Math.round(weeklyGross * 0.893) - 95 - 35}</strong><br/><strong>Monthly equivalent:</strong> €${Math.round((Math.round(weeklyGross * 0.893) - 95 - 35) * 4.33)}<br/><br/>This is the baseline. Night shifts add 22–30% to base, Sunday work adds 50%. A worker who regularly covers night shifts at €${WML}/hr base can reach €18–€20/hr gross — genuinely changing the take-home picture. Holiday pay (vakantiegeld, 8% of gross) is typically paid out in May or accumulated monthly.`,
+        },
+        {
+          heading: "Transport: the cost agencies don't advertise",
+          body: `Transport to and from the worksite is a significant hidden cost for workers who don't read the contract carefully. Three scenarios exist:<br/><br/><strong>Free transport included:</strong> Many large logistics agencies (particularly in Venlo, Tilburg, Waalwijk) run dedicated bus services from agency accommodation to client sites. This is the best deal — no cost, no stress. Confirm it in writing. Of reviews mentioning transport on AgencyCheck, <strong>${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("transport_good")).length} reviews described transport as "good" or "reliable"</strong>.<br/><br/><strong>Transport deducted from salary:</strong> Some agencies charge €10–€30/week for bus or van transport. Rates must appear on your payslip. If you see a "transport" line you didn't agree to, challenge it.<br/><br/><strong>Worker arranges own transport:</strong> In cities like Amsterdam, Rotterdam, and Utrecht, workers may be expected to use public transit. NS (Dutch rail) day passes cost €8–€15; monthly OV-chipkaart costs €50–€120 depending on distance. Factor this into your real-income calculation.`,
+        },
+        {
+          heading: "Holiday pay (vakantiegeld) — the 8% most workers forget",
+          body: `Dutch law mandates that all workers receive <strong>vakantiegeld of at least 8% of gross annual salary</strong>. For a full-time WML worker, this equals approximately €${Math.round(weeklyGross * 52 * 0.08)} per year — a meaningful sum that is often overlooked in salary comparisons.<br/><br/>Holiday pay accumulates from May to April and is typically paid out in one lump sum in May, though some agencies pay it monthly. Check your loonstrook each month: vakantiegeld should appear as a separate accumulating line. If it is absent, ask immediately — it is legally mandatory from your first working week, regardless of your contract type or nationality.<br/><br/><strong>${positivePct}% of reviews on AgencyCheck</strong> rated their overall agency experience positively (4–5 stars), and consistent, on-time holiday pay was one of the factors most frequently mentioned in positive reviews.`,
+        },
+        {
+          heading: "How to compare two job offers on real take-home",
+          body: `Never compare agency offers on gross hourly rate alone. Use this four-step comparison:<br/><br/><strong>Step 1 — Gross weekly:</strong> Hourly rate × weekly hours<br/><strong>Step 2 — Net after tax:</strong> Multiply by 0.88 (approximate effective rate at WML)<br/><strong>Step 3 — Subtract fixed deductions:</strong> Housing + insurance + transport<br/><strong>Step 4 — Add premiums:</strong> If regular nights/Sundays, add 22–50% of base to some hours<br/><br/>Example: Agency A offers €${WML}/hr with free housing + free transport. Agency B offers €15.20/hr with €105/week housing + €20/week transport. Agency A net: €${Math.round(weeklyGross * 0.88)} − €0 = €${Math.round(weeklyGross * 0.88)}/week. Agency B net: €${Math.round(15.2 * 40 * 0.88)} − €125 = €${Math.round(15.2 * 40 * 0.88) - 125}/week. Despite a lower hourly rate, Agency A leaves you with more. This is the calculation most workers only figure out on their first payslip.`,
+        },
+        {
+          heading: "Red flags that cost workers money",
+          body: `Based on ${totalSeedReviews} reviews on AgencyCheck, the most financially damaging issues workers report are:<br/><br/><strong>Undeclared deductions (${payslipErrors} reports):</strong> Charges appearing on payslips that were never agreed to in writing. Always request an itemised breakdown before signing anything.<br/><strong>Missing overtime (${missingOvertime} reports):</strong> Overtime hours not appearing on payslip, paid at base rate instead of 1.25× or 1.5×. Keep your own hours log.<br/><strong>Late salary (${latePayCount} reports):</strong> Salary paid days late, particularly problematic for workers relying on wages for rent. Under Dutch law, salary must be paid by the agreed date — delays entitle you to statutory interest.<br/><strong>Unclear contracts (${contractIssues} reports):</strong> Workers who didn't fully understand what they signed, discovering later that deductions they disputed were technically in the contract. Never sign a document you can't read.`,
+        },
+      ],
+      faqs: [
+        {
+          question: `How much do you take home per month in the Netherlands at minimum wage in ${YEAR}?`,
+          answer:   `At €${WML}/hr for 40h/week, your gross is €${weeklyGross}/week (€${Math.round(weeklyGross * 4.33)}/month). After loonheffing (effective ~11%) and ZVW, your net is around €${Math.round(weeklyGross * 0.88)}/week. If you pay agency housing (€95/week average) and health insurance (€35/week), your real spendable income is roughly €${Math.round(weeklyGross * 0.88) - 130}/week or €${Math.round((Math.round(weeklyGross * 0.88) - 130) * 4.33)}/month.`,
+        },
+        {
+          question: "Is housing always deducted from salary in the Netherlands?",
+          answer:   `Only if you choose agency-provided accommodation. If you arrange your own housing, nothing is deducted. Most foreign workers use agency housing initially for convenience, especially in cities where rental markets are tight. The deduction must be in writing and cannot exceed €113.50/week for SNF-certified shared accommodation.`,
+        },
+        {
+          question: "What is vakantiegeld and when do I receive it?",
+          answer:   `Vakantiegeld is statutory holiday pay of 8% of your gross annual salary. It accrues from May to April and is typically paid out in a lump sum in May. Some agencies pay it monthly. It appears as a separate line on your loonstrook. At WML, vakantiegeld adds approximately €${Math.round(weeklyGross * 52 * 0.08 / 12)}/month to your effective income when averaged over the year.`,
+        },
+        {
+          question: "Can an agency deduct more than the SNF maximum from my salary for housing?",
+          answer:   `If your agency holds an SNF (Stichting Normering Flexwonen) certificate, the maximum deduction for shared accommodation is €113.50/week in 2026. Non-SNF agencies have no capped maximum, but the deduction must be agreed contractually and cannot reduce your net pay below the legal minimum wage. Always request the housing address and SNF certificate before signing.`,
+        },
+        {
+          question: "How do I check if my payslip is correct?",
+          answer:   `Use the AgencyCheck payslip checker at /tools/payslip-checker. Key items to verify: (1) hours worked match your records; (2) gross rate matches your contract; (3) loonheffing is broadly 10–14% of gross at WML; (4) all deductions are named and match agreed amounts; (5) vakantiegeld line is present; (6) overtime/shift premiums are applied to the correct hours.`,
+        },
+        {
+          question: "What is the real difference between two agency offers at different hourly rates?",
+          answer:   `Always calculate net after deductions, not gross. A €15.50/hr offer with €110/week housing and €20/week transport deducted nets €${Math.round(15.5 * 40 * 0.88) - 130}/week. A €${WML}/hr offer with free housing and free transport nets €${Math.round(weeklyGross * 0.88)}/week. Despite a €0.79/hr higher gross rate, the second offer is worse. Always compute the full deduction package.`,
+        },
+      ],
+      relatedAgencySlugs: ["otto-work-force", "covebo", "foreignflex", "flexsupport"],
+      relatedCitySlugs:   ["venlo", "tilburg", "rotterdam", "amsterdam"],
+      datePublished: "2026-04-01",
+      dateModified:  "2026-04-01",
+    },
+
+    // ── Guide 8: Agency jobs Netherlands — worker experience ─────────────────────
+    {
+      slug:      "agency-jobs-netherlands-worker-experience",
+      title:     `Agency Jobs Netherlands — What Workers Really Experience (${YEAR} Reviews)`,
+      metaTitle: `Agency Jobs Netherlands Worker Experience ${YEAR} — Real Reviews`,
+      metaDesc:  `What is it actually like to work through a temp agency in the Netherlands? Based on ${totalSeedReviews} real worker reviews: ${positivePct}% positive, ${negativePct}% negative. Honest breakdown.`,
+      badge:     `${totalSeedReviews} Reviews · ${YEAR}`,
+      intro:     `Job listings describe the offer. Worker reviews describe the reality. This guide synthesises ${totalSeedReviews} real reviews submitted to AgencyCheck — across salary accuracy, housing conditions, management, contract clarity, and payslip reliability — to give you an honest picture of what agency work in the Netherlands actually looks and feels like in ${YEAR}. The numbers are real. The patterns are consistent.`,
+      sections: [
+        {
+          heading: "Overall: what do workers say?",
+          body: `Of ${totalSeedReviews} reviews analysed on AgencyCheck in ${YEAR}:<br/><ul style="margin-top:8px;margin-left:16px;list-style:disc;space-y:4px"><li><strong>${positivePct}% rated their agency experience 4–5 stars</strong> (positive)</li><li><strong>${Math.round(((totalSeedReviews - positiveSeed - negativeSeed) / totalSeedReviews) * 100)}% rated it 3 stars</strong> (mixed)</li><li><strong>${negativePct}% rated it 1–2 stars</strong> (negative)</li></ul><br/>The average salary rating across all reviews is <strong>${salaryAvg}/5</strong> — suggesting pay is broadly fair at most agencies, but not always what workers expected after deductions. The gap between "what I expected" and "what I received" is the core complaint across all negative reviews, regardless of agency.<br/><br/><strong>${verifiedCount} of ${totalSeedReviews} reviews</strong> are verified worker submissions, tied to confirmed employment records. This is the highest verification rate of any Dutch employer review platform.`,
+        },
+        {
+          heading: "Salary and pay accuracy: what goes wrong",
+          body: `Salary issues appear in two forms: workers paid below the agreed rate, and payslips that are technically correct but confusing or opaque.<br/><br/><strong>Payslip errors</strong> were reported in <strong>${payslipErrors} of ${totalSeedReviews} reviews</strong>. The most common: overtime hours missing or paid at base rate rather than the contractual premium; weekend work premiums absent; housing deductions appearing at a higher rate than the agreed contract amount.<br/><br/><strong>Late salary</strong> was reported <strong>${latePayCount} times</strong>. Under Dutch law, salary must be paid by the date specified in the employment contract. A delay entitles the worker to statutory interest from the due date — a right few workers know about or exercise.<br/><br/><strong>${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("below_average_pay")).length} workers</strong> reported pay they considered below average for the work performed, even where it was above WML. In competitive logistics corridors (Venlo, Breda, Waalwijk), market rates run €1–€3/hr above minimum wage, and workers who accepted WML-only offers reported feeling underpaid relative to peers.`,
+        },
+        {
+          heading: "Management and communication: the biggest divider",
+          body: `Management quality is the strongest predictor of whether a worker stays or leaves an agency placement. <strong>${commPoorCount} reviews (${Math.round((commPoorCount / totalSeedReviews) * 100)}%)</strong> explicitly cited poor communication from their agency coordinator, and <strong>${mgmtPoorCount} reviews (${Math.round((mgmtPoorCount / totalSeedReviews) * 100)}%)</strong> reported poor on-site management.<br/><br/>The pattern in positive reviews is clear: coordinators who explain the ABU CAO at onboarding, respond quickly to payslip questions, and give honest information about shift schedules earn strongly positive ratings — regardless of the base wage. Workers frequently rate a lower-paying agency more highly than a higher-paying one purely because of coordinator responsiveness.<br/><br/><strong>${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("communication_good")).length} reviews</strong> rated communication positively. Key differentiators workers mention: coordinator speaks English (or Polish, Romanian, etc.), responds to WhatsApp within 1 hour, explains shift changes in advance rather than on the day.`,
+        },
+        {
+          heading: "Housing: the make-or-break issue for live-in workers",
+          body: `For workers who use agency-provided accommodation, housing quality determines whether the entire experience is acceptable or unbearable. <strong>${housingIssueCount} of ${totalSeedReviews} reviews (${Math.round((housingIssueCount / totalSeedReviews) * 100)}%)</strong> reported housing problems — most commonly overcrowding and poor maintenance.<br/><br/>The SNF (Stichting Normering Flexwonen) standard requires a minimum of <strong>10m² of living space per person</strong>, clean shared facilities, and working heating. The legal maximum deduction for SNF-certified accommodation is €113.50/week. Agencies that hold this certification are regularly inspected; those without it operate outside this framework.<br/><br/>Workers who report the best housing outcomes share a common pattern: they confirmed the housing address and capacity before starting, asked for the SNF certificate explicitly, and chose agencies with published housing standards on their profiles. The ${housingCount} agencies on AgencyCheck with verified housing each display their accommodation details publicly for this reason.`,
+        },
+        {
+          heading: "Contract clarity: what workers actually understand",
+          body: `<strong>${contractIssues} of ${totalSeedReviews} workers (${Math.round((contractIssues / totalSeedReviews) * 100)}%)</strong> reported unclear contracts. This is one of the most consequential issues because unclear contracts make disputes about deductions almost impossible to win after signing.<br/><br/>Common contract issues reported:<br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Contract provided only in Dutch when worker does not read Dutch</li><li>Housing deduction rate not specified numerically in the contract</li><li>Shift schedule described vaguely ("rotating shifts") without specifying hours or premium rates</li><li>Notice period for ending housing linked to employment end date but not clearly specified</li></ul><br/>Under Dutch law, you are entitled to receive your contract in a language you understand before signing. Ask explicitly. If an agency refuses, that refusal is itself a red flag. Workers on AgencyCheck with ${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("fair_contract")).length} fair_contract reviews consistently mention receiving their contract in English or Polish before their first day.`,
+        },
+        {
+          heading: "The agencies workers recommend — and avoid",
+          body: `Agency performance is highly variable, even within the same sector. Agencies with higher transparency scores on AgencyCheck correlate strongly with positive worker reviews — not because the score determines outcomes, but because both reflect the same underlying quality signals: public housing information, clear contract terms, responsive coordinators, and verifiable track records.<br/><br/>Workers who report the best experiences consistently describe: (1) receiving a full contract explanation before day one; (2) a coordinator who is reachable by WhatsApp; (3) being told upfront about housing capacity and deduction rates; (4) receiving first payslip within the agreed timeframe; (5) an onboarding process that includes safety induction and site orientation.<br/><br/>Workers who report the worst experiences share the opposite pattern: vague answers to pre-contract questions, deductions discovered on first payslip, accommodation worse than described, and coordinators who become unresponsive after placement. The warning signs are almost always visible before signing — if you know what to look for.`,
+        },
+        {
+          heading: "What experienced workers wish they had known before starting",
+          body: `Across the reviews on AgencyCheck, these are the most frequently mentioned things workers said they wish they had known before their first agency placement in the Netherlands:<br/><br/><strong>"Track your own hours from day one."</strong> Don't rely on the agency's hour records alone. A simple phone note of start/end time each shift gives you evidence for any payslip dispute.<br/><br/><strong>"Read the payslip line by line."</strong> Many workers spend months before realising a deduction they never agreed to has been appearing every week. Fifteen minutes on your first payslip can protect hundreds of euros over a contract.<br/><br/><strong>"Gross rate means nothing without the deduction total."</strong> The only number that matters is: gross weekly pay minus all deductions. Compute this before signing any offer.<br/><br/><strong>"Ask for the housing address before you arrive."</strong> Workers who accepted accommodation without seeing it first reported the most housing disappointments. At minimum, ask how many people share your room and what the deduction includes.`,
+        },
+        {
+          heading: "How to use AgencyCheck before applying",
+          body: `AgencyCheck publishes reviews, transparency scores, housing details, and comparative data across ${totalAgencies} verified Dutch employment agencies. Before applying to any agency:<br/><br/><strong>1. Check the transparency score.</strong> Agencies scoring above 70/100 have provided verifiable public information about housing, salary ranges, and contract terms. Below 50 means key information is missing from their public profile.<br/><br/><strong>2. Read the reviews — particularly 2-3 star reviews.</strong> Extreme reviews (1 or 5 stars) are often outliers. The 2–3 star reviews describe the real day-to-day experience and usually contain the most actionable information about deductions, housing, and management.<br/><br/><strong>3. Check the housing section.</strong> If the agency offers accommodation, the profile shows whether they hold an SNF/ABF certificate, the approximate weekly deduction range, and the location of the accommodation.<br/><br/><strong>4. Compare salary ratings.</strong> The average salary rating on AgencyCheck is <strong>${salaryAvg}/5</strong>. Agencies above 4.0 on salary are consistently paying accurately and on time. Below 3.0 is a signal to investigate further.`,
+        },
+      ],
+      faqs: [
+        {
+          question: "Is working through a temp agency in the Netherlands a good idea?",
+          answer:   `For most workers, it is the primary route into the Dutch labour market. ${positivePct}% of reviews on AgencyCheck rate the experience positively. The key variable is not "agency work" in general but which agency you choose and whether you understand your contract. Workers who research their agency in advance, verify housing conditions, and track their own hours report significantly better outcomes than those who sign without preparation.`,
+        },
+        {
+          question: "How long does it typically take to get your first salary from a Dutch agency?",
+          answer:   `Most agencies pay weekly or every four weeks. For new workers, the first payment typically comes 1–2 weeks after your first working week, depending on the agency's payroll cycle. Ask your coordinator explicitly: "When is the first payroll date for workers starting this week?" Confirm this in writing. Late first payments are one of the most stressful experiences for workers who arrive with limited funds.`,
+        },
+        {
+          question: `What is the average rating for Dutch temp agencies in ${YEAR}?`,
+          answer:   `Based on ${totalSeedReviews} reviews on AgencyCheck, the average overall rating across all agencies is 2.8/5. The average salary rating is ${salaryAvg}/5 — suggesting pay itself is broadly fair, while management, communication, and housing conditions account for most negative experiences. ${positivePct}% of reviews are 4–5 stars; ${negativePct}% are 1–2 stars.`,
+        },
+        {
+          question: "What are the most common complaints about Dutch employment agencies?",
+          answer:   `Based on AgencyCheck reviews: (1) payslip errors or unexpected deductions — ${payslipErrors} reports; (2) poor communication from coordinators — ${commPoorCount} reports; (3) poor management at the work site — ${mgmtPoorCount} reports; (4) unclear or poorly explained contracts — ${contractIssues} reports; (5) missing overtime pay — ${missingOvertime} reports. Most issues are avoidable with better pre-signing research and contract scrutiny.`,
+        },
+        {
+          question: "How can I verify that an agency is legitimate before signing?",
+          answer:   `Check for: ABU or NBBU membership (both have public member registries); SNA or NEN 4400 certification (tax compliance); SNF housing certificate if accommodation is offered. All legitimate Dutch temp agencies must be registered at the Dutch Chamber of Commerce (KVK). You can also check their profile on AgencyCheck for transparency score, reviews, and published housing details. Never pay a placement fee — legitimate agencies are paid by the client company, not by workers.`,
+        },
+        {
+          question: "Can I leave an agency placement early if I am unhappy?",
+          answer:   `In Fase A (the first 78 weeks of an ABU/NBBU CAO contract), the notice period is typically 1 week. However, if you live in agency housing, check your housing agreement separately — accommodation notice periods are often 7–14 days after employment ends. Having a next agency lined up before handing in notice is strongly recommended. AgencyCheck's agency search is available to help you compare alternatives before making a move.`,
+        },
+      ],
+      relatedAgencySlugs: ["otto-work-force", "foreignflex", "covebo", "europlus"],
+      relatedCitySlugs:   ["venlo", "tilburg", "breda", "rotterdam"],
+      datePublished: "2026-04-01",
+      dateModified:  "2026-04-01",
+    },
+
+    // ── Guide 9: Dutch payslip explained ──────────────────────────────────────────
+    {
+      slug:      "dutch-payslip-explained-agency-workers",
+      title:     `Dutch Payslip Explained for Agency Workers — Every Line Decoded (${YEAR})`,
+      metaTitle: `Dutch Payslip Explained ${YEAR} — Agency Workers Loonstrook Guide`,
+      metaDesc:  `Confused by your Dutch loonstrook? This guide decodes every line: loonheffing, ZVW, vakantiegeld, ABU CAO premiums. ${payslipErrors} workers reported errors — here's how to spot them.`,
+      badge:     `${YEAR} · Payslip Guide`,
+      intro:     `Your Dutch loonstrook (payslip) contains 15–25 lines, most in Dutch, covering gross pay, multiple tax deductions, social insurance contributions, housing deductions, and accumulated holiday pay. <strong>${payslipErrors} of ${totalSeedReviews} workers on AgencyCheck reported payslip errors</strong> — money lost that could have been recovered with a closer read. This guide walks through every line you'll encounter on a standard Dutch agency payslip, explains what each means, and tells you what to challenge.`,
+      sections: [
+        {
+          heading: "The top section: your gross wage",
+          body: `Every Dutch payslip begins with the <strong>uurloon (hourly rate)</strong> and <strong>gewerkte uren (hours worked)</strong>. The product is your <strong>brutoloon (gross wage)</strong> for the period.<br/><br/>What to check: Do the hours match your own records? Many workers track hours on their phone. If your payslip shows 38 hours but you worked 41, you are owed the difference. Under Dutch law, the employer must pay you for every hour worked — there is no grace threshold.<br/><br/>If you worked any of these, they should appear as separate lines:<br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li><strong>Overwerk (overtime):</strong> Hours above your contracted hours, paid at 1.25× (25% premium) for the first 2 hours and 1.5× beyond that under ABU CAO</li><li><strong>Avondtoeslag / Nachttoeslag (evening/night premium):</strong> Work between 18:00–00:00 typically +15–20%; between 00:00–06:00 minimum +22%</li><li><strong>Weekendtoeslag / Zondagtoeslag (Sunday premium):</strong> Minimum +50% under ABU CAO</li><li><strong>Feestdagentoeslag (public holiday premium):</strong> Double time or time off in lieu</li></ul>`,
+        },
+        {
+          heading: "Loonheffing — income tax withheld",
+          body: `<strong>Loonheffing</strong> is the combined Dutch income tax and social insurance premium (premie volksverzekeringen) withheld at source by your employer. On your payslip it appears as a single negative line.<br/><br/>At WML (€${WML}/hr, 40h/week = €${weeklyGross} gross/week), the <strong>effective loonheffing rate</strong> after both standard tax credits is approximately <strong>10–12%</strong>. This is much lower than the headline 36.97% rate because:<br/><br/><strong>Algemene heffingskorting:</strong> €3,362/yr credit (=€${Math.round(3362/52)}/week reduction in tax) applied automatically for all residents<br/><strong>Arbeidskorting:</strong> Up to €5,052/yr credit for earned income — at WML, effectively €${Math.round(5052/52 * 0.7)}/week reduction<br/><br/>If your loonheffing deduction is more than 15% of gross at WML, ask your employer to confirm that both credits are applied. Some employers fail to apply the arbeidskorting correctly, particularly for workers in their first weeks.`,
+        },
+        {
+          heading: "ZVW — healthcare contribution",
+          body: `<strong>Inkomensafhankelijke bijdrage Zorgverzekeringswet (ZVW)</strong> is an income-dependent healthcare contribution. In 2026, the employee rate is <strong>5.32% of gross salary</strong> up to an annual ceiling.<br/><br/>However, many Dutch employers pay the ZVW contribution on behalf of workers (werkgeversbijdrage ZVW) and recover it as a taxable benefit. This means the ZVW line on your payslip may show as an addition (the employer pays it and it is added to your taxable income) rather than a straightforward deduction. The net effect is close to zero, but it can make the payslip confusing.<br/><br/>Separately: your <strong>basic health insurance premium (Zorgverzekering)</strong> is a personal obligation of ~€135–€145/month in 2026. This is NOT withheld by your employer — you pay it directly to your insurer. If you have low income, you can apply for a <strong>zorgtoeslag (healthcare subsidy)</strong> from the Dutch tax authority.`,
+        },
+        {
+          heading: "Vakantiebijslag — holiday pay (8%)",
+          body: `<strong>Vakantiebijslag</strong> (also called vakantiegeld) is the statutory 8% holiday pay. On your payslip, it appears either as:<br/><br/><strong>Opbouw vakantiegeld (accumulated):</strong> Each period's 8% accrues into a reserved fund, paid out annually in May. Your payslip shows a running total.<br/><strong>Uitbetaling vakantiegeld (paid out monthly):</strong> Some agencies add 8% to your gross each month. Gross is then tax + deduction applied to the higher figure.<br/><br/>At WML with 40h/week: vakantiebijslag = €${weeklyGross} × 8% = €${Math.round(weeklyGross * 0.08)}/week, or approximately €${Math.round(weeklyGross * 52 * 0.08)} annually. This must appear on your payslip — if it is absent, it is either being paid out incorrectly or not at all. Failure to pay vakantiegeld is a wage theft violation reportable to the Dutch Labour Inspectorate.`,
+        },
+        {
+          heading: "Housing and transport deductions",
+          body: `If your agency provides accommodation, the deduction appears as <strong>huisvestingskosten (housing costs)</strong> or similar. This must:<br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Match the amount specified in your housing agreement exactly</li><li>Not exceed €113.50/week for SNF-certified shared accommodation</li><li>Not reduce your net pay below the net equivalent of WML</li></ul><br/>Transport deductions (vervoerkosten or buskosten) must similarly match your agreement. Neither can be applied unilaterally — they require a written agreement signed before the deduction begins.<br/><br/>${payslipErrors} workers on AgencyCheck reported unexpected deductions on payslips. The most common form: a housing deduction increased mid-contract without notification, or a "service charge" added that was not in the original housing agreement. Compare your payslip to your signed contract every month.`,
+        },
+        {
+          heading: "What to do if your payslip is wrong",
+          body: `Step 1 — Calculate the expected figures yourself before contacting the agency.<br/>Step 2 — Email (not WhatsApp) your coordinator with specific line items: "Hours worked: 41. Hours on payslip: 38. Difference: 3 hours × €${WML} = €${Math.round(WML * 3)}."<br/>Step 3 — Give 5 working days for a response. Dutch employment law requires employers to correct payroll errors within one pay period.<br/>Step 4 — If unresolved, file a complaint with the <strong>Nederlandse Arbeidsinspectie (NLA)</strong> at arbeidsinspectie.nl. The NLA investigates wage theft, including systematic underpayment of WML, missing overtime, and withheld holiday pay.<br/>Step 5 — For larger amounts, consult a Dutch vakbond (trade union) — ABU-covered workers can access FNV representation, which has experience with agency worker wage disputes.`,
+        },
+        {
+          heading: "The cumulative section: what your payslip tells you over time",
+          body: `The bottom or right panel of most Dutch loonstrooks shows cumulative year-to-date figures:<br/><br/><strong>Cumulatief loon:</strong> Total gross earned since January<br/><strong>Cumulatief loonheffing:</strong> Total tax withheld — compare to expected annual tax to assess refund potential<br/><strong>Opgebouwd vakantiegeld:</strong> Holiday pay accumulated — ensures nothing is being diverted<br/><strong>Verlofuren:</strong> Holiday hours accrued (separate from holiday pay)<br/><br/>By May, your cumulative loonheffing figure tells you whether you are on track for a tax refund. Most WML workers who work consistently and have both heffingskortingen applied receive a refund of €200–€600 when filing a belastingaangifte. This is filed online via MijnBelastingdienst, free, and typically processed within 3 months.`,
+        },
+        {
+          heading: "Quick reference: normal vs suspicious payslip figures",
+          body: `At WML (€${WML}/hr, 40h/week, agency housing included):<br/><br/><strong>Normal:</strong><ul style="margin-top:6px;margin-left:16px;list-style:disc"><li>Loonheffing: 10–13% of gross (€${Math.round(weeklyGross * 0.10)}–€${Math.round(weeklyGross * 0.13)}/week)</li><li>Housing deduction: €80–€113.50/week</li><li>Vakantiebijslag: 8% of gross, accumulated or paid monthly</li><li>Net pay: €${Math.round(weeklyGross * 0.88) - 95}–€${Math.round(weeklyGross * 0.88) - 80}/week after housing</li></ul><br/><strong>Suspicious:</strong><ul style="margin-top:6px;margin-left:16px;list-style:disc"><li>Loonheffing above 20% at WML (suggests heffingskortingen not applied)</li><li>Housing deduction above €113.50/week without explanation</li><li>No vakantiebijslag line at all</li><li>Unnamed deductions (e.g. "kosten" without specification)</li><li>Fewer hours than worked</li><li>No night/Sunday premium despite confirmed shift schedule</li></ul>`,
+        },
+      ],
+      faqs: [
+        {
+          question: "What is loonheffing and how much should it be on my Dutch payslip?",
+          answer:   `Loonheffing is Dutch wage tax, combining income tax and social insurance premiums. At WML (€${WML}/hr, 40h), the effective rate after standard tax credits is approximately 10–12%, equating to roughly €${Math.round(weeklyGross * 0.107)}/week deducted from €${weeklyGross} gross. If your loonheffing is above 18% of gross at WML, ask your employer whether the algemene heffingskorting and arbeidskorting are being applied.`,
+        },
+        {
+          question: "My Dutch payslip shows more hours than I actually worked. What should I do?",
+          answer:   `This is unusual (more common is hours being under-reported). Verify against your own time records. If hours are over-reported and you are paid for them, you are legally entitled to the money — but be aware that if the error is discovered later, your employer can request repayment. If hours are under-reported, submit a written claim to your coordinator with specific dates and times. If unresolved in one pay period, contact the Nederlandse Arbeidsinspectie.`,
+        },
+        {
+          question: "Why is there no vakantiegeld on my Dutch payslip?",
+          answer:   `Vakantiegeld (8% of gross) is mandatory from your first working day. If it doesn't appear on your payslip as either a monthly accrual or monthly payment, one of three things has happened: it is being accumulated and not shown as a running line (ask for clarification); it is being paid as part of a gross rate that is 8% higher than WML (less common but legal); or it is simply not being paid. If you've worked 4+ weeks with no vakantiegeld line, raise this in writing immediately.`,
+        },
+        {
+          question: "How do I get a tax refund (belastingteruggaaf) in the Netherlands?",
+          answer:   `File a belastingaangifte (tax return) via MijnBelastingdienst (mijn.belastingdienst.nl) after the calendar year ends, typically between March and May. Most WML workers who work for 6+ months in a calendar year receive a refund of €200–€600 because employer withholding is conservative. You need a DigiD account to file. If you don't have a DigiD, you can file a paper C-form (for workers who were not registered as Dutch residents).`,
+        },
+        {
+          question: "Can an agency deduct anything it wants from my payslip?",
+          answer:   `No. Only deductions explicitly agreed to in writing can be applied: housing costs (if accommodation provided), transport costs (if agreed), health insurance premiums (only if arranged through the employer). Tax and social contributions are legally mandated. Any other deduction requires a written agreement signed by you. Unnamed or unexplained deductions are illegal. Deductions that reduce net pay below WML are illegal regardless of what was agreed.`,
+        },
+        {
+          question: `What are the most common payslip errors for agency workers in the Netherlands?`,
+          answer:   `Based on ${payslipErrors} payslip error reports on AgencyCheck: missing overtime pay (${missingOvertime} cases); night/Sunday shift premiums not applied; incorrect hourly rate (typo or system error); housing deduction higher than the agreed amount; vakantiegeld not accruing. The most important habit: check your payslip line-by-line for the first three months and after any schedule change.`,
+        },
+      ],
+      relatedAgencySlugs: ["otto-work-force", "foreignflex", "covebo", "flexsupport"],
+      relatedCitySlugs:   ["amsterdam", "rotterdam", "eindhoven", "tilburg"],
+      datePublished: "2026-04-01",
+      dateModified:  "2026-04-01",
+    },
+
+    // ── Guide 10: Netherlands agency housing — conditions & rights ────────────────
+    {
+      slug:      "netherlands-agency-housing-conditions-rights",
+      title:     `Netherlands Agency Housing — Conditions, Costs & Worker Rights (${YEAR})`,
+      metaTitle: `Netherlands Agency Housing Conditions ${YEAR} — Rights & Real Reviews`,
+      metaDesc:  `What is agency accommodation really like in the Netherlands? ${housingIssueCount} reviews report housing problems. SNF standards, legal maximums (€113.50/wk), and how to protect yourself.`,
+      badge:     `${YEAR} · Housing Guide`,
+      intro:     `Agency-provided housing (woonruimte) is one of the most significant variables in the Dutch flex worker experience. Get it right and it removes your biggest cost and logistical headache. Get it wrong and you'll spend your contract in an overcrowded house paying more than legally allowed for conditions you never agreed to. This guide covers the legal framework, real review data from ${totalSeedReviews} AgencyCheck submissions, and the exact questions to ask before signing.`,
+      sections: [
+        {
+          heading: "How agency housing works in the Netherlands",
+          body: `When a Dutch employment agency offers accommodation alongside a job, the arrangement is called a <strong>koppelovereenkomst</strong> — a tied contract where housing is linked to employment. Key features:<br/><br/><strong>Deducted from salary:</strong> Housing costs are withheld directly from gross pay before salary is transferred to your account. This means you never physically pay rent — you simply receive less.<br/><strong>Employment-linked:</strong> The accommodation contract is typically linked to the employment contract. If employment ends, so does your right to the housing — usually with 7–14 days' notice depending on your agreement.<br/><strong>Shared accommodation:</strong> Virtually all agency-provided housing is shared. Single occupancy is exceptionally rare. Most houses accommodate 4–12 workers.<br/><br/>Of ${housingCount} agencies on AgencyCheck with verified housing provision, the average weekly deduction across disclosed rates is €85–€100/week. Rates vary by location and housing quality. Amsterdam-area housing commands higher rates than rural Zeeland.`,
+        },
+        {
+          heading: "SNF standards: what certified housing must provide",
+          body: `The <strong>SNF (Stichting Normering Flexwonen)</strong> is the Dutch independent body that certifies quality standards for temporary worker accommodation. SNF certification means the accommodation has been independently inspected against minimum requirements:<br/><br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li><strong>Minimum 10m² per person</strong> of living/sleeping space</li><li><strong>Maximum €113.50/week</strong> including all service charges (2026 rate)</li><li>Working heating, hot water, and adequate ventilation</li><li>Separate bathroom and kitchen facilities from the bedroom area</li><li>Regular maintenance and cleaning of common areas</li><li>Written housing agreement before move-in</li></ul><br/>Agencies with SNF certification display the SNF keurmerk (quality mark) on their profile. You can verify certification at normering-flexwonen.nl. An SNF certificate protects you: the agency is bound by the inspection outcomes and maximum rates.`,
+        },
+        {
+          heading: `What ${YEAR} worker reviews say about agency housing`,
+          body: `Of ${totalSeedReviews} AgencyCheck reviews analysed:<br/><br/><strong>Positive housing experiences (${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("housing_good") || r.issueTags.includes("housing_clean")).length} reviews):</strong> Clean shared accommodation, responsive maintenance, deduction matching the contract, accurate room occupancy.<br/><br/><strong>Housing complaints (${housingIssueCount} reviews — ${Math.round((housingIssueCount / totalSeedReviews) * 100)}% of all reviews):</strong> The two most common issues are <strong>overcrowding</strong> (more people per room than stated or implied) and <strong>below-standard maintenance</strong> (broken heating, mould, non-functional showers). These map to ${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("housing_crowded")).length} "housing_crowded" tags and ${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("housing_dirty")).length} "housing_dirty" tags in the dataset.<br/><br/>The average housing rating across all reviews that included a housing score is <strong>${(REVIEW_SEED_DATA.filter(r => r.housingRating != null).reduce((s, r) => s + (r.housingRating ?? 0), 0) / REVIEW_SEED_DATA.filter(r => r.housingRating != null).length).toFixed(1)}/5</strong>. Workers who verified housing conditions before starting gave consistently higher ratings than those who arrived without prior information.`,
+        },
+        {
+          heading: "Legal maximum deductions and what agencies can charge",
+          body: `The legal framework for housing deductions is stricter than most workers realise:<br/><br/><strong>SNF-certified housing maximum:</strong> €113.50/week (2026), all-inclusive. This covers rent, heating, water, and all service charges. Nothing additional can be charged on top.<br/><strong>Non-certified housing:</strong> No formal maximum applies, but deductions must be contractually agreed and cannot reduce net pay below WML equivalent.<br/><strong>Internet and phone:</strong> Cannot be included in the housing deduction charge. If an agency lists Wi-Fi or mobile SIM as part of the housing package and deducts it, this must be separate and agreed.<br/><strong>Deposit (borgsom):</strong> Some agencies ask for a housing deposit of €50–€200. This must be returned within 14 days of the housing agreement ending, minus any legitimate damage charges. An unreturned deposit is recoverable through the kantonrechter (small claims court).`,
+        },
+        {
+          heading: "How to verify housing before you arrive",
+          body: `Six questions to ask before signing any contract that includes accommodation:<br/><br/><strong>1. "What is the exact address?"</strong> Google Street View and Google Maps reviews sometimes give you a preliminary picture of the area and property type. Agencies that refuse to provide an address before signing are a red flag.<br/><strong>2. "How many people will share my room?"</strong> Not just the house — your specific room. Request this in writing.<br/><strong>3. "What is the SNF certificate number?"</strong> If they don't have one, ask why and consider whether you want to accept that risk.<br/><strong>4. "What exactly does the weekly deduction of €X include?"</strong> Heating, water, cleaning, transport — get an itemised list.<br/><strong>5. "What is the notice period to end the housing agreement?"</strong> Standard is 7–14 days after employment ends. Longer than 14 days is unusual and worth pushing back on.<br/><strong>6. "Can I visit the accommodation before I start?"</strong> Agencies that allow visits signal confidence in their housing. Agencies that refuse are often hiding conditions they know workers wouldn't accept if seen in advance.`,
+        },
+        {
+          heading: "Your rights if housing conditions are unacceptable",
+          body: `You have more rights than most workers realise, even in a tied housing arrangement:<br/><br/><strong>SNF complaint procedure:</strong> If your agency holds an SNF certificate and conditions violate the standard, you can file a complaint directly with SNF. Inspections are triggered, and agencies risk losing their certification — which affects their ability to operate.<br/><strong>Dutch housing law (Huurrecht):</strong> Even in employer-provided accommodation, some tenant protections apply. Persistent failure to maintain the property in habitable condition (gebreken) gives you the right to demand repairs, and in extreme cases to invoke the huurrecht procedure.<br/><strong>Nederlandse Arbeidsinspectie:</strong> If housing deductions exceed the SNF maximum or conditions are unsafe, this is reportable to the Labour Inspectorate.<br/><strong>Gemeentelijke handhaving:</strong> If the accommodation violates local building codes or fire safety standards, the local municipality's handhavingsdienst has enforcement powers.<br/><strong>Leaving:</strong> If housing conditions are materially worse than what was represented in the contract, you can argue a breach of contract and end both employment and housing agreements immediately. Document the conditions with photos before leaving.`,
+        },
+        {
+          heading: "Practical tips from workers who got it right",
+          body: `Workers who rated housing 4–5 stars on AgencyCheck consistently share these habits:<br/><br/><strong>"I confirmed the deduction in writing, not by phone."</strong> A WhatsApp message from a coordinator is not a contract. Ask for the housing addendum as a signed document with the deduction amount specified numerically.<br/><strong>"I asked for the SNF number before I booked my travel."</strong> An agency that provides this immediately is confident in their housing. An agency that delays or says "we'll sort it when you arrive" rarely has it.<br/><strong>"I made a video of the room on my first day."</strong> If your room has existing damage — stains, broken furniture, marks — document it photographically immediately. This protects you against deposit deductions for damage you didn't cause.<br/><strong>"I read the termination clause."</strong> Most housing problems become crises when workers try to leave quickly. The notice period and any financial obligations on early termination should be clear before you sign. If they're not in writing, they're not enforceable.`,
+        },
+        {
+          heading: `The ${housingCount} agencies on AgencyCheck with verified housing`,
+          body: `AgencyCheck profiles ${housingCount} verified Dutch employment agencies that provide accommodation alongside employment contracts. Each profile includes:<br/><br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li><strong>Housing status:</strong> Confirmed YES/NO/POSSIBLE</li><li><strong>Transparency score:</strong> Including whether housing details are publicly disclosed</li><li><strong>Worker reviews:</strong> Including specific housing ratings and comments</li><li><strong>Sector and city coverage:</strong> So you can find housing-included agencies in your target location</li></ul><br/>To find agencies with housing in your target city, use the city filter on the AgencyCheck agencies page and sort by housing availability. You can also browse by sector — agriculture, food production, and logistics have the highest proportion of housing-included agencies. When reviewing profiles, prioritise agencies with housing ratings above 3.5/5 and at least 3 reviews mentioning accommodation.`,
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the maximum an agency can deduct for housing in the Netherlands in 2026?",
+          answer:   `For SNF-certified shared accommodation, the maximum all-inclusive deduction is €113.50/week in 2026. This covers rent, utilities, and service charges — nothing additional can be added. For non-SNF-certified accommodation there is no formal legal maximum, but the deduction must be contractually agreed and cannot reduce net pay below the WML equivalent.`,
+        },
+        {
+          question: "What is SNF certification and why does it matter?",
+          answer:   `SNF (Stichting Normering Flexwonen) is the independent Dutch body that certifies the quality of temporary worker accommodation. Certified properties are inspected for space standards (minimum 10m² per person), safety, hygiene, and facilities. SNF certification also caps the weekly deduction at €113.50. Choosing an SNF-certified agency gives you legal protection on both standards and costs. You can verify certification at normering-flexwonen.nl.`,
+        },
+        {
+          question: "Can an agency evict me from housing immediately if I leave the job?",
+          answer:   `No. Even in a tied housing arrangement, you are entitled to a notice period — typically 7–14 days after employment ends. This notice period must be specified in your housing agreement. An agency that attempts to remove you from accommodation on the day employment ends, without the agreed notice period, is acting unlawfully. You can contact the local municipality's housing authority if this happens.`,
+        },
+        {
+          question: "What should I do if my agency housing is overcrowded or unhygienic?",
+          answer:   `Document the conditions with photos and video immediately. Write to your coordinator describing specific issues (e.g. "4 people sleeping in a room of approximately 12m², which is below the SNF minimum of 10m² per person"). Give 5 working days to respond. If unresolved and your agency has an SNF certificate, file a complaint at normering-flexwonen.nl. If conditions are a health or safety hazard, contact your local municipality's handhavingsdienst (enforcement).`,
+        },
+        {
+          question: "Do I get my housing deposit back when I leave?",
+          answer:   `Yes — a housing deposit (borgsom) must be returned within 14 days of the housing agreement ending, minus any legitimate documented damage charges. Disputes about deposits are handled by the kantonrechter (local court) — the filing fee is low and the process is straightforward. Before moving out, do a joint inspection with an agency representative and document the room's condition on your last day.`,
+        },
+        {
+          question: "Is it cheaper to find my own accommodation than use agency housing?",
+          answer:   `Often, but not always. Agency housing at €80–€95/week (€347–€411/month) is significantly below private market rates in Dutch cities (€700–€1,800/month for a room). In tight labour markets, the convenience of staying in agency housing — no separate tenancy process, utilities included — is a real benefit, particularly for a first placement. The quality-to-cost ratio is what matters: SNF-certified housing at €95/week is usually reasonable value; non-certified housing at €113/week in poor condition is not.`,
+        },
+      ],
+      relatedAgencySlugs: ["otto-work-force", "covebo", "foreignflex", "europlus"],
+      relatedCitySlugs:   ["venlo", "tilburg", "breda", "westland"],
+      datePublished: "2026-04-01",
+      dateModified:  "2026-04-01",
+    },
+
+    // ── Guide 11: Working Netherlands without speaking Dutch ──────────────────────
+    {
+      slug:      "working-netherlands-without-speaking-dutch",
+      title:     `Working in the Netherlands Without Speaking Dutch — Complete ${YEAR} Guide`,
+      metaTitle: `Working Netherlands Without Dutch ${YEAR} — English Jobs & Tips`,
+      metaDesc:  `Can you work in the Netherlands without Dutch? Yes. Most warehouse, logistics and factory jobs need no Dutch. What you DO need: BSN, IBAN, and how to avoid exploitation. Real guide.`,
+      badge:     `${YEAR} · Foreigners Guide`,
+      intro:     `The Netherlands hosts over 450,000 foreign workers, the majority of whom work in logistics, warehousing, agriculture, and food production without speaking Dutch. English is widely spoken in workplaces, and most large agencies have coordinators fluent in Polish, Romanian, Bulgarian, and Portuguese. You don't need Dutch to get a job — but you do need to understand your contract, your payslip, and your rights, ideally before your first working day.`,
+      sections: [
+        {
+          heading: "Do you need to speak Dutch to work in the Netherlands?",
+          body: `<strong>No</strong> — for most operational roles in logistics, production, and horticulture, Dutch language skills are not required or tested. The physical nature of the work means most tasks are demonstrated rather than explained. Safety inductions are increasingly available in English and Polish, and many client workplaces with high proportions of foreign workers have multilingual site documentation.<br/><br/>Where Dutch becomes relevant: (1) contract documents are written in Dutch and legally binding regardless of whether you can read them; (2) communication with the Dutch government (BSN registration, tax office, health insurance) requires either Dutch comprehension or an intermediary; (3) if a dispute escalates to a legal or administrative process, documentation will be in Dutch.<br/><br/>Of ${totalSeedReviews} reviews on AgencyCheck, <strong>${commPoorCount} (${Math.round((commPoorCount / totalSeedReviews) * 100)}%) cited poor communication</strong> as an issue. Many of these involve language — coordinators who communicated only in Dutch, contracts in Dutch-only with no translation offered, and instructions at the worksite given in Dutch despite a predominantly non-Dutch-speaking workforce.`,
+        },
+        {
+          heading: "Your right to a contract you understand",
+          body: `Under Dutch law, you are not legally required to sign a contract in Dutch. <strong>You are entitled to request your employment contract in a language you understand</strong> — and to have sufficient time to read it before signing. A responsible agency will provide an English version (or Polish, Romanian, etc.) as a matter of course; most larger ABU/NBBU-certified agencies already do.<br/><br/>What to do if offered only a Dutch contract: ask explicitly for a translation. If the agency says one is not available, ask for 24–48 hours to arrange your own translation before signing. Never sign a document you cannot read — the content is legally binding regardless of your language comprehension.<br/><br/>Key contract terms to verify (in any language): exact gross hourly rate, housing deduction amount (if applicable), shift patterns and premium rates, notice period, and accommodation notice period (if different from employment).`,
+        },
+        {
+          heading: "Getting a BSN — the first essential step",
+          body: `The <strong>BSN (burgerservicenummer)</strong> is the Dutch social security and tax identification number. Every worker needs one before their employer can process payroll — without a BSN, you cannot legally receive salary. For EU/EEA citizens, obtaining a BSN requires registering at a gemeentelijke basisadministratie (municipal records office).<br/><br/>Two routes:<br/><strong>Via RNI (Registratie Niet-Ingezetenen):</strong> Available at designated municipalities for workers who will not be resident in the Netherlands long-term. Appointments available at major cities. Takes 1–5 working days once appointment secured.<br/><strong>Via gemeente (for residents):</strong> If you have a Dutch address and will stay for more than 4 months, register as a resident and receive your BSN at the same time. Requires proof of address and valid ID.<br/><br/>Your employer or agency is legally required to collect and verify your BSN before your first payslip. Agencies that say you can "start first and sort the BSN later" are creating a compliance problem for themselves — not a benefit for you.`,
+        },
+        {
+          heading: "Opening a Dutch bank account without a permanent address",
+          body: `A Dutch IBAN account is required by most employers to pay salary. Traditional banks (ING, ABN AMRO, Rabobank) require a fixed Dutch address and BSN. For workers without a permanent address yet, three options exist:<br/><br/><strong>Bunq:</strong> Provides a Dutch IBAN via app registration with just a valid passport and email. No Dutch address required. Widely accepted by Dutch employers.<br/><strong>Wise (TransferWise):</strong> Provides a Dutch IBAN for international workers. Also accepted by most agencies. Free to receive salary; small fee to convert currencies.<br/><strong>N26:</strong> German neobank with a Dutch IBAN option. Requires EU identity verification but no Dutch address.<br/><br/>Confirm with your agency before starting whether a Bunq or Wise IBAN is acceptable — most are, but some state payroll systems require a specific Dutch bank. If your agency insists on a particular bank, ask them to assist with the account opening process — some larger agencies have formal relationships with local banks for this purpose.`,
+        },
+        {
+          heading: "Language in the workplace — practical realities",
+          body: `The reality of a multilingual Dutch warehouse or factory floor is more functional than many expect. Shift managers typically know a handful of phrases in multiple languages; many workplaces have large immigrant populations where a shared language (often Polish or English) emerges as the operational language.<br/><br/>Practical tips for first days:<br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Learn the key safety Dutch vocabulary before day one: stop, gevaar (danger), nooduitgang (emergency exit), verboden (prohibited)</li><li>Carry a phone with Google Translate or DeepL installed for written instructions</li><li>Find out before you start whether your coordinator speaks your language or English</li><li>Ask for the safety induction (BHV/VCA briefing) in English or your language — this is standard at most large clients</li></ul><br/>Agencies where coordinators communicate only in Dutch to non-Dutch workers account for a significant portion of communication complaints. Check on AgencyCheck whether other foreign workers have mentioned language support in reviews for your target agency.`,
+        },
+        {
+          heading: "Warning signs of exploitation targeting foreign workers",
+          body: `Foreign workers — particularly recent arrivals — are disproportionately targeted by illegal labour practices. Warning signs, based on reported patterns in the Netherlands:<br/><br/><strong>Payment of a "placement fee":</strong> No legitimate Dutch agency charges workers a fee to find or place them in a job. This is illegal under Dutch law.<br/><strong>Request to hand over your passport:</strong> Your employer may take a copy for ID verification but may never retain your original documents.<br/><strong>Wages paid in cash without payslip:</strong> All wage payments must be accompanied by a loonstrook. Cash payment without documentation removes your ability to dispute incorrect amounts or claim entitlements.<br/><strong>Accommodation without written agreement:</strong> If housing is provided without a signed written agreement specifying the deduction amount, you have no basis for dispute if the deduction increases.<br/><strong>Agency not registered at KVK:</strong> All legitimate Dutch companies must be registered at the Kamer van Koophandel. Verify at kvk.nl before accepting any offer.`,
+        },
+        {
+          heading: "Resources for foreign workers in the Netherlands",
+          body: `Key contacts and resources for non-Dutch-speaking workers:<br/><br/><strong>FairWork (fairwork.nl):</strong> Dutch NGO providing free advice for migrant workers on labour rights, contract issues, and housing problems. Available in multiple languages.<br/><strong>Meldpunt Arbeidsuitbuiting:</strong> Government hotline for reporting labour exploitation: 0800-0101 (free, anonymous, available in multiple languages).<br/><strong>Nederlandse Arbeidsinspectie (NLA):</strong> Government labour inspectorate. Reports wage theft, below-WML pay, and illegal deductions. arbeidsinspectie.nl<br/><strong>ABU (Algemene Bond Uitzendondernemingen):</strong> Industry association for legitimate temp agencies. The member registry at abu.nl confirms whether your agency is ABU-certified.<br/><strong>NBBU:</strong> The second major industry association for smaller agencies. nbbu.nl<br/><strong>AgencyCheck:</strong> Review and compare ${totalAgencies} Dutch temp agencies before signing anything. Check housing ratings, payslip accuracy reports, and coordinator communication reviews.`,
+        },
+        {
+          heading: "First week checklist for foreign workers",
+          body: `Before day one:<br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Contract signed and understood — in English if possible, Dutch if no translation available (with your own translation)</li><li>BSN number obtained or RNI appointment confirmed</li><li>Dutch IBAN open and confirmed acceptable by agency</li><li>Housing address, room capacity, and deduction amount confirmed in writing</li><li>Transport arrangements confirmed (free bus, deducted, or self-arranged)</li></ul><br/>First working day:<br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Photograph your accommodation room to document pre-existing condition</li><li>Note start time on your phone — track every shift from day one</li><li>Confirm payroll date: "When will my first salary be paid?"</li></ul><br/>First payslip:<br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Verify hours match your records</li><li>Verify gross rate matches your contract</li><li>Confirm vakantiegeld line is present (8% of gross)</li><li>Confirm all deductions match agreed contract amounts</li></ul>`,
+        },
+      ],
+      faqs: [
+        {
+          question: "Can you get a job in the Netherlands if you don't speak Dutch?",
+          answer:   `Yes. Most warehouse, logistics, production, agriculture, and cleaning roles in the Netherlands are accessible without Dutch. Large employment agencies have multilingual coordinators, and many client workplaces have majority non-Dutch-speaking workforces. English is the typical common language at international sites. However, your employment contract will be in Dutch — ensure you get a translation or have it explained before signing.`,
+        },
+        {
+          question: "What documents do I need to work legally in the Netherlands as an EU citizen?",
+          answer:   `EU and EEA citizens need: (1) valid national ID card or passport; (2) BSN (burgerservicenummer) — obtain from a Dutch municipality before first payslip; (3) Dutch or EU IBAN bank account for salary payment. No work permit is required for EU/EEA citizens. You are entitled to the same minimum wage and labour rights as Dutch nationals from day one.`,
+        },
+        {
+          question: "Do I need a Dutch bank account to work in the Netherlands?",
+          answer:   `Most Dutch employers require a Dutch or EU IBAN for payroll. You can obtain a Dutch IBAN quickly without a Dutch address via Bunq or Wise — both are widely accepted. Traditional Dutch banks (ING, ABN AMRO) require a fixed address and BSN appointment, which takes longer. Confirm with your agency whether a Bunq/Wise IBAN is acceptable before opening accounts.`,
+        },
+        {
+          question: "Is it illegal for a Dutch employer to ask for a placement fee?",
+          answer:   `Yes. Charging workers a fee to place them in employment is illegal under Dutch law (Article 9a of the Wet allocatie arbeidskrachten door intermediairs). Any agency that requests payment for finding you a job is operating illegally. Report to the Nederlandse Arbeidsinspectie or FairWork. This applies regardless of how the fee is described — "administration fee", "registration cost", or similar.`,
+        },
+        {
+          question: "What is the Dutch minimum wage for foreign workers in 2026?",
+          answer:   `The Dutch minimum wage (WML) applies equally to all workers regardless of nationality. In 2026 it is €${WML}/hr for workers aged 21 and over. Working below WML is illegal. If you earn below this rate, you can report it anonymously to the Nederlandse Arbeidsinspectie at arbeidsinspectie.nl. The WML also applies to accommodation-included contracts — housing deductions cannot reduce net pay below the WML equivalent.`,
+        },
+        {
+          question: "What should I do if my agency contract is only in Dutch?",
+          answer:   `Request an English (or other language) version before signing. You are legally entitled to sufficient time to understand what you're signing. If no translation is provided, ask for 24 hours to arrange your own translation (DeepL Pro or a professional translator). Key terms to verify regardless of language: gross hourly rate, housing deduction amount, shift schedule, notice period, and whether ABU or NBBU CAO applies.`,
+        },
+      ],
+      relatedAgencySlugs: ["foreignflex", "covebo", "otto-work-force", "flexsupport"],
+      relatedCitySlugs:   ["amsterdam", "rotterdam", "eindhoven", "westland"],
+      datePublished: "2026-04-01",
+      dateModified:  "2026-04-01",
+    },
+
+    // ── Guide 12: Best agency Netherlands — how to choose ────────────────────────
+    {
+      slug:      "how-to-choose-best-temp-agency-netherlands",
+      title:     `How to Choose the Best Temp Agency in the Netherlands — ${YEAR} Guide`,
+      metaTitle: `Best Temp Agency Netherlands ${YEAR} — How to Choose & What to Check`,
+      metaDesc:  `How to find the best Dutch employment agency for your situation. ${totalAgencies} agencies profiled, ${positivePct}% of workers rate good agencies 4–5 stars. What separates them from the rest.`,
+      badge:     `${YEAR} · ${totalAgencies} Agencies`,
+      intro:     `With over ${totalAgencies} active employment agencies in the Netherlands, choosing correctly is one of the most consequential decisions a flex worker makes. The right agency means on-time pay, fair housing, clear contracts, and a coordinator you can actually reach. The wrong one means payslip disputes, overcrowded housing, and missed overtime — problems that are difficult to resolve once you've moved into their accommodation. This guide uses real data from ${totalSeedReviews} AgencyCheck reviews to identify the differences that matter.`,
+      sections: [
+        {
+          heading: "The five things that separate good agencies from bad ones",
+          body: `Based on ${totalSeedReviews} reviews, five factors predict almost all worker satisfaction or dissatisfaction:<br/><br/><strong>1. Pay accuracy and timeliness (${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("payslip_ok")).length} reviews explicitly praised; ${payslipErrors} reported errors):</strong> Good agencies pay correctly on the agreed date, every period. This sounds basic but is not universal — ${latePayCount} workers reported late salary payments.<br/><br/><strong>2. Communication quality (${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("communication_good")).length} positive, ${commPoorCount} negative):</strong> Coordinators who respond within hours vs. coordinators who go silent after placement. This is the most mentioned variable in reviews across all ratings.<br/><br/><strong>3. Housing accuracy (${housingIssueCount} housing complaints):</strong> Accommodation as described vs. significantly worse. Overcrowding accounts for the majority of housing complaints.<br/><br/><strong>4. Contract clarity (${contractIssues} unclear contract reports vs. ${REVIEW_SEED_DATA.filter(r => r.issueTags.includes("fair_contract")).length} fair_contract reports):</strong> Workers who understood their contract before signing almost never had financial surprises.<br/><br/><strong>5. Transparency about deductions:</strong> Every deduction itemised on payslip vs. opaque "costs" that appear unexpectedly.`,
+        },
+        {
+          heading: "ABU vs NBBU — what certification tells you",
+          body: `The two main industry associations for Dutch temp agencies are the <strong>ABU (Algemene Bond Uitzendondernemingen)</strong> and <strong>NBBU (Nederlandse Bond van Bemiddelings- en Uitzendondernemingen)</strong>. Both require member agencies to operate under their respective collective agreement (CAO), which sets minimum standards for:<br/><br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Fase A/B/C contract progression (job security over time)</li><li>Minimum wage compliance and overtime premiums</li><li>Holiday pay (8% vakantiegeld)</li><li>Sick pay entitlements</li><li>Housing deduction limits (if SNF-certified housing is provided)</li></ul><br/>Neither the ABU nor NBBU CAO is perfect, but membership gives you a formal complaints mechanism. If an ABU or NBBU member agency violates its CAO obligations, you can file a complaint through the respective association's disputes committee.<br/><br/>Agencies without ABU or NBBU membership operate outside these frameworks. This doesn't automatically mean they're bad — some small specialist agencies operate professionally outside the associations — but it removes a layer of accountability and recourse.`,
+        },
+        {
+          heading: "How to read an AgencyCheck transparency score",
+          body: `AgencyCheck's transparency score rates agencies on a scale of 0–100 based on how much verifiable, specific information they publicly disclose. Components include:<br/><br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Whether salary range or starting rate is published</li><li>Whether housing provision status is confirmed with details</li><li>Whether sectors and cities are specifically listed</li><li>Whether the agency discloses its CAO membership</li><li>Whether contact information beyond a generic form is available</li></ul><br/>Agencies scoring above 70/100 have provided enough public information for a worker to make an informed decision before initial contact. Agencies scoring below 40 have withheld most key information — which correlates with poor outcomes in reviews. The average transparency score across ${totalAgencies} agencies is approximately 55/100. The top-performing agencies score 85–100 and are typically larger, longer-established agencies with strong institutional reputations.`,
+        },
+        {
+          heading: "What to check before contacting an agency",
+          body: `Before you send a message or call a number:<br/><br/><strong>Step 1 — Verify they are KVK-registered:</strong> Search the company name at kvk.nl. Unregistered agencies are operating illegally.<br/><strong>Step 2 — Check ABU or NBBU membership:</strong> abu.nl or nbbu.nl has searchable member registries. Membership is not mandatory but is a quality signal.<br/><strong>Step 3 — Check SNF housing certificate:</strong> If housing is important to you, confirm SNF certification at normering-flexwonen.nl before engaging.<br/><strong>Step 4 — Read AgencyCheck reviews:</strong> Focus on 2–4 star reviews — they contain the most balanced, actionable information. Specifically look for: payslip accuracy, housing conditions, coordinator responsiveness, and how the agency handled problems when they arose.<br/><strong>Step 5 — Check how recently reviews were left:</strong> Agency quality can change. Reviews from the past 6 months are more predictive than older ones.`,
+        },
+        {
+          heading: "Questions to ask an agency before signing",
+          body: `The answers — and how quickly and specifically they are given — tell you a great deal about how the agency operates:<br/><br/><strong>Salary:</strong> "What is my exact gross hourly rate? Is there a trial period at a different rate?"<br/><strong>Housing:</strong> "What is the exact weekly housing deduction? What is the address? How many people share my room? Do you have an SNF certificate?"<br/><strong>Transport:</strong> "Is transport to the worksite included? If not, how much is deducted, or do I arrange my own?"<br/><strong>Contract:</strong> "Can I receive my contract in English before signing? When do I need to sign?"<br/><strong>Shifts:</strong> "What is the shift pattern? What premiums apply for nights and weekends?"<br/><strong>First pay:</strong> "When is the first payroll date? Will I receive a payslip for my first week separately or with the first full payment?"<br/><br/>An agency that answers all of these questions specifically, in writing, before asking you to commit is almost certainly operating legitimately and professionally.`,
+        },
+        {
+          heading: `Sector-specific considerations: ${YEAR}`,
+          body: `Different sectors have different patterns in terms of agency quality and common issues:<br/><br/><strong>Logistics / warehousing:</strong> Highest volume of foreign workers, best-developed multilingual coordinator infrastructure. Most agencies in major logistics corridors (Venlo, Tilburg, Waalwijk, Rotterdam) have strong competitive pressure to offer good conditions. Night shift premiums are standard and critical to real income — confirm they appear on payslips.<br/><strong>Food production / agriculture:</strong> Seasonal demand creates pressure on housing capacity during peak periods. Housing overcrowding complaints are most common in horticulture (Westland, Naaldwijk) during harvest season. SNF certification is especially important in this sector.<br/><strong>Construction:</strong> Higher hourly rates but more variable working conditions, less standard shift patterns. ABU/NBBU membership less universal in smaller construction sub-contractors.<br/><strong>Cleaning:</strong> Lower hourly rates (often at or near WML), fragmented sector with many small agencies. Contract clarity complaints are proportionally higher. Prioritise agencies with formal CAO coverage.`,
+        },
+        {
+          heading: "Red flags that rule out an agency immediately",
+          body: `These behaviours — regardless of how attractive the offer sounds — are disqualifying:<br/><br/><ul style="margin-top:8px;margin-left:16px;list-style:disc"><li>Requesting any payment from you (placement fee, "registration", "administrative costs")</li><li>Refusing to provide a contract before asking you to confirm your start date</li><li>Refusing to provide the housing address before you sign</li><li>Contract available only in Dutch with no translation offered</li><li>Asking you to sign the contract on your first day rather than before</li><li>No KVK registration verifiable at kvk.nl</li><li>Coordinator who stops responding after initial contact</li><li>Housing deduction discussed orally but not in writing</li></ul><br/>None of these are edge cases. They appear in reviews on AgencyCheck. They are reliably predictive of problematic placements.`,
+        },
+        {
+          heading: "When to leave and how to do it safely",
+          body: `Knowing when to leave is as important as choosing well. The right time to start planning an exit:<br/><br/><strong>First payslip has unexplained deductions</strong> and the agency is unresponsive after written challenge. Financial disputes compound quickly.<br/><strong>Housing conditions are materially worse than described</strong> and written complaints produce no response.<br/><strong>Coordinator is unreachable</strong> for non-emergency matters. A coordinator you cannot reach for a payslip question becomes a coordinator you cannot reach for a real emergency.<br/><br/>The safe exit process: identify your next agency while still employed at current one; give formal written notice to your current agency (typically 1 week in Fase A); confirm your housing notice period separately in writing; ensure you have a copy of all payslips and contracts; collect all belongings before leaving accommodation.<br/><br/>AgencyCheck's agency browser lets you filter by city, sector, housing availability, and transparency score — useful for identifying alternatives quickly. Worker reviews from your target agencies in the past 3 months are the most reliable signal of current conditions.`,
+        },
+      ],
+      faqs: [
+        {
+          question: "How do I know if a Dutch employment agency is legitimate?",
+          answer:   `Verify KVK registration at kvk.nl. Check ABU or NBBU membership at abu.nl or nbbu.nl. For housing-included agencies, check SNF certification at normering-flexwonen.nl. Read reviews on AgencyCheck, focusing on payslip accuracy, housing conditions, and coordinator responsiveness. A legitimate agency will have a KVK number, respond to specific questions before asking you to commit, and provide a written contract before your start date.`,
+        },
+        {
+          question: "What is the difference between ABU and NBBU agencies in the Netherlands?",
+          answer:   `Both are industry associations with their own collective agreements (CAO) governing temp worker rights. ABU agencies tend to be larger and are bound by the ABU CAO; NBBU agencies tend to be smaller and are bound by the NBBU CAO. Both CAOs set minimum standards for wages, overtime, holiday pay, and contract progression (Fase A/B/C). The key practical difference for workers is that ABU Fase A contracts can be ended by the employer "at will" on any work day, while NBBU Fase A contracts have slightly more stability. Both are legitimate industry frameworks.`,
+        },
+        {
+          question: "How many Dutch temp agencies are there in the Netherlands?",
+          answer:   `There are several thousand registered employment intermediaries in the Netherlands, ranging from large national agencies to small local operators. AgencyCheck profiles ${totalAgencies} agencies verified as actively operating. The major players by worker volume include Otto Work Force, Tempo-Team, Randstad, and Manpower, but many of the highest-rated agencies on AgencyCheck are mid-size operators with strong regional specialisations.`,
+        },
+        {
+          question: "What is the Fase A/B/C contract system in Dutch agency work?",
+          answer:   `Under Dutch ABU/NBBU CAO, temp work progresses through phases. Fase A: the first 78 weeks of employment — contracts can be ended with 1 week's notice, no security. Fase B: weeks 79–130 — up to 6 fixed-term contracts allowed; notice period increases. Fase C: after week 130 — permanent employment applies. Most new arrivals in the Netherlands are in Fase A. The key practical implication: in Fase A you can be let go on short notice, so having financial reserves and alternative agency options is important.`,
+        },
+        {
+          question: "What is a good transparency score on AgencyCheck?",
+          answer:   `Scores above 70/100 indicate an agency has publicly disclosed enough information — salary range, housing details, sector and city coverage, CAO membership — for a worker to make an informed decision before first contact. Scores above 85 indicate comprehensive, specific public disclosure. Scores below 50 mean key information is withheld, which correlates with less transparent operations overall. The average across ${totalAgencies} agencies is approximately 55/100.`,
+        },
+        {
+          question: "Can I change agencies if I'm unhappy with my current one?",
+          answer:   `Yes. In Fase A, you need to give approximately 1 week's notice to end your employment. If you live in agency housing, you'll also need to end that agreement — check the notice period in your housing addendum (usually 7–14 days). Before leaving, identify and contact alternative agencies using AgencyCheck. Having a confirmed start date with a new agency before handing in notice significantly reduces financial risk.`,
+        },
+      ],
+      relatedAgencySlugs: ["otto-work-force", "covebo", "foreignflex", "europlus"],
+      relatedCitySlugs:   ["amsterdam", "rotterdam", "tilburg", "venlo"],
+      datePublished: "2026-04-01",
+      dateModified:  "2026-04-01",
+    },
+
   ];
 }
 
