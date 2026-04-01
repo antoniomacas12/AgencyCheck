@@ -1,6 +1,7 @@
 /**
- * GET  /api/admin/leads/[id] — fetch single lead
- * PATCH /api/admin/leads/[id] — update status, notes, assignedTo, tags
+ * GET    /api/admin/leads/[id] — fetch single lead
+ * PATCH  /api/admin/leads/[id] — update status, notes, assignedTo, tags
+ * DELETE /api/admin/leads/[id] — permanently remove lead
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -98,4 +99,17 @@ export async function PATCH(
   });
 
   return NextResponse.json({ ok: true, lead: parseLead(updated) });
+}
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  if (!(await verifyAdminRequest())) return unauthorizedJson();
+
+  const existing = await prisma.lead.findUnique({ where: { id: params.id }, select: { id: true } });
+  if (!existing) return NextResponse.json({ error: "not_found" }, { status: 404 });
+
+  await prisma.lead.delete({ where: { id: params.id } });
+  return NextResponse.json({ ok: true, deleted: params.id });
 }

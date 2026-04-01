@@ -1,6 +1,7 @@
 /**
- * GET  /api/admin/reviews/[id]  — full review detail
- * PATCH /api/admin/reviews/[id] — update internal notes
+ * GET    /api/admin/reviews/[id]  — full review detail
+ * PATCH  /api/admin/reviews/[id]  — update internal notes
+ * DELETE /api/admin/reviews/[id]  — permanently remove review
  * Uses Prisma ORM — PostgreSQL (Supabase), no raw SQL.
  */
 
@@ -51,4 +52,15 @@ export async function PATCH(req: NextRequest, { params }: Params) {
   });
 
   return NextResponse.json({ review: updated });
+}
+
+export async function DELETE(_req: NextRequest, { params }: Params) {
+  const ok = await verifyAdminRequest();
+  if (!ok) return unauthorizedJson();
+
+  const existing = await db.review.findUnique({ where: { id: params.id }, select: { id: true } });
+  if (!existing) return NextResponse.json({ error: "Review not found" }, { status: 404 });
+
+  await db.review.delete({ where: { id: params.id } });
+  return NextResponse.json({ ok: true, deleted: params.id });
 }

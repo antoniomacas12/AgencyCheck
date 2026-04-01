@@ -64,6 +64,7 @@ export default function LeadsDashboard() {
   const [sourceF, setSourceF]       = useState("");
   const [acting, setActing]         = useState<string | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
   const fetchLeads = useCallback(async () => {
     setLoading(true); setError(null);
@@ -95,6 +96,17 @@ export default function LeadsDashboard() {
       setLeads((prev) => prev.map((l) => l.id === id ? { ...l, status: action === "approve" ? "approved" : "rejected" } : l));
     } catch { setActionError(`Failed to ${action} lead`); }
     finally { setActing(null); }
+  }
+
+  async function deleteLead(id: string) {
+    setActing(id); setActionError(null);
+    try {
+      const res = await fetch(`/api/admin/leads/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Delete failed");
+      setLeads((prev) => prev.filter((l) => l.id !== id));
+      setTotal((prev) => Math.max(0, prev - 1));
+    } catch { setActionError("Failed to remove lead"); }
+    finally { setActing(null); setConfirmDeleteId(null); }
   }
 
   const counts = leads.reduce<Record<LeadStatus, number>>((acc, l) => ({ ...acc, [l.status]: (acc[l.status] ?? 0) + 1 }), {} as Record<LeadStatus, number>);
@@ -197,6 +209,15 @@ export default function LeadsDashboard() {
                             </>
                           )}
                           <Link href={`/admin/leads/${lead.id}`} className="px-2 py-1 text-[10px] font-semibold border border-gray-200 rounded text-gray-600 hover:border-brand-400 hover:text-brand-600 transition">View →</Link>
+                          {confirmDeleteId === lead.id ? (
+                            <div className="flex items-center gap-1 bg-red-50 border border-red-200 rounded px-1.5 py-1">
+                              <span className="text-[10px] text-red-700 font-semibold">Sure?</span>
+                              <button onClick={() => deleteLead(lead.id)} disabled={acting === lead.id} className="px-2 py-0.5 text-[10px] font-bold bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50">Yes</button>
+                              <button onClick={() => setConfirmDeleteId(null)} className="px-2 py-0.5 text-[10px] font-medium bg-gray-200 text-gray-700 rounded hover:bg-gray-300">No</button>
+                            </div>
+                          ) : (
+                            <button onClick={() => setConfirmDeleteId(lead.id)} disabled={acting === lead.id} className="px-2 py-1 text-[10px] font-medium border border-red-200 text-red-500 rounded hover:bg-red-50 hover:border-red-400 disabled:opacity-50 transition">🗑</button>
+                          )}
                         </div>
                       </td>
                     </tr>

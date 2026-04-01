@@ -78,6 +78,7 @@ export default function AdminReviewsPage() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [noteEdits, setNoteEdits]   = useState<Record<string, string>>({});
   const [pagination, setPagination] = useState({ total: 0, page: 1, totalPages: 1 });
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
   // ── Fetch ──────────────────────────────────────────────────────────────────
   const fetchReviews = useCallback(async (page = 1) => {
@@ -129,6 +130,23 @@ export default function AdminReviewsPage() {
       showMessage("err", "Network error.");
     } finally {
       setActionLoading(null);
+    }
+  }
+
+  async function deleteReview(reviewId: string) {
+    setActionLoading(reviewId);
+    try {
+      const res = await fetch(`/api/admin/reviews/${reviewId}`, { method: "DELETE" });
+      const data = await res.json();
+      if (!res.ok) { showMessage("err", data.error ?? "Delete failed."); return; }
+      showMessage("ok", "Review permanently removed.");
+      setReviews((prev) => prev.filter((r) => r.id !== reviewId));
+      setPagination((prev) => ({ ...prev, total: Math.max(0, prev.total - 1) }));
+    } catch {
+      showMessage("err", "Network error.");
+    } finally {
+      setActionLoading(null);
+      setConfirmDeleteId(null);
     }
   }
 
@@ -314,6 +332,35 @@ export default function AdminReviewsPage() {
                       >
                         {isExpanded ? "▲ Less" : "▼ Details"}
                       </button>
+                      {/* Remove button */}
+                      {confirmDeleteId === r.id ? (
+                        <div className="flex flex-col gap-1 bg-red-50 border border-red-200 rounded-lg px-2 py-1.5">
+                          <p className="text-[10px] text-red-700 font-semibold text-center">Remove permanently?</p>
+                          <div className="flex gap-1">
+                            <button
+                              onClick={() => deleteReview(r.id)}
+                              disabled={isActing}
+                              className="flex-1 text-[10px] px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded font-bold disabled:opacity-50"
+                            >
+                              Yes, remove
+                            </button>
+                            <button
+                              onClick={() => setConfirmDeleteId(null)}
+                              className="flex-1 text-[10px] px-2 py-1 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded font-medium"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => setConfirmDeleteId(r.id)}
+                          disabled={isActing}
+                          className="text-xs px-3 py-1.5 bg-white hover:bg-red-50 text-red-500 border border-red-200 hover:border-red-400 rounded-lg disabled:opacity-50 font-medium transition-colors"
+                        >
+                          🗑 Remove
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
