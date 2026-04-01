@@ -23,34 +23,31 @@ export const LEGAL = {
   brandName: "AgencyCheck",
 
   /**
-   * Full legal entity name.
-   * Examples: "AgencyCheck B.V.", "AgencyCheck VOF", "A. Macas h.o.d.n. AgencyCheck"
-   * TODO: Replace with your real legal entity name
+   * Full legal entity name — sole trader (eenmanszaak)
+   * Update to "Antonio Macas h.o.d.n. AgencyCheck" once KvK registration is complete.
    */
-  legalName: "AgencyCheck",   // ← FILL IN
+  legalName: "Antonio Macas h.o.d.n. AgencyCheck",
 
   /**
-   * KvK (Kamer van Koophandel) registration number.
-   * Find yours at kvk.nl — 8 digits.
-   * TODO: Replace with your real KvK number
+   * KvK (Kamer van Koophandel) registration number — 8 digits.
+   * TODO: Replace with your number once registration is confirmed at kvk.nl.
    */
-  kvkNumber: "",               // ← FILL IN e.g. "12345678"
+  kvkNumber: "",               // ← ADD when KvK registration is confirmed
 
   /**
    * BTW (VAT) identification number. Format: NL000000000B01
    * Leave empty string if you are exempt (KOR / not VAT-registered).
-   * TODO: Replace with your BTW number, or leave empty if not applicable
+   * At current revenue levels KOR exemption likely applies — leave empty until advised otherwise.
    */
-  vatNumber: "",               // ← FILL IN or leave empty
+  vatNumber: "",               // leave empty if KOR-exempt
 
   /**
-   * Registered business address. Required by Dutch law on commercial websites.
-   * TODO: Replace with your real address
+   * Registered business address — required by Dutch law on commercial websites.
    */
   address: {
-    street:  "",               // ← FILL IN e.g. "Keizersgracht 123"
-    city:    "",               // ← FILL IN e.g. "Amsterdam"
-    postcode:"",               // ← FILL IN e.g. "1015 CJ"
+    street:  "Nicolaas Beetsstraat 50B",
+    city:    "Schiedam",
+    postcode: "3117 ST",
     country: "Netherlands",
   },
 
@@ -64,8 +61,9 @@ export const LEGAL = {
   siteUrl: "https://agencycheck.io",
 } as const;
 
-/** Returns true when the KvK number has been filled in */
+/**
+ * Returns true when KvK number has been filled in.
+ * Address and legal name are already set — only KvK is still pending.
+ */
 export const isLegalConfigComplete = (): boolean =>
-  LEGAL.kvkNumber.length > 0 &&
-  LEGAL.legalName !== "AgencyCheck" &&
-  LEGAL.address.street.length > 0;
+  LEGAL.kvkNumber.length > 0;
