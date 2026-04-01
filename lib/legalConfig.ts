@@ -23,8 +23,8 @@ export const LEGAL = {
   brandName: "AgencyCheck",
 
   /**
-   * Full legal entity name — sole trader (eenmanszaak)
-   * Update to "Antonio Macas h.o.d.n. AgencyCheck" once KvK registration is complete.
+   * Full legal entity name — sole trader (eenmanszaak).
+   * Required by Dutch law (Wet elektronische handel) on Footer, Privacy, and Terms pages.
    */
   legalName: "Antonio Macas h.o.d.n. AgencyCheck",
 

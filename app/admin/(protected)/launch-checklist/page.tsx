@@ -168,7 +168,7 @@ const SECTIONS: Section[] = [
     color: "bg-red-50 border-red-200",
     dotColor: "bg-red-500",
     items: [
-      { id: "j1", label: "Fill in legalName in lib/legalConfig.ts", note: "Dutch law (Wet elektronische handel) requires real legal entity name on every commercial website. e.g. 'AgencyCheck B.V.' or 'A. Macas h.o.d.n. AgencyCheck'" },
+      { id: "j1", label: "Fill in legalName in lib/legalConfig.ts", note: "Dutch law (Wet elektronische handel) requires the real legal entity name on Footer, Privacy, and Terms pages. Use your full registered trading name." },
       { id: "j2", label: "Fill in kvkNumber in lib/legalConfig.ts", note: "KvK (Chamber of Commerce) registration number — 8 digits. Register at kvk.nl if not done. Shown in Privacy Policy and Terms of Use." },
       { id: "j3", label: "Fill in address in lib/legalConfig.ts", note: "Registered business address required by Dutch law. Can be a home address or registered office address." },
       { id: "j4", label: "Decide on vatNumber (BTW)", note: "If turnover < €20,000/year you likely qualify for KOR (small business VAT exemption). Leave empty if exempt. Otherwise add your BTW number." },
