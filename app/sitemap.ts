@@ -21,6 +21,7 @@ import {
   getLastCityReviewDates,
 } from "@/lib/reviewAggregates";
 import { resolveLastmod } from "@/lib/seoPipeline";
+import { AGENCY_BASE, CITY_BASE } from "@/lib/agencyI18nStrings";
 
 // ─── Canonical base URL ───────────────────────────────────────────────────────
 const BASE_URL = "https://agencycheck.io";
@@ -571,6 +572,77 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority:        0.75,
   }));
 
+  // ── 15. Polish agency pages (/pl/agencje/[slug]) ───────────────────────────
+  // Mirror of /agencies/[slug] — one PL page per verified + DB-only agency.
+  const plAgencyPages: MetadataRoute.Sitemap = [
+    ...VERIFIED_AGENCIES.map((agency) => ({
+      url:             `${BASE_URL}${AGENCY_BASE.pl}/${agency.slug}`,
+      lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
+      changeFrequency: "monthly" as const,
+      priority:        0.75,
+    })),
+    ...workerReportedSlugs
+      .filter((row) => !verifiedSlugsSet.has(row.slug))
+      .map((row) => ({
+        url:             `${BASE_URL}${AGENCY_BASE.pl}/${row.slug}`,
+        lastModified:    row.createdAt.toISOString().split("T")[0],
+        changeFrequency: "weekly" as const,
+        priority:        0.5 as const,
+      })),
+  ];
+
+  // ── 16. Romanian agency pages (/ro/agentii/[slug]) ────────────────────────
+  const roAgencyPages: MetadataRoute.Sitemap = [
+    ...VERIFIED_AGENCIES.map((agency) => ({
+      url:             `${BASE_URL}${AGENCY_BASE.ro}/${agency.slug}`,
+      lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
+      changeFrequency: "monthly" as const,
+      priority:        0.72,
+    })),
+    ...workerReportedSlugs
+      .filter((row) => !verifiedSlugsSet.has(row.slug))
+      .map((row) => ({
+        url:             `${BASE_URL}${AGENCY_BASE.ro}/${row.slug}`,
+        lastModified:    row.createdAt.toISOString().split("T")[0],
+        changeFrequency: "weekly" as const,
+        priority:        0.5 as const,
+      })),
+  ];
+
+  // ── 17. Polish + Romanian agency+city pages ────────────────────────────────
+  // DB-driven: only pairs with at least 1 mention. Same pairs as section 10b.
+  const plAgencyCityPages: MetadataRoute.Sitemap = dbAgencyCityPairs.map((pair) => ({
+    url:             `${BASE_URL}${AGENCY_BASE.pl}/${pair.agencySlug}/${toCitySlug(pair.cityNormalized)}`,
+    lastModified:    pair.lastSeenAt.toISOString().split("T")[0],
+    changeFrequency: "weekly" as const,
+    priority:        pair.mentionCount >= 3 ? 0.6 : 0.5,
+  }));
+
+  const roAgencyCityPages: MetadataRoute.Sitemap = dbAgencyCityPairs.map((pair) => ({
+    url:             `${BASE_URL}${AGENCY_BASE.ro}/${pair.agencySlug}/${toCitySlug(pair.cityNormalized)}`,
+    lastModified:    pair.lastSeenAt.toISOString().split("T")[0],
+    changeFrequency: "weekly" as const,
+    priority:        pair.mentionCount >= 3 ? 0.55 : 0.45,
+  }));
+
+  // ── 18. Polish + Romanian city pages ──────────────────────────────────────
+  // DB-driven: only cities that have at least one agency mention in the DB.
+  const dbCitySlugs = [...new Set(dbAgencyCityPairs.map((p) => toCitySlug(p.cityNormalized)))];
+
+  const plCityPages: MetadataRoute.Sitemap = dbCitySlugs.map((citySlug) => ({
+    url:             `${BASE_URL}${CITY_BASE.pl}/${citySlug}`,
+    lastModified:    TODAY,
+    changeFrequency: "weekly" as const,
+    priority:        0.6,
+  }));
+
+  const roCityPages: MetadataRoute.Sitemap = dbCitySlugs.map((citySlug) => ({
+    url:             `${BASE_URL}${CITY_BASE.ro}/${citySlug}`,
+    lastModified:    TODAY,
+    changeFrequency: "weekly" as const,
+    priority:        0.55,
+  }));
+
   return [
     ...corePages,
     ...agencyPages,
@@ -589,5 +661,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...comboPageEntries,
     ...guidePages,
     ...workInPages,
+    // Multilingual pages (PL + RO)
+    ...plAgencyPages,
+    ...roAgencyPages,
+    ...plAgencyCityPages,
+    ...roAgencyCityPages,
+    ...plCityPages,
+    ...roCityPages,
   ];
 }
