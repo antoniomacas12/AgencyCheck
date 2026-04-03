@@ -6,6 +6,7 @@
  */
 
 import { useState } from "react";
+import { ReviewComments, type ReviewCommentData } from "./ReviewComments";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -25,8 +26,12 @@ export interface ReviewMentionChip {
   agency: { slug: string; name: string };
 }
 
+export type { ReviewCommentData };
+
 export interface PublishedReview {
   id:                    string;
+  /** Agency name — used to pre-fill the comment form */
+  agencyName?:           string | null;
   city?:                 string | null;
   jobType?:              string | null;
   title?:                string | null;
@@ -49,6 +54,8 @@ export interface PublishedReview {
   createdAt:             string;
   photos:                ReviewPhoto[];
   mentions?:             ReviewMentionChip[];
+  /** Pre-loaded comments (SSR). When omitted, ReviewComments fetches client-side. */
+  initialComments?:      ReviewCommentData[];
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -269,7 +276,7 @@ export function PublishedReviewCard({ review }: { review: PublishedReview }) {
             {review.mentions.map((m) => (
               <a
                 key={m.id}
-                href={`/agency/${m.agency.slug}`}
+                href={`/agencies/${m.agency.slug}`}
                 className="text-xs bg-gray-50 text-gray-600 border border-gray-200 px-2.5 py-0.5 rounded-full hover:bg-brand-50 hover:text-brand-700 hover:border-brand-200 transition-colors"
               >
                 {m.agency.name}
@@ -278,6 +285,13 @@ export function PublishedReviewCard({ review }: { review: PublishedReview }) {
           </div>
         </div>
       )}
+
+      {/* ── Comments section ── */}
+      <ReviewComments
+        reviewId={review.id}
+        agencyName={review.agencyName ?? ""}
+        initialComments={review.initialComments}
+      />
     </div>
   );
 }

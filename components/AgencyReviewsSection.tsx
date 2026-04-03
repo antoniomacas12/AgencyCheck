@@ -27,7 +27,12 @@ export function AgencyReviewsSection({ agencySlug, agencyName }: AgencyReviewsSe
       const res = await fetch(`/api/reviews?agencySlug=${encodeURIComponent(agencySlug)}&limit=20`);
       if (!res.ok) throw new Error("Failed to fetch");
       const data = await res.json();
-      setReviews(data.reviews ?? []);
+      // Normalise: flatten nested agency.name → agencyName field
+      const mapped = (data.reviews ?? []).map((r: PublishedReview & { agency?: { name?: string } }) => ({
+        ...r,
+        agencyName: r.agencyName ?? r.agency?.name ?? agencyName ?? "",
+      }));
+      setReviews(mapped);
     } catch {
       // silently ignore — non-critical
     } finally {
@@ -128,7 +133,10 @@ export function AgencyReviewsSection({ agencySlug, agencyName }: AgencyReviewsSe
       ) : (
         <div className="space-y-4">
           {reviews.map((review) => (
-            <PublishedReviewCard key={review.id} review={review} />
+            <PublishedReviewCard
+              key={review.id}
+              review={{ ...review, agencyName: review.agencyName ?? agencyName ?? "" }}
+            />
           ))}
         </div>
       )}

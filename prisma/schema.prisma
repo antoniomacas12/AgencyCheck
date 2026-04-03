@@ -161,12 +161,53 @@ model Review {
 
   photos   ReviewPhoto[]
   mentions ReviewMention[]
+  comments ReviewComment[]
 
   @@index([agencyId])
   @@index([status])
   @@index([isPublished])
   @@index([overallRating])
   @@map("reviews")
+}
+
+// ─── Review Comments — public comments left on a review ──────────────────────
+
+model ReviewComment {
+  id         String   @id @default(cuid())
+
+  review     Review   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  reviewId   String
+
+  agencyName String
+  city       String
+  body       String   @db.Text
+
+  createdAt  DateTime @default(now())
+
+  @@index([reviewId])
+  @@index([createdAt])
+  @@map("review_comments")
+}
+
+// ─── Admin Notifications ──────────────────────────────────────────────────────
+
+model AdminNotification {
+  id        String   @id @default(cuid())
+
+  // e.g. "review_comment" | "new_review"
+  type      String
+
+  title     String
+  // JSON-encoded metadata (agency name, city, review id, preview, etc.)
+  metadata  String   @default("{}")
+
+  isRead    Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([isRead])
+  @@index([createdAt])
+  @@map("admin_notifications")
 }
 
 // ─── Review Mentions — agencies extracted from review text ───────────────────

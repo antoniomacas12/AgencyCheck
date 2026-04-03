@@ -8,6 +8,12 @@ const AdminReviewsBadge = nDynamic(
   { ssr: false }
 );
 
+// Client component — polls for unread notification count every 30s
+const AdminNotificationsBadge = nDynamic(
+  () => import("@/components/AdminNotificationsBadge"),
+  { ssr: false }
+);
+
 export const metadata: Metadata = {
   title: "Admin — AgencyCheck",
   robots: {
@@ -56,6 +62,12 @@ export default async function AdminLayout({
               className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/10 transition flex items-center gap-1"
             >
               <AdminReviewsBadge />
+            </a>
+            <a
+              href="/admin/notifications"
+              className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/10 transition flex items-center gap-1"
+            >
+              <AdminNotificationsBadge />
             </a>
             <a
               href="/admin/auto-agencies"

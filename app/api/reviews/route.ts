@@ -410,14 +410,17 @@ export async function GET(req: NextRequest) {
 
     if (agencySlug) {
       // Per-agency view (existing behaviour)
-      const agency = await db.agency.findUnique({ where: { slug: agencySlug }, select: { id: true } });
+      const agency = await db.agency.findUnique({ where: { slug: agencySlug }, select: { id: true, name: true } });
       if (!agency) return NextResponse.json({ error: "Agency not found" }, { status: 404 });
 
       const reviews = await db.review.findMany({
         where: { ...baseWhere, agencyId: agency.id },
         orderBy: { createdAt: "desc" },
         take: limit,
-        include: includePhotos,
+        include: {
+          ...includePhotos,
+          agency: { select: { slug: true, name: true } },
+        },
       });
       return NextResponse.json({ reviews });
     }
