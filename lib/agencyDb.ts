@@ -272,6 +272,36 @@ export function computeRatingAverages(reviews: DbReview[]): RatingAverages | nul
   };
 }
 
+// ─── Agency city mentions from worker comments ────────────────────────────────
+
+export interface DbCityMention {
+  cityDisplay:    string;
+  cityNormalized: string;
+  mentionCount:   number;
+}
+
+/**
+ * Returns the cities workers mention most for a given agency,
+ * sorted by mention count descending.
+ */
+export async function getAgencyCityMentions(agencyId: string): Promise<DbCityMention[]> {
+  try {
+    const rows = await db.agencyCityMention.findMany({
+      where:   { agencyId },
+      orderBy: { mentionCount: "desc" },
+      take:    20,
+      select: {
+        cityDisplay:    true,
+        cityNormalized: true,
+        mentionCount:   true,
+      },
+    });
+    return rows ?? [];
+  } catch {
+    return [];
+  }
+}
+
 // ─── Extract topic signals from review text ───────────────────────────────────
 // Returns which topics workers mention most in their comments.
 // Used to populate "What workers mention most" block without inventing data.

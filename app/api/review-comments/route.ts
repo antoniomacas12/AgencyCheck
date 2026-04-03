@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { normalizeCity } from "@/lib/cityNormalization";
 
 export const dynamic = "force-dynamic";
 
@@ -121,6 +122,27 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // ── Upsert agency city mention ──────────────────────────────────────────
+    const cityNorm = normalizeCity(cleanCity);
+    await db.agencyCityMention.upsert({
+      where: {
+        agencyId_cityNormalized: {
+          agencyId:       review.agencyId,
+          cityNormalized: cityNorm,
+        },
+      },
+      update: {
+        mentionCount: { increment: 1 },
+        lastSeenAt:   new Date(),
+      },
+      create: {
+        agencyId:       review.agencyId,
+        cityNormalized: cityNorm,
+        cityDisplay:    cleanCity,
+        mentionCount:   1,
+      },
+    });
+
     // ── Create admin notification ───────────────────────────────────────────
     const preview = cleanBody.length > 120 ? cleanBody.slice(0, 120) + "…" : cleanBody;
     await db.adminNotification.create({
@@ -129,6 +151,7 @@ export async function POST(req: NextRequest) {
         title: "New review comment",
         metadata: JSON.stringify({
           reviewId:   review.id,
+          agencyId:   review.agencyId,
           agencyName: cleanAgency,
           city:       cleanCity,
           preview,

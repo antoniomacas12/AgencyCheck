@@ -70,6 +70,12 @@ export default async function AdminLayout({
               <AdminNotificationsBadge />
             </a>
             <a
+              href="/admin/comments"
+              className="px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition"
+            >
+              💬 Comments
+            </a>
+            <a
               href="/admin/auto-agencies"
               className="px-3 py-1.5 rounded-lg text-purple-300 hover:text-white hover:bg-white/10 transition"
             >

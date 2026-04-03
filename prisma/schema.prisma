@@ -67,6 +67,7 @@ model Agency {
   issueReports  IssueReport[]
   score         AgencyScore?
   mentions      ReviewMention[]
+  cityMentions  AgencyCityMention[]
 
   @@map("agencies")
 }
@@ -418,4 +419,30 @@ model LeadSend {
 
   @@index([leadId])
   @@map("lead_sends")
+}
+
+// ─── Agency City Mentions — cities extracted from worker comments ──────────────
+// Tracks which cities workers mention for a given agency.
+// Powers "Cities workers mention" SEO sections on agency pages.
+
+model AgencyCityMention {
+  id             String   @id @default(cuid())
+
+  agency         Agency   @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  agencyId       String
+
+  // Normalised key for deduplication: lowercase + trimmed
+  cityNormalized String
+  // Original casing from first mention (for display)
+  cityDisplay    String
+
+  mentionCount   Int      @default(1)
+
+  firstSeenAt    DateTime @default(now())
+  lastSeenAt     DateTime @default(now())
+
+  @@unique([agencyId, cityNormalized])
+  @@index([agencyId])
+  @@index([mentionCount])
+  @@map("agency_city_mentions")
 }

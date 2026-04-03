@@ -38,8 +38,10 @@ import {
   getDbAgency,
   computeRatingAverages,
   extractTopicSignals,
+  getAgencyCityMentions,
   type DbAgencyFull,
   type DbReview,
+  type DbCityMention,
 } from "@/lib/agencyDb";
 import { PublishedReviewCard } from "@/components/PublishedReviewCard";
 
@@ -249,7 +251,7 @@ function DbRatingBar({ label, value }: { label: string; value: number }) {
   );
 }
 
-function DbAgencyPage({ agency }: { agency: DbAgencyFull }) {
+function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMentions: DbCityMention[] }) {
   const avgRatings    = computeRatingAverages(agency.directReviews);
   const topicSignals  = extractTopicSignals([
     ...agency.directReviews,
@@ -490,6 +492,30 @@ function DbAgencyPage({ agency }: { agency: DbAgencyFull }) {
         </section>
       )}
 
+      {/* Cities mentioned by workers */}
+      {cityMentions.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-sm font-bold text-gray-800 mb-1">Cities mentioned by workers</h2>
+          <p className="text-xs text-gray-500 mb-3">
+            Workers who left comments mentioned working in these cities for {agency.name}.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {cityMentions.map((cm) => (
+              <span
+                key={cm.cityNormalized}
+                className="inline-flex items-center gap-1.5 text-xs bg-blue-50 border border-blue-100
+                  text-blue-800 px-3 py-1 rounded-full"
+              >
+                📍 {cm.cityDisplay}
+                {cm.mentionCount > 1 && (
+                  <span className="text-blue-400 font-medium">·{cm.mentionCount}</span>
+                )}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Empty state */}
       {reviewCards.length === 0 && agency.mentionedInReviews.length === 0 && (
         <div className="card px-6 py-10 text-center mb-8">
@@ -533,7 +559,8 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
   if (!agency) {
     const dbAgency = await getDbAgency(params.slug);
     if (!dbAgency) notFound();
-    return <DbAgencyPage agency={dbAgency} />;
+    const cityMentions = await getAgencyCityMentions(dbAgency.id);
+    return <DbAgencyPage agency={dbAgency} cityMentions={cityMentions} />;
   }
 
   const locale = getLocale();
