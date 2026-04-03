@@ -688,10 +688,10 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
           </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
-          {homepage    && <a href={homepage}    target="_blank" rel="noopener noreferrer" className="text-xs text-brand-600 border border-brand-200 rounded-full px-3 py-1 hover:bg-brand-50 transition-colors">{t("agency_detail.official_website")}</a>}
-          {jobsPage    && <a href={jobsPage}    target="_blank" rel="noopener noreferrer" className="text-xs text-brand-600 border border-brand-200 rounded-full px-3 py-1 hover:bg-brand-50 transition-colors">{t("agency_detail.job_listings_link")}</a>}
-          {housingPage && <a href={housingPage} target="_blank" rel="noopener noreferrer" className="text-xs text-green-700 border border-green-200 rounded-full px-3 py-1 hover:bg-green-50 transition-colors">{t("agency_detail.housing_info_link")}</a>}
-          {contactPage && <a href={contactPage} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1 hover:bg-gray-50 transition-colors">{t("agency_detail.contact_link")}</a>}
+          {homepage    && <a href={homepage}    target="_blank" rel="noopener noreferrer" className="text-xs text-brand-600 border border-brand-200 rounded-full px-3 py-2 hover:bg-brand-50 transition-colors">{t("agency_detail.official_website")}</a>}
+          {jobsPage    && <a href={jobsPage}    target="_blank" rel="noopener noreferrer" className="text-xs text-brand-600 border border-brand-200 rounded-full px-3 py-2 hover:bg-brand-50 transition-colors">{t("agency_detail.job_listings_link")}</a>}
+          {housingPage && <a href={housingPage} target="_blank" rel="noopener noreferrer" className="text-xs text-green-700 border border-green-200 rounded-full px-3 py-2 hover:bg-green-50 transition-colors">{t("agency_detail.housing_info_link")}</a>}
+          {contactPage && <a href={contactPage} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-2 hover:bg-gray-50 transition-colors">{t("agency_detail.contact_link")}</a>}
         </div>
         <div className="mt-4 pt-4 border-t border-gray-100 flex flex-wrap items-center gap-4">
           <Link href={`/agencies/${agency.slug}/reviews`} className="text-xs text-brand-600 font-semibold hover:underline">{t("agency_detail.all_reviews_salary_link")}</Link>

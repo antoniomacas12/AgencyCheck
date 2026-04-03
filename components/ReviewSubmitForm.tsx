@@ -90,7 +90,8 @@ function SelectInput({
         name={name}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+        className="w-full border border-gray-200 rounded-lg px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+        style={{ fontSize: "16px" }}
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>
@@ -362,7 +363,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
                   setError(null);
                   setStep("details");
                 }}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded-xl transition"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-3.5 rounded-xl transition"
               >
                 Next →
               </button>
@@ -387,7 +388,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="e.g. Amsterdam, Rotterdam…"
                 maxLength={80}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-200 rounded-lg px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -430,7 +431,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
                 type="month"
                 value={experiencePeriod}
                 onChange={(e) => setExperiencePeriod(e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-200 rounded-lg px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -465,14 +466,14 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
               <button
                 type="button"
                 onClick={() => setStep("ratings")}
-                className="flex-1 border border-gray-200 text-gray-600 text-sm font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition"
+                className="flex-1 border border-gray-200 text-gray-600 text-sm font-semibold py-3.5 rounded-xl hover:bg-gray-50 transition"
               >
                 ← Back
               </button>
               <button
                 type="button"
                 onClick={() => setStep("housing")}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded-xl transition"
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-3.5 rounded-xl transition"
               >
                 Next →
               </button>
@@ -524,7 +525,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
                     placeholder="e.g. 80"
                     min={0}
                     max={1000}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
@@ -539,7 +540,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
                     placeholder="e.g. 6"
                     min={1}
                     max={100}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </>
@@ -549,14 +550,14 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
               <button
                 type="button"
                 onClick={() => setStep("details")}
-                className="flex-1 border border-gray-200 text-gray-600 text-sm font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition"
+                className="flex-1 border border-gray-200 text-gray-600 text-sm font-semibold py-3.5 rounded-xl hover:bg-gray-50 transition"
               >
                 ← Back
               </button>
               <button
                 type="button"
                 onClick={() => setStep("photos")}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded-xl transition"
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-3.5 rounded-xl transition"
               >
                 Next →
               </button>
@@ -630,7 +631,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
                 type="button"
                 onClick={() => setStep("housing")}
                 disabled={submitting}
-                className="flex-1 border border-gray-200 text-gray-600 text-sm font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition disabled:opacity-50"
+                className="flex-1 border border-gray-200 text-gray-600 text-sm font-semibold py-3.5 rounded-xl hover:bg-gray-50 transition disabled:opacity-50"
               >
                 ← Back
               </button>
@@ -638,7 +639,7 @@ export function ReviewSubmitForm({ agencySlug, agencyName, onSuccess }: ReviewSu
                 type="button"
                 onClick={handleSubmit}
                 disabled={submitting}
-                className="flex-1 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold py-2.5 rounded-xl transition disabled:opacity-50 flex items-center justify-center gap-2"
+                className="flex-1 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold py-3.5 rounded-xl transition disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {submitting ? (
                   <>

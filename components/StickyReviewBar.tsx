@@ -38,8 +38,11 @@ export default function StickyReviewBar({
         ${visible ? "translate-y-0" : "translate-y-full"}`}
       style={{ zIndex: 35 }}
     >
-      {/* Safe area spacer for iOS */}
-      <div className="bg-white border-t border-gray-200 px-4 py-3 shadow-2xl">
+      {/* Safe area spacer for iOS home indicator */}
+      <div
+        className="bg-white border-t border-gray-200 px-4 pt-3 shadow-2xl"
+        style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
+      >
         <ReviewModal
           agencySlug={agencySlug}
           agencyName={agencyName}

@@ -238,10 +238,10 @@ export default function FloatingStack() {
       <div
         className={`
           fixed
-          right-3 bottom-28
+          right-3 bottom-24
           sm:right-5 sm:bottom-8
           z-40
-          flex flex-col items-end gap-2
+          flex flex-col items-end gap-2.5
           transition-all duration-300
           ${keyboardVisible ? "max-sm:hidden" : ""}
           ${visible
@@ -255,12 +255,13 @@ export default function FloatingStack() {
           aria-label="Find me a job"
           className="
             flex items-center gap-2
-            px-5 py-3 rounded-full
+            px-5 py-3.5 rounded-full
             bg-red-600 text-white
-            text-xs font-black tracking-wide
+            text-sm font-black tracking-wide
             shadow-xl shadow-red-900/40
             hover:bg-red-700 hover:shadow-2xl hover:shadow-red-900/50
             active:scale-95 transition-all whitespace-nowrap
+            min-h-[48px]
           "
         >
           <span aria-hidden>🔍</span>
@@ -273,11 +274,12 @@ export default function FloatingStack() {
           aria-label="Add a review"
           className="
             flex items-center gap-1.5
-            px-3 py-2 rounded-full
+            px-4 py-2.5 rounded-full
             bg-gray-900 text-white
-            text-[11px] font-bold
+            text-xs font-bold
             shadow-md hover:bg-gray-700 hover:shadow-lg
             active:scale-95 transition-all whitespace-nowrap
+            min-h-[44px]
           "
         >
           <PencilIcon />
@@ -290,11 +292,12 @@ export default function FloatingStack() {
           aria-label="Ask workers from stack"
           className="
             flex items-center gap-1.5
-            px-3 py-2 rounded-full
+            px-4 py-2.5 rounded-full
             bg-gray-900 text-white
-            text-[11px] font-bold
+            text-xs font-bold
             shadow-md hover:bg-gray-700 hover:shadow-lg
             active:scale-95 transition-all whitespace-nowrap
+            min-h-[44px]
           "
         >
           <span aria-hidden>💬</span>
@@ -308,7 +311,7 @@ export default function FloatingStack() {
             <>
               <div
                 id="fs-share-panel"
-                className="absolute bottom-0 right-full mr-3 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
+                className="absolute bottom-0 right-full mr-3 w-[min(280px,calc(100vw-72px))] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
                 style={{ animation: "fsUp .18s ease" }}
                 role="dialog"
                 aria-label="Share this page"
@@ -361,10 +364,11 @@ export default function FloatingStack() {
             aria-expanded={shareOpen}
             className={`
               flex items-center gap-1.5
-              px-3 py-2 rounded-full
-              text-[11px] font-bold
+              px-4 py-2.5 rounded-full
+              text-xs font-bold
               shadow-md transition-all duration-200
               active:scale-95
+              min-h-[44px]
               ${shareOpen
                 ? "bg-gray-900 text-white shadow-lg"
                 : "bg-white text-gray-600 border border-gray-200 hover:border-gray-400 hover:shadow-lg hover:text-gray-900"}

@@ -100,13 +100,14 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
             <LanguageSwitcher currentLocale={locale} />
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Mobile hamburger — min 44×44px touch target */}
           <button
-            className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100"
+            className="md:hidden p-3 rounded-xl text-gray-500 hover:bg-gray-100 active:bg-gray-200 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               {menuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -118,20 +119,29 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden py-3 border-t border-gray-100 flex flex-col gap-1">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-2 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 text-sm font-medium"
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div className="md:hidden py-2 border-t border-gray-100 flex flex-col gap-0.5">
+            {NAV_ITEMS.map((item) => {
+              const active = pathname === item.href || pathname.startsWith(item.href + "/");
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-3 py-3.5 rounded-xl text-sm font-medium transition-colors active:bg-gray-100 ${
+                    item.highlight
+                      ? "text-green-700 font-bold bg-green-50 hover:bg-green-100"
+                      : active
+                      ? "text-brand-600 font-semibold bg-brand-50"
+                      : "text-gray-700 hover:bg-gray-50"
+                  }`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             {/* Language switcher in mobile menu */}
-            <div className="px-2 pt-2 border-t border-gray-100 mt-1">
-              <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Language / Język / Limbă</p>
+            <div className="px-3 pt-3 border-t border-gray-100 mt-1 pb-1">
+              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Language / Język / Limbă</p>
               <LanguageSwitcher currentLocale={locale} />
             </div>
           </div>

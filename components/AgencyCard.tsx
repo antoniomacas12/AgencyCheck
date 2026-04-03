@@ -138,13 +138,13 @@ export default function AgencyCard({ agency, jobCount, locale = "en" }: AgencyCa
         </div>
 
         {/* ── Rate nudge row — pointer-events-auto to receive clicks above the overlay ── */}
-        <div className="mt-3 pt-3 border-t border-gray-50 flex items-center justify-between gap-2 pointer-events-auto relative z-10">
+        <div className="mt-3 pt-2.5 border-t border-gray-50 flex items-center justify-between gap-2 pointer-events-auto relative z-10 min-h-[40px]">
           {needsReviews ? (
-            <span className="text-[10px] font-medium text-amber-600 bg-amber-50 rounded-full px-2 py-0.5">
+            <span className="text-[11px] font-medium text-amber-600 bg-amber-50 rounded-full px-2 py-1">
               {t("agency_card.needs_reviews")}
             </span>
           ) : (
-            <span className="text-[10px] text-gray-400">{t("agency_card.worker_reviews", { count: agency.reviewCount, plural: agency.reviewCount !== 1 ? "s" : "" })}</span>
+            <span className="text-[11px] text-gray-400">{t("agency_card.worker_reviews", { count: agency.reviewCount, plural: agency.reviewCount !== 1 ? "s" : "" })}</span>
           )}
           <QuickRateButton
             agencySlug={agency.slug}

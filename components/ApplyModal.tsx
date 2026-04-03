@@ -116,7 +116,8 @@ function Input({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`w-full text-sm text-gray-900 px-3 py-2 rounded-lg border bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition
+        style={{ fontSize: "16px" }}
+        className={`w-full text-sm text-gray-900 px-3 py-3 rounded-lg border bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition min-h-[44px]
           ${error ? "border-red-400 focus:ring-red-400" : "border-gray-200"}`}
       />
       {error && <p className="text-[11px] text-red-500 mt-0.5">{error}</p>}
@@ -139,7 +140,8 @@ function Select({
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full text-sm text-gray-900 px-3 py-2 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition appearance-none"
+      style={{ fontSize: "16px" }}
+      className="w-full text-sm text-gray-900 px-3 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition appearance-none min-h-[44px]"
     >
       {placeholder && <option value="">{placeholder}</option>}
       {children}
@@ -560,7 +562,8 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
               placeholder={t("apply_modal.placeholder_notes")}
               rows={3}
               maxLength={800}
-              className="w-full text-sm text-gray-900 px-3 py-2 rounded-lg border border-gray-200 bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition resize-none"
+              style={{ fontSize: "16px" }}
+              className="w-full text-sm text-gray-900 px-3 py-3 rounded-lg border border-gray-200 bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition resize-none"
             />
           </div>
 

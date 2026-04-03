@@ -53,10 +53,11 @@ export default async function Footer() {
 
   return (
     <footer className="bg-white border-t border-gray-200 mt-16">
-      <div className="max-w-6xl mx-auto px-4 pt-10 pb-6">
+      <div className="max-w-6xl mx-auto px-4 pt-10 pb-6 pb-safe"
+           style={{ paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}>
 
         {/* Main grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-sm mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-5 md:gap-8 text-sm mb-8">
 
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
@@ -67,11 +68,11 @@ export default async function Footer() {
             <p className="text-gray-500 text-xs leading-relaxed mb-4">
               {t("footer.tagline")}
             </p>
-            <ul className="space-y-1.5 text-xs text-gray-500">
-              <li><Link href="/about"             className="hover:text-brand-600">{t("footer.about")}</Link></li>
-              <li><Link href="/share-experience"  className="hover:text-brand-600 font-medium text-brand-600">{t("footer.share")}</Link></li>
-              <li><Link href="/for-agencies"      className="hover:text-brand-600">{t("footer.for_agencies")}</Link></li>
-              <li><Link href="/contact"           className="hover:text-brand-600">{t("footer.contact")}</Link></li>
+            <ul className="space-y-0.5 text-xs text-gray-500">
+              <li><Link href="/about"             className="block py-1.5 hover:text-brand-600">{t("footer.about")}</Link></li>
+              <li><Link href="/share-experience"  className="block py-1.5 hover:text-brand-600 font-medium text-brand-600">{t("footer.share")}</Link></li>
+              <li><Link href="/for-agencies"      className="block py-1.5 hover:text-brand-600">{t("footer.for_agencies")}</Link></li>
+              <li><Link href="/contact"           className="block py-1.5 hover:text-brand-600">{t("footer.contact")}</Link></li>
             </ul>
           </div>
 
