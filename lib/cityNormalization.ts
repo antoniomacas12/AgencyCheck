@@ -33,3 +33,28 @@ export function toDisplayCity(normalized: string): string {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
+
+/**
+ * Converts a normalized city key to a URL-safe slug.
+ * Spaces become hyphens; the result is already lowercase.
+ *
+ * Examples:
+ *   "rotterdam" → "rotterdam"
+ *   "den haag"  → "den-haag"
+ *   "s-hertogenbosch" → "s-hertogenbosch"
+ */
+export function toCitySlug(normalized: string): string {
+  return normalized.replace(/\s+/g, "-");
+}
+
+/**
+ * Converts a URL city slug back to the normalized key used in the DB.
+ * Hyphens become spaces; already lowercase.
+ *
+ * Examples:
+ *   "rotterdam"  → "rotterdam"
+ *   "den-haag"   → "den haag"
+ */
+export function fromCitySlug(slug: string): string {
+  return slug.replace(/-/g, " ");
+}

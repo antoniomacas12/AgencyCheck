@@ -6,6 +6,8 @@ import AgencyCard from "@/components/AgencyCard";
 import SectionHeader from "@/components/SectionHeader";
 import WorkerReviewCard, { type WorkerReview } from "@/components/WorkerReviewCard";
 import { CITIES, TOP_CITIES, JOB_SALARY_DATA } from "@/lib/seoData";
+import { getCityWorkerData } from "@/lib/agencyDb";
+import { normalizeCity, toCitySlug } from "@/lib/cityNormalization";
 import { WML_HOURLY_2026 } from "@/lib/dutchTax";
 import {
   getCityCharacter,
@@ -110,9 +112,16 @@ function JobRow({ job }: { job: JobListing }) {
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
-export default function CityPage({ params }: { params: { city: string } }) {
+export default async function CityPage({ params }: { params: { city: string } }) {
   const city = CITIES.find((c) => c.slug === params.city);
   if (!city) notFound();
+
+  // Fetch worker comment data from DB (city mentions + recent comments)
+  // The city slug "den-haag" → normalized "den haag" for DB lookup
+  const cityNorm      = normalizeCity(city.name);
+  const workerData    = await getCityWorkerData(cityNorm).catch(() => ({ agencies: [], comments: [] }));
+  const dbAgencies    = workerData.agencies;
+  const dbComments    = workerData.comments;
 
   // Data
   const char         = getCityCharacter(city.name);
@@ -644,6 +653,95 @@ export default function CityPage({ params }: { params: { city: string } }) {
               </Link>
             ))}
           </div>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════
+          WORKER COMMENTS FROM DB (city mentions)
+      ═══════════════════════════════════════════ */}
+      {(dbAgencies.length > 0 || dbComments.length > 0) && (
+        <section className="mb-8">
+          <div className="mb-3">
+            <h2 className="text-base font-bold text-gray-900">
+              💬 What workers say about agencies in {city.name}
+            </h2>
+            <p className="text-xs text-gray-500 mt-0.5">
+              Based on worker-submitted comments on AgencyCheck. More may be added over time.
+            </p>
+          </div>
+
+          {/* Agencies workers mention for this city */}
+          {dbAgencies.length > 0 && (
+            <div className="mb-5">
+              <p className="text-xs font-semibold text-gray-600 mb-2 uppercase tracking-wide">
+                Agencies mentioned by workers in {city.name}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {dbAgencies.map((a) => (
+                  <Link
+                    key={a.agencyId}
+                    href={
+                      a.agencySlug
+                        ? `/agencies/${a.agencySlug}/${toCitySlug(cityNorm)}`
+                        : `/agencies`
+                    }
+                    className="inline-flex items-center gap-1.5 text-xs bg-white border border-gray-200
+                      text-gray-700 px-3 py-1.5 rounded-full hover:bg-brand-50 hover:border-brand-200
+                      hover:text-brand-700 transition-colors"
+                  >
+                    🏢 {a.agencyName ?? a.agencyId}
+                    {a.mentionCount > 1 && (
+                      <span className="text-gray-400">·{a.mentionCount}</span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Recent worker comments for this city */}
+          {dbComments.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wide">
+                Recent worker comments from {city.name}
+              </p>
+              <div className="space-y-3">
+                {dbComments.map((c) => {
+                  const diff = Date.now() - new Date(c.createdAt).getTime();
+                  const days = Math.floor(diff / 86_400_000);
+                  const timeStr = days === 0 ? "today" : days === 1 ? "yesterday" : `${days}d ago`;
+                  return (
+                    <div
+                      key={c.id}
+                      className="bg-white rounded-xl border border-gray-200 shadow-sm px-4 py-3"
+                    >
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-1">
+                        <span className="text-xs font-semibold text-gray-800">👷 {c.agencyName}</span>
+                        <span className="text-[11px] text-gray-400">·</span>
+                        <span className="text-[11px] text-gray-500">📍 {c.city}</span>
+                        <span className="text-[11px] text-gray-400">·</span>
+                        <span className="text-[11px] text-gray-400">{timeStr}</span>
+                        {c.agencySlug && (
+                          <>
+                            <span className="text-[11px] text-gray-400">·</span>
+                            <Link
+                              href={`/agencies/${c.agencySlug}/${toCitySlug(cityNorm)}`}
+                              className="text-[11px] text-brand-600 hover:underline"
+                            >
+                              View agency page →
+                            </Link>
+                          </>
+                        )}
+                      </div>
+                      <p className="text-sm text-gray-700 leading-relaxed break-words">
+                        {c.body.length > 300 ? c.body.slice(0, 300) + "…" : c.body}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </section>
       )}
 

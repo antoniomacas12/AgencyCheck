@@ -4,7 +4,8 @@ import { CITIES, JOB_SALARY_DATA } from "@/lib/seoData";
 import { ALL_AGENCIES } from "@/lib/agencyEnriched";
 import { GUIDES } from "@/lib/guideData";
 import { allWorkInCombos } from "@/lib/workInSeoData";
-import { getWorkerReportedAgencySlugs } from "@/lib/agencyDb";
+import { getWorkerReportedAgencySlugs, getAllAgencyCityPairsForSitemap } from "@/lib/agencyDb";
+import { toCitySlug } from "@/lib/cityNormalization";
 import {
   filterEligibleComparisons,
   filterEligibleAgencyCityPairs,
@@ -54,10 +55,11 @@ const STATIC_DATE  = "2026-03-14";
 // All other pages use static dates.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch dynamic lastmod maps (fail-safe — empty map if DB is unavailable)
-  const [agencyLastMod, cityLastMod, workerReportedSlugs] = await Promise.all([
+  const [agencyLastMod, cityLastMod, workerReportedSlugs, dbAgencyCityPairs] = await Promise.all([
     getLastReviewDates(),
     getLastCityReviewDates(),
     getWorkerReportedAgencySlugs(),
+    getAllAgencyCityPairsForSitemap(1), // threshold: at least 1 comment mentioning that city
   ]);
   // ── 1. Static core pages ──────────────────────────────────────────────────
   const corePages: MetadataRoute.Sitemap = [
@@ -515,6 +517,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority:        agency.transparencyScore >= 70 ? 0.6 : 0.5,
     }));
 
+  // ── 10b. DB-driven agency+city pages from worker comment mentions ─────────
+  // Only include pairs with at least 1 city mention. Exclude pairs already
+  // covered by the static agencyCityPages above to avoid duplicate URLs.
+  const staticAgencyCityUrlSet = new Set(
+    agencyCityPages.map((p) => p.url),
+  );
+  const dbAgencyCityPages: MetadataRoute.Sitemap = dbAgencyCityPairs
+    .map((pair) => ({
+      url:             `${BASE_URL}/agencies/${pair.agencySlug}/${toCitySlug(pair.cityNormalized)}`,
+      lastModified:    pair.lastSeenAt.toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority:        pair.mentionCount >= 3 ? 0.6 : 0.5,
+    }))
+    .filter((entry) => !staticAgencyCityUrlSet.has(entry.url));
+
   // ── 11. Programmatic city job pages (/jobs-in-[city]) ─────────────────────
   const cityJobPages: MetadataRoute.Sitemap = CITIES
     .filter((c) => c.population >= 10000)
@@ -567,6 +584,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...toolPages,
     ...comparisonPages,
     ...agencyCityPages,
+    ...dbAgencyCityPages,
     ...cityJobPages,
     ...comboPageEntries,
     ...guidePages,

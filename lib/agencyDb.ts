@@ -302,6 +302,184 @@ export async function getAgencyCityMentions(agencyId: string): Promise<DbCityMen
   }
 }
 
+// ─── Worker comments for agency+city pages ────────────────────────────────────
+
+export interface DbAgencyCityComment {
+  id:         string;
+  agencyName: string;
+  city:       string;
+  body:       string;
+  createdAt:  Date;
+}
+
+/**
+ * Returns up to 20 worker comments for a specific agency+city pair,
+ * sorted newest-first.
+ *
+ * ReviewComment only stores the display `city` field, so we normalise
+ * it in JS after fetching a batch.
+ */
+export async function getAgencyCommentsByCity(
+  agencyId:       string,
+  cityNormalized: string,
+): Promise<DbAgencyCityComment[]> {
+  try {
+    // Fetch up to 200 recent comments for this agency, then filter by city
+    const rows = await db.reviewComment.findMany({
+      where:   { review: { agencyId } },
+      orderBy: { createdAt: "desc" },
+      take:    200,
+      select: { id: true, agencyName: true, city: true, body: true, createdAt: true },
+    });
+    return (rows ?? [])
+      .filter(
+        (r: DbAgencyCityComment) =>
+          r.city.trim().toLowerCase().replace(/\s+/g, " ") === cityNormalized,
+      )
+      .slice(0, 20);
+  } catch {
+    return [];
+  }
+}
+
+// ─── City-level worker data (for /cities/[city] augmentation) ─────────────────
+
+export interface DbCityWorkerAgency {
+  agencyId:      string;
+  agencySlug:    string | null;
+  agencyName:    string | null;
+  cityDisplay:   string;
+  mentionCount:  number;
+}
+
+export interface DbCityWorkerComment {
+  id:         string;
+  agencyName: string;
+  city:       string;
+  body:       string;
+  createdAt:  Date;
+  agencySlug: string | null;
+  reviewId:   string;
+}
+
+export interface DbCityWorkerData {
+  agencies: DbCityWorkerAgency[];
+  comments: DbCityWorkerComment[];
+}
+
+/**
+ * Returns agencies and recent comments for a given city (by normalized key).
+ * Used to augment static city pages with real DB-sourced worker data.
+ */
+export async function getCityWorkerData(cityNormalized: string): Promise<DbCityWorkerData> {
+  try {
+    const [mentions, comments] = await Promise.all([
+      db.agencyCityMention.findMany({
+        where:   { cityNormalized },
+        orderBy: { mentionCount: "desc" },
+        take:    20,
+        select: {
+          agencyId:     true,
+          cityDisplay:  true,
+          mentionCount: true,
+          agency: {
+            select: { slug: true, name: true },
+          },
+        },
+      }),
+      // ReviewComment has no cityNormalized field — fetch recent ones and filter
+      db.reviewComment.findMany({
+        orderBy: { createdAt: "desc" },
+        take:    300,
+        select: {
+          id:         true,
+          agencyName: true,
+          city:       true,
+          body:       true,
+          createdAt:  true,
+          review: {
+            select: {
+              id:     true,
+              agency: { select: { slug: true } },
+            },
+          },
+        },
+      }),
+    ]);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const agencies: DbCityWorkerAgency[] = (mentions ?? []).map((m: any) => ({
+      agencyId:     m.agencyId,
+      agencySlug:   m.agency?.slug ?? null,
+      agencyName:   m.agency?.name ?? null,
+      cityDisplay:  m.cityDisplay,
+      mentionCount: m.mentionCount,
+    }));
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const commentsList: DbCityWorkerComment[] = (comments ?? [])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .filter((c: any) => c.city.trim().toLowerCase().replace(/\s+/g, " ") === cityNormalized)
+      .slice(0, 10)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .map((c: any) => ({
+        id:         c.id,
+        agencyName: c.agencyName,
+        city:       c.city,
+        body:       c.body,
+        createdAt:  c.createdAt,
+        agencySlug: c.review?.agency?.slug ?? null,
+        reviewId:   c.review?.id ?? "",
+      }));
+
+    return { agencies, comments: commentsList };
+  } catch {
+    return { agencies: [], comments: [] };
+  }
+}
+
+// ─── All agency+city pairs for sitemap ────────────────────────────────────────
+
+export interface DbAgencyCityPair {
+  agencySlug:     string;
+  cityNormalized: string;
+  mentionCount:   number;
+  lastSeenAt:     Date;
+}
+
+/**
+ * Returns all agency+city pairs from the DB that have at least `minMentions`
+ * mentions. Used by the sitemap generator to discover indexable pages.
+ */
+export async function getAllAgencyCityPairsForSitemap(
+  minMentions = 1,
+): Promise<DbAgencyCityPair[]> {
+  try {
+    const rows = await db.agencyCityMention.findMany({
+      where:   { mentionCount: { gte: minMentions } },
+      orderBy: { lastSeenAt: "desc" },
+      select: {
+        cityNormalized: true,
+        mentionCount:   true,
+        lastSeenAt:     true,
+        agency: { select: { slug: true } },
+      },
+    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (rows ?? [])
+      .filter((r: any) => r.agency?.slug)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .map((r: any) => ({
+        agencySlug:     r.agency.slug as string,
+        cityNormalized: r.cityNormalized as string,
+        mentionCount:   r.mentionCount as number,
+        lastSeenAt:     r.lastSeenAt as Date,
+      }));
+  } catch {
+    return [];
+  }
+}
+
 // ─── Extract topic signals from review text ───────────────────────────────────
 // Returns which topics workers mention most in their comments.
 // Used to populate "What workers mention most" block without inventing data.

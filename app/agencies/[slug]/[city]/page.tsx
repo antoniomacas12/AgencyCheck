@@ -15,10 +15,18 @@ import {
 } from "@/lib/pageEligibility";
 import { SECTOR_META } from "@/lib/agencyMeta";
 import { CITIES } from "@/lib/seoData";
+import {
+  getDbAgency,
+  getAgencyCommentsByCity,
+  getAgencyCityMentions,
+  type DbAgencyCityComment,
+  type DbCityMention,
+} from "@/lib/agencyDb";
+import { fromCitySlug, toDisplayCity, toCitySlug } from "@/lib/cityNormalization";
 
-// ─── Static generation — unknown params 404 immediately ──────────────────────
-// City sub-pages only exist for pairs that passed canGenerateAgencyCityPage.
-export const dynamicParams = false;
+// ─── Dynamic rendering — verified agencies are statically pre-rendered,
+//     DB-only agencies are rendered on demand.
+export const dynamic = "force-dynamic";
 
 // ─── Static params: all eligible agency+city pairs ───────────────────────────
 
@@ -68,23 +76,42 @@ export async function generateMetadata({
 }: {
   params: { slug: string; city: string };
 }): Promise<Metadata> {
+  const cityNorm = fromCitySlug(params.city);
+  const cityName = citySlugToName(params.city);
+
+  // Verified agency
   const agency = ALL_AGENCY_MAP[params.slug];
-  if (!agency) return { title: "Agency not found — AgencyCheck" };
+  if (agency) {
+    const decision   = canGenerateAgencyCityPage(agency, slugToNormCity(params.city));
+    const robotsMeta = getRobotsDirective(decision);
+    const sectorLabel = SECTOR_META[agency.sector]?.label ?? agency.sector;
+    const housingNote = agency.accommodation === "confirmed_with_deduction" || agency.accommodation === "confirmed_no_deduction"
+      ? " Worker housing available."
+      : "";
+    return {
+      title: `${agency.name} ${cityName} Reviews – Jobs, Housing & Worker Experiences`,
+      description: `${agency.name} is a ${sectorLabel} staffing agency in ${cityName}.${housingNote} Transparency score: ${agency.transparencyScore}/100. Real worker experiences, housing details, and pay information.`,
+      alternates: { canonical: `/agencies/${params.slug}/${params.city}` },
+      robots: robotsMeta,
+    };
+  }
 
-  const cityName   = citySlugToName(params.city);
-  const decision   = canGenerateAgencyCityPage(agency, slugToNormCity(params.city));
-  const robotsMeta = getRobotsDirective(decision);
+  // DB-only agency
+  const dbAgency = await getDbAgency(params.slug);
+  if (!dbAgency) return { title: "Agency not found — AgencyCheck" };
 
-  const sectorLabel = SECTOR_META[agency.sector]?.label ?? agency.sector;
-  const housingNote = agency.accommodation === "confirmed_with_deduction" || agency.accommodation === "confirmed_no_deduction"
-    ? " Worker housing available."
-    : "";
+  const cityMentions = await getAgencyCityMentions(dbAgency.id);
+  const hasCityData  = cityMentions.some((m) => m.cityNormalized === cityNorm);
+  if (!hasCityData)  return { title: "Page not found — AgencyCheck" };
 
   return {
-    title: `${agency.name} ${cityName} Netherlands Review – Jobs, Housing & Worker Experiences`,
-    description: `${agency.name} is a ${sectorLabel} staffing agency in ${cityName}.${housingNote} Transparency score: ${agency.transparencyScore}/100. See jobs, housing details, and worker information.`,
+    title: `${dbAgency.name} ${cityName} Reviews – Worker Experiences Netherlands`,
+    description: `Read what workers say about ${dbAgency.name} in ${cityName}. Real worker-submitted comments and reviews from the Netherlands. Based on worker-submitted data on AgencyCheck.`,
     alternates: { canonical: `/agencies/${params.slug}/${params.city}` },
-    robots: robotsMeta,
+    openGraph: {
+      title: `${dbAgency.name} ${cityName} – Worker Reviews`,
+      description: `Worker experiences with ${dbAgency.name} in ${cityName}, Netherlands.`,
+    },
   };
 }
 
@@ -164,19 +191,202 @@ function AgencyMiniCard({ agency }: { agency: EnrichedAgency }) {
   );
 }
 
+// ─── Worker comment bubble ────────────────────────────────────────────────────
+
+function WorkerCommentBubble({ c }: { c: DbAgencyCityComment }) {
+  const diff = Date.now() - new Date(c.createdAt).getTime();
+  const days = Math.floor(diff / 86_400_000);
+  const timeStr = days === 0 ? "today" : days === 1 ? "yesterday" : `${days}d ago`;
+
+  return (
+    <div className="flex gap-3 py-3 border-b border-gray-50 last:border-0">
+      <div className="shrink-0 w-7 h-7 rounded-full bg-brand-100 flex items-center justify-center text-sm mt-0.5">
+        👷
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-1">
+          <span className="text-xs font-semibold text-gray-800">{c.agencyName}</span>
+          <span className="text-[11px] text-gray-400">·</span>
+          <span className="text-[11px] text-gray-500">📍 {c.city}</span>
+          <span className="text-[11px] text-gray-400">·</span>
+          <span className="text-[11px] text-gray-400">{timeStr}</span>
+        </div>
+        <p className="text-sm text-gray-700 leading-relaxed break-words whitespace-pre-line">
+          {c.body}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ─── DB-only agency city page ─────────────────────────────────────────────────
+
+async function DbAgencyCityPage({
+  agencySlug,
+  citySlug,
+}: {
+  agencySlug: string;
+  citySlug:   string;
+}) {
+  const cityNorm  = fromCitySlug(citySlug);
+  const cityName  = toDisplayCity(cityNorm);
+  const dbAgency  = await getDbAgency(agencySlug);
+  if (!dbAgency) return notFound();
+
+  // Check threshold: at least 1 city mention for this city
+  const cityMentions  = await getAgencyCityMentions(dbAgency.id);
+  const thisCityMention = cityMentions.find((m) => m.cityNormalized === cityNorm);
+  if (!thisCityMention) return notFound();
+
+  // Fetch comments for this agency+city
+  const cityComments = await getAgencyCommentsByCity(dbAgency.id, cityNorm);
+
+  // Other cities this agency is mentioned in
+  const otherCities: DbCityMention[] = cityMentions.filter(
+    (m) => m.cityNormalized !== cityNorm,
+  ).slice(0, 8);
+
+  return (
+    <main className="max-w-3xl mx-auto px-4 py-8 pb-24">
+
+      {/* Breadcrumb */}
+      <nav className="text-xs text-gray-400 mb-5 flex items-center gap-1.5 flex-wrap">
+        <Link href="/" className="hover:text-brand-600">Home</Link>
+        <span>/</span>
+        <Link href="/agencies" className="hover:text-brand-600">Agencies</Link>
+        <span>/</span>
+        <Link href={`/agencies/${dbAgency.slug}`} className="hover:text-brand-600">
+          {dbAgency.name}
+        </Link>
+        <span>/</span>
+        <span className="text-gray-600">{cityName}</span>
+      </nav>
+
+      {/* Header */}
+      <header className="mb-6">
+        <div className="inline-flex items-center gap-1.5 text-[10px] font-semibold
+          bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full mb-2">
+          Unverified — reported by workers
+        </div>
+        <h1 className="text-2xl font-bold text-gray-900 leading-tight">
+          {dbAgency.name} in {cityName} — Worker Experiences
+          <span className="block text-sm font-normal text-gray-400 mt-0.5">
+            Netherlands · Based on worker-submitted data
+          </span>
+        </h1>
+        <p className="text-sm text-gray-500 mt-1">📍 {cityName}, Netherlands</p>
+      </header>
+
+      {/* Worker comments */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-4">
+          What workers say about {dbAgency.name} in {cityName}
+        </h2>
+
+        {cityComments.length > 0 ? (
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm divide-y divide-gray-50">
+            {cityComments.map((c) => (
+              <div key={c.id} className="px-4">
+                <WorkerCommentBubble c={c} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="bg-gray-50 rounded-xl px-5 py-8 text-center">
+            <p className="text-2xl mb-2">💬</p>
+            <p className="text-sm font-semibold text-gray-700 mb-1">
+              Workers mention {dbAgency.name} in {cityName}
+            </p>
+            <p className="text-xs text-gray-500">
+              No detailed comments yet for this city.
+              Be the first to share your experience.
+            </p>
+          </div>
+        )}
+
+        <p className="text-[11px] text-gray-400 mt-3 italic">
+          Based on worker-submitted comments on AgencyCheck. More experiences may be added over time.
+        </p>
+      </section>
+
+      {/* Other cities this agency is mentioned in */}
+      {otherCities.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-sm font-bold text-gray-800 mb-2">
+            Other cities workers mention for {dbAgency.name}
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {otherCities.map((cm) => (
+              <Link
+                key={cm.cityNormalized}
+                href={`/agencies/${dbAgency.slug}/${toCitySlug(cm.cityNormalized)}`}
+                className="inline-flex items-center gap-1 text-xs bg-blue-50 border border-blue-100
+                  text-blue-800 px-3 py-1 rounded-full hover:bg-blue-100 hover:border-blue-200 transition-colors"
+              >
+                📍 {cm.cityDisplay}
+                {cm.mentionCount > 1 && (
+                  <span className="text-blue-400">·{cm.mentionCount}</span>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <div className="bg-brand-50 border border-brand-100 rounded-xl p-5 text-center mb-6">
+        <p className="text-sm font-bold text-brand-800 mb-1">
+          Worked with {dbAgency.name} in {cityName}?
+        </p>
+        <p className="text-xs text-brand-600 mb-3">
+          Share your experience to help other workers make informed decisions.
+        </p>
+        <Link
+          href={`/share-experience?agency=${encodeURIComponent(dbAgency.name)}&city=${encodeURIComponent(cityName)}`}
+          className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold
+            px-5 py-2.5 rounded-xl transition-colors"
+        >
+          Submit your experience →
+        </Link>
+      </div>
+
+      {/* Footer nav */}
+      <div className="pt-6 border-t border-gray-100 flex items-center justify-between">
+        <Link
+          href={`/agencies/${dbAgency.slug}`}
+          className="text-sm font-semibold text-brand-600 hover:text-brand-800"
+        >
+          ← Full {dbAgency.name} profile
+        </Link>
+        <Link href={`/cities/${toCitySlug(cityNorm)}`} className="text-sm text-gray-400 hover:text-brand-600">
+          All agencies in {cityName} →
+        </Link>
+      </div>
+    </main>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function AgencyCityPage({
+export default async function AgencyCityPage({
   params,
 }: {
   params: { slug: string; city: string };
 }) {
+  // If not a verified agency, hand off to DB-only handler
   const agency = ALL_AGENCY_MAP[params.slug];
-  if (!agency) return notFound();
+  if (!agency) return <DbAgencyCityPage agencySlug={params.slug} citySlug={params.city} />;
 
   const cityNorm = slugToNormCity(params.city);
   const decision = canGenerateAgencyCityPage(agency, cityNorm);
   if (!decision.allowed) return notFound();
+
+  // Fetch worker comments for this agency+city from DB.
+  // EnrichedAgency doesn't carry agencyId — look it up via DB slug.
+  const dbRecord = await getDbAgency(agency.slug).catch(() => null);
+  const dbCityComments: DbAgencyCityComment[] = dbRecord
+    ? await getAgencyCommentsByCity(dbRecord.id, cityNorm).catch(() => [])
+    : [];
 
   const cityName    = citySlugToName(params.city);
   const sectorMeta  = SECTOR_META[agency.sector];
@@ -497,6 +707,42 @@ export default function AgencyCityPage({
           </Link>
         </section>
       )}
+
+      {/* ── Worker comments from DB ────────────────────────────────────────── */}
+      {dbCityComments.length > 0 && (
+        <section className="mb-6">
+          <h2 className="text-sm font-bold text-gray-700 mb-3">
+            What workers say about {agency.name} in {cityName}
+          </h2>
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm divide-y divide-gray-50 mb-2">
+            {dbCityComments.map((c) => (
+              <div key={c.id} className="px-4">
+                <WorkerCommentBubble c={c} />
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-gray-400 italic">
+            Based on worker-submitted comments on AgencyCheck. More experiences may be added over time.
+          </p>
+        </section>
+      )}
+
+      {/* ── CTA ────────────────────────────────────────────────────────────── */}
+      <div className="bg-brand-50 border border-brand-100 rounded-xl p-4 mb-6">
+        <p className="text-sm font-semibold text-brand-800 mb-1">
+          Worked with {agency.name} in {cityName}?
+        </p>
+        <p className="text-xs text-brand-600 mb-2">
+          Share your experience to help other workers make informed decisions.
+        </p>
+        <Link
+          href={`/share-experience?agency=${encodeURIComponent(agency.name)}&city=${encodeURIComponent(cityName)}`}
+          className="inline-block text-xs bg-brand-600 hover:bg-brand-700 text-white font-semibold
+            px-4 py-2 rounded-xl transition-colors"
+        >
+          Submit your experience →
+        </Link>
+      </div>
 
       {/* ── Full profile link ──────────────────────────────────────────────── */}
       <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">

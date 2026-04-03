@@ -492,7 +492,7 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
         </section>
       )}
 
-      {/* Cities mentioned by workers */}
+      {/* Cities mentioned by workers — each links to agency+city SEO page */}
       {cityMentions.length > 0 && (
         <section className="mb-8">
           <h2 className="text-sm font-bold text-gray-800 mb-1">Cities mentioned by workers</h2>
@@ -501,16 +501,18 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
           </p>
           <div className="flex flex-wrap gap-2">
             {cityMentions.map((cm) => (
-              <span
+              <Link
                 key={cm.cityNormalized}
+                href={`/agencies/${agency.slug}/${cm.cityNormalized.replace(/\s+/g, "-")}`}
                 className="inline-flex items-center gap-1.5 text-xs bg-blue-50 border border-blue-100
-                  text-blue-800 px-3 py-1 rounded-full"
+                  text-blue-800 px-3 py-1 rounded-full hover:bg-blue-100 hover:border-blue-200
+                  hover:text-blue-900 transition-colors"
               >
                 📍 {cm.cityDisplay}
                 {cm.mentionCount > 1 && (
                   <span className="text-blue-400 font-medium">·{cm.mentionCount}</span>
                 )}
-              </span>
+              </Link>
             ))}
           </div>
         </section>
