@@ -280,14 +280,14 @@ export default async function HomePage() {
         <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-blue-600/[0.08] blur-[90px]" aria-hidden="true" />
 
         {/* ── Content ──────────────────────────────────────────────────── */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-10 xl:gap-20">
 
             {/* ── Left: copy ─────────────────────────────────────────── */}
-            <div className="hero-col-left flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-12">
+            <div className="hero-col-left flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-6">
 
               {/* Identity badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-300">
                   🇳🇱 Netherlands · {totalAgencies} agencies verified
@@ -305,13 +305,13 @@ export default async function HomePage() {
               </h1>
 
               {/* Subtext */}
-              <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-5 max-w-xl mx-auto lg:mx-0">
                 See real jobs, real salaries, housing and transport{" "}
                 <span className="text-gray-200 font-medium">before you apply.</span>
               </p>
 
               {/* Trust pills */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-9">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-5">
                 {[
                   "No experience needed",
                   "Accommodation available",
@@ -330,7 +330,7 @@ export default async function HomePage() {
               </div>
 
               {/* CTA buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-5">
                 <a
                   href="/agencies-with-housing"
                   className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-black text-white"

@@ -51,7 +51,7 @@ function StarSelector({
   const [hover, setHover] = useState(0);
   return (
     <div>
-      <p className="text-xs font-medium text-gray-700 mb-1.5">{label}</p>
+      <p className="text-xs font-medium text-gray-300 mb-1.5">{label}</p>
       <div className="flex gap-1" onMouseLeave={() => setHover(0)}>
         {STAR_VALUES.map((s) => (
           <button
@@ -307,10 +307,14 @@ function ReviewSubmitForm({
 
   if (submitted) {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-2xl px-5 py-8 text-center">
-        <p className="text-3xl mb-3">✅</p>
-        <p className="text-base font-bold text-green-800 mb-1">{t("reviews_page.form_success_title")}</p>
-        <p className="text-sm text-green-600 leading-relaxed">
+      <div className="bg-emerald-500/[0.08] border border-emerald-500/20 rounded-2xl px-5 py-8 text-center">
+        <div className="w-10 h-10 rounded-full bg-emerald-500/[0.15] border border-emerald-500/30 flex items-center justify-center mx-auto mb-3">
+          <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <p className="text-base font-bold text-white mb-1">{t("reviews_page.form_success_title")}</p>
+        <p className="text-sm text-gray-400 leading-relaxed">
           {t("reviews_page.form_success_sub")}
         </p>
         <button
@@ -320,7 +324,7 @@ function ReviewSubmitForm({
             setPhotoPreviews([]);
             setSubmitted(false);
           }}
-          className="mt-4 text-xs text-green-700 border border-green-300 rounded-full px-4 py-1.5 hover:bg-green-100 transition-colors"
+          className="mt-4 text-xs text-emerald-400 border border-emerald-500/20 rounded-full px-4 py-1.5 hover:bg-emerald-500/[0.1] transition-colors"
         >
           {t("reviews_page.form_submit_another")}
         </button>
@@ -335,22 +339,22 @@ function ReviewSubmitForm({
 
       {/* Submit error */}
       {submitError && (
-        <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+        <div className="px-4 py-3 bg-red-500/[0.12] border border-red-500/25 rounded-xl text-sm text-red-400">
           {submitError}
         </div>
       )}
 
       {/* ── Agency combobox ─────────────────────────────────────────────────── */}
       <div ref={comboboxRef} className="relative">
-        <label className="block text-sm font-bold text-gray-800 mb-1.5">
-          {t("reviews_page.form_agency_label")} <span className="text-red-500">*</span>
+        <label className="block text-sm font-bold text-gray-300 mb-1.5">
+          {t("reviews_page.form_agency_label")} <span className="text-red-400">*</span>
         </label>
         <div className={`flex items-center rounded-xl border overflow-hidden transition-all ${
           form.agencySlug
-            ? "border-green-400 ring-2 ring-green-100"
+            ? "border-emerald-400/60 ring-2 ring-emerald-500/20"
             : form.agencyIsNew
-            ? "border-amber-400 ring-2 ring-amber-100"
-            : "border-gray-300"
+            ? "border-amber-400/60 ring-2 ring-amber-500/20"
+            : "border-white/[0.1]"
         }`}>
           <input
             type="text"
@@ -359,7 +363,7 @@ function ReviewSubmitForm({
             onFocus={() => { if (suggestions.length > 0) setSuggestionsOpen(true); }}
             placeholder="Type agency name…"
             autoComplete="off"
-            className="flex-1 px-3.5 py-2.5 text-sm bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none"
+            className="flex-1 px-3.5 py-2.5 text-sm bg-white/[0.05] text-white placeholder:text-gray-600 focus:outline-none"
           />
           <span className="pr-3 shrink-0">
             {suggestLoading
@@ -374,19 +378,19 @@ function ReviewSubmitForm({
 
         {/* Status line below input */}
         {form.agencySlug && (
-          <p className="text-[10px] text-green-600 mt-1 flex items-center gap-1">
+          <p className="text-[10px] text-emerald-400 mt-1 flex items-center gap-1">
             ✓ Found in database
           </p>
         )}
         {form.agencyIsNew && form.agencySearch.trim().length > 0 && (
-          <p className="text-[10px] text-amber-600 mt-1 flex items-center gap-1">
+          <p className="text-[10px] text-amber-400 mt-1 flex items-center gap-1">
             ✦ Will be added as a new agency — thank you!
           </p>
         )}
 
         {/* Suggestions dropdown */}
         {suggestionsOpen && (
-          <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden">
+          <div className="absolute z-50 top-full left-0 right-0 mt-1 border border-white/[0.1] rounded-xl shadow-2xl overflow-hidden" style={{ background: "#0f1623" }}>
             {suggestions.length > 0 && (
               <ul>
                 {suggestions.map((ag) => (
@@ -394,7 +398,7 @@ function ReviewSubmitForm({
                     <button
                       type="button"
                       onMouseDown={() => selectExistingAgency(ag)}
-                      className="w-full text-left px-4 py-2.5 text-sm text-gray-900 hover:bg-gray-50 transition-colors flex items-center gap-2.5"
+                      className="w-full text-left px-4 py-2.5 text-sm text-gray-200 hover:bg-white/[0.07] transition-colors flex items-center gap-2.5"
                     >
                       <span className="shrink-0">🏢</span>
                       <span className="font-medium">{ag.name}</span>
@@ -404,14 +408,13 @@ function ReviewSubmitForm({
               </ul>
             )}
 
-            {/* "Add as new" option — always show once user has typed anything */}
             {form.agencySearch.trim().length > 0 && (
               <>
-                {suggestions.length > 0 && <div className="border-t border-gray-100" />}
+                {suggestions.length > 0 && <div className="border-t border-white/[0.07]" />}
                 <button
                   type="button"
                   onMouseDown={selectNewAgency}
-                  className="w-full text-left px-4 py-2.5 text-sm hover:bg-amber-50 transition-colors flex items-center gap-2.5 text-amber-700"
+                  className="w-full text-left px-4 py-2.5 text-sm hover:bg-amber-500/[0.08] transition-colors flex items-center gap-2.5 text-amber-400"
                 >
                   <span className="shrink-0">➕</span>
                   <span>Add &ldquo;{form.agencySearch.trim()}&rdquo; as new agency</span>
@@ -420,7 +423,7 @@ function ReviewSubmitForm({
             )}
 
             {suggestions.length === 0 && !suggestLoading && form.agencySearch.trim().length > 0 && (
-              <p className="px-4 py-2 text-xs text-gray-400">No matches found — you can add it as a new agency above.</p>
+              <p className="px-4 py-2 text-xs text-gray-600">No matches found — you can add it as a new agency above.</p>
             )}
           </div>
         )}
@@ -429,7 +432,7 @@ function ReviewSubmitForm({
       {/* ── City + Job type ──────────────────────────────────────────────────── */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">
+          <label className="block text-xs font-medium text-gray-300 mb-1">
             {t("reviews_page.form_city")}
           </label>
           <input
@@ -438,31 +441,32 @@ function ReviewSubmitForm({
             onChange={(e) => set("city", e.target.value)}
             placeholder={t("reviews_page.form_city_placeholder")}
             maxLength={80}
-            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl bg-white
-              text-gray-900 placeholder:text-gray-400
-              focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+            className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+              text-white placeholder:text-gray-600
+              focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">
+          <label className="block text-xs font-medium text-gray-300 mb-1">
             {t("reviews_page.form_job_type")}
           </label>
           <select
             value={form.jobType}
             onChange={(e) => set("jobType", e.target.value)}
-            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl bg-white
-              text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+            className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+              text-white focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
+            style={{ colorScheme: "dark" }}
           >
-            <option value="">{t("reviews_page.form_job_select")}</option>
+            <option value="" style={{ background: "#0f1623" }}>{t("reviews_page.form_job_select")}</option>
             {JOB_TYPE_OPTIONS.map((jt) => (
-              <option key={jt} value={jt}>{jt}</option>
+              <option key={jt} value={jt} style={{ background: "#0f1623" }}>{jt}</option>
             ))}
           </select>
         </div>
       </div>
 
       {/* ── Overall rating ───────────────────────────────────────────────────── */}
-      <div className="bg-gray-50 rounded-xl p-4">
+      <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4">
         <StarSelector
           value={form.rating}
           onChange={(v) => set("rating", v)}
@@ -481,7 +485,7 @@ function ReviewSubmitForm({
 
       {/* ── Housing ─────────────────────────────────────────────────────────── */}
       <div>
-        <p className="text-xs font-bold text-gray-700 mb-2">{t("reviews_page.form_housing_label")}</p>
+        <p className="text-xs font-bold text-gray-300 mb-2">{t("reviews_page.form_housing_label")}</p>
         <div className="flex gap-2 flex-wrap">
           {(["yes", "no", "unknown"] as const).map((v) => (
             <button
@@ -490,8 +494,8 @@ function ReviewSubmitForm({
               onClick={() => set("housingIncluded", v)}
               className={`text-xs font-semibold rounded-full px-3.5 py-1.5 border transition-all ${
                 form.housingIncluded === v
-                  ? "bg-gray-900 text-white border-gray-900"
-                  : "bg-white text-gray-600 border-gray-300 hover:border-gray-500"
+                  ? "bg-white/[0.15] text-white border-white/25"
+                  : "bg-white/[0.04] text-gray-500 border-white/[0.1] hover:border-white/20 hover:text-gray-300"
               }`}
             >
               {v === "yes" ? t("reviews_page.form_housing_yes") : v === "no" ? t("reviews_page.form_housing_no") : t("reviews_page.form_housing_unknown")}
@@ -502,9 +506,9 @@ function ReviewSubmitForm({
 
       {/* Housing cost + people per room (only if housing = yes) */}
       {form.housingIncluded === "yes" && (
-        <div className="grid sm:grid-cols-2 gap-3 bg-blue-50 border border-blue-100 rounded-xl p-3">
+        <div className="grid sm:grid-cols-2 gap-3 bg-blue-500/[0.06] border border-blue-400/[0.15] rounded-xl p-3">
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">
+            <label className="block text-xs font-medium text-gray-300 mb-1">
               {t("reviews_page.form_housing_cost")}
             </label>
             <input
@@ -514,13 +518,14 @@ function ReviewSubmitForm({
               placeholder="e.g. 140"
               min={0}
               max={500}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl bg-white
-                text-gray-900 placeholder:text-gray-400
-                focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+              className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+                text-white placeholder:text-gray-600
+                focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
+              style={{ colorScheme: "dark" }}
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-700 mb-1">
+            <label className="block text-xs font-medium text-gray-300 mb-1">
               {t("reviews_page.form_people_per_room")}
             </label>
             <input
@@ -530,9 +535,10 @@ function ReviewSubmitForm({
               placeholder="e.g. 2"
               min={1}
               max={10}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl bg-white
-                text-gray-900 placeholder:text-gray-400
-                focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+              className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+                text-white placeholder:text-gray-600
+                focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
+              style={{ colorScheme: "dark" }}
             />
           </div>
         </div>
@@ -540,9 +546,9 @@ function ReviewSubmitForm({
 
       {/* ── Transport cost ───────────────────────────────────────────────────── */}
       <div>
-        <label className="block text-xs font-medium text-gray-700 mb-1">
+        <label className="block text-xs font-medium text-gray-300 mb-1">
           {t("reviews_page.form_transport_cost")}{" "}
-          <span className="text-gray-400 font-normal">{t("reviews_page.form_transport_note")}</span>
+          <span className="text-gray-600 font-normal">{t("reviews_page.form_transport_note")}</span>
         </label>
         <input
           type="number"
@@ -551,15 +557,16 @@ function ReviewSubmitForm({
           placeholder="e.g. 28 — or 0 if included free"
           min={0}
           max={200}
-          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-xl bg-white
-            text-gray-900 placeholder:text-gray-400
-            focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+          className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+            text-white placeholder:text-gray-600
+            focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
+          style={{ colorScheme: "dark" }}
         />
       </div>
 
       {/* ── Would recommend ──────────────────────────────────────────────────── */}
       <div>
-        <p className="text-xs font-bold text-gray-700 mb-2">{t("reviews_page.form_recommend_label")}</p>
+        <p className="text-xs font-bold text-gray-300 mb-2">{t("reviews_page.form_recommend_label")}</p>
         <div className="flex gap-2 flex-wrap">
           {(["yes", "no", "neutral"] as const).map((v) => (
             <button
@@ -569,11 +576,11 @@ function ReviewSubmitForm({
               className={`text-xs font-semibold rounded-full px-3.5 py-1.5 border transition-all ${
                 form.wouldRecommend === v
                   ? v === "yes"
-                    ? "bg-green-600 text-white border-green-600"
+                    ? "bg-emerald-500/[0.2] text-emerald-300 border-emerald-500/30"
                     : v === "no"
-                    ? "bg-red-600 text-white border-red-600"
-                    : "bg-gray-900 text-white border-gray-900"
-                  : "bg-white text-gray-600 border-gray-300 hover:border-gray-500"
+                    ? "bg-red-500/[0.15] text-red-400 border-red-500/25"
+                    : "bg-white/[0.15] text-white border-white/25"
+                  : "bg-white/[0.04] text-gray-500 border-white/[0.1] hover:border-white/20 hover:text-gray-300"
               }`}
             >
               {v === "yes" ? t("reviews_page.form_recommend_yes") : v === "no" ? t("reviews_page.form_recommend_no") : t("reviews_page.form_recommend_neutral")}
@@ -584,8 +591,8 @@ function ReviewSubmitForm({
 
       {/* ── Comment ──────────────────────────────────────────────────────────── */}
       <div>
-        <label className="block text-sm font-bold text-gray-800 mb-1.5">
-          {t("reviews_page.form_comment_label")} <span className="text-red-500">*</span>
+        <label className="block text-sm font-bold text-gray-300 mb-1.5">
+          {t("reviews_page.form_comment_label")} <span className="text-red-400">*</span>
         </label>
         <textarea
           value={form.comment}
@@ -593,24 +600,24 @@ function ReviewSubmitForm({
           placeholder={t("reviews_page.form_comment_placeholder")}
           rows={5}
           maxLength={2000}
-          className="w-full px-3.5 py-3 text-sm border border-gray-300 rounded-xl bg-white
-            text-gray-900 placeholder:text-gray-400 resize-none
-            focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
+          className="w-full px-3.5 py-3 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+            text-white placeholder:text-gray-600 resize-none
+            focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50
             leading-relaxed"
         />
         <div className="flex items-center justify-between mt-1">
-          <p className="text-[10px] text-gray-400">
+          <p className="text-[10px] text-gray-600">
             Minimum 10 characters. No personal names or private details.
           </p>
-          <p className="text-xs text-gray-400">{form.comment.length}/2000</p>
+          <p className="text-xs text-gray-600">{form.comment.length}/2000</p>
         </div>
       </div>
 
       {/* ── Photo upload ─────────────────────────────────────────────────────── */}
       <div>
-        <p className="text-xs font-bold text-gray-700 mb-2">
+        <p className="text-xs font-bold text-gray-300 mb-2">
           Photos{" "}
-          <span className="font-normal text-gray-400">(optional, max {MAX_PHOTOS})</span>
+          <span className="font-normal text-gray-600">(optional, max {MAX_PHOTOS})</span>
         </p>
 
         {/* Preview grid — shown once photos are chosen */}
@@ -661,8 +668,8 @@ function ReviewSubmitForm({
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="w-full border-2 border-dashed border-gray-200 rounded-xl py-3.5
-              text-xs text-gray-400 hover:border-gray-300 hover:text-gray-600
+            className="w-full border-2 border-dashed border-white/[0.1] rounded-xl py-3.5
+              text-xs text-gray-500 hover:border-blue-400/40 hover:text-blue-400
               transition-colors flex items-center justify-center gap-2"
           >
             <span>📷</span>
@@ -680,7 +687,7 @@ function ReviewSubmitForm({
           onChange={handlePhotoSelect}
         />
 
-        <p className="text-[10px] text-gray-400 mt-1.5">
+        <p className="text-[10px] text-gray-600 mt-1.5">
           Photos help verify your experience. No faces or personal information.
         </p>
       </div>
@@ -689,9 +696,10 @@ function ReviewSubmitForm({
       <button
         type="submit"
         disabled={!isValid || loading}
-        className="w-full py-3.5 rounded-xl font-black text-sm transition-all shadow-sm
-          bg-gray-900 text-white hover:bg-gray-700 active:scale-[0.98]
+        className="w-full py-3.5 rounded-xl font-black text-sm transition-all
+          bg-emerald-500 hover:bg-emerald-400 text-white active:scale-[0.98]
           disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+        style={{ boxShadow: "0 4px 20px rgba(52,211,153,0.25)" }}
       >
         {loading ? t("reviews_page.form_submitting") : t("reviews_page.form_submit")}
       </button>
@@ -703,16 +711,16 @@ function ReviewSubmitForm({
       )}
 
       {/* ── Legal disclaimer ─────────────────────────────────────────────────── */}
-      <p className="text-[10px] text-gray-400 leading-relaxed border-t border-gray-100 pt-3">
+      <p className="text-[10px] text-gray-600 leading-relaxed border-t border-white/[0.07] pt-3">
         By submitting you confirm this review is based on your own personal experience and is
         truthful to the best of your knowledge. Deliberately false statements that damage an
         agency&apos;s reputation may constitute defamation under Dutch law. Do not include
         personal data of other individuals. See our{" "}
-        <a href="/terms" className="underline hover:text-gray-600">Terms of Use</a>{" "}
+        <a href="/terms" className="underline hover:text-gray-400 transition-colors">Terms of Use</a>{" "}
         for our content moderation policy.
       </p>
 
-      <p className="text-[10px] text-gray-400 text-center leading-relaxed">
+      <p className="text-[10px] text-gray-600 text-center leading-relaxed">
         {t("reviews_page.form_anon_note")}
       </p>
     </form>
@@ -847,16 +855,17 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
 
   return (
     <div>
-      {/* Compact filter bar — single row, no background box */}
-      <div className="flex flex-wrap items-center gap-2 mb-4 pb-3 border-b border-gray-100">
+      {/* Filter bar */}
+      <div className="flex flex-wrap items-center gap-2 mb-4 pb-3 border-b border-white/[0.07]">
         <select
           value={agencyFilter}
           onChange={(e) => { setAgencyFilter(e.target.value); setShowCount(12); }}
-          className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-gray-700 focus:outline-none focus:border-gray-400"
+          className="text-xs border border-white/[0.1] rounded-lg px-2.5 py-1.5 bg-white/[0.06] text-gray-300 focus:outline-none focus:border-white/30"
+          style={{ colorScheme: "dark" }}
         >
-          <option value="">{t("reviews_page.filter_agency_all")}</option>
+          <option value="" style={{ background: "#0f1623" }}>{t("reviews_page.filter_agency_all")}</option>
           {FILTER_AGENCIES.map((slug) => (
-            <option key={slug} value={slug}>
+            <option key={slug} value={slug} style={{ background: "#0f1623" }}>
               {agencyDisplayName(slug)}
             </option>
           ))}
@@ -866,7 +875,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
           value={cityFilter}
           onChange={(e) => { setCityFilter(e.target.value); setShowCount(12); }}
           placeholder={t("reviews_page.filter_city_placeholder")}
-          className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-gray-400 w-28"
+          className="text-xs border border-white/[0.1] rounded-lg px-2.5 py-1.5 bg-white/[0.06] text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-white/30 w-28"
         />
         {/* Housing pills */}
         <div className="flex items-center gap-1">
@@ -876,8 +885,8 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
               onClick={() => { setHousingFilter(v); setShowCount(12); }}
               className={`text-[10px] font-semibold rounded-full px-2.5 py-1 border transition-all ${
                 housingFilter === v
-                  ? "bg-gray-900 text-white border-gray-900"
-                  : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
+                  ? "bg-white/[0.15] text-white border-white/25"
+                  : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:border-white/20 hover:text-gray-300"
               }`}
             >
               {v === "" ? t("reviews_page.filter_housing_all") : v === "yes" ? t("reviews_page.filter_housing_with") : t("reviews_page.filter_housing_without")}
@@ -892,8 +901,8 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
               onClick={() => setSortKey(s)}
               className={`text-[10px] font-semibold rounded-full px-2.5 py-1 border transition-all capitalize ${
                 sortKey === s
-                  ? "bg-gray-900 text-white border-gray-900"
-                  : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
+                  ? "bg-white/[0.15] text-white border-white/25"
+                  : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:border-white/20 hover:text-gray-300"
               }`}
             >
               {s === "newest" ? t("reviews_page.filter_sort_newest") : s === "worst" ? t("reviews_page.filter_sort_worst") : t("reviews_page.filter_sort_best")}
@@ -903,11 +912,11 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
       </div>
 
       {/* Result count */}
-      <p className="text-xs text-gray-400 mb-4">
+      <p className="text-xs text-gray-600 mb-4">
         {t("reviews_page.showing_count", { shown: Math.min(showCount, totalCount), total: totalCount, plural: totalCount !== 1 ? "s" : "" })}
         {agencyFilter && ` for ${agencyDisplayName(agencyFilter)}`}
         {filteredDb.length > 0 && (
-          <span className="ml-2 text-emerald-600 font-semibold">
+          <span className="ml-2 text-emerald-400 font-semibold">
             · {filteredDb.length} real submission{filteredDb.length !== 1 ? "s" : ""} shown first
           </span>
         )}
@@ -917,8 +926,8 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
       {visible.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-2xl mb-2">🔍</p>
-          <p className="text-sm text-gray-500 font-semibold">{t("reviews_page.no_results")}</p>
-          <p className="text-xs text-gray-400 mt-1">{t("reviews_page.no_results_sub")}</p>
+          <p className="text-sm text-gray-400 font-semibold">{t("reviews_page.no_results")}</p>
+          <p className="text-xs text-gray-600 mt-1">{t("reviews_page.no_results_sub")}</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -928,12 +937,12 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
               <div className="flex items-center gap-2 mb-1.5">
                 <Link
                   href={`/agencies/${r.agencySlug}`}
-                  className="text-xs font-semibold text-brand-600 hover:underline"
+                  className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
                 >
                   🏢 {r.agencyName ?? agencyDisplayName(r.agencySlug)}
                 </Link>
                 {r.isReal && (
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5">
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-500/[0.1] border border-emerald-500/20 rounded-full px-2 py-0.5">
                     <svg className="w-2.5 h-2.5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
@@ -950,7 +959,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
             <div className="text-center pt-4">
               <button
                 onClick={() => setShowCount((n) => n + 12)}
-                className="text-sm font-semibold text-gray-700 border border-gray-300 rounded-full px-6 py-2 hover:bg-gray-50 transition-colors"
+                className="text-sm font-semibold text-gray-300 border border-white/[0.12] bg-white/[0.04] rounded-full px-6 py-2 hover:bg-white/[0.08] transition-colors"
               >
                 {t("reviews_page.load_more", { remaining: totalCount - showCount })}
               </button>
@@ -1010,29 +1019,29 @@ export default function ReviewsClientPage({
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="max-w-7xl mx-auto px-4 py-8">
 
       {/* Breadcrumb */}
-      <nav className="text-xs text-gray-400 mb-3 flex items-center gap-1.5 flex-wrap">
-        <Link href="/" className="hover:text-brand-600">{t("common.home")}</Link>
-        <span>›</span>
-        <span className="text-gray-800 font-medium">{t("nav.reviews")}</span>
+      <nav className="text-xs text-gray-600 mb-4 flex items-center gap-1.5 flex-wrap">
+        <Link href="/" className="hover:text-gray-300 transition-colors">{t("common.home")}</Link>
+        <span className="text-gray-700">›</span>
+        <span className="text-gray-400 font-medium">{t("nav.reviews")}</span>
       </nav>
 
-      {/* Compact header — badges + title + subheading in one tight block */}
-      <div className="mb-5">
-        <div className="flex items-center gap-2 mb-2 flex-wrap">
-          <span className="text-[10px] font-black uppercase tracking-widest bg-amber-100 text-amber-800 rounded-full px-2.5 py-1">
+      {/* Compact header */}
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
+          <span className="text-[10px] font-black uppercase tracking-widest bg-amber-500/[0.15] border border-amber-500/25 text-amber-400 rounded-full px-2.5 py-1">
             {t("reviews_page.badge_reviews", { count: totalReviews })}
           </span>
-          <span className="text-[10px] font-black uppercase tracking-widest bg-green-100 text-green-800 rounded-full px-2.5 py-1">
+          <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500/[0.12] border border-emerald-500/20 text-emerald-400 rounded-full px-2.5 py-1">
             {t("reviews_page.badge_verified", { count: verifiedCount })}
           </span>
-          <span className="text-[10px] font-black uppercase tracking-widest bg-gray-100 text-gray-600 rounded-full px-2.5 py-1">
+          <span className="text-[10px] font-black uppercase tracking-widest bg-white/[0.05] border border-white/[0.1] text-gray-400 rounded-full px-2.5 py-1">
             {t("reviews_page.badge_not_advertising")}
           </span>
         </div>
-        <h1 className="text-xl sm:text-2xl font-black text-gray-900 leading-tight mb-1">
+        <h1 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2">
           {t("reviews_page.heading")}
         </h1>
         <p className="text-gray-500 text-sm leading-relaxed max-w-2xl">
@@ -1040,29 +1049,32 @@ export default function ReviewsClientPage({
         </p>
       </div>
 
-      {/* Mobile-only "Write a review" jump button — sits above reviews feed */}
-      <div className="lg:hidden mb-4">
+      {/* Mobile "Write a review" jump */}
+      <div className="lg:hidden mb-5">
         <a
           href="#review-form"
-          className="inline-flex items-center gap-2 rounded-xl border-2 border-gray-900 bg-white text-gray-900 font-black text-sm px-5 py-2.5 hover:bg-gray-50 transition-colors"
+          className="inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.05] hover:bg-white/[0.09] text-gray-200 font-bold text-sm px-5 py-2.5 transition-colors"
         >
           ✏ Write a review ↓
         </a>
       </div>
 
-      {/* Two-column layout — flex so sticky sidebar works naturally */}
-      {/* On mobile: reviews first (order-first), form below (order-last) */}
       <div className="lg:flex lg:items-start lg:gap-8">
 
-        {/* LEFT — sticky form (desktop: fixed width, sticks while right scrolls) */}
-        {/* order-last on mobile → appears below reviews feed on small screens */}
+        {/* LEFT — sticky form */}
         <div id="review-form" className="order-last lg:order-first lg:w-[360px] lg:shrink-0 mt-8 lg:mt-0 lg:sticky lg:top-20">
-          <div className="bg-white border-2 border-gray-900 rounded-2xl p-5 lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto">
+          <div
+            className="rounded-2xl border border-white/[0.09] p-5 lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto"
+            style={{
+              background: "linear-gradient(160deg, rgba(15,22,35,0.98) 0%, rgba(10,15,25,0.99) 100%)",
+              boxShadow: "0 16px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)",
+            }}
+          >
             <div className="mb-5">
-              <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-1">
+              <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 mb-1">
                 {t("reviews_page.share_experience_label")}
               </p>
-              <h2 className="text-lg font-black text-gray-900 leading-tight">
+              <h2 className="text-lg font-black text-white leading-tight">
                 {t("reviews_page.form_title")}
               </h2>
               <p className="text-xs text-gray-500 mt-1 leading-relaxed">
@@ -1071,8 +1083,8 @@ export default function ReviewsClientPage({
             </div>
             <ReviewSubmitForm t={t} onSubmitSuccess={handleSubmitSuccess} />
 
-            {/* Trust signals — tucked inside form card, below submit */}
-            <div className="mt-6 pt-5 border-t border-gray-100 space-y-3">
+            {/* Trust signals */}
+            <div className="mt-6 pt-5 border-t border-white/[0.07] space-y-3">
               {[
                 { icon: "👤", title: t("reviews_page.trust_1_title"), desc: t("reviews_page.trust_1_desc") },
                 { icon: "📊", title: t("reviews_page.trust_2_title"), desc: t("reviews_page.trust_2_desc") },
@@ -1081,8 +1093,8 @@ export default function ReviewsClientPage({
                 <div key={item.title} className="flex items-start gap-2">
                   <span className="text-base shrink-0 mt-0.5">{item.icon}</span>
                   <div>
-                    <p className="text-xs font-bold text-gray-700">{item.title}</p>
-                    <p className="text-[10px] text-gray-400 leading-relaxed">{item.desc}</p>
+                    <p className="text-xs font-bold text-gray-300">{item.title}</p>
+                    <p className="text-[10px] text-gray-600 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -1090,14 +1102,13 @@ export default function ReviewsClientPage({
           </div>
         </div>
 
-        {/* RIGHT — reviews feed, immediately visible above the fold */}
-        {/* order-first on mobile → reviews appear before the form */}
+        {/* RIGHT — reviews feed */}
         <div className="order-first lg:order-last flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-base font-black text-gray-900">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-black text-white">
               {t("reviews_page.recent_title")}
             </h2>
-            <p className="text-xs text-gray-400">{t("reviews_page.total_count", { count: totalReviews })}</p>
+            <p className="text-xs text-gray-600">{t("reviews_page.total_count", { count: totalReviews })}</p>
           </div>
 
           {/* Optimistic preview — newly submitted review shown immediately at top */}
@@ -1106,11 +1117,11 @@ export default function ReviewsClientPage({
               <div className="flex items-center gap-2 mb-1.5">
                 <Link
                   href={`/agencies/${pendingReview.agencySlug}`}
-                  className="text-xs font-semibold text-brand-600 hover:underline"
+                  className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
                 >
                   🏢 {agencyDisplayName(pendingReview.agencySlug)}
                 </Link>
-                <span className="text-[10px] font-bold bg-green-100 text-green-800 rounded-full px-2 py-0.5">
+                <span className="text-[10px] font-bold bg-emerald-500/[0.12] text-emerald-400 border border-emerald-500/20 rounded-full px-2 py-0.5">
                   ✓ Just published
                 </span>
               </div>
@@ -1119,30 +1130,36 @@ export default function ReviewsClientPage({
           )}
 
           <ReviewsFeed t={t} locale={locale} refreshSignal={feedRefreshSignal} />
-          {/* Disclaimer banner after first batch of reviews, not before */}
           <WorkerDisclaimer variant="reviews" size="banner" className="mt-6" />
         </div>
       </div>
 
-      {/* Bottom CTA to browse agencies */}
-      <div className="mt-12 bg-gray-900 rounded-2xl px-6 py-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Bottom CTA */}
+      <div
+        className="mt-12 rounded-2xl px-6 py-6 border border-white/[0.09] flex flex-col sm:flex-row items-center justify-between gap-4"
+        style={{
+          background: "linear-gradient(135deg, rgba(15,22,35,0.95) 0%, rgba(10,15,25,0.97) 100%)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
+        }}
+      >
         <div>
-          <p className="font-black text-base mb-1">{t("reviews_page.cta_title")}</p>
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="font-black text-base text-white mb-1">{t("reviews_page.cta_title")}</p>
+          <p className="text-xs text-gray-500 leading-relaxed">
             {t("reviews_page.cta_sub")}
           </p>
         </div>
         <Link
           href="/agencies"
-          className="shrink-0 bg-white text-gray-900 font-black text-sm px-5 py-3 rounded-xl hover:bg-gray-100 transition-colors whitespace-nowrap"
+          className="shrink-0 bg-emerald-500 hover:bg-emerald-400 text-white font-black text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap"
+          style={{ boxShadow: "0 4px 20px rgba(52,211,153,0.25)" }}
         >
           {t("reviews_page.cta_button", { count: "151" })}
         </Link>
       </div>
 
       {/* Disclaimer */}
-      <div className="mt-6 border-t border-gray-100 pt-5">
-        <p className="text-[10px] text-gray-400 text-center leading-relaxed">
+      <div className="mt-6 border-t border-white/[0.06] pt-5">
+        <p className="text-[10px] text-gray-600 text-center leading-relaxed">
           {t("reviews_page.disclaimer")}
         </p>
       </div>
