@@ -20,6 +20,10 @@ build/
 
 # Prisma
 prisma/migrations/
+prisma/*.db
+prisma/*.db-journal
+*.db
+*.db-journal
 
 # Debug logs
 npm-debug.log*

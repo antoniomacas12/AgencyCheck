@@ -1,6 +1,6 @@
 -- AgencyCheck — Supabase setup SQL
 -- Generated from prisma/schema.prisma (v6 — payout tracking)
--- Run this in: https://supabase.com/dashboard/project/zmmpthyngkxqurkshniq/sql/new
+-- Run this in: https://supabase.com/dashboard/project/rgmwapidfanaujomoale/sql/new
 -- This is idempotent (CREATE TABLE IF NOT EXISTS) — safe to re-run.
 
 -- ─── agencies ────────────────────────────────────────────────────────────────

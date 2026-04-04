@@ -8,8 +8,11 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
+  // Transaction pooler (port 6543) — used by the app and Prisma Client at runtime
   url       = env("DATABASE_URL")
-  
+  // Direct connection (port 5432) — used only by `prisma db push` / `prisma migrate`
+  // Required because PgBouncer (pooler) does not support schema migration commands
+  directUrl = env("DIRECT_URL")
 }
 
 // ─── Models ───────────────────────────────────────────────────────────────────
