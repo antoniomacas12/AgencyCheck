@@ -22,7 +22,6 @@ import {
   faqPageSchema,
 } from "@/lib/schemaMarkup";
 
-const HomepageHeroCalculator = nDynamic(() => import("@/components/HomepageHeroCalculator"), { ssr: false });
 const HomepageCalculator     = nDynamic(() => import("@/components/HomepageCalculator"),     { ssr: false });
 const HomepageLeadForm       = nDynamic(() => import("@/components/HomepageLeadForm"),        { ssr: false });
 const HomepageStickyBar      = nDynamic(() => import("@/components/HomepageStickyBar"),       { ssr: false });
