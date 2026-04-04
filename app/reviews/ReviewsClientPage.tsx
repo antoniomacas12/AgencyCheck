@@ -51,7 +51,7 @@ function StarSelector({
   const [hover, setHover] = useState(0);
   return (
     <div>
-      <p className="text-xs font-medium text-gray-300 mb-1.5">{label}</p>
+      <p className="text-sm font-medium text-gray-200 mb-1.5">{label}</p>
       <div className="flex gap-1" onMouseLeave={() => setHover(0)}>
         {STAR_VALUES.map((s) => (
           <button
@@ -66,7 +66,7 @@ function StarSelector({
           </button>
         ))}
         {value > 0 && (
-          <span className="ml-1 text-xs text-gray-500 self-center">{value}/5</span>
+          <span className="ml-1 text-sm text-gray-300 self-center">{value}/5</span>
         )}
       </div>
     </div>
@@ -314,7 +314,7 @@ function ReviewSubmitForm({
           </svg>
         </div>
         <p className="text-base font-bold text-white mb-1">{t("reviews_page.form_success_title")}</p>
-        <p className="text-sm text-gray-300 leading-relaxed">
+        <p className="text-sm text-gray-200 leading-relaxed">
           {t("reviews_page.form_success_sub")}
         </p>
         <button
@@ -346,7 +346,7 @@ function ReviewSubmitForm({
 
       {/* ── Agency combobox ─────────────────────────────────────────────────── */}
       <div ref={comboboxRef} className="relative">
-        <label className="block text-sm font-bold text-gray-300 mb-1.5">
+        <label className="block text-sm font-bold text-gray-200 mb-1.5">
           {t("reviews_page.form_agency_label")} <span className="text-red-400">*</span>
         </label>
         <div className={`flex items-center rounded-xl border overflow-hidden transition-all ${
@@ -432,7 +432,7 @@ function ReviewSubmitForm({
       {/* ── City + Job type ──────────────────────────────────────────────────── */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-gray-200 mb-1">
             {t("reviews_page.form_city")}
           </label>
           <input
@@ -447,7 +447,7 @@ function ReviewSubmitForm({
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-gray-200 mb-1">
             {t("reviews_page.form_job_type")}
           </label>
           <select
@@ -485,7 +485,7 @@ function ReviewSubmitForm({
 
       {/* ── Housing ─────────────────────────────────────────────────────────── */}
       <div>
-        <p className="text-sm font-bold text-gray-300 mb-2">{t("reviews_page.form_housing_label")}</p>
+        <p className="text-sm font-bold text-gray-200 mb-2">{t("reviews_page.form_housing_label")}</p>
         <div className="flex gap-2 flex-wrap">
           {(["yes", "no", "unknown"] as const).map((v) => (
             <button
@@ -508,7 +508,7 @@ function ReviewSubmitForm({
       {form.housingIncluded === "yes" && (
         <div className="grid sm:grid-cols-2 gap-3 bg-blue-500/[0.06] border border-blue-400/[0.15] rounded-xl p-3">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-200 mb-1">
               {t("reviews_page.form_housing_cost")}
             </label>
             <input
@@ -525,7 +525,7 @@ function ReviewSubmitForm({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-200 mb-1">
               {t("reviews_page.form_people_per_room")}
             </label>
             <input
@@ -546,7 +546,7 @@ function ReviewSubmitForm({
 
       {/* ── Transport cost ───────────────────────────────────────────────────── */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-1">
+        <label className="block text-sm font-medium text-gray-200 mb-1">
           {t("reviews_page.form_transport_cost")}{" "}
           <span className="text-gray-500 font-normal">{t("reviews_page.form_transport_note")}</span>
         </label>
@@ -566,7 +566,7 @@ function ReviewSubmitForm({
 
       {/* ── Would recommend ──────────────────────────────────────────────────── */}
       <div>
-        <p className="text-sm font-bold text-gray-300 mb-2">{t("reviews_page.form_recommend_label")}</p>
+        <p className="text-sm font-bold text-gray-200 mb-2">{t("reviews_page.form_recommend_label")}</p>
         <div className="flex gap-2 flex-wrap">
           {(["yes", "no", "neutral"] as const).map((v) => (
             <button
@@ -591,7 +591,7 @@ function ReviewSubmitForm({
 
       {/* ── Comment ──────────────────────────────────────────────────────────── */}
       <div>
-        <label className="block text-sm font-bold text-gray-300 mb-1.5">
+        <label className="block text-sm font-bold text-gray-200 mb-1.5">
           {t("reviews_page.form_comment_label")} <span className="text-red-400">*</span>
         </label>
         <textarea
@@ -615,7 +615,7 @@ function ReviewSubmitForm({
 
       {/* ── Photo upload ─────────────────────────────────────────────────────── */}
       <div>
-        <p className="text-sm font-bold text-gray-300 mb-2">
+        <p className="text-sm font-bold text-gray-200 mb-2">
           Photos{" "}
           <span className="font-normal text-gray-500">(optional, max {MAX_PHOTOS})</span>
         </p>
@@ -916,7 +916,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
       </div>
 
       {/* Result count */}
-      <p className="text-sm text-gray-400 mb-4">
+      <p className="text-sm text-gray-300 mb-4">
         {t("reviews_page.showing_count", { shown: Math.min(showCount, totalCount), total: totalCount, plural: totalCount !== 1 ? "s" : "" })}
         {agencyFilter && ` for ${agencyDisplayName(agencyFilter)}`}
         {filteredDb.length > 0 && (
@@ -930,7 +930,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
       {visible.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-2xl mb-2">🔍</p>
-          <p className="text-sm text-gray-300 font-semibold">{t("reviews_page.no_results")}</p>
+          <p className="text-sm text-gray-200 font-semibold">{t("reviews_page.no_results")}</p>
           <p className="text-xs text-gray-500 mt-1">{t("reviews_page.no_results_sub")}</p>
         </div>
       ) : (
@@ -1026,7 +1026,7 @@ export default function ReviewsClientPage({
     <div className="max-w-7xl mx-auto px-4 py-8">
 
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">
+      <nav className="text-sm text-gray-300 mb-4 flex items-center gap-1.5 flex-wrap">
         <Link href="/" className="hover:text-gray-200 transition-colors">{t("common.home")}</Link>
         <span className="text-gray-600">›</span>
         <span className="text-gray-300 font-medium">{t("nav.reviews")}</span>
@@ -1081,7 +1081,7 @@ export default function ReviewsClientPage({
               <h2 className="text-xl font-black text-white leading-tight">
                 {t("reviews_page.form_title")}
               </h2>
-              <p className="text-sm text-gray-300 mt-1.5 leading-relaxed">
+              <p className="text-sm text-gray-200 mt-1.5 leading-relaxed">
                 {t("reviews_page.form_sub")}
               </p>
             </div>
@@ -1112,7 +1112,7 @@ export default function ReviewsClientPage({
             <h2 className="text-lg font-black text-white">
               {t("reviews_page.recent_title")}
             </h2>
-            <p className="text-sm text-gray-400">{t("reviews_page.total_count", { count: totalReviews })}</p>
+            <p className="text-sm text-gray-300">{t("reviews_page.total_count", { count: totalReviews })}</p>
           </div>
 
           {/* Optimistic preview — newly submitted review shown immediately at top */}
@@ -1148,7 +1148,7 @@ export default function ReviewsClientPage({
       >
         <div>
           <p className="font-black text-lg text-white mb-1">{t("reviews_page.cta_title")}</p>
-          <p className="text-sm text-gray-300 leading-relaxed">
+          <p className="text-sm text-gray-200 leading-relaxed">
             {t("reviews_page.cta_sub")}
           </p>
         </div>

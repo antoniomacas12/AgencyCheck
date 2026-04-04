@@ -69,7 +69,7 @@ export default async function ReviewsPage() {
 
         {/* Dot grid */}
         <div
-          className="pointer-events-none fixed inset-0"
+          className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px)",
             backgroundSize: "28px 28px",
@@ -78,16 +78,16 @@ export default async function ReviewsPage() {
         />
         {/* Radial vignette */}
         <div
-          className="pointer-events-none fixed inset-0"
+          className="pointer-events-none absolute inset-0"
           style={{
             background: "radial-gradient(ellipse 85% 55% at 50% 0%, transparent 30%, #080c14 88%)",
           }}
           aria-hidden="true"
         />
         {/* Ambient glows */}
-        <div className="pointer-events-none fixed -top-48 -left-24 w-[700px] h-[600px] rounded-full bg-indigo-600/[0.10] blur-[130px]" aria-hidden="true" />
-        <div className="pointer-events-none fixed top-1/3 -right-32 w-[500px] h-[500px] rounded-full bg-emerald-600/[0.06] blur-[110px]" aria-hidden="true" />
-        <div className="pointer-events-none fixed bottom-0 left-1/4 w-[400px] h-[300px] rounded-full bg-blue-600/[0.06] blur-[90px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute -top-48 -left-24 w-[700px] h-[600px] rounded-full bg-indigo-600/[0.10] blur-[130px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute top-1/3 -right-32 w-[500px] h-[500px] rounded-full bg-emerald-600/[0.06] blur-[110px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute bottom-0 left-1/4 w-[400px] h-[300px] rounded-full bg-blue-600/[0.06] blur-[90px]" aria-hidden="true" />
 
         {/* Content */}
         <div className="relative">
@@ -104,7 +104,7 @@ export default async function ReviewsPage() {
                 About these reviews — real experiences, real risks
               </h2>
 
-              <div className="space-y-4 text-sm text-gray-500 leading-relaxed">
+              <div className="space-y-4 text-sm text-gray-400 leading-relaxed">
 
                 <p>
                   AgencyCheck collects reviews from workers who have worked through employment agencies in the
