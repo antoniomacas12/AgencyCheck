@@ -98,58 +98,60 @@ export default async function ReviewsPage() {
           />
 
           {/* ── SEO content section ── */}
-          <div className="max-w-3xl mx-auto px-4 pb-16 mt-4">
-            <div className="border-t border-white/[0.06] pt-8">
-              <h2 className="text-base font-bold text-gray-200 mb-4">
-                About these reviews — real experiences, real risks
-              </h2>
+          <div className="bg-white">
+            <div className="max-w-3xl mx-auto px-4 py-12">
+              <div className="border-t border-gray-200 pt-8">
+                <h2 className="text-base font-bold text-gray-800 mb-4">
+                  About these reviews — real experiences, real risks
+                </h2>
 
-              <div className="space-y-4 text-sm text-gray-400 leading-relaxed">
+                <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
 
-                <p>
-                  AgencyCheck collects reviews from workers who have worked through employment agencies in the
-                  Netherlands. Reviews cover the four areas that matter most to foreign workers: salary accuracy,
-                  housing conditions, agency management, and contract clarity. Of the{" "}
-                  <strong className="text-gray-300">{seedTotal} reviews</strong> in our dataset,{" "}
-                  <strong className="text-gray-300">{verifiedCount} are verified</strong> —
-                  meaning the worker&apos;s employment was confirmed through contract documentation or payslip evidence.
-                  The remaining reviews are worker-reported and published after moderation.
-                </p>
+                  <p>
+                    AgencyCheck collects reviews from workers who have worked through employment agencies in the
+                    Netherlands. Reviews cover the four areas that matter most to foreign workers: salary accuracy,
+                    housing conditions, agency management, and contract clarity. Of the{" "}
+                    <strong className="text-gray-800">{seedTotal} reviews</strong> in our dataset,{" "}
+                    <strong className="text-gray-800">{verifiedCount} are verified</strong> —
+                    meaning the worker&apos;s employment was confirmed through contract documentation or payslip evidence.
+                    The remaining reviews are worker-reported and published after moderation.
+                  </p>
 
-                <p>
-                  <strong className="text-gray-300">What the data shows about real experiences:</strong>{" "}
-                  {positivePct}% of workers rated their overall agency experience 4–5 stars — a positive outcome.{" "}
-                  {negativePct}% rated it 1–2 stars, representing workers who encountered serious problems with
-                  salary, housing, or management. The average salary rating across all {totalAgencies} agencies
-                  is <strong className="text-gray-300">{salaryAvg}/5</strong>, which reflects that while most
-                  agencies pay correctly, a significant minority have recurring payslip problems. Specifically,{" "}
-                  <strong className="text-gray-300">{payslipErrors} workers</strong> reported payslip errors and{" "}
-                  <strong className="text-gray-300">{missingOvertime} workers</strong> reported overtime hours not
-                  appearing on their payslip at all.
-                </p>
+                  <p>
+                    <strong className="text-gray-800">What the data shows about real experiences:</strong>{" "}
+                    {positivePct}% of workers rated their overall agency experience 4–5 stars — a positive outcome.{" "}
+                    {negativePct}% rated it 1–2 stars, representing workers who encountered serious problems with
+                    salary, housing, or management. The average salary rating across all {totalAgencies} agencies
+                    is <strong className="text-gray-800">{salaryAvg}/5</strong>, which reflects that while most
+                    agencies pay correctly, a significant minority have recurring payslip problems. Specifically,{" "}
+                    <strong className="text-gray-800">{payslipErrors} workers</strong> reported payslip errors and{" "}
+                    <strong className="text-gray-800">{missingOvertime} workers</strong> reported overtime hours not
+                    appearing on their payslip at all.
+                  </p>
 
-                <p>
-                  <strong className="text-gray-300">Housing conditions — what workers report:</strong> Of the{" "}
-                  {housingCount} agencies on AgencyCheck that offer accommodation, housing quality varies
-                  significantly. The SNF certification scheme sets a legal maximum of €113.50/week for housing
-                  deductions, however{" "}
-                  <strong className="text-gray-300">{housingIssues} of {seedTotal} reviews</strong> reported
-                  housing that was overcrowded or in poor condition.
-                </p>
+                  <p>
+                    <strong className="text-gray-800">Housing conditions — what workers report:</strong> Of the{" "}
+                    {housingCount} agencies on AgencyCheck that offer accommodation, housing quality varies
+                    significantly. The SNF certification scheme sets a legal maximum of €113.50/week for housing
+                    deductions, however{" "}
+                    <strong className="text-gray-800">{housingIssues} of {seedTotal} reviews</strong> reported
+                    housing that was overcrowded or in poor condition.
+                  </p>
 
-                <p>
-                  <strong className="text-gray-300">How to use these reviews:</strong> Search by agency name
-                  using the filter above, or browse by issue tags to see which agencies have recurring problems.
-                  Reviews from verified workers carry more weight, but even unverified reviews reveal patterns
-                  when multiple workers report the same issue independently.
-                </p>
+                  <p>
+                    <strong className="text-gray-800">How to use these reviews:</strong> Search by agency name
+                    using the filter above, or browse by issue tags to see which agencies have recurring problems.
+                    Reviews from verified workers carry more weight, but even unverified reviews reveal patterns
+                    when multiple workers report the same issue independently.
+                  </p>
 
-                <div className="flex flex-wrap gap-3 pt-2 text-xs border-t border-white/[0.06]">
-                  <Link href="/guides/agency-jobs-netherlands-worker-experience" className="text-emerald-400 hover:text-emerald-300 transition-colors">→ Worker experience guide</Link>
-                  <Link href="/guides/dutch-payslip-explained-agency-workers"    className="text-emerald-400 hover:text-emerald-300 transition-colors">→ Payslip guide</Link>
-                  <Link href="/guides/netherlands-agency-housing-conditions-rights" className="text-emerald-400 hover:text-emerald-300 transition-colors">→ Housing rights guide</Link>
-                  <Link href="/guides/hidden-costs-netherlands"                  className="text-emerald-400 hover:text-emerald-300 transition-colors">→ Hidden costs explained</Link>
-                  <Link href="/tools/payslip-checker"                            className="text-emerald-400 hover:text-emerald-300 transition-colors">→ Check your payslip</Link>
+                  <div className="flex flex-wrap gap-3 pt-2 text-xs border-t border-gray-200">
+                    <Link href="/guides/agency-jobs-netherlands-worker-experience" className="text-emerald-600 hover:text-emerald-700 transition-colors">→ Worker experience guide</Link>
+                    <Link href="/guides/dutch-payslip-explained-agency-workers"    className="text-emerald-600 hover:text-emerald-700 transition-colors">→ Payslip guide</Link>
+                    <Link href="/guides/netherlands-agency-housing-conditions-rights" className="text-emerald-600 hover:text-emerald-700 transition-colors">→ Housing rights guide</Link>
+                    <Link href="/guides/hidden-costs-netherlands"                  className="text-emerald-600 hover:text-emerald-700 transition-colors">→ Hidden costs explained</Link>
+                    <Link href="/tools/payslip-checker"                            className="text-emerald-600 hover:text-emerald-700 transition-colors">→ Check your payslip</Link>
+                  </div>
                 </div>
               </div>
             </div>

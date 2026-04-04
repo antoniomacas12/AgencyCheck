@@ -324,7 +324,7 @@ function ReviewSubmitForm({
             setPhotoPreviews([]);
             setSubmitted(false);
           }}
-          className="mt-4 text-xs text-emerald-400 border border-emerald-500/20 rounded-full px-4 py-1.5 hover:bg-emerald-500/[0.1] transition-colors"
+          className="mt-4 text-sm text-emerald-400 border border-emerald-500/20 rounded-full px-4 py-1.5 hover:bg-emerald-500/[0.1] transition-colors"
         >
           {t("reviews_page.form_submit_another")}
         </button>
@@ -378,12 +378,12 @@ function ReviewSubmitForm({
 
         {/* Status line below input */}
         {form.agencySlug && (
-          <p className="text-xs text-emerald-400 mt-1 flex items-center gap-1">
+          <p className="text-sm text-emerald-400 mt-1 flex items-center gap-1">
             ✓ Found in database
           </p>
         )}
         {form.agencyIsNew && form.agencySearch.trim().length > 0 && (
-          <p className="text-xs text-amber-400 mt-1 flex items-center gap-1">
+          <p className="text-sm text-amber-400 mt-1 flex items-center gap-1">
             ✦ Will be added as a new agency — thank you!
           </p>
         )}
@@ -423,7 +423,7 @@ function ReviewSubmitForm({
             )}
 
             {suggestions.length === 0 && !suggestLoading && form.agencySearch.trim().length > 0 && (
-              <p className="px-4 py-2 text-xs text-gray-600">No matches found — you can add it as a new agency above.</p>
+              <p className="px-4 py-2 text-sm text-gray-500">No matches found — you can add it as a new agency above.</p>
             )}
           </div>
         )}
@@ -473,7 +473,7 @@ function ReviewSubmitForm({
           label={t("reviews_page.form_rating_label")}
         />
         {form.rating > 0 && (
-          <p className="text-xs text-gray-400 mt-1.5">
+          <p className="text-sm text-gray-400 mt-1.5">
             {form.rating === 1 && t("reviews_page.rating_1")}
             {form.rating === 2 && t("reviews_page.rating_2")}
             {form.rating === 3 && t("reviews_page.rating_3")}
@@ -492,7 +492,7 @@ function ReviewSubmitForm({
               key={v}
               type="button"
               onClick={() => set("housingIncluded", v)}
-              className={`text-xs font-semibold rounded-full px-3.5 py-1.5 border transition-all ${
+              className={`text-sm font-semibold rounded-full px-3.5 py-1.5 border transition-all ${
                 form.housingIncluded === v
                   ? "bg-white/[0.15] text-white border-white/25"
                   : "bg-white/[0.04] text-gray-500 border-white/[0.1] hover:border-white/20 hover:text-gray-300"
@@ -573,7 +573,7 @@ function ReviewSubmitForm({
               key={v}
               type="button"
               onClick={() => set("wouldRecommend", v)}
-              className={`text-xs font-semibold rounded-full px-3.5 py-1.5 border transition-all ${
+              className={`text-sm font-semibold rounded-full px-3.5 py-1.5 border transition-all ${
                 form.wouldRecommend === v
                   ? v === "yes"
                     ? "bg-emerald-500/[0.2] text-emerald-300 border-emerald-500/30"
@@ -606,10 +606,10 @@ function ReviewSubmitForm({
             leading-relaxed"
         />
         <div className="flex items-center justify-between mt-1.5">
-          <p className="text-xs text-gray-400">
+          <p className="text-sm text-gray-400">
             Minimum 10 characters. No personal names or private details.
           </p>
-          <p className="text-xs text-gray-400">{form.comment.length}/2000</p>
+          <p className="text-sm text-gray-400">{form.comment.length}/2000</p>
         </div>
       </div>
 
@@ -669,7 +669,7 @@ function ReviewSubmitForm({
             type="button"
             onClick={() => fileInputRef.current?.click()}
             className="w-full border-2 border-dashed border-white/[0.1] rounded-xl py-3.5
-              text-xs text-gray-500 hover:border-blue-400/40 hover:text-blue-400
+              text-sm text-gray-500 hover:border-blue-400/40 hover:text-blue-400
               transition-colors flex items-center justify-center gap-2"
           >
             <span>📷</span>
@@ -687,7 +687,7 @@ function ReviewSubmitForm({
           onChange={handlePhotoSelect}
         />
 
-        <p className="text-xs text-gray-500 mt-1.5">
+        <p className="text-sm text-gray-500 mt-1.5">
           Photos help verify your experience. No faces or personal information.
         </p>
       </div>
@@ -705,13 +705,13 @@ function ReviewSubmitForm({
       </button>
 
       {!isValid && (
-        <p className="text-xs text-gray-300 text-center">
+        <p className="text-sm text-gray-300 text-center">
           {t("reviews_page.form_invalid_note")}
         </p>
       )}
 
       {/* ── Legal disclaimer ─────────────────────────────────────────────────── */}
-      <p className="text-xs text-gray-500 leading-relaxed border-t border-white/[0.07] pt-3">
+      <p className="text-sm text-gray-500 leading-relaxed border-t border-white/[0.07] pt-3">
         By submitting you confirm this review is based on your own personal experience and is
         truthful to the best of your knowledge. Deliberately false statements that damage an
         agency&apos;s reputation may constitute defamation under Dutch law. Do not include
@@ -720,7 +720,7 @@ function ReviewSubmitForm({
         for our content moderation policy.
       </p>
 
-      <p className="text-xs text-gray-500 text-center leading-relaxed">
+      <p className="text-sm text-gray-500 text-center leading-relaxed">
         {t("reviews_page.form_anon_note")}
       </p>
     </form>
@@ -887,7 +887,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
               <button
                 key={v || "all"}
                 onClick={() => { setHousingFilter(v); setShowCount(12); }}
-                className={`text-xs font-semibold rounded-full px-3 py-1.5 border transition-all ${
+                className={`text-sm font-semibold rounded-full px-3 py-1.5 border transition-all ${
                   housingFilter === v
                     ? "bg-white/[0.15] text-white border-white/25"
                     : "bg-white/[0.04] text-gray-400 border-white/[0.08] hover:border-white/20 hover:text-gray-200"
@@ -902,7 +902,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
               <button
                 key={s}
                 onClick={() => setSortKey(s)}
-                className={`text-xs font-semibold rounded-full px-3 py-1.5 border transition-all capitalize ${
+                className={`text-sm font-semibold rounded-full px-3 py-1.5 border transition-all capitalize ${
                   sortKey === s
                     ? "bg-white/[0.15] text-white border-white/25"
                     : "bg-white/[0.04] text-gray-400 border-white/[0.08] hover:border-white/20 hover:text-gray-200"
@@ -931,7 +931,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
         <div className="text-center py-12">
           <p className="text-2xl mb-2">🔍</p>
           <p className="text-sm text-gray-200 font-semibold">{t("reviews_page.no_results")}</p>
-          <p className="text-xs text-gray-500 mt-1">{t("reviews_page.no_results_sub")}</p>
+          <p className="text-sm text-gray-500 mt-1">{t("reviews_page.no_results_sub")}</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -946,7 +946,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
                   🏢 {r.agencyName ?? agencyDisplayName(r.agencySlug)}
                 </Link>
                 {r.isReal && (
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-500/[0.1] border border-emerald-500/20 rounded-full px-2.5 py-0.5">
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-emerald-400 bg-emerald-500/[0.1] border border-emerald-500/20 rounded-full px-2.5 py-0.5">
                     <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
@@ -1035,13 +1035,13 @@ export default function ReviewsClientPage({
       {/* Compact header */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3 flex-wrap">
-          <span className="text-xs font-black uppercase tracking-widest bg-amber-500/[0.15] border border-amber-500/25 text-amber-400 rounded-full px-3 py-1">
+          <span className="text-sm font-black uppercase tracking-widest bg-amber-500/[0.15] border border-amber-500/25 text-amber-400 rounded-full px-3 py-1">
             {t("reviews_page.badge_reviews", { count: totalReviews })}
           </span>
-          <span className="text-xs font-black uppercase tracking-widest bg-emerald-500/[0.12] border border-emerald-500/20 text-emerald-400 rounded-full px-3 py-1">
+          <span className="text-sm font-black uppercase tracking-widest bg-emerald-500/[0.12] border border-emerald-500/20 text-emerald-400 rounded-full px-3 py-1">
             {t("reviews_page.badge_verified", { count: verifiedCount })}
           </span>
-          <span className="text-xs font-black uppercase tracking-widest bg-white/[0.05] border border-white/[0.1] text-gray-400 rounded-full px-3 py-1">
+          <span className="text-sm font-black uppercase tracking-widest bg-white/[0.05] border border-white/[0.1] text-gray-400 rounded-full px-3 py-1">
             {t("reviews_page.badge_not_advertising")}
           </span>
         </div>
@@ -1075,7 +1075,7 @@ export default function ReviewsClientPage({
             }}
           >
             <div className="mb-5">
-              <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">
+              <p className="text-sm font-black uppercase tracking-widest text-gray-400 mb-1">
                 {t("reviews_page.share_experience_label")}
               </p>
               <h2 className="text-xl font-black text-white leading-tight">
@@ -1098,7 +1098,7 @@ export default function ReviewsClientPage({
                   <span className="text-base shrink-0 mt-0.5">{item.icon}</span>
                   <div>
                     <p className="text-sm font-bold text-gray-200">{item.title}</p>
-                    <p className="text-xs text-gray-400 leading-relaxed mt-0.5">{item.desc}</p>
+                    <p className="text-sm text-gray-400 leading-relaxed mt-0.5">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -1163,7 +1163,7 @@ export default function ReviewsClientPage({
 
       {/* Disclaimer */}
       <div className="mt-6 border-t border-white/[0.06] pt-5">
-        <p className="text-xs text-gray-500 text-center leading-relaxed">
+        <p className="text-sm text-gray-500 text-center leading-relaxed">
           {t("reviews_page.disclaimer")}
         </p>
       </div>
