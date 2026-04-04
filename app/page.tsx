@@ -272,10 +272,10 @@ export default async function HomePage() {
 
         {/* ── Content ──────────────────────────────────────────────────── */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-10 xl:gap-20">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-10 xl:gap-20">
 
             {/* ── Left: copy ─────────────────────────────────────────── */}
-            <div className="flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+            <div className="flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-10">
 
               {/* Identity badge */}
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 mb-8">
@@ -362,6 +362,23 @@ export default async function HomePage() {
 
             {/* ── Right: money card ──────────────────────────────────── */}
             <div className="w-full lg:w-[390px] xl:w-[420px] shrink-0 mx-auto lg:mx-0 max-w-sm lg:max-w-none">
+
+              {/* Micro-info bar — desktop only, above the card */}
+              <div className="hidden lg:flex items-center gap-2 flex-wrap mb-4">
+                {[
+                  { color: "bg-emerald-400", label: "Verified agencies" },
+                  { color: "bg-blue-400",    label: "Jobs with housing" },
+                  { color: "bg-amber-400",   label: "Start in 1–7 days" },
+                ].map((p) => (
+                  <span
+                    key={p.label}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.07] px-2.5 py-1 text-[11px] font-medium text-gray-500"
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full ${p.color} opacity-60 shrink-0`} />
+                    {p.label}
+                  </span>
+                ))}
+              </div>
 
               {/* Glassmorphism card */}
               <div
