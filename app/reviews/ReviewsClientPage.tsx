@@ -314,7 +314,7 @@ function ReviewSubmitForm({
           </svg>
         </div>
         <p className="text-base font-bold text-white mb-1">{t("reviews_page.form_success_title")}</p>
-        <p className="text-sm text-gray-400 leading-relaxed">
+        <p className="text-sm text-gray-300 leading-relaxed">
           {t("reviews_page.form_success_sub")}
         </p>
         <button
@@ -378,12 +378,12 @@ function ReviewSubmitForm({
 
         {/* Status line below input */}
         {form.agencySlug && (
-          <p className="text-[10px] text-emerald-400 mt-1 flex items-center gap-1">
+          <p className="text-xs text-emerald-400 mt-1 flex items-center gap-1">
             ✓ Found in database
           </p>
         )}
         {form.agencyIsNew && form.agencySearch.trim().length > 0 && (
-          <p className="text-[10px] text-amber-400 mt-1 flex items-center gap-1">
+          <p className="text-xs text-amber-400 mt-1 flex items-center gap-1">
             ✦ Will be added as a new agency — thank you!
           </p>
         )}
@@ -473,7 +473,7 @@ function ReviewSubmitForm({
           label={t("reviews_page.form_rating_label")}
         />
         {form.rating > 0 && (
-          <p className="text-xs text-gray-500 mt-1.5">
+          <p className="text-xs text-gray-400 mt-1.5">
             {form.rating === 1 && t("reviews_page.rating_1")}
             {form.rating === 2 && t("reviews_page.rating_2")}
             {form.rating === 3 && t("reviews_page.rating_3")}
@@ -546,9 +546,9 @@ function ReviewSubmitForm({
 
       {/* ── Transport cost ───────────────────────────────────────────────────── */}
       <div>
-        <label className="block text-xs font-medium text-gray-300 mb-1">
+        <label className="block text-sm font-medium text-gray-300 mb-1">
           {t("reviews_page.form_transport_cost")}{" "}
-          <span className="text-gray-600 font-normal">{t("reviews_page.form_transport_note")}</span>
+          <span className="text-gray-500 font-normal">{t("reviews_page.form_transport_note")}</span>
         </label>
         <input
           type="number"
@@ -606,10 +606,10 @@ function ReviewSubmitForm({
             leading-relaxed"
         />
         <div className="flex items-center justify-between mt-1.5">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-400">
             Minimum 10 characters. No personal names or private details.
           </p>
-          <p className="text-xs text-gray-500">{form.comment.length}/2000</p>
+          <p className="text-xs text-gray-400">{form.comment.length}/2000</p>
         </div>
       </div>
 
@@ -617,7 +617,7 @@ function ReviewSubmitForm({
       <div>
         <p className="text-sm font-bold text-gray-300 mb-2">
           Photos{" "}
-          <span className="font-normal text-gray-600">(optional, max {MAX_PHOTOS})</span>
+          <span className="font-normal text-gray-500">(optional, max {MAX_PHOTOS})</span>
         </p>
 
         {/* Preview grid — shown once photos are chosen */}
@@ -687,7 +687,7 @@ function ReviewSubmitForm({
           onChange={handlePhotoSelect}
         />
 
-        <p className="text-[10px] text-gray-600 mt-1.5">
+        <p className="text-xs text-gray-500 mt-1.5">
           Photos help verify your experience. No faces or personal information.
         </p>
       </div>
@@ -705,22 +705,22 @@ function ReviewSubmitForm({
       </button>
 
       {!isValid && (
-        <p className="text-xs text-gray-400 text-center">
+        <p className="text-xs text-gray-300 text-center">
           {t("reviews_page.form_invalid_note")}
         </p>
       )}
 
       {/* ── Legal disclaimer ─────────────────────────────────────────────────── */}
-      <p className="text-[10px] text-gray-600 leading-relaxed border-t border-white/[0.07] pt-3">
+      <p className="text-xs text-gray-500 leading-relaxed border-t border-white/[0.07] pt-3">
         By submitting you confirm this review is based on your own personal experience and is
         truthful to the best of your knowledge. Deliberately false statements that damage an
         agency&apos;s reputation may constitute defamation under Dutch law. Do not include
         personal data of other individuals. See our{" "}
-        <a href="/terms" className="underline hover:text-gray-400 transition-colors">Terms of Use</a>{" "}
+        <a href="/terms" className="underline hover:text-gray-300 transition-colors">Terms of Use</a>{" "}
         for our content moderation policy.
       </p>
 
-      <p className="text-[10px] text-gray-600 text-center leading-relaxed">
+      <p className="text-xs text-gray-500 text-center leading-relaxed">
         {t("reviews_page.form_anon_note")}
       </p>
     </form>
@@ -890,7 +890,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
                 className={`text-xs font-semibold rounded-full px-3 py-1.5 border transition-all ${
                   housingFilter === v
                     ? "bg-white/[0.15] text-white border-white/25"
-                    : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:border-white/20 hover:text-gray-300"
+                    : "bg-white/[0.04] text-gray-400 border-white/[0.08] hover:border-white/20 hover:text-gray-200"
                 }`}
               >
                 {v === "" ? t("reviews_page.filter_housing_all") : v === "yes" ? t("reviews_page.filter_housing_with") : t("reviews_page.filter_housing_without")}
@@ -905,7 +905,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
                 className={`text-xs font-semibold rounded-full px-3 py-1.5 border transition-all capitalize ${
                   sortKey === s
                     ? "bg-white/[0.15] text-white border-white/25"
-                    : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:border-white/20 hover:text-gray-300"
+                    : "bg-white/[0.04] text-gray-400 border-white/[0.08] hover:border-white/20 hover:text-gray-200"
                 }`}
               >
                 {s === "newest" ? t("reviews_page.filter_sort_newest") : s === "worst" ? t("reviews_page.filter_sort_worst") : t("reviews_page.filter_sort_best")}
@@ -916,7 +916,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
       </div>
 
       {/* Result count */}
-      <p className="text-sm text-gray-500 mb-4">
+      <p className="text-sm text-gray-400 mb-4">
         {t("reviews_page.showing_count", { shown: Math.min(showCount, totalCount), total: totalCount, plural: totalCount !== 1 ? "s" : "" })}
         {agencyFilter && ` for ${agencyDisplayName(agencyFilter)}`}
         {filteredDb.length > 0 && (
@@ -930,8 +930,8 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
       {visible.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-2xl mb-2">🔍</p>
-          <p className="text-sm text-gray-400 font-semibold">{t("reviews_page.no_results")}</p>
-          <p className="text-xs text-gray-600 mt-1">{t("reviews_page.no_results_sub")}</p>
+          <p className="text-sm text-gray-300 font-semibold">{t("reviews_page.no_results")}</p>
+          <p className="text-xs text-gray-500 mt-1">{t("reviews_page.no_results_sub")}</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -1026,10 +1026,10 @@ export default function ReviewsClientPage({
     <div className="max-w-7xl mx-auto px-4 py-8">
 
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-600 mb-4 flex items-center gap-1.5 flex-wrap">
-        <Link href="/" className="hover:text-gray-300 transition-colors">{t("common.home")}</Link>
-        <span className="text-gray-700">›</span>
-        <span className="text-gray-400 font-medium">{t("nav.reviews")}</span>
+      <nav className="text-sm text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">
+        <Link href="/" className="hover:text-gray-200 transition-colors">{t("common.home")}</Link>
+        <span className="text-gray-600">›</span>
+        <span className="text-gray-300 font-medium">{t("nav.reviews")}</span>
       </nav>
 
       {/* Compact header */}
@@ -1048,7 +1048,7 @@ export default function ReviewsClientPage({
         <h1 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2">
           {t("reviews_page.heading")}
         </h1>
-        <p className="text-gray-400 text-base leading-relaxed max-w-2xl">
+        <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
           {t("reviews_page.subheading")}
         </p>
       </div>
@@ -1075,13 +1075,13 @@ export default function ReviewsClientPage({
             }}
           >
             <div className="mb-5">
-              <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">
+              <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">
                 {t("reviews_page.share_experience_label")}
               </p>
               <h2 className="text-xl font-black text-white leading-tight">
                 {t("reviews_page.form_title")}
               </h2>
-              <p className="text-sm text-gray-400 mt-1.5 leading-relaxed">
+              <p className="text-sm text-gray-300 mt-1.5 leading-relaxed">
                 {t("reviews_page.form_sub")}
               </p>
             </div>
@@ -1097,8 +1097,8 @@ export default function ReviewsClientPage({
                 <div key={item.title} className="flex items-start gap-2">
                   <span className="text-base shrink-0 mt-0.5">{item.icon}</span>
                   <div>
-                    <p className="text-sm font-bold text-gray-300">{item.title}</p>
-                    <p className="text-xs text-gray-500 leading-relaxed mt-0.5">{item.desc}</p>
+                    <p className="text-sm font-bold text-gray-200">{item.title}</p>
+                    <p className="text-xs text-gray-400 leading-relaxed mt-0.5">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -1112,7 +1112,7 @@ export default function ReviewsClientPage({
             <h2 className="text-lg font-black text-white">
               {t("reviews_page.recent_title")}
             </h2>
-            <p className="text-sm text-gray-500">{t("reviews_page.total_count", { count: totalReviews })}</p>
+            <p className="text-sm text-gray-400">{t("reviews_page.total_count", { count: totalReviews })}</p>
           </div>
 
           {/* Optimistic preview — newly submitted review shown immediately at top */}
@@ -1148,7 +1148,7 @@ export default function ReviewsClientPage({
       >
         <div>
           <p className="font-black text-lg text-white mb-1">{t("reviews_page.cta_title")}</p>
-          <p className="text-sm text-gray-400 leading-relaxed">
+          <p className="text-sm text-gray-300 leading-relaxed">
             {t("reviews_page.cta_sub")}
           </p>
         </div>
@@ -1163,7 +1163,7 @@ export default function ReviewsClientPage({
 
       {/* Disclaimer */}
       <div className="mt-6 border-t border-white/[0.06] pt-5">
-        <p className="text-xs text-gray-600 text-center leading-relaxed">
+        <p className="text-xs text-gray-500 text-center leading-relaxed">
           {t("reviews_page.disclaimer")}
         </p>
       </div>
