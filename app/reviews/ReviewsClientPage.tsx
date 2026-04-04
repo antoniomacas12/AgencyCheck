@@ -432,7 +432,7 @@ function ReviewSubmitForm({
       {/* ── City + Job type ──────────────────────────────────────────────────── */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-gray-300 mb-1">
             {t("reviews_page.form_city")}
           </label>
           <input
@@ -447,7 +447,7 @@ function ReviewSubmitForm({
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-300 mb-1">
+          <label className="block text-sm font-medium text-gray-300 mb-1">
             {t("reviews_page.form_job_type")}
           </label>
           <select
@@ -485,7 +485,7 @@ function ReviewSubmitForm({
 
       {/* ── Housing ─────────────────────────────────────────────────────────── */}
       <div>
-        <p className="text-xs font-bold text-gray-300 mb-2">{t("reviews_page.form_housing_label")}</p>
+        <p className="text-sm font-bold text-gray-300 mb-2">{t("reviews_page.form_housing_label")}</p>
         <div className="flex gap-2 flex-wrap">
           {(["yes", "no", "unknown"] as const).map((v) => (
             <button
@@ -508,7 +508,7 @@ function ReviewSubmitForm({
       {form.housingIncluded === "yes" && (
         <div className="grid sm:grid-cols-2 gap-3 bg-blue-500/[0.06] border border-blue-400/[0.15] rounded-xl p-3">
           <div>
-            <label className="block text-xs font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-300 mb-1">
               {t("reviews_page.form_housing_cost")}
             </label>
             <input
@@ -525,7 +525,7 @@ function ReviewSubmitForm({
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-300 mb-1">
               {t("reviews_page.form_people_per_room")}
             </label>
             <input
@@ -566,7 +566,7 @@ function ReviewSubmitForm({
 
       {/* ── Would recommend ──────────────────────────────────────────────────── */}
       <div>
-        <p className="text-xs font-bold text-gray-300 mb-2">{t("reviews_page.form_recommend_label")}</p>
+        <p className="text-sm font-bold text-gray-300 mb-2">{t("reviews_page.form_recommend_label")}</p>
         <div className="flex gap-2 flex-wrap">
           {(["yes", "no", "neutral"] as const).map((v) => (
             <button
@@ -601,21 +601,21 @@ function ReviewSubmitForm({
           rows={5}
           maxLength={2000}
           className="w-full px-3.5 py-3 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
-            text-white placeholder:text-gray-600 resize-none
+            text-white placeholder:text-gray-500 resize-none
             focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50
             leading-relaxed"
         />
-        <div className="flex items-center justify-between mt-1">
-          <p className="text-[10px] text-gray-600">
+        <div className="flex items-center justify-between mt-1.5">
+          <p className="text-xs text-gray-500">
             Minimum 10 characters. No personal names or private details.
           </p>
-          <p className="text-xs text-gray-600">{form.comment.length}/2000</p>
+          <p className="text-xs text-gray-500">{form.comment.length}/2000</p>
         </div>
       </div>
 
       {/* ── Photo upload ─────────────────────────────────────────────────────── */}
       <div>
-        <p className="text-xs font-bold text-gray-300 mb-2">
+        <p className="text-sm font-bold text-gray-300 mb-2">
           Photos{" "}
           <span className="font-normal text-gray-600">(optional, max {MAX_PHOTOS})</span>
         </p>
@@ -855,64 +855,68 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
 
   return (
     <div>
-      {/* Filter bar */}
-      <div className="flex flex-wrap items-center gap-2 mb-4 pb-3 border-b border-white/[0.07]">
-        <select
-          value={agencyFilter}
-          onChange={(e) => { setAgencyFilter(e.target.value); setShowCount(12); }}
-          className="text-xs border border-white/[0.1] rounded-lg px-2.5 py-1.5 bg-white/[0.06] text-gray-300 focus:outline-none focus:border-white/30"
-          style={{ colorScheme: "dark" }}
-        >
-          <option value="" style={{ background: "#0f1623" }}>{t("reviews_page.filter_agency_all")}</option>
-          {FILTER_AGENCIES.map((slug) => (
-            <option key={slug} value={slug} style={{ background: "#0f1623" }}>
-              {agencyDisplayName(slug)}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          value={cityFilter}
-          onChange={(e) => { setCityFilter(e.target.value); setShowCount(12); }}
-          placeholder={t("reviews_page.filter_city_placeholder")}
-          className="text-xs border border-white/[0.1] rounded-lg px-2.5 py-1.5 bg-white/[0.06] text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-white/30 w-28"
-        />
-        {/* Housing pills */}
-        <div className="flex items-center gap-1">
-          {(["", "yes", "no"] as const).map((v) => (
-            <button
-              key={v || "all"}
-              onClick={() => { setHousingFilter(v); setShowCount(12); }}
-              className={`text-[10px] font-semibold rounded-full px-2.5 py-1 border transition-all ${
-                housingFilter === v
-                  ? "bg-white/[0.15] text-white border-white/25"
-                  : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:border-white/20 hover:text-gray-300"
-              }`}
-            >
-              {v === "" ? t("reviews_page.filter_housing_all") : v === "yes" ? t("reviews_page.filter_housing_with") : t("reviews_page.filter_housing_without")}
-            </button>
-          ))}
+      {/* Filter bar — two rows on mobile, single row on desktop */}
+      <div className="flex flex-col gap-2 mb-5 pb-4 border-b border-white/[0.07]">
+        {/* Row 1: selects + city */}
+        <div className="flex flex-wrap items-center gap-2">
+          <select
+            value={agencyFilter}
+            onChange={(e) => { setAgencyFilter(e.target.value); setShowCount(12); }}
+            className="text-sm border border-white/[0.1] rounded-lg px-3 py-2 bg-white/[0.06] text-gray-300 focus:outline-none focus:border-white/30 max-w-[180px] flex-1 sm:flex-none"
+            style={{ colorScheme: "dark" }}
+          >
+            <option value="" style={{ background: "#0f1623" }}>{t("reviews_page.filter_agency_all")}</option>
+            {FILTER_AGENCIES.map((slug) => (
+              <option key={slug} value={slug} style={{ background: "#0f1623" }}>
+                {agencyDisplayName(slug)}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            value={cityFilter}
+            onChange={(e) => { setCityFilter(e.target.value); setShowCount(12); }}
+            placeholder={t("reviews_page.filter_city_placeholder")}
+            className="text-sm border border-white/[0.1] rounded-lg px-3 py-2 bg-white/[0.06] text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-white/30 w-32 flex-1 sm:flex-none"
+          />
         </div>
-        {/* Sort pills */}
-        <div className="flex items-center gap-1 ml-auto">
-          {(["newest", "worst", "best"] as const).map((s) => (
-            <button
-              key={s}
-              onClick={() => setSortKey(s)}
-              className={`text-[10px] font-semibold rounded-full px-2.5 py-1 border transition-all capitalize ${
-                sortKey === s
-                  ? "bg-white/[0.15] text-white border-white/25"
-                  : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:border-white/20 hover:text-gray-300"
-              }`}
-            >
-              {s === "newest" ? t("reviews_page.filter_sort_newest") : s === "worst" ? t("reviews_page.filter_sort_worst") : t("reviews_page.filter_sort_best")}
-            </button>
-          ))}
+        {/* Row 2: housing + sort pills */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-1.5">
+            {(["", "yes", "no"] as const).map((v) => (
+              <button
+                key={v || "all"}
+                onClick={() => { setHousingFilter(v); setShowCount(12); }}
+                className={`text-xs font-semibold rounded-full px-3 py-1.5 border transition-all ${
+                  housingFilter === v
+                    ? "bg-white/[0.15] text-white border-white/25"
+                    : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:border-white/20 hover:text-gray-300"
+                }`}
+              >
+                {v === "" ? t("reviews_page.filter_housing_all") : v === "yes" ? t("reviews_page.filter_housing_with") : t("reviews_page.filter_housing_without")}
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-1.5 ml-auto">
+            {(["newest", "worst", "best"] as const).map((s) => (
+              <button
+                key={s}
+                onClick={() => setSortKey(s)}
+                className={`text-xs font-semibold rounded-full px-3 py-1.5 border transition-all capitalize ${
+                  sortKey === s
+                    ? "bg-white/[0.15] text-white border-white/25"
+                    : "bg-white/[0.04] text-gray-500 border-white/[0.08] hover:border-white/20 hover:text-gray-300"
+                }`}
+              >
+                {s === "newest" ? t("reviews_page.filter_sort_newest") : s === "worst" ? t("reviews_page.filter_sort_worst") : t("reviews_page.filter_sort_best")}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Result count */}
-      <p className="text-xs text-gray-600 mb-4">
+      <p className="text-sm text-gray-500 mb-4">
         {t("reviews_page.showing_count", { shown: Math.min(showCount, totalCount), total: totalCount, plural: totalCount !== 1 ? "s" : "" })}
         {agencyFilter && ` for ${agencyDisplayName(agencyFilter)}`}
         {filteredDb.length > 0 && (
@@ -937,13 +941,13 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
               <div className="flex items-center gap-2 mb-1.5">
                 <Link
                   href={`/agencies/${r.agencySlug}`}
-                  className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                  className="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
                 >
                   🏢 {r.agencyName ?? agencyDisplayName(r.agencySlug)}
                 </Link>
                 {r.isReal && (
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-500/[0.1] border border-emerald-500/20 rounded-full px-2 py-0.5">
-                    <svg className="w-2.5 h-2.5" viewBox="0 0 20 20" fill="currentColor">
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-500/[0.1] border border-emerald-500/20 rounded-full px-2.5 py-0.5">
+                    <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                     Real submission
@@ -1022,7 +1026,7 @@ export default function ReviewsClientPage({
     <div className="max-w-7xl mx-auto px-4 py-8">
 
       {/* Breadcrumb */}
-      <nav className="text-xs text-gray-600 mb-4 flex items-center gap-1.5 flex-wrap">
+      <nav className="text-sm text-gray-600 mb-4 flex items-center gap-1.5 flex-wrap">
         <Link href="/" className="hover:text-gray-300 transition-colors">{t("common.home")}</Link>
         <span className="text-gray-700">›</span>
         <span className="text-gray-400 font-medium">{t("nav.reviews")}</span>
@@ -1031,20 +1035,20 @@ export default function ReviewsClientPage({
       {/* Compact header */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3 flex-wrap">
-          <span className="text-[10px] font-black uppercase tracking-widest bg-amber-500/[0.15] border border-amber-500/25 text-amber-400 rounded-full px-2.5 py-1">
+          <span className="text-xs font-black uppercase tracking-widest bg-amber-500/[0.15] border border-amber-500/25 text-amber-400 rounded-full px-3 py-1">
             {t("reviews_page.badge_reviews", { count: totalReviews })}
           </span>
-          <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500/[0.12] border border-emerald-500/20 text-emerald-400 rounded-full px-2.5 py-1">
+          <span className="text-xs font-black uppercase tracking-widest bg-emerald-500/[0.12] border border-emerald-500/20 text-emerald-400 rounded-full px-3 py-1">
             {t("reviews_page.badge_verified", { count: verifiedCount })}
           </span>
-          <span className="text-[10px] font-black uppercase tracking-widest bg-white/[0.05] border border-white/[0.1] text-gray-400 rounded-full px-2.5 py-1">
+          <span className="text-xs font-black uppercase tracking-widest bg-white/[0.05] border border-white/[0.1] text-gray-400 rounded-full px-3 py-1">
             {t("reviews_page.badge_not_advertising")}
           </span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2">
           {t("reviews_page.heading")}
         </h1>
-        <p className="text-gray-500 text-sm leading-relaxed max-w-2xl">
+        <p className="text-gray-400 text-base leading-relaxed max-w-2xl">
           {t("reviews_page.subheading")}
         </p>
       </div>
@@ -1071,13 +1075,13 @@ export default function ReviewsClientPage({
             }}
           >
             <div className="mb-5">
-              <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 mb-1">
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">
                 {t("reviews_page.share_experience_label")}
               </p>
-              <h2 className="text-lg font-black text-white leading-tight">
+              <h2 className="text-xl font-black text-white leading-tight">
                 {t("reviews_page.form_title")}
               </h2>
-              <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+              <p className="text-sm text-gray-400 mt-1.5 leading-relaxed">
                 {t("reviews_page.form_sub")}
               </p>
             </div>
@@ -1093,8 +1097,8 @@ export default function ReviewsClientPage({
                 <div key={item.title} className="flex items-start gap-2">
                   <span className="text-base shrink-0 mt-0.5">{item.icon}</span>
                   <div>
-                    <p className="text-xs font-bold text-gray-300">{item.title}</p>
-                    <p className="text-[10px] text-gray-600 leading-relaxed">{item.desc}</p>
+                    <p className="text-sm font-bold text-gray-300">{item.title}</p>
+                    <p className="text-xs text-gray-500 leading-relaxed mt-0.5">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -1105,10 +1109,10 @@ export default function ReviewsClientPage({
         {/* RIGHT — reviews feed */}
         <div className="order-first lg:order-last flex-1 min-w-0">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-base font-black text-white">
+            <h2 className="text-lg font-black text-white">
               {t("reviews_page.recent_title")}
             </h2>
-            <p className="text-xs text-gray-600">{t("reviews_page.total_count", { count: totalReviews })}</p>
+            <p className="text-sm text-gray-500">{t("reviews_page.total_count", { count: totalReviews })}</p>
           </div>
 
           {/* Optimistic preview — newly submitted review shown immediately at top */}
@@ -1117,11 +1121,11 @@ export default function ReviewsClientPage({
               <div className="flex items-center gap-2 mb-1.5">
                 <Link
                   href={`/agencies/${pendingReview.agencySlug}`}
-                  className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                  className="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
                 >
                   🏢 {agencyDisplayName(pendingReview.agencySlug)}
                 </Link>
-                <span className="text-[10px] font-bold bg-emerald-500/[0.12] text-emerald-400 border border-emerald-500/20 rounded-full px-2 py-0.5">
+                <span className="text-xs font-bold bg-emerald-500/[0.12] text-emerald-400 border border-emerald-500/20 rounded-full px-2.5 py-0.5">
                   ✓ Just published
                 </span>
               </div>
@@ -1143,8 +1147,8 @@ export default function ReviewsClientPage({
         }}
       >
         <div>
-          <p className="font-black text-base text-white mb-1">{t("reviews_page.cta_title")}</p>
-          <p className="text-xs text-gray-500 leading-relaxed">
+          <p className="font-black text-lg text-white mb-1">{t("reviews_page.cta_title")}</p>
+          <p className="text-sm text-gray-400 leading-relaxed">
             {t("reviews_page.cta_sub")}
           </p>
         </div>
@@ -1159,7 +1163,7 @@ export default function ReviewsClientPage({
 
       {/* Disclaimer */}
       <div className="mt-6 border-t border-white/[0.06] pt-5">
-        <p className="text-[10px] text-gray-600 text-center leading-relaxed">
+        <p className="text-xs text-gray-600 text-center leading-relaxed">
           {t("reviews_page.disclaimer")}
         </p>
       </div>
