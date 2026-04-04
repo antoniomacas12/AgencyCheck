@@ -21,10 +21,43 @@ export async function GET(_req: NextRequest, { params }: Params) {
   if (!ok) return unauthorizedJson();
 
   const review = await db.review.findUnique({
-    where:   { id: params.id },
-    include: {
+    where:  { id: params.id },
+    select: {
+      id:                    true,
+      status:                true,
+      isPublished:           true,
+      internalNotes:         true,
+      moderatedAt:           true,
+      moderatedBy:           true,
+      reviewType:            true,
+      workerStatus:          true,
+      experiencePeriod:      true,
+      jobType:               true,
+      jobTitle:              true,
+      city:                  true,
+      title:                 true,
+      overallRating:         true,
+      salaryRating:          true,
+      housingRating:         true,
+      managementRating:      true,
+      contractClarityRating: true,
+      transportRating:       true,
+      salaryAccuracyRating:  true,
+      accommodationProvided: true,
+      roomType:              true,
+      weeklyRent:            true,
+      peopleInHouse:         true,
+      wouldRecommend:        true,
+      comment:               true,
+      issueTags:             true,
+      verificationStatus:    true,
+      sourceType:            true,
+      createdAt:             true,
       agency: { select: { id: true, name: true, slug: true } },
-      photos: { orderBy: { sortOrder: "asc" } },
+      photos: {
+        select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
+        orderBy: { sortOrder: "asc" },
+      },
     },
   });
 
