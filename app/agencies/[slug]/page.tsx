@@ -1011,7 +1011,7 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
           <>
             <ReviewSummary reviews={seedReviews} t={t} />
             <div className="space-y-3">
-              {reviews.map((review) => <WorkerReviewCard key={review.id} review={review} locale={locale} />)}
+              {reviews.map((review) => <WorkerReviewCard key={review.id} review={review} locale={locale} agencyName={agency.name} />)}
             </div>
             {reviewCount > 5 && (
               <div className="text-center mt-3">

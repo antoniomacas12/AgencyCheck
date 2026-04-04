@@ -5,6 +5,7 @@
  */
 
 import { useT, type Locale } from "@/lib/i18n";
+import { ReviewComments } from "@/components/ReviewComments";
 
 // ─── Relative date helper (pure — no React hooks required) ───────────────────
 
@@ -76,9 +77,11 @@ function Stars({ value, max = 5, size = "sm" }: { value: number; max?: number; s
 export default function WorkerReviewCard({
   review,
   locale = "en",
+  agencyName,
 }: {
-  review: WorkerReview;
-  locale?: Locale;
+  review:      WorkerReview;
+  locale?:     Locale;
+  agencyName?: string;
 }) {
   const t = useT(locale);
 
@@ -259,6 +262,12 @@ export default function WorkerReviewCard({
           ✅ {t("review_card.verified_review")}
         </p>
       )}
+
+      {/* ── Comments section ── */}
+      <ReviewComments
+        reviewId={review.id}
+        agencyName={agencyName ?? ""}
+      />
     </div>
   );
 }
