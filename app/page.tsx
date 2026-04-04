@@ -246,13 +246,23 @@ export default async function HomePage() {
           ════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-[#080c14] text-white">
 
+        {/* ── Fade-in keyframes ──────────────────────────────────────── */}
+        <style>{`
+          @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0);    }
+          }
+          .hero-col-left  { animation: heroFadeUp 0.65s cubic-bezier(0.22,1,0.36,1) 0.05s both; }
+          .hero-col-right { animation: heroFadeUp 0.65s cubic-bezier(0.22,1,0.36,1) 0.18s both; }
+        `}</style>
+
         {/* ── Background layers ──────────────────────────────────────── */}
         {/* Dot grid */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px)",
-            backgroundSize: "30px 30px",
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
           }}
           aria-hidden="true"
         />
@@ -260,24 +270,24 @@ export default async function HomePage() {
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse 80% 50% at 50% 0%, transparent 30%, #080c14 90%)",
+            background: "radial-gradient(ellipse 85% 55% at 50% 0%, transparent 30%, #080c14 88%)",
           }}
           aria-hidden="true"
         />
         {/* Ambient glows */}
-        <div className="pointer-events-none absolute -top-48 -left-24 w-[700px] h-[600px] rounded-full bg-indigo-600/[0.12] blur-[130px]" aria-hidden="true" />
-        <div className="pointer-events-none absolute top-1/4 -right-32 w-[550px] h-[500px] rounded-full bg-emerald-600/[0.07] blur-[110px]" aria-hidden="true" />
-        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-blue-600/[0.07] blur-[90px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute -top-48 -left-24 w-[700px] h-[600px] rounded-full bg-indigo-600/[0.14] blur-[130px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute top-1/4 -right-32 w-[550px] h-[500px] rounded-full bg-emerald-600/[0.09] blur-[110px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-blue-600/[0.08] blur-[90px]" aria-hidden="true" />
 
         {/* ── Content ──────────────────────────────────────────────────── */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-10 xl:gap-20">
 
             {/* ── Left: copy ─────────────────────────────────────────── */}
-            <div className="flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-10">
+            <div className="hero-col-left flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-12">
 
               {/* Identity badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 mb-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-300">
                   🇳🇱 Netherlands · {totalAgencies} agencies verified
@@ -295,9 +305,9 @@ export default async function HomePage() {
               </h1>
 
               {/* Subtext */}
-              <p className="text-lg sm:text-xl text-gray-500 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
                 See real jobs, real salaries, housing and transport{" "}
-                <span className="text-gray-300 font-medium">before you apply.</span>
+                <span className="text-gray-200 font-medium">before you apply.</span>
               </p>
 
               {/* Trust pills */}
@@ -309,7 +319,7 @@ export default async function HomePage() {
                 ].map((label) => (
                   <span
                     key={label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[12px] font-medium text-gray-300"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.12] bg-white/[0.05] px-3.5 py-1.5 text-[12px] font-medium text-gray-300"
                   >
                     <svg className="w-3 h-3 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
@@ -324,18 +334,18 @@ export default async function HomePage() {
                 <a
                   href="/agencies-with-housing"
                   className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-black text-white"
-                  style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.3), 0 8px 32px rgba(52,211,153,0.2)" }}
+                  style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.35), 0 8px 36px rgba(52,211,153,0.25)" }}
                 >
-                  See jobs with housing
+                  Find job + housing
                   <svg className="w-4 h-4 transition-transform duration-150 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </a>
                 <a
                   href="#calculator"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-semibold text-gray-300"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.14] bg-white/[0.05] hover:bg-white/[0.10] active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-semibold text-gray-200"
                 >
-                  Calculate my salary
+                  Calculate salary
                 </a>
               </div>
 
@@ -360,7 +370,7 @@ export default async function HomePage() {
             </div>
 
             {/* ── Right: money card ──────────────────────────────────── */}
-            <div className="w-full lg:w-[390px] xl:w-[420px] shrink-0 mx-auto lg:mx-0 max-w-sm lg:max-w-none">
+            <div className="hero-col-right w-full lg:w-[390px] xl:w-[420px] shrink-0 mx-auto lg:mx-0 max-w-sm lg:max-w-none">
 
               {/* Micro-info bar — desktop only, above the card */}
               <div className="hidden lg:flex items-center gap-2 flex-wrap mb-4">
@@ -371,9 +381,9 @@ export default async function HomePage() {
                 ].map((p) => (
                   <span
                     key={p.label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.07] px-2.5 py-1 text-[11px] font-medium text-gray-500"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.12] bg-white/[0.04] px-3 py-1 text-[11px] font-medium text-gray-400"
                   >
-                    <span className={`w-1.5 h-1.5 rounded-full ${p.color} opacity-60 shrink-0`} />
+                    <span className={`w-1.5 h-1.5 rounded-full ${p.color} opacity-75 shrink-0`} />
                     {p.label}
                   </span>
                 ))}
@@ -381,8 +391,8 @@ export default async function HomePage() {
 
               {/* Glassmorphism card */}
               <div
-                className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-2xl overflow-hidden"
-                style={{ boxShadow: "0 8px 48px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)" }}
+                className="relative rounded-2xl border border-white/[0.12] bg-white/[0.05] backdrop-blur-2xl overflow-hidden"
+                style={{ boxShadow: "0 12px 56px rgba(0,0,0,0.65), 0 2px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.10)" }}
               >
                 {/* Inner glow top-right */}
                 <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-emerald-500/[0.12] blur-3xl" aria-hidden="true" />
@@ -398,19 +408,19 @@ export default async function HomePage() {
                   </div>
 
                   {/* Big salary range */}
-                  <div className="mb-0.5">
-                    <span className="text-[46px] xl:text-[52px] font-black leading-none text-white tabular-nums tracking-tight">
+                  <div className="mb-1">
+                    <span className="text-[50px] xl:text-[56px] font-black leading-none text-white tabular-nums tracking-tight">
                       €320–€450
                     </span>
                   </div>
-                  <p className="text-sm font-semibold text-gray-400 mb-0.5">per week take-home</p>
+                  <p className="text-sm font-semibold text-gray-300 mb-0.5">per week take-home</p>
                   <p className="text-[11px] text-gray-600 mb-5">after rent, insurance and transport</p>
 
                   {/* Divider */}
-                  <div className="border-t border-white/[0.06] mb-4" />
+                  <div className="border-t border-white/[0.07] mb-4" />
 
                   {/* Payslip breakdown rows */}
-                  <div className="space-y-2.5">
+                  <div className="space-y-3">
                     {[
                       { label: "Gross pay  (WML · 40h/week)",  value: "+€588", accent: false },
                       { label: "Tax & social contributions",    value: "−€63",  accent: true  },
@@ -419,15 +429,20 @@ export default async function HomePage() {
                     ].map((row) => (
                       <div key={row.label} className="flex items-center justify-between">
                         <span className="text-[12px] text-gray-500">{row.label}</span>
-                        <span className={`text-[12px] font-bold tabular-nums ${row.accent ? "text-red-400" : "text-gray-300"}`}>
+                        <span className={`text-[13px] font-bold tabular-nums ${row.accent ? "text-red-400" : "text-gray-300"}`}>
                           {row.value}
                         </span>
                       </div>
                     ))}
                     {/* Net row */}
-                    <div className="flex items-center justify-between pt-2.5 border-t border-white/[0.06]">
-                      <span className="text-sm font-bold text-gray-200">💶 You keep</span>
-                      <span className="text-base font-black tabular-nums text-emerald-400">€345</span>
+                    <div
+                      className="flex items-center justify-between pt-3 mt-1 border-t border-white/[0.07]"
+                    >
+                      <span className="text-sm font-bold text-gray-200">You keep</span>
+                      <span
+                        className="text-xl font-black tabular-nums text-emerald-400"
+                        style={{ textShadow: "0 0 20px rgba(52,211,153,0.4)" }}
+                      >€345</span>
                     </div>
                   </div>
 

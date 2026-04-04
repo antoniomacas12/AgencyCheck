@@ -30,33 +30,35 @@ function SubmitPageInner() {
   }
 
   return (
-    <div className="w-full max-w-[560px] mx-auto px-4">
+    <div className="w-full max-w-[520px] mx-auto px-4">
 
       {/* Breadcrumb */}
-      <nav className="text-xs text-gray-700 mb-8 flex items-center gap-1.5 flex-wrap justify-center">
-        <Link href="/" className="hover:text-gray-400 transition-colors">Home</Link>
-        <span className="text-gray-800">/</span>
-        <Link href="/agencies" className="hover:text-gray-400 transition-colors">Agencies</Link>
-        <span className="text-gray-800">/</span>
-        <Link href={`/agencies/${agencySlug}`} className="hover:text-gray-400 transition-colors">
+      <nav className="text-xs text-gray-600 mb-8 flex items-center gap-1.5 flex-wrap justify-center">
+        <Link href="/" className="hover:text-gray-300 transition-colors">Home</Link>
+        <span className="text-gray-700">/</span>
+        <Link href="/agencies" className="hover:text-gray-300 transition-colors">Agencies</Link>
+        <span className="text-gray-700">/</span>
+        <Link href={`/agencies/${agencySlug}`} className="hover:text-gray-300 transition-colors">
           {agencyName}
         </Link>
-        <span className="text-gray-800">/</span>
-        <span className="text-gray-600">Write a review</span>
+        <span className="text-gray-700">/</span>
+        <span className="text-gray-500">Write a review</span>
       </nav>
 
       {/* Page header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 mb-5">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+        <div
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-5"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
           <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-400">
-            Anonymous · Free · Takes 2 min
+            Takes 30 seconds · Anonymous · Free
           </span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">
+        <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-3">
           Share your experience
         </h1>
-        <p className="text-sm text-gray-500 leading-relaxed">
+        <p className="text-base text-gray-500 leading-relaxed max-w-xs mx-auto">
           Help others avoid bad agencies — and find the good ones.
         </p>
       </div>
@@ -65,7 +67,7 @@ function SubmitPageInner() {
       <ReviewSubmitForm agencySlug={agencySlug} agencyName={agencyName} />
 
       {/* Bottom trust note */}
-      <p className="text-center text-[11px] text-gray-700 mt-5">
+      <p className="text-center text-[11px] text-gray-600 mt-6 leading-relaxed">
         Your review is anonymous · Published immediately · No account needed
       </p>
 
