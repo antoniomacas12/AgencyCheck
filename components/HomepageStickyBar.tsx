@@ -12,8 +12,9 @@ import ApplyBar from "./ApplyBar";
 const DISMISSED_KEY = "ac_sticky_bar_dismissed";
 
 export default function HomepageStickyBar() {
-  const [visible,   setVisible]   = useState(false);
-  const [dismissed, setDismissed] = useState(false);
+  const [visible,       setVisible]       = useState(false);
+  const [dismissed,     setDismissed]     = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
     try {
@@ -23,10 +24,23 @@ export default function HomepageStickyBar() {
       }
     } catch { /* ignore */ }
 
-    const onScroll = () => {
-      setVisible(window.scrollY > 400);
-    };
+    const onScroll = () => setVisible(window.scrollY > 400);
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Hide bar when footer scrolls into view so it never covers footer content
+    const footer = document.querySelector("footer");
+    if (footer) {
+      const observer = new IntersectionObserver(
+        ([entry]) => setFooterVisible(entry.isIntersecting),
+        { threshold: 0.05 }
+      );
+      observer.observe(footer);
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        observer.disconnect();
+      };
+    }
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -35,7 +49,7 @@ export default function HomepageStickyBar() {
     setDismissed(true);
   }
 
-  if (dismissed || !visible) return null;
+  if (dismissed || !visible || footerVisible) return null;
 
   return (
     <div
