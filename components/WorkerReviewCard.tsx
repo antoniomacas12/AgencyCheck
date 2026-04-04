@@ -78,10 +78,12 @@ export default function WorkerReviewCard({
   review,
   locale = "en",
   agencyName,
+  initialComments,
 }: {
-  review:      WorkerReview;
-  locale?:     Locale;
-  agencyName?: string;
+  review:           WorkerReview;
+  locale?:          Locale;
+  agencyName?:      string;
+  initialComments?: import("@/components/ReviewComments").ReviewCommentData[];
 }) {
   const t = useT(locale);
 
@@ -267,6 +269,7 @@ export default function WorkerReviewCard({
       <ReviewComments
         reviewId={review.id}
         agencyName={agencyName ?? ""}
+        initialComments={initialComments}
       />
     </div>
   );

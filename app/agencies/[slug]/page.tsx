@@ -334,6 +334,11 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
     issueTags:             [],
     createdAt:             r.createdAt instanceof Date ? r.createdAt.toISOString() : String(r.createdAt),
     photos:                r.photos,
+    // Pre-load comments server-side so they are in the HTML for SEO
+    initialComments:       (r.comments ?? []).map((c) => ({
+      ...c,
+      createdAt: c.createdAt instanceof Date ? c.createdAt.toISOString() : String(c.createdAt),
+    })),
   }));
 
   return (

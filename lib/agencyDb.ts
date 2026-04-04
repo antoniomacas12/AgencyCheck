@@ -38,12 +38,20 @@ export interface DbReview {
   jobType:               string | null;
   issueTags:             string;
   createdAt:             Date;
+  lastActivityAt?:       Date;
   photos: {
     id:        string;
     fileUrl:   string;
     fileType:  string;
     caption:   string | null;
     sortOrder: number;
+  }[];
+  comments: {
+    id:         string;
+    agencyName: string;
+    city:       string;
+    body:       string;
+    createdAt:  Date;
   }[];
 }
 
@@ -127,6 +135,10 @@ export async function getDbAgency(slug: string): Promise<DbAgencyFull | null> {
             photos: {
               select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
               orderBy: { sortOrder: "asc" },
+            },
+            comments: {
+              select:  { id: true, agencyName: true, city: true, body: true, createdAt: true },
+              orderBy: { createdAt: "desc" },
             },
           },
         },

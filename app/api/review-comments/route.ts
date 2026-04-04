@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { normalizeCity } from "@/lib/cityNormalization";
 
@@ -98,7 +99,7 @@ export async function POST(req: NextRequest) {
   try {
     const review = await db.review.findUnique({
       where:  { id: reviewId as string },
-      select: { id: true, agencyId: true, city: true },
+      select: { id: true, agencyId: true, city: true, agency: { select: { slug: true } } },
     });
 
     if (!review) {
@@ -164,6 +165,13 @@ export async function POST(req: NextRequest) {
         }),
       },
     });
+
+    // ── Revalidate agency page so new comment is in the HTML for SEO ──────────
+    if (review.agency?.slug) {
+      revalidatePath(`/agencies/${review.agency.slug}`);
+      revalidatePath(`/pl/agencje/${review.agency.slug}`);
+      revalidatePath(`/ro/agentii/${review.agency.slug}`);
+    }
 
     return NextResponse.json({ comment }, { status: 201 });
   } catch {

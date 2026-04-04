@@ -27,7 +27,7 @@ export async function POST(req: NextRequest, { params }: Params) {
 
   const existing = await db.review.findUnique({
     where:  { id: params.id },
-    select: { id: true, status: true },
+    select: { id: true, status: true, agency: { select: { slug: true } } },
   });
   if (!existing) return NextResponse.json({ error: "Review not found" }, { status: 404 });
 
@@ -50,9 +50,14 @@ export async function POST(req: NextRequest, { params }: Params) {
     },
   });
 
-  // Invalidate Next.js cache so public pages show updated counts immediately
+  // Revalidate all relevant pages so new review is immediately in the HTML
   revalidatePath("/reviews");
   revalidatePath("/");
+  if (existing.agency?.slug) {
+    revalidatePath(`/agencies/${existing.agency.slug}`);
+    revalidatePath(`/pl/agencje/${existing.agency.slug}`);
+    revalidatePath(`/ro/agentii/${existing.agency.slug}`);
+  }
 
   return NextResponse.json({ review: { id: params.id, status: newStatus, isPublished: shouldPublish } });
 }
