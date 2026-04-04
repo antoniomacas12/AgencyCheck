@@ -243,87 +243,103 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqs)    }} />
 
       {/* ════════════════════════════════════════════════════════════
-          §1  HERO — simplified, with embedded live calculator
+          §1  HERO — net salary first, mobile-first, zero thinking
           ════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-gray-950 text-white">
         {/* Grid overlay */}
         <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }}
           aria-hidden="true" />
-        {/* Blue glow */}
+        {/* Glow */}
         <div className="pointer-events-none absolute -top-32 left-1/4 w-[600px] h-[400px] rounded-full bg-blue-700/10 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute top-1/2 right-0 w-[400px] h-[400px] rounded-full bg-red-700/5 blur-3xl" aria-hidden="true" />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-14 sm:pt-20 sm:pb-20">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        {/* ── Main copy block — centered ───────────────────────────── */}
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 pt-12 pb-10 sm:pt-16 sm:pb-12 text-center">
 
-            {/* ── Left: copy + CTAs ──────────────────────────────────── */}
-            <div>
-              {/* Identity + independence badge */}
-              <div className="flex flex-wrap items-center gap-2 mb-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                  🇳🇱 Netherlands · Zero paid rankings
-                </div>
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase text-blue-300">
-                  🏗 Built for agency workers in the Netherlands
-                </div>
-              </div>
-
-              {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.06] tracking-tight mb-4">
-                You think you earn{" "}
-                <span className="text-emerald-400">€588/week.</span>
-                <br />
-                You actually keep{" "}
-                <span className="text-red-400">€345.</span>
-              </h1>
-
-              {/* Data authority sub-line — specific, sourced, verifiable */}
-              <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6">
-                {[
-                  { value: `${totalReviews} worker reports`, note: "38 verified · 73 anonymous" },
-                  { value: "42% rate 1–2 stars", note: "published unfiltered" },
-                  { value: "€63/wk real tax", note: "source: belastingdienst.nl 2026" },
-                  { value: `${totalAgencies} agencies profiled`, note: "from public registers" },
-                ].map((s) => (
-                  <div key={s.value} className="flex items-baseline gap-1.5">
-                    <span className="text-[11px] font-black text-white">{s.value}</span>
-                    <span className="text-[10px] text-gray-500">{s.note}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Subheadline */}
-              <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-                Housing, insurance, transport and admin fees are deducted before you touch your pay.
-                See your <strong className="text-white">real take-home</strong>, compare agencies,
-                and get matched with verified offers —{" "}
-                <strong className="text-emerald-400">free, no obligation</strong>.
-              </p>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-8">
-                <a href="#lead-form"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/50">
-                  Get matched — free →
-                </a>
-                <a href="#calculator"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
-                  🧮 Calculate my salary
-                </a>
-              </div>
-
-              {/* Search */}
-              <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Search agencies, cities or job types…" />
+          {/* Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-7">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              🇳🇱 Netherlands · Zero paid rankings
             </div>
-
-            {/* ── Right: live mini calculator ───────────────────────── */}
-            <div className="lg:flex lg:justify-end">
-              <HomepageHeroCalculator />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase text-blue-300">
+              🏗 Built for agency workers
             </div>
-
           </div>
+
+          {/* Context micro-label */}
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-gray-500 mb-3">
+            WML worker · €14.71/hr · 40h/week · agency housing + transport
+          </p>
+
+          {/* THE NUMBER */}
+          <h1 className="text-[88px] sm:text-[120px] font-black leading-none tabular-nums text-red-400 mb-2 drop-shadow-[0_0_60px_rgba(248,113,113,0.25)]">
+            €345
+          </h1>
+          <p className="text-xl sm:text-2xl font-bold text-gray-200 mb-7">
+            is what you actually keep — per week
+          </p>
+
+          {/* Breakdown strip */}
+          <div className="flex items-center justify-center flex-wrap gap-x-2 gap-y-2 text-sm mb-8">
+            <span className="font-black text-white">€588</span>
+            <span className="text-[10px] text-gray-600 uppercase tracking-wide">gross</span>
+            <span className="text-gray-700 mx-1">→</span>
+            <span className="font-bold text-red-400">−€63</span>
+            <span className="text-[10px] text-gray-600">tax</span>
+            <span className="text-gray-700 mx-1">→</span>
+            <span className="font-bold text-red-400">−€95</span>
+            <span className="text-[10px] text-gray-600">housing</span>
+            <span className="text-gray-700 mx-1">→</span>
+            <span className="font-bold text-red-400">−€35</span>
+            <span className="text-[10px] text-gray-600">insurance</span>
+            <span className="text-gray-700 mx-1">→</span>
+            <span className="font-bold text-red-400">−€50</span>
+            <span className="text-[10px] text-gray-600">transport+admin</span>
+            <span className="text-gray-700 mx-1">=</span>
+            <span className="font-black text-red-400 text-base">€345</span>
+          </div>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+            <a href="#lead-form"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/50">
+              See jobs with this salary →
+            </a>
+            <a href="#calculator"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
+              🧮 Calculate my exact salary
+            </a>
+          </div>
+
+          {/* Search */}
+          <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Search agencies, cities or job types…" />
+
+          {/* Data authority strip */}
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 mt-6">
+            {[
+              { value: `${totalReviews} worker reports`, note: "42% rate 1–2 stars" },
+              { value: `${totalAgencies} agencies profiled`, note: "from public registers" },
+              { value: "€0 paid to rank higher", note: "no paid rankings ever" },
+            ].map((s) => (
+              <div key={s.value} className="flex items-baseline gap-1.5">
+                <span className="text-[11px] font-black text-white">{s.value}</span>
+                <span className="text-[10px] text-gray-500">{s.note}</span>
+              </div>
+            ))}
+          </div>
+
         </div>
+
+        {/* ── Calculator — secondary, pre-filled, result visible on load ── */}
+        <div className="relative max-w-sm mx-auto px-4 pb-12">
+          <p className="text-center text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">
+            Your offer is different? Adjust below:
+          </p>
+          <HomepageHeroCalculator />
+        </div>
+
       </section>
 
       {/* ════════════════════════════════════════════════════════════
@@ -401,16 +417,17 @@ export default async function HomePage() {
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">
-              The hidden cost of working through agencies
+              The money they don&apos;t tell you about
             </p>
             <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
-              Most workers lose{" "}
-              <span className="text-red-500">€300–€500 every month</span>{" "}
-              in hidden deductions
+              Right now, you are losing{" "}
+              <span className="text-red-500">€300–€500 every month</span>
+              <br className="hidden sm:block" />
+              {" "}— and you don&apos;t know it
             </h2>
             <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              These deductions are often not mentioned before you sign — and many are
-              partially or completely illegal. Most workers never know they&apos;re happening.
+              These deductions are not mentioned before you sign. Many are illegal.
+              And almost no one ever finds out.
             </p>
           </div>
 
@@ -466,7 +483,7 @@ export default async function HomePage() {
               </p>
               <a href="#lead-form"
                 className="shrink-0 ml-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-5 py-2.5 text-xs font-black text-white active:scale-[0.98]">
-                Find better offers
+                See jobs with better pay →
               </a>
             </div>
           </div>
@@ -718,15 +735,17 @@ export default async function HomePage() {
       <section className="bg-gray-950 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
           <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
-            You now know the real numbers
+            Now you know what €345/week looks like
           </p>
           <h2 className="text-2xl sm:text-4xl font-black leading-tight mb-4">
-            Want <span className="text-emerald-400">better conditions</span> and
-            more money left each week?
+            Some agencies let you keep{" "}
+            <span className="text-emerald-400">€80–€120 more</span>
+            <br className="hidden sm:block" />
+            {" "}every single week
           </h2>
           <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto">
-            Not all agencies are equal. Some have lower housing fees, faster payslips and
-            transparent contracts. We verify which ones — and match you for free.
+            Lower housing fees. Transparent contracts. No hidden deductions.
+            We verify which agencies actually deliver this — and match you for free.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="#lead-form"
