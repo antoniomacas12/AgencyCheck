@@ -243,103 +243,189 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqs)    }} />
 
       {/* ════════════════════════════════════════════════════════════
-          §1  HERO — net salary first, mobile-first, zero thinking
+          §1  HERO — premium, trust-first, conversion-focused
           ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-gray-950 text-white">
-        {/* Grid overlay */}
-        <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }}
-          aria-hidden="true" />
-        {/* Glow */}
-        <div className="pointer-events-none absolute -top-32 left-1/4 w-[600px] h-[400px] rounded-full bg-blue-700/10 blur-3xl" aria-hidden="true" />
-        <div className="pointer-events-none absolute top-1/2 right-0 w-[400px] h-[400px] rounded-full bg-red-700/5 blur-3xl" aria-hidden="true" />
+      <section className="relative overflow-hidden bg-[#080c14] text-white">
 
-        {/* ── Main copy block — centered ───────────────────────────── */}
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 pt-12 pb-10 sm:pt-16 sm:pb-12 text-center">
+        {/* ── Background layers ──────────────────────────────────────── */}
+        {/* Dot grid */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+          aria-hidden="true"
+        />
+        {/* Radial mask — fades dot grid at edges + bottom */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse 80% 50% at 50% 0%, transparent 30%, #080c14 90%)",
+          }}
+          aria-hidden="true"
+        />
+        {/* Ambient glows */}
+        <div className="pointer-events-none absolute -top-48 -left-24 w-[700px] h-[600px] rounded-full bg-indigo-600/[0.12] blur-[130px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute top-1/4 -right-32 w-[550px] h-[500px] rounded-full bg-emerald-600/[0.07] blur-[110px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-blue-600/[0.07] blur-[90px]" aria-hidden="true" />
 
-          {/* Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-7">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              🇳🇱 Netherlands · Zero paid rankings
-            </div>
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase text-blue-300">
-              🏗 Built for agency workers
-            </div>
-          </div>
+        {/* ── Content ──────────────────────────────────────────────────── */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-10 xl:gap-20">
 
-          {/* Context micro-label */}
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-gray-500 mb-3">
-            WML worker · €14.71/hr · 40h/week · agency housing + transport
-          </p>
+            {/* ── Left: copy ─────────────────────────────────────────── */}
+            <div className="flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
 
-          {/* THE NUMBER */}
-          <h1 className="text-[88px] sm:text-[120px] font-black leading-none tabular-nums text-red-400 mb-2 drop-shadow-[0_0_60px_rgba(248,113,113,0.25)]">
-            €345
-          </h1>
-          <p className="text-xl sm:text-2xl font-bold text-gray-200 mb-7">
-            is what you actually keep — per week
-          </p>
-
-          {/* Breakdown strip */}
-          <div className="flex items-center justify-center flex-wrap gap-x-2 gap-y-2 text-sm mb-8">
-            <span className="font-black text-white">€588</span>
-            <span className="text-[10px] text-gray-600 uppercase tracking-wide">gross</span>
-            <span className="text-gray-700 mx-1">→</span>
-            <span className="font-bold text-red-400">−€63</span>
-            <span className="text-[10px] text-gray-600">tax</span>
-            <span className="text-gray-700 mx-1">→</span>
-            <span className="font-bold text-red-400">−€95</span>
-            <span className="text-[10px] text-gray-600">housing</span>
-            <span className="text-gray-700 mx-1">→</span>
-            <span className="font-bold text-red-400">−€35</span>
-            <span className="text-[10px] text-gray-600">insurance</span>
-            <span className="text-gray-700 mx-1">→</span>
-            <span className="font-bold text-red-400">−€50</span>
-            <span className="text-[10px] text-gray-600">transport+admin</span>
-            <span className="text-gray-700 mx-1">=</span>
-            <span className="font-black text-red-400 text-base">€345</span>
-          </div>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
-            <a href="#lead-form"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/50">
-              See jobs with this salary →
-            </a>
-            <a href="#calculator"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
-              🧮 Calculate my exact salary
-            </a>
-          </div>
-
-          {/* Search */}
-          <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Search agencies, cities or job types…" />
-
-          {/* Data authority strip */}
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 mt-6">
-            {[
-              { value: `${totalReviews} worker reports`, note: "42% rate 1–2 stars" },
-              { value: `${totalAgencies} agencies profiled`, note: "from public registers" },
-              { value: "€0 paid to rank higher", note: "no paid rankings ever" },
-            ].map((s) => (
-              <div key={s.value} className="flex items-baseline gap-1.5">
-                <span className="text-[11px] font-black text-white">{s.value}</span>
-                <span className="text-[10px] text-gray-500">{s.note}</span>
+              {/* Identity badge */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 mb-8">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-300">
+                  🇳🇱 Netherlands · {totalAgencies} agencies verified
+                </span>
               </div>
-            ))}
+
+              {/* Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-[1.04] tracking-tight text-white mb-5">
+                Work in the{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                  Netherlands
+                </span>
+                <br />
+                <span className="text-gray-200">— without surprises</span>
+              </h1>
+
+              {/* Subtext */}
+              <p className="text-lg sm:text-xl text-gray-500 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                See real jobs, real salaries, housing and transport{" "}
+                <span className="text-gray-300 font-medium">before you apply.</span>
+              </p>
+
+              {/* Trust pills */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-9">
+                {[
+                  "No experience needed",
+                  "Accommodation available",
+                  "English is enough",
+                ].map((label) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[12px] font-medium text-gray-300"
+                  >
+                    <svg className="w-3 h-3 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    {label}
+                  </span>
+                ))}
+              </div>
+
+              {/* CTA buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8">
+                <a
+                  href="/agencies-with-housing"
+                  className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-black text-white"
+                  style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.3), 0 8px 32px rgba(52,211,153,0.2)" }}
+                >
+                  See jobs with housing
+                  <svg className="w-4 h-4 transition-transform duration-150 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </a>
+                <a
+                  href="#calculator"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-semibold text-gray-300"
+                >
+                  Calculate my salary
+                </a>
+              </div>
+
+              {/* Search */}
+              <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Search agencies, cities or job types…" />
+
+              {/* Data authority strip */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-1.5 mt-5">
+                {[
+                  { value: `${totalReviews}`, label: "worker reviews" },
+                  { value: `${totalAgencies}`, label: "agencies profiled" },
+                  { value: "€0", label: "paid rankings" },
+                ].map((s, i) => (
+                  <div key={s.label} className="flex items-center gap-1.5">
+                    {i > 0 && <span className="text-gray-800 hidden sm:inline">·</span>}
+                    <span className="text-[12px] font-black text-white">{s.value}</span>
+                    <span className="text-[11px] text-gray-600">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            {/* ── Right: money card ──────────────────────────────────── */}
+            <div className="w-full lg:w-[390px] xl:w-[420px] shrink-0 mx-auto lg:mx-0 max-w-sm lg:max-w-none">
+
+              {/* Glassmorphism card */}
+              <div
+                className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-2xl overflow-hidden"
+                style={{ boxShadow: "0 8px 48px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)" }}
+              >
+                {/* Inner glow top-right */}
+                <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-emerald-500/[0.12] blur-3xl" aria-hidden="true" />
+                {/* Inner glow bottom-left */}
+                <div className="pointer-events-none absolute bottom-0 left-0 w-40 h-40 rounded-full bg-blue-500/[0.08] blur-2xl" aria-hidden="true" />
+
+                <div className="relative p-6">
+
+                  {/* Real net salary badge */}
+                  <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/[0.12] px-2.5 py-1 mb-5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400">Real net salary</span>
+                  </div>
+
+                  {/* Big salary range */}
+                  <div className="mb-0.5">
+                    <span className="text-[46px] xl:text-[52px] font-black leading-none text-white tabular-nums tracking-tight">
+                      €320–€450
+                    </span>
+                  </div>
+                  <p className="text-sm font-semibold text-gray-400 mb-0.5">per week take-home</p>
+                  <p className="text-[11px] text-gray-600 mb-5">after rent, insurance and transport</p>
+
+                  {/* Divider */}
+                  <div className="border-t border-white/[0.06] mb-4" />
+
+                  {/* Payslip breakdown rows */}
+                  <div className="space-y-2.5">
+                    {[
+                      { label: "Gross pay  (WML · 40h/week)",  value: "+€588", accent: false },
+                      { label: "Tax & social contributions",    value: "−€63",  accent: true  },
+                      { label: "Agency housing (SNF)",          value: "−€95",  accent: true  },
+                      { label: "Transport + insurance + admin", value: "−€85",  accent: true  },
+                    ].map((row) => (
+                      <div key={row.label} className="flex items-center justify-between">
+                        <span className="text-[12px] text-gray-500">{row.label}</span>
+                        <span className={`text-[12px] font-bold tabular-nums ${row.accent ? "text-red-400" : "text-gray-300"}`}>
+                          {row.value}
+                        </span>
+                      </div>
+                    ))}
+                    {/* Net row */}
+                    <div className="flex items-center justify-between pt-2.5 border-t border-white/[0.06]">
+                      <span className="text-sm font-bold text-gray-200">💶 You keep</span>
+                      <span className="text-base font-black tabular-nums text-emerald-400">€345</span>
+                    </div>
+                  </div>
+
+                  {/* Source note */}
+                  <p className="text-[10px] text-gray-700 mt-4 pt-3 border-t border-white/[0.05]">
+                    Based on 2026 Dutch tax law (belastingdienst.nl) + SNF housing limits
+                  </p>
+
+                </div>
+              </div>
+
+            </div>
           </div>
-
         </div>
-
-        {/* ── Calculator — secondary, pre-filled, result visible on load ── */}
-        <div className="relative max-w-sm mx-auto px-4 pb-12">
-          <p className="text-center text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">
-            Your offer is different? Adjust below:
-          </p>
-          <HomepageHeroCalculator />
-        </div>
-
       </section>
 
       {/* ════════════════════════════════════════════════════════════
