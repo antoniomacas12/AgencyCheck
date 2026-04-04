@@ -18,7 +18,7 @@ function sanitize(str: string): string {
 }
 
 // ─── GET /api/review-comments?reviewId=xxx ────────────────────────────────────
-// Returns all comments for a given review, ordered oldest-first for readability.
+// Returns all comments for a given review, ordered newest-first.
 
 export async function GET(req: NextRequest) {
   const reviewId = req.nextUrl.searchParams.get("reviewId");
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
   try {
     const comments = await db.reviewComment.findMany({
       where:   { reviewId },
-      orderBy: { createdAt: "asc" },
+      orderBy: { createdAt: "desc" },
       select: {
         id:         true,
         agencyName: true,
@@ -104,6 +104,12 @@ export async function POST(req: NextRequest) {
     if (!review) {
       return NextResponse.json({ error: "Review not found" }, { status: 404 });
     }
+
+    // ── Bump review lastActivityAt so it floats to the top ─────────────────
+    await db.review.update({
+      where: { id: reviewId as string },
+      data:  { lastActivityAt: new Date() },
+    });
 
     // ── Create comment ──────────────────────────────────────────────────────
     const comment = await db.reviewComment.create({

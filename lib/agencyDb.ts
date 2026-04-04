@@ -99,8 +99,8 @@ export async function getDbAgency(slug: string): Promise<DbAgencyFull | null> {
         createdAt:       true,
         reviews: {
           where:   { isPublished: true },
-          orderBy: { createdAt: "desc" },
-          take:    20,
+          orderBy: { lastActivityAt: "desc" },
+          take:    50,
           select: {
             id:                    true,
             overallRating:         true,
@@ -123,6 +123,7 @@ export async function getDbAgency(slug: string): Promise<DbAgencyFull | null> {
             jobType:               true,
             issueTags:             true,
             createdAt:             true,
+            lastActivityAt:        true,
             photos: {
               select:  { id: true, fileUrl: true, fileType: true, caption: true, sortOrder: true },
               orderBy: { sortOrder: "asc" },

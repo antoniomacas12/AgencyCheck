@@ -272,7 +272,7 @@ export function ReviewComments({ reviewId, agencyName, initialComments }: Review
   }, [reviewId]);
 
   function handleNewComment(comment: ReviewCommentData) {
-    setComments((prev) => [...prev, comment]);
+    setComments((prev) => [comment, ...prev]); // newest first
     setShowForm(false);
   }
 

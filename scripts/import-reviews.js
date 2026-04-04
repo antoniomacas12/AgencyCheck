@@ -120,7 +120,8 @@ async function main() {
           issueTags:            str(r.issueTags,            "[]"),
           verificationStatus:   str(r.verificationStatus,   "UNKNOWN"),
           sourceType:           str(r.sourceType,           "WORKER_REPORTED"),
-          createdAt:            dt(r.createdAt),
+          // Use current timestamp so imported reviews surface as "new" at the top
+          createdAt:            NOW,
         },
       });
       console.log(`✅  Created review ${id}  (agency: ${agencyId})`);
