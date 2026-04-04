@@ -158,8 +158,7 @@ model Review {
   // values: "ABU_REGISTER" | "SNCU_REGISTER" | "OFFICIAL_WEBSITE" | "WORKER_REPORTED" | "UNKNOWN"
   sourceType         String @default("WORKER_REPORTED")
 
-  createdAt      DateTime @default(now())
-  lastActivityAt DateTime @default(now())
+  createdAt DateTime @default(now())
 
   photos   ReviewPhoto[]
   mentions ReviewMention[]
@@ -169,7 +168,6 @@ model Review {
   @@index([status])
   @@index([isPublished])
   @@index([overallRating])
-  @@index([lastActivityAt])
   @@map("reviews")
 }
 

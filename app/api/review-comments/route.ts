@@ -106,12 +106,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Review not found" }, { status: 404 });
     }
 
-    // ── Bump review lastActivityAt so it floats to the top ─────────────────
-    await db.review.update({
-      where: { id: reviewId as string },
-      data:  { lastActivityAt: new Date() },
-    });
-
     // ── Create comment ──────────────────────────────────────────────────────
     const comment = await db.reviewComment.create({
       data: {
