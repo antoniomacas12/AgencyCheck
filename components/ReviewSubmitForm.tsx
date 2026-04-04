@@ -35,12 +35,13 @@ function StarInput({
   required?: boolean;
 }) {
   const [hover, setHover] = useState<number | null>(null);
+  const active = hover ?? value ?? 0;
   return (
-    <div className="flex items-center justify-between gap-3 py-0.5">
+    <div className="flex items-center justify-between gap-3 py-1">
       <span className="text-sm text-gray-700 flex-1">
         {label} {required && <span className="text-red-400">*</span>}
       </span>
-      <div className="flex gap-0.5">
+      <div className="flex gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
@@ -49,15 +50,13 @@ function StarInput({
             onMouseEnter={() => setHover(star)}
             onMouseLeave={() => setHover(null)}
             aria-label={`${star} star`}
-            className="text-2xl leading-none transition-transform hover:scale-110 focus:outline-none"
+            className="text-[28px] leading-none focus:outline-none transition-all duration-100"
+            style={{
+              transform: active >= star ? "scale(1.15)" : "scale(1)",
+              filter:    active >= star ? "drop-shadow(0 0 6px rgba(250,204,21,0.5))" : "none",
+            }}
           >
-            <span
-              className={
-                (hover ?? value ?? 0) >= star
-                  ? "text-yellow-400"
-                  : "text-gray-200"
-              }
-            >
+            <span className={active >= star ? "text-yellow-400" : "text-gray-200"}>
               ★
             </span>
           </button>
