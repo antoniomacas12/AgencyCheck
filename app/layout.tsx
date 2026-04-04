@@ -68,7 +68,7 @@ export default function RootLayout({
 
   return (
     <html lang={locale} className={inter.variable}>
-      <body className={`${inter.className} flex flex-col min-h-screen${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
+      <body className={`${inter.className} bg-white flex flex-col min-h-screen${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
         {!isAdmin && <Navbar locale={locale} />}
         <main className={isAdmin ? "flex-1" : "flex-1 pb-14"}>{children}</main>
         {!isAdmin && <Footer />}

@@ -314,7 +314,7 @@ function ReviewSubmitForm({
           </svg>
         </div>
         <p className="text-base font-bold text-white mb-1">{t("reviews_page.form_success_title")}</p>
-        <p className="text-sm text-gray-200 leading-relaxed">
+        <p className="text-base text-gray-200 leading-relaxed">
           {t("reviews_page.form_success_sub")}
         </p>
         <button
@@ -346,7 +346,7 @@ function ReviewSubmitForm({
 
       {/* ── Agency combobox ─────────────────────────────────────────────────── */}
       <div ref={comboboxRef} className="relative">
-        <label className="block text-sm font-bold text-gray-200 mb-1.5">
+        <label className="block text-base font-bold text-gray-200 mb-1.5">
           {t("reviews_page.form_agency_label")} <span className="text-red-400">*</span>
         </label>
         <div className={`flex items-center rounded-xl border overflow-hidden transition-all ${
@@ -363,7 +363,7 @@ function ReviewSubmitForm({
             onFocus={() => { if (suggestions.length > 0) setSuggestionsOpen(true); }}
             placeholder="Type agency name…"
             autoComplete="off"
-            className="flex-1 px-3.5 py-2.5 text-sm bg-white/[0.05] text-white placeholder:text-gray-600 focus:outline-none"
+            className="flex-1 px-3.5 py-2.5 text-base bg-white/[0.05] text-white placeholder:text-gray-600 focus:outline-none"
           />
           <span className="pr-3 shrink-0">
             {suggestLoading
@@ -398,7 +398,7 @@ function ReviewSubmitForm({
                     <button
                       type="button"
                       onMouseDown={() => selectExistingAgency(ag)}
-                      className="w-full text-left px-4 py-2.5 text-sm text-gray-200 hover:bg-white/[0.07] transition-colors flex items-center gap-2.5"
+                      className="w-full text-left px-4 py-2.5 text-base text-gray-200 hover:bg-white/[0.07] transition-colors flex items-center gap-2.5"
                     >
                       <span className="shrink-0">🏢</span>
                       <span className="font-medium">{ag.name}</span>
@@ -414,7 +414,7 @@ function ReviewSubmitForm({
                 <button
                   type="button"
                   onMouseDown={selectNewAgency}
-                  className="w-full text-left px-4 py-2.5 text-sm hover:bg-amber-500/[0.08] transition-colors flex items-center gap-2.5 text-amber-400"
+                  className="w-full text-left px-4 py-2.5 text-base hover:bg-amber-500/[0.08] transition-colors flex items-center gap-2.5 text-amber-400"
                 >
                   <span className="shrink-0">➕</span>
                   <span>Add &ldquo;{form.agencySearch.trim()}&rdquo; as new agency</span>
@@ -432,7 +432,7 @@ function ReviewSubmitForm({
       {/* ── City + Job type ──────────────────────────────────────────────────── */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-sm font-medium text-gray-200 mb-1">
+          <label className="block text-base font-medium text-gray-200 mb-1">
             {t("reviews_page.form_city")}
           </label>
           <input
@@ -441,19 +441,19 @@ function ReviewSubmitForm({
             onChange={(e) => set("city", e.target.value)}
             placeholder={t("reviews_page.form_city_placeholder")}
             maxLength={80}
-            className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+            className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
               text-white placeholder:text-gray-600
               focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-200 mb-1">
+          <label className="block text-base font-medium text-gray-200 mb-1">
             {t("reviews_page.form_job_type")}
           </label>
           <select
             value={form.jobType}
             onChange={(e) => set("jobType", e.target.value)}
-            className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+            className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
               text-white focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
             style={{ colorScheme: "dark" }}
           >
@@ -485,7 +485,7 @@ function ReviewSubmitForm({
 
       {/* ── Housing ─────────────────────────────────────────────────────────── */}
       <div>
-        <p className="text-sm font-bold text-gray-200 mb-2">{t("reviews_page.form_housing_label")}</p>
+        <p className="text-base font-bold text-gray-200 mb-2">{t("reviews_page.form_housing_label")}</p>
         <div className="flex gap-2 flex-wrap">
           {(["yes", "no", "unknown"] as const).map((v) => (
             <button
@@ -508,7 +508,7 @@ function ReviewSubmitForm({
       {form.housingIncluded === "yes" && (
         <div className="grid sm:grid-cols-2 gap-3 bg-blue-500/[0.06] border border-blue-400/[0.15] rounded-xl p-3">
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-1">
+            <label className="block text-base font-medium text-gray-200 mb-1">
               {t("reviews_page.form_housing_cost")}
             </label>
             <input
@@ -518,14 +518,14 @@ function ReviewSubmitForm({
               placeholder="e.g. 140"
               min={0}
               max={500}
-              className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+              className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
                 text-white placeholder:text-gray-600
                 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
               style={{ colorScheme: "dark" }}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-1">
+            <label className="block text-base font-medium text-gray-200 mb-1">
               {t("reviews_page.form_people_per_room")}
             </label>
             <input
@@ -535,7 +535,7 @@ function ReviewSubmitForm({
               placeholder="e.g. 2"
               min={1}
               max={10}
-              className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+              className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
                 text-white placeholder:text-gray-600
                 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
               style={{ colorScheme: "dark" }}
@@ -546,7 +546,7 @@ function ReviewSubmitForm({
 
       {/* ── Transport cost ───────────────────────────────────────────────────── */}
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-1">
+        <label className="block text-base font-medium text-gray-200 mb-1">
           {t("reviews_page.form_transport_cost")}{" "}
           <span className="text-gray-500 font-normal">{t("reviews_page.form_transport_note")}</span>
         </label>
@@ -557,7 +557,7 @@ function ReviewSubmitForm({
           placeholder="e.g. 28 — or 0 if included free"
           min={0}
           max={200}
-          className="w-full px-3 py-2 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+          className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
             text-white placeholder:text-gray-600
             focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
           style={{ colorScheme: "dark" }}
@@ -566,7 +566,7 @@ function ReviewSubmitForm({
 
       {/* ── Would recommend ──────────────────────────────────────────────────── */}
       <div>
-        <p className="text-sm font-bold text-gray-200 mb-2">{t("reviews_page.form_recommend_label")}</p>
+        <p className="text-base font-bold text-gray-200 mb-2">{t("reviews_page.form_recommend_label")}</p>
         <div className="flex gap-2 flex-wrap">
           {(["yes", "no", "neutral"] as const).map((v) => (
             <button
@@ -591,7 +591,7 @@ function ReviewSubmitForm({
 
       {/* ── Comment ──────────────────────────────────────────────────────────── */}
       <div>
-        <label className="block text-sm font-bold text-gray-200 mb-1.5">
+        <label className="block text-base font-bold text-gray-200 mb-1.5">
           {t("reviews_page.form_comment_label")} <span className="text-red-400">*</span>
         </label>
         <textarea
@@ -600,7 +600,7 @@ function ReviewSubmitForm({
           placeholder={t("reviews_page.form_comment_placeholder")}
           rows={5}
           maxLength={2000}
-          className="w-full px-3.5 py-3 text-sm border border-white/[0.1] rounded-xl bg-white/[0.05]
+          className="w-full px-3.5 py-3 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
             text-white placeholder:text-gray-500 resize-none
             focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50
             leading-relaxed"
@@ -615,7 +615,7 @@ function ReviewSubmitForm({
 
       {/* ── Photo upload ─────────────────────────────────────────────────────── */}
       <div>
-        <p className="text-sm font-bold text-gray-200 mb-2">
+        <p className="text-base font-bold text-gray-200 mb-2">
           Photos{" "}
           <span className="font-normal text-gray-500">(optional, max {MAX_PHOTOS})</span>
         </p>
@@ -862,7 +862,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
           <select
             value={agencyFilter}
             onChange={(e) => { setAgencyFilter(e.target.value); setShowCount(12); }}
-            className="text-sm border border-white/[0.1] rounded-lg px-3 py-2 bg-white/[0.06] text-gray-300 focus:outline-none focus:border-white/30 max-w-[180px] flex-1 sm:flex-none"
+            className="text-base border border-white/[0.1] rounded-lg px-3 py-2 bg-white/[0.06] text-gray-300 focus:outline-none focus:border-white/30 max-w-[180px] flex-1 sm:flex-none"
             style={{ colorScheme: "dark" }}
           >
             <option value="" style={{ background: "#0f1623" }}>{t("reviews_page.filter_agency_all")}</option>
@@ -877,7 +877,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
             value={cityFilter}
             onChange={(e) => { setCityFilter(e.target.value); setShowCount(12); }}
             placeholder={t("reviews_page.filter_city_placeholder")}
-            className="text-sm border border-white/[0.1] rounded-lg px-3 py-2 bg-white/[0.06] text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-white/30 w-32 flex-1 sm:flex-none"
+            className="text-base border border-white/[0.1] rounded-lg px-3 py-2 bg-white/[0.06] text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-white/30 w-32 flex-1 sm:flex-none"
           />
         </div>
         {/* Row 2: housing + sort pills */}
@@ -916,7 +916,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
       </div>
 
       {/* Result count */}
-      <p className="text-sm text-gray-300 mb-4">
+      <p className="text-base text-gray-300 mb-4">
         {t("reviews_page.showing_count", { shown: Math.min(showCount, totalCount), total: totalCount, plural: totalCount !== 1 ? "s" : "" })}
         {agencyFilter && ` for ${agencyDisplayName(agencyFilter)}`}
         {filteredDb.length > 0 && (
@@ -1026,7 +1026,7 @@ export default function ReviewsClientPage({
     <div className="max-w-7xl mx-auto px-4 py-8">
 
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-300 mb-4 flex items-center gap-1.5 flex-wrap">
+      <nav className="text-base text-gray-300 mb-4 flex items-center gap-1.5 flex-wrap">
         <Link href="/" className="hover:text-gray-200 transition-colors">{t("common.home")}</Link>
         <span className="text-gray-600">›</span>
         <span className="text-gray-300 font-medium">{t("nav.reviews")}</span>
@@ -1048,7 +1048,7 @@ export default function ReviewsClientPage({
         <h1 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2">
           {t("reviews_page.heading")}
         </h1>
-        <p className="text-gray-300 text-base leading-relaxed max-w-2xl">
+        <p className="text-gray-300 text-lg leading-relaxed max-w-2xl">
           {t("reviews_page.subheading")}
         </p>
       </div>
@@ -1148,7 +1148,7 @@ export default function ReviewsClientPage({
       >
         <div>
           <p className="font-black text-lg text-white mb-1">{t("reviews_page.cta_title")}</p>
-          <p className="text-sm text-gray-200 leading-relaxed">
+          <p className="text-base text-gray-200 leading-relaxed">
             {t("reviews_page.cta_sub")}
           </p>
         </div>
