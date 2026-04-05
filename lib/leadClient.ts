@@ -116,6 +116,12 @@ export interface LeadUpdateInput {
   lastContactedAt?: Date;
   assignedAgencies?: string[];
   sentAt?: Date;
+  // Qualification fields (schema v6)
+  availability?: string | null;
+  locationStatus?: string | null;
+  leadScore?: number | null;
+  // Editable worker fields
+  preferredWorkType?: string | null;
 }
 
 export interface LeadWhereInput {
@@ -144,9 +150,13 @@ export interface LeadSendCreateInput {
 
 // ─── Delegate interfaces ───────────────────────────────────────────────────────
 
+type LeadOrderByField =
+  | { createdAt?: "asc" | "desc" }
+  | { leadScore?: "asc" | "desc" | { sort: "asc" | "desc"; nulls?: "first" | "last" } };
+
 interface LeadFindManyArgs {
   where?: LeadWhereInput;
-  orderBy?: { createdAt?: "asc" | "desc" };
+  orderBy?: LeadOrderByField | LeadOrderByField[];
   skip?: number;
   take?: number;
   select?: Partial<Record<keyof Lead, boolean>>;

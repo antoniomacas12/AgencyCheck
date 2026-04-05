@@ -85,6 +85,12 @@ export async function PATCH(
     data.tags = JSON.stringify(tagsArr);
   }
 
+  if (body.preferredWorkType !== undefined) {
+    data.preferredWorkType = typeof body.preferredWorkType === "string"
+      ? body.preferredWorkType.slice(0, 50)
+      : null;
+  }
+
   if (Object.keys(data).length === 0) {
     return NextResponse.json({ error: "nothing_to_update" }, { status: 400 });
   }
