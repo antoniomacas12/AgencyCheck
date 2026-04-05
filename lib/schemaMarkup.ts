@@ -184,7 +184,13 @@ export function organizationSchema(): object {
     "@type":      "Organization",
     "name":       "AgencyCheck",
     "url":        BASE_URL,
-    "logo":       `${BASE_URL}/logo.png`,
+    "logo": {
+      "@type":  "ImageObject",
+      "url":    `${BASE_URL}/logo.png`,
+      "width":  512,
+      "height": 512,
+    },
+    "image":      `${BASE_URL}/logo.png`,
     "description": "Independent platform for agency workers in the Netherlands. Real take-home salary data, unfiltered worker reviews, and housing conditions for 150+ employment agencies.",
     "address": {
       "@type":          "PostalAddress",
@@ -202,7 +208,9 @@ export function organizationSchema(): object {
       "NBBU CAO",
       "Dutch minimum wage (WML)",
     ],
-    "sameAs": [BASE_URL],
+    "sameAs": [
+      "https://agencycheck.io",
+    ],
   };
 }
 

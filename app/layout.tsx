@@ -37,10 +37,19 @@ export const metadata: Metadata = {
     "warehouse jobs netherlands", "agency housing worker", "looncheck",
     "employment agency reviews", "agency worker rights netherlands",
   ],
+  icons: {
+    icon:             [
+      { url: "/favicon.ico",  sizes: "any" },
+      { url: "/logo.png",     sizes: "512x512", type: "image/png" },
+    ],
+    apple:            [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut:         "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     siteName: "AgencyCheck",
     locale: "en_NL",
+    images: [{ url: "/logo.png", width: 512, height: 512, alt: "AgencyCheck" }],
   },
   robots: {
     index:  true,
