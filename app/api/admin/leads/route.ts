@@ -75,8 +75,26 @@ export async function GET(req: NextRequest) {
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("[GET /api/admin/leads]", err);
-    // Return the actual error message so the admin UI can show the real cause
-    // (e.g. "table leads does not exist" → run prisma db push)
+
+    // Detect missing-column errors caused by a pending schema migration.
+    // This happens when the Prisma schema was updated but `prisma db push` was not run.
+    if (
+      msg.includes("column") && msg.includes("does not exist") ||
+      msg.includes("Unknown column") ||
+      msg.includes("column_not_found")
+    ) {
+      return NextResponse.json(
+        {
+          error: "migration_required",
+          detail:
+            "Database schema is out of sync. " +
+            "Run: npx prisma db push  (from your local terminal with .env) " +
+            "OR paste prisma/add_lead_qualification_columns.sql into the Supabase SQL editor.",
+        },
+        { status: 500 },
+      );
+    }
+
     return NextResponse.json({ error: "server_error", detail: msg }, { status: 500 });
   }
 }
