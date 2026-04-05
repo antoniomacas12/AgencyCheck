@@ -8,6 +8,8 @@ type LeadStatus =
   | "agency_contact_pending" | "approved" | "sent" | "converted"
   | "confirmed" | "paid" | "rejected" | "contacted";
 type LeadSourceType = "jobs_with_housing" | "job_page" | "agency_page" | "general_apply";
+type Availability = "immediately" | "1_2_weeks" | "1_month" | "exploring";
+type LocationStatus = "nl" | "relocate" | "exploring";
 
 interface Lead {
   id: string; createdAt: string; fullName: string; phone: string; email?: string;
@@ -15,6 +17,7 @@ interface Lead {
   sourcePage: string; sourceType: LeadSourceType; sourceLabel?: string;
   nationality?: string; currentCountry?: string; status: LeadStatus;
   tags: string[]; assignedTo?: string; assignedAgencies: string[]; sentAt?: string;
+  availability?: Availability; locationStatus?: LocationStatus; leadScore?: number;
 }
 
 const STATUS_META: Record<LeadStatus, { label: string; bg: string; text: string; dot: string }> = {
@@ -49,6 +52,29 @@ function StatusBadge({ status }: { status: LeadStatus }) {
 }
 function fmtDate(iso: string) { return new Date(iso).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "2-digit" }); }
 function fmtTime(iso: string) { return new Date(iso).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); }
+
+const AVAIL_META: Record<Availability, { label: string; cls: string }> = {
+  immediately: { label: "⚡ Now",       cls: "bg-green-100 text-green-800" },
+  "1_2_weeks": { label: "📅 1–2 wks",  cls: "bg-blue-100 text-blue-800"  },
+  "1_month":   { label: "🗓 1 month",   cls: "bg-yellow-100 text-yellow-800" },
+  exploring:   { label: "👀 Exploring", cls: "bg-gray-100 text-gray-500"  },
+};
+const LOC_META: Record<LocationStatus, { label: string; cls: string }> = {
+  nl:       { label: "🇳🇱 In NL",    cls: "bg-green-100 text-green-800"  },
+  relocate: { label: "✈️ Relocate",  cls: "bg-blue-100 text-blue-800"   },
+  exploring:{ label: "🔍 Exploring", cls: "bg-gray-100 text-gray-500"   },
+};
+
+function ScoreBadge({ score }: { score?: number }) {
+  if (score === undefined || score === null) return <span className="text-gray-300 text-xs">—</span>;
+  const cls =
+    score >= 90 ? "bg-green-600 text-white" :
+    score >= 70 ? "bg-blue-600 text-white"  :
+    score >= 40 ? "bg-yellow-500 text-white" :
+                  "bg-gray-300 text-gray-700";
+  const label = score >= 90 ? `🔥 ${score}` : `${score}`;
+  return <span className={`inline-flex items-center text-[11px] font-black px-2 py-0.5 rounded-full ${cls}`}>{label}</span>;
+}
 
 export default function LeadsDashboard() {
   const [leads, setLeads]           = useState<Lead[]>([]);
@@ -121,7 +147,7 @@ export default function LeadsDashboard() {
               Candidate Pipeline
               {newCount > 0 && <span className="text-xs bg-blue-600 text-white font-bold px-2 py-0.5 rounded-full">{newCount} new</span>}
             </h1>
-            <p className="text-sm text-gray-500 mt-0.5">{total} profile{total !== 1 ? "s" : ""} in intake · newest first</p>
+            <p className="text-sm text-gray-500 mt-0.5">{total} profile{total !== 1 ? "s" : ""} in intake · sorted by lead score</p>
           </div>
           <div className="flex items-center gap-2 text-xs text-gray-500">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />Live
@@ -188,16 +214,19 @@ export default function LeadsDashboard() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead><tr className="border-b border-gray-100 bg-gray-50">{["Date","Name","Phone","Email","Work","🏠","Source","Status","Actions"].map((h) => <th key={h} className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-wider text-gray-500 whitespace-nowrap">{h}</th>)}</tr></thead>
+                <thead><tr className="border-b border-gray-100 bg-gray-50">{["Score","Date","Name","Phone","Email","Work","🏠","Availability","Location","Source","Status","Actions"].map((h) => <th key={h} className="px-4 py-3 text-left text-[11px] font-bold uppercase tracking-wider text-gray-500 whitespace-nowrap">{h}</th>)}</tr></thead>
                 <tbody className="divide-y divide-gray-50">
                   {leads.map((lead) => (
                     <tr key={lead.id} className={`hover:bg-gray-50/70 transition-colors group ${["new","reviewed","waiting_for_match","potential_fit"].includes(lead.status) ? "bg-blue-50/20" : ""}`}>
+                      <td className="px-4 py-3 whitespace-nowrap"><ScoreBadge score={lead.leadScore} /></td>
                       <td className="px-4 py-3 whitespace-nowrap"><p className="text-xs font-semibold text-gray-900">{fmtDate(lead.createdAt)}</p><p className="text-[10px] text-gray-400">{fmtTime(lead.createdAt)}</p></td>
                       <td className="px-4 py-3"><Link href={`/admin/leads/${lead.id}`} className="font-semibold text-gray-900 hover:text-brand-600 hover:underline">{lead.fullName}</Link>{lead.nationality && <p className="text-[10px] text-gray-400 mt-0.5">{lead.nationality}{lead.currentCountry ? ` · ${lead.currentCountry}` : ""}</p>}</td>
                       <td className="px-4 py-3"><a href={`tel:${lead.phone}`} className="text-brand-600 hover:underline text-xs font-medium">{lead.phone}</a></td>
                       <td className="px-4 py-3">{lead.email ? <a href={`mailto:${lead.email}`} className="text-brand-600 hover:underline text-xs">{lead.email}</a> : <span className="text-gray-300 text-xs">—</span>}</td>
                       <td className="px-4 py-3"><span className="text-xs text-gray-700">{lead.preferredWorkType ? (WORK_LABELS[lead.preferredWorkType] ?? lead.preferredWorkType) : "—"}</span>{lead.preferredRegion && <p className="text-[10px] text-gray-400">{lead.preferredRegion}</p>}</td>
                       <td className="px-4 py-3 text-center">{lead.accommodationNeeded === true ? <span className="text-lg">🏠</span> : lead.accommodationNeeded === false ? <span className="text-xs text-gray-300">No</span> : <span className="text-xs text-gray-300">?</span>}</td>
+                      <td className="px-4 py-3 whitespace-nowrap">{lead.availability ? <span className={`inline-flex items-center text-[11px] font-semibold px-2 py-0.5 rounded-full ${AVAIL_META[lead.availability]?.cls ?? "bg-gray-100 text-gray-500"}`}>{AVAIL_META[lead.availability]?.label ?? lead.availability}</span> : <span className="text-gray-300 text-xs">—</span>}</td>
+                      <td className="px-4 py-3 whitespace-nowrap">{lead.locationStatus ? <span className={`inline-flex items-center text-[11px] font-semibold px-2 py-0.5 rounded-full ${LOC_META[lead.locationStatus]?.cls ?? "bg-gray-100 text-gray-500"}`}>{LOC_META[lead.locationStatus]?.label ?? lead.locationStatus}</span> : <span className="text-gray-300 text-xs">—</span>}</td>
                       <td className="px-4 py-3"><span className="text-[11px] font-medium text-gray-600">{SOURCE_LABELS[lead.sourceType] ?? lead.sourceType}</span>{lead.sourceLabel && <p className="text-[10px] text-gray-400 mt-0.5 max-w-[120px] truncate">{lead.sourceLabel}</p>}</td>
                       <td className="px-4 py-3"><StatusBadge status={lead.status} />{lead.assignedAgencies?.length > 0 && <p className="text-[10px] text-gray-400 mt-0.5">→ {lead.assignedAgencies.join(", ")}</p>}</td>
                       <td className="px-4 py-3">

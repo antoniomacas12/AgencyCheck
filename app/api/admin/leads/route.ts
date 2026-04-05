@@ -57,7 +57,12 @@ export async function GET(req: NextRequest) {
     const [leads, total] = await Promise.all([
       prisma.lead.findMany({
         where,
-        orderBy: { createdAt: "desc" },
+        // Primary: highest lead score first. Nulls (unqualified) go last.
+        // Secondary: newest first within same score tier.
+        orderBy: [
+          { leadScore: { sort: "desc", nulls: "last" } },
+          { createdAt: "desc" },
+        ],
         skip:    (page - 1) * limit,
         take:    limit,
         include: { sends: true },

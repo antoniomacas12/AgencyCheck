@@ -353,6 +353,14 @@ model Lead {
   assignedAgencies String    @default("[]")
   sentAt           DateTime?
 
+  // ── Lead qualification (post-submit step) ─────────────────────────────────
+  // values: "immediately" | "1_2_weeks" | "1_month" | "exploring"
+  availability   String?
+  // values: "nl" | "relocate" | "exploring"
+  locationStatus String?
+  // 10–100: computed from availability + locationStatus
+  leadScore      Int?
+
   // ── Payout / conversion tracking ──────────────────────────────────────────
   // confirmedAt: date worker was confirmed as started at agency
   // workerStartDate: actual first working day (if known)
