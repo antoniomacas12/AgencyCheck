@@ -233,7 +233,7 @@ export default async function HomePage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#080c14]">
 
       {/* JSON-LD structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)       }} />
@@ -360,9 +360,9 @@ export default async function HomePage() {
                   { value: "€0", label: "paid rankings" },
                 ].map((s, i) => (
                   <div key={s.label} className="flex items-center gap-1.5">
-                    {i > 0 && <span className="text-gray-800 hidden sm:inline">·</span>}
+                    {i > 0 && <span className="text-gray-100 hidden sm:inline">·</span>}
                     <span className="text-[12px] font-black text-white">{s.value}</span>
-                    <span className="text-[11px] text-gray-600">{s.label}</span>
+                    <span className="text-[11px] text-gray-300">{s.label}</span>
                   </div>
                 ))}
               </div>
@@ -414,7 +414,7 @@ export default async function HomePage() {
                     </span>
                   </div>
                   <p className="text-sm font-semibold text-gray-300 mb-0.5">per week take-home</p>
-                  <p className="text-[11px] text-gray-600 mb-5">after rent, insurance and transport</p>
+                  <p className="text-[11px] text-gray-300 mb-5">after rent, insurance and transport</p>
 
                   {/* Divider */}
                   <div className="border-t border-white/[0.07] mb-4" />
@@ -428,7 +428,7 @@ export default async function HomePage() {
                       { label: "Transport + insurance + admin", value: "−€85",  accent: true  },
                     ].map((row) => (
                       <div key={row.label} className="flex items-center justify-between">
-                        <span className="text-[12px] text-gray-500">{row.label}</span>
+                        <span className="text-[12px] text-gray-400">{row.label}</span>
                         <span className={`text-[13px] font-bold tabular-nums ${row.accent ? "text-red-400" : "text-gray-300"}`}>
                           {row.value}
                         </span>
@@ -447,7 +447,7 @@ export default async function HomePage() {
                   </div>
 
                   {/* Source note */}
-                  <p className="text-[10px] text-gray-700 mt-4 pt-3 border-t border-white/[0.05]">
+                  <p className="text-[10px] text-gray-200 mt-4 pt-3 border-t border-white/[0.05]">
                     Based on 2026 Dutch tax law (belastingdienst.nl) + SNF housing limits
                   </p>
 
@@ -498,7 +498,7 @@ export default async function HomePage() {
                   <span className={`text-2xl sm:text-3xl font-black tabular-nums ${stat.color}`}>{stat.value}</span>
                   <span className="text-xs font-bold text-gray-300">{stat.label}</span>
                 </div>
-                <p className="text-[10px] text-gray-500 leading-snug max-w-[200px]">{stat.sub}</p>
+                <p className="text-[10px] text-gray-400 leading-snug max-w-[200px]">{stat.sub}</p>
               </div>
             ))}
           </div>
@@ -506,7 +506,7 @@ export default async function HomePage() {
           {/* ── Source citations strip ── */}
           <div className="border-t border-white/5 pt-4">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-              <span className="text-[9px] font-black uppercase tracking-widest text-gray-600 shrink-0">Data sources:</span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-gray-300 shrink-0">Data sources:</span>
               {[
                 { label: "Dutch tax law",       cite: "belastingdienst.nl 2026",      href: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/", color: "text-blue-400" },
                 { label: "Housing limits",      cite: "SNF Normering Flexwonen 2024", href: "https://www.snf.nl/normering/",                                         color: "text-emerald-400" },
@@ -516,7 +516,7 @@ export default async function HomePage() {
               ].map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-[10px] hover:opacity-80 transition-opacity">
-                  <span className="text-gray-500">{s.label}:</span>
+                  <span className="text-gray-400">{s.label}:</span>
                   <span className={`font-bold ${s.color}`}>{s.cite} ↗</span>
                 </a>
               ))}
@@ -529,20 +529,20 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §3  MONEY-LOSS FRAMING — the pain section
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">
               The money they don&apos;t tell you about
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">
               Right now, you are losing{" "}
               <span className="text-red-500">€300–€500 every month</span>
               <br className="hidden sm:block" />
               {" "}— and you don&apos;t know it
             </h2>
-            <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               These deductions are not mentioned before you sign. Many are illegal.
               And almost no one ever finds out.
             </p>
@@ -551,17 +551,17 @@ export default async function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
             {HIDDEN_DEDUCTIONS.map((item) => (
               <div key={item.label}
-                className="rounded-2xl border border-red-100 bg-red-50/30 p-5 hover:border-red-200 hover:bg-red-50/60 transition-colors">
+                className="rounded-2xl border border-red-500/[0.25] bg-red-500/[0.1] p-5 hover:border-red-500/[0.35] hover:bg-red-500/[0.15] transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
-                <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs font-bold text-red-600 mb-2">{item.amount}</p>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
+                <h3 className="text-sm font-black text-white mb-1">{item.label}</h3>
+                <p className="text-xs font-bold text-red-400 mb-2">{item.amount}</p>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.detail}</p>
               </div>
             ))}
           </div>
 
           {/* Comparison bar: what you think vs what you get */}
-          <div className="max-w-3xl mx-auto rounded-2xl border border-gray-100 bg-gray-50 overflow-hidden">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
             <div className="bg-gray-900 px-6 py-3">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 WML worker · €14.71/hr · 40h/week · Agency housing + transport
@@ -571,24 +571,24 @@ export default async function HomePage() {
               {/* Bar 1: Gross (100% baseline) */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">What the agency advertises (gross)</span>
-                  <span className="text-sm font-black text-gray-900">€588/week</span>
+                  <span className="text-xs font-bold text-gray-300">What the agency advertises (gross)</span>
+                  <span className="text-sm font-black text-white">€588/week</span>
                 </div>
-                <div className="h-3 rounded-full bg-gray-200 w-full" />
+                <div className="h-3 rounded-full bg-white/[0.1] w-full" />
               </div>
               {/* Bar 2: After Dutch tax — €588 − €63 tax = €525 (89% of gross) */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">After Dutch tax (incl. heffingskorting credits)</span>
-                  <span className="text-sm font-black text-gray-700">€525/week</span>
+                  <span className="text-xs font-bold text-gray-300">After Dutch tax (incl. heffingskorting credits)</span>
+                  <span className="text-sm font-black text-gray-200">€525/week</span>
                 </div>
                 <div className="h-3 rounded-full bg-amber-300" style={{ width: "89%" }} />
               </div>
               {/* Bar 3: Real take-home — €525 − €95 − €35 − €25 − €25 = €345 (59% of gross) */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-red-700">What you actually take home</span>
-                  <span className="text-sm font-black text-red-600">€345/week</span>
+                  <span className="text-xs font-bold text-red-400">What you actually take home</span>
+                  <span className="text-sm font-black text-red-400">€345/week</span>
                 </div>
                 <div className="h-3 rounded-full bg-red-400" style={{ width: "59%" }} />
               </div>
@@ -611,14 +611,14 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §4  REAL WORKER TESTIMONIALS — authentic, imperfect
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-white/[0.025] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Real workers. Real words.
             </p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
               What workers actually told us
             </h2>
             <p className="text-xs text-gray-400 font-semibold">
@@ -631,23 +631,23 @@ export default async function HomePage() {
               <div key={t.name}
                 className={`rounded-2xl border p-6 flex flex-col gap-4 ${
                   t.rating >= 4
-                    ? "border-emerald-100 bg-emerald-50/30"
-                    : "border-red-100 bg-red-50/20"
+                    ? "border-emerald-400/[0.2] bg-emerald-500/[0.1]"
+                    : "border-red-500/[0.2] bg-red-500/[0.08]"
                 }`}>
                 {/* Stars */}
                 <StarRating value={t.rating} />
 
                 {/* Quote */}
-                <blockquote className="text-sm text-gray-800 leading-relaxed font-medium italic flex-1">
+                <blockquote className="text-sm text-gray-100 leading-relaxed font-medium italic flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
 
                 {/* Attribution */}
-                <div className="flex items-center gap-3 pt-2 border-t border-gray-100">
+                <div className="flex items-center gap-3 pt-2 border-t border-white/[0.06]">
                   <span className="text-2xl">{t.flag}</span>
                   <div>
-                    <p className="text-xs font-black text-gray-900">{t.name}</p>
-                    <p className="text-[11px] text-gray-500">{t.job}</p>
+                    <p className="text-xs font-black text-white">{t.name}</p>
+                    <p className="text-[11px] text-gray-400">{t.job}</p>
                   </div>
                 </div>
               </div>
@@ -656,7 +656,7 @@ export default async function HomePage() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <Link href="/reviews"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.15] bg-white/[0.05] hover:bg-white/[0.1] transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-sm">
               📋 Read all {totalReviews} reviews
             </Link>
             <Link href="/submit-review"
@@ -671,7 +671,7 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §5  LEAD FORM — free matching
           ════════════════════════════════════════════════════════════ */}
-      <section id="lead-form" className="bg-white border-b border-gray-100">
+      <section id="lead-form" className="border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
 
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7">
@@ -679,26 +679,26 @@ export default async function HomePage() {
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-1.5">
                 Free matching service — no fees, no obligation
               </p>
-              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">
+              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
                 Find a verified agency that shows real deductions
               </h2>
-              <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-xl">
-                <span className="font-semibold text-gray-700">Transparent deductions</span> ·{" "}
-                <span className="font-semibold text-gray-700">Verified housing</span> ·{" "}
-                <span className="font-semibold text-gray-700">Real worker reviews</span>{" "}
+              <p className="mt-2 text-sm text-gray-400 leading-relaxed max-w-xl">
+                <span className="font-semibold text-gray-200">Transparent deductions</span> ·{" "}
+                <span className="font-semibold text-gray-200">Verified housing</span> ·{" "}
+                <span className="font-semibold text-gray-200">Real worker reviews</span>{" "}
                 — We match you only with agencies that pass our verification checks.
               </p>
             </div>
             <div className="flex flex-wrap gap-2 shrink-0">
               {["No paid rankings", "GDPR compliant", "Free matching"].map((b) => (
-                <span key={b} className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-full px-2.5 py-1">
+                <span key={b} className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-300 bg-emerald-500/[0.1] border border-emerald-400/[0.2] rounded-full px-2.5 py-1">
                   <span className="text-emerald-500">✓</span> {b}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5 sm:p-7 shadow-sm">
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03]/50 p-5 sm:p-7 shadow-sm">
             <HomepageLeadForm />
           </div>
 
@@ -708,17 +708,17 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §6  SALARY CALCULATOR
           ════════════════════════════════════════════════════════════ */}
-      <section id="calculator" className="bg-gray-50 border-b border-gray-100">
+      <section id="calculator" className="bg-white/[0.025] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Instant salary calculator — 2026 Dutch tax rates
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">
               What will you actually keep?
             </h2>
-            <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               Adjust for your specific offer. Real Dutch taxes with all heffingskorting credits.
               Every deduction calculated live.
             </p>
@@ -732,12 +732,12 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §7  METHODOLOGY TRUST BLOCK
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
 
           <div className="text-center mb-8">
             <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400">Calculation methodology</p>
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">How we calculate your real salary</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-white">How we calculate your real salary</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-7">
@@ -773,12 +773,12 @@ export default async function HomePage() {
                 ],
               },
             ].map((block) => (
-              <div key={block.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+              <div key={block.title} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
                 <div className="text-2xl mb-3">{block.icon}</div>
-                <h3 className="text-sm font-black text-gray-900 mb-3">{block.title}</h3>
+                <h3 className="text-sm font-black text-white mb-3">{block.title}</h3>
                 <ul className="space-y-1.5">
                   {block.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                    <li key={item} className="flex items-start gap-2 text-xs text-gray-300 leading-snug">
                       <span className="text-emerald-500 font-black mt-0.5 shrink-0">·</span>
                       {item}
                     </li>
@@ -791,9 +791,9 @@ export default async function HomePage() {
           <div className="grid lg:grid-cols-2 gap-6 items-start">
 
             {/* Assumptions */}
-            <div className="rounded-2xl border border-blue-100 bg-blue-50/30 p-5">
+            <div className="rounded-2xl border border-blue-400/[0.25] bg-blue-500/[0.1] p-5">
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Key assumptions</p>
-              <ul className="space-y-2 text-xs text-gray-700">
+              <ul className="space-y-2 text-xs text-gray-200">
                 {[
                   "Primary employment in the Netherlands (no double taxation treaty applied)",
                   "48 working weeks/year (4 weeks vacation included)",
@@ -807,8 +807,8 @@ export default async function HomePage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-[10px] text-gray-400 leading-relaxed border-t border-blue-100 pt-3">
-                <strong className="text-gray-500">Legal disclaimer:</strong> These calculations are for
+              <p className="mt-4 text-[10px] text-gray-400 leading-relaxed border-t border-blue-400/[0.15] pt-3">
+                <strong className="text-gray-400">Legal disclaimer:</strong> These calculations are for
                 informational purposes only and do not constitute tax, legal or financial advice. Individual
                 circumstances may vary. Consult a belastingadviseur for your specific situation.{" "}
                 <Link href="/methodology" className="text-blue-600 underline hover:text-blue-800">Full methodology →</Link>
@@ -816,24 +816,24 @@ export default async function HomePage() {
             </div>
 
             {/* Static payslip */}
-            <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+            <div className="rounded-2xl border border-white/[0.1] overflow-hidden shadow-sm">
               <div className="bg-gray-900 px-5 py-3">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                   Example: WML worker · €14.71/hr · 40h/wk · 2026 real tax
                 </p>
               </div>
-              <div className="divide-y divide-gray-100">
+              <div className="divide-y divide-white/[0.06]">
                 {SALARY_ROWS.map((row) => (
                   <div key={row.label}
-                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white"}`}>
-                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-600"}`}>{row.label}</span>
+                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white/[0.03]"}`}>
+                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-300"}`}>{row.label}</span>
                     <span className={`text-sm font-bold ${row.bold ? `text-lg font-black ${row.green ? "text-emerald-400" : "text-red-400"}` : row.green ? "text-emerald-600" : "text-red-500"}`}>
                       {row.amount}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="bg-gray-50 px-5 py-3 border-t border-gray-100">
+              <div className="bg-white/[0.02] px-5 py-3 border-t border-white/[0.06]">
                 <p className="text-[10px] text-gray-400">
                   Tax −€63 (real 2026 loonheffing after AHK+AK credits) + €95 housing + €25 transport + €35 insurance + €25 admin.{" "}
                   <Link href="/methodology" className="text-blue-600 underline">Full methodology</Link>
@@ -851,7 +851,7 @@ export default async function HomePage() {
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gray-950 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">
             Now you know what €345/week looks like
           </p>
           <h2 className="text-2xl sm:text-4xl font-black leading-tight mb-4">
@@ -874,7 +874,7 @@ export default async function HomePage() {
               Browse all {housingCount} housing agencies
             </Link>
           </div>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-gray-500">
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-gray-400">
             {["No paid rankings", "Agencies cannot buy better ratings", "Ratings are fully worker-driven", "Partner status never affects scores"].map((t) => (
               <span key={t} className="flex items-center gap-1.5">
                 <span className="text-emerald-500 font-black">✓</span>{t}
@@ -887,14 +887,14 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §8b  HOW AGENCYCHECK WORKS (business model transparency)
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-200">
+      <section className="bg-white/[0.025] border-b border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
 
           <div className="text-center mb-7">
             <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5">
               How AgencyCheck works — and how we make money
             </p>
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+            <h2 className="text-xl sm:text-2xl font-black text-white">
               Honest about how this works
             </h2>
           </div>
@@ -917,21 +917,21 @@ export default async function HomePage() {
                 body: "Agencies cannot pay to rank higher, remove reviews, or influence their scores. Paying agencies get no placement advantage. Only worker ratings determine their position.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-2xl bg-white border border-gray-100 p-5">
+              <div key={item.title} className="rounded-2xl bg-white/[0.04] border border-white/[0.1] p-5">
                 <div className="text-2xl mb-3">{item.icon}</div>
-                <p className="text-sm font-black text-gray-900 mb-2">{item.title}</p>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.body}</p>
+                <p className="text-sm font-black text-white mb-2">{item.title}</p>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
 
-          <div className="rounded-2xl border border-amber-100 bg-amber-50/40 px-5 py-4">
-            <p className="text-xs text-amber-900 leading-relaxed">
+          <div className="rounded-2xl border border-amber-400/[0.25] bg-amber-500/[0.12] px-5 py-4">
+            <p className="text-xs text-amber-200 leading-relaxed">
               <strong>Conflict of interest disclosure:</strong> Agencies that partner with us for matching do not receive higher ratings or preferential search placement.
               Our rankings are calculated purely from verified worker submissions. You can{" "}
-              <Link href="/methodology" className="underline hover:text-amber-700">read our full methodology</Link>{" "}
+              <Link href="/methodology" className="underline hover:text-amber-300">read our full methodology</Link>{" "}
               and{" "}
-              <Link href="/reviews" className="underline hover:text-amber-700">browse all unfiltered reviews</Link>{" "}
+              <Link href="/reviews" className="underline hover:text-amber-300">browse all unfiltered reviews</Link>{" "}
               — including negative ones — at any time.
             </p>
           </div>
@@ -942,13 +942,13 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §9  WORKER PROBLEMS / RISKS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">What no agency will tell you</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Common problems reported by workers</h2>
-            <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">Common problems reported by workers</h2>
+            <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
               Based on {totalReviews}+ verified worker reports. Knowing this protects you before you sign.
             </p>
           </div>
@@ -956,11 +956,11 @@ export default async function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {WORKER_PROBLEMS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-500/[0.25] bg-red-500/[0.12]" : "border-white/[0.08] bg-white/[0.03] hover:border-red-500/[0.25] hover:bg-red-500/[0.08] transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
-                <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-3">{p.body}</p>
-                <span className="inline-block text-[11px] font-bold text-red-600 bg-red-50 border border-red-100 rounded-full px-3 py-1">
+                <h3 className="text-base font-black text-white mb-2">{p.title}</h3>
+                <p className="text-sm text-gray-300 leading-relaxed mb-3">{p.body}</p>
+                <span className="inline-block text-[11px] font-bold text-red-400 bg-red-500/[0.1] border border-red-500/[0.25] rounded-full px-3 py-1">
                   ⚠ {p.freq}
                 </span>
               </div>
@@ -969,7 +969,7 @@ export default async function HomePage() {
 
           <div className="text-center">
             <Link href="/reviews"
-              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
+              className="inline-flex items-center gap-2 rounded-xl border border-white/[0.15] bg-white/[0.05] hover:bg-white/[0.1] transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-sm">
               📋 Read real worker experiences →
             </Link>
           </div>
@@ -979,21 +979,21 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §10  HOUSING PROOF
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-white/[0.025] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Real housing — not brochures</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">See where you&apos;ll actually live</h2>
-            <p className="text-gray-500 text-sm max-w-md mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">See where you&apos;ll actually live</h2>
+            <p className="text-gray-400 text-sm max-w-md mx-auto">
               Worker-submitted photos and descriptions. No stock images. No agency PR.
             </p>
           </div>
-          <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-6 sm:p-8">
+          <div className="rounded-2xl bg-white/[0.04] border border-white/[0.1] shadow-sm p-6 sm:p-8">
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
             <Link href="/agencies-with-housing"
-              className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100 transition-colors">
+              className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/[0.3] bg-blue-500/[0.1] px-5 py-2 text-sm font-bold text-blue-300 hover:bg-blue-500/[0.2] transition-colors">
               Browse all {housingCount} agencies with housing →
             </Link>
           </div>
@@ -1003,30 +1003,30 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §11  VERIFIED AGENCY CARDS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Research-checked agencies
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">
               Transparent offers — real net income shown
             </h2>
-            <p className="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed mb-4">
+            <p className="text-gray-400 text-sm max-w-xl mx-auto leading-relaxed mb-4">
               Every card shows estimated net weekly income after Dutch tax and deductions.
               No inflated gross numbers.
             </p>
             {/* Verification level legend */}
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 text-[10px] font-semibold border border-gray-100 bg-gray-50 rounded-xl px-4 py-2.5">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 text-[10px] font-semibold border border-white/[0.08] bg-white/[0.03] rounded-xl px-4 py-2.5">
               <span className="text-gray-400 font-black uppercase tracking-wider">What the badges mean:</span>
-              <span className="inline-flex items-center gap-1 text-gray-500 bg-white border border-gray-200 rounded-full px-2.5 py-1">
+              <span className="inline-flex items-center gap-1 text-gray-300 bg-white/[0.04] border border-white/[0.1] rounded-full px-2.5 py-1">
                 <span className="text-gray-400">👤</span> Worker-reported — reviews from workers only
               </span>
-              <span className="inline-flex items-center gap-1 text-blue-700 bg-blue-50 border border-blue-100 rounded-full px-2.5 py-1">
+              <span className="inline-flex items-center gap-1 text-blue-300 bg-blue-500/[0.1] border border-blue-400/[0.2] rounded-full px-2.5 py-1">
                 <span className="text-blue-400">🔍</span> Research-checked — confirmed KvK + team review
               </span>
-              <span className="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-full px-2.5 py-1">
+              <span className="inline-flex items-center gap-1 text-emerald-300 bg-emerald-500/[0.1] border border-emerald-400/[0.2] rounded-full px-2.5 py-1">
                 <span className="text-emerald-500">✓</span> SNA-registered — certified by Stichting Normering Arbeid
               </span>
             </div>
@@ -1038,7 +1038,7 @@ export default async function HomePage() {
               const meta = VERIFIED_JOB_META[agency.slug];
               return (
                 <div key={agency.slug}
-                  className="rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden flex flex-col group">
+                  className="rounded-2xl bg-white/[0.04] border border-white/[0.1] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden flex flex-col group">
 
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 px-5 py-4">
                     <div className="flex items-start justify-between gap-3 mb-3">
@@ -1063,23 +1063,23 @@ export default async function HomePage() {
 
                   <div className="px-5 py-4 flex-1 space-y-3">
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2.5 text-center">
+                      <div className="rounded-xl bg-white/[0.03] border border-white/[0.08] px-3 py-2.5 text-center">
                         <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Hourly rate</p>
-                        <p className="text-lg font-black text-gray-900">
+                        <p className="text-lg font-black text-white">
                           €{(meta?.hourlyRate ?? 14.71).toFixed(2)}
                         </p>
                       </div>
-                      <div className="rounded-xl bg-emerald-50 border border-emerald-100 px-3 py-2.5 text-center">
+                      <div className="rounded-xl bg-emerald-500/[0.1] border border-emerald-400/[0.2] px-3 py-2.5 text-center">
                         <p className="text-[10px] font-bold text-emerald-600 uppercase mb-1">Est. net/week</p>
-                        <p className="text-lg font-black text-emerald-700">
+                        <p className="text-lg font-black text-emerald-400">
                           €{meta?.estNetWeekly ?? 316}
                         </p>
                       </div>
                     </div>
-                    <div className="space-y-1.5 text-xs text-gray-500">
+                    <div className="space-y-1.5 text-xs text-gray-400">
                       <div className="flex items-center justify-between">
                         <span>🏠 Housing cost</span>
-                        <span className="font-bold text-gray-700">€{meta?.housingCost ?? 95}/wk</span>
+                        <span className="font-bold text-gray-200">€{meta?.housingCost ?? 95}/wk</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span>⭐ Worker rating</span>
@@ -1087,12 +1087,12 @@ export default async function HomePage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span>⚡ Response time</span>
-                        <span className="font-bold text-gray-700">{meta?.responseTime ?? "< 24 hours"}</span>
+                        <span className="font-bold text-gray-200">{meta?.responseTime ?? "< 24 hours"}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="px-5 py-4 border-t border-gray-100 bg-gray-50/50">
+                  <div className="px-5 py-4 border-t border-white/[0.06] bg-white/[0.02]">
                     <ApplyBar
                       context={{
                         sourcePage:           "/",
@@ -1120,7 +1120,7 @@ export default async function HomePage() {
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-sm">
               🏢 All {housingCount} housing agencies
             </Link>
-            <Link href="/agencies" className="text-sm text-gray-500 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/agencies" className="text-sm text-gray-400 hover:text-gray-200 font-medium transition-colors">
               All {totalAgencies} agencies →
             </Link>
           </div>
@@ -1184,30 +1184,30 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           SEO content + FAQ + city grid
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
 
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Workers guide</p>
-              <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 leading-tight">
+              <h2 className="text-xl sm:text-2xl font-black text-white mb-5 leading-tight">
                 Everything to know before working in the Netherlands
               </h2>
-              <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-sm text-gray-300 leading-relaxed">
                 <p>
                   The Dutch minimum wage (<em>Wettelijk Minimumloon</em>) stands at{" "}
-                  <strong className="text-gray-900">€14.71/hour in 2026</strong> for workers
+                  <strong className="text-white">€14.71/hour in 2026</strong> for workers
                   aged 21+. At 40 hours per week this gives a gross of exactly €588/week
                   (€14.71 × 40 hours). But after Dutch income tax, agency housing, health
                   insurance and transport, most workers keep between{" "}
-                  <strong className="text-gray-900">€300–€370</strong> —
+                  <strong className="text-white">€300–€370</strong> —
                   roughly 50–63% of their gross, depending on the agency.
                 </p>
                 <p>
-                  The key legal protections to know: the <strong className="text-gray-900">ABU / NBBU CAO</strong>{" "}
+                  The key legal protections to know: the <strong className="text-white">ABU / NBBU CAO</strong>{" "}
                   regulates pay scales, overtime premiums and holiday pay.
-                  The <strong className="text-gray-900">SNF</strong> (Stichting Normering Flexwonen) sets legal maximum
-                  housing deductions. The <strong className="text-gray-900">Inspectie SZW</strong> enforces all labour law.
+                  The <strong className="text-white">SNF</strong> (Stichting Normering Flexwonen) sets legal maximum
+                  housing deductions. The <strong className="text-white">Inspectie SZW</strong> enforces all labour law.
                   AgencyCheck verifies agencies against all three.
                 </p>
                 <p>
@@ -1231,11 +1231,11 @@ export default async function HomePage() {
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Rights & legal guide",          desc: "ABU CAO, WML, SNF — explained simply" },
               ].map((item) => (
                 <Link key={item.href} href={item.href}
-                  className="flex items-start gap-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
+                  className="flex items-start gap-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-blue-500/[0.08] hover:border-blue-400/[0.2] transition-colors p-4 group">
                   <span className="text-xl mt-0.5">{item.icon}</span>
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{item.title}</p>
-                    <p className="text-xs text-gray-500 mt-0.5 leading-snug truncate">{item.desc}</p>
+                    <p className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">{item.title}</p>
+                    <p className="text-xs text-gray-400 mt-0.5 leading-snug truncate">{item.desc}</p>
                   </div>
                   <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-400 transition-colors ml-auto mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
@@ -1246,17 +1246,17 @@ export default async function HomePage() {
           </div>
 
           {/* City grid */}
-          <div className="pt-8 border-t border-gray-100">
+          <div className="pt-8 border-t border-white/[0.06]">
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Browse jobs by city</p>
             <div className="flex flex-wrap gap-2">
               {TOP_CITIES.slice(0, 18).map((c) => (
                 <Link key={c.slug} href={`/jobs-in-${c.slug}`}
-                  className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  className="inline-flex items-center text-xs font-medium bg-white/[0.04] border border-white/[0.1] text-gray-300 rounded-full px-3 py-1.5 hover:border-blue-400/50 hover:text-blue-300 transition-colors">
                   💼 {c.name}
                 </Link>
               ))}
               <Link href="/jobs-in-netherlands"
-                className="inline-flex items-center text-xs font-bold bg-blue-50 border border-blue-200 text-blue-700 rounded-full px-3 py-1.5 hover:bg-blue-100 transition-colors">
+                className="inline-flex items-center text-xs font-bold bg-blue-500/[0.1] border border-blue-400/[0.2] text-blue-300 rounded-full px-3 py-1.5 hover:bg-blue-500/[0.15] transition-colors">
                 🇳🇱 All cities →
               </Link>
             </div>
@@ -1265,11 +1265,11 @@ export default async function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-white/[0.025] border-b border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">FAQ</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900">Questions workers actually ask</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">Questions workers actually ask</h2>
           </div>
           <HomepageFAQ />
           <div className="mt-8 text-center">
