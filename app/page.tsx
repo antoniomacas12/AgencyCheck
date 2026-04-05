@@ -27,9 +27,9 @@ const HomepageLeadForm       = nDynamic(() => import("@/components/HomepageLeadF
 const HomepageStickyBar      = nDynamic(() => import("@/components/HomepageStickyBar"),       { ssr: false });
 
 export const metadata: Metadata = {
-  title: "AgencyCheck — See Your REAL Salary After Housing & Costs — Netherlands",
+  title: "AgencyCheck – Real Salary, Housing & Job Transparency in the Netherlands",
   description:
-    "Most agency jobs pay €14–€17/hr but workers keep far less after housing, insurance and transport. See real take-home pay, real housing conditions and worker reviews before you sign.",
+    "See real salaries after rent, housing conditions and verified agencies before you apply. No hidden costs. Compare 150+ employment agencies by worker reviews, take-home pay and housing quality.",
   alternates: {
     canonical: "https://agencycheck.io/",
     languages: {
@@ -40,9 +40,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "AgencyCheck — See What You REALLY Keep After All Costs",
+    title: "AgencyCheck – Real Salary, Housing & Job Transparency in the Netherlands",
     description:
-      "Real salary breakdowns, real housing photos and worker reviews for 150+ employment agencies in the Netherlands. Know the truth before you sign.",
+      "See real salaries after rent, housing conditions and verified agencies before you apply. No hidden costs.",
+    images: [{ url: "https://agencycheck.io/logo.png", width: 512, height: 512, alt: "AgencyCheck" }],
   },
 };
 

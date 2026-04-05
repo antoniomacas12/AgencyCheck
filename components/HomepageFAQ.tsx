@@ -43,8 +43,8 @@ export default function HomepageFAQ() {
           key={i}
           className={`rounded-2xl border transition-all ${
             open === i
-              ? "border-blue-200 bg-blue-50/30 shadow-sm"
-              : "border-gray-100 bg-white hover:border-gray-200"
+              ? "border-blue-400/30 bg-blue-500/[0.08] shadow-sm"
+              : "border-white/[0.08] bg-white/[0.03] hover:border-white/[0.15]"
           }`}
         >
           <button
@@ -52,13 +52,13 @@ export default function HomepageFAQ() {
             className="w-full flex items-start justify-between gap-4 text-left px-5 sm:px-6 py-4 sm:py-5"
             aria-expanded={open === i}
           >
-            <span className={`text-sm font-bold leading-snug ${open === i ? "text-blue-800" : "text-gray-900"}`}>
+            <span className={`text-sm font-bold leading-snug ${open === i ? "text-blue-300" : "text-white"}`}>
               {item.q}
             </span>
             <span className={`shrink-0 mt-0.5 w-6 h-6 rounded-full border flex items-center justify-center transition-colors ${
               open === i
                 ? "bg-blue-600 border-blue-600 text-white"
-                : "border-gray-200 text-gray-400"
+                : "border-white/[0.2] text-gray-400"
             }`}>
               <svg viewBox="0 0 20 20" fill="currentColor" className={`w-3.5 h-3.5 transition-transform ${open === i ? "rotate-180" : ""}`}>
                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -67,7 +67,7 @@ export default function HomepageFAQ() {
           </button>
           {open === i && (
             <div className="px-5 sm:px-6 pb-5">
-              <p className="text-sm text-gray-700 leading-relaxed">{item.a}</p>
+              <p className="text-sm text-gray-300 leading-relaxed">{item.a}</p>
             </div>
           )}
         </div>
