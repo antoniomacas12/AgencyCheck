@@ -826,12 +826,6 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
     if (housingFilter === "yes") seed = seed.filter((r) => r.housingRating != null);
     if (housingFilter === "no")  seed = seed.filter((r) => r.housingRating == null);
 
-    switch (sortKey) {
-      case "newest": seed.sort((a, b) => b.createdAt.localeCompare(a.createdAt)); break;
-      case "worst":  seed.sort((a, b) => a.overallRating - b.overallRating); break;
-      case "best":   seed.sort((a, b) => b.overallRating - a.overallRating); break;
-    }
-
     // Apply same filters to DB reviews (real submissions)
     let db = [...dbReviews];
     if (agencyFilter) db = db.filter((r) => r.agencySlug === agencyFilter);
@@ -839,19 +833,22 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
     if (housingFilter === "yes") db = db.filter((r) => r.housingRating != null);
     if (housingFilter === "no")  db = db.filter((r) => r.housingRating == null);
 
-    // DB reviews keep their own newest-first ordering regardless of sort
-    // (they're always pinned at top — users see real reviews first)
     return { filteredDb: db, filteredSeed: seed };
   }, [agencyFilter, cityFilter, housingFilter, sortKey, dbReviews]);
 
   const totalCount = filteredDb.length + filteredSeed.length;
   const visible = useMemo(() => {
     const combined = [
-      ...filteredDb,   // real submissions always first
+      ...filteredDb,
       ...filteredSeed.map((r, i) => ({ ...seedToCard(r, i), agencySlug: r.agencySlug, agencyName: agencyDisplayName(r.agencySlug), isReal: false as const })),
     ];
+    switch (sortKey) {
+      case "newest": combined.sort((a, b) => b.createdAt.localeCompare(a.createdAt)); break;
+      case "worst":  combined.sort((a, b) => a.overallRating - b.overallRating); break;
+      case "best":   combined.sort((a, b) => b.overallRating - a.overallRating); break;
+    }
     return combined.slice(0, showCount);
-  }, [filteredDb, filteredSeed, showCount]);
+  }, [filteredDb, filteredSeed, sortKey, showCount]);
 
   return (
     <div>
