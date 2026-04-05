@@ -4,6 +4,22 @@ import { useState } from "react";
 
 const FAQ_ITEMS = [
   {
+    q: "How do I check if an agency is legitimate in the Netherlands?",
+    a: "Verify their KvK (Chamber of Commerce) registration at kvk.nl — all legitimate agencies must be registered. Then check ABU, NBBU, or SNA membership for CAO compliance. If the agency offers housing, confirm SNF certification at snf.nl. Finally, read real worker reviews on AgencyCheck before signing.",
+  },
+  {
+    q: "How do I verify if an agency is legit before signing?",
+    a: "Four checks take under 15 minutes: (1) KvK registration at kvk.nl, (2) ABU/NBBU/SNA membership, (3) SNF housing certification if accommodation is included, (4) worker reviews on AgencyCheck. Red flags: no written contract, advance payment requests, housing terms not in writing, or pressure to start immediately. See our full verification guide.",
+  },
+  {
+    q: "What is the real salary after housing costs for agency workers in the Netherlands?",
+    a: "At Dutch minimum wage (€14.71/hr × 40h = €588/week gross), most agency workers keep €300–€370/week after tax (~€63/wk), housing (~€95/wk), health insurance (~€35/wk), and transport (~€25/wk). That is 51–63% of gross. The exact amount depends on your agency's deductions — use the AgencyCheck salary calculator for a personalised breakdown.",
+  },
+  {
+    q: "What is SNF certification for Dutch employment agencies?",
+    a: "SNF (Stichting Normering Flexwonen) is the Dutch independent body that inspects and certifies housing provided by employment agencies. An SNF-certified agency has passed inspections for room size, fire safety, and basic hygiene. SNF certification also caps the maximum housing deduction at €113.50/week. You can verify certification at snf.nl.",
+  },
+  {
     q: "How much salary do I actually keep after rent and deductions in the Netherlands?",
     a: "It depends heavily on your agency. At the legal minimum wage (€14.71/hr, 40h/week), your gross weekly pay is €588. After Dutch income tax (with heffingskorting credits — reducing your tax to around €63/week), agency housing (€95/wk), transport (€25/wk), health insurance (€35/wk), and admin fees, most workers keep between €300–€370/week. That is 51–63% of gross. Our salary calculator on this page gives you an exact breakdown based on your specific situation.",
   },

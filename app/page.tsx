@@ -1226,6 +1226,7 @@ export default async function HomePage() {
               {[
                 { icon: "💶", href: "/tools/real-income-calculator",        title: "Full salary calculator",        desc: "Net pay with all 2026 Dutch tax credits included" },
                 { icon: "📄", href: "/tools/payslip-checker",               title: "Payslip verification tool",     desc: "Upload your loonstrook and check for errors" },
+                { icon: "✅", href: "/check-agency",                         title: "How to check an agency",        desc: "KvK, SNF, CAO — 4-step verification guide" },
                 { icon: "🏢", href: "/agencies",                            title: "All agencies Netherlands",      desc: `${totalAgencies} agencies ranked by worker ratings` },
                 { icon: "🏠", href: "/agencies-with-housing",               title: "Jobs with accommodation",       desc: `${housingCount} verified agencies including housing` },
                 { icon: "⭐", href: "/reviews",                             title: "Worker reviews",                desc: `${totalReviews}+ real anonymous reviews` },
@@ -1273,9 +1274,13 @@ export default async function HomePage() {
             <h2 className="text-2xl sm:text-3xl font-black text-white">Questions workers actually ask</h2>
           </div>
           <HomepageFAQ />
-          <div className="mt-8 text-center">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+            <Link href="/check-agency"
+              className="inline-flex items-center gap-2 text-sm font-bold text-emerald-400 hover:text-emerald-300 transition-colors">
+              ✅ How to verify an agency — step-by-step guide →
+            </Link>
             <Link href="/work-in-netherlands-for-foreigners"
-              className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">
+              className="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors">
               📖 Full guide: Working in the Netherlands →
             </Link>
           </div>
@@ -1310,6 +1315,8 @@ export default async function HomePage() {
               </a>
             </div>
             <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-sm text-blue-400">
+              <Link href="/check-agency"                  className="hover:text-white transition-colors">How to check an agency</Link>
+              <span className="text-blue-800">·</span>
               <Link href="/agencies"                     className="hover:text-white transition-colors">All agencies</Link>
               <span className="text-blue-800">·</span>
               <Link href="/reviews"                      className="hover:text-white transition-colors">Worker reviews</Link>

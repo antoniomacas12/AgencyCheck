@@ -146,6 +146,7 @@ export default async function ReviewsPage() {
                   </p>
 
                   <div className="flex flex-wrap gap-3 pt-2 text-xs border-t border-gray-200">
+                    <Link href="/check-agency"                                     className="text-emerald-600 hover:text-emerald-700 font-semibold transition-colors">→ How to verify an agency (4-step guide)</Link>
                     <Link href="/guides/agency-jobs-netherlands-worker-experience" className="text-emerald-600 hover:text-emerald-700 transition-colors">→ Worker experience guide</Link>
                     <Link href="/guides/dutch-payslip-explained-agency-workers"    className="text-emerald-600 hover:text-emerald-700 transition-colors">→ Payslip guide</Link>
                     <Link href="/guides/netherlands-agency-housing-conditions-rights" className="text-emerald-600 hover:text-emerald-700 transition-colors">→ Housing rights guide</Link>
