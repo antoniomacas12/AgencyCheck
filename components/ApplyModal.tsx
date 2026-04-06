@@ -36,14 +36,12 @@ type FormData = {
   whatsappSame: boolean;
   nationality: string;
   currentCountry: string;
-  alreadyInNL: string; // "yes" | "no" | ""
+  alreadyInNL: string;       // "yes" | "no" | ""  — REQUIRED
   preferredWorkType: string;
-  preferredRegion: string;
-  accommodationNeeded: string; // "yes" | "no" | ""
-  driversLicense: string; // "yes" | "no" | ""
-  canWorkWeekends: string; // "yes" | "no" | ""
+  accommodationNeeded: string; // "yes" | "no" | ""  — REQUIRED
+  driversLicense: string;    // "yes" | "no" | ""
   experienceLevel: string;
-  availableFrom: string;
+  whenCanStart: string;      // "immediately" | "1_week" | "2_weeks" | "1_month" | "" — REQUIRED
   notes: string;
 };
 
@@ -56,12 +54,10 @@ const EMPTY_FORM: FormData = {
   currentCountry: "",
   alreadyInNL: "",
   preferredWorkType: "",
-  preferredRegion: "",
   accommodationNeeded: "",
   driversLicense: "",
-  canWorkWeekends: "",
   experienceLevel: "",
-  availableFrom: "",
+  whenCanStart: "",
   notes: "",
 };
 
@@ -70,20 +66,13 @@ const WORK_TYPE_KEYS = [
   "logistics", "production", "greenhouse", "driving", "cleaning", "construction", "any",
 ] as const;
 
-// Dutch city regions — names stay fixed (proper nouns), only "No preference" is translated
-const REGION_CITIES = [
-  "Amsterdam area",
-  "Rotterdam area",
-  "The Hague area",
-  "Eindhoven area",
-  "Tilburg area",
-  "Venlo area",
-  "Breda area",
-  "Waalwijk area",
-  "Venray area",
-  "Utrecht area",
-  "Groningen area",
-];
+// "When can you start?" options — stored as availability in DB
+const WHEN_CAN_START_OPTS = [
+  { label: "⚡ Immediately",     value: "immediately" },
+  { label: "📅 Within 1 week",   value: "1_week"      },
+  { label: "🗓 Within 2 weeks",  value: "2_weeks"     },
+  { label: "📆 1 month+",        value: "1_month"     },
+] as const;
 
 // ─── Field component helpers ──────────────────────────────────────────────────
 
@@ -294,12 +283,27 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
   // ── Validation ─────────────────────────────────────────────────────────────
   function validate(): boolean {
     const errs: Partial<Record<keyof FormData, string>> = {};
+
+    // Name — required
     if (!form.fullName.trim()) errs.fullName = t("apply_modal.error_name_required");
-    if (!form.phone.trim()) errs.phone = t("apply_modal.error_phone_required");
-    else if (!/^\+?[\d\s\-().]{6,20}$/.test(form.phone.trim()))
-      errs.phone = t("apply_modal.error_phone_invalid");
-    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
-      errs.email = t("apply_modal.error_email_invalid");
+
+    // Contact — at least phone OR email required
+    const hasPhone = form.phone.trim().length > 0;
+    const hasEmail = form.email.trim().length > 0;
+    if (!hasPhone && !hasEmail) {
+      errs.phone = "Please enter at least a phone number or email address";
+    } else {
+      if (hasPhone && !/^\+?[\d\s\-().]{6,20}$/.test(form.phone.trim()))
+        errs.phone = t("apply_modal.error_phone_invalid");
+      if (hasEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
+        errs.email = t("apply_modal.error_email_invalid");
+    }
+
+    // Required selects
+    if (!form.alreadyInNL)       errs.alreadyInNL       = "Please select an option";
+    if (!form.accommodationNeeded) errs.accommodationNeeded = "Please select an option";
+    if (!form.whenCanStart)      errs.whenCanStart      = "Please select when you can start";
+
     setErrors(errs);
     return Object.keys(errs).length === 0;
   }
@@ -327,20 +331,18 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
         sourceLabel: context.sourceLabel,
         housingPreference: housingPreference ?? undefined,
         fullName:     form.fullName.trim(),
-        phone:        form.phone.trim(),
+        phone:        form.phone.trim() || undefined,
         email:        form.email.trim() || undefined,
         whatsappSame: form.whatsappSame,
         nationality:    form.nationality || undefined,
         currentCountry: form.currentCountry || undefined,
         alreadyInNL:    form.alreadyInNL === "yes" ? true : form.alreadyInNL === "no" ? false : undefined,
         preferredWorkType:  form.preferredWorkType || undefined,
-        preferredRegion:    form.preferredRegion   || undefined,
         accommodationNeeded: form.accommodationNeeded === "yes" ? true : form.accommodationNeeded === "no" ? false : undefined,
-        driversLicense:     form.driversLicense    === "yes" ? true : form.driversLicense    === "no" ? false : undefined,
-        canWorkWeekends:    form.canWorkWeekends    === "yes" ? true : form.canWorkWeekends   === "no" ? false : undefined,
-        experienceLevel:    form.experienceLevel    || undefined,
-        availableFrom:      form.availableFrom      || undefined,
-        notes:              form.notes.trim()       || undefined,
+        driversLicense:     form.driversLicense === "yes" ? true : form.driversLicense === "no" ? false : undefined,
+        experienceLevel:    form.experienceLevel || undefined,
+        whenCanStart:       form.whenCanStart    || undefined,
+        notes:              form.notes.trim()    || undefined,
       };
 
       const res = await fetch("/api/leads", {
@@ -587,41 +589,50 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
                 />
               </div>
 
-              <div>
-                <Label required>{t("apply_modal.label_phone")}</Label>
-                <Input
-                  value={form.phone}
-                  onChange={(v) => set("phone", v)}
-                  placeholder="+48 123 456 789"
-                  type="tel"
-                  error={errors.phone}
-                />
-                <div className="flex items-center gap-2 mt-1.5">
-                  <input
-                    id="whatsapp-same"
-                    type="checkbox"
-                    checked={form.whatsappSame}
-                    onChange={(e) => set("whatsappSame", e.target.checked)}
-                    className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
-                  />
-                  <label htmlFor="whatsapp-same" className="text-xs text-gray-500">
-                    {t("apply_modal.label_whatsapp")}
+              {/* Phone + Email — at least ONE is required */}
+              <div className="rounded-xl border border-gray-200 bg-gray-50 p-3 space-y-3">
+                <p className="text-[11px] font-semibold text-gray-500">
+                  Phone or Email <span className="text-red-500">*</span>
+                  <span className="text-gray-400 font-normal ml-1">— at least one required</span>
+                </p>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    {t("apply_modal.label_phone")}
                   </label>
+                  <Input
+                    value={form.phone}
+                    onChange={(v) => set("phone", v)}
+                    placeholder="+48 123 456 789"
+                    type="tel"
+                    error={errors.phone}
+                  />
+                  {form.phone && (
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <input
+                        id="whatsapp-same"
+                        type="checkbox"
+                        checked={form.whatsappSame}
+                        onChange={(e) => set("whatsappSame", e.target.checked)}
+                        className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                      />
+                      <label htmlFor="whatsapp-same" className="text-xs text-gray-500">
+                        {t("apply_modal.label_whatsapp")}
+                      </label>
+                    </div>
+                  )}
                 </div>
-              </div>
-
-              <div>
-                <Label>
-                  {t("apply_modal.label_email")}{" "}
-                  <span className="text-gray-400 font-normal">{t("apply_modal.label_email_optional")}</span>
-                </Label>
-                <Input
-                  value={form.email}
-                  onChange={(v) => set("email", v)}
-                  placeholder={t("apply_modal.placeholder_email")}
-                  type="email"
-                  error={errors.email}
-                />
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    {t("apply_modal.label_email")}
+                  </label>
+                  <Input
+                    value={form.email}
+                    onChange={(v) => set("email", v)}
+                    placeholder={t("apply_modal.placeholder_email")}
+                    type="email"
+                    error={errors.email}
+                  />
+                </div>
               </div>
             </div>
 
@@ -651,8 +662,11 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
               </div>
 
               <div>
-                <Label>{t("apply_modal.label_already_nl")}</Label>
+                <Label required>{t("apply_modal.label_already_nl")}</Label>
                 <YesNo value={form.alreadyInNL} onChange={(v) => set("alreadyInNL", v)} labels={yesNoLabels} />
+                {errors.alreadyInNL && (
+                  <p className="text-[11px] text-red-500 mt-1">{errors.alreadyInNL}</p>
+                )}
               </div>
             </div>
 
@@ -675,38 +689,48 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
                 </Select>
               </div>
 
+              {/* Accommodation — REQUIRED */}
               <div>
-                <Label>{t("apply_modal.label_region")}</Label>
-                <Select
-                  value={form.preferredRegion}
-                  onChange={(v) => set("preferredRegion", v)}
-                  placeholder={t("apply_modal.placeholder_region")}
-                >
-                  {REGION_CITIES.map((city) => (
-                    <option key={city} value={city}>{city}</option>
-                  ))}
-                  <option value="No preference">{t("apply_modal.region_no_preference")}</option>
-                </Select>
-              </div>
-
-              <div>
-                <Label>{t("apply_modal.label_accommodation")}</Label>
+                <Label required>{t("apply_modal.label_accommodation")}</Label>
                 <YesNo
                   value={form.accommodationNeeded}
                   onChange={(v) => set("accommodationNeeded", v)}
                   labels={yesNoLabels}
                 />
+                {errors.accommodationNeeded && (
+                  <p className="text-[11px] text-red-500 mt-1">{errors.accommodationNeeded}</p>
+                )}
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <Label>{t("apply_modal.label_drivers_license")}</Label>
-                  <YesNo value={form.driversLicense} onChange={(v) => set("driversLicense", v)} labels={yesNoLabels} />
+              {/* When can you start? — REQUIRED */}
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1">
+                  When can you start? <span className="text-red-500">*</span>
+                </label>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {WHEN_CAN_START_OPTS.map((opt) => (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => set("whenCanStart", form.whenCanStart === opt.value ? "" : opt.value)}
+                      className={`py-2.5 px-2 rounded-xl text-xs font-medium border transition text-center
+                        ${form.whenCanStart === opt.value
+                          ? "bg-brand-600 text-white border-brand-600 shadow-sm"
+                          : "bg-white text-gray-700 border-gray-200 hover:border-brand-300 hover:bg-brand-50"
+                        }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
                 </div>
-                <div>
-                  <Label>{t("apply_modal.label_weekends")}</Label>
-                  <YesNo value={form.canWorkWeekends} onChange={(v) => set("canWorkWeekends", v)} labels={yesNoLabels} />
-                </div>
+                {errors.whenCanStart && (
+                  <p className="text-[11px] text-red-500 mt-1">{errors.whenCanStart}</p>
+                )}
+              </div>
+
+              <div>
+                <Label>{t("apply_modal.label_drivers_license")}</Label>
+                <YesNo value={form.driversLicense} onChange={(v) => set("driversLicense", v)} labels={yesNoLabels} />
               </div>
 
               <div>
@@ -727,15 +751,6 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
                     </button>
                   ))}
                 </div>
-              </div>
-
-              <div>
-                <Label>{t("apply_modal.label_available_from")}</Label>
-                <Input
-                  value={form.availableFrom}
-                  onChange={(v) => set("availableFrom", v)}
-                  type="date"
-                />
               </div>
             </div>
 

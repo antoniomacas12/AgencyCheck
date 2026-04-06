@@ -49,9 +49,12 @@ export async function POST(req: NextRequest) {
 
   // Required fields
   const fullName = str(body.fullName, 100);
-  const phone    = str(body.phone, 30);
+  const phone    = str(body.phone, 30) ?? undefined;
+  const emailRaw = str(body.email, 150) ?? undefined;
   if (!fullName) return NextResponse.json({ error: "fullName is required" }, { status: 400 });
-  if (!phone)    return NextResponse.json({ error: "phone is required" }, { status: 400 });
+  // At least one of phone or email is required
+  if (!phone && !emailRaw)
+    return NextResponse.json({ error: "phone or email is required" }, { status: 400 });
 
   // Source
   const sourcePage  = str(body.sourcePage, 300) ?? "/";
@@ -61,7 +64,7 @@ export async function POST(req: NextRequest) {
   const sourceLabel = str(body.sourceLabel, 150) ?? undefined;
 
   // Contact
-  const email        = str(body.email, 150) ?? undefined;
+  const email        = emailRaw;
   const whatsappSame = typeof body.whatsappSame === "boolean" ? body.whatsappSame : false;
 
   // Background
@@ -78,7 +81,6 @@ export async function POST(req: NextRequest) {
   // Preferences
   const wkRaw             = str(body.preferredWorkType, 30);
   const preferredWorkType = wkRaw && ALLOWED_WORK_TYPES.has(wkRaw) ? wkRaw : undefined;
-  const preferredRegion   = str(body.preferredRegion, 80) ?? undefined;
 
   const accommodationNeededRaw = bool(body.accommodationNeeded);
   const accommodationNeeded =
@@ -88,15 +90,15 @@ export async function POST(req: NextRequest) {
     undefined;
 
   const driversLicense  = bool(body.driversLicense) ?? undefined;
-  const canWorkWeekends = bool(body.canWorkWeekends) ?? undefined;
   const expRaw          = str(body.experienceLevel, 20);
   const experienceLevel = expRaw && ALLOWED_EXPERIENCE.has(expRaw) ? expRaw : undefined;
 
-  let availableFrom: Date | undefined;
-  if (body.availableFrom && typeof body.availableFrom === "string") {
-    const d = new Date(body.availableFrom);
-    if (!isNaN(d.getTime())) availableFrom = d;
-  }
+  // whenCanStart → stored in existing `availability` column
+  const ALLOWED_WHEN_CAN_START = new Set(["immediately", "1_week", "2_weeks", "1_month"]);
+  const whenCanStartRaw = str(body.whenCanStart, 20);
+  const availability = whenCanStartRaw && ALLOWED_WHEN_CAN_START.has(whenCanStartRaw)
+    ? whenCanStartRaw
+    : undefined;
 
   const notes = str(body.notes, 1000) ?? undefined;
   const tags: string[] = housingPreference ? [housingPreference] : [];
@@ -116,12 +118,10 @@ export async function POST(req: NextRequest) {
     currentCountry,
     alreadyInNL,
     preferredWorkType,
-    preferredRegion,
     accommodationNeeded,
     driversLicense,
-    canWorkWeekends,
     experienceLevel,
-    availableFrom:      availableFrom?.toISOString(),
+    availability,
     notes,
     tags,
     status:             "new",
@@ -137,19 +137,17 @@ export async function POST(req: NextRequest) {
         sourceSlug,
         sourceLabel,
         fullName,
-        phone,
+        phone:       phone ?? "",      // DB column is non-nullable; use "" if only email provided
         email,
         whatsappSame,
         nationality,
         currentCountry,
         alreadyInNL,
         preferredWorkType,
-        preferredRegion,
         accommodationNeeded,
         driversLicense,
-        canWorkWeekends,
         experienceLevel,
-        availableFrom,
+        availability,
         notes,
         status: "new",
         tags:             JSON.stringify(tags),
