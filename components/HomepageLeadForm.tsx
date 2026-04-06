@@ -66,7 +66,41 @@ function StepDots({ step }: { step: 1 | 2 }) {
   );
 }
 
-// ── Qualification screen ──────────────────────────────────────────────────────
+// ── Qualification screen — 4 questions ───────────────────────────────────────
+
+// UI state uses distinct keys for all options; mapped to API values on submit
+type QualifyState = {
+  locationStatus: "nl" | "relocate" | "exploring" | "";
+  q2_bsn:         "has_bsn" | "worked_before" | "no" | "";
+  // "1_week" and "2_weeks" both map to API value "1_2_weeks"
+  availabilityUI: "immediately" | "1_week" | "2_weeks" | "later" | "";
+  q4_experience:  "yes" | "no" | "";
+};
+
+function PickBtn({
+  label, active, onClick,
+}: { label: string; active: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`relative w-full text-left rounded-xl border px-4 py-3 text-sm font-semibold transition-all active:scale-[0.97]
+        ${active
+          ? "border-blue-500 bg-blue-50 text-blue-800 shadow-sm"
+          : "border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+        }`}
+    >
+      {label}
+      {active && (
+        <span className="absolute top-1/2 -translate-y-1/2 right-3 w-4 h-4 rounded-full bg-blue-600 flex items-center justify-center">
+          <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+          </svg>
+        </span>
+      )}
+    </button>
+  );
+}
 
 function QualifyScreen({
   leadId,
@@ -75,24 +109,61 @@ function QualifyScreen({
   leadId: string;
   onDone: () => void;
 }) {
-  const [availability,   setAvailability]   = useState<Availability>("");
-  const [locationStatus, setLocationStatus] = useState<LocationStatus>("");
-  const [loading,        setLoading]        = useState(false);
+  const [answers, setAnswers] = useState<QualifyState>({
+    locationStatus: "",
+    q2_bsn:         "",
+    availabilityUI: "",
+    q4_experience:  "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [showErr, setShowErr] = useState(false);
 
-  const canSubmit = availability && locationStatus && !loading;
+  console.log("[QualifyScreen] mounted, leadId =", leadId);
+
+  // Q1 and Q3 are required before submitting
+  const canSubmit = !!answers.locationStatus && !!answers.availabilityUI && !loading;
+
+  const set = <K extends keyof QualifyState>(k: K, v: QualifyState[K]) =>
+    setAnswers((a) => ({ ...a, [k]: v }));
+
+  // Map UI availability to API value
+  function mapAvailability(v: QualifyState["availabilityUI"]): string {
+    if (v === "immediately") return "immediately";
+    if (v === "1_week")      return "1_2_weeks";
+    if (v === "2_weeks")     return "1_2_weeks";
+    if (v === "later")       return "1_month";
+    return "exploring";
+  }
 
   async function submit() {
-    if (!canSubmit) return;
+    if (!answers.locationStatus || !answers.availabilityUI) {
+      setShowErr(true);
+      return;
+    }
+    setShowErr(false);
     setLoading(true);
+    const payload = {
+      locationStatus: answers.locationStatus,
+      availability:   mapAvailability(answers.availabilityUI),
+      q2_bsn:         answers.q2_bsn        || undefined,
+      q4_experience:  answers.q4_experience  || undefined,
+    };
+    console.log("[QualifyScreen] finish application clicked, payload:", payload);
     try {
-      await fetch(`/api/leads/${leadId}/qualify`, {
-        method:  "POST",
-        headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({ availability, locationStatus }),
-      });
-    } catch {
-      // Fire-and-forget — qualification failing silently is fine.
-      // Lead is already saved. Success screen always shows.
+      const isFallback = !leadId || leadId.startsWith("fallback-");
+      if (!isFallback) {
+        const res = await fetch(`/api/leads/${leadId}/qualify`, {
+          method:  "POST",
+          headers: { "Content-Type": "application/json" },
+          body:    JSON.stringify(payload),
+        });
+        const result = await res.json().catch(() => ({}));
+        console.log("[QualifyScreen] qualify save success, response:", res.status, result);
+      } else {
+        console.warn("[QualifyScreen] fallback leadId — answers logged only:", payload);
+      }
+    } catch (err) {
+      console.error("[QualifyScreen] qualify fetch error:", err);
     }
     onDone();
   }
@@ -100,86 +171,67 @@ function QualifyScreen({
   return (
     <div className="py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-5">
         <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mb-3">
           <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
         </div>
-        <h3 className="text-base font-black text-gray-900 mb-1">
-          Two quick questions
-        </h3>
-        <p className="text-xs text-gray-500">
-          Helps us match you with the right agencies faster.
-        </p>
+        <h3 className="text-base font-black text-gray-900 mb-1">Almost done — 4 quick questions</h3>
+        <p className="text-xs text-gray-500">Helps us match you with the right agency faster.</p>
       </div>
 
-      {/* Question 1: Availability */}
-      <div className="mb-5">
-        <p className="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">
-          When can you start working?
+      {/* Q1 — NL status */}
+      <div className="mb-4">
+        <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">
+          Are you already in the Netherlands or do you have an EU passport?
+          {showErr && !answers.locationStatus && (
+            <span className="text-red-500 ml-2 normal-case font-semibold">Required</span>
+          )}
         </p>
-        <div className="grid grid-cols-2 gap-2">
-          {([
-            { value: "immediately", label: "⚡ Immediately"     },
-            { value: "1_2_weeks",   label: "📅 1–2 weeks"       },
-            { value: "1_month",     label: "🗓️ Within 1 month"  },
-            { value: "exploring",   label: "👀 Just exploring"  },
-          ] as { value: Availability; label: string }[]).map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              onClick={() => setAvailability(opt.value)}
-              className={`relative text-left rounded-xl border px-4 py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
-                availability === opt.value
-                  ? "border-blue-500 bg-blue-50 text-blue-800 shadow-sm"
-                  : "border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50"
-              }`}
-            >
-              {opt.label}
-              {availability === opt.value && (
-                <span className="absolute top-2 right-2 w-4 h-4 rounded-full bg-blue-600 flex items-center justify-center">
-                  <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </span>
-              )}
-            </button>
-          ))}
+        <div className="flex flex-col gap-1.5">
+          <PickBtn label="🇳🇱 Already in the Netherlands" active={answers.locationStatus === "nl"}       onClick={() => set("locationStatus", "nl")} />
+          <PickBtn label="✈️ EU passport / ready to relocate" active={answers.locationStatus === "relocate"} onClick={() => set("locationStatus", "relocate")} />
+          <PickBtn label="🌍 Neither"                       active={answers.locationStatus === "exploring"} onClick={() => set("locationStatus", "exploring")} />
         </div>
       </div>
 
-      {/* Question 2: Location */}
-      <div className="mb-6">
-        <p className="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">
-          Do you currently live in the Netherlands?
+      {/* Q2 — BSN */}
+      <div className="mb-4">
+        <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">
+          Do you have a BSN or have you worked in the Netherlands before?
         </p>
-        <div className="grid grid-cols-1 gap-2">
-          {([
-            { value: "nl",        label: "🇳🇱 Yes, I'm already in the Netherlands" },
-            { value: "relocate",  label: "✈️  No, but ready to relocate"           },
-            { value: "exploring", label: "🔍 No, just exploring options"           },
-          ] as { value: LocationStatus; label: string }[]).map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              onClick={() => setLocationStatus(opt.value)}
-              className={`relative text-left rounded-xl border px-4 py-3.5 text-sm font-semibold transition-all active:scale-[0.97] ${
-                locationStatus === opt.value
-                  ? "border-blue-500 bg-blue-50 text-blue-800 shadow-sm"
-                  : "border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50"
-              }`}
-            >
-              {opt.label}
-              {locationStatus === opt.value && (
-                <span className="absolute top-1/2 -translate-y-1/2 right-3 w-4 h-4 rounded-full bg-blue-600 flex items-center justify-center">
-                  <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </span>
-              )}
-            </button>
-          ))}
+        <div className="flex flex-col gap-1.5">
+          <PickBtn label="Yes, I have BSN"        active={answers.q2_bsn === "has_bsn"}       onClick={() => set("q2_bsn", "has_bsn")} />
+          <PickBtn label="I worked in NL before"  active={answers.q2_bsn === "worked_before"} onClick={() => set("q2_bsn", "worked_before")} />
+          <PickBtn label="No"                     active={answers.q2_bsn === "no"}             onClick={() => set("q2_bsn", "no")} />
+        </div>
+      </div>
+
+      {/* Q3 — Availability */}
+      <div className="mb-4">
+        <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">
+          When can you start?
+          {showErr && !answers.availabilityUI && (
+            <span className="text-red-500 ml-2 normal-case font-semibold">Required</span>
+          )}
+        </p>
+        <div className="grid grid-cols-2 gap-1.5">
+          <PickBtn label="⚡ Immediately"    active={answers.availabilityUI === "immediately"} onClick={() => set("availabilityUI", "immediately")} />
+          <PickBtn label="📅 Within 1 week"  active={answers.availabilityUI === "1_week"}      onClick={() => set("availabilityUI", "1_week")} />
+          <PickBtn label="🗓 Within 2 weeks" active={answers.availabilityUI === "2_weeks"}     onClick={() => set("availabilityUI", "2_weeks")} />
+          <PickBtn label="⏳ Later"          active={answers.availabilityUI === "later"}       onClick={() => set("availabilityUI", "later")} />
+        </div>
+      </div>
+
+      {/* Q4 — Experience */}
+      <div className="mb-6">
+        <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">
+          Do you have basic experience in warehouse / production / logistics?
+        </p>
+        <div className="grid grid-cols-2 gap-1.5">
+          <PickBtn label="Yes" active={answers.q4_experience === "yes"} onClick={() => set("q4_experience", "yes")} />
+          <PickBtn label="No"  active={answers.q4_experience === "no"}  onClick={() => set("q4_experience", "no")} />
         </div>
       </div>
 
@@ -196,9 +248,9 @@ function QualifyScreen({
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
             </svg>
-            Confirming…
+            Saving…
           </>
-        ) : "Confirm →"}
+        ) : "Finish application →"}
       </button>
 
       <button
@@ -245,6 +297,7 @@ export default function HomepageLeadForm() {
     if (!canStep2) return;
     setStatus("loading");
     setErrorMsg("");
+    console.log("[HomepageLeadForm] apply submit started");
 
     try {
       const res = await fetch("/api/leads", {
@@ -268,6 +321,7 @@ export default function HomepageLeadForm() {
 
       if (res.ok) {
         const data = await res.json().catch(() => ({}));
+        console.log("[HomepageLeadForm] apply submit success, id =", data.id, "→ showing qualify step");
         setLeadId(data.id ?? null);
         setStatus("success");
       } else {
