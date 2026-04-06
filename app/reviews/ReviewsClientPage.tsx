@@ -364,7 +364,7 @@ function ReviewSubmitForm({
             placeholder="Type agency name…"
             autoComplete="off"
             className="flex-1 px-3.5 py-2.5 text-base placeholder:text-gray-600 focus:outline-none"
-            style={{ colorScheme: "dark", background: "rgba(255,255,255,0.05)", color: "white", WebkitTextFillColor: "white" }}
+            style={{ colorScheme: "dark", background: "#1a2235", color: "#ffffff", WebkitTextFillColor: "#ffffff", caretColor: "#ffffff" }}
           />
           <span className="pr-3 shrink-0">
             {suggestLoading
@@ -445,7 +445,7 @@ function ReviewSubmitForm({
             className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl
               placeholder:text-gray-600
               focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
-            style={{ colorScheme: "dark", background: "rgba(255,255,255,0.05)", color: "white", WebkitTextFillColor: "white" }}
+            style={{ colorScheme: "dark", background: "#1a2235", color: "#ffffff", WebkitTextFillColor: "#ffffff", caretColor: "#ffffff" }}
           />
         </div>
         <div>
@@ -607,9 +607,10 @@ function ReviewSubmitForm({
             leading-relaxed placeholder:text-gray-500"
           style={{
             colorScheme: "dark",
-            background: "rgba(255,255,255,0.05)",
-            color: "white",
-            WebkitTextFillColor: "white",
+            background: "#1a2235",
+            color: "#ffffff",
+            WebkitTextFillColor: "#ffffff",
+            caretColor: "#ffffff",
           }}
         />
         <div className="flex items-center justify-between mt-1.5">
@@ -882,7 +883,7 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
             onChange={(e) => { setCityFilter(e.target.value); setShowCount(12); }}
             placeholder={t("reviews_page.filter_city_placeholder")}
             className="text-base border border-white/[0.1] rounded-lg px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:border-white/30 w-32 flex-1 sm:flex-none"
-            style={{ colorScheme: "dark", background: "rgba(255,255,255,0.06)", color: "rgb(209,213,219)", WebkitTextFillColor: "rgb(209,213,219)" }}
+            style={{ colorScheme: "dark", background: "#1a2235", color: "rgb(209,213,219)", WebkitTextFillColor: "rgb(209,213,219)", caretColor: "rgb(209,213,219)" }}
           />
         </div>
         {/* Row 2: housing + sort pills */}
@@ -1071,9 +1072,9 @@ export default function ReviewsClientPage({
       <div className="lg:flex lg:items-start lg:gap-8">
 
         {/* LEFT — sticky form */}
-        <div id="review-form" className="order-last lg:order-first lg:w-[360px] lg:shrink-0 mt-8 lg:mt-0 lg:sticky lg:top-20">
+        <div id="review-form" className="order-last lg:order-first lg:w-[360px] lg:shrink-0 mt-8 lg:mt-0 lg:sticky lg:top-20" style={{ zIndex: 25 }}>
           <div
-            className="rounded-2xl border border-white/[0.09] p-5 lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto"
+            className="rounded-2xl border border-white/[0.09] p-5 lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto lg:pb-16"
             style={{
               background: "linear-gradient(160deg, rgba(15,22,35,0.98) 0%, rgba(10,15,25,0.99) 100%)",
               boxShadow: "0 16px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)",
