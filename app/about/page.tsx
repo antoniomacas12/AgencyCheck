@@ -37,7 +37,7 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema)  }} />
 
       {/* ── Header ─────────────────────────────────────────────────────── */}
-      <div className="bg-gray-950 text-white">
+      <div className="bg-surface-hero text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-14 sm:py-18">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[10px] font-bold tracking-widest uppercase mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />

@@ -38,6 +38,9 @@ module.exports = {
     "from-blue-900", "via-blue-950", "to-gray-950",
     "bg-blue-700",   "bg-blue-600",  "hover:bg-blue-700",
     "shadow-green-900/40", "shadow-green-900/30",
+    // ── Background system tokens ───────────────────────────────────────────────
+    "bg-surface-base", "bg-surface-hero", "bg-surface-muted",
+    "from-surface-hero", "to-surface-base",
     // ── Brand color classes used in components ─────────────────────────────────
     "bg-brand-50",  "bg-brand-100",  "bg-brand-600", "bg-brand-700", "bg-brand-800",
     "text-brand-600", "text-brand-700", "text-brand-200",
@@ -63,6 +66,16 @@ module.exports = {
           yes:     "#16a34a",
           no:      "#dc2626",
           unknown: "#9ca3af",
+        },
+        // ── Background system — replaces raw #080c14 / gray-950 / gray-900 ──────
+        // Deep neutral blue-gray tones (Stripe / Linear / modern SaaS feel).
+        // Use:  bg-surface-base   → page backgrounds, full-dark canvases
+        //       bg-surface-hero   → hero sections (top-of-page, premium feel)
+        //       bg-surface-muted  → sub-sections, trust panels, evidence rows
+        surface: {
+          base:  "#0c1524", // deep navy-black (replaces #080c14, gray-950)
+          hero:  "#0f172a", // slate-900 — hero sections (Stripe-tier dark blue)
+          muted: "#131f31", // slightly lifted — section dividers, panels
         },
       },
       fontFamily: {

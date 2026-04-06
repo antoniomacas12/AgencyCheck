@@ -234,7 +234,7 @@ export default async function HomePage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#080c14]">
+    <div className="min-h-screen bg-surface-base">
 
       {/* JSON-LD structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)       }} />
@@ -245,7 +245,7 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §1  HERO — premium, trust-first, conversion-focused
           ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-[#080c14] text-white">
+      <section className="relative overflow-hidden bg-hero-depth text-white">
 
         {/* ── Fade-in keyframes ──────────────────────────────────────── */}
         <style>{`
@@ -271,7 +271,7 @@ export default async function HomePage() {
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse 85% 55% at 50% 0%, transparent 30%, #080c14 88%)",
+            background: "radial-gradient(ellipse 85% 55% at 50% 0%, transparent 30%, #0c1524 88%)",
           }}
           aria-hidden="true"
         />
@@ -463,7 +463,7 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §2  TRUST EVIDENCE PANEL — hard data, sources, identity
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-900 border-b border-white/5">
+      <section className="bg-surface-muted border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-7">
 
           {/* ── Top row: 4 key metrics with sub-labels ── */}
@@ -850,7 +850,7 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §8  SALARY PAIN → CTA
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-950 text-white">
+      <section className="bg-surface-hero text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
           <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">
             Now you know what €345/week looks like

@@ -357,7 +357,7 @@ export default function RoSalariuOlandaPage() {
         </section>
 
         {/* CTA */}
-        <div className="bg-gray-900 rounded-2xl px-6 py-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-surface-muted rounded-2xl px-6 py-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <p className="font-black text-base mb-1">Verifică agenția înainte să pleci</p>
             <p className="text-xs text-gray-400 leading-relaxed">

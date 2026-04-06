@@ -77,7 +77,7 @@ function SubmitPageInner() {
 
 export default function ReviewSubmitPage() {
   return (
-    <div className="relative min-h-screen bg-[#080c14] text-white">
+    <div className="relative min-h-screen bg-surface-base text-white">
 
       {/* ── Background layers ─────────────────────────────────────── */}
       {/* Dot grid — slightly lower opacity than homepage */}

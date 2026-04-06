@@ -72,7 +72,7 @@ export default function ShockPopup() {
         aria-label="Real income warning"
       >
         {/* Header */}
-        <div className="bg-gray-950 px-5 pt-5 pb-4">
+        <div className="bg-surface-base px-5 pt-5 pb-4">
           <div className="flex items-start justify-between mb-3">
             <span className="text-2xl">⚠️</span>
             <button
@@ -96,7 +96,7 @@ export default function ShockPopup() {
         </div>
 
         {/* Numbers */}
-        <div className="bg-gray-900 px-5 py-4 grid grid-cols-2 gap-3">
+        <div className="bg-surface-muted px-5 py-4 grid grid-cols-2 gap-3">
           <div className="text-center bg-white/5 rounded-xl py-3">
             <p className="text-[9px] font-bold uppercase tracking-widest text-gray-500 mb-1">Agency says</p>
             <p className="text-2xl font-black text-gray-500 line-through decoration-red-500 decoration-2">€600</p>
@@ -110,14 +110,14 @@ export default function ShockPopup() {
         </div>
 
         {/* Trust note */}
-        <div className="bg-gray-900 px-5 pb-1">
+        <div className="bg-surface-muted px-5 pb-1">
           <p className="text-[9px] text-gray-600 text-center">
             📊 Based on real worker reports — not agency estimates
           </p>
         </div>
 
         {/* Actions */}
-        <div className="bg-gray-950 px-5 pt-3 pb-5 flex flex-col gap-2">
+        <div className="bg-surface-base px-5 pt-3 pb-5 flex flex-col gap-2">
           <Link
             href="/tools/real-income-calculator"
             onClick={dismiss}

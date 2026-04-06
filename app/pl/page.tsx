@@ -242,7 +242,7 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §1  HERO
           ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-gray-950 text-white">
+      <section className="relative overflow-hidden bg-hero-depth text-white">
         <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }}
           aria-hidden="true" />
@@ -316,7 +316,7 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §2  TRUST EVIDENCE PANEL
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-900 border-b border-white/5">
+      <section className="bg-surface-muted border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-7">
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-0 sm:flex sm:items-start sm:justify-center sm:divide-x sm:divide-white/10 mb-5">
@@ -688,7 +688,7 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §8  SALARY PAIN → CTA
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-950 text-white">
+      <section className="bg-surface-hero text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
           <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
             Teraz znasz realne liczby

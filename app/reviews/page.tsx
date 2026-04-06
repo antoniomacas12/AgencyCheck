@@ -65,7 +65,7 @@ export default async function ReviewsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema)  }} />
 
       {/* ── Dark page shell — matches homepage ─────────────────────────────── */}
-      <div className="relative min-h-screen bg-[#080c14] text-white">
+      <div className="relative min-h-screen bg-surface-base text-white">
 
         {/* Dot grid */}
         <div

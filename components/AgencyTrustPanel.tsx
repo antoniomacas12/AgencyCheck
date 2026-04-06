@@ -126,7 +126,7 @@ export default function AgencyTrustPanel({ agencySlug, agencyName, hasHousing, a
 
   if (!stats) {
     return (
-      <div className="bg-gray-900 border border-gray-800 rounded-2xl px-4 py-4">
+      <div className="bg-surface-muted border border-white/[0.08] rounded-2xl px-4 py-4">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-gray-700 flex items-center justify-center shrink-0">
             <span className="text-base">👷</span>
@@ -158,7 +158,7 @@ export default function AgencyTrustPanel({ agencySlug, agencyName, hasHousing, a
   const hasWarnings = redIssues.length > 0;
 
   return (
-    <div className="bg-gray-950 border border-gray-800 rounded-2xl overflow-hidden">
+    <div className="bg-surface-base border border-white/[0.08] rounded-2xl overflow-hidden">
 
       {/* ── Summary bar (always visible) ── */}
       <button
@@ -216,7 +216,7 @@ export default function AgencyTrustPanel({ agencySlug, agencyName, hasHousing, a
           </div>
 
           {/* Sub-ratings */}
-          <div className="bg-gray-900/60 rounded-xl px-3 py-3 mb-5 space-y-1.5">
+          <div className="bg-white/[0.04] rounded-xl px-3 py-3 mb-5 space-y-1.5">
             <p className="text-[9px] font-bold uppercase tracking-widest text-gray-500 mb-2">How workers rate it</p>
             <StarRow rating={stats.salaryRating}  label="Pay & salary"    />
             <StarRow rating={stats.mgmtRating}    label="Management"      />
@@ -269,7 +269,7 @@ export default function AgencyTrustPanel({ agencySlug, agencyName, hasHousing, a
 
           {/* Worst worker quote */}
           {stats.worstReview && (
-            <div className="rounded-xl bg-gray-900 border border-gray-700 px-3 py-3 mb-4">
+            <div className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-3 mb-4">
               <div className="flex items-start gap-2">
                 <span className="text-red-400 text-lg shrink-0 mt-0.5">❝</span>
                 <div>

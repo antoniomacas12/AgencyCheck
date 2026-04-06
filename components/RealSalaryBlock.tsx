@@ -76,7 +76,7 @@ export default function RealSalaryBlock() {
   ];
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-gray-800 bg-gray-950">
+    <div className="rounded-2xl overflow-hidden border border-white/[0.08] bg-surface-base">
 
       {/* ── Top label ── */}
       <div className="px-5 pt-5 pb-3 border-b border-white/8">

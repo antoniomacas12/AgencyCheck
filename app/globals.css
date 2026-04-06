@@ -3,6 +3,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Background system tokens ─────────────────────────────────────────────────
+   Deep neutral blue-gray palette. Replaces pure-black #080c14 / gray-950.
+   Goal: modern SaaS feel (Stripe / Linear) — "dark mode without the crypto vibe."
+
+   --bg-base   →  page canvases, full-screen dark views
+   --bg-hero   →  hero sections (slightly more blue, premium entry point)
+   --bg-muted  →  sub-sections, trust panels, divider rows
+   ────────────────────────────────────────────────────────────────────────────── */
+:root {
+  --bg-base:    #0c1524;
+  --bg-hero:    #0f172a;
+  --bg-muted:   #131f31;
+}
+
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
@@ -91,6 +105,18 @@
 }
 
 @layer utilities {
+  /* ── Hero depth gradient — consistent across all dark hero sections ────────
+     Combines the base color with a very subtle top-blue + bottom-darkening
+     to create a "depth layer" feel. No visible gradient — just softness.       */
+  .bg-hero-depth {
+    background: linear-gradient(
+      170deg,
+      var(--bg-hero) 0%,
+      var(--bg-base) 60%,
+      #0a111e 100%
+    );
+  }
+
   /* Line clamping */
   .line-clamp-2 {
     display: -webkit-box;

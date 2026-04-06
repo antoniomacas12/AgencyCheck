@@ -86,7 +86,7 @@ export default function CheckAgencyPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
 
-      <div className="min-h-screen bg-[#080c14]">
+      <div className="min-h-screen bg-surface-base">
 
         {/* ── Hero ──────────────────────────────────────────────────────────── */}
         <section className="border-b border-white/[0.06]">

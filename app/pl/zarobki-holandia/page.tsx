@@ -91,7 +91,7 @@ export default function ZarobkiHolandia() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <div className="bg-gray-950 text-white">
+      <div className="bg-surface-hero text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <nav className="text-xs text-gray-500 mb-5 flex items-center gap-1.5 flex-wrap">
             <Link href="/pl" className="hover:text-gray-300">AgencyCheck PL</Link>
