@@ -307,34 +307,32 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
   // ── Submit ─────────────────────────────────────────────────────────────────
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (submitting) return; // guard against double-fire
+    if (submitting) return;
     setFormError(null);
     if (!validate()) return;
-    setSubmitting(true);
 
+    console.log("[ApplyModal] apply submit started");
+
+    // ── OPTIMISTIC: show qualify step immediately so user never waits ──────────
+    // The lead save happens in the background; leadId is updated when it resolves.
+    setStep("qualify");
+
+    // ── Save lead in background ────────────────────────────────────────────────
+    setSubmitting(true);
     try {
       const payload = {
-        // Source
         sourcePage:  context.sourcePage,
         sourceType:  context.sourceType,
         sourceSlug:  context.sourceSlug,
         sourceLabel: context.sourceLabel,
-
-        // Housing choice (from intermediate step)
         housingPreference: housingPreference ?? undefined,
-
-        // Contact
         fullName:     form.fullName.trim(),
         phone:        form.phone.trim(),
         email:        form.email.trim() || undefined,
         whatsappSame: form.whatsappSame,
-
-        // Background
         nationality:    form.nationality || undefined,
         currentCountry: form.currentCountry || undefined,
         alreadyInNL:    form.alreadyInNL === "yes" ? true : form.alreadyInNL === "no" ? false : undefined,
-
-        // Preferences
         preferredWorkType:  form.preferredWorkType || undefined,
         preferredRegion:    form.preferredRegion   || undefined,
         accommodationNeeded: form.accommodationNeeded === "yes" ? true : form.accommodationNeeded === "no" ? false : undefined,
@@ -351,28 +349,15 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
         body: JSON.stringify(payload),
       });
 
-      // Always try to parse the response body so we can show real error messages
       let data: Record<string, unknown> = {};
-      try { data = await res.json(); } catch { /* ignore parse errors */ }
+      try { data = await res.json(); } catch { /* ignore */ }
 
-      if (!res.ok) {
-        const msg =
-          typeof data.error === "string"
-            ? data.error
-            : t("apply_modal.error_submit_failed");
-        setFormError(msg);
-        setSubmitting(false);
-        return;
-      }
-
-      const returnedId = typeof data.id === "string" ? data.id : null;
-      console.log("[ApplyModal] lead saved, id =", returnedId, "→ showing qualify step");
+      const returnedId = res.ok && typeof data.id === "string" ? data.id : null;
+      console.log("[ApplyModal] apply submit success, id =", returnedId);
       setLeadId(returnedId);
-      // Always show qualification step after any successful submission
-      setStep("qualify");
     } catch (err) {
-      console.error("[ApplyModal] submit error:", err);
-      setFormError(t("apply_modal.error_network"));
+      console.error("[ApplyModal] submit error (lead still shown qualify step):", err);
+      // Don't show form error — user already sees qualify step
     } finally {
       setSubmitting(false);
     }

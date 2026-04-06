@@ -322,15 +322,18 @@ export default function LeadsDashboard() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-100 bg-gray-50">
-                    {["Score","Date","Name","Phone","Work","🏠","Avail.","Location","Source","Status","Actions"].map((h) => (
+                    {["Score","Date","Candidate","NL Status","Availability","Phone","Work","🏠","Source","Status","Actions"].map((h) => (
                       <th key={h} className="px-3 py-3 text-left text-[11px] font-bold uppercase tracking-wider text-gray-500 whitespace-nowrap">{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
-                  {leads.map((lead) => (
+                  {leads.map((lead) => {
+                    const isNew = Date.now() - new Date(lead.createdAt).getTime() < 24 * 60 * 60 * 1000;
+                    return (
                     <tr key={lead.id}
                       className={`hover:bg-gray-50/70 transition-colors ${
+                        isNew ? "bg-yellow-50/60" :
                         ["new","reviewed","waiting_for_match","potential_fit"].includes(lead.status) ? "bg-blue-50/20" : ""
                       }`}>
 
@@ -341,16 +344,17 @@ export default function LeadsDashboard() {
 
                       {/* Date */}
                       <td className="px-3 py-3 whitespace-nowrap">
+                        {isNew && <span className="inline-block text-[10px] font-bold bg-yellow-400 text-yellow-900 px-1.5 py-0.5 rounded-full mb-1">NEW</span>}
                         <p className="text-xs font-semibold text-gray-900">{fmtDate(lead.createdAt)}</p>
                         <p className="text-[10px] text-gray-400">{fmtTime(lead.createdAt)}</p>
                       </td>
 
-                      {/* Name */}
+                      {/* Candidate (name + contact + qual badges) */}
                       <td className="px-3 py-3">
                         <Link href={`/admin/leads/${lead.id}`} className="font-semibold text-gray-900 hover:text-blue-600 hover:underline text-sm">
                           {lead.fullName}
                         </Link>
-                        {(lead.nationality || lead.phone) && (
+                        {(lead.nationality || lead.currentCountry) && (
                           <p className="text-[10px] text-gray-400 mt-0.5">
                             {lead.nationality}{lead.nationality && lead.currentCountry ? " · " : ""}{lead.currentCountry}
                           </p>
@@ -359,6 +363,24 @@ export default function LeadsDashboard() {
                           <p className="text-[10px] text-gray-400 mt-0.5 truncate max-w-[160px]">{lead.email}</p>
                         )}
                         <QualBadges tags={lead.tags} />
+                      </td>
+
+                      {/* NL Status — most important column */}
+                      <td className="px-3 py-3 whitespace-nowrap">
+                        {lead.locationStatus
+                          ? <span className={`inline-flex items-center text-[11px] font-bold px-2.5 py-1 rounded-full ${LOC_META[lead.locationStatus]?.cls ?? "bg-gray-100 text-gray-500"}`}>
+                              {LOC_META[lead.locationStatus]?.label ?? lead.locationStatus}
+                            </span>
+                          : <span className="inline-flex items-center text-[11px] text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">not set</span>}
+                      </td>
+
+                      {/* Availability — when can start */}
+                      <td className="px-3 py-3 whitespace-nowrap">
+                        {lead.availability
+                          ? <span className={`inline-flex items-center text-[11px] font-bold px-2.5 py-1 rounded-full ${AVAIL_META[lead.availability]?.cls ?? "bg-gray-100 text-gray-500"}`}>
+                              {AVAIL_META[lead.availability]?.label ?? lead.availability}
+                            </span>
+                          : <span className="inline-flex items-center text-[11px] text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">not set</span>}
                       </td>
 
                       {/* Phone */}
@@ -378,24 +400,6 @@ export default function LeadsDashboard() {
                         {lead.accommodationNeeded === true  ? <span title="Needs housing">🏠</span>
                           : lead.accommodationNeeded === false ? <span className="text-xs text-gray-300">No</span>
                           : <span className="text-xs text-gray-300">?</span>}
-                      </td>
-
-                      {/* Availability */}
-                      <td className="px-3 py-3 whitespace-nowrap">
-                        {lead.availability
-                          ? <span className={`inline-flex items-center text-[11px] font-semibold px-2 py-0.5 rounded-full ${AVAIL_META[lead.availability]?.cls ?? "bg-gray-100 text-gray-500"}`}>
-                              {AVAIL_META[lead.availability]?.label ?? lead.availability}
-                            </span>
-                          : <span className="text-gray-300 text-xs">—</span>}
-                      </td>
-
-                      {/* Location */}
-                      <td className="px-3 py-3 whitespace-nowrap">
-                        {lead.locationStatus
-                          ? <span className={`inline-flex items-center text-[11px] font-semibold px-2 py-0.5 rounded-full ${LOC_META[lead.locationStatus]?.cls ?? "bg-gray-100 text-gray-500"}`}>
-                              {LOC_META[lead.locationStatus]?.label ?? lead.locationStatus}
-                            </span>
-                          : <span className="text-gray-300 text-xs">—</span>}
                       </td>
 
                       {/* Source */}
@@ -517,7 +521,8 @@ export default function LeadsDashboard() {
                       </td>
 
                     </tr>
-                  ))}
+                  );
+                  })}
                 </tbody>
               </table>
             </div>
