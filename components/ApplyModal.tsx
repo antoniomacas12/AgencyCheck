@@ -402,15 +402,24 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
     }
   }
 
-  // ─── Qualify screen ────────────────────────────────────────────────────────
-  if (step === "qualify") {
-    return (
-      <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-        <style>{`@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
+  // ─── Single return — outer overlay never unmounts, only inner panel swaps ────
+  // Using conditional rendering with keys so each step mounts fresh (triggers
+  // the slide-up animation) without remounting the backdrop/overlay.
+
+  const yesNoLabels: [string, string] = [t("apply_modal.yes"), t("apply_modal.no")];
+
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center">
+      {/* Backdrop — always present */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <style>{`@keyframes applySlideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
+
+      {/* ── Qualify panel ──────────────────────────────────────────────────── */}
+      {step === "qualify" && (
         <div
+          key="qualify"
           className="relative z-10 w-full sm:max-w-md mx-0 sm:mx-4 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-          style={{ animation: "slideUp .3s ease", maxHeight: "92vh" }}
+          style={{ animation: "applySlideUp .3s ease", maxHeight: "92vh" }}
         >
           {/* Header */}
           <div className="px-5 pt-5 pb-3 border-b border-gray-100 shrink-0">
@@ -420,9 +429,12 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
                 <h2 className="text-base font-bold text-gray-900">Quick follow-up</h2>
                 <p className="text-xs text-gray-500 mt-0.5">Helps us find the right match — 30 seconds</p>
               </div>
-              <button onClick={onClose}
+              <button
+                type="button"
+                onClick={onClose}
                 className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition"
-                aria-label="Close">
+                aria-label="Close"
+              >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5">
                   <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -430,7 +442,7 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
             </div>
           </div>
 
-          {/* Questions — uses module-level QGroup + Q*_OPTS */}
+          {/* Questions */}
           <div className="overflow-y-auto flex-1 px-5 py-4 space-y-5">
             <QGroup
               label="Where are you currently based?"
@@ -489,19 +501,14 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
             </button>
           </div>
         </div>
-      </div>
-    );
-  }
+      )}
 
-  // ─── Done screen ───────────────────────────────────────────────────────────
-  if (step === "done") {
-    return (
-      <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-        <style>{`@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
+      {/* ── Done panel ─────────────────────────────────────────────────────── */}
+      {step === "done" && (
         <div
+          key="done"
           className="relative z-10 w-full sm:max-w-md mx-4 sm:mx-auto bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl p-8 text-center"
-          style={{ animation: "slideUp .3s ease" }}
+          style={{ animation: "applySlideUp .3s ease" }}
         >
           <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
             <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -513,290 +520,282 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
             {t("apply_modal.success_body")}
           </p>
           <button
+            type="button"
             onClick={onClose}
             className="w-full py-3 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition"
           >
             {t("apply_modal.success_close")}
           </button>
         </div>
-      </div>
-    );
-  }
+      )}
 
-  // ─── Form ──────────────────────────────────────────────────────────────────
-  const yesNoLabels: [string, string] = [t("apply_modal.yes"), t("apply_modal.no")];
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <style>{`@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
-
-      {/* Panel */}
-      <div
-        ref={panelRef}
-        className="relative z-10 w-full sm:max-w-lg mx-0 sm:mx-4 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col"
-        style={{ animation: "slideUp .3s ease", maxHeight: "92vh" }}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-5 pb-3 border-b border-gray-100 shrink-0">
-          <div>
-            <div className="flex items-center gap-2 flex-wrap mb-0.5">
-              <h2 className="text-base font-bold text-gray-900">{t("apply_modal.heading")}</h2>
-              {housingPreference && (
-                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold ${
-                  housingPreference === "with_housing"
-                    ? "bg-brand-100 text-brand-700"
-                    : "bg-gray-100 text-gray-600"
-                }`}>
-                  {housingPreference === "with_housing"
-                    ? t("apply_modal.badge_with_housing")
-                    : t("apply_modal.badge_no_housing")}
-                </span>
-              )}
-            </div>
-            <p className="text-xs text-gray-500">{t("apply_modal.subtitle")}</p>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition"
-            aria-label={t("apply_modal.success_close")}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5">
-              <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Scrollable form body */}
-        <form id="apply-form" onSubmit={handleSubmit} className="overflow-y-auto flex-1 px-5 py-4 space-y-4">
-
-          {/* ── Contact ── */}
-          <div className="space-y-3">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-brand-600">
-              {t("apply_modal.section_contact")}
-            </p>
-
+      {/* ── Form panel ─────────────────────────────────────────────────────── */}
+      {step === "form" && (
+        <div
+          key="form"
+          ref={panelRef}
+          className="relative z-10 w-full sm:max-w-lg mx-0 sm:mx-4 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col"
+          style={{ animation: "applySlideUp .3s ease", maxHeight: "92vh" }}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-5 pt-5 pb-3 border-b border-gray-100 shrink-0">
             <div>
-              <Label required>{t("apply_modal.label_name")}</Label>
-              <Input
-                value={form.fullName}
-                onChange={(v) => set("fullName", v)}
-                placeholder={t("apply_modal.placeholder_name")}
-                error={errors.fullName}
-              />
-            </div>
-
-            <div>
-              <Label required>{t("apply_modal.label_phone")}</Label>
-              <Input
-                value={form.phone}
-                onChange={(v) => set("phone", v)}
-                placeholder="+48 123 456 789"
-                type="tel"
-                error={errors.phone}
-              />
-              <div className="flex items-center gap-2 mt-1.5">
-                <input
-                  id="whatsapp-same"
-                  type="checkbox"
-                  checked={form.whatsappSame}
-                  onChange={(e) => set("whatsappSame", e.target.checked)}
-                  className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
-                />
-                <label htmlFor="whatsapp-same" className="text-xs text-gray-500">
-                  {t("apply_modal.label_whatsapp")}
-                </label>
+              <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                <h2 className="text-base font-bold text-gray-900">{t("apply_modal.heading")}</h2>
+                {housingPreference && (
+                  <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold ${
+                    housingPreference === "with_housing"
+                      ? "bg-brand-100 text-brand-700"
+                      : "bg-gray-100 text-gray-600"
+                  }`}>
+                    {housingPreference === "with_housing"
+                      ? t("apply_modal.badge_with_housing")
+                      : t("apply_modal.badge_no_housing")}
+                  </span>
+                )}
               </div>
+              <p className="text-xs text-gray-500">{t("apply_modal.subtitle")}</p>
             </div>
-
-            <div>
-              <Label>
-                {t("apply_modal.label_email")}{" "}
-                <span className="text-gray-400 font-normal">{t("apply_modal.label_email_optional")}</span>
-              </Label>
-              <Input
-                value={form.email}
-                onChange={(v) => set("email", v)}
-                placeholder={t("apply_modal.placeholder_email")}
-                type="email"
-                error={errors.email}
-              />
-            </div>
-          </div>
-
-          {/* ── Background ── */}
-          <div className="space-y-3 pt-1">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-brand-600">
-              {t("apply_modal.section_background")}
-            </p>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <Label>{t("apply_modal.label_nationality")}</Label>
-                <Input
-                  value={form.nationality}
-                  onChange={(v) => set("nationality", v)}
-                  placeholder={t("apply_modal.placeholder_nationality")}
-                />
-              </div>
-              <div>
-                <Label>{t("apply_modal.label_current_country")}</Label>
-                <Input
-                  value={form.currentCountry}
-                  onChange={(v) => set("currentCountry", v)}
-                  placeholder={t("apply_modal.placeholder_current_country")}
-                />
-              </div>
-            </div>
-
-            <div>
-              <Label>{t("apply_modal.label_already_nl")}</Label>
-              <YesNo value={form.alreadyInNL} onChange={(v) => set("alreadyInNL", v)} labels={yesNoLabels} />
-            </div>
-          </div>
-
-          {/* ── Job preferences ── */}
-          <div className="space-y-3 pt-1">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-brand-600">
-              {t("apply_modal.section_preferences")}
-            </p>
-
-            <div>
-              <Label>{t("apply_modal.label_work_type")}</Label>
-              <Select
-                value={form.preferredWorkType}
-                onChange={(v) => set("preferredWorkType", v)}
-                placeholder={t("apply_modal.placeholder_work_type")}
-              >
-                {WORK_TYPE_KEYS.map((key) => (
-                  <option key={key} value={key}>{t(`apply_modal.work_${key}`)}</option>
-                ))}
-              </Select>
-            </div>
-
-            <div>
-              <Label>{t("apply_modal.label_region")}</Label>
-              <Select
-                value={form.preferredRegion}
-                onChange={(v) => set("preferredRegion", v)}
-                placeholder={t("apply_modal.placeholder_region")}
-              >
-                {REGION_CITIES.map((city) => (
-                  <option key={city} value={city}>{city}</option>
-                ))}
-                <option value="No preference">{t("apply_modal.region_no_preference")}</option>
-              </Select>
-            </div>
-
-            <div>
-              <Label>{t("apply_modal.label_accommodation")}</Label>
-              <YesNo
-                value={form.accommodationNeeded}
-                onChange={(v) => set("accommodationNeeded", v)}
-                labels={yesNoLabels}
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <Label>{t("apply_modal.label_drivers_license")}</Label>
-                <YesNo value={form.driversLicense} onChange={(v) => set("driversLicense", v)} labels={yesNoLabels} />
-              </div>
-              <div>
-                <Label>{t("apply_modal.label_weekends")}</Label>
-                <YesNo value={form.canWorkWeekends} onChange={(v) => set("canWorkWeekends", v)} labels={yesNoLabels} />
-              </div>
-            </div>
-
-            <div>
-              <Label>{t("apply_modal.label_experience")}</Label>
-              <div className="flex gap-2">
-                {(["none", "some", "experienced"] as const).map((lvl) => (
-                  <button
-                    key={lvl}
-                    type="button"
-                    onClick={() => set("experienceLevel", form.experienceLevel === lvl ? "" : lvl)}
-                    className={`flex-1 py-2 rounded-lg text-xs font-medium border transition
-                      ${form.experienceLevel === lvl
-                        ? "bg-brand-600 text-white border-brand-600"
-                        : "bg-white text-gray-600 border-gray-200 hover:border-brand-300"
-                      }`}
-                  >
-                    {t(`apply_modal.exp_${lvl}`)}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <Label>{t("apply_modal.label_available_from")}</Label>
-              <Input
-                value={form.availableFrom}
-                onChange={(v) => set("availableFrom", v)}
-                type="date"
-              />
-            </div>
-          </div>
-
-          {/* ── Notes ── */}
-          <div className="pt-1">
-            <Label>
-              {t("apply_modal.label_notes")}{" "}
-              <span className="text-gray-400 font-normal">{t("apply_modal.label_notes_optional")}</span>
-            </Label>
-            <textarea
-              value={form.notes}
-              onChange={(e) => set("notes", e.target.value)}
-              placeholder={t("apply_modal.placeholder_notes")}
-              rows={3}
-              maxLength={800}
-              style={{ fontSize: "16px" }}
-              className="w-full text-sm text-gray-900 px-3 py-3 rounded-lg border border-gray-200 bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition resize-none"
-            />
-          </div>
-
-          {/* Trust line */}
-          <p className="text-[11px] text-gray-400 text-center pb-1">
-            {t("apply_modal.privacy_note")}
-          </p>
-        </form>
-
-        {/* Footer CTA */}
-        <div className="px-5 pt-3 pb-5 border-t border-gray-100 shrink-0 bg-white rounded-b-2xl">
-          {/* Form-level error — shown near submit button so it's always visible */}
-          {formError && (
-            <div className="mb-3 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5">
-              <svg className="h-4 w-4 text-red-500 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+            <button
+              type="button"
+              onClick={onClose}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition"
+              aria-label={t("apply_modal.success_close")}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5">
+                <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
-              <p className="text-xs text-red-700 font-medium">{formError}</p>
+            </button>
+          </div>
+
+          {/* Scrollable form body */}
+          <form id="apply-form" onSubmit={handleSubmit} className="overflow-y-auto flex-1 px-5 py-4 space-y-4">
+
+            {/* ── Contact ── */}
+            <div className="space-y-3">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-brand-600">
+                {t("apply_modal.section_contact")}
+              </p>
+
+              <div>
+                <Label required>{t("apply_modal.label_name")}</Label>
+                <Input
+                  value={form.fullName}
+                  onChange={(v) => set("fullName", v)}
+                  placeholder={t("apply_modal.placeholder_name")}
+                  error={errors.fullName}
+                />
+              </div>
+
+              <div>
+                <Label required>{t("apply_modal.label_phone")}</Label>
+                <Input
+                  value={form.phone}
+                  onChange={(v) => set("phone", v)}
+                  placeholder="+48 123 456 789"
+                  type="tel"
+                  error={errors.phone}
+                />
+                <div className="flex items-center gap-2 mt-1.5">
+                  <input
+                    id="whatsapp-same"
+                    type="checkbox"
+                    checked={form.whatsappSame}
+                    onChange={(e) => set("whatsappSame", e.target.checked)}
+                    className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
+                  />
+                  <label htmlFor="whatsapp-same" className="text-xs text-gray-500">
+                    {t("apply_modal.label_whatsapp")}
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <Label>
+                  {t("apply_modal.label_email")}{" "}
+                  <span className="text-gray-400 font-normal">{t("apply_modal.label_email_optional")}</span>
+                </Label>
+                <Input
+                  value={form.email}
+                  onChange={(v) => set("email", v)}
+                  placeholder={t("apply_modal.placeholder_email")}
+                  type="email"
+                  error={errors.email}
+                />
+              </div>
             </div>
-          )}
-          {/* Single event handler via form onSubmit — onClick removed to prevent double-fire */}
-          <button
-            type="submit"
-            form="apply-form"
-            disabled={submitting}
-            className="w-full py-3.5 rounded-xl bg-brand-600 text-white font-bold text-sm hover:bg-brand-700 active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
-          >
-            {submitting ? (
-              <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+
+            {/* ── Background ── */}
+            <div className="space-y-3 pt-1">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-brand-600">
+                {t("apply_modal.section_background")}
+              </p>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label>{t("apply_modal.label_nationality")}</Label>
+                  <Input
+                    value={form.nationality}
+                    onChange={(v) => set("nationality", v)}
+                    placeholder={t("apply_modal.placeholder_nationality")}
+                  />
+                </div>
+                <div>
+                  <Label>{t("apply_modal.label_current_country")}</Label>
+                  <Input
+                    value={form.currentCountry}
+                    onChange={(v) => set("currentCountry", v)}
+                    placeholder={t("apply_modal.placeholder_current_country")}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label>{t("apply_modal.label_already_nl")}</Label>
+                <YesNo value={form.alreadyInNL} onChange={(v) => set("alreadyInNL", v)} labels={yesNoLabels} />
+              </div>
+            </div>
+
+            {/* ── Job preferences ── */}
+            <div className="space-y-3 pt-1">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-brand-600">
+                {t("apply_modal.section_preferences")}
+              </p>
+
+              <div>
+                <Label>{t("apply_modal.label_work_type")}</Label>
+                <Select
+                  value={form.preferredWorkType}
+                  onChange={(v) => set("preferredWorkType", v)}
+                  placeholder={t("apply_modal.placeholder_work_type")}
+                >
+                  {WORK_TYPE_KEYS.map((key) => (
+                    <option key={key} value={key}>{t(`apply_modal.work_${key}`)}</option>
+                  ))}
+                </Select>
+              </div>
+
+              <div>
+                <Label>{t("apply_modal.label_region")}</Label>
+                <Select
+                  value={form.preferredRegion}
+                  onChange={(v) => set("preferredRegion", v)}
+                  placeholder={t("apply_modal.placeholder_region")}
+                >
+                  {REGION_CITIES.map((city) => (
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                  <option value="No preference">{t("apply_modal.region_no_preference")}</option>
+                </Select>
+              </div>
+
+              <div>
+                <Label>{t("apply_modal.label_accommodation")}</Label>
+                <YesNo
+                  value={form.accommodationNeeded}
+                  onChange={(v) => set("accommodationNeeded", v)}
+                  labels={yesNoLabels}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <Label>{t("apply_modal.label_drivers_license")}</Label>
+                  <YesNo value={form.driversLicense} onChange={(v) => set("driversLicense", v)} labels={yesNoLabels} />
+                </div>
+                <div>
+                  <Label>{t("apply_modal.label_weekends")}</Label>
+                  <YesNo value={form.canWorkWeekends} onChange={(v) => set("canWorkWeekends", v)} labels={yesNoLabels} />
+                </div>
+              </div>
+
+              <div>
+                <Label>{t("apply_modal.label_experience")}</Label>
+                <div className="flex gap-2">
+                  {(["none", "some", "experienced"] as const).map((lvl) => (
+                    <button
+                      key={lvl}
+                      type="button"
+                      onClick={() => set("experienceLevel", form.experienceLevel === lvl ? "" : lvl)}
+                      className={`flex-1 py-2 rounded-lg text-xs font-medium border transition
+                        ${form.experienceLevel === lvl
+                          ? "bg-brand-600 text-white border-brand-600"
+                          : "bg-white text-gray-600 border-gray-200 hover:border-brand-300"
+                        }`}
+                    >
+                      {t(`apply_modal.exp_${lvl}`)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <Label>{t("apply_modal.label_available_from")}</Label>
+                <Input
+                  value={form.availableFrom}
+                  onChange={(v) => set("availableFrom", v)}
+                  type="date"
+                />
+              </div>
+            </div>
+
+            {/* ── Notes ── */}
+            <div className="pt-1">
+              <Label>
+                {t("apply_modal.label_notes")}{" "}
+                <span className="text-gray-400 font-normal">{t("apply_modal.label_notes_optional")}</span>
+              </Label>
+              <textarea
+                value={form.notes}
+                onChange={(e) => set("notes", e.target.value)}
+                placeholder={t("apply_modal.placeholder_notes")}
+                rows={3}
+                maxLength={800}
+                style={{ fontSize: "16px" }}
+                className="w-full text-sm text-gray-900 px-3 py-3 rounded-lg border border-gray-200 bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition resize-none"
+              />
+            </div>
+
+            {/* Trust line */}
+            <p className="text-[11px] text-gray-400 text-center pb-1">
+              {t("apply_modal.privacy_note")}
+            </p>
+          </form>
+
+          {/* Footer CTA */}
+          <div className="px-5 pt-3 pb-5 border-t border-gray-100 shrink-0 bg-white rounded-b-2xl">
+            {formError && (
+              <div className="mb-3 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5">
+                <svg className="h-4 w-4 text-red-500 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                 </svg>
-                {t("apply_modal.submitting")}
-              </span>
-            ) : (
-              t("apply_modal.submit")
+                <p className="text-xs text-red-700 font-medium">{formError}</p>
+              </div>
             )}
-          </button>
-          <p className="text-[11px] text-gray-400 text-center mt-2">
-            {t("apply_modal.submit_subtext")}
-          </p>
+            <button
+              type="submit"
+              form="apply-form"
+              disabled={submitting}
+              className="w-full py-3.5 rounded-xl bg-brand-600 text-white font-bold text-sm hover:bg-brand-700 active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
+            >
+              {submitting ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                  </svg>
+                  {t("apply_modal.submitting")}
+                </span>
+              ) : (
+                t("apply_modal.submit")
+              )}
+            </button>
+            <p className="text-[11px] text-gray-400 text-center mt-2">
+              {t("apply_modal.submit_subtext")}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
