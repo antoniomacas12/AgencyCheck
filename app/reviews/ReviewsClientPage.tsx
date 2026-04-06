@@ -363,8 +363,8 @@ function ReviewSubmitForm({
             onFocus={() => { if (suggestions.length > 0) setSuggestionsOpen(true); }}
             placeholder="Type agency name…"
             autoComplete="off"
-            className="flex-1 px-3.5 py-2.5 text-base bg-white/[0.05] text-white placeholder:text-gray-600 focus:outline-none"
-            style={{ colorScheme: "dark" }}
+            className="flex-1 px-3.5 py-2.5 text-base placeholder:text-gray-600 focus:outline-none"
+            style={{ colorScheme: "dark", background: "rgba(255,255,255,0.05)", color: "white", WebkitTextFillColor: "white" }}
           />
           <span className="pr-3 shrink-0">
             {suggestLoading
@@ -442,10 +442,10 @@ function ReviewSubmitForm({
             onChange={(e) => set("city", e.target.value)}
             placeholder={t("reviews_page.form_city_placeholder")}
             maxLength={80}
-            className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
-              text-white placeholder:text-gray-600
+            className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl
+              placeholder:text-gray-600
               focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
-            style={{ colorScheme: "dark" }}
+            style={{ colorScheme: "dark", background: "rgba(255,255,255,0.05)", color: "white", WebkitTextFillColor: "white" }}
           />
         </div>
         <div>
@@ -602,11 +602,15 @@ function ReviewSubmitForm({
           placeholder={t("reviews_page.form_comment_placeholder")}
           rows={5}
           maxLength={2000}
-          className="w-full px-3.5 py-3 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
-            text-white placeholder:text-gray-500 resize-none
+          className="w-full px-3.5 py-3 text-base border border-white/[0.1] rounded-xl resize-none
             focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50
-            leading-relaxed"
-          style={{ colorScheme: "dark" }}
+            leading-relaxed placeholder:text-gray-500"
+          style={{
+            colorScheme: "dark",
+            background: "rgba(255,255,255,0.05)",
+            color: "white",
+            WebkitTextFillColor: "white",
+          }}
         />
         <div className="flex items-center justify-between mt-1.5">
           <p className="text-sm text-gray-400">
@@ -877,8 +881,8 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
             value={cityFilter}
             onChange={(e) => { setCityFilter(e.target.value); setShowCount(12); }}
             placeholder={t("reviews_page.filter_city_placeholder")}
-            className="text-base border border-white/[0.1] rounded-lg px-3 py-2 bg-white/[0.06] text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-white/30 w-32 flex-1 sm:flex-none"
-            style={{ colorScheme: "dark" }}
+            className="text-base border border-white/[0.1] rounded-lg px-3 py-2 placeholder:text-gray-600 focus:outline-none focus:border-white/30 w-32 flex-1 sm:flex-none"
+            style={{ colorScheme: "dark", background: "rgba(255,255,255,0.06)", color: "rgb(209,213,219)", WebkitTextFillColor: "rgb(209,213,219)" }}
           />
         </div>
         {/* Row 2: housing + sort pills */}
