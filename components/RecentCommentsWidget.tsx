@@ -38,10 +38,22 @@ function timeAgo(iso: string): string {
 
 // ─── Comment row ───────────────────────────────────────────────────────────────
 
-function CommentRow({ c }: { c: RecentComment }) {
+function CommentRow({ c, onDeleted }: { c: RecentComment; onDeleted: (id: string) => void }) {
+  const [deleting, setDeleting] = useState(false);
   const reviewLink = c.reviewId
     ? `/admin/reviews?highlight=${encodeURIComponent(c.reviewId)}`
     : null;
+
+  async function handleDelete() {
+    if (!confirm("Delete this comment? This cannot be undone.")) return;
+    setDeleting(true);
+    try {
+      await fetch(`/api/admin/recent-comments?id=${encodeURIComponent(c.id)}`, { method: "DELETE" });
+      onDeleted(c.id);
+    } finally {
+      setDeleting(false);
+    }
+  }
 
   return (
     <div className="flex gap-3 px-4 py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
@@ -74,6 +86,16 @@ function CommentRow({ c }: { c: RecentComment }) {
           </a>
         )}
       </div>
+
+      {/* Delete */}
+      <button
+        onClick={handleDelete}
+        disabled={deleting}
+        className="shrink-0 self-start mt-0.5 text-[11px] text-red-400 hover:text-red-600 disabled:opacity-40 transition-colors"
+        title="Delete comment"
+      >
+        {deleting ? "…" : "🗑"}
+      </button>
     </div>
   );
 }
@@ -126,10 +148,14 @@ export function RecentCommentsWidget() {
     );
   }
 
+  function handleDeleted(id: string) {
+    setComments((prev) => prev.filter((c) => c.id !== id));
+  }
+
   return (
     <div>
       {comments.map((c) => (
-        <CommentRow key={c.id} c={c} />
+        <CommentRow key={c.id} c={c} onDeleted={handleDeleted} />
       ))}
     </div>
   );

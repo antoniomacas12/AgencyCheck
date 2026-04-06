@@ -50,3 +50,20 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to fetch recent comments" }, { status: 500 });
   }
 }
+
+// DELETE /api/admin/recent-comments?id=<commentId>
+export async function DELETE(request: Request) {
+  const ok = await verifyAdminRequest();
+  if (!ok) return unauthorizedJson();
+
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+  if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+
+  try {
+    await db.reviewComment.delete({ where: { id } });
+    return NextResponse.json({ success: true });
+  } catch {
+    return NextResponse.json({ error: "Failed to delete comment" }, { status: 500 });
+  }
+}
