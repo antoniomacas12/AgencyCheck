@@ -1072,7 +1072,7 @@ export default function ReviewsClientPage({
       <div className="lg:flex lg:items-start lg:gap-8">
 
         {/* LEFT — sticky form */}
-        <div id="review-form" className="order-last lg:order-first lg:w-[360px] lg:shrink-0 mt-8 lg:mt-0 lg:sticky lg:top-20" style={{ zIndex: 25 }}>
+        <div id="review-form" className="order-last lg:order-first lg:w-[360px] lg:shrink-0 mt-8 lg:mt-0 lg:sticky lg:top-20">
           <div
             className="rounded-2xl border border-white/[0.09] p-5 lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto lg:pb-16"
             style={{
