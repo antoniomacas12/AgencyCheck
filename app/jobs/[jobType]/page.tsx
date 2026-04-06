@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect, permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import AgencyCard from "@/components/AgencyCard";
 import SectionHeader from "@/components/SectionHeader";
@@ -311,7 +311,8 @@ export default function JobTypePage({
   }
 
   const job = JOB_SALARY_DATA[params.jobType];
-  if (!job) notFound();
+  // Stale/removed job slug — redirect permanently so Google drops the old URL
+  if (!job) permanentRedirect("/jobs");
 
   const listings        = getListingsForJobType(params.jobType);
   const relatedAgencies = getAgenciesForJobType(params.jobType);

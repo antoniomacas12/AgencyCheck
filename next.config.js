@@ -35,6 +35,11 @@ const nextConfig = {
       { source: "/agencies/otto-work-force",       destination: "/agencies/otto-workforce",                  permanent: true },
       { source: "/agencies/otto-work-force/reviews", destination: "/agencies/otto-workforce/reviews",        permanent: true },
       { source: "/agencies/otto-work-force/jobs",  destination: "/agencies/otto-workforce/jobs",             permanent: true },
+      // /jobs/netherlands/[slug] → /jobs/[slug]
+      // These were old SEO URLs; the canonical route is /jobs/[jobType].
+      // City pages under /jobs/netherlands/ redirect to /jobs/[slug] which then
+      // falls through to the job-type handler or redirects to /jobs.
+      { source: "/jobs/netherlands/:slug",         destination: "/jobs/:slug",                               permanent: true },
     ];
   },
 };

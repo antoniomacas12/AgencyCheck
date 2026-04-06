@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { VERIFIED_AGENCIES } from "@/data/agencies";
 import { CITIES, JOB_SALARY_DATA } from "@/lib/seoData";
 import { ALL_AGENCIES } from "@/lib/agencyEnriched";
+import { JOB_LISTINGS } from "@/lib/jobData";
 import { GUIDES } from "@/lib/guideData";
 import { allWorkInCombos } from "@/lib/workInSeoData";
 import { getWorkerReportedAgencySlugs, getAllAgencyCityPairsForSitemap } from "@/lib/agencyDb";
@@ -457,6 +458,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority:        0.7,
   }));
 
+  // ── 6b. Individual active job listing pages ────────────────────────────────
+  // Only active listings are included. Stale listings redirect to /jobs anyway.
+  const activeJobListingPages: MetadataRoute.Sitemap = JOB_LISTINGS
+    .filter((j) => j.isActive)
+    .map((j) => ({
+      url:             `${BASE_URL}/jobs/${j.slug}`,
+      lastModified:    STATIC_DATE,
+      changeFrequency: "weekly" as const,
+      priority:        0.7,
+    }));
+
   // ── 7. Salary pages — national only (12), not 1,728 city variants ────────
   // We include national salary pages only. City × job salary pages are
   // high-volume thin pages — including all 1,728 would dilute crawl budget.
@@ -651,6 +663,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...cityPages,
     ...sectorPages,
     ...jobPages,
+    ...activeJobListingPages,
     ...nationalSalaryPages,
     ...topCitySalaryPages,
     ...toolPages,

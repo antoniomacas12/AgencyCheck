@@ -11,7 +11,7 @@
  */
 
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect, permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import AgencyCard from "@/components/AgencyCard";
 import WorkerDisclaimer from "@/components/WorkerDisclaimer";
@@ -192,9 +192,11 @@ export default function NetherlandsSlugPage({ params }: { params: { slug: string
   if (cityData) return <CityJobsView params={{ city: params.slug }} />;
 
   const job = getJobBySlug(params.slug);
-  if (job) return <JobTypeView params={{ jobType: params.slug }} />;
+  // Permanently redirect job-type slugs to their canonical /jobs/[jobType] URL
+  if (job) permanentRedirect(`/jobs/${params.slug}`);
 
-  notFound();
+  // Unknown slug — redirect to /jobs rather than showing a 404
+  redirect("/jobs");
 }
 
 // ─── City Jobs View ────────────────────────────────────────────────────────────
