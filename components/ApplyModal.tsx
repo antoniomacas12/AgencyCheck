@@ -199,7 +199,12 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  // step: "form" → "qualify" (post-submit follow-up) → "done" (final success)
+  const [step, setStep] = useState<"form" | "qualify" | "done">("form");
+  const [leadId, setLeadId] = useState<string | null>(null);
+  const [qualify, setQualify] = useState({ q1: "", q2: "", q3: "", q4: "" });
+  const [qualifyErr, setQualifyErr] = useState(false); // true if Q1/Q3 not answered on submit attempt
+  const [qualifying, setQualifying] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
   const set = useCallback(
@@ -296,7 +301,11 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
         return;
       }
 
-      setSuccess(true);
+      const returnedId = typeof data.id === "string" ? data.id : null;
+      setLeadId(returnedId);
+      // Only show qualify step when we have a real DB id (not a fallback id)
+      const isFallback = !returnedId || String(returnedId).startsWith("fallback-");
+      setStep(isFallback ? "done" : "qualify");
     } catch {
       setFormError(t("apply_modal.error_network"));
     } finally {
@@ -304,8 +313,163 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
     }
   }
 
-  // ─── Success screen ────────────────────────────────────────────────────────
-  if (success) {
+  // ── Qualify submit ─────────────────────────────────────────────────────────
+  async function handleQualify() {
+    if (qualifying) return;
+    // Q1 (locationStatus) and Q3 (availability) are required
+    if (!qualify.q1 || !qualify.q3) {
+      setQualifyErr(true);
+      return;
+    }
+    setQualifyErr(false);
+    setQualifying(true);
+    try {
+      await fetch(`/api/leads/${leadId}/qualify`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          locationStatus:  qualify.q1,
+          q2_bsn:          qualify.q2 || undefined,
+          availability:    qualify.q3,
+          q4_experience:   qualify.q4 || undefined,
+        }),
+      });
+    } catch {
+      // Silently ignore — the main lead record is already saved
+    } finally {
+      setQualifying(false);
+      setStep("done");
+    }
+  }
+
+  // ─── Qualify screen ────────────────────────────────────────────────────────
+  if (step === "qualify") {
+    type QBtn = { label: string; value: string };
+    const q1Opts: QBtn[] = [
+      { label: "🇳🇱 Already in the Netherlands", value: "nl" },
+      { label: "✈️ EU / Ready to relocate",       value: "relocate" },
+      { label: "🌍 Outside EU / Not sure yet",    value: "exploring" },
+    ];
+    const q2Opts: QBtn[] = [
+      { label: "Yes — I have a BSN",          value: "has_bsn" },
+      { label: "Worked before (no BSN now)",  value: "worked_before" },
+      { label: "Never worked in NL",          value: "no" },
+    ];
+    const q3Opts: QBtn[] = [
+      { label: "⚡ This week",         value: "immediately" },
+      { label: "📅 1–2 weeks",         value: "1_2_weeks"  },
+      { label: "🗓 Within a month",    value: "1_month"    },
+      { label: "👀 Just exploring",    value: "exploring"  },
+    ];
+    const q4Opts: QBtn[] = [
+      { label: "Yes, I have NL experience", value: "yes" },
+      { label: "No, first time",            value: "no"  },
+    ];
+
+    function QGroup({ label, opts, value, onChange, required, showErr }: {
+      label: string; opts: QBtn[]; value: string;
+      onChange: (v: string) => void; required?: boolean; showErr?: boolean;
+    }) {
+      return (
+        <div>
+          <p className="text-xs font-semibold text-gray-700 mb-2">
+            {label}
+            {required && <span className="text-red-500 ml-0.5">*</span>}
+            {showErr && !value && <span className="text-red-500 text-[11px] ml-2">Please select one</span>}
+          </p>
+          <div className="flex flex-col gap-1.5">
+            {opts.map((o) => (
+              <button
+                key={o.value}
+                type="button"
+                onClick={() => onChange(value === o.value ? "" : o.value)}
+                className={`w-full text-left px-3 py-2.5 rounded-xl text-sm border transition font-medium
+                  ${value === o.value
+                    ? "bg-brand-600 text-white border-brand-600 shadow-sm"
+                    : "bg-white text-gray-700 border-gray-200 hover:border-brand-300 hover:bg-brand-50"
+                  }`}
+              >
+                {o.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+        <style>{`@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
+        <div
+          className="relative z-10 w-full sm:max-w-md mx-0 sm:mx-4 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+          style={{ animation: "slideUp .3s ease", maxHeight: "92vh" }}
+        >
+          {/* Header */}
+          <div className="px-5 pt-5 pb-3 border-b border-gray-100 shrink-0">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-brand-600 mb-0.5">Step 2 of 2</p>
+                <h2 className="text-base font-bold text-gray-900">Quick follow-up</h2>
+                <p className="text-xs text-gray-500 mt-0.5">Helps us find the right match — 30 seconds</p>
+              </div>
+              <button onClick={onClose}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition"
+                aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5">
+                  <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Questions */}
+          <div className="overflow-y-auto flex-1 px-5 py-4 space-y-5">
+            <QGroup label="Where are you currently based?" opts={q1Opts}
+              value={qualify.q1} onChange={(v) => setQualify((q) => ({ ...q, q1: v }))}
+              required showErr={qualifyErr} />
+            <QGroup label="Do you have a BSN number?" opts={q2Opts}
+              value={qualify.q2} onChange={(v) => setQualify((q) => ({ ...q, q2: v }))} />
+            <QGroup label="When can you start?" opts={q3Opts}
+              value={qualify.q3} onChange={(v) => setQualify((q) => ({ ...q, q3: v }))}
+              required showErr={qualifyErr} />
+            <QGroup label="Previous work experience in the Netherlands?" opts={q4Opts}
+              value={qualify.q4} onChange={(v) => setQualify((q) => ({ ...q, q4: v }))} />
+          </div>
+
+          {/* Footer */}
+          <div className="px-5 pt-3 pb-5 border-t border-gray-100 shrink-0 bg-white flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={handleQualify}
+              disabled={qualifying}
+              className="w-full py-3.5 rounded-xl bg-brand-600 text-white font-bold text-sm hover:bg-brand-700 active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
+            >
+              {qualifying ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                  </svg>
+                  Saving…
+                </span>
+              ) : "Submit answers →"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setStep("done")}
+              className="w-full text-center text-xs text-gray-400 hover:text-gray-600 py-1.5 transition"
+            >
+              Skip this step
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ─── Done screen ───────────────────────────────────────────────────────────
+  if (step === "done") {
     return (
       <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />

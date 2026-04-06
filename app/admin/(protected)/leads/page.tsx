@@ -79,6 +79,38 @@ function ScoreBadge({ score }: { score?: number }) {
 function fmtDate(iso: string) { return new Date(iso).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "2-digit" }); }
 function fmtTime(iso: string) { return new Date(iso).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); }
 
+const BSN_META: Record<string, { label: string; cls: string }> = {
+  has_bsn:       { label: "BSN ✓",         cls: "bg-green-100 text-green-800" },
+  worked_before: { label: "Prev. NL",       cls: "bg-blue-100 text-blue-700"  },
+  no:            { label: "No BSN",         cls: "bg-gray-100 text-gray-500"  },
+};
+const EXP_META: Record<string, { label: string; cls: string }> = {
+  yes: { label: "NL exp ✓", cls: "bg-teal-100 text-teal-800"  },
+  no:  { label: "No NL exp", cls: "bg-gray-100 text-gray-500" },
+};
+
+function QualBadges({ tags }: { tags: string[] }) {
+  const bsnTag = tags.find((t) => t.startsWith("q:bsn="));
+  const expTag = tags.find((t) => t.startsWith("q:exp="));
+  const bsnVal = bsnTag ? bsnTag.replace("q:bsn=", "") : null;
+  const expVal = expTag ? expTag.replace("q:exp=", "") : null;
+  if (!bsnVal && !expVal) return null;
+  return (
+    <span className="flex flex-wrap gap-1 mt-1">
+      {bsnVal && BSN_META[bsnVal] && (
+        <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${BSN_META[bsnVal].cls}`}>
+          {BSN_META[bsnVal].label}
+        </span>
+      )}
+      {expVal && EXP_META[expVal] && (
+        <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${EXP_META[expVal].cls}`}>
+          {EXP_META[expVal].label}
+        </span>
+      )}
+    </span>
+  );
+}
+
 // ─── Main ──────────────────────────────────────────────────────────────────────
 
 export default function LeadsDashboard() {
@@ -326,6 +358,7 @@ export default function LeadsDashboard() {
                         {lead.email && (
                           <p className="text-[10px] text-gray-400 mt-0.5 truncate max-w-[160px]">{lead.email}</p>
                         )}
+                        <QualBadges tags={lead.tags} />
                       </td>
 
                       {/* Phone */}
