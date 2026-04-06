@@ -161,7 +161,7 @@ function CommentForm({ reviewId, agencyName, onSubmitted, onCancel }: CommentFor
           placeholder="Agency name"
           maxLength={200}
           style={{ fontSize: "16px" }}
-          className={`w-full px-3 py-2.5 text-sm border rounded-lg bg-white placeholder:text-gray-400
+          className={`w-full px-3 py-2.5 text-sm text-gray-900 border rounded-lg bg-white placeholder:text-gray-400
             focus:outline-none focus:ring-2 focus:ring-brand-500 transition
             ${errors.agencyName ? "border-red-400" : "border-gray-200"}`}
         />
@@ -179,7 +179,7 @@ function CommentForm({ reviewId, agencyName, onSubmitted, onCancel }: CommentFor
           placeholder="City (e.g. Rotterdam)"
           maxLength={100}
           style={{ fontSize: "16px" }}
-          className={`w-full px-3 py-2.5 text-sm border rounded-lg bg-white placeholder:text-gray-400
+          className={`w-full px-3 py-2.5 text-sm text-gray-900 border rounded-lg bg-white placeholder:text-gray-400
             focus:outline-none focus:ring-2 focus:ring-brand-500 transition
             ${errors.city ? "border-red-400" : "border-gray-200"}`}
         />
@@ -198,7 +198,7 @@ function CommentForm({ reviewId, agencyName, onSubmitted, onCancel }: CommentFor
           rows={3}
           maxLength={2000}
           style={{ fontSize: "16px" }}
-          className={`w-full px-3 py-2.5 text-sm border rounded-lg bg-white placeholder:text-gray-400
+          className={`w-full px-3 py-2.5 text-sm text-gray-900 border rounded-lg bg-white placeholder:text-gray-400
             focus:outline-none focus:ring-2 focus:ring-brand-500 transition resize-none
             ${errors.commentText ? "border-red-400" : "border-gray-200"}`}
         />
