@@ -1,8 +1,10 @@
 "use client";
 
 /**
- * HomepageLeadForm — 3-step transparent lead capture + post-submit qualification.
+ * HomepageLeadForm — pre-qual gate + 2-step transparent lead capture + post-submit qualification.
  *
+ * Step 0: Pre-qualification gate (EU resident? Driving licence? Ready to start?)
+ *         — blocks non-EU applicants before any lead is created
  * Step 1: What work + which country  (zero personal data, low friction)
  * Step 2: When + contact details     (full context given before asking)
  * Step 3: Qualification screen       (availability + NL status — 1 tap each)
@@ -15,6 +17,13 @@
 import { useState } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
+type Step   = 0 | 1 | 2; // 0 = mandatory pre-qualification gate
+
+type PreQual = {
+  euResident:   "yes" | "no" | "";
+  hasLicence:   "yes" | "no" | "";
+  readyToStart: "yes" | "no" | "";
+};
 type Availability = "immediately" | "1_2_weeks" | "1_month" | "exploring" | "";
 type LocationStatus = "nl" | "relocate" | "exploring" | "";
 
@@ -101,6 +110,32 @@ function PickBtn({
     </button>
   );
 }
+
+// ── EU rejection screen ───────────────────────────────────────────────────────
+
+function EuRejectionScreen({ onBack }: { onBack: () => void }) {
+  return (
+    <div className="py-4 text-center">
+      <div className="text-4xl mb-3">🌍</div>
+      <h3 className="text-base font-black text-gray-900 mb-2">
+        Currently for EU residents only
+      </h3>
+      <p className="text-sm text-gray-600 leading-relaxed mb-5 max-w-xs mx-auto">
+        The agencies we work with can only hire workers with an EU residence permit or EU passport.
+        We are unable to process your request at this time.
+      </p>
+      <button
+        type="button"
+        onClick={onBack}
+        className="text-xs text-blue-600 hover:underline"
+      >
+        ← Go back
+      </button>
+    </div>
+  );
+}
+
+// ── Qualification screen — 4 questions ───────────────────────────────────────
 
 function QualifyScreen({
   leadId,
@@ -267,27 +302,41 @@ function QualifyScreen({
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function HomepageLeadForm() {
-  const [step,      setStep]      = useState<1 | 2>(1);
-  const [jobType,   setJobType]   = useState("");
-  const [country,   setCountry]   = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [contact,   setContact]   = useState("");
-  const [status,    setStatus]    = useState<Status>("idle");
-  const [errorMsg,  setErrorMsg]  = useState("");
-  const [leadId,    setLeadId]    = useState<string | null>(null);
-  const [qualified, setQualified] = useState(false);
+  const [step,        setStep]        = useState<Step>(0);
+  const [preQual,     setPreQual]     = useState<PreQual>({ euResident: "", hasLicence: "", readyToStart: "" });
+  const [showPreErr,  setShowPreErr]  = useState(false);
+  const [jobType,     setJobType]     = useState("");
+  const [country,     setCountry]     = useState("");
+  const [startDate,   setStartDate]   = useState("");
+  const [contact,     setContact]     = useState("");
+  const [status,      setStatus]      = useState<Status>("idle");
+  const [errorMsg,    setErrorMsg]    = useState("");
+  const [leadId,      setLeadId]      = useState<string | null>(null);
+  const [qualified,   setQualified]   = useState(false);
 
-  const isEmail  = contact.includes("@");
-  const isPhone  = /^[\d\s+\-()]{7,}$/.test(contact);
-  const canStep1 = jobType && country;
-  const canStep2 = contact && (isEmail || isPhone) && status !== "loading";
+  const isEmail      = contact.includes("@");
+  const isPhone      = /^[\d\s+\-()]{7,}$/.test(contact);
+  const canStep1     = jobType && country;
+  const canStep2     = contact && (isEmail || isPhone) && status !== "loading";
+  const canPreQual   = preQual.euResident && preQual.hasLicence && preQual.readyToStart;
+
+  const setPreQ = <K extends keyof PreQual>(k: K, v: PreQual[K]) =>
+    setPreQual((p) => ({ ...p, [k]: v }));
+
+  function handlePreQual() {
+    if (!canPreQual) { setShowPreErr(true); return; }
+    setShowPreErr(false);
+    // euResident = "no" → stay on step 0, rejection message shown below
+    if (preQual.euResident === "no") return;
+    setStep(1);
+  }
 
   // ── Step 1 submit ───────────────────────────────────────────────────────────
 
   function handleStep1(e: React.FormEvent) {
     e.preventDefault();
     if (!canStep1) return;
-    setStep(2);
+    setStep(2 as Step);
   }
 
   // ── Final submit ────────────────────────────────────────────────────────────
@@ -316,6 +365,7 @@ export default function HomepageLeadForm() {
           sourceType:          "general_apply",
           sourceLabel:         "Homepage — 3-step transparent form",
           housingPreference:   "with_housing",
+          driversLicense:      preQual.hasLicence === "yes",
         }),
       });
 
@@ -404,6 +454,74 @@ export default function HomepageLeadForm() {
             <a href="/safety" className="text-blue-600 underline hover:text-blue-800">Learn how to spot fake recruiters →</a>
           </p>
         </div>
+      </div>
+    );
+  }
+
+  // ── Step 0 — Pre-qualification gate ────────────────────────────────────────
+
+  if (step === 0) {
+    // Show rejection if EU resident = "no" and all answered
+    if (canPreQual && preQual.euResident === "no") {
+      return <EuRejectionScreen onBack={() => setPreQual({ euResident: "", hasLicence: "", readyToStart: "" })} />;
+    }
+
+    return (
+      <div>
+        {/* Q1 — EU resident */}
+        <div className="mb-5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">
+            Are you an EU resident or EU passport holder?
+            {showPreErr && !preQual.euResident && (
+              <span className="text-red-500 ml-2 normal-case font-semibold">Required</span>
+            )}
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            <PickBtn label="✅ Yes" active={preQual.euResident === "yes"} onClick={() => setPreQ("euResident", "yes")} />
+            <PickBtn label="❌ No"  active={preQual.euResident === "no"}  onClick={() => setPreQ("euResident", "no")} />
+          </div>
+        </div>
+
+        {/* Q2 — Driving licence */}
+        <div className="mb-5">
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">
+            Do you have a driving licence?
+            {showPreErr && !preQual.hasLicence && (
+              <span className="text-red-500 ml-2 normal-case font-semibold">Required</span>
+            )}
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            <PickBtn label="✅ Yes" active={preQual.hasLicence === "yes"} onClick={() => setPreQ("hasLicence", "yes")} />
+            <PickBtn label="❌ No"  active={preQual.hasLicence === "no"}  onClick={() => setPreQ("hasLicence", "no")} />
+          </div>
+        </div>
+
+        {/* Q3 — Ready to start */}
+        <div className="mb-6">
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">
+            Are you ready to start this week or next week?
+            {showPreErr && !preQual.readyToStart && (
+              <span className="text-red-500 ml-2 normal-case font-semibold">Required</span>
+            )}
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            <PickBtn label="✅ Yes" active={preQual.readyToStart === "yes"} onClick={() => setPreQ("readyToStart", "yes")} />
+            <PickBtn label="❌ No"  active={preQual.readyToStart === "no"}  onClick={() => setPreQ("readyToStart", "no")} />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={handlePreQual}
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] transition-all px-8 py-3.5 text-sm font-black text-white shadow-sm shadow-blue-200"
+        >
+          Continue →
+        </button>
+
+        <p className="text-[11px] text-gray-400 mt-3 leading-snug">
+          Free service · No commissions charged to workers ·{" "}
+          <a href="/privacy" className="underline hover:text-gray-600">Privacy policy</a>
+        </p>
       </div>
     );
   }
@@ -540,7 +658,7 @@ export default function HomepageLeadForm() {
           <span>{country}</span>
           <button
             type="button"
-            onClick={() => setStep(1)}
+            onClick={() => setStep(1 as Step)}
             className="text-blue-500 hover:text-blue-700 underline ml-1"
           >
             change
