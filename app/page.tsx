@@ -699,6 +699,33 @@ export default async function HomePage() {
             </div>
           </div>
 
+          {/* ET benefit info block */}
+          <div className="mb-5 rounded-2xl border border-amber-400/25 bg-amber-400/[0.07] px-5 py-5">
+            <div className="inline-flex items-center gap-1.5 bg-amber-400/[0.12] border border-amber-400/25 rounded-full px-2.5 py-1 text-[11px] font-bold text-amber-300 uppercase tracking-wide mb-3">
+              <span className="text-sm leading-none">💡</span>
+              Important income info
+            </div>
+            <h3 className="text-base sm:text-lg font-black text-white leading-snug mb-2">
+              Some agency workers in the Netherlands keep 100+ euros more per week
+            </h3>
+            <p className="text-sm text-gray-300 leading-relaxed mb-1">
+              Many workers do not know about the{" "}
+              <span className="font-semibold text-white">ET tax benefit</span>.
+              Depending on your situation, it can increase your weekly net income by{" "}
+              <span className="font-semibold text-white">100+ euros</span>.
+            </p>
+            <p className="text-xs text-gray-500 leading-relaxed mb-4">
+              We help you understand what you really keep after rent, transport and insurance.
+            </p>
+            <a
+              href="#lead-form"
+              className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 active:scale-95 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-all duration-150 shadow-sm"
+            >
+              Check job options
+              <span className="text-base leading-none">→</span>
+            </a>
+          </div>
+
           <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03]/50 p-5 sm:p-7 shadow-sm">
             <HomepageLeadForm />
           </div>
