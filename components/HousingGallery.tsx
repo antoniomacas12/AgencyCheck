@@ -82,7 +82,7 @@ export default function HousingGallery({ images, agencyName }: Props) {
       {/* ── Fullscreen lightbox ── */}
       {isOpen && active !== null && (
         <div
-          className="fixed inset-0 z-[9999] flex flex-col bg-black/95"
+          className="fixed inset-0 z-[9999] flex flex-col bg-black/95 housing-gallery-lightbox"
           role="dialog"
           aria-modal="true"
           aria-label={`Housing photos – ${agencyName}`}

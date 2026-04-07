@@ -193,6 +193,25 @@ body.blur-placeholder-images *:has(> img)::after {
   z-index: 2;
 }
 
+/* ── Lightbox exemption — never blur the fullscreen viewer ────────────────
+   Problem: the *:has(> img) rule above adds overflow:hidden to the
+   flex-1 / min-h-0 lightbox container.  On iOS Safari that collapses
+   the flex item to zero height → user sees only the black backdrop
+   ("full black" bug on mobile).  The ::after overlay also sits above
+   the image at z-index:2, obscuring it.
+   Fix: strip ALL blur side-effects from .housing-gallery-lightbox and
+   its children so the opened photo is always visible and unobscured.    */
+body.blur-placeholder-images .housing-gallery-lightbox img {
+  filter: none !important;
+  transform: none !important;
+}
+body.blur-placeholder-images .housing-gallery-lightbox *:has(> img) {
+  overflow: visible !important;
+}
+body.blur-placeholder-images .housing-gallery-lightbox *:has(> img)::after {
+  display: none !important;
+}
+
 /* ── Modal / FloatingStack animations ────────────────────────────────────────
    Defined here (not inline in JSX) to prevent the React "parentNode.removeChild"
    crash: browsers move inline <style> tags to <head>, so when React tries to
