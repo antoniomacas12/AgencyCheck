@@ -2,8 +2,8 @@
  * agencyI18nStrings.ts
  *
  * Inline UI strings for localized agency, city, and agency+city pages.
- * Polish (pl) and Romanian (ro) only — English versions live in the
- * main English routes.
+ * Polish (pl), Romanian (ro), and Portuguese (pt) — English versions live in
+ * the main English routes.
  *
  * Rules:
  *  - UI chrome (headings, labels, CTAs) is translated here.
@@ -12,7 +12,7 @@
  *  - Add interpolation placeholders with {agency}, {city}, {count}.
  */
 
-export type I18nLocale = "pl" | "ro";
+export type I18nLocale = "pl" | "ro" | "pt";
 
 interface AgencyPageStrings {
   // Meta
@@ -200,21 +200,83 @@ const roCity: CityPageStrings = {
   metaDescTemplate:   (c) => `Recenzii muncitori despre agențiile de muncă din ${c}. Cazare, salariu și experiențe muncitorești colectate de AgencyCheck.`,
 };
 
+// ─── Portuguese strings ───────────────────────────────────────────────────────
+
+const pt: AgencyPageStrings = {
+  metaTitleSuffix:     "avaliações",
+  agencyMetaDesc:      (a) =>
+    `${a} avaliações de trabalhadores – alojamento, salário, condições de trabalho. Experiências reais de trabalhadores na Holanda recolhidas pelo AgencyCheck.`,
+  metaDescTemplate:    "{agency} {city} avaliações – alojamento, salário, experiências de trabalhadores na Holanda.",
+  h1Suffix:            "avaliações",
+  h1SubTitle:          "Salário · Alojamento · Experiências de trabalhadores",
+  workerReviews:       "Avaliações de trabalhadores",
+  workerComments:      "Comentários de trabalhadores",
+  workerCommentsCity:  (a, c) => `O que dizem os trabalhadores sobre ${a} em ${c}`,
+  citiesMentioned:     "Cidades mencionadas pelos trabalhadores",
+  relatedAgencies:     "Agências semelhantes",
+  otherCities:         "Outras cidades",
+  unverifiedBadge:     "Não verificada – reportada por trabalhadores",
+  workerBadge:         "Avaliação de trabalhador",
+  originalComment:     "Comentário no idioma original",
+  housingLabel:        "Alojamento",
+  salaryLabel:         "Salário",
+  transportLabel:      "Transporte",
+  managementLabel:     "Gestão",
+  contractLabel:       "Clareza do contrato",
+  overallRating:       "Avaliação geral",
+  reviewsCount:        (n) => n === 1 ? "1 avaliação" : `${n} avaliações`,
+  ctaHeading:          (a, c) => c ? `Trabalhou na ${a} em ${c}?` : `Trabalhou na ${a}?`,
+  ctaBody:             "Partilhe a sua experiência – ajude outros trabalhadores a tomar a decisão certa.",
+  ctaButton:           "Adicionar avaliação →",
+  backToAgency:        (a) => `← Perfil completo de ${a}`,
+  backToCity:          (c) => `Todas as agências em ${c} →`,
+  allAgencies:         "Todas as agências",
+  viewReview:          "Ver avaliação →",
+  noCommentsYet:       "Sem comentários para esta cidade",
+  noCommentsBody:      "Seja o primeiro a partilhar a sua experiência.",
+  trustNote:           "Com base em comentários enviados por trabalhadores no AgencyCheck. Mais experiências podem ser adicionadas ao longo do tempo.",
+  housingAvailable:    "Alojamento disponível",
+  housingNotProvided:  "Alojamento não fornecido",
+  housingUnknown:      "Estado do alojamento desconhecido",
+  recommended:         "Recomendo",
+  notRecommended:      "Não recomendo",
+};
+
+const ptCity: CityPageStrings = {
+  h1Template:         (c) => `Trabalho em ${c} – agências de trabalho, avaliações de trabalhadores`,
+  intro:              (c) => `Leia as avaliações de trabalhadores sobre agências de trabalho em ${c}. Saiba o que dizem os trabalhadores sobre alojamento, salário e condições de trabalho.`,
+  agenciesMentioned:  (c) => `Agências mencionadas por trabalhadores em ${c}`,
+  recentComments:     (c) => `Comentários recentes de trabalhadores de ${c}`,
+  trustNote:          "Com base em comentários enviados por trabalhadores no AgencyCheck.",
+  originalComment:    "Comentário no idioma original",
+  noData:             "Não existem dados para esta cidade.",
+  viewAgencyCity:     (a, c) => `${a} em ${c} →`,
+  ctaHeading:         (c) => `Trabalha ou trabalhou em ${c}?`,
+  ctaBody:            "Partilhe a sua experiência e ajude outros trabalhadores.",
+  ctaButton:          "Adicionar avaliação →",
+  allCities:          "Todas as cidades",
+  breadcrumbCities:   "Cidades",
+  metaTitleTemplate:  (c) => `Trabalho em ${c} – agências, avaliações, alojamento`,
+  metaDescTemplate:   (c) => `Avaliações de trabalhadores sobre agências de trabalho em ${c}. Alojamento, salário e experiências de trabalho recolhidas pelo AgencyCheck.`,
+};
+
 // ─── Exports ──────────────────────────────────────────────────────────────────
 
-export const AGENCY_STRINGS: Record<I18nLocale, AgencyPageStrings> = { pl, ro };
-export const CITY_STRINGS:   Record<I18nLocale, CityPageStrings>   = { pl: plCity, ro: roCity };
+export const AGENCY_STRINGS: Record<I18nLocale, AgencyPageStrings> = { pl, ro, pt };
+export const CITY_STRINGS:   Record<I18nLocale, CityPageStrings>   = { pl: plCity, ro: roCity, pt: ptCity };
 
-/** Localised agency path prefix: /pl/agencje or /ro/agentii */
+/** Localised agency path prefix: /pl/agencje, /ro/agentii, /pt/agencias */
 export const AGENCY_BASE: Record<I18nLocale, string> = {
   pl: "/pl/agencje",
   ro: "/ro/agentii",
+  pt: "/pt/agencias",
 };
 
-/** Localised city path prefix: /pl/miasta or /ro/orase */
+/** Localised city path prefix: /pl/miasta, /ro/orase, /pt/cidades */
 export const CITY_BASE: Record<I18nLocale, string> = {
   pl: "/pl/miasta",
   ro: "/ro/orase",
+  pt: "/pt/cidades",
 };
 
 /** English equivalents for hreflang */

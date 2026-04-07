@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
 
 /**
- * Romanian segment layout — metadata only.
+ * Portuguese segment layout — metadata only.
  *
  * DO NOT add <html> or <body> here.
  * The root app/layout.tsx owns <html lang="..."> and <body>.
- * It reads x-ac-locale from middleware to set lang="ro" automatically.
+ * It reads x-ac-locale from middleware to set lang="pt" automatically.
  * Adding html/body here causes nested invalid HTML → blank page.
  */
 export const metadata: Metadata = {
   metadataBase: new URL("https://agencycheck.io"),
   title: {
-    default: "AgencyCheck — Agenții de Muncă Olanda — Recenzii și Salarii Reale",
+    default: "AgencyCheck — Agências de Trabalho Holanda — Avaliações de Trabalhadores e Salários",
     template: "%s | AgencyCheck",
   },
   description:
-    "Compară agențiile de muncă din Olanda după recenzii de la muncitori, cazare și salarii reale. Calculează salariul net real înainte să semnezi.",
+    "Compara agências de trabalho na Holanda por avaliações de trabalhadores, alojamento e salários reais. Verifica o salário líquido real antes de assinar o contrato.",
   keywords: [
-    "agenție de muncă Olanda", "locuri de muncă cu cazare Olanda",
-    "muncă în Olanda cu cazare", "agenție muncă recenzii",
-    "salariu net Olanda", "locuri de muncă Olanda pentru romani",
+    "agência de trabalho Holanda", "trabalho com alojamento Holanda",
+    "trabalho na Holanda alojamento", "agência de trabalho avaliações",
+    "salário líquido Holanda", "trabalho Holanda para portugueses",
   ],
   alternates: {
-    canonical: "https://agencycheck.io/ro",
+    canonical: "https://agencycheck.io/pt",
     languages: {
       "en":        "https://agencycheck.io/",
       "pl":        "https://agencycheck.io/pl",
@@ -34,11 +34,11 @@ export const metadata: Metadata = {
   openGraph: {
     type:     "website",
     siteName: "AgencyCheck",
-    locale:   "ro_NL",
+    locale:   "pt_PT",
   },
 };
 
-export default function RoLayout({ children }: { children: React.ReactNode }) {
+export default function PtLayout({ children }: { children: React.ReactNode }) {
   // Just pass through — root layout handles chrome (Navbar, Footer, etc.)
   return <>{children}</>;
 }

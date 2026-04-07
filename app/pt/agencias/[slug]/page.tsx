@@ -14,7 +14,7 @@ import { toCitySlug } from "@/lib/cityNormalization";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
-const LOCALE: I18nLocale = "pl";
+const LOCALE: I18nLocale = "pt";
 const S = AGENCY_STRINGS[LOCALE];
 
 // ─── Metadata ──────────────────────────────────────────────────────────────────
@@ -27,36 +27,36 @@ export async function generateMetadata({
   const staticAgency = ALL_AGENCY_MAP[params.slug];
   const agencyName   = staticAgency?.name ?? params.slug.replace(/-/g, " ");
 
-  const title       = `${agencyName} ${S.metaTitleSuffix} – praca w Holandii`;
+  const title       = `${agencyName} ${S.metaTitleSuffix} – trabalho na Holanda`;
   const description = S.agencyMetaDesc(agencyName);
-  const canonicalPl = `${AGENCY_BASE.pl}/${params.slug}`;
+  const canonicalPt = `${AGENCY_BASE.pt}/${params.slug}`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: canonicalPl,
+      canonical: canonicalPt,
       languages: {
         "en":        `${EN_AGENCY_BASE}/${params.slug}`,
-        "pl":        canonicalPl,
+        "pl":        `${AGENCY_BASE.pl}/${params.slug}`,
         "ro":        `${AGENCY_BASE.ro}/${params.slug}`,
-        "pt":        `${AGENCY_BASE.pt}/${params.slug}`,
+        "pt":        canonicalPt,
         "x-default": `${EN_AGENCY_BASE}/${params.slug}`,
       },
     },
     openGraph: {
       title,
       description,
-      locale: "pl_PL",
+      locale: "pt_PT",
       type:   "website",
     },
     keywords: [
-      `${agencyName} opinie`,
-      `${agencyName} praca Holandia`,
-      `${agencyName} zakwaterowanie`,
-      `${agencyName} zarobki`,
-      "agencja pracy Holandia",
-      "praca w Holandii opinie",
+      `${agencyName} avaliações`,
+      `${agencyName} trabalho Holanda`,
+      `${agencyName} alojamento`,
+      `${agencyName} salário`,
+      "agência de trabalho Holanda",
+      "trabalho na Holanda avaliações",
     ],
   };
 }
@@ -80,7 +80,7 @@ function RatingRow({ label, value }: { label: string; value: number }) {
 // ─── Review card ───────────────────────────────────────────────────────────────
 
 function ReviewCard({ r }: { r: DbReview }) {
-  const date = new Date(r.createdAt).toLocaleDateString("pl-PL", {
+  const date = new Date(r.createdAt).toLocaleDateString("pt-PT", {
     month: "short",
     year:  "numeric",
   });
@@ -118,7 +118,7 @@ function ReviewCard({ r }: { r: DbReview }) {
 function CommentCard({ c }: { c: { id: string; agencyName: string; city: string; body: string; createdAt: Date } }) {
   const diff = Date.now() - new Date(c.createdAt).getTime();
   const days = Math.floor(diff / 86_400_000);
-  const timeStr = days === 0 ? "dzisiaj" : days === 1 ? "wczoraj" : `${days}d temu`;
+  const timeStr = days === 0 ? "hoje" : days === 1 ? "ontem" : `há ${days} dias`;
   return (
     <div className="flex gap-3 py-3 border-b border-gray-50 last:border-0">
       <div className="shrink-0 w-7 h-7 rounded-full bg-brand-100 flex items-center justify-center text-sm mt-0.5">
@@ -143,8 +143,7 @@ function CommentCard({ c }: { c: { id: string; agencyName: string; city: string;
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default async function PlAgencyPage({ params }: { params: { slug: string } }) {
-  // Try static verified agency first, fall back to DB-only
+export default async function PtAgencyPage({ params }: { params: { slug: string } }) {
   const staticAgency = ALL_AGENCY_MAP[params.slug];
   const dbAgency     = await getDbAgency(params.slug);
 
@@ -154,7 +153,6 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
   const agencyId     = dbAgency?.id ?? null;
   const isUnverified = !staticAgency;
 
-  // DB data
   const cityMentions: DbCityMention[] = agencyId
     ? await getAgencyCityMentions(agencyId)
     : [];
@@ -162,7 +160,6 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
   const directReviews: DbReview[] = dbAgency?.directReviews ?? [];
   const avgRatings                = computeRatingAverages(directReviews);
 
-  // Recent comments
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const db = prisma as any;
   const recentComments: { id: string; agencyName: string; city: string; body: string; createdAt: Date }[] =
@@ -177,7 +174,7 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
 
   const cityDisplay = dbAgency?.city && dbAgency.city !== "unknown"
     ? dbAgency.city
-    : staticAgency?.city ?? "Holandia";
+    : staticAgency?.city ?? "Holanda";
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-8 pb-24">
@@ -190,7 +187,7 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
             "@context": "https://schema.org",
             "@type":    "Organization",
             name:       agencyName,
-            url:        `https://agencycheck.io${AGENCY_BASE.pl}/${params.slug}`,
+            url:        `https://agencycheck.io${AGENCY_BASE.pt}/${params.slug}`,
             ...(avgRatings && avgRatings.count > 0
               ? {
                   aggregateRating: {
@@ -208,9 +205,9 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
 
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-5 flex items-center gap-1.5 flex-wrap">
-        <Link href="/pl" className="hover:text-brand-600">Strona główna</Link>
+        <Link href="/pt" className="hover:text-brand-600">Página inicial</Link>
         <span>/</span>
-        <Link href="/pl/agencje-pracy-holandia" className="hover:text-brand-600">Agencje pracy</Link>
+        <Link href="/pt/agencias-trabalho-holanda" className="hover:text-brand-600">Agências de trabalho</Link>
         <span>/</span>
         <span className="text-gray-600 font-medium">{agencyName}</span>
       </nav>
@@ -237,7 +234,7 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
           </span>
         </h1>
         <p className="text-sm text-gray-500 mt-1">
-          📍 {cityDisplay}, Holandia
+          📍 {cityDisplay}, Holanda
           {" · "}
           <Link href={`${EN_AGENCY_BASE}/${params.slug}`} className="text-brand-600 hover:underline text-xs">
             English version →
@@ -255,15 +252,15 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
               <p className="text-[10px] text-gray-400 mt-1">{S.reviewsCount(avgRatings.count)}</p>
             </div>
             <div className="flex-1 space-y-2">
-              <RatingRow label={S.salaryLabel}   value={avgRatings.salary   ?? avgRatings.overall} />
-              <RatingRow label={S.managementLabel} value={avgRatings.mgmt   ?? avgRatings.overall} />
-              <RatingRow label={S.contractLabel}  value={avgRatings.contract ?? avgRatings.overall} />
+              <RatingRow label={S.salaryLabel}     value={avgRatings.salary   ?? avgRatings.overall} />
+              <RatingRow label={S.managementLabel} value={avgRatings.mgmt     ?? avgRatings.overall} />
+              <RatingRow label={S.contractLabel}   value={avgRatings.contract ?? avgRatings.overall} />
             </div>
           </div>
         </section>
       )}
 
-      {/* Worker reviews from DB */}
+      {/* Worker reviews */}
       {directReviews.length > 0 && (
         <section className="mb-8">
           <h2 className="text-base font-bold text-gray-900 mb-4">{S.workerReviews}</h2>
@@ -298,7 +295,7 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
             {cityMentions.map((cm) => (
               <Link
                 key={cm.cityNormalized}
-                href={`${AGENCY_BASE.pl}/${params.slug}/${toCitySlug(cm.cityNormalized)}`}
+                href={`${AGENCY_BASE.pt}/${params.slug}/${toCitySlug(cm.cityNormalized)}`}
                 className="inline-flex items-center gap-1.5 text-xs bg-blue-50 border border-blue-100
                   text-blue-800 px-3 py-1 rounded-full hover:bg-blue-100 hover:border-blue-200 transition-colors"
               >
@@ -325,7 +322,7 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
 
       {/* Footer nav */}
       <div className="pt-6 border-t border-gray-100 flex items-center justify-between text-sm">
-        <Link href="/pl/agencje-pracy-holandia" className="text-gray-400 hover:text-brand-600">
+        <Link href="/pt/agencias-trabalho-holanda" className="text-gray-400 hover:text-brand-600">
           ← {S.allAgencies}
         </Link>
         <Link href={`${EN_AGENCY_BASE}/${params.slug}`} className="text-brand-600 hover:text-brand-800 font-medium">

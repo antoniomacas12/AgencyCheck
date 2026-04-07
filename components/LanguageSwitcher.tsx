@@ -30,20 +30,22 @@ const LOCALE_ROOT_PATHS: Record<Locale, string> = {
   en: "/",
   pl: "/pl",
   ro: "/ro",
+  pt: "/pt",
 };
 
 // The cookie name must match middleware.ts
 const LOCALE_COOKIE = "ac_locale";
 
-/** True when the current path lives under a locale prefix (/pl/… or /ro/…) */
+/** True when the current path lives under a locale prefix (/pl/…, /ro/…, /pt/…) */
 function isLocalePrefixedPath(pathname: string): boolean {
   return pathname === "/pl" || pathname.startsWith("/pl/") ||
-         pathname === "/ro" || pathname.startsWith("/ro/");
+         pathname === "/ro" || pathname.startsWith("/ro/") ||
+         pathname === "/pt" || pathname.startsWith("/pt/");
 }
 
-/** Strip the /pl or /ro prefix from a path (returns "/" if nothing left) */
+/** Strip the /pl, /ro, or /pt prefix from a path (returns "/" if nothing left) */
 function stripLocalePrefix(pathname: string): string {
-  const stripped = pathname.replace(/^\/(pl|ro)(\/|$)/, "/");
+  const stripped = pathname.replace(/^\/(pl|ro|pt)(\/|$)/, "/");
   return stripped || "/";
 }
 
@@ -147,7 +149,7 @@ export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
           })}
           <div className="border-t border-gray-100 px-4 py-2 bg-gray-50">
             <p className="text-[9px] text-gray-400 leading-snug">
-              Content in EN/PL/RO · More languages coming
+              Content in EN/PL/RO/PT · More languages coming
             </p>
           </div>
         </div>

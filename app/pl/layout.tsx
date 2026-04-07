@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       "en":        "https://agencycheck.io/",
       "pl":        "https://agencycheck.io/pl",
       "ro":        "https://agencycheck.io/ro",
+      "pt":        "https://agencycheck.io/pt",
       "x-default": "https://agencycheck.io/",
     },
   },

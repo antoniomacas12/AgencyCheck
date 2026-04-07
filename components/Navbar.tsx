@@ -14,6 +14,7 @@ function detectLocale(pathname: string, localeProp: Locale): Locale {
   if (localeProp !== "en") return localeProp;
   if (pathname === "/pl" || pathname.startsWith("/pl/")) return "pl";
   if (pathname === "/ro" || pathname.startsWith("/ro/")) return "ro";
+  if (pathname === "/pt" || pathname.startsWith("/pt/")) return "pt";
   return "en";
 }
 
@@ -37,6 +38,7 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
   const housingHref =
     locale === "pl" ? "/pl/praca-z-zakwaterowaniem" :
     locale === "ro" ? "/ro/locuri-de-munca-cu-cazare" :
+    locale === "pt" ? "/pt/trabalho-com-alojamento" :
     "/jobs-with-accommodation";
 
   const NAV_ITEMS = [
@@ -55,7 +57,7 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
 
           {/* Logo — always links to locale root */}
           <Link
-            href={locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : "/"}
+            href={locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : locale === "pt" ? "/pt" : "/"}
             className="flex items-center gap-2 font-bold text-xl text-brand-600 shrink-0"
           >
             <span className="text-2xl">✅</span>

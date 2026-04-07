@@ -15,14 +15,15 @@
  *   t("homepage.badge", { housingCount: 42 })  // replaces {housingCount}
  */
 
-export type Locale = "en" | "pl" | "ro";
-export const SUPPORTED_LOCALES: Locale[] = ["en", "pl", "ro"];
+export type Locale = "en" | "pl" | "ro" | "pt";
+export const SUPPORTED_LOCALES: Locale[] = ["en", "pl", "ro", "pt"];
 export const DEFAULT_LOCALE: Locale = "en";
 
 export const LOCALE_LABELS: Record<Locale, { label: string; flag: string; nativeName: string }> = {
-  en: { label: "English",  flag: "🇬🇧", nativeName: "English"  },
-  pl: { label: "Polish",   flag: "🇵🇱", nativeName: "Polski"   },
-  ro: { label: "Romanian", flag: "🇷🇴", nativeName: "Română"   },
+  en: { label: "English",    flag: "🇬🇧", nativeName: "English"   },
+  pl: { label: "Polish",     flag: "🇵🇱", nativeName: "Polski"    },
+  ro: { label: "Romanian",   flag: "🇷🇴", nativeName: "Română"    },
+  pt: { label: "Portuguese", flag: "🇵🇹", nativeName: "Português" },
 };
 
 // Flat key lookup with dot-notation (e.g. "homepage.hero_gross")
@@ -89,11 +90,13 @@ export async function getT(locale: Locale = DEFAULT_LOCALE) {
 import enJson from "@/locales/en.json";
 import plJson from "@/locales/pl.json";
 import roJson from "@/locales/ro.json";
+import ptJson from "@/locales/pt.json";
 
 const LOCALE_DATA: Record<Locale, Translations> = {
   en: enJson as unknown as Translations,
   pl: plJson as unknown as Translations,
   ro: roJson as unknown as Translations,
+  pt: ptJson as unknown as Translations,
 };
 
 /**

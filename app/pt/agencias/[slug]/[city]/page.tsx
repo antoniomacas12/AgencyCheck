@@ -20,7 +20,7 @@ import {
 import { fromCitySlug, toDisplayCity, toCitySlug } from "@/lib/cityNormalization";
 
 export const dynamic = "force-dynamic";
-const LOCALE: I18nLocale = "ro";
+const LOCALE: I18nLocale = "pt";
 const S = AGENCY_STRINGS[LOCALE];
 
 // ─── Metadata ──────────────────────────────────────────────────────────────────
@@ -30,32 +30,32 @@ export async function generateMetadata({
 }: {
   params: { slug: string; city: string };
 }): Promise<Metadata> {
-  const cityNorm  = fromCitySlug(params.city);
-  const cityName  = toDisplayCity(cityNorm);
+  const cityNorm     = fromCitySlug(params.city);
+  const cityName     = toDisplayCity(cityNorm);
   const staticAgency = ALL_AGENCY_MAP[params.slug];
   const agencyName   = staticAgency?.name ?? params.slug.replace(/-/g, " ");
 
-  const canonicalRo = `${AGENCY_BASE.ro}/${params.slug}/${params.city}`;
-  const title       = `${agencyName} ${cityName} pareri – munca Olanda`;
-  const description = `Citește ce spun muncitorii despre ${agencyName} în ${cityName}. Recenzii despre cazare, salariu și condiții de muncă. Date colectate de AgencyCheck.`;
+  const canonicalPt = `${AGENCY_BASE.pt}/${params.slug}/${params.city}`;
+  const title       = `${agencyName} ${cityName} avaliações – trabalho Holanda`;
+  const description = `Leia o que os trabalhadores dizem sobre ${agencyName} em ${cityName}. Avaliações sobre alojamento, salário e condições de trabalho. Dados recolhidos pelo AgencyCheck.`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: canonicalRo,
+      canonical: canonicalPt,
       languages: {
         "en":        `${EN_AGENCY_BASE}/${params.slug}/${params.city}`,
         "pl":        `${AGENCY_BASE.pl}/${params.slug}/${params.city}`,
-        "ro":        canonicalRo,
-        "pt":        `${AGENCY_BASE.pt}/${params.slug}/${params.city}`,
+        "ro":        `${AGENCY_BASE.ro}/${params.slug}/${params.city}`,
+        "pt":        canonicalPt,
         "x-default": `${EN_AGENCY_BASE}/${params.slug}/${params.city}`,
       },
     },
     openGraph: {
       title,
       description,
-      locale: "ro_RO",
+      locale: "pt_PT",
       type:   "website",
     },
   };
@@ -66,7 +66,7 @@ export async function generateMetadata({
 function CommentBubble({ c }: { c: DbAgencyCityComment }) {
   const diff = Date.now() - new Date(c.createdAt).getTime();
   const days = Math.floor(diff / 86_400_000);
-  const timeStr = days === 0 ? "azi" : days === 1 ? "ieri" : `acum ${days}z`;
+  const timeStr = days === 0 ? "hoje" : days === 1 ? "ontem" : `há ${days} dias`;
 
   return (
     <div className="flex gap-3 py-3 border-b border-gray-50 last:border-0">
@@ -92,7 +92,7 @@ function CommentBubble({ c }: { c: DbAgencyCityComment }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default async function RoAgencyCityPage({
+export default async function PtAgencyCityPage({
   params,
 }: {
   params: { slug: string; city: string };
@@ -107,7 +107,6 @@ export default async function RoAgencyCityPage({
 
   const agencyName = staticAgency?.name ?? dbAgency?.name ?? params.slug;
 
-  // Verify this city has enough data to warrant a page
   const cityMentions: DbCityMention[] = dbAgency
     ? await getAgencyCityMentions(dbAgency.id)
     : [];
@@ -119,12 +118,10 @@ export default async function RoAgencyCityPage({
 
   if (!hasCityData) return notFound();
 
-  // Fetch comments for this agency+city
   const cityComments: DbAgencyCityComment[] = dbAgency
     ? await getAgencyCommentsByCity(dbAgency.id, cityNorm).catch(() => [])
     : [];
 
-  // Other cities for this agency
   const otherCities: DbCityMention[] = cityMentions
     .filter((m) => m.cityNormalized !== cityNorm)
     .slice(0, 8);
@@ -140,18 +137,18 @@ export default async function RoAgencyCityPage({
             "@context": "https://schema.org",
             "@type":    "Organization",
             name:       agencyName,
-            url:        `https://agencycheck.io${AGENCY_BASE.ro}/${params.slug}`,
+            url:        `https://agencycheck.io${AGENCY_BASE.pt}/${params.slug}`,
           }),
         }}
       />
 
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-5 flex items-center gap-1.5 flex-wrap">
-        <Link href="/ro" className="hover:text-brand-600">Pagina principală</Link>
+        <Link href="/pt" className="hover:text-brand-600">Página inicial</Link>
         <span>/</span>
-        <Link href="/ro/agentii-munca-olanda" className="hover:text-brand-600">Agenții de muncă</Link>
+        <Link href="/pt/agencias-trabalho-holanda" className="hover:text-brand-600">Agências de trabalho</Link>
         <span>/</span>
-        <Link href={`${AGENCY_BASE.ro}/${params.slug}`} className="hover:text-brand-600">
+        <Link href={`${AGENCY_BASE.pt}/${params.slug}`} className="hover:text-brand-600">
           {agencyName}
         </Link>
         <span>/</span>
@@ -172,7 +169,7 @@ export default async function RoAgencyCityPage({
           </span>
         </h1>
         <p className="text-sm text-gray-500 mt-1">
-          📍 {cityName}, Olanda
+          📍 {cityName}, Holanda
           {" · "}
           <Link href={`${EN_AGENCY_BASE}/${params.slug}/${params.city}`} className="text-brand-600 hover:underline text-xs">
             English version →
@@ -215,7 +212,7 @@ export default async function RoAgencyCityPage({
             {otherCities.map((cm) => (
               <Link
                 key={cm.cityNormalized}
-                href={`${AGENCY_BASE.ro}/${params.slug}/${toCitySlug(cm.cityNormalized)}`}
+                href={`${AGENCY_BASE.pt}/${params.slug}/${toCitySlug(cm.cityNormalized)}`}
                 className="inline-flex items-center gap-1 text-xs bg-blue-50 border border-blue-100
                   text-blue-800 px-3 py-1 rounded-full hover:bg-blue-100 hover:border-blue-200 transition-colors"
               >
@@ -246,10 +243,10 @@ export default async function RoAgencyCityPage({
 
       {/* Footer nav */}
       <div className="pt-6 border-t border-gray-100 flex items-center justify-between text-sm">
-        <Link href={`${AGENCY_BASE.ro}/${params.slug}`} className="text-brand-600 hover:text-brand-800 font-medium">
+        <Link href={`${AGENCY_BASE.pt}/${params.slug}`} className="text-brand-600 hover:text-brand-800 font-medium">
           {S.backToAgency(agencyName)}
         </Link>
-        <Link href={`${CITY_BASE.ro}/${params.city}`} className="text-gray-400 hover:text-brand-600">
+        <Link href={`${CITY_BASE.pt}/${params.city}`} className="text-gray-400 hover:text-brand-600">
           {S.backToCity(cityName)}
         </Link>
       </div>

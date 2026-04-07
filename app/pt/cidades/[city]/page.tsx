@@ -15,7 +15,7 @@ import {
 import { fromCitySlug, toDisplayCity, toCitySlug } from "@/lib/cityNormalization";
 
 export const dynamic = "force-dynamic";
-const LOCALE: I18nLocale = "ro";
+const LOCALE: I18nLocale = "pt";
 const S = CITY_STRINGS[LOCALE];
 
 // ─── Metadata ──────────────────────────────────────────────────────────────────
@@ -25,27 +25,27 @@ export async function generateMetadata({
 }: {
   params: { city: string };
 }): Promise<Metadata> {
-  const cityNorm = fromCitySlug(params.city);
-  const cityName = toDisplayCity(cityNorm);
-  const canonicalRo = `${CITY_BASE.ro}/${params.city}`;
+  const cityNorm    = fromCitySlug(params.city);
+  const cityName    = toDisplayCity(cityNorm);
+  const canonicalPt = `${CITY_BASE.pt}/${params.city}`;
 
   return {
     title:       S.metaTitleTemplate(cityName),
     description: S.metaDescTemplate(cityName),
     alternates: {
-      canonical: canonicalRo,
+      canonical: canonicalPt,
       languages: {
         "en":        `${EN_CITY_BASE}/${params.city}`,
         "pl":        `${CITY_BASE.pl}/${params.city}`,
-        "ro":        canonicalRo,
-        "pt":        `${CITY_BASE.pt}/${params.city}`,
+        "ro":        `${CITY_BASE.ro}/${params.city}`,
+        "pt":        canonicalPt,
         "x-default": `${EN_CITY_BASE}/${params.city}`,
       },
     },
     openGraph: {
       title:       S.metaTitleTemplate(cityName),
       description: S.metaDescTemplate(cityName),
-      locale:      "ro_RO",
+      locale:      "pt_PT",
       type:        "website",
     },
   };
@@ -53,7 +53,7 @@ export async function generateMetadata({
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default async function RoCityPage({
+export default async function PtCityPage({
   params,
 }: {
   params: { city: string };
@@ -62,7 +62,6 @@ export default async function RoCityPage({
   const cityName   = toDisplayCity(cityNorm);
   const workerData = await getCityWorkerData(cityNorm).catch(() => ({ agencies: [], comments: [] }));
 
-  // Require at least some data to show the page
   if (workerData.agencies.length === 0 && workerData.comments.length === 0) {
     return notFound();
   }
@@ -72,9 +71,9 @@ export default async function RoCityPage({
 
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-5 flex items-center gap-1.5 flex-wrap">
-        <Link href="/ro" className="hover:text-brand-600">Pagina principală</Link>
+        <Link href="/pt" className="hover:text-brand-600">Página inicial</Link>
         <span>/</span>
-        <Link href="/ro/agentii-munca-olanda" className="hover:text-brand-600">{S.breadcrumbCities}</Link>
+        <Link href="/pt/agencias-trabalho-holanda" className="hover:text-brand-600">{S.breadcrumbCities}</Link>
         <span>/</span>
         <span className="text-gray-600 font-medium">{cityName}</span>
       </nav>
@@ -85,7 +84,7 @@ export default async function RoCityPage({
           {S.h1Template(cityName)}
         </h1>
         <p className="text-sm text-gray-500 mt-1">
-          📍 {cityName}, Olanda
+          📍 {cityName}, Holanda
           {" · "}
           <Link href={`${EN_CITY_BASE}/${params.city}`} className="text-brand-600 hover:underline text-xs">
             English version →
@@ -104,7 +103,7 @@ export default async function RoCityPage({
             {workerData.agencies.map((a) => (
               <Link
                 key={a.agencySlug}
-                href={`${AGENCY_BASE.ro}/${a.agencySlug}/${toCitySlug(cityNorm)}`}
+                href={`${AGENCY_BASE.pt}/${a.agencySlug}/${toCitySlug(cityNorm)}`}
                 className="inline-flex items-center gap-1.5 text-xs bg-brand-50 border border-brand-100
                   text-brand-800 px-3 py-1.5 rounded-full hover:bg-brand-100 hover:border-brand-200 transition-colors font-medium"
               >
@@ -128,7 +127,7 @@ export default async function RoCityPage({
             {workerData.comments.map((c) => {
               const diff = Date.now() - new Date(c.createdAt).getTime();
               const days = Math.floor(diff / 86_400_000);
-              const timeStr = days === 0 ? "azi" : days === 1 ? "ieri" : `acum ${days}z`;
+              const timeStr = days === 0 ? "hoje" : days === 1 ? "ontem" : `há ${days} dias`;
               return (
                 <div key={c.id} className="flex gap-3 px-4 py-3 border-b border-gray-50 last:border-0">
                   <div className="shrink-0 w-7 h-7 rounded-full bg-brand-100 flex items-center justify-center text-sm mt-0.5">
@@ -137,7 +136,7 @@ export default async function RoCityPage({
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-1">
                       <Link
-                        href={`${AGENCY_BASE.ro}/${c.agencySlug}`}
+                        href={`${AGENCY_BASE.pt}/${c.agencySlug}`}
                         className="text-xs font-semibold text-brand-700 hover:underline"
                       >
                         {c.agencyName}
@@ -152,7 +151,7 @@ export default async function RoCityPage({
                     </p>
                     <p className="text-[10px] text-gray-400 mt-1 italic">{S.originalComment}</p>
                     <Link
-                      href={`${AGENCY_BASE.ro}/${c.agencySlug}/${toCitySlug(cityNorm)}`}
+                      href={`${AGENCY_BASE.pt}/${c.agencySlug}/${toCitySlug(cityNorm)}`}
                       className="text-[11px] text-brand-600 hover:underline mt-1 inline-block"
                     >
                       {S.viewAgencyCity(c.agencyName, cityName)}
@@ -181,7 +180,7 @@ export default async function RoCityPage({
 
       {/* Footer nav */}
       <div className="pt-6 border-t border-gray-100 flex items-center justify-between text-sm">
-        <Link href="/ro/agentii-munca-olanda" className="text-gray-400 hover:text-brand-600">
+        <Link href="/pt/agencias-trabalho-holanda" className="text-gray-400 hover:text-brand-600">
           ← {S.allCities}
         </Link>
         <Link href={`${EN_CITY_BASE}/${params.city}`} className="text-brand-600 hover:text-brand-800 font-medium">

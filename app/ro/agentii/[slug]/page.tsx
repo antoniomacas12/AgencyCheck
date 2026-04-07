@@ -40,6 +40,7 @@ export async function generateMetadata({
         "en":        `${EN_AGENCY_BASE}/${params.slug}`,
         "pl":        `${AGENCY_BASE.pl}/${params.slug}`,
         "ro":        canonicalRo,
+        "pt":        `${AGENCY_BASE.pt}/${params.slug}`,
         "x-default": `${EN_AGENCY_BASE}/${params.slug}`,
       },
     },
