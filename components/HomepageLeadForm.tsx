@@ -14,7 +14,7 @@
  *      POST /api/leads/[id]/qualify → saves availability + locationStatus
  */
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 type Step   = 0 | 1 | 2; // 0 = mandatory pre-qualification gate
@@ -45,10 +45,12 @@ const COUNTRIES = [
 
 // ── Step indicator ────────────────────────────────────────────────────────────
 
-function StepDots({ step }: { step: 1 | 2 }) {
+function StepDots({ step }: { step: 0 | 1 | 2 }) {
+  const TOTAL = 3; // steps 0, 1, 2
+  const current = step + 1; // 1-indexed display
   return (
     <div className="flex items-center gap-2 mb-5">
-      {[1, 2].map((s) => (
+      {[0, 1, 2].map((s) => (
         <div key={s} className="flex items-center gap-2">
           <div
             className={`w-6 h-6 rounded-full text-[11px] font-black flex items-center justify-center transition-colors ${
@@ -63,14 +65,14 @@ function StepDots({ step }: { step: 1 | 2 }) {
               <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-            ) : s}
+            ) : s + 1}
           </div>
           {s < 2 && (
             <div className={`w-8 h-0.5 ${s < step ? "bg-emerald-400" : "bg-gray-200"}`} />
           )}
         </div>
       ))}
-      <span className="text-[11px] text-gray-400 ml-1">Step {step} of 2</span>
+      <span className="text-[11px] text-gray-400 ml-1">Step {current} of {TOTAL}</span>
     </div>
   );
 }
@@ -301,7 +303,21 @@ function QualifyScreen({
 
 // ── Main component ────────────────────────────────────────────────────────────
 
+// ── UTM params helper ─────────────────────────────────────────────────────────
+function useUtm() {
+  const ref = useRef<Record<string, string>>({});
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+    const captured: Record<string, string> = {};
+    keys.forEach((k) => { const v = p.get(k); if (v) captured[k] = v; });
+    ref.current = captured;
+  }, []);
+  return ref;
+}
+
 export default function HomepageLeadForm() {
+  const utmRef       = useUtm();
   const [step,        setStep]        = useState<Step>(0);
   const [preQual,     setPreQual]     = useState<PreQual>({ euResident: "", hasLicence: "", readyToStart: "" });
   const [showPreErr,  setShowPreErr]  = useState(false);
@@ -309,15 +325,18 @@ export default function HomepageLeadForm() {
   const [country,     setCountry]     = useState("");
   const [startDate,   setStartDate]   = useState("");
   const [contact,     setContact]     = useState("");
+  const [gdprOk,      setGdprOk]      = useState(false);
+  const [showGdprErr, setShowGdprErr] = useState(false);
   const [status,      setStatus]      = useState<Status>("idle");
   const [errorMsg,    setErrorMsg]    = useState("");
   const [leadId,      setLeadId]      = useState<string | null>(null);
   const [qualified,   setQualified]   = useState(false);
 
   const isEmail      = contact.includes("@");
-  const isPhone      = /^[\d\s+\-()]{7,}$/.test(contact);
+  // Stricter phone: must start with + or digit, min 8 digits total
+  const isPhone      = /^\+?[\d\s\-().]{8,}$/.test(contact) && (contact.match(/\d/g)?.length ?? 0) >= 8;
   const canStep1     = jobType && country;
-  const canStep2     = contact && (isEmail || isPhone) && status !== "loading";
+  const canStep2     = contact && (isEmail || isPhone) && gdprOk && status !== "loading";
   const canPreQual   = preQual.euResident && preQual.hasLicence && preQual.readyToStart;
 
   const setPreQ = <K extends keyof PreQual>(k: K, v: PreQual[K]) =>
@@ -343,7 +362,9 @@ export default function HomepageLeadForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!gdprOk) { setShowGdprErr(true); return; }
     if (!canStep2) return;
+    setShowGdprErr(false);
     setStatus("loading");
     setErrorMsg("");
     console.log("[HomepageLeadForm] apply submit started");
@@ -366,6 +387,7 @@ export default function HomepageLeadForm() {
           sourceLabel:         "Homepage — 3-step transparent form",
           housingPreference:   "with_housing",
           driversLicense:      preQual.hasLicence === "yes",
+          ...utmRef.current,
         }),
       });
 
@@ -468,6 +490,8 @@ export default function HomepageLeadForm() {
 
     return (
       <div>
+        <StepDots step={0} />
+
         {/* Q1 — EU resident */}
         <div className="mb-5">
           <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">
@@ -665,6 +689,26 @@ export default function HomepageLeadForm() {
           </button>
         </div>
       </div>
+
+      {/* GDPR consent */}
+      <label className={`flex items-start gap-2.5 mb-4 cursor-pointer rounded-xl border px-3 py-3 transition-colors ${
+        showGdprErr && !gdprOk ? "border-red-300 bg-red-50" : "border-gray-200 bg-gray-50 hover:bg-gray-100"
+      }`}>
+        <input
+          type="checkbox"
+          checked={gdprOk}
+          onChange={(e) => { setGdprOk(e.target.checked); if (e.target.checked) setShowGdprErr(false); }}
+          className="mt-0.5 w-4 h-4 accent-blue-600 flex-shrink-0"
+        />
+        <span className="text-[11px] text-gray-600 leading-relaxed">
+          I agree to my contact details being shared with up to 3 registered Dutch labour agencies so they can send me job information.
+          I have read and accept the{" "}
+          <a href="/privacy" className="underline text-blue-600 hover:text-blue-800" target="_blank" rel="noopener">Privacy Policy</a>.
+          {showGdprErr && !gdprOk && (
+            <span className="block text-red-500 font-semibold mt-0.5">Please confirm to continue.</span>
+          )}
+        </span>
+      </label>
 
       {/* Error */}
       {status === "error" && (

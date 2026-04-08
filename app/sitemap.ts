@@ -637,7 +637,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority:        pair.mentionCount >= 3 ? 0.55 : 0.45,
   }));
 
-  // ── 18. Polish + Romanian city pages ──────────────────────────────────────
+  // ── 18. Polish + Romanian + Portuguese city pages ──────────────────────────
   // DB-driven: only cities that have at least one agency mention in the DB.
   const dbCitySlugs = [...new Set(dbAgencyCityPairs.map((p) => toCitySlug(p.cityNormalized)))];
 
@@ -654,6 +654,73 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "weekly" as const,
     priority:        0.55,
   }));
+
+  const ptCityPages: MetadataRoute.Sitemap = dbCitySlugs.map((citySlug) => ({
+    url:             `${BASE_URL}${CITY_BASE.pt}/${citySlug}`,
+    lastModified:    TODAY,
+    changeFrequency: "weekly" as const,
+    priority:        0.5,
+  }));
+
+  // ── 19. Portuguese agency pages (/pt/agencias/[slug]) ────────────────────
+  const ptAgencyPages: MetadataRoute.Sitemap = [
+    ...VERIFIED_AGENCIES.map((agency) => ({
+      url:             `${BASE_URL}${AGENCY_BASE.pt}/${agency.slug}`,
+      lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
+      changeFrequency: "monthly" as const,
+      priority:        0.7,
+    })),
+    ...workerReportedSlugs
+      .filter((row) => !verifiedSlugsSet.has(row.slug))
+      .map((row) => ({
+        url:             `${BASE_URL}${AGENCY_BASE.pt}/${row.slug}`,
+        lastModified:    row.createdAt.toISOString().split("T")[0],
+        changeFrequency: "weekly" as const,
+        priority:        0.45 as const,
+      })),
+  ];
+
+  // ── 20. Portuguese agency+city pages (/pt/agencias/[slug]/[city]) ────────
+  const ptAgencyCityPages: MetadataRoute.Sitemap = dbAgencyCityPairs.map((pair) => ({
+    url:             `${BASE_URL}${AGENCY_BASE.pt}/${pair.agencySlug}/${toCitySlug(pair.cityNormalized)}`,
+    lastModified:    pair.lastSeenAt.toISOString().split("T")[0],
+    changeFrequency: "weekly" as const,
+    priority:        pair.mentionCount >= 3 ? 0.55 : 0.45,
+  }));
+
+  // ── 21. Portuguese static content pages ───────────────────────────────────
+  const ptStaticPages: MetadataRoute.Sitemap = [
+    {
+      url:             `${BASE_URL}/pt`,
+      lastModified:    STATIC_DATE,
+      changeFrequency: "weekly" as const,
+      priority:        0.85,
+    },
+    {
+      url:             `${BASE_URL}/pt/trabalho-com-alojamento`,
+      lastModified:    STATIC_DATE,
+      changeFrequency: "monthly" as const,
+      priority:        0.85,
+    },
+    {
+      url:             `${BASE_URL}/pt/agencias-trabalho-holanda`,
+      lastModified:    STATIC_DATE,
+      changeFrequency: "monthly" as const,
+      priority:        0.9,
+    },
+    {
+      url:             `${BASE_URL}/pt/salario-holanda`,
+      lastModified:    STATIC_DATE,
+      changeFrequency: "monthly" as const,
+      priority:        0.9,
+    },
+    {
+      url:             `${BASE_URL}/safety`,
+      lastModified:    STATIC_DATE,
+      changeFrequency: "monthly" as const,
+      priority:        0.5,
+    },
+  ];
 
   return [
     ...corePages,
@@ -674,12 +741,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...comboPageEntries,
     ...guidePages,
     ...workInPages,
-    // Multilingual pages (PL + RO)
+    // Multilingual pages (PL + RO + PT)
     ...plAgencyPages,
     ...roAgencyPages,
+    ...ptAgencyPages,
     ...plAgencyCityPages,
     ...roAgencyCityPages,
+    ...ptAgencyCityPages,
     ...plCityPages,
     ...roCityPages,
+    ...ptCityPages,
+    ...ptStaticPages,
   ];
 }

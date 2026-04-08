@@ -276,7 +276,8 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
       jobType:               null,
       issueTags:             "[]",
       photos:                [],
-    })) as DbReview[],
+      comments:              [],
+    })) as unknown as DbReview[],
   ]);
 
   const totalMentions = agency.directReviews.length + agency.mentionedInReviews.length;

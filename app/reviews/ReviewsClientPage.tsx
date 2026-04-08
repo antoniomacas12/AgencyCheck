@@ -846,8 +846,8 @@ function ReviewsFeed({ t, locale, refreshSignal }: { t: (key: string, vars?: Rec
     ];
     switch (sortKey) {
       case "newest": combined.sort((a, b) => b.createdAt.localeCompare(a.createdAt)); break;
-      case "worst":  combined.sort((a, b) => a.overallRating - b.overallRating); break;
-      case "best":   combined.sort((a, b) => b.overallRating - a.overallRating); break;
+      case "worst":  combined.sort((a, b) => (a.overallRating ?? 0) - (b.overallRating ?? 0)); break;
+      case "best":   combined.sort((a, b) => (b.overallRating ?? 0) - (a.overallRating ?? 0)); break;
     }
     return combined.slice(0, showCount);
   }, [filteredDb, filteredSeed, sortKey, showCount]);
