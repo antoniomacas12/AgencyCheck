@@ -720,6 +720,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority:        0.5,
     },
+    {
+      url:             `${BASE_URL}/tools/rent-calculator`,
+      lastModified:    STATIC_DATE,
+      changeFrequency: "monthly" as const,
+      priority:        0.7,
+    },
   ];
 
   return [
