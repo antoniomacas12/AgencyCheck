@@ -71,6 +71,13 @@ const TOOLS = [
 
 const MORE_TOOLS = [
   {
+    href:        "/tools/rent-calculator",
+    icon:        "🏡",
+    title:       "Netherlands Rent Calculator 2026",
+    description: "Check if your rent is affordable, estimate huurtoeslag (rent allowance) eligibility, and see if your rent is within the legal 2026 Dutch limits. Includes WWS sector check.",
+    badge:       "New",
+  },
+  {
     href:        "/tools/real-income-calculator",
     icon:        "🧮",
     title:       "Compare Two Agency Offers",

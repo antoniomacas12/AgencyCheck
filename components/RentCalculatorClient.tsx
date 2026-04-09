@@ -23,10 +23,20 @@
  *       https://www.rijksoverheid.nl/actueel/nieuws/2025/02/06/...
  *  [S7] Rijksoverheid — zelfstandige vs onzelfstandige woonruimte
  *       https://www.rijksoverheid.nl/onderwerpen/huurwoning-zoeken/vraag-en-antwoord/...
+ *
+ * ANALYTICS EVENTS (fired via @vercel/analytics track()):
+ *  rent_calc_viewed       — on component mount
+ *  rent_calc_started      — on first field interaction
+ *  rent_calc_completed    — on Calculate submit (valid data)
+ *  rent_calc_result_shown — when results panel appears
+ *  rent_calc_cta_clicked  — Apply button clicked
+ *  rent_calc_lead_started — lead form first touched
+ *  rent_calc_lead_submitted — lead form successfully sent
  */
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // LEGAL CONFIG — all thresholds must match official Dutch government sources
@@ -85,69 +95,104 @@ const RULES_2026 = {
 // TYPES
 // ─────────────────────────────────────────────────────────────────────────────
 
-type HousingType = "apartment" | "studio" | "shared_house" | "room" | "agency" | "";
-type HouseholdType = "single" | "couple" | "couple_kids" | "single_parent" | "";
-type AssetBand = "none" | "under_limit" | "over_limit" | "unsure" | "";
-type ContractType = "permanent" | "temporary" | "agency" | "";
-type YesNo = "yes" | "no" | "unsure" | "";
-type RentPeriod = "monthly" | "weekly";
+type HousingType    = "apartment" | "studio" | "shared_house" | "room" | "agency" | "";
+type HouseholdType  = "single" | "couple" | "couple_kids" | "single_parent" | "";
+type AssetBand      = "none" | "under_limit" | "over_limit" | "unsure" | "";
+type ContractType   = "permanent" | "temporary" | "agency" | "";
+type YesNo          = "yes" | "no" | "unsure" | "";
+type RentPeriod     = "monthly" | "weekly";
+type WorkPermit     = "eu_passport" | "eu_residence" | "work_permit" | "none" | "";
+type StartAvail     = "now" | "1_week" | "2_weeks" | "1_month" | "";
 
 interface FormState {
   // Income
-  grossMonthly: string;
-  netMonthly: string;
-  contractType: ContractType;
+  grossMonthly:       string;
+  netMonthly:         string;
+  contractType:       ContractType;
   // Rent
-  rentAmount: string;
-  rentPeriod: RentPeriod;
-  rentIncludes: "kale" | "includes_service" | "unsure" | "";
-  serviceCosts: string;
-  utilitiesIncluded: YesNo;
-  internetIncluded: YesNo;
-  furnitureIncluded: YesNo;
+  rentAmount:         string;
+  rentPeriod:         RentPeriod;
+  rentIncludes:       "kale" | "includes_service" | "unsure" | "";
+  serviceCosts:       string;
+  utilitiesIncluded:  YesNo;
+  internetIncluded:   YesNo;
+  furnitureIncluded:  YesNo;
   // Home
-  housingType: HousingType;
-  ownEntrance: YesNo;
-  ownKitchen: YesNo;
-  ownToilet: YesNo;
-  ownBathroom: YesNo;
+  housingType:        HousingType;
+  ownEntrance:        YesNo;
+  ownKitchen:         YesNo;
+  ownToilet:          YesNo;
+  ownBathroom:        YesNo;
+  cityInNL:           string;
   // About you
-  age: string;
-  household: HouseholdType;
-  hasBsn: YesNo;
-  isRegistered: YesNo;
-  assetBand: AssetBand;
+  age:                string;
+  household:          HouseholdType;
+  hasBsn:             YesNo;
+  isRegistered:       YesNo;
+  assetBand:          AssetBand;
+  // Context (used for lead capture + analytics)
+  currentCountry:     string;
+  workPermit:         WorkPermit;
+  availableToStart:   StartAvail;
+  needsAccommodation: YesNo;
 }
 
 type AffordabilityCategory = "healthy" | "stretching" | "risky" | "very_risky";
-type ToelagSignal = "likely_possible" | "maybe_possible" | "unlikely" | "not_possible" | "cannot_assess";
-type HousingClassification = "zelfstandig" | "onzelfstandig" | "unclear";
-type RentReasonableness = "looks_normal" | "looks_high" | "may_be_challengeable" | "cannot_assess";
+type ToelagSignal           = "likely_possible" | "maybe_possible" | "unlikely" | "not_possible" | "cannot_assess";
+type HousingClassification  = "zelfstandig" | "onzelfstandig" | "unclear";
+type RentReasonableness     = "looks_normal" | "looks_high" | "may_be_challengeable" | "cannot_assess";
 
 interface Results {
-  monthlyRent: number;           // kale huur normalised to monthly
-  monthlyServiceCosts: number;
-  monthlyTotalHousing: number;   // all-in monthly
-  weeklyTotalHousing: number;
-  netMonthly: number;            // confirmed or estimated
-  netIsEstimated: boolean;
+  monthlyRent:           number;   // kale huur normalised to monthly
+  monthlyServiceCosts:   number;
+  monthlyTotalHousing:   number;   // all-in monthly
+  weeklyTotalHousing:    number;
+  netMonthly:            number;   // confirmed or estimated
+  netIsEstimated:        boolean;
   remainingAfterHousing: number;
-  rentToIncomeRatio: number;     // as fraction (0–1+)
-  affordability: AffordabilityCategory;
+  rentToIncomeRatio:     number;   // as fraction (0–1+)
+  affordability:         AffordabilityCategory;
   toeslag: {
-    signal: ToelagSignal;
+    signal:           ToelagSignal;
     estimatedMonthly: number | null;
-    blockers: string[];
-    notes: string[];
+    blockers:         string[];
+    notes:            string[];
   };
   housingClass: {
     classification: HousingClassification;
-    basis: string;
+    basis:          string;
   };
   rentReasonableness: {
     signal: RentReasonableness;
-    notes: string[];
+    notes:  string[];
   };
+  // For analytics + lead metadata
+  resultProfile: string;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// UTM CAPTURE
+// ─────────────────────────────────────────────────────────────────────────────
+
+function useUtm() {
+  const ref = useRef<Record<string, string>>({});
+  useEffect(() => {
+    const p    = new URLSearchParams(window.location.search);
+    const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+    const out: Record<string, string> = {};
+    keys.forEach(k => { const v = p.get(k); if (v) out[k] = v; });
+    ref.current = out;
+  }, []);
+  return ref;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ANALYTICS HELPER
+// Wraps @vercel/analytics track() — no-ops on server, catches errors silently
+// ─────────────────────────────────────────────────────────────────────────────
+
+function fireEvent(name: string, props?: Record<string, string | number>) {
+  try { track(name, props); } catch { /* non-critical */ }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -205,18 +250,18 @@ function classifyHousing(form: FormState): { classification: HousingClassificati
 }
 
 function estimateHuurtoeslag(form: FormState, kaleHuurMonthly: number): Results["toeslag"] {
-  const R = RULES_2026.huurtoeslag;
+  const R        = RULES_2026.huurtoeslag;
   const blockers: string[] = [];
-  const notes: string[] = [];
+  const notes:    string[] = [];
 
-  const age = parseInt(form.age, 10);
-  const gross = parseFloat(form.grossMonthly) || 0;
+  const age        = parseInt(form.age, 10);
+  const gross      = parseFloat(form.grossMonthly) || 0;
   const annualGross = gross * 12;
-  const isMulti = form.household === "couple" || form.household === "couple_kids" || form.household === "single_parent";
+  const isMulti    = form.household === "couple" || form.household === "couple_kids" || form.household === "single_parent";
   const housingClass = classifyHousing(form);
 
   // Hard blockers — definitive disqualifiers
-  if (form.hasBsn === "no") blockers.push("BSN is required. Without a BSN number you cannot apply for huurtoeslag.");
+  if (form.hasBsn    === "no") blockers.push("BSN is required. Without a BSN number you cannot apply for huurtoeslag.");
   if (form.isRegistered === "no") blockers.push("You must be registered (BRP inschrijving) at the rental address.");
   if (!isNaN(age) && age < 18) blockers.push("Must be 18 or older.");
 
@@ -240,9 +285,9 @@ function estimateHuurtoeslag(form: FormState, kaleHuurMonthly: number): Results[
     notes.push("Housing type is unclear. Huurtoeslag only applies to independent dwellings (zelfstandige woonruimte).");
     return { signal: "cannot_assess", estimatedMonthly: null, blockers, notes: [...notes] };
   }
-  if (form.hasBsn === "unsure") notes.push("BSN is required — confirm you have or can get a BSN.");
+  if (form.hasBsn      === "unsure") notes.push("BSN is required — confirm you have or can get a BSN.");
   if (form.isRegistered === "unsure") notes.push("Registration at the address (BRP) is required.");
-  if (form.assetBand === "unsure") notes.push("Asset limit is €" + assetLimit.toLocaleString("nl-NL") + " — if your savings exceed this, you won't be eligible.");
+  if (form.assetBand   === "unsure")  notes.push("Asset limit is €" + assetLimit.toLocaleString("nl-NL") + " — if your savings exceed this, you won't be eligible.");
 
   // Age rule: if under 21, minimum rent must be €498.20
   if (!isNaN(age) && age < 21) {
@@ -254,15 +299,14 @@ function estimateHuurtoeslag(form: FormState, kaleHuurMonthly: number): Results[
   }
 
   // Estimate calculation
-  const capRent = Math.min(kaleHuurMonthly, R.maxCalcRent21plus);
-  const basishuur = isMulti ? R.basishuurMulti : R.basishuurSingle;
-  const maxToeslag = Math.max(0, capRent - basishuur);
-
-  const threshold = isMulti ? R.incomeThresholdMulti : R.incomeThresholdSingle;
-  const phaseoutRate = isMulti ? R.phaseoutRateMulti : R.phaseoutRateSingle;
-  const annualReduction = Math.max(0, annualGross - threshold) * phaseoutRate;
+  const capRent          = Math.min(kaleHuurMonthly, R.maxCalcRent21plus);
+  const basishuur        = isMulti ? R.basishuurMulti : R.basishuurSingle;
+  const maxToeslag       = Math.max(0, capRent - basishuur);
+  const threshold        = isMulti ? R.incomeThresholdMulti : R.incomeThresholdSingle;
+  const phaseoutRate     = isMulti ? R.phaseoutRateMulti   : R.phaseoutRateSingle;
+  const annualReduction  = Math.max(0, annualGross - threshold) * phaseoutRate;
   const monthlyReduction = annualReduction / 12;
-  const estimated = Math.max(0, Math.round(maxToeslag - monthlyReduction));
+  const estimated        = Math.max(0, Math.round(maxToeslag - monthlyReduction));
 
   // Service cost note (2026 change)
   notes.push("From 2026, only kale huur (bare rent) counts — service costs are excluded from huurtoeslag calculations.");
@@ -287,7 +331,7 @@ function assessRentReasonableness(kaleHuur: number, housingClass: HousingClassif
   if (housingClass === "unclear") {
     return {
       signal: "cannot_assess",
-      notes: ["Housing type is unclear. A WWS points check requires knowing whether the dwelling is independent or shared, plus property details (size, energy label, facilities)."],
+      notes:  ["Housing type is unclear. A WWS points check requires knowing whether the dwelling is independent or shared, plus property details (size, energy label, facilities)."],
     };
   }
 
@@ -296,7 +340,6 @@ function assessRentReasonableness(kaleHuur: number, housingClass: HousingClassif
     if (kaleHuur < 300) notes.push("This rent looks unusually low for the Netherlands. Double-check what is included.");
     if (kaleHuur > 900) notes.push("For a shared/room rental, this rent is high. A Huurprijscheck (Huurcommissie) for onzelfstandige woonruimte may be worth doing.");
     else if (kaleHuur > 600) notes.push("For a room or shared accommodation, this rent is in the higher range for the Netherlands.");
-
     notes.push("For shared/room rentals, the Huurcommissie applies the WWS-O (onzelfstandige woonruimte) points system. A full check requires property details.");
     return {
       signal: kaleHuur > 900 ? "may_be_challengeable" : kaleHuur > 600 ? "looks_high" : "looks_normal",
@@ -325,9 +368,9 @@ function assessRentReasonableness(kaleHuur: number, housingClass: HousingClassif
 }
 
 function buildResults(form: FormState): Results | null {
-  const gross = parseFloat(form.grossMonthly) || 0;
-  const net = parseFloat(form.netMonthly) || 0;
-  const rawRent = parseFloat(form.rentAmount) || 0;
+  const gross     = parseFloat(form.grossMonthly) || 0;
+  const net       = parseFloat(form.netMonthly)   || 0;
+  const rawRent   = parseFloat(form.rentAmount)   || 0;
 
   if (gross <= 0 || rawRent <= 0) return null;
 
@@ -335,47 +378,43 @@ function buildResults(form: FormState): Results | null {
   const monthlyRentRaw = form.rentPeriod === "weekly" ? rawRent * 52 / 12 : rawRent;
 
   // Service costs
-  let kaleHuur = monthlyRentRaw;
+  let kaleHuur           = monthlyRentRaw;
   let monthlyServiceCosts = 0;
 
   if (form.rentIncludes === "includes_service") {
-    const sc = parseFloat(form.serviceCosts) || 0;
+    const sc        = parseFloat(form.serviceCosts) || 0;
     const scMonthly = form.rentPeriod === "weekly" ? sc * 52 / 12 : sc;
-    kaleHuur = Math.max(0, monthlyRentRaw - scMonthly);
+    kaleHuur        = Math.max(0, monthlyRentRaw - scMonthly);
     monthlyServiceCosts = scMonthly;
   } else if (form.rentIncludes === "kale") {
-    const sc = parseFloat(form.serviceCosts) || 0;
+    const sc        = parseFloat(form.serviceCosts) || 0;
     const scMonthly = form.rentPeriod === "weekly" ? sc * 52 / 12 : sc;
     monthlyServiceCosts = scMonthly;
-  } else {
-    // Unsure — treat all as kale huur for huurtoeslag, flag the uncertainty
-    kaleHuur = monthlyRentRaw;
-    monthlyServiceCosts = 0;
   }
-
-  // Utilities estimate: if included, add rough monthly value as cost transparency
-  // These are informational only — not deducted from income
-  const utilityEstimate = form.utilitiesIncluded === "no" ? 150 : 0; // rough NL average
+  // "unsure" — treat all as kale huur for huurtoeslag, flag uncertainty via UI
 
   const monthlyTotalHousing = kaleHuur + monthlyServiceCosts;
-  const weeklyTotalHousing = monthlyTotalHousing * 12 / 52;
+  const weeklyTotalHousing  = monthlyTotalHousing * 12 / 52;
 
   // Net income
-  const netIsEstimated = !net || net <= 0;
-  const netMonthly = netIsEstimated ? estimateNet(gross) : net;
+  const netIsEstimated  = !net || net <= 0;
+  const netMonthly      = netIsEstimated ? estimateNet(gross) : net;
 
   const remainingAfterHousing = netMonthly - monthlyTotalHousing;
-  const rentToIncomeRatio = monthlyTotalHousing / netMonthly;
-  const affordability = affordabilityCategory(rentToIncomeRatio);
+  const rentToIncomeRatio     = monthlyTotalHousing / netMonthly;
+  const affordability         = affordabilityCategory(rentToIncomeRatio);
 
-  // Housing classification
-  const housingClass = classifyHousing(form);
-
-  // Huurtoeslag
-  const toeslag = estimateHuurtoeslag(form, kaleHuur);
-
-  // Rent reasonableness
+  const housingClass     = classifyHousing(form);
+  const toeslag          = estimateHuurtoeslag(form, kaleHuur);
   const rentReasonableness = assessRentReasonableness(kaleHuur, housingClass.classification, form.housingType);
+
+  // Build a compact result profile string (used for analytics + lead metadata)
+  const resultProfile = [
+    affordability,
+    housingClass.classification,
+    toeslag.signal,
+    rentReasonableness.signal,
+  ].join("|");
 
   return {
     monthlyRent: kaleHuur,
@@ -390,11 +429,12 @@ function buildResults(form: FormState): Results | null {
     toeslag,
     housingClass,
     rentReasonableness,
+    resultProfile,
   };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// UI HELPERS
+// DISPLAY METADATA
 // ─────────────────────────────────────────────────────────────────────────────
 
 const AFFORDABILITY_META: Record<AffordabilityCategory, { label: string; color: string; bg: string; border: string; desc: string }> = {
@@ -405,29 +445,33 @@ const AFFORDABILITY_META: Record<AffordabilityCategory, { label: string; color: 
 };
 
 const TOESLAG_META: Record<ToelagSignal, { label: string; color: string; icon: string }> = {
-  likely_possible:  { label: "Likely possible",             color: "text-emerald-700", icon: "✅" },
-  maybe_possible:   { label: "Maybe possible",              color: "text-amber-700",   icon: "⚠️" },
-  unlikely:         { label: "Unlikely at this income",     color: "text-orange-700",  icon: "🟠" },
-  not_possible:     { label: "Not possible",                color: "text-red-700",     icon: "❌" },
-  cannot_assess:    { label: "Cannot assess without more info", color: "text-gray-600", icon: "❓" },
+  likely_possible:  { label: "Likely possible",                color: "text-emerald-700", icon: "✅" },
+  maybe_possible:   { label: "Maybe possible",                 color: "text-amber-700",   icon: "⚠️" },
+  unlikely:         { label: "Unlikely at this income",        color: "text-orange-700",  icon: "🟠" },
+  not_possible:     { label: "Not possible",                   color: "text-red-700",     icon: "❌" },
+  cannot_assess:    { label: "Cannot assess without more info", color: "text-gray-600",   icon: "❓" },
 };
 
 const HOUSING_CLASS_META: Record<HousingClassification, { label: string; color: string }> = {
-  zelfstandig:   { label: "Likely independent (zelfstandige woonruimte)", color: "text-emerald-700" },
+  zelfstandig:   { label: "Likely independent (zelfstandige woonruimte)",     color: "text-emerald-700" },
   onzelfstandig: { label: "Likely non-independent (onzelfstandige woonruimte)", color: "text-amber-700" },
-  unclear:       { label: "Unclear — more info needed", color: "text-gray-500" },
+  unclear:       { label: "Unclear — more info needed",                        color: "text-gray-500" },
 };
 
 const REASONABLENESS_META: Record<RentReasonableness, { label: string; color: string }> = {
-  looks_normal:         { label: "Looks normal for the regulated sector", color: "text-emerald-700" },
-  looks_high:           { label: "Looks high — check the WWS points",    color: "text-amber-700" },
-  may_be_challengeable: { label: "May be challengeable via Huurcommissie", color: "text-red-700" },
-  cannot_assess:        { label: "Cannot assess without property details", color: "text-gray-500" },
+  looks_normal:         { label: "Looks normal for the regulated sector",    color: "text-emerald-700" },
+  looks_high:           { label: "Looks high — check the WWS points",        color: "text-amber-700" },
+  may_be_challengeable: { label: "May be challengeable via Huurcommissie",   color: "text-red-700" },
+  cannot_assess:        { label: "Cannot assess without property details",    color: "text-gray-500" },
 };
 
-function fmt(n: number) { return new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n); }
+function fmt(n: number)    { return new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n); }
 function fmtDec(n: number) { return new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n); }
-function pct(n: number) { return Math.round(n * 100) + "%"; }
+function pct(n: number)    { return Math.round(n * 100) + "%"; }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// REUSABLE UI PRIMITIVES
+// ─────────────────────────────────────────────────────────────────────────────
 
 function SectionCard({ title, subtitle, children }: { title: string; subtitle?: string; children: React.ReactNode }) {
   return (
@@ -453,7 +497,12 @@ function Field({ label, hint, required, children }: { label: string; hint?: stri
   );
 }
 
-function TextInput({ value, onChange, placeholder, type = "text" }: { value: string; onChange: (v: string) => void; placeholder?: string; type?: string }) {
+function TextInput({ value, onChange, placeholder, type = "text" }: {
+  value:       string;
+  onChange:    (v: string) => void;
+  placeholder?: string;
+  type?:       string;
+}) {
   return (
     <input
       type={type}
@@ -466,7 +515,11 @@ function TextInput({ value, onChange, placeholder, type = "text" }: { value: str
   );
 }
 
-function SelectInput({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }) {
+function SelectInput({ value, onChange, options }: {
+  value:    string;
+  onChange: (v: string) => void;
+  options:  { value: string; label: string }[];
+}) {
   return (
     <select
       value={value}
@@ -479,7 +532,11 @@ function SelectInput({ value, onChange, options }: { value: string; onChange: (v
   );
 }
 
-function ToggleGroup({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }) {
+function ToggleGroup({ value, onChange, options }: {
+  value:    string;
+  onChange: (v: string) => void;
+  options:  { value: string; label: string }[];
+}) {
   return (
     <div className="flex gap-2 flex-wrap">
       {options.map(o => (
@@ -525,7 +582,11 @@ function Accordion({ title, children }: { title: string; children: React.ReactNo
         {title}
         <span className="text-gray-400 ml-2">{open ? "▲" : "▼"}</span>
       </button>
-      {open && <div className="px-4 py-3 text-xs text-gray-600 leading-relaxed border-t border-gray-100 bg-white">{children}</div>}
+      {open && (
+        <div className="px-4 py-3 text-xs text-gray-600 leading-relaxed border-t border-gray-100 bg-white">
+          {children}
+        </div>
+      )}
     </div>
   );
 }
@@ -547,18 +608,206 @@ function SignalBadge({ label, color }: { label: string; color: string }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// INLINE LEAD CAPTURE FORM (Option A — show results first, soft gate after)
+// Appears under results, before the conversion CTA.
+// Fields pre-fill from calculator context wherever possible.
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface LeadFormState {
+  firstName:  string;
+  contact:    string; // email or phone
+  submitted:  boolean;
+  submitting: boolean;
+  error:      string | null;
+}
+
+function InlineLeadForm({
+  form,
+  results,
+  utmRef,
+  onLeadStarted,
+  onLeadSubmitted,
+}: {
+  form:             FormState;
+  results:          Results;
+  utmRef:           React.MutableRefObject<Record<string, string>>;
+  onLeadStarted:    () => void;
+  onLeadSubmitted:  () => void;
+}) {
+  const [lead, setLead] = useState<LeadFormState>({
+    firstName: "", contact: "", submitted: false, submitting: false, error: null,
+  });
+  const startedRef = useRef(false);
+
+  function setL(k: keyof Pick<LeadFormState, "firstName" | "contact">, v: string) {
+    if (!startedRef.current) { startedRef.current = true; onLeadStarted(); }
+    setLead(s => ({ ...s, [k]: v }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const name    = lead.firstName.trim();
+    const contact = lead.contact.trim();
+    if (!name || !contact) {
+      setLead(s => ({ ...s, error: "Please enter your name and email or phone." }));
+      return;
+    }
+
+    setLead(s => ({ ...s, submitting: true, error: null }));
+
+    const isEmail = contact.includes("@");
+    // Pack calculator metadata into notes for admin visibility
+    const notesObj = {
+      source:              "rent_calculator",
+      affordability:       results.affordability,
+      housing_class:       results.housingClass.classification,
+      toeslag_signal:      results.toeslag.signal,
+      rent_reasonableness: results.rentReasonableness.signal,
+      gross_monthly:       form.grossMonthly,
+      rent_amount:         form.rentAmount,
+      housing_type:        form.housingType,
+      result_profile:      results.resultProfile,
+      city_in_nl:          form.cityInNL || null,
+      work_permit:         form.workPermit || null,
+      ...utmRef.current,
+    };
+
+    const payload = {
+      fullName:            name,
+      ...(isEmail ? { email: contact } : { phone: contact }),
+      currentCountry:      form.currentCountry || undefined,
+      availability:        form.availableToStart || undefined,
+      accommodationNeeded: form.needsAccommodation === "yes" ? true
+                         : form.needsAccommodation === "no"  ? false
+                         : undefined,
+      sourceType:          "rent_calculator",
+      sourcePage:          typeof window !== "undefined" ? window.location.pathname : "/tools/rent-calculator",
+      sourceLabel:         "Rent Calculator Tool",
+      notes:               JSON.stringify(notesObj),
+      ...utmRef.current,
+    };
+
+    try {
+      const res = await fetch("/api/leads", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({})) as { error?: string };
+        throw new Error(data.error ?? "Server error");
+      }
+      setLead(s => ({ ...s, submitting: false, submitted: true, error: null }));
+      onLeadSubmitted();
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Please try again.";
+      setLead(s => ({ ...s, submitting: false, error: msg }));
+    }
+  }
+
+  if (lead.submitted) {
+    return (
+      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-5 mb-4 text-center">
+        <p className="text-2xl mb-2">✅</p>
+        <p className="text-sm font-black text-emerald-800 mb-1">We&apos;ve got your details.</p>
+        <p className="text-xs text-emerald-700">
+          We&apos;ll match you with agencies that fit your profile. Most people hear back within 48 hours.
+          No commitment — you decide if any offer interests you.
+        </p>
+      </div>
+    );
+  }
+
+  const isHighBurden = results.affordability === "risky" || results.affordability === "very_risky";
+  const needsAccomm  = form.needsAccommodation === "yes";
+
+  return (
+    <div className="rounded-2xl border border-blue-100 bg-blue-50/60 px-5 py-5 mb-4">
+      <p className="text-[10px] font-black text-blue-600 uppercase tracking-wider mb-1">
+        {isHighBurden || needsAccomm ? "Get matched — free" : "Looking for work in the Netherlands?"}
+      </p>
+      <p className="text-sm font-black text-gray-900 mb-1">
+        {isHighBurden
+          ? "Your rent burden is high. Want jobs with accommodation included?"
+          : "Want to be matched with agencies offering accommodation?"}
+      </p>
+      <p className="text-xs text-gray-600 mb-4">
+        Leave your name and contact — we&apos;ll send you real positions that match your profile.
+        Takes 30 seconds. Free for workers.
+      </p>
+
+      <form onSubmit={handleSubmit} noValidate>
+        <div className="grid grid-cols-2 gap-3 mb-3">
+          <div>
+            <label className="block text-[10px] font-black text-gray-500 uppercase tracking-wider mb-1">First name</label>
+            <input
+              type="text"
+              value={lead.firstName}
+              onChange={e => setL("firstName", e.target.value)}
+              placeholder="Your name"
+              className="w-full text-sm border border-gray-200 rounded-xl px-3 py-2.5 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] font-black text-gray-500 uppercase tracking-wider mb-1">Email or phone</label>
+            <input
+              type="text"
+              value={lead.contact}
+              onChange={e => setL("contact", e.target.value)}
+              placeholder="you@example.com or +48…"
+              className="w-full text-sm border border-gray-200 rounded-xl px-3 py-2.5 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+            />
+          </div>
+        </div>
+
+        {lead.error && (
+          <p className="text-xs text-red-600 mb-3">{lead.error}</p>
+        )}
+
+        <button
+          type="submit"
+          disabled={lead.submitting || !lead.firstName || !lead.contact}
+          className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] transition-all px-6 py-3 text-sm font-black text-white shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          {lead.submitting ? "Sending…" : "Send my details — find matching positions →"}
+        </button>
+
+        <p className="text-[10px] text-gray-400 text-center mt-2">
+          No costs for workers. No spam. Unsubscribe any time.
+        </p>
+      </form>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // RESULTS PANEL
 // ─────────────────────────────────────────────────────────────────────────────
 
-function ResultsPanel({ results, form }: { results: Results; form: FormState }) {
+function ResultsPanel({
+  results,
+  form,
+  utmRef,
+  onCtaClick,
+  onLeadStarted,
+  onLeadSubmitted,
+}: {
+  results:         Results;
+  form:            FormState;
+  utmRef:          React.MutableRefObject<Record<string, string>>;
+  onCtaClick:      () => void;
+  onLeadStarted:   () => void;
+  onLeadSubmitted: () => void;
+}) {
   const { affordability } = results;
-  const aff = AFFORDABILITY_META[affordability];
+  const aff   = AFFORDABILITY_META[affordability];
   const tMeta = TOESLAG_META[results.toeslag.signal];
   const hcMeta = HOUSING_CLASS_META[results.housingClass.classification];
   const rrMeta = REASONABLENESS_META[results.rentReasonableness.signal];
 
   return (
     <div id="results" className="mt-6">
+
       {/* ── 1. Cost breakdown ── */}
       <SectionCard title="📊 Your housing costs">
         <ResultRow label="Kale huur (bare rent) / month"     value={fmtDec(results.monthlyRent)} />
@@ -590,7 +839,11 @@ function ResultsPanel({ results, form }: { results: Results; form: FormState }) 
           {/* Visual bar */}
           <div className="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
             <div
-              className={`h-full rounded-full ${affordability === "healthy" ? "bg-emerald-500" : affordability === "stretching" ? "bg-amber-500" : affordability === "risky" ? "bg-orange-500" : "bg-red-500"}`}
+              className={`h-full rounded-full transition-all ${
+                affordability === "healthy"    ? "bg-emerald-500" :
+                affordability === "stretching" ? "bg-amber-500"   :
+                affordability === "risky"      ? "bg-orange-500"  : "bg-red-500"
+              }`}
               style={{ width: `${Math.min(100, results.rentToIncomeRatio * 100)}%` }}
             />
           </div>
@@ -688,19 +941,19 @@ function ResultsPanel({ results, form }: { results: Results; form: FormState }) 
           {results.toeslag.signal === "likely_possible" && (
             <li className="flex gap-2 items-start text-xs text-gray-700">
               <span className="text-emerald-600 font-bold flex-shrink-0">→</span>
-              Apply for huurtoeslag at <a href="https://www.toeslagen.nl" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">toeslagen.nl</a>. You may be eligible — do a proefberekening first.
+              Apply for huurtoeslag at <a href="https://www.toeslagen.nl" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">toeslagen.nl</a>. You may be eligible — do a proefberekening first.
             </li>
           )}
           {results.toeslag.signal === "maybe_possible" && (
             <li className="flex gap-2 items-start text-xs text-gray-700">
               <span className="text-amber-600 font-bold flex-shrink-0">→</span>
-              Check eligibility with a free proefberekening at <a href="https://www.toeslagen.nl" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">toeslagen.nl</a> — the result depends on details you haven&apos;t confirmed yet.
+              Check eligibility with a free proefberekening at <a href="https://www.toeslagen.nl" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">toeslagen.nl</a> — the result depends on details you haven&apos;t confirmed yet.
             </li>
           )}
           {(results.rentReasonableness.signal === "looks_high" || results.rentReasonableness.signal === "may_be_challengeable") && results.housingClass.classification === "zelfstandig" && (
             <li className="flex gap-2 items-start text-xs text-gray-700">
               <span className="text-blue-600 font-bold flex-shrink-0">→</span>
-              Check whether your rent is within the legal maximum using the Huurprijscheck at <a href="https://www.huurcommissie.nl/support/huurprijscheck" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">huurcommissie.nl</a>.
+              Check whether your rent is within the legal maximum using the Huurprijscheck at <a href="https://www.huurcommissie.nl/support/huurprijscheck" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">huurcommissie.nl</a>.
             </li>
           )}
           {results.housingClass.classification === "onzelfstandig" && (
@@ -709,12 +962,12 @@ function ResultsPanel({ results, form }: { results: Results; form: FormState }) 
               For rooms and shared housing, the Huurcommissie can still check whether your rent is reasonable using the WWS-O (onzelfstandige woonruimte) points system.
             </li>
           )}
-          {results.affordability === "risky" || results.affordability === "very_risky" ? (
+          {(results.affordability === "risky" || results.affordability === "very_risky") && (
             <li className="flex gap-2 items-start text-xs text-gray-700">
               <span className="text-red-600 font-bold flex-shrink-0">→</span>
               Your rent burden is high. Consider looking for positions that include accommodation — this significantly reduces your housing cost risk.
             </li>
-          ) : null}
+          )}
           {results.netIsEstimated && (
             <li className="flex gap-2 items-start text-xs text-gray-700">
               <span className="text-gray-500 font-bold flex-shrink-0">→</span>
@@ -741,19 +994,28 @@ function ResultsPanel({ results, form }: { results: Results; form: FormState }) 
         </p>
       </div>
 
+      {/* ── Inline lead form (Option A) ── */}
+      <InlineLeadForm
+        form={form}
+        results={results}
+        utmRef={utmRef}
+        onLeadStarted={onLeadStarted}
+        onLeadSubmitted={onLeadSubmitted}
+      />
+
       {/* ── Conversion CTA ── */}
-      <ConversionCTA form={form} results={results} />
+      <ConversionCTA results={results} onCtaClick={onCtaClick} />
     </div>
   );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CONVERSION CTA — 3 versions; default shown
+// CONVERSION CTA
+// Three variants documented below; default is shown.
 // ─────────────────────────────────────────────────────────────────────────────
 
-function ConversionCTA({ form, results }: { form: FormState; results: Results }) {
+function ConversionCTA({ results, onCtaClick }: { results: Results; onCtaClick: () => void }) {
   const isHighBurden = results.affordability === "risky" || results.affordability === "very_risky";
-  const hasAccomm = form.housingType === "agency";
 
   return (
     <div className="rounded-2xl bg-gray-950 border border-white/[0.08] px-5 py-6 mt-4">
@@ -779,7 +1041,11 @@ function ConversionCTA({ form, results }: { form: FormState; results: Results })
 
       {/* Trust points */}
       <div className="flex flex-col gap-1.5 mb-5">
-        {["Free service — no costs for workers", "Accommodation included in most positions", "Verified agencies, real contacts"].map(point => (
+        {[
+          "Free service — no costs for workers",
+          "Accommodation included in most positions",
+          "Verified agencies, real contacts",
+        ].map(point => (
           <div key={point} className="flex items-center gap-2 text-xs text-gray-400">
             <span className="text-blue-400 flex-shrink-0">✓</span>
             {point}
@@ -790,6 +1056,7 @@ function ConversionCTA({ form, results }: { form: FormState; results: Results })
       {/* CTA button */}
       <Link
         href="/#lead-form"
+        onClick={onCtaClick}
         className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 active:scale-[0.98] transition-all text-white font-black text-sm px-7 py-3.5 rounded-xl shadow-lg shadow-blue-600/20"
       >
         Apply — find jobs with accommodation →
@@ -805,20 +1072,29 @@ function ConversionCTA({ form, results }: { form: FormState; results: Results })
 /*
  * ── CTA COPY VARIANTS (for A/B testing) ─────────────────────────────────────
  *
+ * A/B TEST RECOMMENDATION:
+ *   Test headline + button copy for "risky/very_risky" affordability users.
+ *
  * DEFAULT (implemented above):
  *   Headline: "People with this profile are getting placed now."
- *   Body: "If you're looking for work in the Netherlands with accommodation included, we can match you with agencies and real offers."
+ *   Body: "If you're looking for work in the Netherlands with accommodation included…"
  *   Button: "Apply — find jobs with accommodation →"
  *
- * SOFTER version:
+ * SOFTER version (variant B):
  *   Headline: "Your profile may match agencies actively hiring right now."
  *   Body: "Check available positions with accommodation included. No commitment — you decide if any offer suits you."
  *   Button: "View available positions →"
  *
- * STRONGER version:
+ * STRONGER version (variant C) — best for high-burden users:
  *   Headline: "Stop guessing. Get matched today."
  *   Body: "Your housing cost is solved when the job comes with it. Apply now — real offers in 48 hours."
  *   Button: "APPLY NOW →"
+ *
+ * RECOMMENDED A/B TEST:
+ *   Split users with affordability=risky|very_risky: 50% see DEFAULT, 50% see STRONGER.
+ *   Primary metric: rent_calc_cta_clicked event rate.
+ *   Secondary metric: rent_calc_lead_submitted event rate.
+ *   Run for minimum 2 weeks / 200 sessions per variant.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -889,26 +1165,172 @@ function Explainers() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// INTERNAL LINK BLOCK
+// ─────────────────────────────────────────────────────────────────────────────
+
+function InternalLinks() {
+  return (
+    <div className="mt-6 rounded-2xl border border-gray-100 bg-white px-5 py-5">
+      <p className="text-[11px] font-black text-gray-400 uppercase tracking-wider mb-3">Related tools &amp; resources</p>
+      <div className="grid grid-cols-1 gap-2">
+        {[
+          { href: "/agencies-with-housing",          emoji: "🏠", label: "Browse agencies with accommodation included" },
+          { href: "/tools/salary-calculator",        emoji: "💶", label: "Weekly salary calculator — real income after deductions" },
+          { href: "/tools/real-salary-calculator",   emoji: "📊", label: "Full salary calculator with Dutch income tax 2026" },
+          { href: "/tools/payslip-checker",          emoji: "🧾", label: "Payslip checker — verify your deductions are correct" },
+          { href: "/agencies",                       emoji: "🔍", label: "Compare 150+ verified Dutch employment agencies" },
+          { href: "/safety",                         emoji: "🛡️", label: "Worker safety guide — spot housing scams" },
+        ].map(link => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="flex items-center gap-2.5 text-xs text-blue-600 hover:text-blue-700 hover:underline py-1"
+          >
+            <span className="text-sm">{link.emoji}</span>
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FAQ SECTION — SEO content
+// ─────────────────────────────────────────────────────────────────────────────
+
+const FAQ_ITEMS = [
+  {
+    q: "How much rent can I afford on a Dutch salary?",
+    a: "A common guideline is that housing costs should not exceed 30% of your net (take-home) monthly income. On a net salary of €2,000/month, that means a maximum of €600/month on rent and associated housing costs. If rent takes up 40–50% of your income, it is generally considered financially risky. Above 50% is unsustainable for most people.",
+  },
+  {
+    q: "What is huurtoeslag and who can get it?",
+    a: "Huurtoeslag is a Dutch government rent allowance. It is paid monthly by Dienst Toeslagen and helps lower-income renters pay for an independent dwelling. To be eligible in 2026, you need: a BSN number, BRP registration at the rental address, an independent dwelling (own entrance, kitchen, toilet, bathroom), you must be 18 or older, and your savings must be below €38,479 (single) or €76,958 (with partner). There is no fixed income limit — the benefit reduces as income rises.",
+  },
+  {
+    q: "What is the maximum rent for huurtoeslag in 2026?",
+    a: "From 2026, there is no maximum rent threshold to qualify for huurtoeslag (this rule was abolished). However, the benefit is calculated on a maximum of €932.93 kale huur per month — if your rent is higher, the calculation is still capped at €932.93. Only kale huur (bare rent) counts; service costs are excluded from 2026.",
+  },
+  {
+    q: "Can my landlord charge any rent they want?",
+    a: "Not always. Since July 2024 (Wet betaalbare huur), Dutch rent is regulated in three sectors: social (≤143 WWS points, max €932.93/month), middle (144–186 points, max €1,228.07/month), and free sector (187+ points, no legal maximum). Most workers renting rooms or shared accommodation are in the social or middle sector. You can check your rent via the free Huurprijscheck at huurcommissie.nl.",
+  },
+  {
+    q: "What is kale huur and how is it different from total rent?",
+    a: "Kale huur (bare rent) is what you pay purely for the use of the dwelling itself. It excludes service costs (servicekosten) such as communal cleaning, garden maintenance, and energy advance payments. From 2026, only kale huur is used to calculate huurtoeslag — service costs do not count. Your landlord must provide a breakdown of kale huur and service costs on request.",
+  },
+  {
+    q: "What is the difference between zelfstandige and onzelfstandige woonruimte?",
+    a: "Zelfstandige woonruimte (independent housing) is a dwelling with its own private entrance, kitchen, toilet, and shower/bathroom — all exclusively for your use. Everything else is onzelfstandige woonruimte (non-independent): rooms in shared houses, most agency accommodation, and properties with shared facilities. Only independent dwellings qualify for huurtoeslag. Different rent regulation rules also apply to each type.",
+  },
+  {
+    q: "Can an employment agency deduct housing costs from my salary?",
+    a: "Yes — if you live in agency-provided accommodation (SNF-certified), your employer can deduct housing costs from your wages. In 2026, the maximum deduction is 20% of the statutory minimum wage (€14.71/hour). This maximum reduces each year: 15% in 2027, 10% in 2028, 5% in 2029, and is abolished entirely in 2030. Always ask for a written breakdown of all deductions.",
+  },
+  {
+    q: "What is a 'fair' weekly rent deduction for agency accommodation in the Netherlands?",
+    a: "Based on minimum wage rules and common market rates, most SNF-certified agency accommodation costs workers €80–115 per week (deducted from gross salary). The legal maximum in 2026 is 20% of statutory minimum wage, which works out to approximately €460/month or about €106/week for a 40-hour worker. If you are paying significantly more, ask for the SNF certification details and a breakdown.",
+  },
+  {
+    q: "How do I check if my rent is too high under Dutch law?",
+    a: "Use the free Huurprijscheck at huurcommissie.nl to check whether your rent is within the legal maximum based on the WWS points system. For independent housing in the social and middle sectors, your landlord is required to provide the WWS points count (mandatory since January 2025 for new contracts). If the rent exceeds the points-based maximum, you can submit a dispute to the Huurcommissie, usually within 12 months of signing the contract.",
+  },
+  {
+    q: "Do I need a BSN to rent a room or apartment in the Netherlands?",
+    a: "You do not need a BSN to enter into a rental contract. However, you need a BSN to: apply for huurtoeslag, register with the municipality (BRP), open a Dutch bank account, and receive your salary correctly. As a worker, getting a BSN should be one of your first steps after arriving. Your employer or uitzendbureau can often help with the registration process.",
+  },
+];
+
+function FaqSection() {
+  return (
+    <section className="mt-8 mb-6">
+      <h2 className="text-base font-black text-gray-900 mb-4">
+        Frequently Asked Questions — Netherlands Rent &amp; Housing
+      </h2>
+      <div className="space-y-3">
+        {FAQ_ITEMS.map((item, i) => (
+          <div key={i} className="border border-gray-100 rounded-xl overflow-hidden bg-white">
+            <details className="group">
+              <summary className="flex items-center justify-between px-4 py-3.5 cursor-pointer list-none text-xs font-bold text-gray-800 hover:bg-gray-50 transition-colors">
+                <span>{item.q}</span>
+                <span className="text-gray-400 ml-3 flex-shrink-0 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div className="px-4 pb-4 pt-1 text-xs text-gray-600 leading-relaxed border-t border-gray-100">
+                {item.a}
+              </div>
+            </details>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
 
 const INITIAL_FORM: FormState = {
+  // Income
   grossMonthly: "", netMonthly: "", contractType: "",
-  rentAmount: "", rentPeriod: "monthly", rentIncludes: "", serviceCosts: "", utilitiesIncluded: "", internetIncluded: "", furnitureIncluded: "",
+  // Rent
+  rentAmount: "", rentPeriod: "monthly", rentIncludes: "", serviceCosts: "",
+  utilitiesIncluded: "", internetIncluded: "", furnitureIncluded: "",
+  // Home
   housingType: "", ownEntrance: "", ownKitchen: "", ownToilet: "", ownBathroom: "",
+  cityInNL: "",
+  // About you
   age: "", household: "", hasBsn: "", isRegistered: "", assetBand: "",
+  // Context
+  currentCountry: "", workPermit: "", availableToStart: "", needsAccommodation: "",
 };
 
 export default function RentCalculatorClient() {
-  const [form, setForm] = useState<FormState>(INITIAL_FORM);
+  const [form,      setForm]      = useState<FormState>(INITIAL_FORM);
   const [submitted, setSubmitted] = useState(false);
 
-  const set = <K extends keyof FormState>(k: K, v: FormState[K]) => setForm(f => ({ ...f, [k]: v }));
+  const utmRef     = useUtm();
+  const startedRef = useRef(false);
 
+  // ── Analytics: viewed ──
+  useEffect(() => {
+    fireEvent("rent_calc_viewed");
+  }, []);
+
+  // ── Analytics: result shown ──
   const results = useMemo(() => submitted ? buildResults(form) : null, [submitted, form]);
+
+  useEffect(() => {
+    if (results) {
+      fireEvent("rent_calc_result_shown", {
+        affordability:    results.affordability,
+        housing_class:    results.housingClass.classification,
+        toeslag_signal:   results.toeslag.signal,
+        rent_signal:      results.rentReasonableness.signal,
+        country:          form.currentCountry || "unknown",
+        housing_type:     form.housingType    || "unknown",
+      });
+    }
+  }, [results, form.currentCountry, form.housingType]);
+
+  function set<K extends keyof FormState>(k: K, v: FormState[K]) {
+    // Analytics: started
+    if (!startedRef.current) {
+      startedRef.current = true;
+      fireEvent("rent_calc_started", { field: k as string });
+    }
+    setForm(f => ({ ...f, [k]: v }));
+  }
 
   function handleCalculate(e: React.FormEvent) {
     e.preventDefault();
+    fireEvent("rent_calc_completed", {
+      salary_type:   form.netMonthly ? "net_provided" : "gross_only",
+      housing_type:  form.housingType || "unknown",
+      rent_period:   form.rentPeriod,
+      country:       form.currentCountry || "unknown",
+    });
     setSubmitted(true);
     setTimeout(() => document.getElementById("results")?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
   }
@@ -916,6 +1338,7 @@ export default function RentCalculatorClient() {
   function handleReset() {
     setForm(INITIAL_FORM);
     setSubmitted(false);
+    startedRef.current = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -929,7 +1352,7 @@ export default function RentCalculatorClient() {
         <div className="mb-6">
           <Link href="/tools" className="text-xs text-gray-400 hover:text-gray-600 mb-3 inline-block">← All tools</Link>
           <h1 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight mb-2">
-            Netherlands Rent Calculator
+            Netherlands Rent Calculator 2026
           </h1>
           <p className="text-sm text-gray-600 leading-relaxed">
             Check your rent affordability, estimate huurtoeslag eligibility, and find out if your rent is reasonable — based on official 2026 Dutch rules.
@@ -965,7 +1388,7 @@ export default function RentCalculatorClient() {
                 options={[
                   { value: "permanent", label: "Permanent" },
                   { value: "temporary", label: "Temporary" },
-                  { value: "agency", label: "Agency (uitzendbureau)" },
+                  { value: "agency",    label: "Agency (uitzendbureau)" },
                 ]}
               />
             </Field>
@@ -991,9 +1414,9 @@ export default function RentCalculatorClient() {
                 value={form.rentIncludes}
                 onChange={v => set("rentIncludes", v as FormState["rentIncludes"])}
                 options={[
-                  { value: "kale", label: "Kale huur only" },
+                  { value: "kale",             label: "Kale huur only" },
                   { value: "includes_service", label: "Includes service costs" },
-                  { value: "unsure", label: "Not sure" },
+                  { value: "unsure",           label: "Not sure" },
                 ]}
               />
             </Field>
@@ -1030,13 +1453,17 @@ export default function RentCalculatorClient() {
                 value={form.housingType}
                 onChange={v => set("housingType", v as HousingType)}
                 options={[
-                  { value: "apartment", label: "Private apartment / flat" },
-                  { value: "studio", label: "Studio" },
+                  { value: "apartment",    label: "Private apartment / flat" },
+                  { value: "studio",       label: "Studio" },
                   { value: "shared_house", label: "Shared house (with others)" },
-                  { value: "room", label: "Private room (in shared house)" },
-                  { value: "agency", label: "Agency accommodation (provided by employer)" },
+                  { value: "room",         label: "Private room (in shared house)" },
+                  { value: "agency",       label: "Agency accommodation (provided by employer)" },
                 ]}
               />
+            </Field>
+
+            <Field label="City or area in the Netherlands" hint="Optional — e.g. Rotterdam, Westland, Venlo">
+              <TextInput value={form.cityInNL} onChange={v => set("cityInNL", v)} placeholder="e.g. Rotterdam" />
             </Field>
 
             <p className="text-[11px] font-black text-gray-500 uppercase tracking-wider mb-2 mt-3">Do you have your own (private) — not shared with anyone:</p>
@@ -1070,9 +1497,9 @@ export default function RentCalculatorClient() {
                   value={form.household}
                   onChange={v => set("household", v as HouseholdType)}
                   options={[
-                    { value: "single", label: "Single (no partner)" },
-                    { value: "couple", label: "Couple (no children)" },
-                    { value: "couple_kids", label: "Couple with children" },
+                    { value: "single",       label: "Single (no partner)" },
+                    { value: "couple",       label: "Couple (no children)" },
+                    { value: "couple_kids",  label: "Couple with children" },
                     { value: "single_parent", label: "Single parent" },
                   ]}
                 />
@@ -1092,10 +1519,68 @@ export default function RentCalculatorClient() {
                 value={form.assetBand}
                 onChange={v => set("assetBand", v as AssetBand)}
                 options={[
-                  { value: "none", label: "None / very little" },
+                  { value: "none",        label: "None / very little" },
                   { value: "under_limit", label: "Under the limit (€38,479 / €76,958)" },
-                  { value: "over_limit", label: "Over the limit" },
-                  { value: "unsure", label: "Not sure" },
+                  { value: "over_limit",  label: "Over the limit" },
+                  { value: "unsure",      label: "Not sure" },
+                ]}
+              />
+            </Field>
+
+            <Field label="Country you are currently in" hint="Helps us match you with the right positions">
+              <SelectInput
+                value={form.currentCountry}
+                onChange={v => set("currentCountry", v)}
+                options={[
+                  { value: "Netherlands", label: "Netherlands (already here)" },
+                  { value: "Poland",      label: "Poland" },
+                  { value: "Romania",     label: "Romania" },
+                  { value: "Portugal",    label: "Portugal" },
+                  { value: "Bulgaria",    label: "Bulgaria" },
+                  { value: "Hungary",     label: "Hungary" },
+                  { value: "Slovakia",    label: "Slovakia" },
+                  { value: "Czech Republic", label: "Czech Republic" },
+                  { value: "Ukraine",     label: "Ukraine" },
+                  { value: "Other EU",    label: "Other EU country" },
+                  { value: "Non-EU",      label: "Non-EU country" },
+                ]}
+              />
+            </Field>
+
+            <Field label="Work permit / passport status" hint="Affects which positions you can apply for">
+              <ToggleGroup
+                value={form.workPermit}
+                onChange={v => set("workPermit", v as WorkPermit)}
+                options={[
+                  { value: "eu_passport",   label: "EU passport" },
+                  { value: "eu_residence",  label: "EU residence permit" },
+                  { value: "work_permit",   label: "Work permit (non-EU)" },
+                  { value: "none",          label: "None / unsure" },
+                ]}
+              />
+            </Field>
+
+            <Field label="When are you available to start?">
+              <ToggleGroup
+                value={form.availableToStart}
+                onChange={v => set("availableToStart", v as StartAvail)}
+                options={[
+                  { value: "now",     label: "Now" },
+                  { value: "1_week",  label: "1 week" },
+                  { value: "2_weeks", label: "2 weeks" },
+                  { value: "1_month", label: "1 month+" },
+                ]}
+              />
+            </Field>
+
+            <Field label="Do you need accommodation with the job?">
+              <ToggleGroup
+                value={form.needsAccommodation}
+                onChange={v => set("needsAccommodation", v as YesNo)}
+                options={[
+                  { value: "yes",   label: "Yes — accommodation needed" },
+                  { value: "no",    label: "No — I have housing" },
+                  { value: "unsure", label: "Flexible" },
                 ]}
               />
             </Field>
@@ -1115,7 +1600,23 @@ export default function RentCalculatorClient() {
         </form>
 
         {/* ── Results ── */}
-        {results && <ResultsPanel results={results} form={form} />}
+        {results && (
+          <ResultsPanel
+            results={results}
+            form={form}
+            utmRef={utmRef}
+            onCtaClick={() => fireEvent("rent_calc_cta_clicked", {
+              affordability:  results.affordability,
+              toeslag_signal: results.toeslag.signal,
+            })}
+            onLeadStarted={() => fireEvent("rent_calc_lead_started")}
+            onLeadSubmitted={() => fireEvent("rent_calc_lead_submitted", {
+              affordability: results.affordability,
+              country:       form.currentCountry || "unknown",
+              work_permit:   form.workPermit || "unknown",
+            })}
+          />
+        )}
         {submitted && !results && (
           <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 mt-4">
             <p className="text-sm text-red-700">Please enter a valid salary and rent amount to see results.</p>
@@ -1135,6 +1636,12 @@ export default function RentCalculatorClient() {
 
         {/* ── Explainers ── */}
         <Explainers />
+
+        {/* ── Internal links ── */}
+        <InternalLinks />
+
+        {/* ── FAQ (SEO) ── */}
+        <FaqSection />
 
         {/* ── Source citations ── */}
         <div className="mt-6 rounded-xl bg-gray-50 border border-gray-100 px-4 py-4">
@@ -1195,6 +1702,13 @@ export default function RentCalculatorClient() {
        * - https://www.belastingdienst.nl/wps/wcm/connect/nl/huurtoeslag/
        * - https://www.volkshuisvestingnederland.nl/
        * - https://www.rijksoverheid.nl/
+       *
+       * ADMIN DASHBOARD IDEAS:
+       * - Top 5 result_profile combinations by volume (reveals user segments)
+       * - Avg affordability band per source country
+       * - Lead conversion rate: calc_completed → lead_submitted
+       * - Countries with highest "risky/very_risky" affordability rate
+       * - Cities in NL most commonly entered (demand signal)
        * ══════════════════════════════════════════════════════════════════
        */}
     </div>
