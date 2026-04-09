@@ -1,20 +1,7 @@
-import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { breadcrumbSchema, softwareApplicationSchema, faqPageSchema } from "@/lib/schemaMarkup";
 
-// ── SEO metadata ──────────────────────────────────────────────────────────────
-
-export const metadata: Metadata = {
-  title: "Job Offer Comparison Calculator Netherlands 2026 — Which Offer Pays More?",
-  description:
-    "Compare two Dutch job offers side by side. See real take-home pay after income tax (loonheffing), housing deductions, transport, and healthcare. Find out which offer actually leaves you with more money.",
-  alternates: { canonical: "https://agencycheck.io/tools/job-offer-comparison" },
-  openGraph: {
-    title: "Compare Two Dutch Job Offers — Real Take-Home Pay Calculator 2026",
-    description:
-      "Enter two job offers and see which one leaves you with more money after Dutch income tax, agency housing deductions, transport costs, and healthcare.",
-  },
-};
+// Metadata is defined in layout.tsx for this route.
 
 // ── Client component (no SSR — uses browser state) ───────────────────────────
 
