@@ -180,16 +180,34 @@ export default function RealSalaryCalculatorPage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
 
-      {/* Breadcrumb */}
-      <Link href="/tools" className="text-xs text-gray-400 hover:text-brand-600">← Worker Tools</Link>
-      <h1 className="text-2xl font-bold text-gray-900 mt-2 mb-1">💶 Real Salary Calculator</h1>
-      <p className="text-sm text-gray-500 mb-7 max-w-xl leading-relaxed">
-        Enter your contract details to see your true weekly and monthly take-home after Dutch
-        income tax, housing, transport, and healthcare costs.
-      </p>
+      {/* ── Gradient hero ── */}
+      <div className="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-2xl p-6 mb-8">
+        <nav className="flex items-center gap-1.5 text-xs text-brand-300 mb-4">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/tools" className="hover:text-white transition-colors">Tools</Link>
+          <span>/</span>
+          <span className="text-white font-medium">Real Salary Calculator</span>
+        </nav>
+        <div className="flex items-start gap-4">
+          <span className="text-4xl shrink-0">📊</span>
+          <div>
+            <h1 className="text-xl font-bold mb-1.5">Real Salary Calculator</h1>
+            <p className="text-sm text-brand-200 leading-relaxed max-w-lg">
+              Enter your contract details to see your true weekly and monthly take-home after
+              Dutch income tax, housing, transport, and healthcare costs.
+            </p>
+            <div className="flex flex-wrap gap-2 mt-3">
+              <span className="text-xs bg-white/15 rounded-full px-3 py-1">🔒 Data stays in browser</span>
+              <span className="text-xs bg-white/15 rounded-full px-3 py-1">📅 2026 loonheffing</span>
+              <span className="text-xs bg-white/15 rounded-full px-3 py-1">✅ Heffingskorting included</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* ── Inputs ── */}
-      <div className="card p-5 mb-6 space-y-5">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-6 space-y-5">
         <h2 className="text-sm font-bold text-gray-800 mb-1">Your contract details</h2>
 
         {/* Hourly rate */}
@@ -321,7 +339,7 @@ export default function RealSalaryCalculatorPage() {
       </div>
 
       {/* ── Results ── */}
-      <div className="card p-5 mb-6">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-sm font-bold text-gray-800">Your income breakdown</h2>
           {/* Column headers */}
@@ -397,7 +415,7 @@ export default function RealSalaryCalculatorPage() {
       </div>
 
       {/* ── Summary card ── */}
-      <div className={`rounded-2xl p-5 mb-6 ${riskStyle.bg} border border-gray-100`}>
+      <div className={`rounded-2xl p-5 mb-6 border shadow-sm ${riskStyle.bg} border-gray-100`}>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="text-center">
             <p className="text-xs text-gray-500 mb-0.5">Monthly take-home</p>
@@ -437,7 +455,7 @@ export default function RealSalaryCalculatorPage() {
       </div>
 
       {/* ── WML comparison ── */}
-      <div className="card p-4 mb-6">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 mb-6">
         <p className="text-xs font-semibold text-gray-700 mb-3">How you compare to minimum wage</p>
         <div className="space-y-2">
           {[
@@ -467,7 +485,7 @@ export default function RealSalaryCalculatorPage() {
       </div>
 
       {/* ── Tips ── */}
-      <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+      <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 mb-6">
         <p className="text-xs font-semibold text-blue-800 mb-2">💡 Tips to maximise your take-home</p>
         <ul className="space-y-1.5 text-xs text-blue-700">
           <li>• Negotiate a higher rate — even €0.50/hr more = ~€80/month extra take-home</li>

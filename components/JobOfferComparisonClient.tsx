@@ -1231,27 +1231,30 @@ export default function JobOfferComparisonClient({
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-2xl mx-auto px-4 py-8 sm:py-12">
 
-        {/* ── Header ── */}
-        <div className="mb-6">
-          <Link href="/tools" className="text-xs text-gray-400 hover:text-gray-600 mb-3 inline-block">
-            ← All tools
-          </Link>
-          <h1 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight mb-2">
-            Job Offer Comparison Calculator
-          </h1>
-          <p className="text-sm text-gray-600 leading-relaxed">
-            Compare two Dutch job offers side by side. See real spendable income after income tax, housing costs, transport, and healthcare — based on official {RULES_YEAR} Dutch tax rules.
-          </p>
-          <div className="flex flex-wrap gap-2 mt-3">
-            {[
-              `${RULES_YEAR} loonheffing`,
-              "Heffingskorting",
-              "Vakantiegeld",
-              "Agency housing",
-              "Spendable income",
-            ].map(tag => (
-              <span key={tag} className="text-[10px] font-semibold text-gray-500 bg-gray-100 rounded-full px-2.5 py-1">{tag}</span>
-            ))}
+        {/* ── Gradient hero ── */}
+        <div className="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-2xl p-6 mb-8">
+          <nav className="flex items-center gap-1.5 text-xs text-brand-300 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/tools" className="hover:text-white transition-colors">Tools</Link>
+            <span>/</span>
+            <span className="text-white font-medium">Job Offer Comparison</span>
+          </nav>
+          <div className="flex items-start gap-4">
+            <span className="text-4xl shrink-0">⚖️</span>
+            <div>
+              <h1 className="text-xl font-bold mb-1.5">Job Offer Comparison Calculator</h1>
+              <p className="text-sm text-brand-200 leading-relaxed max-w-lg">
+                Compare two Dutch job offers side by side. See real spendable income after income tax,
+                housing costs, transport, and healthcare — based on official {RULES_YEAR} Dutch tax rules.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                <span className="text-xs bg-white/15 rounded-full px-3 py-1">🔒 Data stays in browser</span>
+                <span className="text-xs bg-white/15 rounded-full px-3 py-1">📅 {RULES_YEAR} loonheffing</span>
+                <span className="text-xs bg-white/15 rounded-full px-3 py-1">🎯 Trap detector</span>
+                <span className="text-xs bg-white/15 rounded-full px-3 py-1">✅ Heffingskorting</span>
+              </div>
+            </div>
           </div>
         </div>
 

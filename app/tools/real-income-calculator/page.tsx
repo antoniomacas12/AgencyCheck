@@ -254,17 +254,37 @@ export default function RealIncomeCalculatorPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
 
-      <div className="mb-2">
-        <Link href="/tools" className="text-xs text-gray-400 hover:text-brand-600">{t("calculator_page.back_link")}</Link>
+      {/* ── Gradient hero ── */}
+      <div className="bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white rounded-2xl p-6 mb-8">
+        <nav className="flex items-center gap-1.5 text-xs text-brand-300 mb-4">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/tools" className="hover:text-white transition-colors">Tools</Link>
+          <span>/</span>
+          <span className="text-white font-medium">Compare Two Agency Offers</span>
+        </nav>
+        <div className="flex items-start gap-4">
+          <span className="text-4xl shrink-0">🧮</span>
+          <div>
+            <h1 className="text-xl font-bold mb-1.5">{t("calculator_page.heading")}</h1>
+            <p className="text-sm text-brand-200 leading-relaxed max-w-lg">
+              {t("calculator_page.subheading")}
+            </p>
+            <div className="flex flex-wrap gap-2 mt-3">
+              <span className="text-xs bg-white/15 rounded-full px-3 py-1">🔒 Data stays in browser</span>
+              <span className="text-xs bg-white/15 rounded-full px-3 py-1">📅 2026 loonheffing</span>
+              <span className="text-xs bg-white/15 rounded-full px-3 py-1">⚖️ Side-by-side comparison</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">{t("calculator_page.heading")}</h1>
-      <p className="text-sm text-gray-500 mb-2 max-w-xl leading-relaxed">
-        {t("calculator_page.subheading")}
-      </p>
 
       {/* Tax notice */}
-      <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-7 text-xs text-amber-800 leading-relaxed">
-        <strong>{t("calculator_page.tax_notice", { wml: WML_HOURLY_2026 })}</strong>
+      <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3 mb-7">
+        <span className="shrink-0 text-lg">ℹ️</span>
+        <p className="text-sm text-amber-800 leading-relaxed">
+          <strong>{t("calculator_page.tax_notice", { wml: WML_HOURLY_2026 })}</strong>
+        </p>
       </div>
 
       {/* Scenario cards */}
@@ -274,8 +294,8 @@ export default function RealIncomeCalculatorPage() {
       </div>
 
       {/* Summary comparison table */}
-      <div className="card p-5 mb-6">
-        <h2 className="text-sm font-semibold text-gray-700 mb-4">{t("calculator_page.comparison_title")}</h2>
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-6">
+        <h2 className="text-sm font-bold text-gray-800 mb-4">{t("calculator_page.comparison_title")}</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -319,7 +339,7 @@ export default function RealIncomeCalculatorPage() {
       </div>
 
       {/* Housing deduction info box */}
-      <div className="card p-4 mb-6 bg-blue-50 border border-blue-100">
+      <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 mb-6">
         <p className="text-xs font-semibold text-blue-800 mb-2">{t("calculator_page.snf_title")}</p>
         <div className="grid grid-cols-3 gap-2 text-center">
           {Object.entries(HOUSING_DEDUCTION_RANGES).map(([key, range]) => (
