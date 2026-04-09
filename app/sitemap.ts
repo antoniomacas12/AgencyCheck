@@ -726,6 +726,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority:        0.7,
     },
+    {
+      url:             `${BASE_URL}/tools/job-offer-comparison`,
+      lastModified:    STATIC_DATE,
+      changeFrequency: "monthly" as const,
+      priority:        0.7,
+    },
   ];
 
   return [

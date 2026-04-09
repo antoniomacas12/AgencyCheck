@@ -71,11 +71,18 @@ const TOOLS = [
 
 const MORE_TOOLS = [
   {
+    href:        "/tools/job-offer-comparison",
+    icon:        "⚖️",
+    title:       "Job Offer Comparison Calculator",
+    description: "Compare two Dutch job offers side by side. Real take-home after 2026 loonheffing, housing deductions, transport, and healthcare. Find out which offer leaves you with more money — not just the highest rate.",
+    badge:       "New",
+  },
+  {
     href:        "/tools/rent-calculator",
     icon:        "🏡",
     title:       "Netherlands Rent Calculator 2026",
     description: "Check if your rent is affordable, estimate huurtoeslag (rent allowance) eligibility, and see if your rent is within the legal 2026 Dutch limits. Includes WWS sector check.",
-    badge:       "New",
+    badge:       null,
   },
   {
     href:        "/tools/real-income-calculator",
