@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
 
 /**
- * Polish segment layout — metadata only.
+ * Slovak segment layout — metadata only.
  *
  * DO NOT add <html> or <body> here.
  * The root app/layout.tsx owns <html lang="..."> and <body>.
- * It reads x-ac-locale from middleware to set lang="pl" automatically.
+ * It reads x-ac-locale from middleware to set lang="sk" automatically.
  * Adding html/body here causes nested invalid HTML → blank page.
  */
 export const metadata: Metadata = {
   metadataBase: new URL("https://agencycheck.io"),
   title: {
-    default: "AgencyCheck — Agencje Pracy Holandia — Opinie Pracowników i Zarobki",
+    default: "AgencyCheck — Agentúry práce Holandsko — Hodnotenia pracovníkov a mzdy",
     template: "%s | AgencyCheck",
   },
   description:
-    "Porównaj agencje pracy w Holandii według opinii pracowników, zakwaterowania i realnych zarobków. Sprawdź prawdziwe zarobki netto zanim podpiszesz umowę.",
+    "Porovnajte agentúry práce v Holandsku podľa hodnotení pracovníkov, ubytovanie a reálnych platov. Zistite reálny čistý príjem pred podpisom zmluvy.",
   keywords: [
-    "agencja pracy Holandia", "praca z zakwaterowaniem Holandia",
-    "praca w Holandii zakwaterowanie", "agencja pracy opinie",
-    "zarobki netto Holandia", "praca Holandia dla Polaków",
+    "agentúra práce Holandsko", "práca s ubytovaním Holandsko",
+    "zamestnávateľská agentúra hodnotenia", "čistý plat Holandsko",
+    "práca v Holandsku pre Slovákov", "ubytovanie agentúra Holandsko",
   ],
   alternates: {
-    canonical: "https://agencycheck.io/pl",
+    canonical: "https://agencycheck.io/sk",
     languages: {
       "en":        "https://agencycheck.io/",
       "pl":        "https://agencycheck.io/pl",
@@ -36,11 +36,11 @@ export const metadata: Metadata = {
   openGraph: {
     type:     "website",
     siteName: "AgencyCheck",
-    locale:   "pl_NL",
+    locale:   "sk_SK",
   },
 };
 
-export default function PlLayout({ children }: { children: React.ReactNode }) {
+export default function SkLayout({ children }: { children: React.ReactNode }) {
   // Just pass through — root layout handles chrome (Navbar, Footer, etc.)
   return <>{children}</>;
 }

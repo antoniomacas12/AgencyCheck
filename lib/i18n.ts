@@ -15,15 +15,17 @@
  *   t("homepage.badge", { housingCount: 42 })  // replaces {housingCount}
  */
 
-export type Locale = "en" | "pl" | "ro" | "pt";
-export const SUPPORTED_LOCALES: Locale[] = ["en", "pl", "ro", "pt"];
+export type Locale = "en" | "pl" | "ro" | "pt" | "sk" | "bg";
+export const SUPPORTED_LOCALES: Locale[] = ["en", "pl", "ro", "pt", "sk", "bg"];
 export const DEFAULT_LOCALE: Locale = "en";
 
 export const LOCALE_LABELS: Record<Locale, { label: string; flag: string; nativeName: string }> = {
-  en: { label: "English",    flag: "🇬🇧", nativeName: "English"   },
-  pl: { label: "Polish",     flag: "🇵🇱", nativeName: "Polski"    },
-  ro: { label: "Romanian",   flag: "🇷🇴", nativeName: "Română"    },
-  pt: { label: "Portuguese", flag: "🇵🇹", nativeName: "Português" },
+  en: { label: "English",    flag: "🇬🇧", nativeName: "English"    },
+  pl: { label: "Polish",     flag: "🇵🇱", nativeName: "Polski"     },
+  ro: { label: "Romanian",   flag: "🇷🇴", nativeName: "Română"     },
+  pt: { label: "Portuguese", flag: "🇵🇹", nativeName: "Português"  },
+  sk: { label: "Slovak",     flag: "🇸🇰", nativeName: "Slovenčina" },
+  bg: { label: "Bulgarian",  flag: "🇧🇬", nativeName: "Български"  },
 };
 
 // Flat key lookup with dot-notation (e.g. "homepage.hero_gross")
@@ -91,12 +93,16 @@ import enJson from "@/locales/en.json";
 import plJson from "@/locales/pl.json";
 import roJson from "@/locales/ro.json";
 import ptJson from "@/locales/pt.json";
+import skJson from "@/locales/sk.json";
+import bgJson from "@/locales/bg.json";
 
 const LOCALE_DATA: Record<Locale, Translations> = {
   en: enJson as unknown as Translations,
   pl: plJson as unknown as Translations,
   ro: roJson as unknown as Translations,
   pt: ptJson as unknown as Translations,
+  sk: skJson as unknown as Translations,
+  bg: bgJson as unknown as Translations,
 };
 
 /**
