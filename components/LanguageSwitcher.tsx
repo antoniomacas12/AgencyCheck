@@ -6,18 +6,18 @@
  * Behaviour on selection:
  *  1. Saves the chosen locale in the ac_locale cookie (1 year).
  *  2. Navigation:
- *     - On a locale-prefixed page (/pl/… or /ro/…):
- *         Switch to EN  → strip the prefix, navigate to that EN path
- *         Switch to PL  → navigate to /pl
- *         Switch to RO  → navigate to /ro
- *     - On a plain English page (/agencies, /jobs, etc.):
- *         Set the cookie then call router.refresh() so Next.js
- *         invalidates its route cache and re-fetches Server Components
- *         with the new locale — no full browser reload required.
+ *     - On a locale-prefixed page (/pl/…, /ro/…, /sk/…, /bg/…):
+ *         Switch to EN  → strip prefix, navigate to that EN path
+ *         Switch to other locale  → navigate to that locale's root
+ *     - On a plain English page (/agencies, /jobs, /, etc.):
+ *         Use window.location for a hard navigation so the browser
+ *         sends the updated cookie to the server immediately.
+ *         Switching to non-EN → go to the locale root (/pl, /ro, /sk, /bg)
+ *         Switching back to EN → reload current page in English
  */
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { SUPPORTED_LOCALES, LOCALE_LABELS, type Locale } from "@/lib/i18n";
 
 interface Props {
@@ -54,10 +54,9 @@ function stripLocalePrefix(pathname: string): string {
 }
 
 export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
-  const [open, setOpen]         = useState(false);
-  const router                  = useRouter();
-  const pathname                = usePathname();
-  const ref                     = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const pathname        = usePathname();
+  const ref             = useRef<HTMLDivElement>(null);
 
   const current = LOCALE_LABELS[currentLocale];
 
@@ -79,23 +78,23 @@ export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
     // 1. Persist choice in cookie (1 year)
     document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
 
-    // 2. Navigate
+    // 2. Navigate — use window.location for hard navigation so the browser
+    //    immediately sends the new cookie to the server. router.refresh()
+    //    is unreliable because the Next.js router cache may serve stale HTML.
     if (isLocalePrefixedPath(pathname)) {
-      // We're on a locale-specific page — go to the new locale's root
-      // (locale-specific pages have their own URL slugs so we can't map them 1:1)
-      if (locale === "en") {
-        // Try to keep the user on the equivalent English path
-        router.push(stripLocalePrefix(pathname));
-      } else {
-        router.push(LOCALE_ROOT_PATHS[locale]);
-      }
+      // On /pl/*, /ro/*, /sk/*, /bg/* → go to new locale root (slugs differ per language)
+      const dest = locale === "en" ? stripLocalePrefix(pathname) : LOCALE_ROOT_PATHS[locale];
+      window.location.href = dest;
     } else {
-      // We're on an English-URL page — router.refresh() invalidates the
-      // Next.js route cache and re-fetches all Server Components. The new
-      // request goes through middleware which reads the updated ac_locale
-      // cookie and sets x-ac-locale, so layout + page re-render instantly
-      // in the chosen language without a full browser reload.
-      router.refresh();
+      // On English-URL page (/agencies, /jobs, /, etc.)
+      if (locale === "en") {
+        // Reload current page — middleware will clear the locale cookie and serve EN
+        window.location.reload();
+      } else {
+        // Navigate to the locale root so middleware reads path-prefix (highest priority)
+        // which guarantees the page renders in the correct language immediately
+        window.location.href = LOCALE_ROOT_PATHS[locale];
+      }
     }
   }
 
