@@ -176,6 +176,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "daily",
       priority:         0.85,
     },
+    // ── Agency review pages (SEO landing pages) ──────────────────────────────
+    {
+      url:              `${BASE_URL}/otto-workforce-review`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.88,
+    },
+    {
+      url:              `${BASE_URL}/tempo-team-review`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.88,
+    },
+    {
+      url:              `${BASE_URL}/covebo-review`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/randstad-review`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.88,
+    },
+    {
+      url:              `${BASE_URL}/otto-vs-tempo-team`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.87,
+    },
+    // ─────────────────────────────────────────────────────────────────────────
     {
       url:              `${BASE_URL}/best-agencies-with-housing-netherlands`,
       lastModified:     AGENCY_DATE,

@@ -64,6 +64,29 @@ const breadcrumbSchema = {
   ],
 };
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "OTTO Workforce vs Tempo-Team Netherlands (2026) – Salary, Housing & Which Is Better",
+  datePublished: "2026-03-28",
+  dateModified:  "2026-04-10",
+  author: {
+    "@type": "Organization",
+    name: "AgencyCheck",
+    url:  "https://agencycheck.io",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "AgencyCheck",
+    url:  "https://agencycheck.io",
+    logo: { "@type": "ImageObject", url: "https://agencycheck.io/logo.png" },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id":  "https://agencycheck.io/otto-vs-tempo-team",
+  },
+};
+
 function WAIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -142,6 +165,7 @@ export default function OttoVsTempoTeamPage() {
     <div className="bg-white min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
 
@@ -156,6 +180,16 @@ export default function OttoVsTempoTeamPage() {
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 leading-tight mb-4">
           OTTO Workforce vs Tempo-Team Netherlands (2026) – Salary, Housing &amp; Which Is Better
         </h1>
+
+        <div className="flex flex-wrap gap-2 mb-5">
+          {[
+            { bg: "bg-blue-50 text-blue-700 border-blue-100",   label: "Last updated: Apr 2026"  },
+            { bg: "bg-green-50 text-green-700 border-green-100", label: "🏠 Housing compared"     },
+            { bg: "bg-amber-50 text-amber-700 border-amber-100", label: "Both ABU certified"      },
+          ].map((b) => (
+            <span key={b.label} className={`text-xs font-semibold border rounded-full px-3 py-1 ${b.bg}`}>{b.label}</span>
+          ))}
+        </div>
 
         <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-3">
           OTTO Workforce and Tempo-Team are two of the most common choices for EU workers looking for jobs in the Netherlands. Both are large, both are ABU-certified, and both offer housing. But they&apos;re not the same — and the differences can add up to hundreds of euros per month.

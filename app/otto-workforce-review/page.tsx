@@ -68,6 +68,29 @@ const breadcrumbSchema = {
   ],
 };
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "OTTO Workforce Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
+  datePublished: "2026-03-28",
+  dateModified:  "2026-04-10",
+  author: {
+    "@type": "Organization",
+    name: "AgencyCheck",
+    url:  "https://agencycheck.io",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "AgencyCheck",
+    url:  "https://agencycheck.io",
+    logo: { "@type": "ImageObject", url: "https://agencycheck.io/logo.png" },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id":  "https://agencycheck.io/otto-workforce-review",
+  },
+};
+
 // ─── WhatsApp icon (inline SVG) ───────────────────────────────────────────────
 
 function WAIcon({ className = "w-5 h-5" }: { className?: string }) {
@@ -167,6 +190,7 @@ export default function OttoWorkforceReviewPage() {
       {/* JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
 
@@ -186,7 +210,7 @@ export default function OttoWorkforceReviewPage() {
 
         <div className="flex flex-wrap gap-2 mb-5">
           {[
-            { bg: "bg-blue-50 text-blue-700 border-blue-100",   label: "Updated 2026"          },
+            { bg: "bg-blue-50 text-blue-700 border-blue-100",   label: "Last updated: Apr 2026" },
             { bg: "bg-green-50 text-green-700 border-green-100", label: "🏠 Housing available"   },
             { bg: "bg-amber-50 text-amber-700 border-amber-100", label: "ABU certified"          },
           ].map((b) => (

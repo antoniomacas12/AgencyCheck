@@ -156,6 +156,14 @@ export default async function Footer() {
 
           {/* Tools & Legal column */}
           <div>
+            <p className="font-semibold text-gray-800 mb-3">Agency Reviews</p>
+            <ul className="space-y-2 text-gray-500 text-xs mb-5">
+              <li><Link href="/otto-workforce-review"  className="hover:text-brand-600">OTTO Workforce review</Link></li>
+              <li><Link href="/tempo-team-review"      className="hover:text-brand-600">Tempo-Team review</Link></li>
+              <li><Link href="/covebo-review"          className="hover:text-brand-600">Covebo review</Link></li>
+              <li><Link href="/randstad-review"        className="hover:text-brand-600">Randstad review</Link></li>
+              <li><Link href="/otto-vs-tempo-team"     className="hover:text-brand-600">OTTO vs Tempo-Team</Link></li>
+            </ul>
             <p className="font-semibold text-gray-800 mb-3">{t("footer.tools")}</p>
             <ul className="space-y-2 text-gray-500 text-xs mb-5">
               <li><Link href="/tools/salary-calculator"      className="hover:text-brand-600">{t("footer.salary_calc")}</Link></li>
