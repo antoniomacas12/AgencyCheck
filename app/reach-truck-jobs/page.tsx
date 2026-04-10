@@ -79,12 +79,31 @@ export default function ReachTruckJobsPage() {
           Reach Truck Driver Jobs in the Netherlands
         </h1>
 
-        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
-          Reach truck drivers operate electric reach trucks in high-bay warehouses — lifting
-          pallets to 12 metres or more in distribution centres across the Netherlands. Pay is
-          higher than standard warehouse work, but a valid reach truck licence or VCA certificate
-          is required. Some agencies arrange internal licence training before placing you.
-        </p>
+        <div className="text-gray-600 text-sm leading-relaxed max-w-2xl space-y-3">
+          <p>
+            Reach truck drivers operate electric reach trucks in high-bay warehouses — navigating
+            narrow aisles and lifting pallets to racking heights of 10 to 14 metres. The work is
+            technically demanding: you read warehouse management system (WMS) instructions on a
+            mounted screen, locate the correct bay, and place pallets with millimetre precision at
+            height. Errors cost time and can cause costly stock damage, which is why the role pays
+            a meaningful premium over standard order picking.
+          </p>
+          <p>
+            The Netherlands has one of Europe&apos;s densest concentrations of high-bay distribution
+            centres, particularly around Tilburg, Waalwijk, Venlo, and the logistics corridor
+            between Rotterdam port and the German border. Major retailers, e-commerce platforms,
+            and food manufacturers all rely on reach truck operators to stock and retrieve pallets
+            around the clock. Many sites run 24/7 on rotating shifts, which means night and
+            weekend premiums of 20–35% on top of base pay are common.
+          </p>
+          <p>
+            A valid reach truck (VNA or narrow-aisle) licence is required — a counterbalance
+            forklift licence does not automatically qualify you. If you don&apos;t yet hold one,
+            several agencies offer paid in-house training before your first placement, typically
+            lasting one to three days. Passing a brief practical test at the warehouse is standard
+            even if you already hold a licence from another country.
+          </p>
+        </div>
 
         <div className="flex flex-wrap gap-3 mt-4 text-xs text-gray-600">
           <span className="text-brand-700 font-semibold">💶 Avg €{job.avg}/hr gross</span>
@@ -157,6 +176,102 @@ export default function ReachTruckJobsPage() {
           Forklift (counterbalance) licences do <em>not</em> automatically cover reach trucks.
         </p>
       </div>
+
+      {/* Day in the life */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-3">🕐 A day in the life of a reach truck driver</h2>
+        <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+          Most warehouse sites run an early shift (06:00–14:45) and a late shift (14:45–23:30). Here is what
+          a typical early shift looks like at a high-bay DC:
+        </p>
+        <div className="card overflow-hidden mb-2">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-gray-50 border-b border-gray-100">
+                <th className="text-left px-3 py-2 font-semibold text-gray-700 w-24">Time</th>
+                <th className="text-left px-3 py-2 font-semibold text-gray-700">Activity</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
+              <tr><td className="px-3 py-2 text-gray-400">05:45</td><td className="px-3 py-2 text-gray-700">Agency bus picks up at accommodation or central meeting point</td></tr>
+              <tr className="bg-gray-50/50"><td className="px-3 py-2 text-gray-400">06:00</td><td className="px-3 py-2 text-gray-700">Site briefing — team leader assigns zones; check WMS for inbound pallet list</td></tr>
+              <tr><td className="px-3 py-2 text-gray-400">06:15</td><td className="px-3 py-2 text-gray-700">Put-away: storing inbound pallets into high-bay racking (9–14 m); scan, confirm, move on</td></tr>
+              <tr className="bg-gray-50/50"><td className="px-3 py-2 text-gray-400">10:00</td><td className="px-3 py-2 text-gray-700">Paid 15-minute break; park truck in bay, charge if needed</td></tr>
+              <tr><td className="px-3 py-2 text-gray-400">10:15</td><td className="px-3 py-2 text-gray-700">Replenishment picking — pull stock down to ground-level pick lanes for order pickers</td></tr>
+              <tr className="bg-gray-50/50"><td className="px-3 py-2 text-gray-400">12:00</td><td className="px-3 py-2 text-gray-700">30-minute unpaid lunch break</td></tr>
+              <tr><td className="px-3 py-2 text-gray-400">12:30</td><td className="px-3 py-2 text-gray-700">Afternoon tasks: cycle counts, relocations, and bulk storage movements</td></tr>
+              <tr className="bg-gray-50/50"><td className="px-3 py-2 text-gray-400">14:15</td><td className="px-3 py-2 text-gray-700">End-of-shift handover — park truck on charge, note any damage or discrepancies</td></tr>
+              <tr><td className="px-3 py-2 text-gray-400">14:45</td><td className="px-3 py-2 text-gray-700">Shift ends; bus departs for accommodation or city centre</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-gray-400">Exact schedule varies by warehouse and contract. Night shifts typically attract a 25–35% premium.</p>
+      </section>
+
+      {/* Housing */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-3">🏠 Accommodation for reach truck workers</h2>
+        <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+          Agency housing is widely available for reach truck placements, particularly at sites in Tilburg,
+          Waalwijk, Venlo, and Eindhoven. Because shifts often start at 06:00 or earlier, most workers
+          opt for housing close to the warehouse — private rentals in these cities typically run
+          €400–€600/month for a room, and agency housing is usually €88–€110/week (legally capped at
+          €113.50/week under Dutch law).
+        </p>
+        <div className="grid sm:grid-cols-3 gap-3 text-xs">
+          <div className="card p-3">
+            <p className="font-semibold text-gray-800 mb-1">Agency housing</p>
+            <p className="text-gray-500">€88–€113/week deducted from gross pay. Look for SNF-certified addresses — this certification sets minimum standards for space, hygiene, and occupancy.</p>
+          </div>
+          <div className="card p-3">
+            <p className="font-semibold text-gray-800 mb-1">Private rental</p>
+            <p className="text-gray-500">Waalwijk, Tilburg, Venlo, and Helmond offer rooms from €400–€600/month — more affordable than Amsterdam or Rotterdam for the same wage level.</p>
+          </div>
+          <div className="card p-3">
+            <p className="font-semibold text-gray-800 mb-1">What to check</p>
+            <p className="text-gray-500">Always get housing deduction costs in writing before signing. Confirm if rent stops if your contract pauses. SNF inspections are published online.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Pros and cons */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-3">⚖️ Pros and cons of reach truck work</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="card p-4">
+            <p className="text-xs font-bold text-green-700 mb-2 uppercase tracking-wide">✅ Pros</p>
+            <ul className="text-xs text-gray-600 space-y-1.5">
+              <li>→ €1.00–€2.00/hr premium over standard warehouse picking</li>
+              <li>→ Licenced skill that transfers across companies and countries</li>
+              <li>→ Seated work — less physically tiring than manual order picking</li>
+              <li>→ High demand year-round; rarely without available vacancies</li>
+            </ul>
+          </div>
+          <div className="card p-4">
+            <p className="text-xs font-bold text-red-700 mb-2 uppercase tracking-wide">❌ Cons</p>
+            <ul className="text-xs text-gray-600 space-y-1.5">
+              <li>→ Licence required — without one you cannot start on day one</li>
+              <li>→ Concentration required for full shift; mistakes at height are dangerous</li>
+              <li>→ Cold storage sites (−25°C) are common; warm clothing is not always provided</li>
+              <li>→ Early starts (05:45 bus) can disrupt sleep if on rotating shifts</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Who is this good for */}
+      <section className="mb-8">
+        <div className="bg-brand-50 border border-brand-100 rounded-xl p-4">
+          <h2 className="font-bold text-brand-900 text-sm mb-2">👤 Who is reach truck work good for?</h2>
+          <ul className="text-xs text-brand-800 space-y-1.5 leading-relaxed">
+            <li>→ <strong>Workers who already hold a reach truck or VNA licence</strong> — you can start within days and earn above WML from day one.</li>
+            <li>→ <strong>Order pickers looking to progress</strong> — reach truck is the most common next step up; several agencies will fund your licence after 4–6 weeks on site.</li>
+            <li>→ <strong>Workers who prefer seated, technical tasks</strong> — the job is focused and repetitive but far less physically demanding than floor-level picking.</li>
+            <li>→ <strong>People targeting logistics hubs</strong> — Tilburg, Waalwijk, and Venlo have the highest concentration of openings and the most agency housing options nearby.</li>
+            <li>→ <strong>Workers comfortable with shift rotation</strong> — early, late, and night shifts are all available; night premiums can meaningfully boost take-home pay.</li>
+          </ul>
+        </div>
+      </section>
 
       {/* Active listings */}
       {listings.length > 0 && (
@@ -281,22 +396,27 @@ export default function ReachTruckJobsPage() {
       {/* Internal links */}
       <section className="mb-6">
         <h3 className="text-sm font-bold text-gray-700 mb-3">🔗 Related pages</h3>
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs">
-          <Link href="/jobs/reach-truck-driver" className="text-brand-600 hover:underline">
-            🏗️ Reach truck driver job page →
-          </Link>
-          <Link href="/jobs/forklift-driver" className="text-gray-500 hover:text-brand-600 hover:underline">
-            🚜 Forklift driver jobs →
-          </Link>
-          <Link href="/jobs/warehouse-worker" className="text-gray-500 hover:text-brand-600 hover:underline">
-            🏭 Warehouse worker jobs →
-          </Link>
-          <Link href="/salary/reach-truck-driver-netherlands" className="text-gray-500 hover:text-brand-600 hover:underline">
-            💶 Reach truck salary overview →
-          </Link>
-          <Link href="/jobs-with-accommodation" className="text-gray-500 hover:text-brand-600 hover:underline">
-            🏠 Jobs with accommodation →
-          </Link>
+        <div className="grid sm:grid-cols-2 gap-2">
+          {[
+            { href: "/order-picker-jobs", icon: "📦", label: "Order picker jobs", sub: "Entry-level warehouse work" },
+            { href: "/forklift-driver-jobs", icon: "🚜", label: "Forklift driver jobs", sub: "Counterbalance & reach" },
+            { href: "/warehouse-jobs-with-accommodation", icon: "🏠", label: "Warehouse jobs with housing", sub: "Agency accommodation included" },
+            { href: "/salary/reach-truck-driver-netherlands", icon: "💶", label: "Reach truck salary", sub: "Full gross-to-net breakdown" },
+            { href: "/jobs-tilburg", icon: "📍", label: "Jobs in Tilburg", sub: "Top logistics city for RT work" },
+            { href: "/otto-workforce-jobs", icon: "🏢", label: "OTTO Workforce jobs", sub: "Major agency for warehouse roles" },
+          ].map(({ href, icon, label, sub }) => (
+            <Link
+              key={href}
+              href={href}
+              className="card px-3 py-2.5 flex items-center gap-3 hover:border-brand-200 hover:bg-brand-50/30 transition-all"
+            >
+              <span className="text-lg shrink-0">{icon}</span>
+              <div>
+                <p className="text-xs font-semibold text-brand-700">{label} →</p>
+                <p className="text-[10px] text-gray-400">{sub}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 

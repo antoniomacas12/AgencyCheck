@@ -65,19 +65,16 @@ export default function RandstadJobsPage() {
           Randstad Jobs in the Netherlands
         </h1>
 
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          Randstad is the <strong className="text-gray-800">world&apos;s largest employment agency</strong> and one of the dominant forces in the Dutch labour market. Unlike smaller specialist agencies, Randstad covers virtually every sector: warehouse and logistics, production, office administration, IT, healthcare, construction, and skilled trades. That breadth means you can find everything from a basic order picker role at WML to a logistics management position paying €25/hr on a single platform.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          For international workers targeting warehouse and production work — the most common entry point — Randstad behaves similarly to Tempo-Team or OTTO: ABU-certified contracts, standard phase A/B progression, and payslips that, according to workers, are consistently accurate. Where Randstad has an edge is <strong className="text-gray-800">upward mobility</strong>: workers with relevant experience or Dutch language skills are often offered better-paying roles that smaller agencies don&apos;t have access to.
+        </p>
         <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
-          Randstad is one of the largest employment agencies in the Netherlands
-          with vacancies across logistics, production, administration, IT, and more.
-          This page shows real, verified listings scraped directly from{" "}
-          <a
-            href="https://www.randstad.nl/vacatures"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-600 hover:underline"
-          >
-            randstad.nl
-          </a>
-          . Always confirm salary and contract terms before signing.
+          This page shows verified listings sourced directly from{" "}
+          <a href="https://www.randstad.nl/vacatures" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">randstad.nl</a>.
+          Always confirm salary and contract terms before signing. Use the payslip checker after your first week to verify deductions.
         </p>
 
         <div className="flex flex-wrap gap-3 mt-4 text-xs text-gray-600">
@@ -195,6 +192,118 @@ export default function RandstadJobsPage() {
         </div>
       </section>
 
+      {/* ── Salary breakdown ─────────────────────────────────────────── */}
+      <section className="mb-8" id="salary">
+        <h2 className="text-base font-bold text-gray-900 mb-3">What Do Workers Actually Earn at Randstad?</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          For warehouse and production roles — the most common international worker placements — Randstad pays at WML or a little above: <strong className="text-gray-800">€14.71–€16.00/hr</strong> in 2026. Skilled roles (forklift, logistics coordination, driving) pay €16–€22/hr. After deductions, most warehouse workers take home <strong className="text-gray-800">€320–€390/week</strong>.
+        </p>
+        <div className="rounded-xl border border-gray-200 overflow-hidden mb-4">
+          <div className="bg-gray-900 px-4 py-2.5">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-300">Weekly payslip — warehouse role 40h/week at WML</p>
+          </div>
+          <div className="divide-y divide-gray-100 text-sm">
+            {([
+              ["Gross pay (€14.71/hr × 40h — WML)", "+€588", "text-emerald-700"],
+              ["Income tax (loonheffing ~11%)", "−€65", "text-red-600"],
+              ["Agency housing (if provided)", "−€95", "text-red-600"],
+              ["Health insurance", "−€35", "text-red-600"],
+              ["Transport", "−€22", "text-red-600"],
+              ["Admin fees (varies)", "−€25", "text-red-600"],
+            ] as [string, string, string][]).map(([label, value, color]) => (
+              <div key={label} className="flex justify-between px-4 py-2.5">
+                <span className="text-gray-600">{label}</span>
+                <span className={`font-bold tabular-nums ${color}`}>{value}</span>
+              </div>
+            ))}
+            <div className="flex justify-between px-4 py-3 bg-gray-50">
+              <span className="font-black text-gray-900 text-sm">💶 You keep</span>
+              <span className="font-black text-emerald-700 text-base tabular-nums">~€346</span>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 leading-relaxed">
+          Admin fees at Randstad vary from €15–€30/week depending on the contract. Workers with forklift licences or relevant experience should ask for above-WML rates — they often exist but are not offered automatically.
+        </p>
+      </section>
+
+      {/* ── Housing ──────────────────────────────────────────────────── */}
+      <section className="mb-8" id="housing">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — Available but Not Universal</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Unlike OTTO or Covebo which include housing as standard for international placements, <strong className="text-gray-800">Randstad accommodation availability depends on the specific contract and location</strong>. Some placements include housing; many don&apos;t. Always confirm before accepting any offer.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Where Randstad does provide housing, standards are generally acceptable — comparable to industry average. Deductions run <strong className="text-gray-800">€88–€113/week</strong>. Workers report fewer extreme overcrowding issues than at some smaller agencies.
+        </p>
+        <div className="rounded-xl bg-blue-50 border border-blue-100 px-4 py-3 text-xs text-blue-800">
+          💡 If your Randstad placement doesn&apos;t include housing, check our <Link href="/agencies-with-housing" className="underline font-medium">agencies with housing list</Link> for alternatives in the same city.
+        </div>
+      </section>
+
+      {/* ── Pros and Cons ────────────────────────────────────────────── */}
+      <section className="mb-8" id="pros-cons">
+        <h2 className="text-base font-bold text-gray-900 mb-4">Randstad Netherlands — Honest Pros and Cons</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {([
+            {
+              title: "✅ What works well",
+              color: "border-green-200 bg-green-50", tc: "text-green-800", sign: "+", sc: "text-green-600",
+              items: [
+                { t: "Reliable, accurate payslips", b: "Workers consistently report on-time, correct payments with fewer disputes than at smaller agencies." },
+                { t: "Access to higher-paying roles", b: "Skilled workers (forklift, driving, logistics coordination) find better rates here than at specialist-only agencies." },
+                { t: "ABU certified — strong legal protections", b: "Full ABU CAO compliance means your contract rights are enforceable and well-documented." },
+                { t: "Nationwide coverage", b: "Active in every major Dutch city — useful if you want to switch location after a few months." },
+              ],
+            },
+            {
+              title: "⚠️ What to watch out for",
+              color: "border-red-200 bg-red-50", tc: "text-red-800", sign: "−", sc: "text-red-500",
+              items: [
+                { t: "Coordinators can be overloaded", b: "Large agency = slower personal response. Problems take longer to resolve than at a smaller focused operator." },
+                { t: "Housing not always included", b: "Not guaranteed with Randstad placements. Confirm explicitly before accepting any job offer." },
+                { t: "Basic roles are at WML only", b: "Entry-level warehouse work pays the legal minimum. Ask specifically if above-WML positions are available." },
+                { t: "Admin fees vary widely", b: "Some workers report €15/week, others €30. Always get the full deduction breakdown in writing." },
+              ],
+            },
+          ] as const).map((card) => (
+            <div key={card.title} className={`rounded-xl border p-4 ${card.color}`}>
+              <p className={`text-sm font-bold mb-3 ${card.tc}`}>{card.title}</p>
+              <ul className="space-y-2.5">
+                {card.items.map((item) => (
+                  <li key={item.t} className="flex gap-2">
+                    <span className={`shrink-0 font-bold text-sm mt-0.5 ${card.sc}`}>{card.sign}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800">{item.t}</p>
+                      <p className="text-xs text-gray-600 leading-snug mt-0.5">{item.b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Who is this good for ─────────────────────────────────────── */}
+      <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Apply to Randstad Netherlands?</h2>
+        <div className="space-y-2.5">
+          {[
+            { icon: "✅", text: "Workers with skills or qualifications — forklift licences, VCA, driving certifications, or office/IT experience. Randstad has above-WML roles that smaller agencies don't." },
+            { icon: "✅", text: "Workers who want reliability over personalised service. Randstad is predictable: pay on time, standard contracts, clear rights." },
+            { icon: "✅", text: "Workers who want geographic flexibility — Randstad operates everywhere in NL, making it easy to change cities after a few months." },
+            { icon: "⚠️", text: "Workers who need housing included should confirm availability before accepting. Randstad doesn't guarantee accommodation the way OTTO or Covebo do." },
+            { icon: "⚠️", text: "Workers who need fast personal support may find the large-agency structure frustrating. Smaller agencies with multilingual staff sometimes offer better day-to-day coordination." },
+          ].map((item) => (
+            <div key={item.text} className="flex gap-2.5">
+              <span className="shrink-0 text-sm">{item.icon}</span>
+              <p className="leading-relaxed text-xs text-gray-600">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── About Randstad ───────────────────────────────────────────── */}
       <section className="mb-8">
         <div className="card p-5">
@@ -248,27 +357,19 @@ export default function RandstadJobsPage() {
       </section>
 
       {/* ── Related links ────────────────────────────────────────────── */}
-      <section className="mb-6">
-        <h3 className="text-sm font-bold text-gray-700 mb-3">🔗 Related pages</h3>
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs">
-          <Link href="/agencies/randstad-nederland" className="text-brand-600 hover:underline">
-            🏢 Randstad agency profile →
-          </Link>
-          <Link href="/agencies/randstad-nederland/reviews" className="text-brand-600 hover:underline">
-            ⭐ Randstad worker reviews →
-          </Link>
-          <Link href="/jobs-with-accommodation" className="text-gray-500 hover:text-brand-600 hover:underline">
-            🏠 Jobs with accommodation →
-          </Link>
-          <Link href="/order-picker-jobs" className="text-gray-500 hover:text-brand-600 hover:underline">
-            📦 Order picker jobs →
-          </Link>
-          <Link href="/tools/real-income-calculator" className="text-gray-500 hover:text-brand-600 hover:underline">
-            🧮 Real income calculator →
-          </Link>
-          <Link href="/issues/late-payment" className="text-gray-500 hover:text-brand-600 hover:underline">
-            ⚠️ Know your rights →
-          </Link>
+      <section className="mb-6 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Related reads</p>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { href: "/randstad-review",              label: "Randstad full worker review 2026 →" },
+            { href: "/agencies/randstad-nederland",  label: "Randstad agency profile →" },
+            { href: "/otto-workforce-jobs",          label: "OTTO Workforce jobs (compare) →" },
+            { href: "/tempo-team-jobs",              label: "Tempo-Team jobs (compare) →" },
+            { href: "/tools/real-income-calculator", label: "Calculate your real take-home →" },
+            { href: "/tools/payslip-checker",        label: "Check your Randstad payslip →" },
+          ].map((link) => (
+            <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
+          ))}
         </div>
       </section>
 

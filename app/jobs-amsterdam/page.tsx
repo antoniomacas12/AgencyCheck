@@ -72,8 +72,14 @@ export default function JobsAmsterdamPage() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight mb-2">
           Jobs in Amsterdam, Netherlands
         </h1>
-        <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
-          {CITY_INFO.description}
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          Amsterdam is the most active job market in the Netherlands for international EU workers, with the highest concentration of employment agencies operating in the country. The main hiring zones are not in the city centre itself — they cluster around <strong className="text-gray-800">Schiphol Airport</strong>, the <strong className="text-gray-800">Westpoort industrial harbour</strong>, and the logistics belts stretching into Zaandam and Hoofddorp. Distribution centres, cold-chain logistics, baggage and cargo handling, food production plants, and general warehouse operations are the dominant employers.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          What makes Amsterdam different from Rotterdam or Eindhoven is the sheer scale and variety of agencies competing for workers here — which means more options and, at the right sites, pay that goes above WML. Some Schiphol-area logistics operations pay €15.50–€17.00/hr for experienced workers on regulated shift patterns.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
+          The main trade-off: Amsterdam is the most expensive city in the Netherlands for housing. If your agency doesn&apos;t provide accommodation, expect to pay €650–€900/month for a shared room anywhere near the work zones. Most international workers living here rely on agency-arranged housing in Zaandam or Hoofddorp rather than renting privately in the city.
         </p>
       </div>
 
@@ -111,6 +117,118 @@ export default function JobsAmsterdamPage() {
           </div>
         </section>
       )}
+
+      {/* ── Salary breakdown ───────────────────────────────────────────────── */}
+      <section className="mb-8" id="salary">
+        <h2 className="text-base font-bold text-gray-900 mb-3">What Do Workers Earn in Amsterdam?</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          Most agency jobs in the Amsterdam area pay WML or slightly above. In 2026 that is <strong className="text-gray-800">€14.71/hr</strong> as the legal floor, but Schiphol-area logistics and cold-chain work often starts at €15.50–€16.50/hr. After Dutch income tax, housing deduction (if provided), transport, and insurance, most workers take home <strong className="text-gray-800">€340–€400/week net</strong> — or roughly <strong className="text-gray-800">€1,470–€1,730/month</strong>.
+        </p>
+        <div className="rounded-xl border border-gray-200 overflow-hidden mb-4">
+          <div className="bg-gray-900 px-4 py-2.5">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-300">Estimated weekly payslip — warehouse role 40h/week</p>
+          </div>
+          <div className="divide-y divide-gray-100 text-sm">
+            {([
+              ["Gross pay (€15.50/hr × 40h)", "+€620", "text-emerald-700"],
+              ["Income tax (loonheffing ~11%)", "−€68", "text-red-600"],
+              ["Agency housing (SNF certified)", "−€100", "text-red-600"],
+              ["Health insurance", "−€35", "text-red-600"],
+              ["Transport/bus", "−€25", "text-red-600"],
+              ["Admin fees", "−€20", "text-red-600"],
+            ] as [string, string, string][]).map(([label, value, color]) => (
+              <div key={label} className="flex justify-between px-4 py-2.5">
+                <span className="text-gray-600">{label}</span>
+                <span className={`font-bold tabular-nums ${color}`}>{value}</span>
+              </div>
+            ))}
+            <div className="flex justify-between px-4 py-3 bg-gray-50">
+              <span className="font-black text-gray-900 text-sm">💶 You keep</span>
+              <span className="font-black text-emerald-700 text-base tabular-nums">~€372</span>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+          ⚠️ Night and weekend premiums of +20–35% can significantly increase take-home. Ask specifically which shifts are included and whether premiums are shown on the loonstrook.
+        </p>
+      </section>
+
+      {/* ── Housing in Amsterdam ────────────────────────────────────────────── */}
+      <section className="mb-8" id="housing">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — What to Expect</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Agency housing near Amsterdam is typically located in <strong className="text-gray-800">Zaandam, Hoofddorp, or Aalsmeer</strong> — all within 15–30 minutes of the main Schiphol and Westpoort work sites. Most agencies provide shared housing with 2–4 people per room, deducting <strong className="text-gray-800">€88–€113/week</strong> from your salary. SNF or AKF certification means the property meets minimum Dutch quality standards.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Finding private housing in Amsterdam while working agency hours is genuinely difficult. The rental market is competitive, prices are the highest in the country, and many landlords are reluctant to rent to temporary workers. If you plan to arrange your own accommodation, budget at least €650/month for a shared room — and start looking before you arrive.
+        </p>
+        <div className="rounded-xl bg-blue-50 border border-blue-100 px-4 py-3 text-xs text-blue-800">
+          💡 Always ask whether agency housing is SNF or AKF certified and exactly how many people share a room. Get the deduction amount in writing before signing your contract.
+        </div>
+      </section>
+
+      {/* ── Pros and Cons ──────────────────────────────────────────────────── */}
+      <section className="mb-8" id="pros-cons">
+        <h2 className="text-base font-bold text-gray-900 mb-4">Working in Amsterdam — Pros and Cons</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {([
+            {
+              title: "✅ Why workers choose Amsterdam",
+              color: "border-green-200 bg-green-50", tc: "text-green-800", sign: "+", sc: "text-green-600",
+              items: [
+                { t: "Largest agency concentration in NL", b: "More agencies = more options, more bargaining power, faster placement." },
+                { t: "Premium pay at Schiphol-area sites", b: "Aviation logistics and cold-chain pay €15.50–€17/hr, above WML average." },
+                { t: "Excellent transport connections", b: "Train, bus, and tram links to most work zones in Noord-Holland." },
+                { t: "Well-developed international community", b: "Polish, Romanian, Bulgarian, and English speakers are everywhere — easier to settle in." },
+              ],
+            },
+            {
+              title: "⚠️ What makes Amsterdam harder",
+              color: "border-red-200 bg-red-50", tc: "text-red-800", sign: "−", sc: "text-red-500",
+              items: [
+                { t: "Most expensive housing in the Netherlands", b: "Private rooms cost €650–€900/month. Budget carefully if agency housing is not included." },
+                { t: "Work zones are far from city centre", b: "Schiphol and Westpoort are 20–40 min by public transport. Plan commute times carefully." },
+                { t: "High competition for good positions", b: "The best-paying roles fill fast. Be flexible on shift times and job types." },
+                { t: "Agency quality varies widely", b: "More agencies also means more scammers. Always verify ABU/NBBU certification." },
+              ],
+            },
+          ] as const).map((card) => (
+            <div key={card.title} className={`rounded-xl border p-4 ${card.color}`}>
+              <p className={`text-sm font-bold mb-3 ${card.tc}`}>{card.title}</p>
+              <ul className="space-y-2.5">
+                {card.items.map((item) => (
+                  <li key={item.t} className="flex gap-2">
+                    <span className={`shrink-0 font-bold text-sm mt-0.5 ${card.sc}`}>{card.sign}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800">{item.t}</p>
+                      <p className="text-xs text-gray-600 leading-snug mt-0.5">{item.b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Who is this good for ────────────────────────────────────────────── */}
+      <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Come to Amsterdam for Work?</h2>
+        <div className="space-y-2.5 text-sm text-gray-700">
+          {[
+            { icon: "✅", text: "Workers targeting Schiphol logistics, cold-chain, or aviation-adjacent roles — these pay the highest hourly rates in the region." },
+            { icon: "✅", text: "Workers who already have agency housing arranged in Zaandam or Hoofddorp — this solves the cost problem immediately." },
+            { icon: "✅", text: "Workers who speak Polish or Romanian and have connections to Amsterdam-area agencies — placement is faster through networks." },
+            { icon: "✅", text: "Workers who want a major city lifestyle and don't need private housing — social life, public transport, and weekend options are excellent." },
+            { icon: "⚠️", text: "Workers who need to find their own private housing should think carefully. The rental market is competitive and expensive compared to Rotterdam or Eindhoven." },
+          ].map((item) => (
+            <div key={item.text} className="flex gap-2.5">
+              <span className="shrink-0 text-sm">{item.icon}</span>
+              <p className="leading-relaxed text-xs text-gray-600">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ── Warning ────────────────────────────────────────────────────────── */}
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-7 text-xs text-amber-700">
@@ -186,22 +304,19 @@ export default function JobsAmsterdamPage() {
         </section>
       )}
 
-      {/* ── Other cities ───────────────────────────────────────────────────── */}
-      <section className="mb-6">
-        <h2 className="text-sm font-bold text-gray-700 mb-2">Jobs in other cities</h2>
-        <div className="flex flex-wrap gap-2">
+      {/* ── Related links ──────────────────────────────────────────────────── */}
+      <section className="mb-6 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Related reads</p>
+        <div className="grid sm:grid-cols-2 gap-3">
           {[
-            { href: "/jobs-rotterdam",  label: "Rotterdam ⚓" },
-            { href: "/jobs-eindhoven",  label: "Eindhoven 💡" },
-            { href: "/jobs-in-netherlands", label: "All NL cities 🇳🇱" },
+            { href: "/jobs-rotterdam",               label: "Agency jobs in Rotterdam →" },
+            { href: "/jobs-eindhoven",               label: "Agency jobs in Eindhoven →" },
+            { href: "/jobs-in-netherlands",          label: "All agency jobs Netherlands →" },
+            { href: "/agencies-with-housing",        label: "Agencies with housing in Amsterdam →" },
+            { href: "/warehouse-jobs-with-accommodation", label: "Warehouse jobs with housing →" },
+            { href: "/tools/real-income-calculator", label: "Calculate your real take-home →" },
           ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-brand-300 hover:text-brand-700 transition-colors"
-            >
-              {link.label}
-            </Link>
+            <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
           ))}
         </div>
       </section>

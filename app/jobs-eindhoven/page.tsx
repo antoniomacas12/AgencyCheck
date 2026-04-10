@@ -68,8 +68,14 @@ export default function JobsEindhovenPage() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight mb-2">
           Jobs in Eindhoven, Netherlands
         </h1>
-        <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
-          {CITY_INFO.description}
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          Eindhoven is a different kind of Dutch job market. Yes, it&apos;s known as the Netherlands&apos; technology capital — home to <strong className="text-gray-800">ASML, Philips, NXP, and DAF Trucks</strong> — but for international agency workers, the opportunity lies in the extensive manufacturing and production supply chain that feeds those major employers. Assembly work, production line operators, machine operators, and quality control are among the most common agency placements in the wider Eindhoven-Tilburg-Helmond corridor.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          The region consistently pays <strong className="text-gray-800">above WML for production work</strong> — €15.50–€17.00/hr is realistic for experienced operators. The manufacturing nature of the work means more structured shifts, more indoor work, and often a clearer path from phase A to phase B employment than pure logistics roles.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
+          Eindhoven is notably more affordable than Amsterdam or Utrecht. Private room rentals run €400–€650/month in Noord-Brabant, and agency housing in nearby Helmond, Waalre, or Son en Breugel is among the more reasonably priced in the country. Workers who prefer a quieter, smaller city with genuine job security in production tend to find Eindhoven underrated.
         </p>
       </div>
 
@@ -105,6 +111,118 @@ export default function JobsEindhovenPage() {
           </div>
         </section>
       )}
+
+      {/* ── Salary breakdown ───────────────────────────────────────────────── */}
+      <section className="mb-8" id="salary">
+        <h2 className="text-base font-bold text-gray-900 mb-3">What Do Workers Earn in Eindhoven?</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          Production and assembly work in the Eindhoven region consistently pays above WML. Experienced machine operators and production line workers typically earn <strong className="text-gray-800">€15.50–€17.00/hr</strong>. Basic warehouse and general labour roles start at WML (<strong className="text-gray-800">€14.71/hr</strong>). After deductions, most production workers take home <strong className="text-gray-800">€355–€420/week net</strong>.
+        </p>
+        <div className="rounded-xl border border-gray-200 overflow-hidden mb-4">
+          <div className="bg-gray-900 px-4 py-2.5">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-300">Estimated weekly payslip — production operator 40h/week</p>
+          </div>
+          <div className="divide-y divide-gray-100 text-sm">
+            {([
+              ["Gross pay (€16.50/hr × 40h)", "+€660", "text-emerald-700"],
+              ["Income tax (loonheffing ~12%)", "−€79", "text-red-600"],
+              ["Agency housing (SNF certified)", "−€92", "text-red-600"],
+              ["Health insurance", "−€35", "text-red-600"],
+              ["Transport/bus to site", "−€18", "text-red-600"],
+              ["Admin fees", "−€20", "text-red-600"],
+            ] as [string, string, string][]).map(([label, value, color]) => (
+              <div key={label} className="flex justify-between px-4 py-2.5">
+                <span className="text-gray-600">{label}</span>
+                <span className={`font-bold tabular-nums ${color}`}>{value}</span>
+              </div>
+            ))}
+            <div className="flex justify-between px-4 py-3 bg-gray-50">
+              <span className="font-black text-gray-900 text-sm">💶 You keep</span>
+              <span className="font-black text-emerald-700 text-base tabular-nums">~€416</span>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 bg-purple-50 border border-purple-100 rounded-xl px-4 py-3">
+          💡 Production roles in the Eindhoven-Helmond corridor often offer performance bonuses and faster phase B transition. Ask about the specific client site and whether bonuses are included.
+        </p>
+      </section>
+
+      {/* ── Housing in Eindhoven ────────────────────────────────────────────── */}
+      <section className="mb-8" id="housing">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — Among the Most Affordable in NL</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Noord-Brabant housing costs are consistently lower than Amsterdam or the Randstad. Agency housing near Eindhoven is typically arranged in <strong className="text-gray-800">Helmond, Son en Breugel, Waalre, or Veldhoven</strong> — all within 15–25 minutes of the main production sites. Deductions range from <strong className="text-gray-800">€85–€105/week</strong>.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Workers finding private accommodation typically pay €400–€650/month for a shared room. The rental market is competitive but not as tight as Amsterdam — there are more options and landlords are generally more open to temporary workers.
+        </p>
+        <div className="rounded-xl bg-green-50 border border-green-100 px-4 py-3 text-xs text-green-800">
+          ✅ Eindhoven advantage: Lower housing costs mean your net monthly spending power is higher here than in most Dutch cities, even if the gross hourly rate is similar.
+        </div>
+      </section>
+
+      {/* ── Pros and Cons ──────────────────────────────────────────────────── */}
+      <section className="mb-8" id="pros-cons">
+        <h2 className="text-base font-bold text-gray-900 mb-4">Working in Eindhoven — Pros and Cons</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {([
+            {
+              title: "✅ Why workers choose Eindhoven",
+              color: "border-green-200 bg-green-50", tc: "text-green-800", sign: "+", sc: "text-green-600",
+              items: [
+                { t: "Above-average production wages", b: "Manufacturing roles pay €15.50–€17/hr — noticeably above WML and above most logistics work elsewhere." },
+                { t: "Cheapest major city for housing", b: "Private rooms from €400/month. Your monthly surplus is higher than Amsterdam even at the same gross pay." },
+                { t: "Structured indoor production work", b: "Less physical strain than port logistics. More predictable shifts in clean manufacturing facilities." },
+                { t: "Strong phase B transition rates", b: "Production clients often convert phase A workers to long-term contracts faster than logistics clients." },
+              ],
+            },
+            {
+              title: "⚠️ What to know before going",
+              color: "border-red-200 bg-red-50", tc: "text-red-800", sign: "−", sc: "text-red-500",
+              items: [
+                { t: "Smaller city — fewer agency options", b: "Fewer agencies operate here than in Amsterdam or Rotterdam, so competition for good roles is concentrated." },
+                { t: "Production pace can be demanding", b: "Factory work is physically repetitive with strict quality targets. Some workers prefer logistics variety." },
+                { t: "Less nightlife and international feel", b: "Eindhoven is smaller and quieter. Workers looking for a vibrant social scene may find it limiting." },
+                { t: "Dutch spoken at most production sites", b: "Unlike warehouse-only environments, production floors often communicate in Dutch more than other languages." },
+              ],
+            },
+          ] as const).map((card) => (
+            <div key={card.title} className={`rounded-xl border p-4 ${card.color}`}>
+              <p className={`text-sm font-bold mb-3 ${card.tc}`}>{card.title}</p>
+              <ul className="space-y-2.5">
+                {card.items.map((item) => (
+                  <li key={item.t} className="flex gap-2">
+                    <span className={`shrink-0 font-bold text-sm mt-0.5 ${card.sc}`}>{card.sign}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800">{item.t}</p>
+                      <p className="text-xs text-gray-600 leading-snug mt-0.5">{item.b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Who is this good for ────────────────────────────────────────────── */}
+      <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Come to Eindhoven for Work?</h2>
+        <div className="space-y-2.5">
+          {[
+            { icon: "✅", text: "Workers with experience in manufacturing, assembly, or machine operation — Eindhoven's production clients specifically value this background." },
+            { icon: "✅", text: "Workers who want to stretch their money further. Lower housing costs here mean more left at the end of the month than most Dutch cities." },
+            { icon: "✅", text: "Workers looking for long-term stability. Production contracts convert to phase B more reliably than short-term logistics placements." },
+            { icon: "✅", text: "Workers who prefer indoor structured work over outdoor or port logistics environments." },
+            { icon: "⚠️", text: "Workers who want a large international city experience should consider Amsterdam or Rotterdam instead — Eindhoven is a smaller, more work-focused city." },
+          ].map((item) => (
+            <div key={item.text} className="flex gap-2.5">
+              <span className="shrink-0 text-sm">{item.icon}</span>
+              <p className="leading-relaxed text-xs text-gray-600">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-7 text-xs text-amber-700">
         <strong>⚠️ Protect yourself:</strong> Always get a written contract. Confirm salary and housing costs before starting.
@@ -174,21 +292,18 @@ export default function JobsEindhovenPage() {
         </section>
       )}
 
-      <section className="mb-6">
-        <h2 className="text-sm font-bold text-gray-700 mb-2">Jobs in other cities</h2>
-        <div className="flex flex-wrap gap-2">
+      <section className="mb-6 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Related reads</p>
+        <div className="grid sm:grid-cols-2 gap-3">
           {[
-            { href: "/jobs-amsterdam",      label: "Amsterdam 🌆" },
-            { href: "/jobs-rotterdam",      label: "Rotterdam ⚓" },
-            { href: "/jobs-in-netherlands", label: "All NL cities 🇳🇱" },
+            { href: "/jobs-amsterdam",               label: "Agency jobs in Amsterdam →" },
+            { href: "/jobs-rotterdam",               label: "Agency jobs in Rotterdam →" },
+            { href: "/jobs-in-netherlands",          label: "All agency jobs Netherlands →" },
+            { href: "/production-jobs-with-accommodation", label: "Production jobs with housing →" },
+            { href: "/best-agencies-netherlands-for-foreigners", label: "Best agencies for foreigners →" },
+            { href: "/tools/real-income-calculator", label: "Calculate your real take-home →" },
           ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-brand-300 hover:text-brand-700 transition-colors"
-            >
-              {link.label}
-            </Link>
+            <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
           ))}
         </div>
       </section>

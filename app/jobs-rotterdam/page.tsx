@@ -68,8 +68,14 @@ export default function JobsRotterdamPage() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight mb-2">
           Jobs in Rotterdam, Netherlands
         </h1>
-        <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
-          {CITY_INFO.description}
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          Rotterdam is home to Europe&apos;s largest port — and that single fact shapes the entire job market here. The <strong className="text-gray-800">Maasvlakte, Botlek, and Waalhaven</strong> industrial zones generate continuous demand for warehouse workers, forklift and reach-truck drivers, container loaders, and distribution centre staff. Unlike Amsterdam where jobs cluster around an airport, Rotterdam&apos;s work is more physically intensive and concentrated in serious logistics infrastructure — cold storage, bulk cargo handling, food processing plants, and large-scale e-commerce fulfilment for the port&apos;s hinterland.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          For international workers, Rotterdam has a significant advantage over Amsterdam: <strong className="text-gray-800">housing is genuinely more affordable</strong>. Private rooms in South Holland run €450–€700/month, and agency accommodation in surrounding areas like Ridderkerk, Barendrecht, or Vlaardingen is generally cheaper and less overcrowded than near Schiphol.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
+          Workers with forklift or reach-truck licences (VCA and BHV certificates are a plus) are in particularly high demand. Rotterdam&apos;s port operations run 24/7 — night and weekend shift premiums of 25–35% are standard and properly paid at certified agencies.
         </p>
       </div>
 
@@ -105,6 +111,118 @@ export default function JobsRotterdamPage() {
           </div>
         </section>
       )}
+
+      {/* ── Salary breakdown ───────────────────────────────────────────────── */}
+      <section className="mb-8" id="salary">
+        <h2 className="text-base font-bold text-gray-900 mb-3">What Do Workers Earn in Rotterdam?</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          Rotterdam&apos;s port operations push wages slightly above Amsterdam&apos;s average for warehouse and logistics work. Basic warehouse roles start at WML (<strong className="text-gray-800">€14.71/hr</strong>), while forklift drivers, reach-truck operators, and specialised port logistics roles typically earn <strong className="text-gray-800">€15.50–€18.00/hr</strong>. Night and weekend premiums are consistently applied at ABU-certified agencies.
+        </p>
+        <div className="rounded-xl border border-gray-200 overflow-hidden mb-4">
+          <div className="bg-gray-900 px-4 py-2.5">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-300">Estimated weekly payslip — forklift driver 40h/week</p>
+          </div>
+          <div className="divide-y divide-gray-100 text-sm">
+            {([
+              ["Gross pay (€16.00/hr × 40h)", "+€640", "text-emerald-700"],
+              ["Income tax (loonheffing ~12%)", "−€77", "text-red-600"],
+              ["Agency housing (SNF certified)", "−€95", "text-red-600"],
+              ["Health insurance", "−€35", "text-red-600"],
+              ["Transport/bus to Botlek", "−€20", "text-red-600"],
+              ["Admin fees", "−€20", "text-red-600"],
+            ] as [string, string, string][]).map(([label, value, color]) => (
+              <div key={label} className="flex justify-between px-4 py-2.5">
+                <span className="text-gray-600">{label}</span>
+                <span className={`font-bold tabular-nums ${color}`}>{value}</span>
+              </div>
+            ))}
+            <div className="flex justify-between px-4 py-3 bg-gray-50">
+              <span className="font-black text-gray-900 text-sm">💶 You keep</span>
+              <span className="font-black text-emerald-700 text-base tabular-nums">~€393</span>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
+          💡 Workers on 24/7 port shift rotations with consistent night premiums can take home €430–€480/week. Ask specifically about shift patterns and whether Sunday premiums are included in the contract.
+        </p>
+      </section>
+
+      {/* ── Housing in Rotterdam ────────────────────────────────────────────── */}
+      <section className="mb-8" id="housing">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — Cheaper Than Amsterdam, Still Variable</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Agency housing near Rotterdam is generally arranged in <strong className="text-gray-800">Ridderkerk, Barendrecht, Vlaardingen, or Spijkenisse</strong> — all within 20–30 minutes of the main port work zones. Deductions are typically <strong className="text-gray-800">€88–€110/week</strong>. Standards vary: some properties are SNF-certified and well-maintained; others are older shared houses. Always ask about the certification and occupancy before accepting.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Private rentals near Rotterdam are meaningfully cheaper than Amsterdam — expect €450–€700/month for a shared room in a working-class neighbourhood close to the port. Workers who find their own housing here often keep an extra €100–€200/month compared to colleagues paying agency housing rates.
+        </p>
+        <div className="rounded-xl bg-green-50 border border-green-100 px-4 py-3 text-xs text-green-800">
+          ✅ Rotterdam housing tip: Areas like Pernis, Hook of Holland, and Schiedam are close to major logistics sites and have lower rents than the city centre. Worth exploring if you&apos;re looking for private accommodation.
+        </div>
+      </section>
+
+      {/* ── Pros and Cons ──────────────────────────────────────────────────── */}
+      <section className="mb-8" id="pros-cons">
+        <h2 className="text-base font-bold text-gray-900 mb-4">Working in Rotterdam — Pros and Cons</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {([
+            {
+              title: "✅ Why workers choose Rotterdam",
+              color: "border-green-200 bg-green-50", tc: "text-green-800", sign: "+", sc: "text-green-600",
+              items: [
+                { t: "Premium pay for licensed roles", b: "Forklift, reach-truck, and VCA-certified workers earn €15.50–€18/hr — above most cities." },
+                { t: "More affordable housing than Amsterdam", b: "Private rooms €450–€700/month vs €650–€900 in Amsterdam. Your money goes further." },
+                { t: "Steady 24/7 port operations", b: "Work is consistent year-round — port logistics don't slow down seasonally." },
+                { t: "Large Polish/Romanian worker community", b: "Strong networks, multilingual agency staff, and peer support for new arrivals." },
+              ],
+            },
+            {
+              title: "⚠️ What to know before going",
+              color: "border-red-200 bg-red-50", tc: "text-red-800", sign: "−", sc: "text-red-500",
+              items: [
+                { t: "Port zones are far from city centre", b: "Maasvlakte is 30–40 min by car or agency bus. You need reliable transport." },
+                { t: "Physically demanding work", b: "Port logistics and heavy warehouse roles are tiring. Night shifts are common and long." },
+                { t: "Language gap at some employers", b: "Dutch is spoken on many port sites. Agencies with multilingual staff help, but it&apos;s something to be aware of." },
+                { t: "Housing varies sharply by operator", b: "Rotterdam has both excellent and poor-quality agency housing. Verify before accepting." },
+              ],
+            },
+          ] as const).map((card) => (
+            <div key={card.title} className={`rounded-xl border p-4 ${card.color}`}>
+              <p className={`text-sm font-bold mb-3 ${card.tc}`}>{card.title}</p>
+              <ul className="space-y-2.5">
+                {card.items.map((item) => (
+                  <li key={item.t} className="flex gap-2">
+                    <span className={`shrink-0 font-bold text-sm mt-0.5 ${card.sc}`}>{card.sign}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800">{item.t}</p>
+                      <p className="text-xs text-gray-600 leading-snug mt-0.5">{item.b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Who is this good for ────────────────────────────────────────────── */}
+      <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Come to Rotterdam for Work?</h2>
+        <div className="space-y-2.5">
+          {[
+            { icon: "✅", text: "Workers with a forklift or reach-truck licence — Rotterdam has the highest demand and pays the best rates for licensed operators in the country." },
+            { icon: "✅", text: "Workers who want consistent year-round employment. Port logistics doesn't have seasonal dips like agriculture or event work." },
+            { icon: "✅", text: "Workers who want to keep more of their money — housing is meaningfully cheaper here than in Amsterdam or Utrecht." },
+            { icon: "✅", text: "Workers comfortable with night shifts and 12-hour rotations — the pay uplift makes it worthwhile, but you need to be physically ready for it." },
+            { icon: "⚠️", text: "Workers who need a city-centre lifestyle: Rotterdam's work zones are in the industrial west and south, a long way from the city's social life." },
+          ].map((item) => (
+            <div key={item.text} className="flex gap-2.5">
+              <span className="shrink-0 text-sm">{item.icon}</span>
+              <p className="leading-relaxed text-xs text-gray-600">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-7 text-xs text-amber-700">
         <strong>⚠️ Protect yourself:</strong> Always get a written contract. Confirm salary and housing costs before starting.
@@ -174,21 +292,18 @@ export default function JobsRotterdamPage() {
         </section>
       )}
 
-      <section className="mb-6">
-        <h2 className="text-sm font-bold text-gray-700 mb-2">Jobs in other cities</h2>
-        <div className="flex flex-wrap gap-2">
+      <section className="mb-6 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Related reads</p>
+        <div className="grid sm:grid-cols-2 gap-3">
           {[
-            { href: "/jobs-amsterdam",      label: "Amsterdam 🌆" },
-            { href: "/jobs-eindhoven",      label: "Eindhoven 💡" },
-            { href: "/jobs-in-netherlands", label: "All NL cities 🇳🇱" },
+            { href: "/jobs-amsterdam",               label: "Agency jobs in Amsterdam →" },
+            { href: "/jobs-eindhoven",               label: "Agency jobs in Eindhoven →" },
+            { href: "/jobs-in-netherlands",          label: "All agency jobs Netherlands →" },
+            { href: "/reach-truck-jobs",             label: "Reach-truck driver jobs NL →" },
+            { href: "/warehouse-jobs-with-accommodation", label: "Warehouse jobs with housing →" },
+            { href: "/tools/real-income-calculator", label: "Calculate your real take-home →" },
           ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-brand-300 hover:text-brand-700 transition-colors"
-            >
-              {link.label}
-            </Link>
+            <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
           ))}
         </div>
       </section>

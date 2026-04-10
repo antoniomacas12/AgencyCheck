@@ -71,12 +71,35 @@ export default function WarehouseJobsAccommodationPage() {
           Warehouse Jobs in the Netherlands with Accommodation
         </h1>
 
-        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
-          Many warehouse agencies provide accommodation alongside the job — common in logistics
-          cities like Tilburg, Venlo, and Breda where large distribution centres hire foreign
-          workers year-round. No Dutch language or prior experience needed for most roles. Housing
-          is deducted from your salary, typically €80–€110/week.
-        </p>
+        <div className="text-gray-600 text-sm leading-relaxed max-w-2xl space-y-3">
+          <p>
+            For workers arriving from abroad — or relocating within the Netherlands — warehouse
+            jobs with accommodation bundled in are the most practical starting point. Agencies
+            operating in logistics hubs like Tilburg, Venlo, Roosendaal, Breda, and Waalwijk
+            routinely place hundreds of workers into shared houses close to distribution centres,
+            handling everything from airport pickup to work permit administration in one package.
+            No Dutch language skills or prior warehouse experience are required for most order
+            picker and general warehouse positions.
+          </p>
+          <p>
+            The accommodation arrangement works by deducting a fixed weekly amount from your
+            gross pay — typically €88–€110/week. Under Dutch law this deduction is capped at
+            €113.50/week, and your net pay after the deduction must still meet the legal minimum
+            wage. Housing is usually in shared rooms (2–4 people per room) in SNF-certified
+            accommodation — SNF is a Dutch quality mark that sets minimum standards for space,
+            hygiene, kitchen access, and privacy. Agency housing with SNF certification is
+            meaningfully better than non-certified options; it is worth asking specifically before
+            signing.
+          </p>
+          <p>
+            Transport to and from the warehouse is often included, particularly for early-morning
+            shifts that start before public transport begins. This makes it genuinely possible to
+            land a full-time warehouse job, a place to sleep, and daily transport without needing
+            a Dutch bank account, a car, or local contacts. The trade-off is that your take-home
+            pay is lower — roughly €{`${netAfterHousing}`}/month after housing on an average
+            wage — and your accommodation depends on your employment contract continuing.
+          </p>
+        </div>
 
         <div className="flex flex-wrap gap-3 mt-4 text-xs text-gray-600">
           <span className="text-brand-700 font-semibold">💶 Avg €{job.avg}/hr gross</span>
@@ -212,6 +235,95 @@ export default function WarehouseJobsAccommodationPage() {
         </section>
       )}
 
+      {/* How agency housing works */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-3">🏠 How agency accommodation works in practice</h2>
+        <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+          Agencies that provide accommodation typically offer a complete relocation package. Here is what the
+          first week usually looks like and what to expect ongoing:
+        </p>
+        <div className="grid sm:grid-cols-3 gap-3 text-xs mb-4">
+          <div className="card p-3">
+            <p className="font-semibold text-gray-800 mb-1">Week 1: Arrival</p>
+            <p className="text-gray-500">Many agencies offer airport or train station pickup. You will sign your employment contract, receive your work schedule, and be shown to shared accommodation — often a house with 4–12 workers from various countries.</p>
+          </div>
+          <div className="card p-3">
+            <p className="font-semibold text-gray-800 mb-1">Ongoing: Daily routine</p>
+            <p className="text-gray-500">A bus or van collects workers from the house before each shift and returns them after. You pay for electricity and Wi-Fi via the housing deduction. Cleaning rotas for shared spaces are agency-managed.</p>
+          </div>
+          <div className="card p-3">
+            <p className="font-semibold text-gray-800 mb-1">If your contract ends</p>
+            <p className="text-gray-500">Accommodation is typically tied to the work contract. You usually have 1–2 weeks notice before leaving the house. Plan ahead — losing a job means losing your address unless you have private backup accommodation.</p>
+          </div>
+        </div>
+        <div className="card p-4">
+          <h3 className="text-xs font-bold text-gray-800 mb-3">Typical weekly payslip at €{job.avg}/hr, 40 hours</h3>
+          <table className="w-full text-xs">
+            <tbody className="divide-y divide-gray-50">
+              <tr className="bg-gray-50/50">
+                <td className="py-1.5 text-gray-600">Gross weekly pay (40h × €{job.avg})</td>
+                <td className="py-1.5 text-right font-medium text-gray-800">≈ €{Math.round(job.avg * 40)}</td>
+              </tr>
+              <tr>
+                <td className="py-1.5 text-gray-600">Income tax + ZVW levy (~37%)</td>
+                <td className="py-1.5 text-right text-red-600">− €{Math.round(job.avg * 40 * 0.37)}</td>
+              </tr>
+              <tr className="bg-gray-50/50">
+                <td className="py-1.5 text-gray-600">Net pay before housing</td>
+                <td className="py-1.5 text-right font-medium text-gray-800">≈ €{Math.round(job.avg * 40 * 0.63)}</td>
+              </tr>
+              <tr>
+                <td className="py-1.5 text-gray-600">Housing deduction (typical)</td>
+                <td className="py-1.5 text-right text-amber-700">− €95</td>
+              </tr>
+              <tr className="bg-green-50">
+                <td className="py-1.5 font-bold text-gray-800">Take-home after housing</td>
+                <td className="py-1.5 text-right font-bold text-green-700">≈ €{Math.round(job.avg * 40 * 0.63 - 95)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Pros and cons */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-3">⚖️ Pros and cons of warehouse jobs with accommodation</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="card p-4">
+            <p className="text-xs font-bold text-green-700 mb-2 uppercase tracking-wide">✅ Pros</p>
+            <ul className="text-xs text-gray-600 space-y-1.5">
+              <li>→ Zero upfront costs — no deposit, furniture, or rental agency fee</li>
+              <li>→ Transport to warehouse included for most early shifts</li>
+              <li>→ Work and housing sorted in one phone call or application</li>
+              <li>→ Live close to the warehouse — very short commute, no car needed</li>
+            </ul>
+          </div>
+          <div className="card p-4">
+            <p className="text-xs font-bold text-red-700 mb-2 uppercase tracking-wide">❌ Cons</p>
+            <ul className="text-xs text-gray-600 space-y-1.5">
+              <li>→ Take-home pay is lower — €95+/week less than a worker in private renting</li>
+              <li>→ Shared rooms with strangers; limited privacy</li>
+              <li>→ Accommodation ends when the job ends — no separation between the two</li>
+              <li>→ Non-SNF housing can be overcrowded or poorly maintained — always verify</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Who is this good for */}
+      <section className="mb-8">
+        <div className="bg-brand-50 border border-brand-100 rounded-xl p-4">
+          <h2 className="font-bold text-brand-900 text-sm mb-2">👤 Who is this arrangement good for?</h2>
+          <ul className="text-xs text-brand-800 space-y-1.5 leading-relaxed">
+            <li>→ <strong>Workers arriving from outside the Netherlands</strong> — the bundled package eliminates the need for a Dutch address, bank account, or local guarantor before you start.</li>
+            <li>→ <strong>People starting out in the Netherlands</strong> — agency housing gives you time to save a deposit while you look for a private rental on better terms.</li>
+            <li>→ <strong>Workers targeting high-throughput DC locations</strong> — Tilburg, Venlo, and Roosendaal have the most agency housing options and the most consistent demand for warehouse staff.</li>
+            <li>→ <strong>Workers who want transport included</strong> — if you don't drive or can't afford a car, an included bus to the 06:00 shift is a genuine advantage.</li>
+            <li>→ <strong>Short-term or seasonal workers</strong> — the flexibility cuts both ways; if you only plan to stay 3–6 months, agency housing avoids signing a 12-month lease.</li>
+          </ul>
+        </div>
+      </section>
+
       {/* Housing warning */}
       <section className="mb-8">
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
@@ -230,25 +342,27 @@ export default function WarehouseJobsAccommodationPage() {
       {/* Internal links */}
       <section className="mb-6">
         <h3 className="text-sm font-bold text-gray-700 mb-3">🔗 Related pages</h3>
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs">
-          <Link href="/jobs/warehouse-worker" className="text-brand-600 hover:underline">
-            🏭 All warehouse jobs →
-          </Link>
-          <Link href="/jobs-with-accommodation" className="text-brand-600 hover:underline">
-            🏠 All jobs with accommodation →
-          </Link>
-          <Link href="/salary/warehouse-worker-netherlands" className="text-gray-500 hover:text-brand-600 hover:underline">
-            💶 Warehouse salary overview →
-          </Link>
-          <Link href="/agencies-with-housing" className="text-gray-500 hover:text-brand-600 hover:underline">
-            🏘️ All housing agencies →
-          </Link>
-          <Link href="/jobs/order-picker" className="text-gray-500 hover:text-brand-600 hover:underline">
-            📦 Order picker jobs →
-          </Link>
-          <Link href="/jobs/packing-operator" className="text-gray-500 hover:text-brand-600 hover:underline">
-            📫 Packing operator jobs →
-          </Link>
+        <div className="grid sm:grid-cols-2 gap-2">
+          {[
+            { href: "/order-picker-jobs", icon: "📦", label: "Order picker jobs", sub: "Most common warehouse role with housing" },
+            { href: "/reach-truck-jobs", icon: "🏗️", label: "Reach truck jobs", sub: "Higher pay; licence required" },
+            { href: "/agencies-with-housing", icon: "🏘️", label: "All agencies with housing", sub: "Full comparison of housing agencies" },
+            { href: "/salary/warehouse-worker-netherlands", icon: "💶", label: "Warehouse salary breakdown", sub: "Gross-to-net + housing deduction" },
+            { href: "/otto-workforce-jobs", icon: "🏢", label: "OTTO Workforce jobs", sub: "Large agency with housing packages" },
+            { href: "/jobs-tilburg", icon: "📍", label: "Jobs in Tilburg", sub: "Top city for warehouse + housing" },
+          ].map(({ href, icon, label, sub }) => (
+            <Link
+              key={href}
+              href={href}
+              className="card px-3 py-2.5 flex items-center gap-3 hover:border-brand-200 hover:bg-brand-50/30 transition-all"
+            >
+              <span className="text-lg shrink-0">{icon}</span>
+              <div>
+                <p className="text-xs font-semibold text-brand-700">{label} →</p>
+                <p className="text-[10px] text-gray-400">{sub}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 

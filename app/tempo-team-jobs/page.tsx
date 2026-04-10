@@ -65,19 +65,16 @@ export default function TempoTeamJobsPage() {
           Tempo-Team Jobs in the Netherlands
         </h1>
 
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          Tempo-Team is part of the Randstad Group and one of the top-five employment agencies in the Netherlands by number of placements. Unlike Randstad which covers a broad professional spectrum, Tempo-Team has a stronger focus on <strong className="text-gray-800">logistics, production, catering, and public sector</strong> work — making it particularly relevant for EU workers targeting hands-on, shift-based roles. Salary levels run slightly above WML at most logistics and production clients, with consistent reports of accurate and timely payslips.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          What workers note specifically about Tempo-Team is their presence in cities and regions where other major agencies are less active — particularly <strong className="text-gray-800">Almere, Lelystad, The Hague, and Haarlem</strong>. For workers who have already exhausted OTTO and Randstad options in those areas, Tempo-Team often has active openings that aren&apos;t duplicated elsewhere.
+        </p>
         <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
-          Tempo-Team is one of the largest employment agencies in the Netherlands
-          with vacancies across logistics, production, catering, administration, and more.
-          This page shows real, verified listings scraped directly from{" "}
-          <a
-            href="https://www.tempo-team.nl/vacatures"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-600 hover:underline"
-          >
-            tempo-team.nl
-          </a>
-          . Always confirm salary and contract terms before signing.
+          This page shows real, verified listings sourced directly from{" "}
+          <a href="https://www.tempo-team.nl/vacatures" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">tempo-team.nl</a>.
+          Always confirm salary, contract type, and housing terms before signing.
         </p>
 
         <div className="flex flex-wrap gap-3 mt-4 text-xs text-gray-600">
@@ -187,6 +184,118 @@ export default function TempoTeamJobsPage() {
         </div>
       </section>
 
+      {/* ── Salary breakdown ─────────────────────────────────────────── */}
+      <section className="mb-8" id="salary">
+        <h2 className="text-base font-bold text-gray-900 mb-3">What Do Workers Earn at Tempo-Team?</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          Tempo-Team pays at WML or slightly above for most logistics and production placements. In 2026, base is <strong className="text-gray-800">€14.71–€15.50/hr</strong> for most entry-level roles. Experienced workers in catering supervision, forklift operation, or specialised production often earn €16–€18/hr. After deductions, most workers take home <strong className="text-gray-800">€330–€400/week net</strong>.
+        </p>
+        <div className="rounded-xl border border-gray-200 overflow-hidden mb-4">
+          <div className="bg-gray-900 px-4 py-2.5">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-300">Weekly payslip estimate — logistics/production 40h/week</p>
+          </div>
+          <div className="divide-y divide-gray-100 text-sm">
+            {([
+              ["Gross pay (€15.00/hr × 40h)", "+€600", "text-emerald-700"],
+              ["Income tax (loonheffing ~11%)", "−€66", "text-red-600"],
+              ["Agency housing (if provided)", "−€95", "text-red-600"],
+              ["Health insurance", "−€35", "text-red-600"],
+              ["Transport", "−€22", "text-red-600"],
+              ["Admin fees", "−€20", "text-red-600"],
+            ] as [string, string, string][]).map(([label, value, color]) => (
+              <div key={label} className="flex justify-between px-4 py-2.5">
+                <span className="text-gray-600">{label}</span>
+                <span className={`font-bold tabular-nums ${color}`}>{value}</span>
+              </div>
+            ))}
+            <div className="flex justify-between px-4 py-3 bg-gray-50">
+              <span className="font-black text-gray-900 text-sm">💶 You keep</span>
+              <span className="font-black text-emerald-700 text-base tabular-nums">~€362</span>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 leading-relaxed">
+          Catering and government-sector placements through Tempo-Team sometimes come with different shift structures and benefit packages. Ask about the specific client before accepting.
+        </p>
+      </section>
+
+      {/* ── Housing ──────────────────────────────────────────────────── */}
+      <section className="mb-8" id="housing">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — Standard Industry Terms</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Tempo-Team provides housing for most international logistics and production placements. Deductions run <strong className="text-gray-800">€85–€113/week</strong>. Workers generally report housing standards as comparable to industry average — better than some smaller operators, roughly similar to Randstad. The most common locations are in smaller towns near the work sites rather than in city centres.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          For workers placed in catering, retail, or administration, housing is less commonly included — these roles often target workers who are already based in the Netherlands. Confirm accommodation status explicitly for any role that doesn&apos;t specify it in the listing.
+        </p>
+        <div className="rounded-xl bg-blue-50 border border-blue-100 px-4 py-3 text-xs text-blue-800">
+          💡 Tempo-Team is Randstad Group — housing and HR standards are generally consistent with what you&apos;d expect from a large, regulated Dutch agency. Complaints procedures exist and are used.
+        </div>
+      </section>
+
+      {/* ── Pros and Cons ────────────────────────────────────────────── */}
+      <section className="mb-8" id="pros-cons">
+        <h2 className="text-base font-bold text-gray-900 mb-4">Tempo-Team Netherlands — Honest Pros and Cons</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {([
+            {
+              title: "✅ What works well",
+              color: "border-green-200 bg-green-50", tc: "text-green-800", sign: "+", sc: "text-green-600",
+              items: [
+                { t: "Above-WML pay at many sites", b: "Logistics and production clients often pay €15–€15.50/hr — the extra €0.30–€0.80/hr adds up over months." },
+                { t: "Active in under-served cities", b: "Almere, Lelystad, The Hague — Tempo-Team is strong where OTTO and Randstad have fewer placements." },
+                { t: "Catering and public sector options", b: "Unique among logistics agencies — also places workers in catering and municipal services for variety." },
+                { t: "ABU certified, part of Randstad Group", b: "Strong compliance and well-documented contracts. Disputes are handled through established HR channels." },
+              ],
+            },
+            {
+              title: "⚠️ What to watch out for",
+              color: "border-red-200 bg-red-50", tc: "text-red-800", sign: "−", sc: "text-red-500",
+              items: [
+                { t: "Housing availability varies by role", b: "Catering and office roles often don't include housing. Don't assume it's included — confirm explicitly." },
+                { t: "Large-agency coordinator issues", b: "Like Randstad, coordinator responsiveness varies. High caseloads can mean slower responses." },
+                { t: "Fewer multilingual resources than OTTO", b: "Less Polish/Romanian/Bulgarian support than specialist international agencies. More Dutch expected." },
+                { t: "Fewer specialist logistics bonuses", b: "OTTO and Covebo sometimes negotiate better client-specific bonuses. Tempo-Team tends to offer standard terms." },
+              ],
+            },
+          ] as const).map((card) => (
+            <div key={card.title} className={`rounded-xl border p-4 ${card.color}`}>
+              <p className={`text-sm font-bold mb-3 ${card.tc}`}>{card.title}</p>
+              <ul className="space-y-2.5">
+                {card.items.map((item) => (
+                  <li key={item.t} className="flex gap-2">
+                    <span className={`shrink-0 font-bold text-sm mt-0.5 ${card.sc}`}>{card.sign}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800">{item.t}</p>
+                      <p className="text-xs text-gray-600 leading-snug mt-0.5">{item.b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Who is this good for ─────────────────────────────────────── */}
+      <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Apply to Tempo-Team Netherlands?</h2>
+        <div className="space-y-2.5">
+          {[
+            { icon: "✅", text: "Workers targeting Almere, Lelystad, or The Hague — Tempo-Team's coverage in these cities exceeds OTTO and Randstad." },
+            { icon: "✅", text: "Workers interested in catering or public sector work alongside logistics — Tempo-Team is one of the few major agencies that places workers across these sectors." },
+            { icon: "✅", text: "Workers already in the Netherlands who don't need international housing support — Tempo-Team's administrative roles often suit workers with basic Dutch." },
+            { icon: "✅", text: "Workers who want above-WML pay at standard logistics sites without needing a specialist forklift licence." },
+            { icon: "⚠️", text: "Workers who need a full relocation package (housing + transport + multilingual onboarding) will find OTTO Workforce more suited to that need." },
+          ].map((item) => (
+            <div key={item.text} className="flex gap-2.5">
+              <span className="shrink-0 text-sm">{item.icon}</span>
+              <p className="leading-relaxed text-xs text-gray-600">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── About Tempo-Team ─────────────────────────────────────────── */}
       <section className="mb-8">
         <div className="card p-5">
@@ -237,24 +346,19 @@ export default function TempoTeamJobsPage() {
       </section>
 
       {/* ── Related links ────────────────────────────────────────────── */}
-      <section className="mb-6">
-        <h3 className="text-sm font-bold text-gray-700 mb-3">🔗 Related pages</h3>
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs">
-          <Link href="/randstad-jobs" className="text-brand-600 hover:underline">
-            💼 Randstad Jobs →
-          </Link>
-          <Link href="/agencies-with-housing" className="text-brand-600 hover:underline">
-            🏠 Agencies with housing →
-          </Link>
-          <Link href="/jobs-with-accommodation" className="text-gray-500 hover:text-brand-600 hover:underline">
-            🏠 Jobs with accommodation →
-          </Link>
-          <Link href="/tools/real-income-calculator" className="text-gray-500 hover:text-brand-600 hover:underline">
-            🧮 Real income calculator →
-          </Link>
-          <Link href="/issues/late-payment" className="text-gray-500 hover:text-brand-600 hover:underline">
-            ⚠️ Know your rights →
-          </Link>
+      <section className="mb-6 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Related reads</p>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { href: "/tempo-team-review",            label: "Tempo-Team full worker review 2026 →" },
+            { href: "/otto-vs-tempo-team",           label: "OTTO vs Tempo-Team comparison →" },
+            { href: "/randstad-jobs",                label: "Randstad jobs (compare) →" },
+            { href: "/otto-workforce-jobs",          label: "OTTO Workforce jobs (compare) →" },
+            { href: "/tools/real-income-calculator", label: "Calculate your real take-home →" },
+            { href: "/tools/payslip-checker",        label: "Check your Tempo-Team payslip →" },
+          ].map((link) => (
+            <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
+          ))}
         </div>
       </section>
 

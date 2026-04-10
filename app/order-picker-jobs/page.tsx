@@ -85,6 +85,9 @@ export default function OrderPickerJobsPage() {
           Dutch language, or licence required. Day, evening, and night shifts available in most
           warehouses. Tilburg, Rotterdam, Venlo, and the Schiphol area have the most vacancies.
         </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mt-3 mb-1">
+          The biggest concentrations are in the <strong className="text-gray-800">Tilburg-Waalwijk logistics zone</strong> (largest in the Netherlands), <strong className="text-gray-800">Venlo</strong> (major cross-border hub near Germany), and the <strong className="text-gray-800">Rotterdam and Schiphol</strong> areas. E-commerce sites for major retailers are the dominant employers in these zones.
+        </p>
 
         <div className="flex flex-wrap gap-3 mt-4 text-xs text-gray-600">
           <span className="text-brand-700 font-semibold">💶 Avg €{job.avg}/hr gross</span>
@@ -264,6 +267,70 @@ export default function OrderPickerJobsPage() {
             <li>→ Ask whether the contract is temporary (phase A/B) and what happens after the first few weeks.</li>
             <li>→ Get the contract in a language you understand before signing.</li>
           </ul>
+        </div>
+      </section>
+
+      {/* ── A day in the life ────────────────────────────────────────────── */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-3">What Does an Order Picker Actually Do All Day?</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          A typical order picker shift is 8–12 hours. You&apos;ll scan a work order on a handheld device (sometimes a voice pick headset), walk 10–15km through warehouse aisles, collect the right items from shelving or pallet racking, and bring completed orders to a packing or dispatch station. Physical targets — typically 80–120 picks per hour depending on the warehouse — are tracked automatically.
+        </p>
+        <div className="rounded-xl bg-gray-50 border border-gray-200 p-4 mb-4">
+          <p className="text-xs font-bold text-gray-700 mb-3">📋 Typical shift breakdown</p>
+          <div className="space-y-2">
+            {[
+              { time: "06:00", desc: "Agency bus pickup from housing, arrive at warehouse 06:30" },
+              { time: "06:45", desc: "Briefing, scan in, collect equipment (scanner, trolley, safety vest)" },
+              { time: "07:00", desc: "Start picking — walking routes, scanning barcodes, filling trolleys" },
+              { time: "09:30", desc: "15-minute break — canteen with free coffee at most sites" },
+              { time: "09:45", desc: "Continue picking — second zone or same depending on supervisor" },
+              { time: "12:00", desc: "30-minute lunch break" },
+              { time: "12:30", desc: "Afternoon picking session — sometimes different product zone" },
+              { time: "15:00", desc: "Shift end, scan out, agency bus back to housing" },
+            ].map((row) => (
+              <div key={row.time} className="flex gap-3 text-xs">
+                <span className="text-brand-700 font-bold shrink-0 w-12">{row.time}</span>
+                <span className="text-gray-600">{row.desc}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <p className="text-gray-600 text-sm leading-relaxed">
+          Night shifts (typically 22:00–06:00) pay 20–30% more and have fewer supervisors. Many workers prefer them for the pace and the premium. Weekend shifts (Saturday/Sunday) carry similar premiums. Always confirm which shifts are included in your specific contract and whether premiums appear on the loonstrook.
+        </p>
+      </section>
+
+      {/* ── Housing for order pickers ─────────────────────────────────────── */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — The Practical Reality</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Most order picker roles at the major Tilburg and Venlo logistics hubs come with agency housing. Deductions run <strong className="text-gray-800">€88–€110/week</strong> and are standard across the industry. The housing is located near the warehouse rather than in city centres — which means cheaper rent but less access to city amenities.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          Workers who prefer to arrange their own housing can often negotiate this with the agency — particularly at e-commerce sites that have many local Dutch workers who commute. This is worth asking about because private housing in logistics zones (Waalwijk, Tilburg, Venlo) costs €400–€600/month, which can be less than the agency deduction after all fees.
+        </p>
+        <div className="rounded-xl bg-green-50 border border-green-100 px-4 py-3 text-xs text-green-800">
+          ✅ The SNF quality mark guarantees minimum housing standards. Ask whether your agency&apos;s housing is SNF or AKF certified before accepting any offer.
+        </div>
+      </section>
+
+      {/* ── Who is this good for ─────────────────────────────────────────── */}
+      <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Who Is Order Picker Work Good For?</h2>
+        <div className="space-y-2.5">
+          {[
+            { icon: "✅", text: "Workers arriving in the Netherlands for the first time with no Dutch language or professional qualifications — the lowest barrier to entry of any agency job type." },
+            { icon: "✅", text: "Workers who are physically fit and comfortable being on their feet for 8+ hours — the work is consistent and the rhythm becomes predictable quickly." },
+            { icon: "✅", text: "Workers who want to build toward a forklift or reach-truck role — order picker is the standard starting point for getting on-site experience before taking the licence exam." },
+            { icon: "✅", text: "Workers who can work night shifts — the night premium meaningfully increases take-home pay for the same hours." },
+            { icon: "⚠️", text: "Workers with back or knee problems should think carefully — high step counts and repetitive bending are genuinely demanding. Discuss with your doctor if unsure." },
+          ].map((item) => (
+            <div key={item.text} className="flex gap-2.5">
+              <span className="shrink-0 text-sm">{item.icon}</span>
+              <p className="leading-relaxed text-xs text-gray-600">{item.text}</p>
+            </div>
+          ))}
         </div>
       </section>
 

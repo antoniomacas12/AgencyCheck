@@ -81,11 +81,14 @@ export default function OttoWorkforceJobsPage() {
           Otto Workforce Jobs in the Netherlands
         </h1>
 
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          OTTO Workforce is one of the most active employment agencies in the Netherlands for international EU workers, specialising in warehouse, logistics, production, and forklift placements. What separates OTTO from many competitors is their <strong className="text-gray-800">complete relocation package</strong> — housing arranged near the work site, agency bus transport from that housing, and multilingual staff in Polish, Romanian, Bulgarian, and English. For a worker arriving from another country with no Dutch network, this removes most of the practical friction that makes starting a new job abroad stressful.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+          OTTO operates across a wide geographic footprint: logistics zones around <strong className="text-gray-800">Tilburg, Venlo, Breda, Roosendaal, and Rotterdam</strong> are their strongest markets, though they also have active placements in Eindhoven, Oss, and the broader Brabant and Limburg regions. Job types are dominated by order picker, warehouse worker, forklift operator, and reach-truck driver roles at major distribution centres and food production sites.
+        </p>
         <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
-          Otto Workforce specialises in placing <strong>international (EU) workers</strong> in Dutch
-          logistics, warehouse, and production roles. Most positions include accommodation
-          and transport — making Otto one of the top agencies for workers relocating from
-          Poland, Romania, Bulgaria, and other EU countries.
+          Workers who have used OTTO consistently note that pay arrives on time and matches the contract, which is the baseline expectation but not always the reality at smaller operators. The main area of variability is housing quality — the best OTTO houses are SNF-certified and comfortable; others are older and more crowded. Ask specifically about the housing location and certification before accepting any offer.
         </p>
       </div>
 
@@ -121,6 +124,118 @@ export default function OttoWorkforceJobsPage() {
                 <p className="font-semibold text-green-900">{item.title}</p>
                 <p className="text-green-700 text-xs mt-0.5">{item.desc}</p>
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Salary breakdown ──────────────────────────────────────────────── */}
+      <section className="mb-8" id="salary">
+        <h2 className="text-base font-bold text-gray-900 mb-3">What Do You Actually Earn at OTTO Workforce?</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          OTTO pays at WML or slightly above for most logistics and warehouse roles. In 2026, that means <strong className="text-gray-800">€14.71–€16.00/hr</strong> depending on job type and client site. For a standard 40-hour week, gross pay is €588–€640. After Dutch income tax, housing deduction, transport, health insurance, and admin fees, workers typically keep <strong className="text-gray-800">€340–€400/week net</strong>.
+        </p>
+        <div className="rounded-xl border border-gray-200 overflow-hidden mb-4">
+          <div className="bg-gray-900 px-4 py-2.5">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-300">Weekly payslip estimate — order picker / warehouse 40h/week</p>
+          </div>
+          <div className="divide-y divide-gray-100 text-sm">
+            {([
+              ["Gross pay (€15.50/hr × 40h)", "+€620", "text-emerald-700"],
+              ["Income tax (loonheffing ~11%)", "−€68", "text-red-600"],
+              ["Agency housing (SNF standard)", "−€95", "text-red-600"],
+              ["Health insurance", "−€35", "text-red-600"],
+              ["Agency transport bus", "−€22", "text-red-600"],
+              ["Admin fees", "−€18", "text-red-600"],
+            ] as [string, string, string][]).map(([label, value, color]) => (
+              <div key={label} className="flex justify-between px-4 py-2.5">
+                <span className="text-gray-600">{label}</span>
+                <span className={`font-bold tabular-nums ${color}`}>{value}</span>
+              </div>
+            ))}
+            <div className="flex justify-between px-4 py-3 bg-gray-50">
+              <span className="font-black text-gray-900 text-sm">💶 You keep</span>
+              <span className="font-black text-emerald-700 text-base tabular-nums">~€382</span>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 leading-relaxed">
+          Overtime, night, and weekend shifts are paid with premiums (20–35%). Phase B kicks in after 26 weeks — paid holidays and sick pay worth ~€700–€1,000/year.
+        </p>
+      </section>
+
+      {/* ── Housing at OTTO ───────────────────────────────────────────────── */}
+      <section className="mb-8" id="housing">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — What OTTO Workers Actually Experience</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          OTTO housing is provided near most placement locations and deducted at <strong className="text-gray-800">€88–€110/week</strong>. Properties are predominantly in smaller towns and industrial areas close to the work sites — <strong className="text-gray-800">Tilburg, Venlo, Oss, Roosendaal</strong> being among the most common. Most OTTO housing is SNF or AKF certified, which means minimum Dutch quality standards for communal facilities, bedroom size, and fire safety.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+          In practice, housing quality ranges from genuinely acceptable 2-person rooms in well-maintained houses, to older shared properties where 4–5 people share a room. Workers from Tilburg and Venlo placements tend to report better experiences than those from more remote sites. The key is to ask directly before accepting: <em>how many people per room, is it SNF-certified, how far from the work site?</em>
+        </p>
+        <div className="rounded-xl bg-amber-50 border border-amber-100 px-4 py-3 text-xs text-amber-800">
+          ⚠️ The Dutch legal maximum for agency housing is <strong>€113.50/week</strong> (SNF 2024 cap). If OTTO or any agency charges more, you can report it to the SNF complaints line at snf.nl.
+        </div>
+      </section>
+
+      {/* ── Pros and Cons ─────────────────────────────────────────────────── */}
+      <section className="mb-8" id="pros-cons">
+        <h2 className="text-base font-bold text-gray-900 mb-4">OTTO Workforce — Honest Pros and Cons</h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {([
+            {
+              title: "✅ What works well",
+              color: "border-green-200 bg-green-50", tc: "text-green-800", sign: "+", sc: "text-green-600",
+              items: [
+                { t: "Housing and transport included", b: "Biggest practical advantage — no need to arrange accommodation from scratch in a foreign country." },
+                { t: "Pay is reliable and accurate", b: "Workers consistently report correct, on-time payments that match the contract." },
+                { t: "Multilingual coordinator support", b: "Polish, Romanian, Bulgarian, and English spoken. Less lost-in-translation stress." },
+                { t: "Wide location coverage", b: "Active in Tilburg, Venlo, Breda, Rotterdam, Eindhoven — more flexibility if you want to move." },
+              ],
+            },
+            {
+              title: "⚠️ What to watch out for",
+              color: "border-red-200 bg-red-50", tc: "text-red-800", sign: "−", sc: "text-red-500",
+              items: [
+                { t: "Housing quality varies a lot", b: "Some OTTO properties have 4–5 per room in older houses. Ask before accepting and check SNF status." },
+                { t: "Work pace is fast", b: "High-volume logistics clients run at warehouse-industry pace. Physically demanding with performance targets." },
+                { t: "Admin fees not always transparent", b: "Some workers report unexpected deductions. Get the full itemised breakdown before signing." },
+                { t: "Phase A is limited", b: "First 26 weeks offer minimal sick pay and no paid holidays — standard for all ABU agencies but worth knowing." },
+              ],
+            },
+          ] as const).map((card) => (
+            <div key={card.title} className={`rounded-xl border p-4 ${card.color}`}>
+              <p className={`text-sm font-bold mb-3 ${card.tc}`}>{card.title}</p>
+              <ul className="space-y-2.5">
+                {card.items.map((item) => (
+                  <li key={item.t} className="flex gap-2">
+                    <span className={`shrink-0 font-bold text-sm mt-0.5 ${card.sc}`}>{card.sign}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800">{item.t}</p>
+                      <p className="text-xs text-gray-600 leading-snug mt-0.5">{item.b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Who is this good for ──────────────────────────────────────────── */}
+      <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Apply to OTTO Workforce?</h2>
+        <div className="space-y-2.5">
+          {[
+            { icon: "✅", text: "Workers arriving in the Netherlands for the first time — the housing and transport package removes most of the practical barriers to starting." },
+            { icon: "✅", text: "Workers from Poland, Romania, or Bulgaria — multilingual support and established networks in those communities make the onboarding much smoother." },
+            { icon: "✅", text: "Workers targeting Tilburg, Venlo, or Breda logistics zones — OTTO has the deepest client base in these areas." },
+            { icon: "✅", text: "Workers comfortable with warehouse and forklift work who want consistent, full-time hours with legal Dutch contracts." },
+            { icon: "⚠️", text: "Workers who want to arrange their own private housing should check whether OTTO allows this — some contracts tie you to agency accommodation, which reduces your flexibility." },
+          ].map((item) => (
+            <div key={item.text} className="flex gap-2.5">
+              <span className="shrink-0 text-sm">{item.icon}</span>
+              <p className="leading-relaxed text-xs text-gray-600">{item.text}</p>
             </div>
           ))}
         </div>
@@ -226,23 +341,18 @@ export default function OttoWorkforceJobsPage() {
       </div>
 
       {/* ── Related links ──────────────────────────────────────────────────── */}
-      <section className="mb-4">
-        <h2 className="text-sm font-bold text-gray-700 mb-3">Related pages</h2>
-        <div className="flex flex-wrap gap-2">
+      <section className="mb-4 rounded-xl bg-gray-50 border border-gray-200 p-5">
+        <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Related reads</p>
+        <div className="grid sm:grid-cols-2 gap-3">
           {[
-            { href: "/agencies-with-housing", label: "🏠 All housing agencies" },
-            { href: "/best-agencies-with-housing-netherlands", label: "🏆 Best housing agencies" },
-            { href: "/jobs-in-netherlands", label: "💼 All NL jobs" },
-            { href: "/work-in-netherlands-for-foreigners", label: "🌍 Working in NL guide" },
-            { href: "/agencies", label: "🏢 All agencies" },
+            { href: "/otto-workforce-review",        label: "OTTO Workforce full review →" },
+            { href: "/otto-vs-tempo-team",           label: "OTTO vs Tempo-Team comparison →" },
+            { href: "/agencies-with-housing",        label: "All agencies with housing NL →" },
+            { href: "/warehouse-jobs-with-accommodation", label: "Warehouse jobs with housing →" },
+            { href: "/check-agency",                 label: "How to verify an agency is legit →" },
+            { href: "/tools/payslip-checker",        label: "Check your OTTO payslip →" },
           ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-brand-300 hover:text-brand-700 transition-colors"
-            >
-              {link.label}
-            </Link>
+            <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
           ))}
         </div>
       </section>
