@@ -5,10 +5,11 @@ import AgencyCard from "@/components/AgencyCard";
 import WorkerHousingStrip from "@/components/WorkerHousingStrip";
 import HomepageFAQ from "@/components/HomepageFAQ";
 import ApplyBar from "@/components/ApplyBar";
-import { AGENCIES, AGENCIES_WITH_HOUSING } from "@/lib/agencyData";
+import { AGENCIES, AGENCIES_WITH_HOUSING, AGENCY_MAP } from "@/lib/agencyData";
 import { TOP_CITIES } from "@/lib/seoData";
+import { getLatestReviews } from "@/lib/reviewData";
 import { getPublishedReviewStats } from "@/lib/reviewStats";
-import { JOB_TYPE_META } from "@/lib/jobData";
+import { JOB_TYPE_META, getJobCountForAgency } from "@/lib/jobData";
 import { RANDSTAD_STATS } from "@/lib/randstadData";
 import { TEMPO_TEAM_STATS } from "@/lib/tempoTeamData";
 import type { SearchSuggestion } from "@/components/SmartSearch";
@@ -65,6 +66,17 @@ const VERIFIED_JOB_META: Record<string, {
     housingCost: 88, responseTime: "< 8 часа", sector: "Производство",
   },
 };
+
+// ─── Salary breakdown rows (BG) ───────────────────────────────────────────────
+const SALARY_ROWS = [
+  { label: "Брутна заплата (WML €14,71 × 40ч)", amount: "+€588", green: true,  bold: false },
+  { label: "Данъци и осигуровки (loonheffing)",  amount: "−€63",  green: false, bold: false },
+  { label: "Жилище от агенцията (норма SNF)",    amount: "−€95",  green: false, bold: false },
+  { label: "Здравна застраховка",                amount: "−€35",  green: false, bold: false },
+  { label: "Транспорт (автобус на агенцията)",   amount: "−€25",  green: false, bold: false },
+  { label: "Административни такси",              amount: "−€25",  green: false, bold: false },
+  { label: "💶 Задържате",                      amount: "€345",  green: true,  bold: true  },
+] as const;
 
 // ─── Hidden deductions (BG) ───────────────────────────────────────────────────
 const HIDDEN_DEDUCTIONS = [
@@ -157,7 +169,6 @@ export default async function BgHomePage() {
   const totalReviews  = reviewStats.total || 111;
 
   const housingAgencies = AGENCIES_WITH_HOUSING.slice(0, 3);
-  const topAgencies     = AGENCIES_WITH_HOUSING.slice(0, 6);
 
   const searchSuggestions: SearchSuggestion[] = [
     ...AGENCIES.map((a) => ({ type: "agency" as const, label: a.name, sublabel: a.city, href: `/agencies/${a.slug}` })),
@@ -175,6 +186,8 @@ export default async function BgHomePage() {
     { question: "Законни ли са удръжките от заплатата от страна на агенцията в Нидерландия?", answer: "Да — но само в границите, определени от CAO ABU и NBBU. Агенциите могат да приспадат разходи за жилище, транспорт и здравна застраховка, но сумите трябва да са посочени в договора. Удръжки над договорените цени са незаконни. Нарушенията се докладват на Inspectie SZW." },
     { question: "Каква е минималната заплата в Нидерландия през 2026 г.?", answer: "Нидерландската законова минимална заплата (WML) е €14,71 на час през 2026 г. за работници на 21+ години. При 40 работни часа седмично това е около €2.545/месец брuto. Агенциите са законово задължени да плащат поне WML, независимо от националността." },
     { question: "Как да проверя дали нидерландска агенция за труд е легитимна?", answer: "Проверете регистрацията SNA или членството в ABU/NBBU и потвърдете номера KvK. В AgencyCheck профилите на агенциите показват статуса на верификация, оценките на работниците и жилищните условия. Предупредителни знаци: искане за депозит, липса на писмен договор, натиск за незабавно начало." },
+    { question: "Колко струва жилището при работа през агенция в Нидерландия?", answer: "Жилището от агенцията обикновено струва €80–€113,50/седмица, приспаднати от брутната заплата. Максималното законово приспадане SNF за сертифицирани споделени стаи е €113,50/седмица (2024). Собственото жилище в Нидерландия струва €500–€900/месец в зависимост от града." },
+    { question: "Какво да направя, ако агенцията не ми плаща правилно?", answer: "Поискайте пълен фиш за заплата (loonstrook) и сравнете всяка позиция с подписания договор. При несъответствия: свържете се писмено с агенцията, докладвайте на Inspectie SZW (inspectieszw.nl), свържете се с профсъюзите FNV или CNV, а за жилището — с SNF." },
   ]);
 
   return (
@@ -186,7 +199,7 @@ export default async function BgHomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema)   }} />
 
       {/* ════════════════════════════════════════════════════════════
-          §1  HERO — matches PL structure exactly
+          §1  HERO
           ════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-hero-depth text-white">
         <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -197,9 +210,7 @@ export default async function BgHomePage() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-14 sm:pt-20 sm:pb-20">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-            {/* Left column */}
             <div>
-              {/* Badges */}
               <div className="flex flex-wrap items-center gap-2 mb-5">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
@@ -210,7 +221,6 @@ export default async function BgHomePage() {
                 </div>
               </div>
 
-              {/* Live job alert */}
               <Link href="/apply/reachtruck"
                 className="group mb-5 flex items-center gap-3 rounded-2xl border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 active:scale-[0.98] px-4 py-3 transition-all duration-150">
                 <span className="relative flex-shrink-0">
@@ -224,7 +234,6 @@ export default async function BgHomePage() {
                 <span className="flex-shrink-0 text-[12px] font-bold text-amber-300 group-hover:text-amber-200 whitespace-nowrap">Кандидатствай →</span>
               </Link>
 
-              {/* Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.06] tracking-tight mb-4">
                 {t("homepage.hero_gross")}{" "}
                 <span className="text-emerald-400">€588/седмица.</span>
@@ -233,7 +242,6 @@ export default async function BgHomePage() {
                 <span className="text-red-400">€345.</span>
               </h1>
 
-              {/* Stats strip */}
               <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6">
                 {[
                   { value: `${totalReviews} отзива от работници`,   note: "38 проверени · 73 анонимни" },
@@ -248,7 +256,6 @@ export default async function BgHomePage() {
                 ))}
               </div>
 
-              {/* Description */}
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
                 Жилище, застраховка, транспорт и административни такси се приспадат, преди да получите заплатата.
                 Разберете <strong className="text-white">реалния си нетен доход</strong>, сравнете агенциите
@@ -256,7 +263,6 @@ export default async function BgHomePage() {
                 <strong className="text-emerald-400">безплатно, без ангажименти</strong>.
               </p>
 
-              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <a href="#lead-form"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/50">
@@ -271,7 +277,6 @@ export default async function BgHomePage() {
               <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Търсете агенция, град или тип работа…" />
             </div>
 
-            {/* Right column */}
             <div className="lg:flex lg:justify-end">
               <HomepageHeroCalculator />
             </div>
@@ -459,7 +464,6 @@ export default async function BgHomePage() {
             </div>
           </div>
           <div className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5 sm:p-7 shadow-sm">
-            <ApplyBar context={{ sourcePage: "/bg", sourceType: "general_apply" }} showInline inlineLabel={t("apply_bar.headline")} />
             <HomepageLeadForm />
           </div>
         </div>
@@ -468,19 +472,217 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §6  SALARY CALCULATOR
           ════════════════════════════════════════════════════════════ */}
-      <section id="calculator" className="bg-white border-b border-gray-100">
+      <section id="calculator" className="bg-gray-50 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Незабавен калкулатор на заплата — данъчни ставки 2026</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Изчислете реалната си нетна заплата</h2>
-            <p className="text-gray-500 text-sm max-w-md mx-auto">Официални данъчни таблици 2026 · Удръжки ABU CAO · Лимити за жилище SNF</p>
+            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Колко реално ще ви остане от заплатата?</h2>
+            <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+              Настройте според вашата оферта. Реални нидерландски данъци с всички облекчения heffingskorting.
+              Всяка удръжка изчислена в реално време.
+            </p>
           </div>
           <HomepageCalculator />
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §7  WORKER PROBLEMS
+          §7  METHODOLOGY TRUST BLOCK
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="text-center mb-8">
+            <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400">Методология на изчисленията</p>
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900">Как изчисляваме реалната ви заплата</h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-7">
+            {[
+              {
+                icon: "📊",
+                title: "Нидерландски данък върху доходите 2026",
+                items: [
+                  "Данъчни ставки loonheffing (2 нива)",
+                  "Algemene heffingskorting — до €3.362/год. облекчение",
+                  "Arbeidskorting — до €5.000/год. облекчение",
+                  "Ефективна ставка = данък ÷ брuto (след всички облекчения)",
+                ],
+              },
+              {
+                icon: "🏠",
+                title: "Логика на удръжките за жилище",
+                items: [
+                  "Жилище от агенцията: €80–€120/седм. (стандарт SNF)",
+                  "Собствено жилище: €500–€900/мес. (регионална средна)",
+                  "Законен лимит SNF: ~€113,50/седм. за споделени стаи",
+                  "Източник: SNF Normering Flexwonen 2024",
+                ],
+              },
+              {
+                icon: "🚌",
+                title: "Транспорт и застраховка",
+                items: [
+                  "Автобус на агенцията: средно €25/седм. (докладвано от работници)",
+                  "Zorgverzekering: €152–€180/мес. (пазар 2026)",
+                  "Eigen risico: средно €33/мес.",
+                  "Адм. такси: €0–€20/седм. (посочени от агенциите)",
+                ],
+              },
+            ].map((block) => (
+              <div key={block.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+                <div className="text-2xl mb-3">{block.icon}</div>
+                <h3 className="text-sm font-black text-gray-900 mb-3">{block.title}</h3>
+                <ul className="space-y-1.5">
+                  {block.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                      <span className="text-emerald-500 font-black mt-0.5 shrink-0">·</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-6 items-start">
+            <div className="rounded-2xl border border-blue-100 bg-blue-50/30 p-5">
+              <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Ключови предположения</p>
+              <ul className="space-y-2 text-xs text-gray-700">
+                {[
+                  "Основна заетост в Нидерландия (без прилагане на споразумения за избягване на двойно данъчно облагане)",
+                  "48 работни седмици/год. (4 седмици отпуск включени)",
+                  "8% vakantiegeld (отпускно) добавено към брутото съгл. BW чл. 7:634",
+                  "Неженен работник — без партньорски облекчения или приспадания за грижи за деца",
+                  "Стандартна здравна застраховка (без toeslagen помощи)",
+                  "WML 2026: €14,71/ч · Актуализирано: януари 2026",
+                ].map((a) => (
+                  <li key={a} className="flex items-start gap-2">
+                    <span className="text-blue-500 font-black shrink-0 mt-0.5">✓</span>{a}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-[10px] text-gray-400 leading-relaxed border-t border-blue-100 pt-3">
+                <strong className="text-gray-500">Правна забележка:</strong> Изчисленията са само за информационни цели и не представляват данъчен, правен или финансов съвет. Индивидуалните обстоятелства могат да варират. Консултирайте се с belastingadviseur за вашата конкретна ситуация.{" "}
+                <Link href="/methodology" className="text-blue-600 underline hover:text-blue-800">Пълна методология →</Link>
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+              <div className="bg-gray-900 px-5 py-3">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                  Пример: Работник WML · €14,71/ч · 40ч/седм. · Реален данък 2026
+                </p>
+              </div>
+              <div className="divide-y divide-gray-100">
+                {SALARY_ROWS.map((row) => (
+                  <div key={row.label}
+                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white"}`}>
+                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-600"}`}>{row.label}</span>
+                    <span className={`text-sm font-bold ${row.bold ? `text-lg font-black ${row.green ? "text-emerald-400" : "text-red-400"}` : row.green ? "text-emerald-600" : "text-red-500"}`}>
+                      {row.amount}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-gray-50 px-5 py-3 border-t border-gray-100">
+                <p className="text-[10px] text-gray-400">
+                  Данък −€63 (реален loonheffing 2026 след облекченията AHK+AK) + €95 жилище + €25 транспорт + €35 застраховка + €25 адм.{" "}
+                  <Link href="/methodology" className="text-blue-600 underline">Пълна методология</Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §8  SALARY PAIN → CTA
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-surface-hero text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
+            Вече знаете реалните числа
+          </p>
+          <h2 className="text-2xl sm:text-4xl font-black leading-tight mb-4">
+            Искате <span className="text-emerald-400">по-добри условия</span> и
+            повече пари всяка седмица?
+          </h2>
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto">
+            Не всички агенции са еднакви. Някои имат по-ниски такси за жилище, по-бързи фишове и прозрачни договори. Проверяваме кои — и ви свързваме безплатно.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="#lead-form"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
+              Виж проверени оферти →
+            </a>
+            <Link href="/agencies-with-housing"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
+              Всички {housingCount} агенции с жилище
+            </Link>
+          </div>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-gray-500">
+            {["Без платени класации", "Агенциите не могат да купят по-добра оценка", "Оценките са изцяло от работниците", "Партньорският статус никога не влияе на резултатите"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5">
+                <span className="text-emerald-500 font-black">✓</span>{t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §8b  HOW AGENCYCHECK WORKS
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+          <div className="text-center mb-7">
+            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5">
+              Как работи AgencyCheck — и как печелим
+            </p>
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+              Честно за това как работи
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4 mb-6">
+            {[
+              {
+                icon: "📋",
+                title: "Какво прави AgencyCheck",
+                body: "Събираме отзиви от работници, анализираме фишове за заплата и публикуваме независими класации на нидерландски агенции за труд. Не набираме работници — помагаме ви да направите информиран избор.",
+              },
+              {
+                icon: "💰",
+                title: "Как печелим",
+                body: "Ако използвате нашата услуга за свързване и бъдете успешно наети, агенцията ни плаща хонорар за намиране на кандидат. Тази такса идва от агенцията — никога от вас. Работниците винаги плащат нула.",
+              },
+              {
+                icon: "⚖️",
+                title: "Защо класациите остават честни",
+                body: "Агенциите не могат да плащат за по-добро място в класацията, за премахване на отзиви или за влияние върху резултатите си. Плащащите агенции не получават никакво предимство при свързването. Само оценките на работниците определят позицията им.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl bg-white border border-gray-100 p-5">
+                <div className="text-2xl mb-3">{item.icon}</div>
+                <p className="text-sm font-black text-gray-900 mb-2">{item.title}</p>
+                <p className="text-xs text-gray-600 leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-2xl border border-amber-100 bg-amber-50/40 px-5 py-4">
+            <p className="text-xs text-amber-900 leading-relaxed">
+              <strong>Разкриване на конфликт на интереси:</strong> Партньорските агенции за свързване не получават по-високи оценки или предпочитано позициониране в резултатите от търсенето.
+              Нашите класации се изчисляват изцяло от проверени доклади на работници. Можете{" "}
+              <Link href="/methodology" className="underline hover:text-amber-700">да прочетете пълната ни методология</Link>{" "}
+              и{" "}
+              <Link href="/reviews" className="underline hover:text-amber-700">да разглеждате всички нефилтрирани отзиви</Link>{" "}
+              — включително отрицателните — по всяко време.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §9  WORKER PROBLEMS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
@@ -488,13 +690,13 @@ export default async function BgHomePage() {
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">Това, което никоя агенция няма да ви каже</p>
             <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Типични проблеми, докладвани от работници</h2>
             <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
-              Въз основа на {totalReviews}+ проверени доклади от работници. Знаенето ви защитава преди подписване.
+              Въз основа на {totalReviews}+ проверени доклада от работници. Знаенето ви защитава преди подписване.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {WORKER_PROBLEMS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
                 <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-3">{p.body}</p>
@@ -512,7 +714,7 @@ export default async function BgHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §8  HOUSING PROOF
+          §10  HOUSING PROOF
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gray-50 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
@@ -534,7 +736,7 @@ export default async function BgHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §9  VERIFIED AGENCY CARDS
+          §11  VERIFIED AGENCY CARDS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
@@ -603,8 +805,8 @@ export default async function BgHomePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3 mb-7">
-            {topAgencies.map((agency) => (
-              <AgencyCard key={agency.slug} agency={agency} locale="bg" />
+            {housingAgencies.map((agency) => (
+              <AgencyCard key={agency.slug} agency={agency} jobCount={getJobCountForAgency(agency.slug)} locale="bg" />
             ))}
           </div>
 
@@ -621,7 +823,140 @@ export default async function BgHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §10  FAQ
+          §12  PAYSLIP TOOL CTA
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-gradient-to-br from-gray-900 via-gray-900 to-blue-950 text-white border-b border-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="max-w-3xl mx-auto">
+            <div className="grid sm:grid-cols-2 gap-8 items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/15 border border-amber-400/20 rounded-full px-3 py-1 mb-5">
+                  ⚡ Безплатен инструмент
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-4">
+                  Агенцията ви е платила по-малко?
+                </h2>
+                <p className="text-gray-300 text-sm leading-relaxed mb-3">
+                  Качете нидерландския си фиш за заплата (<em>loonstrook</em>) и ние ще проверим всяка позиция
+                  спрямо официалните данъчни таблици 2026 и стандартите CAO ABU/NBBU.
+                </p>
+                <p className="text-gray-400 text-xs leading-relaxed mb-6">
+                  Проверяваме: правилни данъчни ставки · приложени облекчения heffingskorting ·
+                  лимити за удръжки за жилище SNF · надбавки за извънреден труд · изчисляване на vakantiegeld.
+                </p>
+                <Link href="/tools/payslip-checker"
+                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 transition-colors px-7 py-3.5 text-sm font-black text-white shadow-sm shadow-amber-900/40 active:scale-[0.98]">
+                  📄 Качи фиш за заплата — провери сега
+                </Link>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4">Какво проверяваме</p>
+                <ul className="space-y-2.5">
+                  {[
+                    { ok: true,  label: "Правилни ставки loonheffing приложени" },
+                    { ok: true,  label: "Изчислено облекчение heffingskorting" },
+                    { ok: true,  label: "Удръжка за жилище ≤ законен максимум SNF" },
+                    { ok: true,  label: "Надбавки за извънреден труд (100%, 125%, 150%)" },
+                    { ok: true,  label: "Vakantiegeld ≥ 8% от брутната заплата" },
+                    { ok: false, label: "Фалшиви удръжки или необяснени такси" },
+                  ].map((item) => (
+                    <li key={item.label} className="flex items-center gap-3 text-sm">
+                      <span className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${item.ok ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"}`}>
+                        {item.ok ? "✓" : "✗"}
+                      </span>
+                      <span className="text-gray-300">{item.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          SEO CONTENT + CITY GRID
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Ръководство за работници</p>
+              <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 leading-tight">
+                Всичко, което трябва да знаете преди работа в Нидерландия
+              </h2>
+              <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+                <p>
+                  Нидерландската минимална заплата (<em>Wettelijk Minimumloon</em>) е{" "}
+                  <strong className="text-gray-900">€14,71/час през 2026 г.</strong> за работници
+                  на 21+ години. При 40 часа седмично брутото е точно €588/седмица
+                  (€14,71 × 40 часа). Но след нидерландски данък върху доходите, жилище от агенцията, здравна
+                  застраховка и транспорт, повечето работници задържат между{" "}
+                  <strong className="text-gray-900">€300–€370</strong> —
+                  около 50–63% от брутото, в зависимост от агенцията.
+                </p>
+                <p>
+                  Ключови правни защити, които трябва да познавате: <strong className="text-gray-900">ABU / NBBU CAO</strong>{" "}
+                  регулира заплатите, надбавките за извънреден труд и платения отпуск.
+                  <strong className="text-gray-900"> SNF</strong> (Stichting Normering Flexwonen) определя максималните законни
+                  удръжки за жилище. <strong className="text-gray-900">Inspectie SZW</strong> прилага цялото трудово законодателство.
+                  AgencyCheck проверява агенциите спрямо всички три.
+                </p>
+                <p>
+                  Нашият{" "}
+                  <Link href="/tools/real-income-calculator" className="text-blue-600 underline hover:text-blue-800">калкулатор на заплата</Link>{" "}
+                  използва официалните данъчни таблици за 2026 и включва както облекчението <em>algemene heffingskorting</em>, така и{" "}
+                  <em>arbeidskorting</em> — облекчения, които могат да спестят на нископлатените работници
+                  €600–€700 на месец в данъци, за които много агенции не споменават.
+                </p>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Бърз достъп</p>
+              {[
+                { icon: "💶", href: "/tools/real-income-calculator",        title: "Пълен калкулатор на заплата",       desc: "Нетна заплата с всички данъчни облекчения за 2026" },
+                { icon: "📄", href: "/tools/payslip-checker",               title: "Инструмент за проверка на фиш",     desc: "Качете loonstrook и проверете грешките" },
+                { icon: "🏢", href: "/agencies",                            title: "Всички агенции в Нидерландия",      desc: `${totalAgencies} агенции класирани по оценки на работници` },
+                { icon: "🏠", href: "/agencies-with-housing",               title: "Работа с жилище",                   desc: `${housingCount} проверени агенции с включено жилище` },
+                { icon: "⭐", href: "/reviews",                             title: "Отзиви от работници",               desc: `${totalReviews}+ реални анонимни отзива` },
+                { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Права и правно ръководство",        desc: "ABU CAO, WML, SNF — обяснени просто" },
+              ].map((item) => (
+                <Link key={item.href} href={item.href}
+                  className="flex items-start gap-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
+                  <span className="text-xl mt-0.5">{item.icon}</span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{item.title}</p>
+                    <p className="text-xs text-gray-500 mt-0.5 leading-snug truncate">{item.desc}</p>
+                  </div>
+                  <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-400 transition-colors ml-auto mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* City grid */}
+          <div className="pt-8 border-t border-gray-100">
+            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Разгледайте работни оферти по град</p>
+            <div className="flex flex-wrap gap-2">
+              {TOP_CITIES.slice(0, 18).map((c) => (
+                <Link key={c.slug} href={`/jobs-in-${c.slug}`}
+                  className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  💼 {c.name}
+                </Link>
+              ))}
+              <Link href="/jobs-in-netherlands"
+                className="inline-flex items-center text-xs font-bold bg-blue-50 border border-blue-200 text-blue-700 rounded-full px-3 py-1.5 hover:bg-blue-100 transition-colors">
+                🇳🇱 Всички градове →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          FAQ
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gray-50 border-b border-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -646,8 +981,13 @@ export default async function BgHomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-18 sm:py-24">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight mb-5">Разберете истината<br />преди да подпишете.</h2>
-            <p className="text-blue-200 text-base sm:text-lg leading-relaxed mb-9 max-w-lg mx-auto">
-              {totalAgencies} агенции. {totalReviews}+ отзива от работници. Реални разбивки на заплатите. Без платени класации.
+            <p className="text-blue-200 text-base sm:text-lg leading-relaxed mb-4 max-w-lg mx-auto">
+              {totalAgencies} агенции. {totalReviews}+ отзива от работници. Реални разбивки на заплатите.
+              Без платени класации. Създадено за работници — не за рекрутори.
+            </p>
+            <p className="text-xs text-blue-400 mb-9">
+              ✓ Без платени класации &nbsp;·&nbsp; ✓ Агенциите не могат да купят по-добри оценки &nbsp;·&nbsp;
+              ✓ Оценките са изцяло от работниците &nbsp;·&nbsp; ✓ Партньорският статус никога не влияе на резултатите
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
               <a href="#lead-form"
@@ -669,6 +1009,10 @@ export default async function BgHomePage() {
               <Link href="/tools/real-income-calculator" className="hover:text-white transition-colors">Калкулатор на заплата</Link>
               <span className="text-blue-800">·</span>
               <Link href="/methodology" className="hover:text-white transition-colors">Методология</Link>
+              <span className="text-blue-800">·</span>
+              <Link href="/privacy" className="hover:text-white transition-colors">Поверителност</Link>
+              <span className="text-blue-800">·</span>
+              <Link href="/terms" className="hover:text-white transition-colors">Условия</Link>
             </nav>
           </div>
         </div>

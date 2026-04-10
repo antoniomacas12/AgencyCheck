@@ -5,10 +5,11 @@ import AgencyCard from "@/components/AgencyCard";
 import WorkerHousingStrip from "@/components/WorkerHousingStrip";
 import HomepageFAQ from "@/components/HomepageFAQ";
 import ApplyBar from "@/components/ApplyBar";
-import { AGENCIES, AGENCIES_WITH_HOUSING } from "@/lib/agencyData";
+import { AGENCIES, AGENCIES_WITH_HOUSING, AGENCY_MAP } from "@/lib/agencyData";
 import { TOP_CITIES } from "@/lib/seoData";
+import { getLatestReviews } from "@/lib/reviewData";
 import { getPublishedReviewStats } from "@/lib/reviewStats";
-import { JOB_TYPE_META } from "@/lib/jobData";
+import { JOB_TYPE_META, getJobCountForAgency } from "@/lib/jobData";
 import { RANDSTAD_STATS } from "@/lib/randstadData";
 import { TEMPO_TEAM_STATS } from "@/lib/tempoTeamData";
 import type { SearchSuggestion } from "@/components/SmartSearch";
@@ -112,7 +113,6 @@ export default async function SkHomePage() {
   const totalReviews  = reviewStats.total || 111;
 
   const housingAgencies = AGENCIES_WITH_HOUSING.slice(0, 3);
-  const topAgencies     = AGENCIES_WITH_HOUSING.slice(0, 6);
 
   const searchSuggestions: SearchSuggestion[] = [
     ...AGENCIES.map((a) => ({ type: "agency" as const, label: a.name, sublabel: a.city, href: `/agencies/${a.slug}` })),
@@ -129,7 +129,9 @@ export default async function SkHomePage() {
     { question: "Koľko skutočne zarobím po odpočítaní nákladov v Holandsku?", answer: "Pri minimálnej mzde (€14,71/h, 40h/týždeň) je hrubá mzda €588/týždeň. Po holandskej dani, ubytovaní agentúry (~€95/týždeň), doprave a zdravotnom poistení si väčšina pracovníkov ponechá €300–€370/týždeň — asi 51–63% hrubej mzdy." },
     { question: "Sú zrážky z výplaty agentúrou legálne v Holandsku?", answer: "Áno — ale len v hraniciach určených CAO ABU a NBBU. Agentúry môžu odpočítavať náklady na ubytovanie, dopravu a zdravotné poistenie, ale sumy musia byť uvedené v zmluve. Zrážky nad dohodnuté ceny sú nelegálne. Porušenia nahláste Inspectie SZW." },
     { question: "Aká je minimálna mzda v Holandsku v roku 2026?", answer: "Holandská zákonná minimálna mzda (WML) je €14,71 za hodinu v roku 2026 pre pracovníkov vo veku 21+. Pri 40 hodinách týždenne to je asi €2.545/mesiac brutto. Agentúry sú zo zákona povinné platiť aspoň WML bez ohľadu na národnosť." },
-    { question: "Ako overiť, či je holandská agentúra prace legitímna?", answer: "Skontrolujte registráciu SNA alebo príslušnosť k ABU/NBBU a overte číslo KvK. Na AgencyCheck profily agentúr zobrazujú stav overenia, hodnotenia pracovníkov a podmienky ubytovania. Varovné signály: žiadosť o zálohu, žiadna písomná zmluva, tlak na okamžitý nástup." },
+    { question: "Ako overiť, či je holandská agentúra práce legitímna?", answer: "Skontrolujte registráciu SNA alebo príslušnosť k ABU/NBBU a overte číslo KvK. Na AgencyCheck profily agentúr zobrazujú stav overenia, hodnotenia pracovníkov a podmienky ubytovania. Varovné signály: žiadosť o zálohu, žiadna písomná zmluva, tlak na okamžitý nástup." },
+    { question: "Koľko stojí ubytovanie pri práci cez agentúru v Holandsku?", answer: "Ubytovanie agentúry zvyčajne stojí €80–€113,50/týždeň odpočítané z hrubej mzdy. Maximálne zákonné odpočítanie SNF pre certifikované zdieľané izby je €113,50/týždeň (2024). Vlastné ubytovanie v Holandsku stojí €500–€900/mesiac podľa mesta." },
+    { question: "Čo robiť, ak mi agentúra neplatí správne?", answer: "Požiadajte o úplnú výplatnú pásku (loonstrook) a porovnajte každú položku s podpísanou zmluvou. Pri nezrovnalostiach: kontaktujte agentúru písomne, nahláste to Inspectie SZW (inspectieszw.nl), obráťte sa na odbory FNV alebo CNV, pri ubytovaní — na SNF." },
   ]);
 
   return (
@@ -141,7 +143,7 @@ export default async function SkHomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema)   }} />
 
       {/* ════════════════════════════════════════════════════════════
-          §1  HERO — matches PL structure exactly
+          §1  HERO
           ════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-hero-depth text-white">
         <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -152,9 +154,7 @@ export default async function SkHomePage() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-14 sm:pt-20 sm:pb-20">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-            {/* Left column */}
             <div>
-              {/* Badges */}
               <div className="flex flex-wrap items-center gap-2 mb-5">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-3.5 py-1.5 text-[10px] font-bold tracking-widest uppercase">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
@@ -165,7 +165,6 @@ export default async function SkHomePage() {
                 </div>
               </div>
 
-              {/* Live job alert */}
               <Link href="/apply/reachtruck"
                 className="group mb-5 flex items-center gap-3 rounded-2xl border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 active:scale-[0.98] px-4 py-3 transition-all duration-150">
                 <span className="relative flex-shrink-0">
@@ -179,7 +178,6 @@ export default async function SkHomePage() {
                 <span className="flex-shrink-0 text-[12px] font-bold text-amber-300 group-hover:text-amber-200 whitespace-nowrap">Prihlásiť sa →</span>
               </Link>
 
-              {/* Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.06] tracking-tight mb-4">
                 {t("homepage.hero_gross")}{" "}
                 <span className="text-emerald-400">€588/týždeň.</span>
@@ -188,7 +186,6 @@ export default async function SkHomePage() {
                 <span className="text-red-400">€345.</span>
               </h1>
 
-              {/* Stats strip */}
               <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6">
                 {[
                   { value: `${totalReviews} hodnotení pracovníkov`,   note: "38 overených · 73 anonymných" },
@@ -203,7 +200,6 @@ export default async function SkHomePage() {
                 ))}
               </div>
 
-              {/* Description */}
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
                 Ubytovanie, poistenie, doprava a administratívne poplatky sú odpočítané predtým, ako dostanete výplatu.
                 Zistite svoje <strong className="text-white">reálne čisté zárobky</strong>, porovnajte agentúry
@@ -211,7 +207,6 @@ export default async function SkHomePage() {
                 <strong className="text-emerald-400">bezplatne, bez záväzkov</strong>.
               </p>
 
-              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <a href="#lead-form"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/50">
@@ -226,7 +221,6 @@ export default async function SkHomePage() {
               <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Hľadajte agentúru, mesto alebo typ práce…" />
             </div>
 
-            {/* Right column */}
             <div className="lg:flex lg:justify-end">
               <HomepageHeroCalculator />
             </div>
@@ -414,7 +408,6 @@ export default async function SkHomePage() {
             </div>
           </div>
           <div className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5 sm:p-7 shadow-sm">
-            <ApplyBar context={{ sourcePage: "/sk", sourceType: "general_apply" }} showInline inlineLabel={t("apply_bar.headline")} />
             <HomepageLeadForm />
           </div>
         </div>
@@ -423,19 +416,217 @@ export default async function SkHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §6  SALARY CALCULATOR
           ════════════════════════════════════════════════════════════ */}
-      <section id="calculator" className="bg-white border-b border-gray-100">
+      <section id="calculator" className="bg-gray-50 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Okamžitý kalkulátor mzdy — daňové sadzby 2026</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Vypočítajte svoju reálnu čistú mzdu</h2>
-            <p className="text-gray-500 text-sm max-w-md mx-auto">Officiálne daňové tabuľky 2026 · Zrážky ABU CAO · Limity ubytovania SNF</p>
+            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Koľko vám skutočne zostane z výplaty?</h2>
+            <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+              Prispôsobte podľa svojej ponuky. Reálne holandské dane so všetkými úľavami heffingskorting.
+              Každá zrážka vypočítaná naživo.
+            </p>
           </div>
           <HomepageCalculator />
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §7  WORKER PROBLEMS
+          §7  METHODOLOGY TRUST BLOCK
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="text-center mb-8">
+            <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400">Metodológia výpočtov</p>
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900">Ako vypočítavame váš reálny príjem</h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-7">
+            {[
+              {
+                icon: "📊",
+                title: "Holandská daň z príjmu 2026",
+                items: [
+                  "Pásma loonheffing (2 úrovne)",
+                  "Algemene heffingskorting — až €3.362/rok úľavy",
+                  "Arbeidskorting — až €5.000/rok úľavy",
+                  "Efektívna sadzba = daň ÷ brutto (po všetkých úľavách)",
+                ],
+              },
+              {
+                icon: "🏠",
+                title: "Logika zrážok za ubytovanie",
+                items: [
+                  "Ubytovanie agentúry: €80–€120/týž. (norma SNF)",
+                  "Vlastné ubytovanie: €500–€900/mes. (regionálny priemer)",
+                  "Zákonný limit SNF: ~€113,50/týž. pre zdieľané izby",
+                  "Zdroj: SNF Normering Flexwonen 2024",
+                ],
+              },
+              {
+                icon: "🚌",
+                title: "Doprava a poistenie",
+                items: [
+                  "Autobus agentúry: priem. €25/týž. (hlásenia pracovníkov)",
+                  "Zorgverzekering: €152–€180/mes. (trh 2026)",
+                  "Vlastný eigen risico: priem. €33/mes.",
+                  "Adm. poplatky: €0–€20/týž. (uvádzané agentúrami)",
+                ],
+              },
+            ].map((block) => (
+              <div key={block.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+                <div className="text-2xl mb-3">{block.icon}</div>
+                <h3 className="text-sm font-black text-gray-900 mb-3">{block.title}</h3>
+                <ul className="space-y-1.5">
+                  {block.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                      <span className="text-emerald-500 font-black mt-0.5 shrink-0">·</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-6 items-start">
+            <div className="rounded-2xl border border-blue-100 bg-blue-50/30 p-5">
+              <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Kľúčové predpoklady</p>
+              <ul className="space-y-2 text-xs text-gray-700">
+                {[
+                  "Hlavné zamestnanie v Holandsku (bez aplikácie zmlúv o zamedzení dvojitého zdanenia)",
+                  "48 pracovných týždňov/rok (4 týždne dovolenky zahrnuté)",
+                  "8% vakantiegeld (príplatok za dovolenku) pridaný k brutto podľa BW Art. 7:634",
+                  "Slobodný pracovník — bez partnerských úľav ani odpočtov za starostlivosť o deti",
+                  "Štandardné zdravotné poistenie (bez dávok toeslagen)",
+                  "WML 2026: €14,71/hod · Aktualizácia: január 2026",
+                ].map((a) => (
+                  <li key={a} className="flex items-start gap-2">
+                    <span className="text-blue-500 font-black shrink-0 mt-0.5">✓</span>{a}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-[10px] text-gray-400 leading-relaxed border-t border-blue-100 pt-3">
+                <strong className="text-gray-500">Právne upozornenie:</strong> Výpočty slúžia len na informačné účely a nepredstavujú daňové, právne ani finančné poradenstvo. Individuálne okolnosti sa môžu líšiť. Poraďte sa s belastingadviseur pre vašu konkrétnu situáciu.{" "}
+                <Link href="/methodology" className="text-blue-600 underline hover:text-blue-800">Plná metodológia →</Link>
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+              <div className="bg-gray-900 px-5 py-3">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                  Príklad: Pracovník WML · €14,71/h · 40h/týž. · Reálna daň 2026
+                </p>
+              </div>
+              <div className="divide-y divide-gray-100">
+                {SALARY_ROWS.map((row) => (
+                  <div key={row.label}
+                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white"}`}>
+                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-600"}`}>{row.label}</span>
+                    <span className={`text-sm font-bold ${row.bold ? `text-lg font-black ${row.green ? "text-emerald-400" : "text-red-400"}` : row.green ? "text-emerald-600" : "text-red-500"}`}>
+                      {row.amount}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-gray-50 px-5 py-3 border-t border-gray-100">
+                <p className="text-[10px] text-gray-400">
+                  Daň −€63 (reálny loonheffing 2026 po úľavách AHK+AK) + €95 ubytovanie + €25 doprava + €35 poistenie + €25 adm.{" "}
+                  <Link href="/methodology" className="text-blue-600 underline">Plná metodológia</Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §8  SALARY PAIN → CTA
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-surface-hero text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
+            Teraz poznáte reálne čísla
+          </p>
+          <h2 className="text-2xl sm:text-4xl font-black leading-tight mb-4">
+            Chcete <span className="text-emerald-400">lepšie podmienky</span> a
+            viac peňazí každý týždeň?
+          </h2>
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto">
+            Nie všetky agentúry sú rovnaké. Niektoré majú nižšie poplatky za ubytovanie, rýchlejšie výplatné pásky a transparentné zmluvy. Overujeme, ktoré — a párujeme vás bezplatne.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="#lead-form"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
+              Pozrieť overené ponuky →
+            </a>
+            <Link href="/agencies-with-housing"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
+              Všetky {housingCount} agentúry s ubytovaním
+            </Link>
+          </div>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-gray-500">
+            {["Žiadne platené rebríčky", "Agentúry nemôžu kúpiť lepšie hodnotenie", "Hodnotenia sú výhradne od pracovníkov", "Status partnera nikdy neovplyvňuje výsledky"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5">
+                <span className="text-emerald-500 font-black">✓</span>{t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §8b  HOW AGENCYCHECK WORKS
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+          <div className="text-center mb-7">
+            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5">
+              Ako funguje AgencyCheck — a ako zarabiame
+            </p>
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+              Úprimne o tom, ako to funguje
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4 mb-6">
+            {[
+              {
+                icon: "📋",
+                title: "Čo robí AgencyCheck",
+                body: "Zbierame hodnotenia pracovníkov, analyzujeme výplatné pásky a publikujeme nezávislé rebríčky holandských agentúr práce. Nerekrutujeme pracovníkov — pomáhame vám urobiť informované rozhodnutie.",
+              },
+              {
+                icon: "💰",
+                title: "Ako zarabiame",
+                body: "Ak využijete našu párovačku a budete úspešne umiestnený, agentúra nám zaplatí honorár za nájdenie kandidáta. Tento poplatok platí agentúra — nikdy vy. Pracovníci vždy platia nulu.",
+              },
+              {
+                icon: "⚖️",
+                title: "Prečo rebríčky zostávajú férové",
+                body: "Agentúry nemôžu platiť za lepšie miesto v rebríčku, odstraňovanie hodnotení ani ovplyvňovanie svojich skóre. Platené agentúry nezískavajú žiadnu výhodu pri párovaní. Len hodnotenia pracovníkov určujú ich pozíciu.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl bg-white border border-gray-100 p-5">
+                <div className="text-2xl mb-3">{item.icon}</div>
+                <p className="text-sm font-black text-gray-900 mb-2">{item.title}</p>
+                <p className="text-xs text-gray-600 leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-2xl border border-amber-100 bg-amber-50/40 px-5 py-4">
+            <p className="text-xs text-amber-900 leading-relaxed">
+              <strong>Zverejnenie konfliktu záujmov:</strong> Partnerské agentúry v párovacej službe nezískavajú vyššie hodnotenia ani prednostné umiestnenie vo výsledkoch vyhľadávania.
+              Naše rebríčky sú vypočítané výhradne zo zverifikovaných hlásení pracovníkov. Môžete{" "}
+              <Link href="/methodology" className="underline hover:text-amber-700">prečítať našu plnú metodológiu</Link>{" "}
+              a{" "}
+              <Link href="/reviews" className="underline hover:text-amber-700">prehliadať všetky nefiltrované hodnotenia</Link>{" "}
+              — vrátane negatívnych — kedykoľvek.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §9  WORKER PROBLEMS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
@@ -449,7 +640,7 @@ export default async function SkHomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {WORKER_PROBLEMS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
                 <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-3">{p.body}</p>
@@ -467,7 +658,7 @@ export default async function SkHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §8  HOUSING PROOF
+          §10  HOUSING PROOF
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gray-50 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
@@ -489,7 +680,7 @@ export default async function SkHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §9  VERIFIED AGENCY CARDS
+          §11  VERIFIED AGENCY CARDS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
@@ -558,8 +749,8 @@ export default async function SkHomePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3 mb-7">
-            {topAgencies.map((agency) => (
-              <AgencyCard key={agency.slug} agency={agency} locale="sk" />
+            {housingAgencies.map((agency) => (
+              <AgencyCard key={agency.slug} agency={agency} jobCount={getJobCountForAgency(agency.slug)} locale="sk" />
             ))}
           </div>
 
@@ -576,7 +767,140 @@ export default async function SkHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §10  FAQ
+          §12  PAYSLIP TOOL CTA
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-gradient-to-br from-gray-900 via-gray-900 to-blue-950 text-white border-b border-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="max-w-3xl mx-auto">
+            <div className="grid sm:grid-cols-2 gap-8 items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/15 border border-amber-400/20 rounded-full px-3 py-1 mb-5">
+                  ⚡ Bezplatný nástroj
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-4">
+                  Agentúra vám zaplatila menej?
+                </h2>
+                <p className="text-gray-300 text-sm leading-relaxed mb-3">
+                  Nahrajte svoju holandskú výplatnú pásku (<em>loonstrook</em>) a my overíme každú položku
+                  voči oficiálnym daňovým tabuľkám 2026 a normám CAO ABU/NBBU.
+                </p>
+                <p className="text-gray-400 text-xs leading-relaxed mb-6">
+                  Overujeme: správne daňové pásma · uplatné úľavy heffingskorting ·
+                  limity zrážok za ubytovanie SNF · príplatky za nadčasy · výpočet vakantiegeld.
+                </p>
+                <Link href="/tools/payslip-checker"
+                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 transition-colors px-7 py-3.5 text-sm font-black text-white shadow-sm shadow-amber-900/40 active:scale-[0.98]">
+                  📄 Nahrať výplatnú pásku — skontrolovať teraz
+                </Link>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4">Čo overujeme</p>
+                <ul className="space-y-2.5">
+                  {[
+                    { ok: true,  label: "Správne pásma loonheffing uplatnené" },
+                    { ok: true,  label: "Vypočítaná úľava heffingskorting" },
+                    { ok: true,  label: "Zrážka za ubytovanie ≤ zákonné maximum SNF" },
+                    { ok: true,  label: "Príplatky za nadčasy (100%, 125%, 150%)" },
+                    { ok: true,  label: "Vakantiegeld ≥ 8% hrubej mzdy" },
+                    { ok: false, label: "Falošné zrážky alebo nevysvetlené poplatky" },
+                  ].map((item) => (
+                    <li key={item.label} className="flex items-center gap-3 text-sm">
+                      <span className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${item.ok ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"}`}>
+                        {item.ok ? "✓" : "✗"}
+                      </span>
+                      <span className="text-gray-300">{item.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          SEO CONTENT + CITY GRID
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Sprievodca pre pracovníkov</p>
+              <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 leading-tight">
+                Všetko, čo potrebujete vedieť pred prácou v Holandsku
+              </h2>
+              <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+                <p>
+                  Holandská minimálna mzda (<em>Wettelijk Minimumloon</em>) je{" "}
+                  <strong className="text-gray-900">€14,71/hodinu v roku 2026</strong> pre pracovníkov
+                  vo veku 21+. Pri 40 hodinách týždenne to je hrubá mzda presne €588/týždeň
+                  (€14,71 × 40 hodín). No po holandskej dani z príjmu, ubytovaní agentúry, zdravotnom
+                  poistení a doprave si väčšina pracovníkov ponechá medzi{" "}
+                  <strong className="text-gray-900">€300–€370</strong> —
+                  asi 50–63% brutto, v závislosti od agentúry.
+                </p>
+                <p>
+                  Kľúčové právne ochrany, ktoré treba poznať: <strong className="text-gray-900">ABU / NBBU CAO</strong>{" "}
+                  upravuje mzdové tarify, príplatky za nadčasy a platené voľno.
+                  <strong className="text-gray-900"> SNF</strong> (Stichting Normering Flexwonen) určuje maximálne zákonné
+                  zrážky za ubytovanie. <strong className="text-gray-900">Inspectie SZW</strong> vymáha celé pracovné právo.
+                  AgencyCheck overuje agentúry voči všetkým trom.
+                </p>
+                <p>
+                  Náš{" "}
+                  <Link href="/tools/real-income-calculator" className="text-blue-600 underline hover:text-blue-800">kalkulátor mzdy</Link>{" "}
+                  používa oficiálne daňové tabuľky 2026 a zahŕňa ako úľavu <em>algemene heffingskorting</em>, tak aj{" "}
+                  <em>arbeidskorting</em> — úľavy, ktoré môžu ušetriť nízkopríjmovým pracovníkom
+                  €600–€700 mesačne na daniach, o ktorých mnohé agentúry nehovoria.
+                </p>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Rýchly prístup</p>
+              {[
+                { icon: "💶", href: "/tools/real-income-calculator",        title: "Plný kalkulátor mzdy",            desc: "Čistá mzda so všetkými daňovými úľavami 2026" },
+                { icon: "📄", href: "/tools/payslip-checker",               title: "Nástroj na overenie výplatnice",  desc: "Nahrajte loonstrook a skontrolujte chyby" },
+                { icon: "🏢", href: "/agencies",                            title: "Všetky agentúry v Holandsku",     desc: `${totalAgencies} agentúr zoradených podľa hodnotení pracovníkov` },
+                { icon: "🏠", href: "/agencies-with-housing",               title: "Práca s ubytovaním",              desc: `${housingCount} overených agentúr s ubytovaním` },
+                { icon: "⭐", href: "/reviews",                             title: "Hodnotenia pracovníkov",          desc: `${totalReviews}+ skutočných anonymných hodnotení` },
+                { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Práva a právny sprievodca",       desc: "ABU CAO, WML, SNF — vysvetlené jednoducho" },
+              ].map((item) => (
+                <Link key={item.href} href={item.href}
+                  className="flex items-start gap-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
+                  <span className="text-xl mt-0.5">{item.icon}</span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{item.title}</p>
+                    <p className="text-xs text-gray-500 mt-0.5 leading-snug truncate">{item.desc}</p>
+                  </div>
+                  <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-400 transition-colors ml-auto mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* City grid */}
+          <div className="pt-8 border-t border-gray-100">
+            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Prehľadávajte pracovné ponuky podľa mesta</p>
+            <div className="flex flex-wrap gap-2">
+              {TOP_CITIES.slice(0, 18).map((c) => (
+                <Link key={c.slug} href={`/jobs-in-${c.slug}`}
+                  className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  💼 {c.name}
+                </Link>
+              ))}
+              <Link href="/jobs-in-netherlands"
+                className="inline-flex items-center text-xs font-bold bg-blue-50 border border-blue-200 text-blue-700 rounded-full px-3 py-1.5 hover:bg-blue-100 transition-colors">
+                🇳🇱 Všetky mestá →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          FAQ
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gray-50 border-b border-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -601,8 +925,13 @@ export default async function SkHomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-18 sm:py-24">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight mb-5">Spoznajte pravdu<br />pred podpisom.</h2>
-            <p className="text-blue-200 text-base sm:text-lg leading-relaxed mb-9 max-w-lg mx-auto">
-              {totalAgencies} agentúr. {totalReviews}+ hodnotení pracovníkov. Reálne rozdelenie výplat. Žiadne platené rebríčky.
+            <p className="text-blue-200 text-base sm:text-lg leading-relaxed mb-4 max-w-lg mx-auto">
+              {totalAgencies} agentúr. {totalReviews}+ hodnotení pracovníkov. Reálne rozdelenie výplat.
+              Zero platených rebríčkov. Vytvorené pre pracovníkov — nie recruitérov.
+            </p>
+            <p className="text-xs text-blue-400 mb-9">
+              ✓ Žiadne platené rebríčky &nbsp;·&nbsp; ✓ Agentúry nemôžu kúpiť lepšie hodnotenia &nbsp;·&nbsp;
+              ✓ Hodnotenia sú výhradne od pracovníkov &nbsp;·&nbsp; ✓ Status partnera nikdy neovplyvňuje výsledky
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
               <a href="#lead-form"
@@ -624,6 +953,10 @@ export default async function SkHomePage() {
               <Link href="/tools/real-income-calculator" className="hover:text-white transition-colors">Kalkulátor mzdy</Link>
               <span className="text-blue-800">·</span>
               <Link href="/methodology" className="hover:text-white transition-colors">Metodológia</Link>
+              <span className="text-blue-800">·</span>
+              <Link href="/privacy" className="hover:text-white transition-colors">Súkromie</Link>
+              <span className="text-blue-800">·</span>
+              <Link href="/terms" className="hover:text-white transition-colors">Podmienky</Link>
             </nav>
           </div>
         </div>
