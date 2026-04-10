@@ -51,7 +51,7 @@ export async function generateMetadata({
     return {
       title: `Jobs in ${city.name}, Netherlands — ${jobCount} Live Listings — AgencyCheck`,
       description: `Find ${jobCount} verified agency jobs in ${city.name}, ${city.region}. ${withHousing} positions include housing. Compare real salaries and worker reviews before you sign.`,
-      alternates: { canonical: `/jobs/netherlands/${city.slug}` },
+      alternates: { canonical: `https://agencycheck.io/jobs-in-${city.slug}` },
       openGraph: {
         title: `Agency Jobs in ${city.name} — Real Salaries & Worker Reviews`,
         description: `${jobCount} jobs in ${city.name}. Average hourly from €${WML_HOURLY_2026.toFixed(2)}. Compare ${ALL_AGENCIES.filter((a) => a.cities.includes(city.name)).length} agencies hiring now.`,
@@ -66,7 +66,7 @@ export async function generateMetadata({
     return {
       title: `${job.title} Jobs Netherlands — Salary ${fmtEur(job.min, 2)}–${fmtEur(job.max, 2)}/hr — AgencyCheck`,
       description: `Find ${job.title.toLowerCase()} jobs via employment agencies in the Netherlands. Worker-reported salary: €${job.min}–€${job.max}/hr. ${jobs.length} active listings across ${cities} cities. Compare agencies, housing & reviews.`,
-      alternates: { canonical: `/jobs/netherlands/${params.slug}` },
+      alternates: { canonical: `https://agencycheck.io/jobs/${params.slug}` },
       openGraph: {
         title: `${job.title} Jobs in the Netherlands — Real Salary & Agency Reviews`,
         description: `Average ${job.title.toLowerCase()} salary: €${job.avg}/hr gross (worker-reported). Find agencies with housing, compare real take-home pay.`,

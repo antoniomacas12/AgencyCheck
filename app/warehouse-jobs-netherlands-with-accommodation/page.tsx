@@ -6,7 +6,9 @@ export const metadata: Metadata = {
   title: "Warehouse Jobs Netherlands with Accommodation 2026 | AgencyCheck",
   description:
     "Warehouse jobs in the Netherlands with accommodation included. Which agencies provide housing near Tilburg, Venlo, Rotterdam. Pay rates, shift premiums, real weekly income.",
-  alternates: { canonical: "https://agencycheck.io/warehouse-jobs-netherlands-with-accommodation" },
+  // Canonical points to the primary page — this URL variant is deduplicated
+  alternates: { canonical: "https://agencycheck.io/warehouse-jobs-with-accommodation" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Warehouse Jobs Netherlands with Accommodation 2026",
     description: "Which agencies offer warehouse work with housing near major logistics hubs. Real pay and deduction breakdown.",

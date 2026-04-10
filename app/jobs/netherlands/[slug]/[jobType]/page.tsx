@@ -55,7 +55,7 @@ export async function generateMetadata({
     title: `${job.title} Jobs in ${city.name} — ${jobs.length > 0 ? jobs.length + " listings" : "Agencies & Salary"} — AgencyCheck`,
     description: `Find ${job.title.toLowerCase()} jobs in ${city.name}, Netherlands. Salary: €${job.min}–€${job.max}/hr (worker-reported). ${withHousing > 0 ? `${withHousing} jobs include housing.` : ""} Compare agencies, real income, and worker reviews.`,
     alternates: {
-      canonical: `/jobs/netherlands/${params.city}/${params.jobType}`,
+      canonical: `https://agencycheck.io/jobs/netherlands/${params.city}/${params.jobType}`,
     },
     openGraph: {
       title: `${job.icon} ${job.title} Jobs in ${city.name} — Real Salary & Housing — AgencyCheck`,

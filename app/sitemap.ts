@@ -277,12 +277,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "monthly",
       priority:         0.85,
     },
-    {
-      url:              `${BASE_URL}/warehouse-jobs-netherlands-with-accommodation`,
-      lastModified:     STATIC_DATE,
-      changeFrequency:  "monthly",
-      priority:         0.85,
-    },
+    // /warehouse-jobs-netherlands-with-accommodation intentionally excluded —
+    // duplicate of /warehouse-jobs-with-accommodation (canonical points there, noindex set)
     // ── Topic hub pages ───────────────────────────────────────────────────────
     {
       url:              `${BASE_URL}/salary-guides`,

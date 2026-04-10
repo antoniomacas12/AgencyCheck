@@ -35,11 +35,14 @@ const nextConfig = {
       { source: "/agencies/otto-work-force",       destination: "/agencies/otto-workforce",                  permanent: true },
       { source: "/agencies/otto-work-force/reviews", destination: "/agencies/otto-workforce/reviews",        permanent: true },
       { source: "/agencies/otto-work-force/jobs",  destination: "/agencies/otto-workforce/jobs",             permanent: true },
-      // /jobs/netherlands/[slug] → /jobs/[slug]
-      // These were old SEO URLs; the canonical route is /jobs/[jobType].
-      // City pages under /jobs/netherlands/ redirect to /jobs/[slug] which then
-      // falls through to the job-type handler or redirects to /jobs.
-      { source: "/jobs/netherlands/:slug",         destination: "/jobs/:slug",                               permanent: true },
+      // NOTE: /jobs/netherlands/[slug] is an ACTIVE page route (see app/jobs/netherlands/[slug]/page.tsx).
+      // The old redirect "/jobs/netherlands/:slug → /jobs/:slug" has been removed because:
+      //   1. Next.js redirects take precedence over pages — the route was never being served.
+      //   2. City slugs (e.g. /jobs/netherlands/amsterdam) redirected to /jobs/amsterdam which
+      //      is not a valid job-type page, causing a 301 → 404 chain.
+      //   3. The 1,716 city×job type pages at /jobs/netherlands/[city]/[jobType] depend on
+      //      the city page being reachable to pass link equity down.
+      // Resolution: remove the redirect; let the page route serve correctly.
     ];
   },
 };
