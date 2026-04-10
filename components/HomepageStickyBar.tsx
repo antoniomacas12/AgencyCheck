@@ -55,7 +55,7 @@ export default function HomepageStickyBar() {
     <div
       role="complementary"
       aria-label="Job matching CTA"
-      className="fixed bottom-0 inset-x-0 z-40 bg-gray-950/95 backdrop-blur-md border-t border-white/10 shadow-2xl"
+      className="hidden sm:block fixed bottom-0 inset-x-0 z-40 bg-gray-950/95 backdrop-blur-md border-t border-white/10 shadow-2xl"
       style={{ transform: visible ? "translateY(0)" : "translateY(100%)", transition: "transform 0.3s ease" }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
