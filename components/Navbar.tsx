@@ -54,19 +54,21 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-14">
+        <div className="flex items-center h-14">
 
-          {/* Logo — always links to locale root */}
-          <Link
-            href={locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : locale === "pt" ? "/pt" : "/"}
-            className="flex items-center gap-2 font-bold text-xl text-brand-600 shrink-0"
-          >
-            <span className="text-2xl">✅</span>
-            <span>AgencyCheck</span>
-          </Link>
+          {/* Logo — fixed-width zone so it sits centered between the left edge and "Now Hiring" */}
+          <div className="flex items-center justify-center shrink-0 md:w-48 w-auto">
+            <Link
+              href={locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : locale === "pt" ? "/pt" : "/"}
+              className="flex items-center gap-2 font-bold text-xl text-brand-600"
+            >
+              <span className="text-2xl">✅</span>
+              <span>AgencyCheck</span>
+            </Link>
+          </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-gray-600">
+          <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-gray-600 flex-1">
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
               if ((item as { hiring?: boolean }).hiring) {
@@ -124,7 +126,7 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
 
           {/* Mobile hamburger — min 44×44px touch target */}
           <button
-            className="md:hidden p-3 rounded-xl text-gray-500 hover:bg-gray-100 active:bg-gray-200 transition-colors"
+            className="md:hidden ml-auto p-3 rounded-xl text-gray-500 hover:bg-gray-100 active:bg-gray-200 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
