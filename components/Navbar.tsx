@@ -42,7 +42,8 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
     "/jobs-with-accommodation";
 
   const NAV_ITEMS = [
-    { href: housingHref,                     label: t("nav.jobs_with_housing"), highlight: true },
+    { href: "/apply/reachtruck",              label: "🔥 Now Hiring",            hiring: true   },
+    { href: housingHref,                      label: t("nav.jobs_with_housing"), highlight: true },
     { href: "/tools/real-income-calculator",  label: t("nav.real_salary")   },
     { href: "/agencies-with-housing",         label: t("nav.housing_photos") },
     { href: "/reviews",                       label: t("nav.reviews")        },
@@ -68,6 +69,25 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
           <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-gray-600">
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
+              if ((item as { hiring?: boolean }).hiring) {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition-colors ${
+                      active
+                        ? "bg-amber-600 text-white"
+                        : "bg-amber-500 hover:bg-amber-600 text-white"
+                    }`}
+                  >
+                    <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
+                      <span className="absolute inset-0 rounded-full bg-white animate-ping opacity-75" />
+                      <span className="relative rounded-full bg-white" style={{ width: "6px", height: "6px" }} />
+                    </span>
+                    {item.label}
+                  </Link>
+                );
+              }
               if (item.highlight) {
                 return (
                   <Link
@@ -124,12 +144,15 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
           <div className="md:hidden py-2 border-t border-gray-100 flex flex-col gap-0.5">
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
+              const isHiring = (item as { hiring?: boolean }).hiring;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={`px-3 py-3.5 rounded-xl text-sm font-medium transition-colors active:bg-gray-100 ${
-                    item.highlight
+                    isHiring
+                      ? "text-amber-700 font-bold bg-amber-50 hover:bg-amber-100"
+                      : item.highlight
                       ? "text-green-700 font-bold bg-green-50 hover:bg-green-100"
                       : active
                       ? "text-brand-600 font-semibold bg-brand-50"

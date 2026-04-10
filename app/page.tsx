@@ -295,6 +295,31 @@ export default async function HomePage() {
                 </span>
               </div>
 
+              {/* ── LIVE JOB ALERT ─────────────────────────────────── */}
+              <Link
+                href="/apply/reachtruck"
+                className="group mb-6 flex items-center gap-3 rounded-2xl border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/20 active:scale-[0.98] px-4 py-3.5 transition-all duration-150"
+              >
+                <span className="relative flex-shrink-0">
+                  <span className="absolute inset-0 rounded-full bg-amber-400 animate-ping opacity-40" />
+                  <span className="relative flex h-2.5 w-2.5 rounded-full bg-amber-400" />
+                </span>
+                <div className="flex-1 min-w-0 text-left">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-0.5">
+                    Now Hiring · Immediate Start
+                  </div>
+                  <div className="text-white font-semibold text-[14px] sm:text-[15px] leading-tight">
+                    Reachtruck Driver — Waalwijk&nbsp;&nbsp;·&nbsp;&nbsp;€16.50/hr&nbsp;&nbsp;·&nbsp;&nbsp;EU citizens only
+                  </div>
+                </div>
+                <span className="flex-shrink-0 text-[13px] font-bold text-amber-300 group-hover:text-amber-200 flex items-center gap-1 whitespace-nowrap">
+                  Apply now
+                  <svg className="w-3.5 h-3.5 transition-transform duration-150 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </Link>
+
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-[1.04] tracking-tight text-white mb-5">
                 Work in the{" "}
