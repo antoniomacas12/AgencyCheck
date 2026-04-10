@@ -5,7 +5,7 @@ import { WA_LINK } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "Covebo Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
   description:
-    "Honest Covebo review based on worker reports. What you earn, housing quality, and how Covebo compares to larger agencies. Updated for 2026.",
+    "Covebo review Netherlands 2026. Production workers keep €320–€383/week net after housing (€88–€110/wk), tax and transport. Real salary breakdown, accommodation quality, and worker experiences.",
   alternates: { canonical: "https://agencycheck.io/covebo-review" },
   openGraph: {
     title: "Covebo Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",

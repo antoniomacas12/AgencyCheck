@@ -5,7 +5,7 @@ import { WA_LINK } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "OTTO Workforce vs Tempo-Team Netherlands (2026) – Salary, Housing & Which Is Better",
   description:
-    "Detailed comparison of OTTO Workforce vs Tempo-Team in the Netherlands. Real salary differences, housing quality, placement speed, and which agency suits your situation. Based on worker reports.",
+    "OTTO Workforce vs Tempo-Team Netherlands 2026. Tempo-Team pays €0.50–€1.50/hr more in most cities. OTTO places workers faster (1–5 days vs 3–7). Full salary, housing, and placement speed comparison.",
   alternates: { canonical: "https://agencycheck.io/otto-vs-tempo-team" },
   openGraph: {
     title: "OTTO Workforce vs Tempo-Team Netherlands (2026) – Which Agency Is Better?",

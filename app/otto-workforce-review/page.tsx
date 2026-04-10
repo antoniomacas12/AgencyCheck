@@ -5,7 +5,7 @@ import { WA_LINK } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "OTTO Workforce Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
   description:
-    "Honest OTTO Workforce review based on real worker reports. Salary after deductions, housing quality, and how they compare to Tempo Team. Updated for 2026.",
+    "OTTO Workforce review Netherlands 2026. Workers keep €310–€370/week after housing (€95/wk), tax and transport. Real experiences on salary, accommodation quality, and how OTTO compares to Tempo-Team.",
   alternates: {
     canonical: "https://agencycheck.io/otto-workforce-review",
   },

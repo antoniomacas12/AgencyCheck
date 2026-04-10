@@ -5,7 +5,7 @@ import { WA_LINK } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "Randstad Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
   description:
-    "Honest Randstad Netherlands review based on worker reports. Real salary after deductions, housing quality, and how Randstad compares to other Dutch employment agencies in 2026.",
+    "Randstad review Netherlands 2026. Warehouse workers keep €320–€375/week net after tax, housing and deductions. Real salary numbers, accommodation quality, and honest comparison with Tempo-Team and OTTO.",
   alternates: { canonical: "https://agencycheck.io/randstad-review" },
   openGraph: {
     title: "Randstad Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
