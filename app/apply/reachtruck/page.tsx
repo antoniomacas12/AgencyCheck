@@ -17,7 +17,7 @@
  *   reachtruck_apply_rejected   — server returns qualified=false
  */
 
-import { useState, useRef, useEffect, useCallback, DragEvent, ChangeEvent } from "react";
+import { useState, useEffect, useCallback, ChangeEvent } from "react";
 import { track } from "@vercel/analytics";
 
 // ─── Analytics helper — same pattern as RentCalculatorClient.tsx ──────────────
@@ -37,7 +37,6 @@ interface Fields {
   driversLicense:   string;   // "yes" | "no" | ""
   englishLevel:     string;
   availability:     string;   // "yes" | "no" | ""
-  cvFile:           File | null;
 }
 
 type FieldErrors = Partial<Record<keyof Fields, string>>;
@@ -149,13 +148,10 @@ export default function ReachtruckApplyPage() {
     driversLicense:  "",
     englishLevel:    "",
     availability:    "",
-    cvFile:          null,
   });
   const [errors,      setErrors]      = useState<FieldErrors>({});
   const [serverError, setServerError] = useState("");
   const [hasStarted,  setHasStarted]  = useState(false);
-  const [isDragging,  setIsDragging]  = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Analytics: page viewed
   useEffect(() => { fireEvent("reachtruck_apply_viewed"); }, []);
@@ -177,29 +173,6 @@ export default function ReachtruckApplyPage() {
     markStarted();
   }
 
-  function handleFileChange(file: File | null) {
-    if (!file) return;
-    // Client-side size check: 3 MB
-    if (file.size > 3 * 1024 * 1024) {
-      setErrors(prev => ({ ...prev, cvFile: "File is too large. Maximum 3 MB." }));
-      return;
-    }
-    setField("cvFile", file);
-  }
-
-  // ── Drag and drop ─────────────────────────────────────────────────────────
-  function onDragOver(e: DragEvent<HTMLDivElement>) {
-    e.preventDefault();
-    setIsDragging(true);
-  }
-  function onDragLeave() { setIsDragging(false); }
-  function onDrop(e: DragEvent<HTMLDivElement>) {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files[0] ?? null;
-    handleFileChange(file);
-  }
-
   // ── Client validation ─────────────────────────────────────────────────────
   function validate(): FieldErrors {
     const e: FieldErrors = {};
@@ -219,8 +192,6 @@ export default function ReachtruckApplyPage() {
       e.englishLevel = "Select your English level.";
     if (!fields.availability)
       e.availability = "Please select Yes or No.";
-    if (!fields.cvFile)
-      e.cvFile = "Upload your CV to continue.";
     return e;
   }
 
@@ -252,7 +223,6 @@ export default function ReachtruckApplyPage() {
     fd.append("drivers-license",  fields.driversLicense);
     fd.append("english-level",    fields.englishLevel);
     fd.append("availability",     fields.availability);
-    if (fields.cvFile) fd.append("cv-file", fields.cvFile);
 
     try {
       const res  = await fetch("/api/apply/reachtruck", { method: "POST", body: fd });
@@ -451,7 +421,7 @@ export default function ReachtruckApplyPage() {
             Start your application
           </h2>
           <p className="text-gray-500 text-[14px] mb-6">
-            All fields are required. Eligibility is confirmed automatically on submission.
+            Takes 2 minutes. No CV needed — you can send it later if requested.
           </p>
 
           {/* ── Live disqualification banner ── */}
@@ -484,9 +454,10 @@ export default function ReachtruckApplyPage() {
                   📋 What happens next:
                 </strong>
                 <ol className="list-decimal pl-5 space-y-1">
-                  <li>Recruiter reviews your CV and experience details</li>
+                  <li>Recruiter reviews your experience details</li>
                   <li>Short phone screening call (10–15 minutes)</li>
-                  <li>If approved — placement coordination begins immediately</li>
+                  <li>If approved — we may ask for your CV at this stage</li>
+                  <li>Placement coordination begins immediately</li>
                 </ol>
               </div>
             </div>
@@ -692,57 +663,6 @@ export default function ReachtruckApplyPage() {
                     That's fine — within 4 weeks is acceptable.
                   </p>
                 )}
-              </Field>
-
-              {/* CV upload */}
-              <Field label="Upload your CV" error={errors.cvFile}>
-                <div
-                  role="button"
-                  tabIndex={0}
-                  onDragOver={onDragOver}
-                  onDragLeave={onDragLeave}
-                  onDrop={onDrop}
-                  onClick={() => fileInputRef.current?.click()}
-                  onKeyDown={e => e.key === "Enter" && fileInputRef.current?.click()}
-                  className={`relative border-2 border-dashed rounded-lg p-5 text-center cursor-pointer transition-all
-                    ${isDragging
-                      ? "border-brand-500 bg-brand-50"
-                      : errors.cvFile
-                        ? "border-red-400 bg-red-50"
-                        : fields.cvFile
-                          ? "border-green-400 bg-green-50"
-                          : "border-gray-300 hover:border-brand-400 hover:bg-brand-50"
-                    }`}
-                >
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept=".pdf,.doc,.docx"
-                    className="hidden"
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      handleFileChange(e.target.files?.[0] ?? null)
-                    }
-                  />
-                  <div className="text-3xl mb-2">📄</div>
-                  {fields.cvFile ? (
-                    <p className="text-green-700 font-semibold text-[14px]">
-                      ✓ {fields.cvFile.name}{" "}
-                      <span className="font-normal text-gray-500">
-                        ({Math.round(fields.cvFile.size / 1024)} KB)
-                      </span>
-                    </p>
-                  ) : (
-                    <>
-                      <p className="text-[14px] text-gray-500">
-                        <strong className="text-brand-600">Click to upload</strong> or drag
-                        and drop
-                      </p>
-                      <p className="text-[12px] text-gray-400 mt-1">
-                        PDF, DOC, DOCX — max 3 MB
-                      </p>
-                    </>
-                  )}
-                </div>
               </Field>
 
               {/* Submit */}

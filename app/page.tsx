@@ -322,18 +322,18 @@ export default async function HomePage() {
 
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-[1.04] tracking-tight text-white mb-5">
-                Work in the{" "}
+                Already in the{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                  Netherlands
+                  Netherlands?
                 </span>
                 <br />
-                <span className="text-gray-200">— without surprises</span>
+                <span className="text-gray-200">Start working next week.</span>
               </h1>
 
               {/* Subtext */}
               <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-5 max-w-xl mx-auto lg:mx-0">
-                See real jobs, real salaries, housing and transport{" "}
-                <span className="text-gray-200 font-medium">before you apply.</span>
+                Get matched with real jobs in the Netherlands in just a few steps.{" "}
+                <span className="text-gray-200 font-medium">Accommodation available.</span>
               </p>
 
               {/* Trust pills */}
@@ -358,11 +358,11 @@ export default async function HomePage() {
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-5">
                 <a
-                  href="/agencies-with-housing"
+                  href="#lead-form"
                   className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-black text-white"
                   style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.35), 0 8px 36px rgba(52,211,153,0.25)" }}
                 >
-                  Find job + housing
+                  Get matched with a job
                   <svg className="w-4 h-4 transition-transform duration-150 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -481,6 +481,72 @@ export default async function HomePage() {
               </div>
 
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §1b  AVOID BAD AGENCIES — social proof trust strip
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#0f1a2e] border-b border-white/[0.06]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+
+            {/* Left: headline + sub + CTA */}
+            <div className="flex-shrink-0">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-amber-400 text-lg">⚠️</span>
+                <p className="text-[11px] font-black uppercase tracking-widest text-amber-400">
+                  Before you apply
+                </p>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-black text-white mb-1">
+                Avoid bad agencies
+              </h2>
+              <p className="text-gray-400 text-sm mb-4 max-w-xs">
+                See real reviews from workers before you apply.
+              </p>
+              <Link
+                href="/reviews"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-white text-gray-900 hover:bg-gray-100 active:scale-[0.97] transition-all duration-150 px-5 py-2.5 text-sm font-black"
+              >
+                ⭐ View reviews →
+              </Link>
+            </div>
+
+            {/* Divider — desktop only */}
+            <div className="hidden lg:block w-px self-stretch bg-white/[0.07]" aria-hidden="true" />
+
+            {/* Right: 3 review snippets */}
+            <div className="grid sm:grid-cols-3 gap-3 flex-1">
+              {[
+                { stars: 4, text: "Good housing but low hours. Overall honest agency, no surprises.", tag: "Warehouse · Rotterdam" },
+                { stars: 3, text: "Paid on time, but crowded rooms. 4 people per room was too much.", tag: "Production · Eindhoven" },
+                { stars: 5, text: "Honest agency, no hidden fees. Everything matched what they said.", tag: "Logistics · Tilburg" },
+              ].map((r) => (
+                <div
+                  key={r.tag}
+                  className="rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3.5 flex flex-col gap-2"
+                >
+                  {/* Stars */}
+                  <div className="flex items-center gap-0.5">
+                    {[1,2,3,4,5].map((s) => (
+                      <svg key={s} viewBox="0 0 20 20" fill="currentColor"
+                        className={`w-3.5 h-3.5 ${s <= r.stars ? "text-amber-400" : "text-gray-600"}`}>
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  {/* Quote */}
+                  <p className="text-[13px] text-gray-300 leading-relaxed">
+                    &ldquo;{r.text}&rdquo;
+                  </p>
+                  {/* Tag */}
+                  <p className="text-[11px] text-gray-500 font-medium">{r.tag}</p>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
