@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Weekly Salary Calculator Netherlands — Real Take-Home Pay — AgencyCheck",
   description:
     "Calculate your real weekly income after Dutch income tax (loonheffing 2026), agency housing deduction, insurance, and transport. Free, instant, no signup.",
+  alternates: { canonical: "https://agencycheck.io/tools/salary-calculator" },
 };
 
 export default function SalaryCalculatorLayout({ children }: { children: React.ReactNode }) {

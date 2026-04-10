@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Payslip Checker — Verify Your Pay Netherlands — AgencyCheck",
   description:
     "Check if your Dutch agency payslip is correct. Enter your hours, gross pay, and deductions to see if the numbers add up. Includes a 12-point verification checklist.",
+  alternates: { canonical: "https://agencycheck.io/tools/payslip-checker" },
 };
 
 export default function PayslipCheckerLayout({ children }: { children: React.ReactNode }) {

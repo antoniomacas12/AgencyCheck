@@ -542,12 +542,12 @@ export default function OttoWorkforceReviewPage() {
           <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">More useful reads</p>
           <div className="grid sm:grid-cols-2 gap-3">
             {[
-              { href: "/agencies",                          label: "Compare all agencies →" },
+              { href: "/otto-vs-tempo-team",                label: "OTTO vs Tempo-Team — full comparison →" },
+              { href: "/tempo-team-review",                 label: "Tempo-Team review Netherlands →" },
+              { href: "/covebo-review",                     label: "Covebo review Netherlands →" },
+              { href: "/randstad-review",                   label: "Randstad review Netherlands →" },
               { href: "/jobs-with-accommodation",           label: "Jobs with accommodation in Netherlands →" },
-              { href: "/tools/payslip-checker",             label: "Check if your payslip is correct →" },
               { href: "/tools/real-income-calculator",      label: "Calculate your real net salary →" },
-              { href: "/agencies-with-housing",             label: "Best agencies with housing →" },
-              { href: "/reviews",                           label: "Read all worker reviews →" },
             ].map((link) => (
               <Link
                 key={link.href}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Jobs Rotterdam Netherlands — Warehouse & Port Work 2026 | AgencyCheck",
   description:
     "Find warehouse, port logistics, and production jobs in Rotterdam. Housing available. Apply via verified Dutch employment agencies. Updated daily.",
-  alternates: { canonical: "/jobs-rotterdam" },
+  alternates: { canonical: "https://agencycheck.io/jobs-rotterdam" },
   openGraph: {
     title: "Jobs Rotterdam Netherlands — AgencyCheck",
     description: "Warehouse, port logistics and production jobs in Rotterdam. Many include housing.",

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Compare Two Agency Offers — Real Income Calculator — AgencyCheck",
   description:
     "Compare two Dutch agency job offers side by side after income tax, housing deductions, transport and healthcare. Find out which deal leaves you with more money.",
+  alternates: { canonical: "https://agencycheck.io/tools/real-income-calculator" },
 };
 
 export default function RealIncomeCalculatorLayout({ children }: { children: React.ReactNode }) {

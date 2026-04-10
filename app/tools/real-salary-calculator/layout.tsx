@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Real Salary Calculator Netherlands 2026 — After Tax — AgencyCheck",
   description:
     "Full Dutch salary calculation including loonheffing 2026, overtime premiums, vakantiegeld (8%), and housing deductions. See your true take-home pay as an agency worker.",
+  alternates: { canonical: "https://agencycheck.io/tools/real-salary-calculator" },
 };
 
 export default function RealSalaryCalculatorLayout({ children }: { children: React.ReactNode }) {

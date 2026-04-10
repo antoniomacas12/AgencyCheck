@@ -330,10 +330,10 @@ export default function RandstadReviewPage() {
             {[
               { href: "/tempo-team-review",             label: "Tempo-Team review Netherlands →" },
               { href: "/otto-workforce-review",         label: "OTTO Workforce review Netherlands →" },
+              { href: "/covebo-review",                 label: "Covebo review Netherlands →" },
               { href: "/otto-vs-tempo-team",            label: "OTTO vs Tempo-Team comparison →" },
-              { href: "/agencies-with-housing",         label: "Best agencies with housing →" },
+              { href: "/check-agency",                  label: "How to check if an agency is legit →" },
               { href: "/tools/real-income-calculator",  label: "Calculate your real net salary →" },
-              { href: "/reviews",                       label: "All worker reviews →" },
             ].map((link) => (
               <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
             ))}

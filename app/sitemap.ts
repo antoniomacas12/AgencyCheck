@@ -120,12 +120,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "weekly",
       priority:         0.8,
     },
-    {
-      url:              `${BASE_URL}/search`,
-      lastModified:     STATIC_DATE,
-      changeFrequency:  "weekly",
-      priority:         0.8,
-    },
+    // /search intentionally excluded — parameterised search-result page;
+    // not indexable. noindex is set on the page directly.
     {
       url:              `${BASE_URL}/compare`,
       lastModified:     STATIC_DATE,
@@ -326,6 +322,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority:         0.8,
     },
     // ── Trust pages ──────────────────────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/check-agency`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.75,
+    },
+    {
+      url:              `${BASE_URL}/methodology`,
+      lastModified:     STATIC_DATE,
+      changeFrequency:  "monthly",
+      priority:         0.6,
+    },
     {
       url:              `${BASE_URL}/about`,
       lastModified:     STATIC_DATE,

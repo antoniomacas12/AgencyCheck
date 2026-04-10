@@ -322,10 +322,10 @@ export default function CoveboReviewPage() {
             {[
               { href: "/otto-workforce-review",         label: "OTTO Workforce review Netherlands →" },
               { href: "/tempo-team-review",             label: "Tempo-Team review Netherlands →" },
+              { href: "/randstad-review",               label: "Randstad review Netherlands →" },
               { href: "/otto-vs-tempo-team",            label: "OTTO vs Tempo-Team comparison →" },
-              { href: "/jobs-with-accommodation",       label: "Jobs with accommodation in Netherlands →" },
+              { href: "/check-agency",                  label: "How to check if an agency is legit →" },
               { href: "/tools/payslip-checker",         label: "Check your payslip is correct →" },
-              { href: "/agencies",                      label: "Compare all agencies →" },
             ].map((link) => (
               <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
             ))}

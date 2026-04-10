@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   title: "Search Employment Agencies by Job, City & Housing — AgencyCheck",
   description:
     "Search 150+ verified employment agencies in the Netherlands by job, city, housing, and salary. Filter by sector, job type, and accommodation availability.",
+  alternates: { canonical: "https://agencycheck.io/search" },
+  // Search pages with filter params create duplicate content — keep clean URL
+  // discoverable but prevent Google from indexing parameterised variants.
+  robots: { index: false, follow: true },
 };
 
 // ─── Types ────────────────────────────────────────────────────────────────────

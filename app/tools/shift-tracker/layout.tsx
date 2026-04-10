@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Work Hours Tracker — Log Shifts & Verify Pay — AgencyCheck",
   description:
     "Track your shifts and hours as an agency worker in the Netherlands. Log start time, end time, breaks, and overtime. Export a CSV for your records.",
+  alternates: { canonical: "https://agencycheck.io/tools/shift-tracker" },
 };
 
 export default function ShiftTrackerLayout({ children }: { children: React.ReactNode }) {

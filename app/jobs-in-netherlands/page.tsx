@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Jobs in the Netherlands for Foreigners — AgencyCheck",
   description:
     "Browse 1000+ active jobs in the Netherlands. Warehouse, logistics, production & factory jobs. Many positions include housing and transport. Apply via verified employment agencies.",
-  alternates: { canonical: "/jobs-in-netherlands" },
+  alternates: { canonical: "https://agencycheck.io/jobs-in-netherlands" },
   openGraph: {
     title: "Jobs in Netherlands — AgencyCheck",
     description:

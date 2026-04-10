@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Accommodation Cost Calculator — Agency Housing Netherlands — AgencyCheck",
   description:
     "Calculate how much agency housing costs will reduce your real weekly income. Enter your housing deduction, insurance, and transport to see your spendable income.",
+  alternates: { canonical: "https://agencycheck.io/tools/accommodation-costs" },
 };
 
 export default function AccommodationCostsLayout({ children }: { children: React.ReactNode }) {

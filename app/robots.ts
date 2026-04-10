@@ -27,8 +27,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
       {
-        // Block Anthropic's Claude web crawler
-        userAgent: "Claude-Web",
+        // Block Anthropic's Claude crawler (ClaudeBot is the current UA string)
+        userAgent: "ClaudeBot",
         disallow: "/",
       },
     ],

@@ -14,6 +14,7 @@ import { getRecentWorkerReportedAgencies } from "@/lib/agencyDb";
 export const metadata: Metadata = {
   title: "All Employment Agencies Netherlands — AgencyCheck",
   description: `Browse ${ALL_AGENCIES.length} verified employment agencies in the Netherlands. Job counts, housing info, accommodation data, and worker transparency scores.`,
+  alternates: { canonical: "https://agencycheck.io/agencies" },
 };
 
 // ─── Top agency slugs to feature (most jobs + most recognisable) ──────────────

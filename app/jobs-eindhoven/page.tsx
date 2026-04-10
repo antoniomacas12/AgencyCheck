@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Jobs Eindhoven Netherlands — Production & Warehouse 2026 | AgencyCheck",
   description:
     "Find warehouse, production and logistics jobs in Eindhoven. Housing available. ASML, Philips area. Apply via verified Dutch employment agencies.",
-  alternates: { canonical: "/jobs-eindhoven" },
+  alternates: { canonical: "https://agencycheck.io/jobs-eindhoven" },
   openGraph: {
     title: "Jobs Eindhoven Netherlands — AgencyCheck",
     description: "Production, warehouse and logistics jobs in Eindhoven. Many include housing.",

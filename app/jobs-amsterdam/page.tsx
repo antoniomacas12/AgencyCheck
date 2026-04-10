@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Jobs Amsterdam Netherlands — Warehouse & Logistics 2026 | AgencyCheck",
   description:
     "Find warehouse, logistics and production jobs in Amsterdam. Housing available. Apply via verified Dutch employment agencies. Updated daily.",
-  alternates: { canonical: "/jobs-amsterdam" },
+  alternates: { canonical: "https://agencycheck.io/jobs-amsterdam" },
   openGraph: {
     title: "Jobs Amsterdam Netherlands — AgencyCheck",
     description: "Warehouse, logistics and production jobs in Amsterdam. Many include housing.",
