@@ -31,7 +31,11 @@ export async function generateMetadata({
   const location = city ? city.name : "Netherlands";
   const title    = `${job.title} Salary in ${location} — AgencyCheck`;
   const desc     = `Average ${job.title} salary in ${location}: €${job.avg.toFixed(2)}/hr. Worker-reported pay data, agencies hiring, and housing options.`;
-  return { title, description: desc };
+  return {
+    title,
+    description: desc,
+    alternates: { canonical: `https://agencycheck.io/salary/${params.slug}` },
+  };
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────

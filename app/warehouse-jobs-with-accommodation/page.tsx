@@ -349,7 +349,7 @@ export default function WarehouseJobsAccommodationPage() {
             { href: "/agencies-with-housing", icon: "🏘️", label: "All agencies with housing", sub: "Full comparison of housing agencies" },
             { href: "/salary/warehouse-worker-netherlands", icon: "💶", label: "Warehouse salary breakdown", sub: "Gross-to-net + housing deduction" },
             { href: "/otto-workforce-jobs", icon: "🏢", label: "OTTO Workforce jobs", sub: "Large agency with housing packages" },
-            { href: "/jobs-tilburg", icon: "📍", label: "Jobs in Tilburg", sub: "Top city for warehouse + housing" },
+            { href: "/cities/tilburg", icon: "📍", label: "Jobs in Tilburg", sub: "Top city for warehouse + housing" },
           ].map(({ href, icon, label, sub }) => (
             <Link
               key={href}

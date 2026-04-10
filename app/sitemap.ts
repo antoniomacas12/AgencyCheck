@@ -611,6 +611,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority:        0.8,
   }));
 
+  // ── 13b. Issue pages (worker rights issue types) ─────────────────────────
+  // e.g. /issues/missing-overtime, /issues/bad-housing etc.
+  // These pages were missing from the sitemap; canonical tags added to page.tsx.
+  const issuePageSlugs = [
+    "missing-overtime",
+    "bad-housing",
+    "late-payment",
+    "missing-sunday-pay",
+    "contract-issues",
+    "underpayment",
+  ];
+  const issuePages: MetadataRoute.Sitemap = issuePageSlugs.map((slug) => ({
+    url:             `${BASE_URL}/issues/${slug}`,
+    lastModified:    STATIC_DATE,
+    changeFrequency: "monthly" as const,
+    priority:        0.6,
+  }));
+
   // ── 14. Work-in audience+city+job combo pages (50 pages) ──────────────────
   // 5 job types × 5 cities × 2 audiences (foreigners, students)
   const workInPages: MetadataRoute.Sitemap = allWorkInCombos().map(({ combo }) => ({
@@ -788,6 +806,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...cityJobPages,
     ...comboPageEntries,
     ...guidePages,
+    ...issuePages,
     ...workInPages,
     // Multilingual pages (PL + RO + PT)
     ...plAgencyPages,
@@ -800,5 +819,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...roCityPages,
     ...ptCityPages,
     ...ptStaticPages,
+    // ── /bg and /sk landing pages (exist, self-canonical, previously missing from sitemap)
+    { url: `${BASE_URL}/bg`, lastModified: STATIC_DATE, changeFrequency: "monthly" as const, priority: 0.8 },
+    { url: `${BASE_URL}/sk`, lastModified: STATIC_DATE, changeFrequency: "monthly" as const, priority: 0.8 },
   ];
 }

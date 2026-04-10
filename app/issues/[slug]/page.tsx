@@ -21,6 +21,7 @@ export async function generateMetadata({
   return {
     title:       `${issue.title} — Agency Issues — AgencyCheck`,
     description: issue.description,
+    alternates:  { canonical: `https://agencycheck.io/issues/${params.slug}` },
   };
 }
 

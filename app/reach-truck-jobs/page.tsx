@@ -399,10 +399,10 @@ export default function ReachTruckJobsPage() {
         <div className="grid sm:grid-cols-2 gap-2">
           {[
             { href: "/order-picker-jobs", icon: "📦", label: "Order picker jobs", sub: "Entry-level warehouse work" },
-            { href: "/forklift-driver-jobs", icon: "🚜", label: "Forklift driver jobs", sub: "Counterbalance & reach" },
+            { href: "/jobs/forklift-driver", icon: "🚜", label: "Forklift driver jobs", sub: "Counterbalance & reach" },
             { href: "/warehouse-jobs-with-accommodation", icon: "🏠", label: "Warehouse jobs with housing", sub: "Agency accommodation included" },
             { href: "/salary/reach-truck-driver-netherlands", icon: "💶", label: "Reach truck salary", sub: "Full gross-to-net breakdown" },
-            { href: "/jobs-tilburg", icon: "📍", label: "Jobs in Tilburg", sub: "Top logistics city for RT work" },
+            { href: "/cities/tilburg", icon: "📍", label: "Jobs in Tilburg", sub: "Top logistics city for RT work" },
             { href: "/otto-workforce-jobs", icon: "🏢", label: "OTTO Workforce jobs", sub: "Major agency for warehouse roles" },
           ].map(({ href, icon, label, sub }) => (
             <Link
