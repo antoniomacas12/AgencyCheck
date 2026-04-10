@@ -316,19 +316,61 @@ export default function CoveboReviewPage() {
         </section>
 
         {/* Internal links */}
-        <section className="mb-10 rounded-xl bg-gray-50 border border-gray-200 p-5">
-          <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Related reads</p>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              { href: "/otto-workforce-review",         label: "OTTO Workforce review Netherlands →" },
-              { href: "/tempo-team-review",             label: "Tempo-Team review Netherlands →" },
-              { href: "/randstad-review",               label: "Randstad review Netherlands →" },
-              { href: "/otto-vs-tempo-team",            label: "OTTO vs Tempo-Team comparison →" },
-              { href: "/check-agency",                  label: "How to check if an agency is legit →" },
-              { href: "/tools/payslip-checker",         label: "Check your payslip is correct →" },
-            ].map((link) => (
-              <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
-            ))}
+        <section className="mb-10 space-y-4">
+          {/* Similar agencies */}
+          <div className="rounded-xl bg-gray-50 border border-gray-200 p-5">
+            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-3">🏢 Similar agencies — read their reviews</p>
+            <div className="grid sm:grid-cols-2 gap-2">
+              {[
+                { href: "/otto-workforce-review", label: "OTTO Workforce review →",  sub: "Largest logistics-focused agency in NL" },
+                { href: "/tempo-team-review",     label: "Tempo-Team review →",      sub: "Broad sector coverage including catering" },
+                { href: "/randstad-review",       label: "Randstad review →",        sub: "World's largest agency, NL operations" },
+                { href: "/agencies",              label: "All agency profiles →",    sub: "Browse 40+ verified agencies" },
+              ].map(({ href, label, sub }) => (
+                <Link key={href} href={href} className="card px-3 py-2.5 hover:border-brand-200 hover:bg-brand-50/30 transition-all block">
+                  <p className="text-xs font-semibold text-brand-700">{label}</p>
+                  <p className="text-[10px] text-gray-400">{sub}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Compare with */}
+          <div className="rounded-xl bg-blue-50 border border-blue-100 p-5">
+            <p className="text-xs font-black uppercase tracking-widest text-blue-400 mb-3">⚖️ Compare with other agencies</p>
+            <div className="grid sm:grid-cols-2 gap-2">
+              {[
+                { href: "/otto-vs-tempo-team",                       label: "OTTO vs Tempo-Team →",               sub: "Most-compared pair in Netherlands" },
+                { href: "/compare",                                   label: "Agency comparison tool →",           sub: "Compare any two agencies side by side" },
+                { href: "/check-agency",                              label: "How to check an agency →",           sub: "Verify licences, ABU/NBBU certification" },
+                { href: "/best-agencies-netherlands-for-foreigners", label: "Best agencies for foreigners →",     sub: "Ranked by transparency & housing" },
+              ].map(({ href, label, sub }) => (
+                <Link key={href} href={href} className="bg-white border border-blue-100 rounded-xl px-3 py-2.5 hover:border-blue-300 hover:bg-blue-50/50 transition-all block">
+                  <p className="text-xs font-semibold text-blue-700">{label}</p>
+                  <p className="text-[10px] text-gray-400">{sub}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Other jobs in Netherlands */}
+          <div className="rounded-xl bg-green-50 border border-green-100 p-5">
+            <p className="text-xs font-black uppercase tracking-widest text-green-500 mb-3">💼 Other jobs in the Netherlands</p>
+            <div className="grid sm:grid-cols-2 gap-2">
+              {[
+                { href: "/order-picker-jobs",                  label: "Order picker jobs →",            sub: "Most common entry-level warehouse role" },
+                { href: "/production-jobs-with-accommodation", label: "Production + housing →",         sub: "Food & manufacturing with housing" },
+                { href: "/warehouse-jobs-with-accommodation",  label: "Warehouse + housing →",          sub: "Job & accommodation in one package" },
+                { href: "/jobs-rotterdam",                     label: "Jobs in Rotterdam →",            sub: "Major food processing & logistics hub" },
+                { href: "/jobs-eindhoven",                     label: "Jobs in Eindhoven →",            sub: "ASML & Philips supply chain" },
+                { href: "/tools/payslip-checker",              label: "Check your payslip →",           sub: "Verify deductions are correct" },
+              ].map(({ href, label, sub }) => (
+                <Link key={href} href={href} className="bg-white border border-green-100 rounded-xl px-3 py-2.5 hover:border-green-300 hover:bg-green-50/50 transition-all block">
+                  <p className="text-xs font-semibold text-green-700">{label}</p>
+                  <p className="text-[10px] text-gray-400">{sub}</p>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

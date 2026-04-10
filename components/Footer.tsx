@@ -42,10 +42,23 @@ const JOB_LANDING_PAGES = [
 ];
 
 const SALARY_SPOTLIGHT = [
-  { label: "Order picker salary Amsterdam",    href: "/salary/order-picker-amsterdam"    },
-  { label: "Forklift driver salary Rotterdam", href: "/salary/forklift-driver-rotterdam" },
-  { label: "Warehouse worker salary Utrecht",  href: "/salary/warehouse-worker-utrecht"  },
-  { label: "Truck driver salary Den Haag",     href: "/salary/truck-driver-s-gravenhage" },
+  { label: "Order picker salary Amsterdam",      href: "/salary/order-picker-amsterdam"         },
+  { label: "Forklift driver salary Rotterdam",   href: "/salary/forklift-driver-rotterdam"       },
+  { label: "Reach truck salary Tilburg",         href: "/salary/reach-truck-driver-tilburg"      },
+  { label: "Warehouse worker salary Utrecht",    href: "/salary/warehouse-worker-utrecht"        },
+  { label: "Production worker salary Eindhoven", href: "/salary/production-worker-eindhoven"     },
+  { label: "Truck driver salary Den Haag",       href: "/salary/truck-driver-s-gravenhage"       },
+];
+
+const KEY_GUIDES = [
+  { label: "Jobs for foreigners in NL",    href: "/jobs-in-netherlands-for-foreigners"        },
+  { label: "Best agencies Netherlands",    href: "/best-agencies-netherlands-for-foreigners"   },
+  { label: "Real salary after deductions", href: "/real-salary-netherlands-agency-work"        },
+  { label: "Jobs in Amsterdam",            href: "/jobs-amsterdam"                            },
+  { label: "Jobs in Rotterdam",            href: "/jobs-rotterdam"                            },
+  { label: "Jobs in Eindhoven",            href: "/jobs-eindhoven"                            },
+  { label: "OTTO vs Tempo-Team",           href: "/otto-vs-tempo-team"                        },
+  { label: "Check your agency",            href: "/check-agency"                              },
 ];
 
 export default async function Footer() {
@@ -103,6 +116,12 @@ export default async function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+            <p className="font-semibold text-gray-800 mt-4 mb-2">Agency jobs by city</p>
+            <ul className="space-y-2 text-gray-500 text-xs">
+              <li><Link href="/jobs-amsterdam"  className="hover:text-brand-600">Jobs in Amsterdam</Link></li>
+              <li><Link href="/jobs-rotterdam"  className="hover:text-brand-600">Jobs in Rotterdam</Link></li>
+              <li><Link href="/jobs-eindhoven"  className="hover:text-brand-600">Jobs in Eindhoven</Link></li>
             </ul>
           </div>
 
@@ -164,6 +183,12 @@ export default async function Footer() {
               <li><Link href="/randstad-review"        className="hover:text-brand-600">Randstad review</Link></li>
               <li><Link href="/otto-vs-tempo-team"     className="hover:text-brand-600">OTTO vs Tempo-Team</Link></li>
             </ul>
+            <p className="font-semibold text-gray-800 mb-2">Agency Job Listings</p>
+            <ul className="space-y-2 text-gray-500 text-xs mb-5">
+              <li><Link href="/otto-workforce-jobs"  className="hover:text-brand-600">OTTO Workforce jobs</Link></li>
+              <li><Link href="/randstad-jobs"        className="hover:text-brand-600">Randstad jobs</Link></li>
+              <li><Link href="/tempo-team-jobs"      className="hover:text-brand-600">Tempo-Team jobs</Link></li>
+            </ul>
             <p className="font-semibold text-gray-800 mb-3">{t("footer.tools")}</p>
             <ul className="space-y-2 text-gray-500 text-xs mb-5">
               <li><Link href="/tools/salary-calculator"      className="hover:text-brand-600">{t("footer.salary_calc")}</Link></li>
@@ -181,8 +206,26 @@ export default async function Footer() {
           </div>
         </div>
 
+        {/* Key guides strip */}
+        <div className="border-t border-gray-100 pt-5 mb-4">
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+            Popular guides
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {KEY_GUIDES.map((g) => (
+              <Link
+                key={g.href}
+                href={g.href}
+                className="text-xs text-gray-500 hover:text-brand-600 bg-gray-50 border border-gray-200 rounded-full px-3 py-1 hover:bg-brand-50 transition-colors"
+              >
+                {g.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* Salary spotlight strip */}
-        <div className="border-t border-gray-100 pt-5 mb-5">
+        <div className="border-t border-gray-100 pt-4 mb-5">
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
             {t("footer.popular_searches")}
           </p>

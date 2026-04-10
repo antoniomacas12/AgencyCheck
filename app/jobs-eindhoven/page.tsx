@@ -292,19 +292,59 @@ export default function JobsEindhovenPage() {
         </section>
       )}
 
-      <section className="mb-6 rounded-xl bg-gray-50 border border-gray-200 p-5">
-        <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Related reads</p>
-        <div className="grid sm:grid-cols-2 gap-3">
-          {[
-            { href: "/jobs-amsterdam",               label: "Agency jobs in Amsterdam →" },
-            { href: "/jobs-rotterdam",               label: "Agency jobs in Rotterdam →" },
-            { href: "/jobs-in-netherlands",          label: "All agency jobs Netherlands →" },
-            { href: "/production-jobs-with-accommodation", label: "Production jobs with housing →" },
-            { href: "/best-agencies-netherlands-for-foreigners", label: "Best agencies for foreigners →" },
-            { href: "/tools/real-income-calculator", label: "Calculate your real take-home →" },
-          ].map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm text-brand-600 hover:text-brand-700 hover:underline font-medium">{link.label}</Link>
-          ))}
+      <section className="mb-6 space-y-4">
+        {/* Other cities */}
+        <div className="rounded-xl bg-gray-50 border border-gray-200 p-5">
+          <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-3">🏙️ Other cities in the Netherlands</p>
+          <div className="grid sm:grid-cols-2 gap-2">
+            {[
+              { href: "/jobs-amsterdam",      label: "Jobs in Amsterdam →",      sub: "Schiphol, Westpoort & Noord-Holland" },
+              { href: "/jobs-rotterdam",      label: "Jobs in Rotterdam →",      sub: "Port logistics, forklift, warehousing" },
+              { href: "/jobs-in-netherlands", label: "All cities overview →",    sub: "Find jobs anywhere in the Netherlands" },
+              { href: "/cities/tilburg",      label: "Jobs in Tilburg →",        sub: "NL's top logistics hub" },
+            ].map(({ href, label, sub }) => (
+              <Link key={href} href={href} className="card px-3 py-2.5 hover:border-brand-200 hover:bg-brand-50/30 transition-all block">
+                <p className="text-xs font-semibold text-brand-700">{label}</p>
+                <p className="text-[10px] text-gray-400">{sub}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Job types */}
+        <div className="rounded-xl bg-green-50 border border-green-100 p-5">
+          <p className="text-xs font-black uppercase tracking-widest text-green-500 mb-3">💼 Job types available in Eindhoven</p>
+          <div className="grid sm:grid-cols-2 gap-2">
+            {[
+              { href: "/order-picker-jobs",                   label: "Order picker jobs →",          sub: "Entry-level; immediate start" },
+              { href: "/production-jobs-with-accommodation",  label: "Production + housing →",        sub: "Food & tech manufacturing with housing" },
+              { href: "/reach-truck-jobs",                    label: "Reach truck jobs →",            sub: "€1–2/hr premium; licence required" },
+              { href: "/jobs-in-netherlands-for-foreigners",  label: "Jobs for foreigners →",         sub: "No Dutch language required" },
+            ].map(({ href, label, sub }) => (
+              <Link key={href} href={href} className="bg-white border border-green-100 rounded-xl px-3 py-2.5 hover:border-green-300 hover:bg-green-50/50 transition-all block">
+                <p className="text-xs font-semibold text-green-700">{label}</p>
+                <p className="text-[10px] text-gray-400">{sub}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Agency reviews */}
+        <div className="rounded-xl bg-blue-50 border border-blue-100 p-5">
+          <p className="text-xs font-black uppercase tracking-widest text-blue-400 mb-3">🏢 Agency reviews &amp; comparisons</p>
+          <div className="grid sm:grid-cols-2 gap-2">
+            {[
+              { href: "/randstad-review",                          label: "Randstad review →",              sub: "Strong presence in Eindhoven tech sector" },
+              { href: "/otto-workforce-review",                    label: "OTTO Workforce review →",        sub: "Large logistics agency with housing" },
+              { href: "/best-agencies-netherlands-for-foreigners", label: "Best agencies for foreigners →", sub: "Ranked by transparency & housing" },
+              { href: "/tools/real-income-calculator",             label: "Calculate take-home →",          sub: "Net salary after tax & housing" },
+            ].map(({ href, label, sub }) => (
+              <Link key={href} href={href} className="bg-white border border-blue-100 rounded-xl px-3 py-2.5 hover:border-blue-300 hover:bg-blue-50/50 transition-all block">
+                <p className="text-xs font-semibold text-blue-700">{label}</p>
+                <p className="text-[10px] text-gray-400">{sub}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
