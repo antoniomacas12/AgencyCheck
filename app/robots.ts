@@ -32,7 +32,15 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
-    host:    BASE_URL,
+    // Two sitemaps:
+    //  1. sitemap.xml        — all canonical URLs (existing)
+    //  2. sitemap-i18n.xml   — agency pages with xhtml:link hreflang annotations
+    //     This gives Google explicit cross-locale signals and stops it treating
+    //     translated agency pages as duplicates of the English version.
+    sitemap: [
+      `${BASE_URL}/sitemap.xml`,
+      `${BASE_URL}/sitemap-i18n.xml`,
+    ],
+    host: BASE_URL,
   };
 }

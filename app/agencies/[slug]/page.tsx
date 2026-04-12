@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { agencyAlternatesEN } from "@/lib/seoAlternates";
 import {
   agencyOrganizationSchema,
   faqPageSchema,
@@ -69,7 +70,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return {
       title,
       description,
-      alternates: { canonical: `/agencies/${staticAgency.slug}` },
+      alternates: agencyAlternatesEN(staticAgency.slug),
       openGraph: {
         title,
         description: `Real worker reviews of ${staticAgency.name}. Salary accuracy, housing conditions, transport — reported by workers, published unfiltered.`,
@@ -95,7 +96,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title,
     description,
-    alternates: { canonical: `/agencies/${dbAgency.slug}` },
+    alternates: agencyAlternatesEN(dbAgency.slug),
     openGraph: {
       title,
       description: `Worker reviews of ${dbAgency.name} in Netherlands. Salary accuracy, housing, management — reported by workers.`,

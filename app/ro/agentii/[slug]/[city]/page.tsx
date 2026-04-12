@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { agencyCityAlternatesLocale } from "@/lib/seoAlternates";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -35,23 +36,13 @@ export async function generateMetadata({
   const staticAgency = ALL_AGENCY_MAP[params.slug];
   const agencyName   = staticAgency?.name ?? params.slug.replace(/-/g, " ");
 
-  const canonicalRo = `${AGENCY_BASE.ro}/${params.slug}/${params.city}`;
   const title       = `${agencyName} ${cityName} pareri – munca Olanda`;
   const description = `Citește ce spun muncitorii despre ${agencyName} în ${cityName}. Recenzii despre cazare, salariu și condiții de muncă. Date colectate de AgencyCheck.`;
 
   return {
     title,
     description,
-    alternates: {
-      canonical: canonicalRo,
-      languages: {
-        "en":        `${EN_AGENCY_BASE}/${params.slug}/${params.city}`,
-        "pl":        `${AGENCY_BASE.pl}/${params.slug}/${params.city}`,
-        "ro":        canonicalRo,
-        "pt":        `${AGENCY_BASE.pt}/${params.slug}/${params.city}`,
-        "x-default": `${EN_AGENCY_BASE}/${params.slug}/${params.city}`,
-      },
-    },
+    alternates: agencyCityAlternatesLocale(params.slug, params.city, "ro"),
     openGraph: {
       title,
       description,

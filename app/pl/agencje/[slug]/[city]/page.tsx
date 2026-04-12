@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { agencyCityAlternatesLocale } from "@/lib/seoAlternates";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -35,23 +36,13 @@ export async function generateMetadata({
   const staticAgency = ALL_AGENCY_MAP[params.slug];
   const agencyName   = staticAgency?.name ?? params.slug.replace(/-/g, " ");
 
-  const canonicalPl = `${AGENCY_BASE.pl}/${params.slug}/${params.city}`;
   const title       = `${agencyName} ${cityName} opinie – praca Holandia`;
   const description = `Przeczytaj co pracownicy mówią o ${agencyName} w ${cityName}. Opinie o zakwaterowaniu, zarobkach i warunkach pracy. Dane zebrane przez AgencyCheck.`;
 
   return {
     title,
     description,
-    alternates: {
-      canonical: canonicalPl,
-      languages: {
-        "en":        `${EN_AGENCY_BASE}/${params.slug}/${params.city}`,
-        "pl":        canonicalPl,
-        "ro":        `${AGENCY_BASE.ro}/${params.slug}/${params.city}`,
-        "pt":        `${AGENCY_BASE.pt}/${params.slug}/${params.city}`,
-        "x-default": `${EN_AGENCY_BASE}/${params.slug}/${params.city}`,
-      },
-    },
+    alternates: agencyCityAlternatesLocale(params.slug, params.city, "pl"),
     openGraph: {
       title,
       description,

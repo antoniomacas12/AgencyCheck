@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { agencyAlternatesLocale } from "@/lib/seoAlternates";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -29,21 +30,10 @@ export async function generateMetadata({
 
   const title       = `${agencyName} ${S.metaTitleSuffix} – praca w Holandii`;
   const description = S.agencyMetaDesc(agencyName);
-  const canonicalPl = `${AGENCY_BASE.pl}/${params.slug}`;
-
   return {
     title,
     description,
-    alternates: {
-      canonical: canonicalPl,
-      languages: {
-        "en":        `${EN_AGENCY_BASE}/${params.slug}`,
-        "pl":        canonicalPl,
-        "ro":        `${AGENCY_BASE.ro}/${params.slug}`,
-        "pt":        `${AGENCY_BASE.pt}/${params.slug}`,
-        "x-default": `${EN_AGENCY_BASE}/${params.slug}`,
-      },
-    },
+    alternates: agencyAlternatesLocale(params.slug, "pl"),
     openGraph: {
       title,
       description,

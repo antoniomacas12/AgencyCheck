@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { agencyCityAlternatesEN } from "@/lib/seoAlternates";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -91,7 +92,7 @@ export async function generateMetadata({
     return {
       title: `${agency.name} ${cityName} Reviews – Jobs, Housing & Worker Experiences`,
       description: `${agency.name} is a ${sectorLabel} staffing agency in ${cityName}.${housingNote} Transparency score: ${agency.transparencyScore}/100. Real worker experiences, housing details, and pay information.`,
-      alternates: { canonical: `/agencies/${params.slug}/${params.city}` },
+      alternates: agencyCityAlternatesEN(params.slug, params.city),
       robots: robotsMeta,
     };
   }
