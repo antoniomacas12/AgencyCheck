@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 128" fill="none">
+  <!-- Left arm: A(8,80) → B(48,120) · Green · 45° -->
+  <line x1="8" y1="80" x2="48" y2="120" stroke="#22C55E" stroke-width="24" stroke-linecap="square"/>
+  <!-- Right arm: B(48,120) → C(104,32) · Ink -->
+  <line x1="48" y1="120" x2="104" y2="32" stroke="#0B1F14" stroke-width="24" stroke-linecap="square"/>
+  <!-- Ghost: D(124,20) → E(152,0) · Ink · 15% opacity -->
+  <line x1="124" y1="20" x2="152" y2="0" stroke="#0B1F14" stroke-width="24" stroke-linecap="square" opacity="0.15"/>
+</svg>

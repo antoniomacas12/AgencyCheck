@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { headers } from "next/headers";
 import nDynamic from "next/dynamic";
 import { Analytics } from "@vercel/analytics/react";
@@ -24,6 +24,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+// Brand wordmark font — Plus Jakarta Sans 800 (ExtraBold)
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["800"],
+  display: "swap",
+  variable: "--font-jakarta",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://agencycheck.io"),
   title: {
@@ -39,10 +47,10 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon:             [
-      { url: "/favicon.ico",        sizes: "any" },
-      { url: "/favicon-32x32.png",  sizes: "32x32",   type: "image/png" },
+      { url: "/favicon.ico",         sizes: "any" },
+      { url: "/favicon-32x32.png",   sizes: "32x32",   type: "image/png" },
       { url: "/favicon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/logo.png",           sizes: "512x512",  type: "image/png" },
+      { url: "/logo.svg",            type: "image/svg+xml" },
     ],
     apple:            [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
     shortcut:         "/favicon.ico",
@@ -51,7 +59,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "AgencyCheck",
     locale: "en_NL",
-    images: [{ url: "/logo.png", width: 512, height: 512, alt: "AgencyCheck" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AgencyCheck — The Truth Mark" }],
   },
   robots: {
     index:  true,
@@ -78,7 +86,7 @@ export default function RootLayout({
   const isAdmin = headersList.get("x-ac-admin") === "true";
 
   return (
-    <html lang={locale} className={inter.variable}>
+    <html lang={locale} className={`${inter.variable} ${jakarta.variable}`}>
       <body className={`${inter.className} bg-white flex flex-col min-h-screen${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
         {!isAdmin && <Navbar locale={locale} />}
         <main className={isAdmin ? "flex-1" : "flex-1 pb-14"}>{children}</main>

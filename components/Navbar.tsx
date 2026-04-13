@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Logo from "@/components/Logo";
 import { useT, type Locale } from "@/lib/i18n";
 
 // ─── Locale detection ─────────────────────────────────────────────────────────
@@ -57,14 +58,11 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
         <div className="flex items-center h-14">
 
           {/* Logo — fixed-width zone so it sits centered between the left edge and "Now Hiring" */}
-          <div className="flex items-center justify-center shrink-0 md:w-48 w-auto">
-            <Link
+          <div className="flex items-center justify-center shrink-0 md:w-52 w-auto">
+            <Logo
               href={locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : locale === "pt" ? "/pt" : "/"}
-              className="flex items-center gap-2 font-bold text-xl text-brand-600"
-            >
-              <span className="text-2xl">✅</span>
-              <span>AgencyCheck</span>
-            </Link>
+              size="sm"
+            />
           </div>
 
           {/* Desktop Nav */}

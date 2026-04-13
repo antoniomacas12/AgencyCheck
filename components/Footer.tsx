@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { getLocale } from "@/lib/getLocale";
 import { getT } from "@/lib/i18n";
 import { LEGAL } from "@/lib/legalConfig";
@@ -75,10 +76,9 @@ export default async function Footer() {
 
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg text-brand-600 mb-3">
-              <span>✅</span>
-              <span>AgencyCheck</span>
-            </Link>
+            <div className="mb-3">
+              <Logo href="/" size="xs" />
+            </div>
             <p className="text-gray-500 text-xs leading-relaxed mb-4">
               {t("footer.tagline")}
             </p>
