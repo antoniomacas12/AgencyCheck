@@ -31,7 +31,7 @@ export const AGENCY_SEO_CONTENT: Record<string, AgencySeoContent> = {
   "tempo-team-amsterdam-uitzendbureau": {
     metaTitle: "Tempo-Team Netherlands Review 2026 – Salary & Housing",
     metaDescription:
-      "Real worker review of Tempo-Team Netherlands. Salary at WML €14.71/hr, housing deductions up to €113.50/week, shift premiums. What workers actually take home.",
+      "Tempo-Team review. WML salary €14.71/hr, SNF housing up to €113.50/week, ABU CAO shift premiums. Real take-home for Dutch logistics and production workers.",
     intro:
       "Tempo-Team is one of the largest staffing groups in the Netherlands, operating under the Randstad Group umbrella. It places thousands of workers each year across logistics, production, and food-processing — roles that typically start at WML (€14.71/hr in 2026) and rely heavily on agency-provided housing. The scale means fast placements but inconsistent experiences depending on which inhouse location manages your contract.",
     sections: [
@@ -1010,7 +1010,7 @@ Realistic take-home: €340–€435/week depending on skill level and role type
 
   // ── 19. UBN ────────────────────────────────────────────────────────────────
   "ubn": {
-    metaTitle: "UBN Netherlands Review 2026 – Regional Agency Salary & Housing",
+    metaTitle: "UBN Netherlands Reviews | Salary & Housing",
     metaDescription:
       "UBN uitzendbureau Netherlands 2026 review. Regional Dutch staffing for production and logistics. Salary at WML, housing, and worker experience.",
     intro:
@@ -1379,7 +1379,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── 27. Perflexxion ────────────────────────────────────────────────────────
   "perflexxion": {
-    metaTitle: "Perflexxion Netherlands Review 2026 – Salary & Work Conditions",
+    metaTitle: "Perflexxion Reviews Netherlands | Pay & Conditions",
     metaDescription:
       "Perflexxion Netherlands 2026 worker review. Flexible Dutch staffing for production and logistics. WML salary, housing, zero-to-fixed hours progression.",
     intro:
@@ -1472,7 +1472,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── 29. Artiflex ───────────────────────────────────────────────────────────
   "artiflex": {
-    metaTitle: "Artiflex Netherlands Review 2026 – Agriculture & Horticulture",
+    metaTitle: "Artiflex Reviews Netherlands | Agriculture Staffing",
     metaDescription:
       "Artiflex Netherlands 2026 review. Agriculture and horticulture staffing specialist. Seasonal work, greenhouse conditions, salary at WML, housing.",
     intro:
@@ -1524,7 +1524,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "start-people": {
     metaTitle: "Start People Netherlands Review 2026 – Salary & Roles",
     metaDescription:
-      "Real Start People review for Netherlands workers 2026. Salary at WML €14.71/hr, deductions, job types from production to admin. Is Start People the right agency?",
+      "Start People review. WML €14.71/hr salary, deductions, and job types from production to admin. Real take-home figures for workers in NL.",
     intro:
       "Start People is one of the Netherlands' largest staffing agencies, part of Recruit Holdings alongside Unique. It spans a genuinely wide spectrum — production line shifts at food factories through to office temping at corporate HQ. That breadth makes Start People harder to summarise than a logistics-only agency: your experience depends heavily on which branch, which client, and which sector places you.",
     sections: [
@@ -1573,7 +1573,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "manpower": {
     metaTitle: "Manpower Netherlands Review 2026 – Salary & Worker Guide",
     metaDescription:
-      "Manpower Netherlands worker review 2026. Salary at WML, housing deductions, manufacturing & logistics roles. What workers actually experience with ManpowerGroup.",
+      "Manpower Netherlands review. WML pay, housing deductions, manufacturing and logistics roles. What workers actually earn through ManpowerGroup.",
     intro:
       "ManpowerGroup is one of the world's three largest staffing firms, with major Dutch operations. Workers encounter two distinct Manpower experiences: Experis (IT, engineering, finance) and Manpower core (production, logistics, manufacturing). This review focuses on temporary production and logistics placements — the roles that represent the majority of migrant worker experiences with Manpower in the Netherlands.",
     sections: [
@@ -1622,7 +1622,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "unique-uitzendbureau": {
     metaTitle: "Unique Uitzendbureau Review 2026 – Office & Admin Workers",
     metaDescription:
-      "Unique Uitzendbureau Netherlands review 2026. Salary for admin and office temps, contract terms, take-home pay. What white-collar workers actually experience.",
+      "Unique Uitzendbureau review. Salary for admin and office temps, contract terms, and real take-home. What workers say about Unique in NL.",
     intro:
       "Unique Uitzendbureau is a Dutch staffing institution — founded in 1966, now part of Recruit Holdings alongside Start People. Unlike most agencies reviewed here, Unique focuses on office, administrative, and professional temporary work: secretarial roles, HR assistants, management support, call centre, and finance temps. The typical worker profile and day-to-day experience are fundamentally different from logistics or production agencies.",
     sections: [
@@ -1671,7 +1671,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "uitzendbureau-amsterdam-west-timing": {
     metaTitle: "Timing Amsterdam West Review 2026 – Salary & Work",
     metaDescription:
-      "Timing Amsterdam West branch review 2026. Production and warehouse jobs in Sloterdijk and Westpoort. Real salary, contracts, and conditions for temp workers.",
+      "Timing Amsterdam West review. Production and warehouse jobs in Sloterdijk and Westpoort. Real salary, contracts, and conditions reviewed.",
     intro:
       "Timing's Amsterdam West branch covers the Sloterdijk and Westpoort industrial areas — one of Amsterdam's most active employer zones for warehousing, food production, light manufacturing, and cold storage. Unlike Timing's Inhouse RAI operation (which serves the events sector), Amsterdam West placements are year-round production and logistics roles serving the western industrial ring from Sloterdijk station to the Westpoort port area.",
     sections: [
@@ -1769,7 +1769,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "select-uitzendbureau": {
     metaTitle: "Select Uitzendbureau Haarlem Review 2026 – Housing & Pay",
     metaDescription:
-      "Select Uitzendbureau review for Haarlem workers 2026. Modern individual-room accommodation, logistics and production jobs, real salary and deductions explained.",
+      "Select Uitzendbureau review for Haarlem. Individual-room housing, logistics and production jobs. Real salary and deductions reviewed.",
     intro:
       "Select Uitzendbureau is a Haarlem-based agency that stands out in the Dutch flex-worker market for one specific reason: it offers modern, purpose-built accommodation with individual rooms rather than the shared dormitory arrangements common to most housing-providing agencies. For workers who place high value on personal space, this single differentiator makes Select worth examining carefully against larger agencies offering cheaper but denser housing.",
     sections: [
@@ -1818,7 +1818,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "skyhire-uitzendbureau-schiphol": {
     metaTitle: "SkyHire Schiphol Review 2026 – Airport Staffing & Pay",
     metaDescription:
-      "SkyHire Uitzendbureau Schiphol review 2026. Airport jobs — baggage handling, cargo, security hosting. Real salary, Schiphol pass process, and working conditions.",
+      "SkyHire Schiphol review. Airport jobs in baggage handling, cargo, and security hosting. Real salary, Schiphol pass, and working conditions.",
     intro:
       "SkyHire is a Schiphol-specialist staffing agency founded in 2017, operating exclusively within the Amsterdam Airport Schiphol ecosystem. Placements cover baggage handling, cargo operations, aircraft ground services, and security hosting — all requiring a Schiphol Airside Pass (Schipholpas) and a five-year background check. SkyHire is one of the most process-intensive agencies to start with, but places workers into roles with structured shift systems and consistently above-WML pay.",
     sections: [
@@ -1867,7 +1867,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "ruigrok": {
     metaTitle: "Ruigrok Personeel Aalsmeer Review 2026 – Flowers & Pay",
     metaDescription:
-      "Ruigrok Personeel review for Aalsmeer workers 2026. Flower auction, horticulture, and logistics jobs. Hotel-style accommodation, real salary and deductions.",
+      "Ruigrok Personeel review for Aalsmeer. Flower auction, horticulture, and logistics jobs. Real salary, housing deductions reviewed.",
     intro:
       "Ruigrok Personeel is an Aalsmeer-based agency specialising in temporary staffing for the Dutch flower and horticulture industry. Aalsmeer is home to Royal FloraHolland — the world's largest flower auction by transaction volume — and a dense network of growers, packagers, and logistics operators supplying cut flowers and plants across Europe. Work here is fast-paced, physically specific, and sharply seasonal, with peak demand in February–April (Valentine's, Mother's Day) and October–December (Christmas period).",
     sections: [
@@ -2066,7 +2066,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "brunel-amsterdam": {
     metaTitle: "Brunel Netherlands Review 2026 – Engineering Salary & Pay",
     metaDescription:
-      "Brunel Netherlands engineering staffing review 2026. Day rates, contract terms, salary for engineers and IT. What international professionals actually earn at Brunel.",
+      "Brunel Netherlands engineering review. Day rates, contract terms, and salary for engineers and IT. What professionals actually earn at Brunel.",
     intro:
       "Brunel was founded in Amsterdam in 1975 and still operates its global headquarters from the Dutch capital. The agency specialises exclusively in engineering, IT, life sciences, energy, and construction placements — if you're a mechanical engineer, process technician, software architect, or project manager, Brunel is one of the five agencies in the Netherlands most likely to have a relevant active vacancy. Workers are typically seconded to major industrial clients (Shell, ASML, Philips, TenneT, Tata Steel) on medium-to-long assignments of 6–24 months.",
     sections: [
@@ -2115,7 +2115,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "hays": {
     metaTitle: "Hays Netherlands Review 2026 – Professional Staffing",
     metaDescription:
-      "Hays Netherlands review 2026. Professional placement across finance, IT, HR, and engineering. Salary ranges, contract terms, and what workers actually experience.",
+      "Hays Netherlands review. Professional placement across finance, IT, HR, and engineering. Salary ranges, contract terms, and experiences.",
     intro:
       "Hays has been operating in the Netherlands for over 35 years, with 80+ specialist consultants placing professionals across accounting and finance, IT, HR, legal, construction, and engineering. Consistently ranked in the top three professional staffing agencies in the country, its sector specialisation — each practice area staffed by consultants with genuine domain knowledge — differentiates it from generalist agencies. The typical Hays worker is mid-career: 3–10 years' experience seeking either a permanent position or a project-based interim role.",
     sections: [
@@ -2164,7 +2164,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "happynurse-amsterdam-regio-west": {
     metaTitle: "HappyNurse Amsterdam Review 2026 – Healthcare Staffing",
     metaDescription:
-      "HappyNurse Amsterdam Regio West review 2026. Healthcare staffing for nurses, GGZ, and care workers. Real salary, CAO Zorg rates, and flexible work conditions.",
+      "HappyNurse Amsterdam Regio West review. Healthcare staffing for nurses, GGZ, and care workers. CAO Zorg rates and flexible conditions.",
     intro:
       "HappyNurse is a national healthcare staffing agency founded in 2008, headquartered in The Hague. The Amsterdam – Regio West branch serves hospitals, mental health (GGZ) institutions, elderly care homes (verpleeghuizen), home care (thuiszorg), and disability care organisations across western Netherlands. It places nurses (MBO/HBO level), GGZ professionals, childcare workers, and geriatric specialists primarily on flexible and oproep (on-call) contracts — making it one of the most recognisable specialist healthcare agencies in the country.",
     sections: [
@@ -2213,7 +2213,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "klik-uitzendbureau": {
     metaTitle: "Klik Uitzendbureau Review 2026 – Cleaning & Production Jobs",
     metaDescription:
-      "Klik Uitzendbureau Amsterdam review 2026. Hotel cleaning, industrial production, and housekeeping jobs. Real salary under CAO Schoonmaak and ABU, work conditions.",
+      "Klik Uitzendbureau Amsterdam review. Hotel cleaning, production, and housekeeping jobs. Salary under CAO Schoonmaak and ABU reviewed.",
     intro:
       "Klik Uitzendbureau is an Amsterdam-based NEN 4400-1 certified agency specialising in two distinct areas: hotel and commercial cleaning (schoonmaak), and industrial production staffing. NEN 4400-1 confirms identity verification, correct tax payment, and valid liability insurance — a meaningful legal compliance baseline. The combination of hotel cleaning and industrial production in one agency is unusual and gives Klik a broader placement menu than single-sector cleaning specialists.",
     sections: [
@@ -2262,7 +2262,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "computer-futures": {
     metaTitle: "Computer Futures Netherlands Review 2026 – IT Staffing",
     metaDescription:
-      "Computer Futures Netherlands IT staffing review 2026. Day rates for developers, cybersecurity, and tech roles. Contract vs perm placement, what IT workers actually earn.",
+      "Computer Futures Netherlands IT review. Day rates for developers, cybersecurity, and tech roles. Contract vs permanent and what IT workers earn.",
     intro:
       "Computer Futures is a global IT workforce specialist and part of the SThree Group, placing IT professionals in Amsterdam across software development, cloud infrastructure, data engineering, cybersecurity, and IT management. In the Dutch tech market — one of Europe's most active for IT talent — Computer Futures competes with Hays IT, Brunel Digital, Harvey Nash, and Dutch boutique tech recruiters. It operates on two tracks: permanent recruitment (placed directly with client employer) and contract/interim (placed at client for a defined period via payroll or own entity).",
     sections: [
@@ -2311,7 +2311,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "nl-people-uitzendbureau": {
     metaTitle: "NL People Uitzendbureau Review 2026 – Staffing Agency NL",
     metaDescription:
-      "NL People Uitzendbureau review 2026. Based in Badhoevedorp, 12 years placing workers in admin, production, logistics and care. Salary, conditions, and real worker experience.",
+      "NL People Uitzendbureau review. 12 years placing workers in admin, production, logistics, and care. Real salary and conditions in NL.",
     intro:
       "NL People Uitzendbureau is a Badhoevedorp-based staffing agency with over 12 years in the Dutch labour placement market, covering administrative roles, production and logistics, and care sector positions from its base near Schiphol in the Haarlemmermeer municipality. Unlike the large national chains, NL People operates at a regional scale — a smaller client roster, more direct account management, and a more personal placement experience. The trade-off is volume: fewer active vacancies than Randstad or Tempo-Team, so workers should typically register with multiple agencies simultaneously.",
     sections: [
@@ -2360,7 +2360,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "pegasus-uitzendbureau": {
     metaTitle: "Pegasus Uitzendbureau Review 2026 – Construction Staffing",
     metaDescription:
-      "Pegasus Uitzendbureau review 2026. Construction and bouw staffing near Schiphol. VCA requirements, CAO Bouwnijverheid rates, real salary for painters and site workers.",
+      "Pegasus Uitzendbureau review. Construction staffing near Schiphol. VCA requirements, CAO Bouwnijverheid rates, and real salary reviewed.",
     intro:
       "Pegasus Flex is a construction and bouw (building) sector staffing agency headquartered in Lijnden, near Schiphol Airport on the western edge of Amsterdam. It supplies skilled and semi-skilled construction workers across the greater Amsterdam area: painters and decorators, construction site security, on-site cleaning and waste management, and general bouw labourers. Amsterdam's construction pipeline — Zeeburgereiland, Amstelkwartier, Zuidas, A10 infrastructure — is one of Western Europe's most active, creating consistent demand for qualified bouw temp workers.",
     sections: [
@@ -2458,7 +2458,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "youbahn": {
     metaTitle: "Youbahn Netherlands Review 2026 – Digital Flex Platform",
     metaDescription:
-      "Youbahn Netherlands review 2026. App-based flex work platform for order pickers, hospitality, and care workers. How the digital model works and what workers actually earn.",
+      "Youbahn Netherlands review. App-based flex work for order pickers, hospitality, and care. How the platform works and what workers earn.",
     intro:
       "Youbahn is an Amsterdam-founded digital staffing platform that combines the flexibility of a gig-economy app with the legal protections of a licensed uitzendbureau. Serving 15,000+ flex workers, the platform connects them with employers across logistics, hospitality, healthcare support, and facility management. Workers sign up via app, set availability, and accept or decline individual shift offers from multiple employers. Unlike pure gig platforms (Temper, YoungOnes), Youbahn employs workers under standard Dutch uitzendbureau law — social insurance, vakantiegeld accrual, and WW entitlement are included.",
     sections: [
@@ -2507,7 +2507,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "repay-hrm-amsterdam": {
     metaTitle: "Repay HRM Netherlands Review 2026 – Digital Staffing & Pay",
     metaDescription:
-      "Repay HRM Netherlands review 2026. Digital-first staffing and payroll for 15,000+ flex workers. Order picking, warehouse, and admin placements. Real salary and conditions.",
+      "Repay HRM Netherlands review. Digital-first staffing for 15,000+ flex workers. Order picking, warehouse, and admin. Real salary reviewed.",
     intro:
       "Repay HRM is a digital-first Dutch staffing and payroll agency founded in 2005, serving over 15,000 flexible workers and 1,500 client organisations across the Netherlands. Workers register digitally, receive placement offers, manage contracts, and view payslips through a web portal — no branch visit required. The large worker base makes Repay HRM one of the larger digital staffing operators in the Netherlands, placing workers in order picking, warehouse operations, office administration, and general logistics roles.",
     sections: [
@@ -2554,9 +2554,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Michael Page ─────────────────────────────────────────────────────────
   "michael-page-recruitment-agency-permanent-interim": {
-    metaTitle: "Michael Page Netherlands Review 2026 – Finance & IT Recruitment",
+    metaTitle: "Michael Page Netherlands Reviews | Finance & IT",
     metaDescription:
-      "Michael Page Netherlands review 2026. Global specialist recruitment for finance, HR, IT and sales. Permanent and interim roles. Real salary ranges and conditions.",
+      "Michael Page Netherlands review. Global specialist recruitment for finance, HR, IT, and sales. Permanent and interim roles. Salary ranges.",
     intro:
       "Michael Page operates as one of the world's most recognised specialist recruitment consultancies, with 15 dedicated specialist teams embedded across the Netherlands. The Amsterdam operation covers permanent and interim placement from mid-level professionals through to director and executive appointments. For candidates navigating the Dutch professional job market — particularly those with a finance, legal, HR, IT, or sales background — Michael Page's name appears consistently in salary benchmark surveys and specialist shortlists.",
     sections: [
@@ -2597,7 +2597,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "ployees": {
     metaTitle: "Ployees Amsterdam Review 2026 – Freelance Hospitality Shifts",
     metaDescription:
-      "Ployees Amsterdam review 2026. Freelance hospitality platform for bartenders, hotel staff and event crew. How the app works, shift pay, and realistic earnings.",
+      "Ployees Amsterdam review. Freelance hospitality platform for bartenders, hotel staff, and event crew. Shift pay and realistic earnings.",
     intro:
       "Ployees is a hospitality-focused staffing platform based in Amsterdam, connecting freelance workers with employers in hotels, restaurants, bars, events, and kitchen support roles. The model is app-first: workers register, set availability, browse and claim shifts, and receive payment through the platform. Workers operate as ZZP (zelfstandigen zonder personeel, self-employed freelancers) or under a payroll arrangement depending on individual registration type — with meaningfully different tax and insurance implications for each.",
     sections: [
@@ -2636,7 +2636,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── R-Recruitment B.V. (AIRR) ─────────────────────────────────────────────
   "r-recruitment-bv": {
-    metaTitle: "R-Recruitment AIRR Schiphol Review 2026 – Airport Logistics Jobs",
+    metaTitle: "R-Recruitment Schiphol Reviews | Airport Logistics",
     metaDescription:
       "R-Recruitment (AIRR) Schiphol review 2026. Airport logistics, cargo and ground handling placements since 1999. Schipholpas, shift pay, and real conditions.",
     intro:
@@ -2720,7 +2720,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "robert-walters-recruitmentbureau-amsterdam": {
     metaTitle: "Robert Walters Amsterdam Review 2026 – Executive Recruitment",
     metaDescription:
-      "Robert Walters Amsterdam review 2026. Specialist professional recruitment for finance, legal, HR and IT. Zuidas-based since 1990. Salary benchmarks and candidate experience.",
+      "Robert Walters Amsterdam review. Specialist recruitment for finance, legal, HR, and IT. Zuidas-based since 1990. Salary benchmarks in NL.",
     intro:
       "Robert Walters has operated its Amsterdam office from the Zuidas financial district since 1990, making it one of the longest-established international specialist recruiters in the Netherlands. The Amsterdam team covers finance, legal, human resources, information technology, and business support recruitment — both permanent and interim — for multinationals, financial institutions, legal firms, and tech companies headquartered in the Randstad. Robert Walters positions itself at the senior and specialist end of the professional recruitment market.",
     sections: [
@@ -2759,9 +2759,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Spirit Hospitality Services ───────────────────────────────────────────
   "spirit-hospitality-services": {
-    metaTitle: "Spirit Hospitality Services Review 2026 – VIP Schiphol Staffing",
+    metaTitle: "Spirit Hospitality Services Reviews Netherlands",
     metaDescription:
-      "Spirit Hospitality Services Schiphol review 2026. VIP hospitality and private aviation staffing at Schiphol-East General Aviation Terminal. Pay, security passes, and conditions.",
+      "Spirit Hospitality Services review. VIP hospitality staffing at Schiphol. Pay, security pass requirements, and working conditions.",
     intro:
       "Spirit Hospitality Services operates from the General Aviation Terminal at Schiphol-East — the arrivals and departure facility for private jets and business aviation at Amsterdam Airport Schiphol. The agency places workers in VIP lounges, concierge services, and ground-level reception for private aviation clients. The environment, client profile, and required skill set differ significantly from standard hospitality or airport ground-handling work.",
     sections: [
@@ -2802,7 +2802,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "studentalent-amsterdam": {
     metaTitle: "Studentalent Amsterdam Review 2026 – Student Jobs HBO & WO",
     metaDescription:
-      "Studentalent Amsterdam review 2026. 25+ years matching HBO/WO students with branch-specific part-time jobs and projects. Realistic pay and conditions for student workers.",
+      "Studentalent Amsterdam review. 25+ years matching HBO/WO students with branch-specific part-time jobs. Pay and conditions for students.",
     intro:
       "Studentalent is a specialist student employment agency with over 25 years of experience in the Dutch higher education labour market. The agency focuses specifically on HBO and WO students seeking part-time work that connects to their field of study — placing a business administration student in marketing support rather than a warehouse, a healthcare student in care home administrative support rather than production. The discipline-relevant matching approach distinguishes Studentalent from generic platforms that treat student workers interchangeably with any flex candidate.",
     sections: [
@@ -2841,9 +2841,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── StudentenBureau Amsterdam ──────────────────────────────────────────────
   "studentenbureau-amsterdam": {
-    metaTitle: "StudentenBureau Amsterdam Review 2026 – Internships & Starters",
+    metaTitle: "StudentenBureau Amsterdam Reviews | Student Jobs",
     metaDescription:
-      "StudentenBureau Amsterdam review 2026. Part of Laurens Simonse Group. Internship and starter placements for HBO/WO students since 1998. Pay, process, and what to expect.",
+      "StudentenBureau Amsterdam review. Part of Laurens Simonse Group. Internship and starter placements for HBO/WO students since 1998. Pay.",
     intro:
       "StudentenBureau Amsterdam is part of the Laurens Simonse Group, a national organisation that has specialised in internship and student placement since 1998. The organisation connects highly educated HBO and WO students with host organisations for internship placements, graduation research assignments, and first-step starter positions. Unlike a traditional uitzendbureau, the primary product is structured internship mediation — sitting at the intersection of higher education and the labour market.",
     sections: [
@@ -2882,9 +2882,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Charlie Works ─────────────────────────────────────────────────────────
   "charlie-works": {
-    metaTitle: "Charlie Works Breda Review 2026 – Logistics Staffing & Housing",
+    metaTitle: "Charlie Works Reviews Netherlands | Logistics Jobs",
     metaDescription:
-      "Charlie Works Breda review 2026. Logistics and production placements in Brabant with housing for relocated workers. ABU CAO rates, SNF housing costs, and real conditions.",
+      "Charlie Works Breda review. Logistics and production placements in Brabant with housing for relocated workers. ABU CAO and SNF rates.",
     intro:
       "Charlie Works is a Dutch employment agency based in Breda, specialising in logistics and production staffing across the Brabant region and beyond. The agency differentiates itself by providing housing for workers relocating to take up placements — a practical solution for the significant share of logistics workers who cannot immediately source accommodation in an unfamiliar region. Breda sits at the intersection of the Rotterdam-Antwerp freight corridor and the east–west Eindhoven logistics axis, making it a meaningful hub for warehouse and production staffing.",
     sections: [
@@ -2925,7 +2925,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "level-one": {
     metaTitle: "Level One Gouda Review 2026 – Production Staffing & Housing",
     metaDescription:
-      "Level One Gouda review 2026. Production and logistics placements across western Netherlands with modern apartment housing. ABU CAO, SNF rates, and real take-home pay.",
+      "Level One Gouda review. Production and logistics across western Netherlands with modern apartment housing. ABU CAO and SNF rates reviewed.",
     intro:
       "Level One is a Dutch staffing agency based in Gouda, placing workers in production and logistics roles across the western Netherlands. The agency stands out within the regional staffing market by offering modern apartment-style housing in a high-rise building — not the typical shared house or converted property associated with agency accommodation. Gouda's central position in the western Netherlands gives Level One access to client sites across the region, including production parks around Gouda, logistics operators near Alphen aan den Rijn, and facilities in the Rotterdam-Utrecht corridor.",
     sections: [
@@ -2966,7 +2966,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "1klick-de-recruiter-voor-vastgoedprofessionals": {
     metaTitle: "1KLICK Netherlands Review 2026 – Real Estate Recruitment",
     metaDescription:
-      "1KLICK Netherlands review 2026. Amsterdam recruitment agency for real estate professionals since 2008. Project developers, property managers, controllers. Salary ranges and candidate experience.",
+      "1KLICK Netherlands review. Amsterdam real estate recruiter since 2008. Project developers, property managers, and controllers. Salary ranges.",
     intro:
       "1KLICK is an Amsterdam-based recruitment agency founded in 2008 with a single-sector focus: real estate. The agency places medior and senior professionals — project developers, project managers, property managers, asset managers, and financial controllers — with clients across the Dutch commercial and residential real estate market. In a sector characterised by long client relationships and specialist market knowledge, 1KLICK's exclusive focus on vastgoed (real estate) is both its core proposition and its key differentiator from generalist agencies.",
     sections: [
@@ -3005,9 +3005,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Acre Amsterdam (Sustainability/ESG Recruitment) ───────────────────────
   "acre-amsterdam": {
-    metaTitle: "Acre Amsterdam Review 2026 – Sustainability & ESG Recruitment",
+    metaTitle: "Acre Amsterdam Reviews | ESG & Sustainability Jobs",
     metaDescription:
-      "Acre Amsterdam review 2026. Global sustainability and ESG recruitment with European offices. Climate, renewables, and sustainability director roles. Salary benchmarks and candidate experience.",
+      "Acre Amsterdam review. Global sustainability and ESG recruitment. Climate, renewables, and sustainability director roles. Salary benchmarks.",
     intro:
       "Acre is a global recruitment and executive search firm that has specialised exclusively in sustainability, ESG (environmental, social, and governance), climate, and renewable energy since 2003. The Amsterdam office serves the European market, placing professionals across sustainability management, ESG reporting, climate strategy, renewable energy project development, and corporate responsibility leadership. With offices in London, Amsterdam, New York, and Singapore, Acre operates where the intersection of capital markets and climate imperatives creates growing demand for specialist talent.",
     sections: [
@@ -3046,9 +3046,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Focus Engineering ─────────────────────────────────────────────────────
   "focus-engineering": {
-    metaTitle: "Focus Engineering Amsterdam Review 2026 – Technical Recruitment",
+    metaTitle: "Focus Engineering Reviews Netherlands | Tech Jobs",
     metaDescription:
-      "Focus Engineering Amsterdam review 2026. Specialist engineering recruitment since 2013. Mechanical, piping, electrical, and automation professionals. Salary ranges and placement experience.",
+      "Focus Engineering Amsterdam review. Specialist engineering recruitment since 2013. Mechanical, piping, and electrical professionals. Salary ranges.",
     intro:
       "Focus Engineering is an Amsterdam-based engineering recruitment agency founded in 2013 by Tim Snijder and Ben Bond. The agency specialises in placing professionals in Control & Automation, Electrical & Instrumentation, Mechanical & Piping, and Mechatronics disciplines. The client base is primarily the Dutch and international process industry and capital projects market: oil & gas, petrochemicals, offshore, renewables, and industrial manufacturing. Focus Engineering positions itself as a genuinely specialist operator — smaller and more targeted than global engineering staffing firms like Brunel.",
     sections: [
@@ -3089,7 +3089,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "finest-people": {
     metaTitle: "Finest People Amsterdam Review 2026 – Digital Marketing Jobs",
     metaDescription:
-      "Finest People Amsterdam review 2026. Specialist digital marketing and e-commerce recruitment since 2010. SEO, PPC, performance marketing. Salary ranges and placement experience.",
+      "Finest People Amsterdam review. Digital marketing and e-commerce recruitment since 2010. SEO, PPC, performance marketing. Salary ranges.",
     intro:
       "Finest People is an Amsterdam-based recruitment agency that has specialised in digital marketing and digital sales since 2010. With over 1,000 digital professionals placed at more than 500 companies, the agency has built one of the larger track records in Dutch digital marketing recruitment. Core placement disciplines are performance marketing (SEA/SEO/affiliates), e-commerce management, CRM and marketing automation, social media management, content strategy, and digital analytics.",
     sections: [
@@ -3128,9 +3128,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Centre People Appointments BV ─────────────────────────────────────────
   "centre-people-appointments-bv": {
-    metaTitle: "Centre People Appointments Review 2026 – Japanese Recruitment NL",
+    metaTitle: "Centre People Appointments Reviews Netherlands",
     metaDescription:
-      "Centre People Appointments Netherlands review 2026. Specialist recruiter for Japanese-speaking and multilingual professionals since 1986. IT, accounting, sales, admin. Salary and placement experience.",
+      "Centre People Appointments review. Specialist recruiter for Japanese-speaking and multilingual professionals since 1986. IT, sales, admin.",
     intro:
       "Centre People Appointments was established in 1986 and is the Netherlands subsidiary of QUICK Co., Ltd., a Japanese HR services company with over 40 years of operation. The agency specialises in placing Japanese-speaking professionals and multilingual candidates — particularly those with English, Dutch, and/or Japanese language combinations — in roles across IT, accounting, sales, and business administration. The client base spans Japanese companies with Netherlands operations, multinationals seeking Japan-linked business development capabilities, and international organisations requiring multilingual professional staff.",
     sections: [
@@ -3171,7 +3171,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "corparis-amstelveen-detacheringsbureau-zorg-wonen": {
     metaTitle: "Corparis Amstelveen Review 2026 – Care & Housing Secondment",
     metaDescription:
-      "Corparis Amstelveen review 2026. Detachering agency for care and housing sector professionals. Policy advisors, project managers, asset managers. 10+ years of sector experience.",
+      "Corparis Amstelveen review. Detachering agency for care and housing sector professionals. Policy advisors, project managers. 10+ years.",
     intro:
       "Corparis is a detachering (secondment) agency based in Amstelveen that specialises exclusively in the care (zorg) and housing (wonen) sectors. With over 10 years of operation, the agency places interim and secondment professionals at housing corporations (woningcorporaties), mental health organisations (GGZ), geriatric care providers, and social care organisations across the Netherlands. The dual-sector focus reflects the overlap between care provision and housing in Dutch social infrastructure — organisations like housing corporations and care providers are interlinked in ways that create specific cross-sector management needs.",
     sections: [
@@ -3210,9 +3210,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Bij Oranje (Public Sector Interim) ───────────────────────────────────
   "bij-oranje": {
-    metaTitle: "Bij Oranje Amsterdam Review 2026 – Public Sector Interim Roles",
+    metaTitle: "Bij Oranje Reviews Netherlands | Public Sector Jobs",
     metaDescription:
-      "Bij Oranje Amsterdam review 2026. Specialist interim and ZZP recruitment for Dutch government and public sector. Policy, project, and HR roles. Day rates and placement experience.",
+      "Bij Oranje Amsterdam review. Specialist interim and ZZP recruitment for Dutch government and public sector. Policy and HR roles. Day rates.",
     intro:
       "Bij Oranje is an Amsterdam-based recruitment agency specialising in interim and ZZP (self-employed) placements within the Dutch (semi-)public sector. The agency places professionals in government ministries, municipalities (gemeenten), non-profit organisations, and public services organisations. Core role types: policy advisor (beleidsadviseur), project manager, portfolio manager, programme director, HR advisor, and information analyst. The name is a nod to the Dutch national colour — orange — reflecting the agency's exclusive focus on the domestic public sector landscape.",
     sections: [
@@ -3251,9 +3251,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Kroon & Amstel Uitzendbureau ──────────────────────────────────────────
   "kroon-amstel-uitzendbureau": {
-    metaTitle: "Kroon & Amstel Amsterdam Review 2026 – Construction & Facility Jobs",
+    metaTitle: "Kroon & Amstel Reviews Netherlands | Construction",
     metaDescription:
-      "Kroon & Amstel Amsterdam review 2026. Multi-sector staffing group covering construction, facility services, horticulture, and social return. ABU CAO, housing costs, and real worker conditions.",
+      "Kroon & Amstel Amsterdam review. Multi-sector staffing covering construction, facility, horticulture, and social return. ABU CAO reviewed.",
     intro:
       "Kroon & Amstel is an Amsterdam-based multi-sector staffing group with specialised daughter companies covering facility services, construction, social return (werk & re-integratie), and general staffing (uitzendbureau). The group places workers in craftwork, construction trades, horticulture, cleaning, and general logistics — the operational workforce sectors that form the backbone of Amsterdam's construction boom and building maintenance market. The social return dimension distinguishes the group from purely commercial staffing: Kroon & Amstel works with clients that have social return obligations requiring employment of people at a disadvantage in the labour market.",
     sections: [
@@ -3294,7 +3294,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "lime-search": {
     metaTitle: "LIME Search Amsterdam Review 2026 – Finance Executive Search",
     metaDescription:
-      "LIME Search Amsterdam review 2026. Specialist finance executive search since 2005. CFO, Finance Director, Business Development Director roles. €100k–€300k salary market and placement experience.",
+      "LIME Search Amsterdam review. Finance executive search since 2005. CFO and Finance Director roles. €100k–€300k salary benchmarks.",
     intro:
       "LIME Search is an Amsterdam-based specialist in Finance Executive Search and Interim Management, founded in 2005. The agency operates exclusively at the senior end of the finance function: CFOs, Finance Directors, Business Development Directors, Corporate Controllers, and Finance Business Partners at director level. The salary bandwidth of €100,000 to €300,000 defines the candidate market LIME serves — the agency does not place finance professionals below this level. In the Dutch executive search market, LIME operates as a boutique: smaller, more relationship-driven, and more narrowly focused than international search firms like Spencer Stuart or Korn Ferry.",
     sections: [
@@ -3333,9 +3333,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── MJ People (Hospitality Management Recruitment) ────────────────────────
   "mj-people": {
-    metaTitle: "MJ People Amsterdam Review 2026 – Hospitality Management Hiring",
+    metaTitle: "MJ People Reviews Netherlands | Hospitality Hiring",
     metaDescription:
-      "MJ People Amsterdam review 2026. Specialist hospitality management recruitment since 2010. Hotel general managers, revenue managers, F&B directors. Salary ranges and candidate experience.",
+      "MJ People Amsterdam review. Hospitality management recruitment since 2010. Hotel GMs, revenue managers, and F&B directors. Salary ranges.",
     intro:
       "MJ People is an Amsterdam-based hospitality management recruitment agency founded in 2010 by Jacob de Graaff and Melle Pegman. The agency specialises in placing professionals at management and executive level within the hospitality industry — hotels, restaurants, resorts, and catering organisations. Role types include Hotel General Manager, F&B Director, Revenue Manager, Hotel Director, Executive Chef, and departmental Head of roles. MJ People operates at the management tier of the hospitality sector, not at the operational floor-staff level that agencies like Ployees or the RAI HCC serve.",
     sections: [
@@ -3376,7 +3376,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "agile-recruitment": {
     metaTitle: "Agile Recruitment Amsterdam Review 2026 – IT & HR Jobs",
     metaDescription:
-      "Agile Recruitment Amsterdam review 2026. IT infrastructure, software engineering, HR, and sales placement since 2016. Salary ranges, permanent and contract roles, candidate experience.",
+      "Agile Recruitment Amsterdam review. IT infrastructure, software engineering, HR, and sales since 2016. Salary ranges and contract roles.",
     intro:
       "Agile Recruitment is an Amsterdam-based recruitment agency founded in 2016, placing professionals in IT infrastructure, software engineering, HR, and sales roles across the Netherlands and Europe. In eight years of operation, the agency has built a client network spanning Dutch-market multinationals, scale-ups, and tech companies requiring specialist professional placement in a market where IT talent shortages have been persistent.",
     sections: [
@@ -3415,9 +3415,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Babbage Company B.V. ──────────────────────────────────────────────────
   "babbage-company-b-v": {
-    metaTitle: "Babbage Company Amsterdam Review 2026 – Marketing Recruitment",
+    metaTitle: "Babbage Company Reviews Netherlands | Marketing Jobs",
     metaDescription:
-      "Babbage Company Amsterdam review 2026. Specialist marketing and communications recruitment and interim since 1999. Financial services, retail, non-profit, and government clients.",
+      "Babbage Company Amsterdam review. Marketing and communications recruitment since 1999. Financial services, retail, non-profit, and government.",
     intro:
       "Babbage Company is an Amsterdam-based recruitment and interim management agency that has specialised in marketing and communications professionals since 1999. Over 25 years of operation, the agency has built a client base spanning financial and business services, retail, non-profit organisations, government institutions, and multinationals — sectors where marketing and communications functions range from commercial brand management to public affairs and corporate communication.",
     sections: [
@@ -3458,7 +3458,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "bluebird-recruitment": {
     metaTitle: "Bluebird Recruitment Amsterdam Review 2026 – SaaS Sales Jobs",
     metaDescription:
-      "Bluebird Recruitment Amsterdam review 2026. International SaaS and AI sales recruitment since 2020. Account executives, sales leaders, VP Sales. OTE structures and placement experience.",
+      "Bluebird Recruitment Amsterdam review. International SaaS and AI sales since 2020. Account executives, sales leaders, and VP Sales. OTE rates.",
     intro:
       "Bluebird Recruitment is an international SaaS and AI sales recruitment agency founded in 2020 by Machiel Kunst, with European headquarters in Amsterdam. The agency specialises exclusively in placing sales professionals and sales leaders for SaaS and AI companies — account executives, sales managers, enterprise account managers, VP Sales, and Chief Revenue Officers. The 2020 founding places Bluebird directly within the era of explosive SaaS adoption and the subsequent demand surge for B2B tech sales talent.",
     sections: [
@@ -3499,7 +3499,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "centerpoint-amsterdam": {
     metaTitle: "Centerpoint Amsterdam Review 2026 – Construction Recruitment",
     metaDescription:
-      "Centerpoint Amsterdam review 2026. Specialist construction and civil engineering recruitment since 1991. Project managers, BIM specialists, site managers. Salary ranges and placement experience.",
+      "Centerpoint Amsterdam review. Construction and civil engineering recruitment since 1991. Project managers, BIM specialists, and site managers.",
     intro:
       "Centerpoint is an Amsterdam-based recruitment and selection agency specialising in construction (bouwkunde) and civil engineering (civiele techniek) professionals since 1991. Over 33 years of operation, the agency has built one of the most established track records in the Dutch construction professional market, placing roles from young professionals through to senior project managers and construction directors. The depth of that history — spanning the 1990s Dutch construction growth period, the 2008–2013 crisis, and the current infrastructure and housing programme expansion — gives Centerpoint market memory that newer agencies cannot replicate.",
     sections: [
@@ -3540,7 +3540,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "dijk-van-emmerik-amstelveen-hr-adviesbureau": {
     metaTitle: "Dijk & Van Emmerik Review 2026 – HR & Reintegration Services",
     metaDescription:
-      "Dijk & Van Emmerik Amstelveen review 2026. Psychological HR advisory for reintegration, outplacement, vitality, and absence management. NIP-registered coaches. How it works and what to expect.",
+      "Dijk & Van Emmerik Amstelveen review. Psychological HR advisory for reintegration, outplacement, and absence management. NIP-registered coaches.",
     intro:
       "Dijk & Van Emmerik is an Amsterdam/Amstelveen-based psychological HR advisory firm with approximately 29 years of operation. Since September 2024, the bureau has been part of Meijers Vitaal. The organisation provides services across four domains: re-integration (begeleiding bij terugkeer naar werk na ziekte of uitval), outplacement (coaching for professionals seeking new employment after leaving an organisation), vitality (proactive mental and physical wellbeing programmes), and absence management (verzuimbegeleiding for employers). All coaches and trainers are registered labour and organisational psychologists (NIP — Nederlands Instituut van Psychologen).",
     sections: [
@@ -3579,9 +3579,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Eswelt B.V. ───────────────────────────────────────────────────────────
   "eswelt-b-v": {
-    metaTitle: "Eswelt Amsterdam Review 2026 – SAP & ERP Staffing Netherlands",
+    metaTitle: "Eswelt Reviews Netherlands | SAP & ERP Staffing",
     metaDescription:
-      "Eswelt Amsterdam review 2026. IT staffing specialist for SAP, Microsoft Dynamics, and Salesforce professionals since 2013. Permanent and contract ERP/CRM placements.",
+      "Eswelt Amsterdam review. IT staffing for SAP, Microsoft Dynamics, and Salesforce since 2013. Permanent and contract ERP/CRM placements.",
     intro:
       "Eswelt is an Amsterdam-based IT staffing specialist that has focused exclusively on ERP and CRM professionals since 2013. The agency matches SAP, Microsoft Dynamics, and Salesforce specialists with organisations across the Netherlands, Belgium, and internationally. The client range spans start-ups through to multinationals — ERP systems are platform-agnostic in terms of company size, and a mid-sized Dutch manufacturer running SAP S/4HANA has the same need for skilled functional consultants as a global enterprise deploying SAP across multiple countries.",
     sections: [
@@ -3622,7 +3622,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "genius-recruitment": {
     metaTitle: "Genius Recruitment Review 2026 – Finance, HR & Admin Jobs NL",
     metaDescription:
-      "Genius Recruitment Badhoevedorp review 2026. Professional recruitment for finance, HR, admin, and customer service. Connecting specialists with organisations across the Netherlands.",
+      "Genius Recruitment Badhoevedorp review. Professional recruitment for finance, HR, admin, and customer service roles across the Netherlands.",
     intro:
       "Genius Recruitment is a recruitment agency based in Badhoevedorp — the Haarlemmermeer municipality immediately west of Schiphol Airport — specialising in connecting professionals with organisations across finance, HR, recruitment, sales and marketing, and administrative roles. The Badhoevedorp location, close to Schiphol and the western Randstad, reflects the agency's focus on the Amsterdam metropolitan area and the broader Haarlemmermeer business cluster.",
     sections: [
@@ -3661,9 +3661,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Good Company ──────────────────────────────────────────────────────────
   "good-company-reinventing-recruitment": {
-    metaTitle: "Good Company Amsterdam Review 2026 – Tech & Professional Jobs",
+    metaTitle: "Good Company Reviews Netherlands | Tech & Sales Jobs",
     metaDescription:
-      "Good Company Amsterdam review 2026. Technology, sales, marketing, and engineering recruitment. Digital tools plus human approach. Software developers, data analysts, and commercial roles.",
+      "Good Company Amsterdam review. Technology, sales, marketing, and engineering recruitment. Software developers, analysts, and commercial roles.",
     intro:
       "Good Company is an Amsterdam-based technology and professional recruitment agency that positions itself as 'Reinventing Recruitment' through a combination of specialist expertise, digital tools, and a human approach. The agency places professionals in IT (software development, data analytics, infrastructure), commercial roles (sales, business development), marketing, and engineering disciplines. Good Company's branding emphasises transparency, speed, and candidate experience — dimensions where traditional recruitment has historically underperformed.",
     sections: [
@@ -3704,7 +3704,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   "jp-gray": {
     metaTitle: "JP Gray Amsterdam Review 2026 – Finance & HR Recruitment NL",
     metaDescription:
-      "JP Gray Amsterdam review 2026. Part of the SThree Group. Finance & accounting, HR, supply chain, and customer services placement in the Netherlands. Permanent and contract roles.",
+      "JP Gray Amsterdam review. Part of the SThree Group. Finance, HR, supply chain, and customer services in the Netherlands. Contract roles.",
     intro:
       "JP Gray is an Amsterdam-based business operations workforce consultancy and part of the global SThree Group — the same international staffing group that owns Computer Futures, Huxley, and Progressive Recruitment. The agency specialises in Finance & Accounting, HR, Customer Services, Supply Chain, Business and Sales Support, and Life Sciences roles in the Netherlands. As an SThree brand, JP Gray combines the resources of a global staffing infrastructure with a focus on business operations disciplines rather than the technology and STEM focus of SThree's other Dutch brands.",
     sections: [
@@ -3743,9 +3743,9 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   // ── Jopp Recruitment ──────────────────────────────────────────────────────
   "jopp-recruitment": {
-    metaTitle: "Jopp Recruitment Amsterdam Review 2026 – SaaS & FinTech Sales",
+    metaTitle: "Jopp Recruitment Reviews Netherlands | SaaS Sales",
     metaDescription:
-      "Jopp Recruitment Amsterdam review 2026. Sustainable recruitment for SaaS and FinTech commercial teams. Account executives, sales managers, customer success. OTE structures and placement experience.",
+      "Jopp Recruitment Amsterdam review. Sustainable SaaS and FinTech commercial recruitment. Account executives, sales managers, and customer success.",
     intro:
       "Jopp is an Amsterdam-based recruitment partner exclusively focused on SaaS and FinTech organisations, positioning itself as a 'sustainable recruitment' practice. The agency helps growth-stage tech and FinTech companies scale their commercial teams — placing Account Executives, Sales Managers, Customer Success Managers, and VP Sales roles — while emphasising long-term placement quality over high-volume contingency throughput.",
     sections: [
@@ -3783,7 +3783,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   },
 
   "2b-connected-w-s-voor-makelaardij-en-hypotheek-professionals": {
-    metaTitle: "2B Connected Reviews Netherlands | Mortgage & Real Estate Jobs",
+    metaTitle: "2B Connected Reviews Netherlands | Mortgage Jobs",
     metaDescription: "2B Connected W&S specialises in mortgage and real estate recruitment in the Netherlands. Read what workers and candidates say before you apply.",
     intro: "Finding work as a hypotheekadviseur or makelaar in the Netherlands is a different proposition than most temp-agency placements. The sector is regulated, qualification-heavy, and the agencies serving it are a world apart from the uitzendbureau model you encounter in logistics or hospitality. 2B Connected W&S voor makelaardij en hypotheek professionals is one of Amsterdam's more established niche recruiters in this space, with over 10 years of operation and a claimed track record of 700+ successful placements. This review looks at what it means financially and practically to be placed through them.",
     sections: [
@@ -3927,7 +3927,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   "all-star-chefs": {
     metaTitle: "All Star Chefs Reviews Netherlands | Chef Staffing Agency",
-    metaDescription: "All Star Chefs supplies interim and freelance chefs across the Netherlands. Read about pay under Horeca CAO, shift conditions, and what chefs say about them.",
+    metaDescription: "All Star Chefs supplies interim and freelance chefs across the Netherlands. Horeca CAO pay rates, shift conditions, and what chefs say.",
     intro: "Chef placements in the Netherlands sit at an interesting intersection: the Horeca CAO governs pay and conditions, the work is physically demanding, hours are anti-social by definition, and the agency model in this sector operates quite differently from tech or finance recruitment. All Star Chefs is an Amsterdam-based specialist staffing agency that places interim and freelance chefs across restaurants, catering companies, corporate kitchens, events, and private client assignments.",
     sections: [
       {
@@ -4069,7 +4069,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
 
   "bluepeaks": {
     metaTitle: "Bluepeaks Reviews Netherlands | RPO Recruitment Agency",
-    metaDescription: "Bluepeaks is an Amsterdam RPO and recruitment marketing agency. Learn about working conditions, pay, and what embedded recruiters say about the Bluepeaks model.",
+    metaDescription: "Bluepeaks is an Amsterdam RPO agency. Embedded recruiter pay, working conditions, and what talent acquisition professionals say about them.",
     intro: "Most staffing agency reviews focus on the workers placed into client businesses. Bluepeaks occupies a different niche: they place recruitment professionals themselves into client organisations on an embedded basis. As part of the Bluewave group, Bluepeaks offers RPO (Recruitment Process Outsourcing) solutions in which recruiters and talent acquisition specialists work within a client company's HR function rather than operating from a separate bureau. This review covers the financial and professional picture for recruiters working through this model.",
     sections: [
       {
@@ -4212,7 +4212,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   },
 
   "circle-one": {
-    metaTitle: "Circle One Reviews Netherlands | Data, Cloud & Security IT Jobs",
+    metaTitle: "Circle One Reviews Netherlands | IT & Security Jobs",
     metaDescription: "Circle One is an Amsterdam IT boutique specialising in Data, Cloud and Security roles. Read candidate reviews and salary benchmarks before you engage.",
     intro: "The IT recruitment market in Amsterdam is large and competitive, with dozens of agencies claiming specialism in tech. Circle One distinguishes itself with a genuinely focused proposition: Data, Cloud, and Security. This Amsterdam-based boutique recruiter does not try to cover the full IT spectrum — they operate in three of the most in-demand and best-compensated corners of the Dutch tech market. For candidates in these disciplines, that focus matters.",
     sections: [
@@ -4283,7 +4283,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   },
 
   "connected2talent": {
-    metaTitle: "Connected2talent Reviews Netherlands | IT & Engineering Agency",
+    metaTitle: "Connected2talent Reviews Netherlands | IT & Engineering",
     metaDescription: "Connected2talent recruits in IT and mechanical engineering from Amsterdam. Limited public info available — read what to ask before registering.",
     intro: "Connected2talent is an Amsterdam-based staffing and recruitment agency located at John M. Keynesplein 10 in Amsterdam Nieuw-West, near Sloterdijk. Available public information indicates the agency recruits in mechanical engineering and IT disciplines. Beyond the address, phone listing, and sector indicators, public information is limited. The transparency score for Connected2talent on AgencyCheck is 32/100.",
     sections: [
@@ -4318,7 +4318,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   },
 
   "crewmates": {
-    metaTitle: "Crewmates Reviews Netherlands | Hospitality & Events Staffing",
+    metaTitle: "Crewmates Reviews Netherlands | Events Staffing",
     metaDescription: "Crewmates supplies flexible hospitality staff for Amsterdam restaurants, events and venues. Read about pay, shift conditions and what workers say.",
     intro: "Not every event staffing agency in Amsterdam has been around for decades. Crewmates is a younger, energetic bureau focused on supplying flexible hospitality workers — serving staff, hosts, dishwashers, and kitchen support — to restaurants, events, and venues in Amsterdam. The agency's positioning appeals to students, career-transitioning workers, and those who want genuinely flexible shift work without committing to a fixed employer.",
     sections: [
@@ -4389,7 +4389,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
   },
 
   "dutchstar-b-v": {
-    metaTitle: "Dutchstar B.V. Reviews Netherlands | Hospitality & Chef Staffing",
+    metaTitle: "Dutchstar Reviews Netherlands | Hospitality Staffing",
     metaDescription: "Dutchstar supplies chefs and hospitality staff to Amsterdam hotels and restaurants. Read what workers say about pay under Horeca CAO and shift conditions.",
     intro: "Dutchstar B.V. occupies an interesting position in the Amsterdam hospitality market: it is both a staffing agency for chefs and hospitality personnel and a hotel technology business offering reservation systems and bookkeeping services to hotels and restaurants. This dual nature means the company has a commercial footprint in the sector beyond simply supplying labour — client relationships built through technology sales intersect with the staffing side. This review focuses on the staffing operation and what chefs and hospitality workers can expect.",
     sections: [
@@ -4493,6 +4493,366 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
     internalLinks: [
       { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
       { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
+    ],
+  },
+
+  "global-talent": {
+    metaTitle: "Global Talent Reviews Netherlands | ABU-Certified Agency",
+    metaDescription: "Global Talent holds the ABU quality mark and places international workers in horticulture, logistics, and metalworking. SNF housing reviewed.",
+    intro: "Poland and the Netherlands have had a labour migration relationship for decades. Seasonal workers from Poland, Bulgaria, and Romania move through Dutch horticulture, logistics, and manufacturing every year, and the agencies serving this market vary enormously in quality. Global Talent is one of the more established players: an Amsterdam-based staffing and recruitment agency holding the ABU quality mark, with a declared focus on Polish-speaking candidates placed in horticulture, manufacturing, logistics, and metalworking roles.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The Dutch statutory minimum wage (WML) is €14.71 per hour in 2026. Most horticulture, production, and logistics roles placed through Global Talent start at or just above WML, depending on the specific client's CAO. In greenhouse horticulture, the CAO Glastuinbouw sets a base rate slightly above WML for classification 1 workers. In metalworking and manufacturing, the CAO Metalelektro may add 5–15% above WML for specific roles. Loonheffing at WML runs at roughly 10.7% and ZVW takes another 5.5%. On €14.71/hr for a 40-hour week, gross monthly earnings are around €2,550; net take-home is typically €1,900–2,050 after all statutory deductions. The loonheffingskorting (tax credit) applies automatically for workers with Dutch employment contracts, and Global Talent as an ABU-certified agency should apply it correctly by default. Vakantiegeld at 8% accrues on top of gross earnings and is paid in May or upon contract end.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Global Talent's ABU membership means they are formally bound by SNF (Stichting Normering Flexwonen) standards where housing is provided. SNF-certified accommodation caps housing costs at €113.50 per week (2026 rate), limits per-room occupancy, and guarantees minimum standards for sanitation, heating, and security. For workers placed in rural horticulture regions — the Westland greenhouse complex, the Bollenstreek, or Brabant vegetable production — agency-provided housing is standard because the work is too far from Amsterdam for a daily commute. Workers staying in agency housing must receive a written housing agreement separate from the employment contract. The €113.50 weekly deduction leaves roughly €1,600–1,700 per month after housing on a WML salary — workable if no other large costs apply. For Amsterdam-area logistics or metalworking placements, agency housing is typically not offered and workers arrange their own at €700–1,000 per month for a shared room.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Global Talent runs both uitzend (temp) and werving en selectie (search and selection) models. Horticulture shifts can start at 5am or 6am. In remote polder greenhouse areas, the agency may organise transport to the site by bus — confirm this before accepting a placement far from public transport. The Polish-speaking specialism reduces the risk of misunderstanding employment terms for Polish-speaking workers. Working in horticulture involves repetitive physical labour — pruning, harvesting, packing — in warm, humid conditions for 8–10 hours at a stretch. Experienced workers who prove reliable tend to get consistent assignment extensions.",
+      },
+    ],
+    pros: [
+      "ABU quality mark confirms audited standards covering CAO compliance, payslip transparency, and SNF housing where provided",
+      "Polish-speaking specialism reduces contract misunderstandings for Polish-speaking workers",
+      "Phase B (week 79+) brings inlenersbeloning principle — pay must equal permanent employee equivalents",
+      "Both temp and search and selection models available",
+    ],
+    cons: [
+      "WML-level earnings are modest — take-home after housing costs leaves limited surplus",
+      "Physical horticulture and logistics work with early starts in all weather conditions",
+      "Phase A uitzendbeding allows one-day termination if client assignment ends",
+      "Workers frequently cycled through seasonal assignments without reaching Phase B protections",
+    ],
+    internalLinks: [
+      { href: "/agencies-with-housing", label: "All agencies with SNF-certified housing in the Netherlands" },
+      { href: "/guides/snf-housing-rights", label: "SNF housing standards and your rights as a flex worker" },
+    ],
+  },
+
+  "hotelprofessionals": {
+    metaTitle: "Hotelprofessionals Reviews | Hotel Jobs Netherlands",
+    metaDescription: "Hotelprofessionals runs 800 active hotel vacancies nationwide. Pay scales, CAO Horeca conditions, and how the platform works in NL.",
+    intro: "Eight hundred live hotel vacancies is a meaningful number. Hotelprofessionals is not a traditional staffing agency — it is a specialist hotel industry job board and recruitment platform with enough scale and Amsterdam-area concentration to act as a de facto labour market portal for Dutch hotel professionals. With around 650 vacancies per month in Amsterdam alone and coverage from 3- to 5-star properties, the platform connects revenue managers, housekeeping managers, hotel GMs, and front office staff with employers in one of the Netherlands' biggest hotel markets.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Pay in Dutch hotels is governed by the CAO Horeca, which sets function classification bands. A front office employee (FO medewerker) in the Netherlands earns €15.00–17.50 gross per hour depending on classification under the 2026 CAO. A Housekeeping Supervisor earns €16.50–19.00 gross. A Revenue Manager at a mid-size Amsterdam hotel typically earns €3,500–5,000 gross per month. A Hotel Manager (General Manager) at a 4-star Amsterdam property earns €5,500–9,000 gross depending on room count and performance bonuses. For positions found through Hotelprofessionals that are direct hires, you are entitled to the full CAO Horeca package from day one: correct function grading, 25 vacation days for full-time, and pension contribution through Pensioenfonds Horeca en Catering. The 30% ruling applies to international candidates earning above €46,660 annually.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Hotelprofessionals does not provide housing. Hotels rarely provide accommodation for locally-recruited staff. For workers relocating to Amsterdam for a hotel role, standard rental costs apply: shared housing from €800–1,100 per room, a studio from €1,300–1,700, a one-bedroom from €1,500–2,100 in 2026.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Hotelprofessionals is a platform — not an employer. When hired through it, you apply direct to the hotel and negotiate with their HR department, not an agency intermediary. This means no Phase A uitzendbeding. Most Amsterdam hotel positions are accessible by GVB tram, metro, or bicycle. The Zuidas is served by metro line 5; Schiphol-corridor hotels are 15 minutes by NS train. Housekeeping and logistics roles starting before 6am may require cycling or taxi. The platform's concentration on Amsterdam reflects the city's 430+ hotels and 35,000 rooms across all segments.",
+      },
+    ],
+    pros: [
+      "Direct employer relationship — no agency uitzendbeding, full CAO Horeca from day one",
+      "800 active vacancies with 650/month in Amsterdam provides genuine breadth",
+      "Covers management, revenue, and specialist operational roles not well-served by general job boards",
+      "Pension through Pensioenfonds Horeca en Catering from first day of direct employment",
+    ],
+    cons: [
+      "Platform model requires candidate self-sufficiency — no active recruiter pitching you to hotels",
+      "Dormant registrations if candidate is not proactive about profile and follow-up",
+      "Hospitality management roles require Dutch-language CVs and CAO function knowledge",
+      "Evening and weekend work is the norm across all hotel operational roles",
+    ],
+    internalLinks: [
+      { href: "/agencies/mastiek", label: "Compare with Mastiek for daily hospitality staffing in Amsterdam" },
+      { href: "/agencies/all-star-chefs", label: "See All Star Chefs for culinary recruitment in Amsterdam hotels" },
+    ],
+  },
+
+  "interlace-executive-search": {
+    metaTitle: "Interlace Executive Search Reviews Netherlands",
+    metaDescription: "Interlace Executive Search has placed C-suite leaders in the Netherlands since 1985. What candidates say about this Dutch executive search firm.",
+    intro: "Founding an executive search firm in 1985 and still operating 40 years later is a genuine signal of durability in a sector where boutiques come and go. Interlace Executive Search was founded by Liesbeth Mekkering and Simon Dierdorp, making it one of the earliest Dutch executive search firms. Their focus is C-suite and senior management recruitment for companies where human and organisational development sits at the core — boards, management teams, and directeur roles at organisations in the Netherlands and internationally.",
+    sections: [
+      {
+        heading: "How the Retained Search Process Works",
+        body: "Interlace operates on a retained search model for most mandates. A client pays an upfront fee to engage Interlace exclusively for a specific leadership position. The agency maps the market, identifies suitable candidates — including people not actively job-hunting — and approaches them directly. The process for a C-suite or senior management search typically runs 10–16 weeks: market mapping, candidate long-list, structured consultant interviews, shortlist presentation, client interviews over two or three rounds, reference checks, and offer negotiation. Throughout this, Interlace manages communication and provides feedback at each stage — a standard of service the high-volume staffing market does not deliver. The low transparency score (32/100) reflects limited publicly verifiable placement data, which is structurally expected for a confidential retained search firm where board appointments are rarely publicised.",
+      },
+      {
+        heading: "Salary Ranges for Executive Roles",
+        body: "Positions filled through Interlace are well above any statutory minimum wage consideration. Dutch CEO and Managing Director roles at mid-size organisations (50–500 employees) typically carry base salaries of €120,000–250,000 gross per year. C-suite positions (CFO, CHRO, COO) range €100,000–200,000 gross. Senior management roles one level below C-suite — directeur, adjunct-directeur — run €80,000–150,000 gross. At these levels, the marginal tax rate in the Netherlands is 49.5% on earnings above €75,518 (2026). The 30% ruling is highly relevant for internationally recruited executives: at €150,000 gross annually, applying the ruling saves roughly €22,000 in tax per year for up to five years. Pension above the fiscal maximum (€137,800 in 2026) requires supplementary arrangement and should be explicitly discussed with Interlace as part of any offer briefing.",
+      },
+      {
+        heading: "Working Conditions and Organisational Profile",
+        body: "Interlace's positioning around human and organisational development as a core client criterion suggests a focus on professional services, social sector, and knowledge-intensive organisations — boards, healthcare leadership, educational institutions, cultural organisations, and professional advisory firms where leadership character and stakeholder management are weighted as heavily as sector expertise. Transport at this level is self-managed: organisations hiring C-suite through Interlace typically offer lease car schemes, NS Business card, or a mobility budget. Hybrid working is standard across most Dutch senior management roles.",
+      },
+    ],
+    pros: [
+      "40-year track record — sustained durability that most boutique executive search firms do not achieve",
+      "Retained model means Interlace is paid to find the best candidate, not the fastest",
+      "Human and organisational development focus produces more thoughtful leadership matching",
+      "International scope with European network for cross-border senior placements",
+    ],
+    cons: [
+      "Low transparency score (32/100) — limited public data on recent placements or client list by design",
+      "10–16 week retained search timeline is slow for candidates with urgent requirements",
+      "Sector focus on human-centred organisations may limit access to pure commercial or industrial C-suite mandates",
+      "No housing or relocation support at the agency level — negotiated directly with the hiring organisation",
+    ],
+    internalLinks: [
+      { href: "/agencies/morgan-green", label: "See Morgan Green for senior life sciences and food leadership roles" },
+      { href: "/agencies/jp-gray", label: "Compare with JP Gray for finance and supply chain leadership recruitment" },
+    ],
+  },
+
+  "jobdex": {
+    metaTitle: "Jobdex Reviews Netherlands | Festival Freelancers",
+    metaDescription: "Jobdex connects freelancers with Dutch festivals, events, and hospitality clients. ZZP pay, platform conditions, and tax obligations reviewed.",
+    intro: "Festival work in the Netherlands is big business. The country hosts hundreds of outdoor events from April through September — from Lowlands and Pinkpop to Amsterdam Open Air and ADE — and each one needs hundreds of short-shift workers for bar service, merchandise, ticketing, cleaning, and crew logistics. Jobdex, founded in Amsterdam in 2017, built a technology platform specifically for this: it connects self-employed (ZZP) workers with festival, event, and hospitality clients who need flexible people, often at short notice.",
+    sections: [
+      {
+        heading: "Earnings and Tax Reality for ZZP Festival Workers",
+        body: "Festival and event shifts through Jobdex pay roughly €13.00–20.00 per hour depending on role. Standard bartender and floor staff roles run €13.50–16.00; team leader or specialist roles €17–22. At €15.00 per hour for a 10-hour festival shift, you earn €150 gross per shift. Over a busy summer with 20–25 shifts between May and September, that is €3,000–3,750 gross for the season. As a ZZP worker, you declare this income in your income tax return (box 1). Workers doing festival shifts as a supplement to a main employed job will find their ZZP income added to total employment income for the year, potentially pushing them into a higher tax bracket — a common surprise in April when the belastingaangifte comes due. No vakantiegeld, no reiskostenvergoeding unless specifically agreed, no sick pay.",
+      },
+      {
+        heading: "How Jobdex Works — Platform vs Employer",
+        body: "Jobdex is a matching platform, not an employer. You set your own availability, choose which shifts to accept, and invoice after completing the work. You are formally a ZZP contractor, responsible for your own belastingaangifte, BTW registration if annual turnover exceeds €20,000, and AOW pension accrual — because as a ZZP worker you do not accrue state pension through this work the way an employed person does. The day rate on a festival shift through Jobdex is typically higher than the equivalent hourly rate for an employed person doing the same work, precisely because the ZZP rate is supposed to compensate for the absence of employer-paid premiums (WW, WAO, AOW).",
+      },
+      {
+        heading: "Housing, Transport, and On-Site Conditions",
+        body: "Jobdex does not provide housing. For Amsterdam-based events (ADE, DGTL, Amsterdam Open Air), cycling or public transit is viable. For major outdoor events like Lowlands in Biddinghuizen or Pinkpop in Landgraaf, getting there requires a car or festival shuttle. Some multi-day festivals offer crew camping as part of the shift package for workers doing the full build-run-breakdown cycle. If crew camping is part of an offer, get it confirmed in writing before committing. Work income from Jobdex is inherently seasonal — cash flow is volatile across the year and workers relying on it as a primary income need a 3-month expense buffer for the lean November–March period.",
+      },
+    ],
+    pros: [
+      "Platform transparency: see the shift, rate, and client before committing",
+      "Choose your own schedule with no obligation to accept specific assignments",
+      "Vibrant Dutch festival and events market generates consistent summer demand",
+      "No agency taking a hidden cut — rates shown are what you earn",
+    ],
+    cons: [
+      "ZZP model means no WW unemployment benefit, no sick pay, no AOW employer contribution",
+      "Seasonal concentration in May–September creates difficult cash flow November–March",
+      "ZZP income added to employed income can cause unexpected year-end tax bills",
+      "Last-minute cancellations and weather events can wipe planned income overnight",
+    ],
+    internalLinks: [
+      { href: "/agencies/be-my-guest-hospitality-events", label: "Compare with Be My Guest for employed event staffing with CAO protection" },
+      { href: "/agencies/mastiek", label: "See Mastiek for employed hospitality agency work in Amsterdam" },
+    ],
+  },
+
+  "language-matters-b-v": {
+    metaTitle: "Language Matters Reviews Netherlands | Multilingual",
+    metaDescription: "Language Matters has placed multilingual professionals in the Netherlands since 1993. Roles, pay expectations, and how the job market works.",
+    intro: "Speaking a second or third language fluently enough to work in it professionally is a skill that a large part of the Dutch labour market specifically needs. Amsterdam and the Randstad are home to hundreds of European and international company headquarters — ASML, ING, Booking.com, TomTom, Heineken — that need finance professionals who work in German, customer service teams covering Spanish and French, and legal staff operating comfortably in English and Dutch simultaneously. Language Matters B.V., established in Amstelveen in 1993, has spent over 30 years filling exactly this gap.",
+    sections: [
+      {
+        heading: "Salary Expectations in Multilingual Roles",
+        body: "Salary for multilingual professionals depends heavily on the function, not just the language. A bilingual Dutch-German customer service representative at a financial services firm earns €2,400–3,000 gross per month. A multilingual paralegal covering English, French, and Dutch at an Amsterdam law firm earns €2,800–3,800 gross. A German-speaking account manager at a Dutch multinational earns €3,200–4,500 gross plus commission. A French-fluent senior finance professional at controller level earns €4,500–6,500 gross. The language premium at junior levels is real but not enormous — perhaps €200–400 per month above equivalent monolingual roles. At senior levels with rare languages (German, Japanese, Mandarin, Arabic), the premium is more significant because candidate supply is narrower. Loonheffing on €2,800 gross/month runs at roughly 11–12%, leaving approximately €2,100–2,200 net per month.",
+      },
+      {
+        heading: "Housing and the Amstelveen Location",
+        body: "Language Matters does not provide housing. Placements are concentrated in the Amsterdam metropolitan area and the Schiphol corridor — the highest concentration of international HQ employment in the Netherlands. Amstelveen is accessible by tram 5 from Amsterdam and has lower rental costs than central Amsterdam: a studio runs €1,100–1,500 versus €1,300–1,700 in Amsterdam South. For international candidates relocating to the Netherlands for a Language Matters placement, relocation cost negotiation with the hiring employer is standard at senior bilingual roles.",
+      },
+      {
+        heading: "How Language Matters Works and What to Expect",
+        body: "Language Matters operates as a specialist multilingual recruitment consultancy placing candidates in both temporary and permanent roles across administration, sales, marketing, finance, HR, IT, and legal functions. They are part of an international network, adding value for candidates considering multiple European markets or for Dutch employers hiring internationally. For temp placements, the standard ABU CAO framework applies. For permanent placements, Language Matters earns a placement fee from the hiring employer — candidates pay nothing. Be clear with them upfront about your actual language level using CEFR descriptors (B2, C1, C2) rather than self-assessed fluency — a specialist recruiter will probe this in the intake and misrepresentation wastes everyone's time.",
+      },
+    ],
+    pros: [
+      "30+ years in multilingual recruitment — the longest-established specialist in the Netherlands",
+      "International network adds value for candidates considering roles across multiple EU markets",
+      "Amstelveen base positions them close to Schiphol and the international corporate corridor",
+      "Human-led consultancy model — a recruiter reads your profile rather than matching on keywords alone",
+    ],
+    cons: [
+      "Niche market means the total number of available roles at any time is smaller than the general employment market",
+      "English plus one additional language may not be sufficient for the most competitive roles — check requirements carefully",
+      "Transparency score (52/100) reflects room for improvement on public data disclosure",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/2b-connected-w-s-voor-makelaardij-en-hypotheek-professionals", label: "Compare with 2B Connected for other niche Amsterdam specialist recruitment" },
+      { href: "/agencies/jp-gray", label: "See JP Gray for multilingual finance and supply chain roles" },
+    ],
+  },
+
+  "m-a-d-personeelsdiensten-b-v": {
+    metaTitle: "M.A.D. Personeelsdiensten Reviews | Bouw Staffing",
+    metaDescription: "M.A.D. Personeelsdiensten places construction labourers across the Netherlands since 2013. CAO Bouwnijverheid rates and real conditions.",
+    intro: "Construction in the Netherlands has been running at high volume for years and shows no sign of slowing: the national shortage of residential housing has kept build rates elevated, and large infrastructure projects continue to pull labour. M.A.D. Personeelsdiensten B.V. is an Amsterdam-based staffing agency established in January 2013 that operates squarely in this market, supplying construction labourers, construction cleaners (bouwschoonmakers), and site support staff to renovation projects and large-scale building sites across the country.",
+    sections: [
+      {
+        heading: "Salary and CAO Bouwnijverheid Rates",
+        body: "The CAO Bouwnijverheid is one of the more detailed CAOs in the Netherlands. For 2026, the minimum day rate for a construction labourer (bouwplaatsmedewerker) is €15.19 per hour at grade A. Skilled tradespeople — bricklayers, carpenters, roofers — fall under higher classification grades at €16.50–22.00 per hour depending on trade and certification. Bouwschoonmakers typically earn €14.71–15.50 per hour. Gross monthly earnings for a full-time labourer at €15.19/hr over 173 hours are €2,628; net take-home is approximately €1,980–2,080. The CAO Bouwnijverheid also includes ADV (arbeidsduurverkorting) day entitlement that many agency workers are not aware of — ask M.A.D. specifically whether ADV days are included in your contract. Under the inlenersbeloning principle at Phase B (week 79+), your pay must equal what a permanent employee in the same role earns at the client, including site supplements and tool allowances.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "M.A.D. Personeelsdiensten does not advertise housing provision. Amsterdam-based construction workers commute to site. For national or regional project assignments, accommodation arrangements vary. If M.A.D. provides housing for remote project work, it must meet SNF standards with a maximum deduction of €113.50 per week — get this confirmed in writing before accepting any placement that involves relocating to a building site far from Amsterdam.",
+      },
+      {
+        heading: "Transport and Site Conditions",
+        body: "Construction work starts early: 7am site starts are standard, 6am on large projects during high season. Amsterdam's early tram services run from around 5:30am, making 7am Amsterdam-area site starts manageable. For sites outside the GVB network, workers need a car or confirmed agency transport. The Arbeidsomstandighedenwet (working conditions law) requires PBM (personal protective equipment) to be provided: hard hats, safety boots, high-visibility vests, gloves, and ear protection where relevant. If M.A.D. or the site client does not provide this, workers have the legal right to refuse work until it is supplied — not a courtesy, a legal requirement.",
+      },
+    ],
+    pros: [
+      "Amsterdam construction sector focus since 2013 — over a decade of market operation",
+      "Mid-size scale (21–50 employees) means more direct coordinator contact than at large national chains",
+      "CAO Bouwnijverheid provides structured classification and grade-based pay entitlements",
+      "Construction work volume in the Netherlands has remained consistently high through 2026",
+    ],
+    cons: [
+      "Phase A uitzendbeding means frequent cycling of workers without reaching Phase B protections",
+      "Construction work is physically demanding with early starts and outdoor exposure in all weather",
+      "ADV days and overtime calculation under the CAO require active verification — not always communicated proactively",
+      "No housing provided; remote project assignments require transport or accommodation arrangement",
+    ],
+    internalLinks: [
+      { href: "/agencies/centerpoint-amsterdam", label: "Compare with Centerpoint for larger-scale construction recruitment" },
+      { href: "/guides/cao-bouwnijverheid-worker-rights", label: "CAO Bouwnijverheid explained: classification, pay, and ADV days" },
+    ],
+  },
+
+  "mastiek": {
+    metaTitle: "Mastiek Reviews Netherlands | Amsterdam Horeca Staffing",
+    metaDescription: "Mastiek supplies trained hospitality staff in Amsterdam since 2017. CAO Horeca pay, ZZP mediation, and what chefs say about working through them.",
+    intro: "Most Amsterdam hospitality agencies have a transparency problem: workers do not know upfront whether they will be paid correctly, whether their Sunday premiums will appear on the payslip, or whether the agency will still pick up the phone six months in. Mastiek stands out with a transparency score of 72/100 — one of the higher scores in the Amsterdam hospitality staffing market. Founded in 2017, the agency runs a daily operation supplying trained waiting staff, catering professionals, and service workers to venues across Amsterdam. They handle temporary employment, werving en selectie, detachering, and ZZP mediation under one roof.",
+    sections: [
+      {
+        heading: "Salary and CAO Horeca Pay",
+        body: "The CAO Horeca governs waiting staff and catering roles placed through Mastiek on an employed basis. In 2026: Ober/Serveerster at entry classification (F1/F2) earns €14.80–16.00 per hour gross. A senior food and beverage professional at F4 earns €17.50–20.00 gross. Sunday work through Mastiek carries a 50% CAO Horeca surcharge: a €15.00 base rate becomes €22.50 for Sunday hours. Evening work after 22:00 carries an additional supplement. For ZZP workers mediated through Mastiek, day rates are agreed per assignment at typically €18.00–28.00 per hour depending on role and experience. ZZP rates are gross without employer contributions — the higher rate compensates for absence of WW, ZVW employer contribution, and vakantiegeld. A ZZP chef earning €22.00/hr for 120 hours grosses €2,640, from which income tax, health insurance premium (minimum €1,757/year for Zvw in 2026), and AOW gap coverage must be budgeted.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Mastiek does not provide housing. The agency is Amsterdam-based and its client venues are concentrated in the city and direct surroundings. A shared room in Amsterdam at €800–1,100 per month represents 40–55% of net monthly earnings for a full-time CAO Horeca placement — tight but workable if other costs are low. Workers living further out in Haarlem, Zaandam, or Purmerend and commuting by NS train can reduce housing costs meaningfully.",
+      },
+      {
+        heading: "Transport and Shift Realities",
+        body: "Evening service means shifts running from 4pm to midnight or later. Amsterdam GVB night trams run on weekend nights; weeknight post-1am is bicycle or taxi. Workers within 5km of the city centre can cycle safely at any hour. For those further out, the transport cost of post-midnight shift ends reduces effective hourly earnings and needs factoring in. Mastiek states it supplies trained staff rather than general labour — workers with verifiable hospitality experience and demonstrated service skills command better assignments and, over time, better rates.",
+      },
+    ],
+    pros: [
+      "Transparency score 72/100 — significantly above the Amsterdam hospitality staffing average",
+      "Multi-model approach: temp, W&S, detachering, and ZZP mediation under one roof",
+      "Daily supply operation to Amsterdam venues means consistent assignment availability",
+      "Founded 2017 — survived and grew through the post-COVID hospitality recovery",
+    ],
+    cons: [
+      "Hospitality work volume is tied to venue bookings and Amsterdam tourism seasonality",
+      "November to February lean period requires financial buffer if hospitality is primary income",
+      "ZZP mediation offers higher rates but removes social safety net entirely",
+      "Post-midnight shift ends require own transport in most cases",
+    ],
+    internalLinks: [
+      { href: "/agencies/all-star-chefs", label: "Compare with All Star Chefs for chef-specific placements in Amsterdam" },
+      { href: "/agencies/be-my-guest-hospitality-events", label: "See Be My Guest for event-focused hospitality staffing" },
+    ],
+  },
+
+  "morgan-black": {
+    metaTitle: "Morgan Black Reviews Netherlands | IT Recruitment Amsterdam",
+    metaDescription: "Morgan Black places Java developers, DevOps engineers, and cloud specialists in the Netherlands since 2012. Read candidate reviews and salary benchmarks.",
+    intro: "Morgan Black is the IT recruitment label of Morgan Recruitment Group, operating from Amsterdam since 2012. The label focuses on Software Development, DevOps, Data and Cloud, and related IT disciplines, placing both permanent employees and freelance or interim IT professionals at companies ranging from Amsterdam-area SMEs to international multinationals. A transparency score of 72/100 puts Morgan Black above the Amsterdam IT recruitment average.",
+    sections: [
+      {
+        heading: "Salary Benchmarks for IT Roles in 2026",
+        body: "The Dutch IT labour market is one of the highest-paying in Europe relative to cost of living. Benchmarks for roles in Morgan Black's core focus areas in 2026: Java Developer (3–5 years) €4,500–6,500 gross per month; Senior Java Developer (6+ years) €6,500–9,000 gross; Front-End Developer (React/Vue, 3–5 years) €4,000–6,000 gross; DevOps Engineer (Kubernetes/Terraform, 3–5 years) €5,000–7,500 gross; Cloud Engineer (AWS/Azure/GCP certified) €5,500–8,000 gross; Data Engineer (Spark, dbt, Databricks) €5,000–7,500 gross. For international IT professionals, the 30% ruling is one of the most significant financial factors: at €6,000 gross per month (€72,000 annually), the ruling reduces taxable income by 30% and saves roughly €10,000 in tax per year for up to five years. Freelance IT day rates run €100–200 per day for junior to mid-level and €150–300+ for senior or specialist profiles.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Morgan Black does not provide housing. IT professionals placed in Amsterdam earn at levels (€4,500–8,000 gross/month) where independent accommodation is expected. Amsterdam one-bedroom apartments at €1,600–2,100 per month represent 25–35% of gross salary at mid-level IT rates — financially manageable for most placements in their range. For international candidates relocating to Amsterdam, negotiating a relocation allowance from the hiring employer is standard at senior levels and worth raising explicitly before accepting an offer.",
+      },
+      {
+        heading: "The Recruitment Process at Morgan Black",
+        body: "Morgan Black operates on both contingency and retained search mandates. Candidate experience at a specialist IT recruiter with 72/100 score should include: a technical intake conversation where the consultant understands the difference between a Kubernetes cluster and a basic containerisation setup; specific introductions to clients matching your actual technical stack, not carpet-bombing your CV to anyone in Amsterdam using Java; and honest feedback after client interviews. Morgan Black's strength is focus — a recruiter who works exclusively in software, cloud, and DevOps develops deeper client relationships in those domains than a generalist splitting time across sectors. Ask directly which client segments they are actively working in before investing significant time.",
+      },
+    ],
+    pros: [
+      "12-year Amsterdam IT market operation — sustained track record across multiple tech cycles",
+      "Transparency score 72/100 — above average for Dutch specialist IT recruiters",
+      "Dedicated label within Morgan Recruitment Group means IT-specific domain expertise",
+      "Both permanent and freelance/interim placement models available",
+    ],
+    cons: [
+      "Active mandates in specific sub-stacks (cloud vs Java vs data) vary month to month",
+      "No housing or relocation support at the agency level",
+      "Group structure means your profile needs to be in the right label (Morgan Black vs Green vs Lab)",
+      "Contingency model at scale-ups may mean less thorough briefings than retained search mandates",
+    ],
+    internalLinks: [
+      { href: "/agencies/morgan-recruitment-group", label: "See Morgan Recruitment Group overview and all three labels" },
+      { href: "/agencies/eswelt-b-v", label: "Compare with Eswelt for ERP and CRM specialist IT staffing in Amsterdam" },
+    ],
+  },
+
+  "morgan-green": {
+    metaTitle: "Morgan Green Reviews Netherlands | Life Sciences",
+    metaDescription: "Morgan Green recruits for pharma, biotech, food, and MedTech in the Netherlands since 2012. Read about QA, regulatory affairs, and R&D salary benchmarks.",
+    intro: "The Netherlands is one of Europe's most significant life sciences and food production hubs. Wageningen University drives global food and agricultural science. Leiden's Bioscience Park houses dozens of pharma and biotech firms. Morgan Green, the Food, Pharma, Biotech, MedTech, and Energy label of Morgan Recruitment Group, has been placing professionals in this complex sector since 2012 — the founding label of the group. Their transparency score of 72/100 puts them in a credible band for candidates evaluating specialist life sciences recruiters.",
+    sections: [
+      {
+        heading: "Salary and Contract Rate Benchmarks",
+        body: "Morgan Green's core placement areas are R&D, QA, Regulatory Affairs, Engineering, and Operations across life sciences and FMCG. Salary benchmarks for the Dutch market in 2026: QA Specialist (3–5 years, GMP experience) €3,800–5,500 gross per month; Senior QA Manager €5,500–8,000 gross; Regulatory Affairs Specialist (EU MDR, IVDR, or ICH experience) €4,000–6,000 gross; Senior RA Manager €6,000–9,000 gross; Process Engineer (pharma or food, 3–5 years) €4,000–5,800 gross; Operations Manager (pharma plant) €6,000–9,500 gross. Contract positions in pharma QA and RA carry a day rate premium of 20–40% over equivalent permanent salaries. A QA specialist at €5,000 gross monthly might expect €450–550 per day as a contractor. The 30% ruling is frequently relevant: biotech and pharma are among the sectors where the Netherlands actively recruits from the UK, US, and Asia, and at salaries above €46,660, the ruling provides meaningful tax relief for up to five years.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Morgan Green does not provide housing. The main placement locations — Leiden, Utrecht, Amsterdam Science Park, Eindhoven, Wageningen — each have their own rental markets. Leiden's scientific district is 35 minutes by NS train from Amsterdam Centraal; Utrecht is 30 minutes. Wageningen is largely car-dependent from the Randstad. For international placements, relocation assistance negotiated with the hiring employer is standard at senior QA or RA manager levels and should be explicitly discussed before accepting any offer.",
+      },
+      {
+        heading: "The Retained Search Model in Practice",
+        body: "Morgan Green uses retained search for many of its higher-level mandates. In retained search, the agency is paid to find the best candidate, not the fastest. This produces more thorough briefings, more substantive pre-placement conversations, and honest feedback even when the outcome is a pass. Regulatory Affairs is a field where Dutch-language skills, knowledge of EU MDR or EMA guidelines, and sector-specific experience are all prerequisites. A recruiter who cannot distinguish between a QMS gap analysis and a RA submission strategy cannot match candidates to roles accurately. The retained timeline of 8–14 weeks is slow for candidates finishing a contract and needing to move quickly — running Morgan Green in parallel with other specialist agencies is sensible when time is pressing.",
+      },
+    ],
+    pros: [
+      "Founded 2012 as the first Morgan group label — the deepest domain experience within the group",
+      "Covers pharma, biotech, food, MedTech, and energy — broad life sciences scope under one relationship",
+      "Retained search model produces better briefings and more honest feedback than contingency",
+      "Transparency score 72/100 — above average for Dutch specialist life sciences recruiters",
+    ],
+    cons: [
+      "Retained search timelines (8–14 weeks) are slow for candidates with urgent contract gaps to fill",
+      "GMP-regulated sector requires specific documentation and qualification evidence before placement",
+      "Wageningen and provincial life sciences locations are car-dependent from most of the Randstad",
+      "No housing or relocation support at the agency level",
+    ],
+    internalLinks: [
+      { href: "/agencies/morgan-black", label: "Compare with Morgan Black for IT roles in life sciences companies" },
+      { href: "/agencies/interlace-executive-search", label: "See Interlace Executive Search for senior leadership in health and science organisations" },
+    ],
+  },
+
+  "morgan-recruitment-group": {
+    metaTitle: "Morgan Recruitment Group Reviews Netherlands",
+    metaDescription: "Morgan Recruitment Group runs specialist labels in IT, Life Sciences, and Lab across the Netherlands since 2012. How the group works.",
+    intro: "Understanding how Morgan Recruitment Group works is the starting point for anyone who encounters one of their three labels: Morgan Black for IT, Morgan Green for Life Sciences and Food, and Morgan Lab for Laboratory roles. The group is Amsterdam-based, founded in 2012, and built on the premise that sector specialisation produces better placements than a generalist approach. The actual candidate and client work happens within the labels, not the holding entity.",
+    sections: [
+      {
+        heading: "Which Label to Approach — and Why It Matters",
+        body: "Morgan Black covers software engineering, DevOps, data engineering, and cloud infrastructure. Morgan Green covers quality assurance, regulatory affairs, R&D, process engineering, and operations in pharma, biotech, food, MedTech, and energy. Morgan Lab focuses on laboratory analysts, technicians, and scientists across research institutions, food labs, environmental labs, and clinical settings. If your profile spans two areas — a DevOps engineer with significant pharma client experience, or a lab scientist moving toward data science — clarify which label maps most directly to your next intended role rather than your entire career history. A DevOps engineer at pharma companies should approach Morgan Black, not Morgan Green. The labels are separate enough that a registration with one does not automatically flow to the others, so if you are unsure, ask the group directly which consultant handles your profile type.",
+      },
+      {
+        heading: "Salary Overview and the 30% Ruling",
+        body: "The Morgan group places across a wide salary range. Morgan Lab placements for lab technicians run €2,800–3,800 gross per month. Mid-level Morgan Black placements for software developers run €4,500–7,000 gross. Senior Morgan Green placements for QA managers and RA directors run €6,000–10,000 gross. All three labels operate in ranges where the 30% ruling is either relevant or approaching relevance for international candidates. At €5,000 gross per month, an eligible international hire applying the ruling saves approximately €8,000–10,000 in tax annually for up to five years. The group's international placement activity means their consultants should be conversant with ruling eligibility as part of any offer briefing.",
+      },
+      {
+        heading: "What to Expect From the Process",
+        body: "The group's 72/100 transparency score applies across all three labels — above average for Dutch specialist recruitment and reflecting identifiable consultants, visible social presence, and responsive communication practices. The value claim of a specialist group is precision: Morgan Black consultants should know what a Kubernetes cluster is; Morgan Green consultants should understand the difference between EU MDR and IVDR submission timelines; Morgan Lab consultants should be able to ask relevant questions about your analytical instrument experience. The main operational risk: whether the label you approach has active mandates in your specific niche. Ask directly about current mandate volume in your area before investing significant time in their process.",
+      },
+    ],
+    pros: [
+      "12-year Amsterdam operation — sustained relevance across IT, life sciences, and laboratory sectors",
+      "Three-label structure provides genuine depth in each domain rather than generalist surface coverage",
+      "Transparency score 72/100 across all labels — above average for Dutch specialist recruitment",
+      "Both permanent and contract placement models available across all three labels",
+    ],
+    cons: [
+      "Registration with one label does not automatically reach consultants in the others — requires active coordination",
+      "Active mandate volume in your specific niche varies and must be confirmed directly",
+      "No housing or relocation support at group or label level",
+      "Group holding structure can create ambiguity about which entity is your formal contact for disputes",
+    ],
+    internalLinks: [
+      { href: "/agencies/morgan-black", label: "Read the full Morgan Black review for IT roles" },
+      { href: "/agencies/morgan-green", label: "Read the full Morgan Green review for life sciences roles" },
     ],
   },
 };
