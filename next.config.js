@@ -27,18 +27,10 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // ── Canonical domain: www → non-www (301) ───────────────────────────
-      // Ensures that www.agencycheck.io/:path* always resolves to
-      // agencycheck.io/:path* so Google never indexes two versions of the site.
-      // NOTE: This only fires when Next.js is the host that receives the www
-      // request. On Vercel you should ALSO set the canonical domain to
-      // agencycheck.io (without www) in Project → Domains settings.
-      {
-        source:      "/:path*",
-        has:         [{ type: "host", value: "www.agencycheck.io" }],
-        destination: "https://agencycheck.io/:path*",
-        permanent:   true,
-      },
+      // NOTE: www → non-www redirect is handled at Vercel domain level only.
+      // Having it here AND in Vercel domain settings causes ERR_TOO_MANY_REDIRECTS.
+      // In Vercel: Project → Settings → Domains → set agencycheck.io as primary,
+      // www.agencycheck.io as "Redirect to agencycheck.io".
 
       // Randstad short slug → canonical slug
       { source: "/agencies/randstad",              destination: "/agencies/randstad-nederland",              permanent: true },
