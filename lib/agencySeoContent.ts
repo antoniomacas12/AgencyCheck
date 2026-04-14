@@ -4855,4 +4855,355 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       { href: "/agencies/morgan-green", label: "Read the full Morgan Green review for life sciences roles" },
     ],
   },
+
+  "nimbl-b-v": {
+    metaTitle: "NIMBL Reviews Netherlands | IT Recruitment Data Cloud ERP",
+    metaDescription: "NIMBL is an Amsterdam IT recruitment agency for Data, Cloud, Security, and ERP roles. Read candidate reviews about placement quality and salary levels.",
+    intro: "IT recruitment in the Netherlands has dozens of players, but NIMBL has built a focused position since its founding in 2016. Based in Amsterdam, the agency covers Data and Analytics, IT Development and Testing, Cloud and Security, and ERP and CRM — the four disciplines that together account for the majority of mid-to-senior IT vacancies in the Dutch market. With a transparency score of 72/100, NIMBL sits in the upper tier for publicly verifiable information among Amsterdam IT recruiters.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The salary landscape for IT professionals in the Netherlands in 2026 is broadly strong, and NIMBL's focus sits firmly in the above-average bracket. Indicative ranges by discipline: Data Engineer (3–6 years) €4,500–6,500 gross per month; Data Analyst (2–4 years) €3,800–5,200 gross; Cloud/DevOps Engineer €4,800–7,500 gross; Security Analyst €4,200–6,000 gross; SAP/ERP Consultant €4,500–8,000 gross depending on module and seniority; Java or Python Developer €4,200–7,000 gross. At €5,500 gross per month, Dutch loonheffing reduces take-home to approximately €3,750–4,000 net. The 30% ruling is highly relevant: for international IT professionals earning above €46,660 annually, the ruling can yield €400–500 more per month net. Interim day rates run €70–130/hr for experienced professionals.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "NIMBL does not provide housing. The Amsterdam IT market is concentrated in the Zuidas, Science Park, and Amsterdam-West tech cluster, all accessible by metro and tram. For international IT professionals relocating to the Netherlands, temporary furnished apartments in Amsterdam run €2,000–3,500 per month — workable at senior IT salary levels but a significant outlay in the first months.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "NIMBL's intake process involves a substantive conversation about technical stack, work environment preferences, and career direction before beginning active introductions. This typically results in 2–4 highly targeted client introductions rather than mass CV submissions. Permanent placements typically take 4–8 weeks from first conversation to offer stage; interim placements move faster. The 72/100 transparency score reflects active public communication and verifiable candidate reviews.",
+      },
+    ],
+    pros: [
+      "Four-discipline IT focus (Data, Cloud, Security, ERP) precisely matches Amsterdam's highest-demand tech sectors",
+      "Personal matching approach reduces wasted time on irrelevant introductions",
+      "Strong transparency score (72/100) — verifiable client and candidate feedback publicly available",
+      "30% ruling awareness at intake — important for international tech candidates",
+    ],
+    cons: [
+      "Boutique model means fewer active mandates at any point than major generalist IT recruiters",
+      "Slower for candidates with urgent placement timelines — parallel market search is advisable",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/circle-one", label: "Compare NIMBL with Circle One for Amsterdam IT boutique recruitment" },
+      { href: "/agencies/eswelt-b-v", label: "See Eswelt for ERP and CRM specialist staffing in Amsterdam" },
+    ],
+  },
+
+  "nigel-wright-group-amsterdam": {
+    metaTitle: "Nigel Wright Group Amsterdam Reviews | FMCG Executive Search",
+    metaDescription: "Nigel Wright is a European FMCG executive search leader with an Amsterdam office. Read about senior placement process, salary levels, and candidate experience.",
+    intro: "Executive search for the consumer goods and FMCG sector is a specialist discipline, and Nigel Wright Group has built a European reputation in exactly this niche. With 11 offices across Europe and a specifically positioned Amsterdam operation, the agency connects senior professionals in food, beverages, retail, fashion, and consumer electronics with leading brands operating in the Dutch and broader European market. This is a senior-level headhunter, not a temp bureau, and the candidate experience reflects that.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Senior FMCG roles at the level Nigel Wright Amsterdam typically fills: Marketing Director €120,000–180,000 gross annually; Category Management Director €100,000–150,000 gross; Supply Chain VP €130,000–200,000 gross; Commercial Director €120,000–180,000 gross; Interim Senior Manager €800–1,500 per day. At €150,000 gross annually, the 30% ruling transforms take-home significantly — from approximately €7,500 net per month without the ruling to €9,000–9,500 net with it. Many director-level packages include a lease car, pension plan, and variable bonus on top of base salary.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Nigel Wright does not provide housing. Senior FMCG professionals placed at this level are expected to arrange independent accommodation or negotiate relocation support directly with the hiring employer. For international candidates relocating to the Amsterdam metropolitan area, relocation cost negotiation is standard practice at director level — raise it explicitly during the offer stage.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Nigel Wright operates on a retained search basis: the agency is actively mandated and paid by the employer to find specific talent. The retained search process for director-level roles typically runs 8–16 weeks from kick-off to signed offer, including multi-stage interviews, reference checks, and in some cases psychometric assessment. Candidates can register proactively to be included in future mandate mapping, or wait to be approached when a relevant mandate arises. The agency's 11 European offices give Amsterdam-registered candidates visibility across European FMCG mandates.",
+      },
+    ],
+    pros: [
+      "European leader in FMCG executive search — deep market relationships across 11 offices",
+      "Amsterdam office accesses the Netherlands' high concentration of FMCG European HQs",
+      "Retained search model means genuine mandate alignment rather than speculative CV submission",
+      "Transparency score 72/100 — established international operation with verifiable track record",
+    ],
+    cons: [
+      "Target profile is narrow — only relevant for director-level FMCG and consumer goods professionals",
+      "Retained search timelines are long (8–16 weeks) — not suitable for urgent placement needs",
+      "Active mandate volume depends on client pipeline — response may be slow if no active fits",
+    ],
+    internalLinks: [
+      { href: "/agencies/nobel-recruitment-bv", label: "Compare with Nobel Recruitment for SaaS and commercial senior roles" },
+      { href: "/agencies/page-personnel-recruitment-agency-permanent-interim", label: "See Page Personnel for entry and mid-level professional placements" },
+    ],
+  },
+
+  "nobel-recruitment-bv": {
+    metaTitle: "Nobel Recruitment Reviews Netherlands | SaaS GTM Sales Recruiter",
+    metaDescription: "Nobel Recruitment places Enterprise Sales, Customer Success, and GTM talent for SaaS companies in the Netherlands. Read about placement quality and compensation.",
+    intro: "Go-to-market (GTM) talent for SaaS and B2B technology companies has become one of the most specialised corners of Dutch recruitment, and Nobel Recruitment has focused on exactly this segment since its founding in Amsterdam in 2017. The agency places Enterprise Sales professionals, Customer Success Managers, Pre-Sales engineers, Marketing leaders, and Partnership managers at SaaS companies operating in or expanding through the Netherlands.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The compensation landscape for SaaS commercial roles in the Netherlands mixes base salary with variable commission (OTE). Indicative ranges for 2026: Enterprise Account Executive (3–6 years) base €65,000–85,000 annually, OTE €120,000–180,000; Customer Success Manager (2–5 years) base €55,000–75,000, OTE €80,000–110,000; Sales Manager (5–9 years) base €90,000–120,000, OTE €150,000–220,000; Pre-Sales Engineer (3–7 years) base €70,000–95,000, OTE €100,000–140,000. Net take-home on a €75,000 annual base (€6,250 gross/month) is approximately €4,200–4,500 net. Nobel's sustainable GTM positioning means discussing realistic quota attainment rates at client companies — candidates should ask this specifically before signing, as the gap between headline OTE and average attainment is the single most important data point for evaluating real earnings potential.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Nobel Recruitment does not provide housing. Commercial tech professionals placed through Nobel operate in the premium segment of the Amsterdam market and are expected to arrange their own accommodation. The Amsterdam Zuidas and Sloterdijk tech corridors are the typical work hubs, accessible from most Amsterdam residential areas by public transport or bicycle.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Nobel's intake conversations focus on SaaS-specific selling methodology, deal complexity, ICP fit, and commercial philosophy rather than just CV review. Candidates who have worked in complex B2B enterprise sales will find these conversations substantive. The placement process for senior GTM roles typically runs 6–10 weeks. Transparency score of 72/100 reflects strong public communication and verifiable candidate feedback.",
+      },
+    ],
+    pros: [
+      "Deep understanding of SaaS commercial metrics — ARR, NRR, quota structure, ramp periods",
+      "Sustainable GTM recruitment approach: realistic attainment discussion before placement",
+      "Strong positioning in Amsterdam tech and FinTech commercial talent market",
+      "Transparency score 72/100 — above average with verifiable candidate feedback",
+    ],
+    cons: [
+      "Niche SaaS and B2B tech focus — not relevant for commercial professionals outside this space",
+      "Boutique scale means fewer active mandates vs. large generalist recruiters at any given time",
+      "No housing or relocation support for internationally recruited commercial professionals",
+    ],
+    internalLinks: [
+      { href: "/agencies/jopp-recruitment", label: "Compare Nobel Recruitment with Jopp Recruitment for SaaS FinTech hiring" },
+      { href: "/agencies/bluebird-recruitment", label: "See Bluebird Recruitment for AI and SaaS commercial roles in Amsterdam" },
+    ],
+  },
+
+  "onetd-group": {
+    metaTitle: "ONETD Group Reviews Netherlands | Full-Suite Recruitment Agency",
+    metaDescription: "ONETD Group in Amsterdam offers recruitment, executive search, interim, and referral hiring under one roof. Read about their model and what candidates say.",
+    intro: "ONETD Group was founded in Amsterdam in 2021 with a proposition built around offering a complete recruitment service portfolio under one roof: Werving en Selectie, Executive Search, Interim placement, and Referral Recruitment. For candidates, the relevant question is what this full-service model actually means for their placement experience and financial outcomes.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "ONETD does not appear to focus on a single sector, so salary ranges span the Amsterdam professional market broadly. Werving en selectie placements at junior level: €2,600–3,500 gross/month. Mid-level commercial or technical roles: €3,500–5,500 gross/month. Senior and executive search placements: €6,000–12,000+ gross/month. Interim assignments are billed at market day rates for the relevant discipline — typically €400–900 per day depending on seniority and specialisation. For employed interim placements, net take-home on €4,500 gross/month is approximately €3,200–3,400. Vakantiegeld of 8% applies to all employed placements.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "ONETD does not provide housing. Amsterdam placements are assumed to be by locally based candidates. The agency address and client base suggest a Randstad-focused operation with primarily Amsterdam metropolitan area placements.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "ONETD's all-in-one service model covers werving en selectie (permanent direct hire), executive search (senior proactive mapping), interim placement, and referral recruitment. The referral pipeline potentially surfaces higher-quality opportunities than cold applications. As a 2021-founded agency, ONETD is building its reputation and may be actively investing in candidate relationships. Transparency score 52/100 — a newer operation with a growing public profile.",
+      },
+    ],
+    pros: [
+      "Single agency relationship spanning different hiring service types — convenient for candidates at multiple career stages",
+      "Referral recruitment channel can unlock introductions unavailable through direct applications",
+      "Amsterdam-focused market knowledge across multiple disciplines",
+    ],
+    cons: [
+      "Founded 2021 — shorter track record than established competitors",
+      "Transparency score 52/100 — still building public profile and verifiable case history",
+      "Active client roster and vacancy pipeline still developing compared to long-established agencies",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/nigel-wright-group-amsterdam", label: "Compare with Nigel Wright Group for FMCG executive search" },
+      { href: "/agencies/nobel-recruitment-bv", label: "See Nobel Recruitment for SaaS and commercial specialist hiring" },
+    ],
+  },
+
+  "one-people-services": {
+    metaTitle: "One People Services Reviews Netherlands | HR Backoffice Staffing",
+    metaDescription: "One People Services is an Amsterdam backoffice provider for the Dutch staffing industry. Read about what they do, who they serve, and what flex workers should know.",
+    intro: "One People Services occupies a distinctive position in the Dutch labour market: they are not a direct placement agency for most workers, but rather a backoffice infrastructure provider for the staffing and flex industry itself. Based in Amsterdam, One People Services offers comprehensive back-office services — including payroll administration, compliance management, contract handling, and HR support — to other staffing and flex organisations.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Since One People Services processes payroll for multiple agencies rather than setting rates itself, the salary a worker receives is determined by the agency that placed them and the applicable sector CAO. One People Services ensures that payroll processing — loonheffing calculation, vakantiegeld (8%) accrual, ZVW and AOW premium deductions, and net salary payment — is handled correctly for the agencies it supports. Workers whose payslips are processed by One People Services receive the same legal minimum protections as those processed by any other payroll administrator. If you have a query about a deduction or discrepancy, the first contact is the placing agency — not One People Services directly, unless directed there.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "One People Services does not provide housing. Workers placed through agencies that use One People Services backoffice infrastructure arrange their own accommodation. The employment relationship for housing and transport decisions is with the placing agency, not with One People Services.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "One People Services enables smaller uitzendbureau operators, ZZP platforms, and flex intermediaries to outsource their administrative and compliance burden. If you receive a payslip showing One People Services as the processing entity, this reflects an administrative structure rather than a change in your employment rights. The Dutch staffing compliance framework — ABU CAO, loonheffing, SNA certification standards — applies fully regardless of which entity processes the payroll.",
+      },
+    ],
+    pros: [
+      "Professional backoffice infrastructure improves compliance quality for the agencies using them",
+      "Workers whose payslips are processed via One People Services benefit from a structured, compliant payroll system",
+      "Transparency score 72/100 — established operation with professional infrastructure",
+      "Potential employer for HR, payroll, and flex compliance professionals looking for industry-facing roles",
+    ],
+    cons: [
+      "Not a direct employer for most workers — limited relevance as a direct candidate registration option",
+      "Workers may be confused by encountering the One People Services name on payslips without prior explanation",
+      "The actual placement quality depends on the agency using the backoffice, not on One People Services itself",
+    ],
+    internalLinks: [
+      { href: "/agencies/pdz-uitzendbureau-amsterdam", label: "See PDZ Uitzendbureau Amsterdam for direct placement with a verified bureau" },
+      { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
+    ],
+  },
+
+  "online-society": {
+    metaTitle: "Online Society Reviews Netherlands | Amsterdam Staffing Agency",
+    metaDescription: "Online Society is an Amsterdam staffing agency placing commercial and admin roles. Limited public info available. Read what candidates should verify before registering.",
+    intro: "Online Society is an employment agency based at Stadhouderskade 60 in Amsterdam, one of the most centrally located addresses in the city overlooking the Singelgracht canal. Based on available vacancy data at the time of research, the agency places candidates in commercial and administrative roles in the Amsterdam area. The transparency score of 32/100 reflects limited independently verifiable information beyond address, contact details, and active job listings.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Commercial and administrative placements in Amsterdam in 2026 span a wide range. Entry-level admin support or receptionist roles: €2,200–2,600 gross per month. Commercial account support or inside sales: €2,600–3,200 gross. Senior administrative professionals: €2,800–3,600 gross. Commercial managers and business development roles: €3,500–5,000 gross. At €2,600 gross per month, take-home is approximately €2,050–2,150 net after loonheffing and social premiums. Vakantiegeld of 8% applies. Whether Online Society operates as a classic uitzendbureau (ABU CAO Phase A/B) or as a werving en selectie bureau (direct employment at client) should be clarified at first contact.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Online Society does not provide housing. The Stadhouderskade address places the agency in central Amsterdam, well connected by tram and metro. Most commercial and administrative role placements in Amsterdam are office-based in the city or in business districts such as Zuidas, Sloterdijk, or Amsterdam-Zuid, all accessible by public transport.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Key due diligence steps before registering: What specific sectors are currently active vacancy markets? Is Online Society ABU-affiliated? Who is the formal employer in placements — the agency or the client? What is the process if an assignment ends early? Active job listings on major Dutch platforms are a positive signal that the agency is operational. If Online Society has vacancies aligned with your profile on Indeed NL or Nationale Vacaturebank, this is a reasonable starting point for engagement.",
+      },
+    ],
+    pros: [
+      "Central Amsterdam location with active vacancy listings visible on public job boards",
+      "Commercial and admin roles are consistently in demand across the Amsterdam market",
+      "Accessible by public transport from all Amsterdam districts",
+    ],
+    cons: [
+      "Low transparency score (32/100) — limited independently verifiable information",
+      "Employment model and CAO coverage not confirmed from public sources",
+      "Limited independent candidate reviews available for quality assessment",
+    ],
+    internalLinks: [
+      { href: "/agencies/page-personnel-recruitment-agency-permanent-interim", label: "Compare with Page Personnel for admin and commercial roles in Amsterdam" },
+      { href: "/agencies", label: "See all verified Amsterdam staffing agency reviews" },
+    ],
+  },
+
+  "pdz-uitzendbureau-amsterdam": {
+    metaTitle: "PDZ Uitzendbureau Amsterdam Reviews | STAN Partners Group",
+    metaDescription: "PDZ Uitzendbureau Amsterdam is part of the STAN Partners group, founded 1978. Read about pay, ABU CAO conditions, and what workers say about this established bureau.",
+    intro: "Not many Dutch staffing agencies can trace their roots to 1978 — PDZ Uitzendbureau is one of them. Part of the STAN Partners group alongside Teamflex, Loopbaan.nu, Flexcellens, and STAN Opleidingen, PDZ operates 14 branches across the Netherlands with the Amsterdam location at Scheldestraat in the city's southern districts. This is a generalist uitzendbureau in the classic Dutch mould: large enough to have structured processes and ABU CAO compliance, established enough to have deep local employer relationships, and broad enough to cover multiple sectors simultaneously.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "PDZ operates as an ABU-affiliated uitzendbureau, meaning the ABU CAO governs all placements. The WML of €14.71 per hour in 2026 is the floor. Most PDZ Amsterdam placements are in general labour categories: production, logistics, administration, light industry, and commercial support. Pay rates run from WML entry level to €18–20 per hour for skilled production or commercial roles. A full-time worker at WML through PDZ Amsterdam earns approximately €2,354 gross per month, yielding €1,900–1,980 net after deductions. Vakantiegeld of 8% accrues monthly and is settled annually. Workers on shift patterns may be entitled to ABU CAO shift supplements — verify these appear correctly on payslips from the first assignment.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "PDZ Amsterdam does not provide housing. The agency's broad placement network means workers may be placed at sites ranging from Amsterdam inner-city offices to industrial zones in Amsterdam West or Westpoort. For industrial placements, cycling or public transport is typically feasible for Amsterdam residents.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Being part of the STAN Partners group provides PDZ with professional infrastructure that smaller independent bureaus lack: centralised HR and legal compliance, access to training through STAN Opleidingen, and multi-site coordination. The group structure also means that if the Amsterdam branch has limited vacancies in your sector, options may exist through other STAN Partners entities in nearby locations. Phase A (weeks 1–78) uitzendbeding applies from day one — the contract can be terminated with one day's notice if an assignment ends. Phase B status (from week 79) provides greater security.",
+      },
+    ],
+    pros: [
+      "Founded 1978 — 46 years of operation with deep Amsterdam employer relationships",
+      "STAN Partners group backing provides professional infrastructure and compliance certainty",
+      "ABU-affiliated — minimum CAO standards guaranteed",
+      "Transparency score 72/100 — strong public information and established accountability",
+    ],
+    cons: [
+      "Generalist focus — less sector depth than specialist niche agencies",
+      "Phase A uitzendbeding provides limited early contract security",
+      "Large bureau volume dynamics — individual candidate attention may be lower than boutique agencies",
+    ],
+    internalLinks: [
+      { href: "/agencies/pdz-uitzendbureau-amsterdam-noord", label: "Compare with PDZ Amsterdam Noord for North Amsterdam placements" },
+      { href: "/agencies/praktica-uitzendgroep", label: "See Praktica Uitzendgroep for another established Amsterdam bureau" },
+    ],
+  },
+
+  "pdz-uitzendbureau-amsterdam-noord": {
+    metaTitle: "PDZ Amsterdam Noord Reviews | Staffing Agency Noord",
+    metaDescription: "PDZ Uitzendbureau Amsterdam Noord serves the North Amsterdam district with the reliability of the STAN Partners group. Read worker reviews and pay conditions.",
+    intro: "Amsterdam Noord has undergone a significant transformation in the past decade — from an industrial and residential district largely disconnected from the city centre to an increasingly vibrant area with creative industries, tech offices, and continued heavy industry along the IJ waterfront. PDZ Uitzendbureau Amsterdam Noord is the dedicated Noord branch of PDZ, part of the STAN Partners group, serving the specific labour market needs of this district.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The ABU CAO applies uniformly across all PDZ branches. Pay scales, Phase A/B protections, and equal pay provisions are identical at PDZ Noord as at any other ABU-affiliated bureau. At €15.50/hr gross for a 40-hour week (€2,480 gross/month), take-home is approximately €2,000–2,070 net. Vakantiegeld of 8% accrues on gross earnings. Production and logistics roles in Noord industrial zones are among the most consistent placements, with WML at €14.71/hr and skilled production roles reaching €16–19/hr. Night shifts on the Noord waterfront carry ABU CAO night supplements — verify these from day one.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "PDZ Noord does not provide housing. Amsterdam Noord offers more affordable rental options than central Amsterdam — shared accommodation runs €700–900 per room in residential Noord suburbs. The area is served by two GVB ferry lines (free for pedestrians and cyclists) connecting to Amsterdam Centraal, plus the Noord/Zuidlijn metro at Noord station.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "The Noord labour market spans NDSM Wharf industrial areas, Buiksloterham creative and tech district, and traditional residential service sector roles. Workers accepting Noord industrial site assignments should clarify transport access — not all sites are easily reachable without a bicycle. PDZ Noord's local market focus gives their consultants better intelligence about specific Noord employers, site access, and local working conditions than a consultant based in Amsterdam-Zuid.",
+      },
+    ],
+    pros: [
+      "Local Noord market expertise — better intelligence on specific Noord employers and sites",
+      "STAN Partners group backing provides same accountability and ABU compliance as main branch",
+      "Noord location reduces cross-IJ commute burden for North Amsterdam residents",
+      "Transparency score 72/100 — established group operation",
+    ],
+    cons: [
+      "Noord-specific placement volumes depend on industrial and commercial activity in the district",
+      "Generalist bureau — limited sector specialisation",
+      "Industrial placements may require own transport for sites away from ferry and metro connections",
+    ],
+    internalLinks: [
+      { href: "/agencies/pdz-uitzendbureau-amsterdam", label: "Compare PDZ Amsterdam Noord with PDZ Amsterdam main branch" },
+      { href: "/agencies/praktica-uitzendgroep", label: "See Praktica Uitzendgroep for another established Amsterdam staffing option" },
+    ],
+  },
+
+  "pidz-regio-noordwest-servicebureau-voor-zzpers-en-uitzendkrachten-in-de-zorg": {
+    metaTitle: "PIDZ NoordWest Reviews Netherlands | Care ZZP & Uitzend Agency",
+    metaDescription: "PIDZ Regio NoordWest connects ZZP care workers and temp staff with healthcare institutions in Noord-Holland. Read about rates, CAO Zorg, and what care professionals say.",
+    intro: "Healthcare staffing in the Netherlands operates under unique conditions: the CAO Zorg en Welzijn governs employed care workers, while a large proportion of healthcare staffing flows through ZZP (self-employed) professionals operating outside the CAO framework. PIDZ, founded in 2008 and operating as a service bureau for both ZZP care professionals and uitzendkrachten in the zorg sector, serves this dual market. The Regio NoordWest operation covers Noord-Holland and adjacent municipalities, connecting care professionals with hospitals, nursing homes, home care organisations, and mental health providers.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "A ZZP care professional invoices at an hourly rate — typically €45–80/hr depending on specialism and client — and is responsible for their own tax, social insurance, and pension. There is no loonheffing deduction at source, but the professional must manage BTW, AOW accrual, and disability insurance independently. At €55/hr ZZP, after BTW handling, income tax provisioning, and AOW contributions, the effective net rate is typically €30–38/hr. An uitzend care worker employed through PIDZ receives full loonheffing and social premium deductions. Under CAO Zorg en Welzijn, a verpleegkundige (registered nurse) at FWG scale 45 earns approximately €3,100–3,900 gross per month; a verzorgende (care assistant) at FWG scale 30 earns €2,200–2,700 gross. PIDZ charges a service fee for ZZP platform access, matching, and contract administration.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "PIDZ does not provide housing. Care assignments in the Regio NoordWest span a wide geographic area — from central Amsterdam hospitals to rural Noord-Holland nursing homes and home care routes. Own transport (car or efficient cycling) is a practical necessity for many care assignments, particularly home care and rural placements. Urban hospital assignments in Amsterdam are accessible by public transport.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Night shifts, weekend assignments, and urgent fill-in placements are the norm for flexible care workers. PIDZ's ZZP platform allows care professionals to manage their own availability and accept or decline assignments. Since January 2025, PIDZ also offers uitzend placements in healthcare, giving care professionals a choice between ZZP and employed models. The DBA (Deregulering Beoordeling Arbeidsrelaties) enforcement environment has intensified scrutiny of ZZP healthcare arrangements — PIDZ's service bureau model manages this compliance risk, but professionals should understand the legal context before committing to ZZP.",
+      },
+    ],
+    pros: [
+      "Founded 2008 — over 15 years of specialist healthcare ZZP experience",
+      "Dual ZZP and uitzend offering since 2025 — care professionals can choose their employment model",
+      "Noord-Holland and adjacent region coverage connecting care workers to a wide variety of healthcare settings",
+      "Transparency score 72/100 — established operation with verifiable public presence",
+    ],
+    cons: [
+      "ZZP model income is variable and requires careful financial planning including AOW and disability coverage",
+      "Platform service fees reduce effective ZZP hourly rate",
+      "DBA compliance complexity requires professional advice before switching to ZZP in healthcare",
+      "Rural placement assignments may require own transport not reimbursed",
+    ],
+    internalLinks: [
+      { href: "/agencies/pdz-uitzendbureau-amsterdam-noord", label: "Compare with PDZ Amsterdam Noord for general Noord-Holland placements" },
+      { href: "/agencies", label: "Browse all healthcare staffing agency reviews in the Netherlands" },
+    ],
+  },
+
+  "page-personnel-recruitment-agency-permanent-interim": {
+    metaTitle: "Page Personnel Amsterdam Reviews | Finance Admin HR Recruitment",
+    metaDescription: "Page Personnel places entry and mid-level professionals in Finance, HR, and Secretarial roles in Amsterdam. Read honest reviews of the PageGroup experience.",
+    intro: "PageGroup is one of the world's largest specialist recruitment organisations, and Page Personnel is its brand for entry-to-mid-level professional placements. In Amsterdam, Page Personnel shares an address and infrastructure with Michael Page and operates in Finance and Accounting, Secretarial and Business Support, HR, Legal Support, Sales and Marketing, and Technology. For mid-level professionals in these disciplines, Page Personnel is one of the most recognisable names in the market — a double-edged characteristic that this review examines honestly.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Page Personnel focuses on professionals typically earning between €2,500 and €5,500 gross per month. Indicative ranges for their key disciplines in Amsterdam 2026: Financial Administrator €2,800–3,500 gross; Management Assistant or PA €2,600–3,600 gross; HR Medewerker €2,800–3,800 gross; Junior Accountant €3,000–4,000 gross; Inside Sales Representative €2,800–3,800 gross plus variable; IT Support Analyst €3,000–4,200 gross. Net take-home on €3,500 gross/month is approximately €2,650–2,750 net. For the 30% ruling: the €46,660 annual threshold sits at the upper end of Page Personnel's typical salary range — international candidates at senior Page Personnel placement levels should check eligibility at intake. Vakantiegeld of 8% applies to all employed placements.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Page Personnel does not provide housing. Amsterdam placements are concentrated in professional office environments across the Zuidas, city centre, and major business parks, all accessible by public transport. Salary levels served by Page Personnel are tight for Amsterdam's €1,600–2,000/month one-bedroom rental market — shared housing in Amsterdam or commuting from surrounding municipalities is the practical approach for most.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Page Personnel's scale creates specific dynamics. The recruitment process is structured and supported by a large CRM database — some candidates feel processed rather than understood. Consultants typically manage higher volumes than boutique agency counterparts, which affects depth of individual attention. On the positive side, the brand recognition opens access to major Amsterdam corporate employer vacancies that smaller agencies cannot reach. Many Amsterdam corporate employers run Page Personnel as an exclusive or preferred vendor. Being in the Page Personnel database is a genuine career-search asset regardless of what else you are doing simultaneously.",
+      },
+    ],
+    pros: [
+      "Brand recognition opens access to major Amsterdam corporate employer vacancies unavailable to smaller recruiters",
+      "Listed company (London Stock Exchange) provides accountability and governance that smaller operators cannot match",
+      "Covers Finance, HR, Secretarial, Legal Support, Sales, and IT Support under one roof",
+      "Transparency score 72/100 — strong public communication expected of an international firm",
+    ],
+    cons: [
+      "Volume dynamics mean individual candidate attention may be lower than boutique agencies",
+      "Senior-to-junior handoff can occur after initial contact — verify your day-to-day consultant",
+      "Mid-market salary focus means limited relevance for director-level or highly specialist searches",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/nigel-wright-group-amsterdam", label: "Compare with Nigel Wright Group for senior FMCG and consumer goods roles" },
+      { href: "/agencies/nimbl-b-v", label: "See NIMBL for IT professional placements above Page Personnel level" },
+    ],
+  },
 };
