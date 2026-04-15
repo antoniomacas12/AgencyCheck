@@ -5206,4 +5206,1923 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       { href: "/agencies/nimbl-b-v", label: "See NIMBL for IT professional placements above Page Personnel level" },
     ],
   },
+
+  "parttime-uitzendbureau": {
+    metaTitle: "Parttime Uitzendbureau Reviews Netherlands | Part-Time Jobs Amsterdam",
+    metaDescription: "Parttime Uitzendbureau places part-time workers in Amsterdam. Find out about pay, contract types, and what part-time temp workers say about this agency.",
+    intro: "Part-time work in the Netherlands is structurally important: parents managing childcare, students earning alongside study, and older workers reducing hours before retirement all need flexible placements that generalist bureaus often handle poorly. Parttime Uitzendbureau, located at Radarweg 539 in Amsterdam, focuses specifically on part-time placements. The transparency score of 32/100 reflects limited publicly available operational detail beyond address and contact information.",
+    sections: [
+      {
+        heading: "Salary and Take-Home Pay for Part-Time Workers",
+        body: "Part-time workers in the Netherlands have the same hourly rights as full-time workers: WML applies at €14.71 per hour regardless of hours worked per week. For a part-time worker doing 24 hours per week at WML, monthly gross earnings are €1,413. After loonheffing and ZVW premiums, net take-home is approximately €1,150–1,230 per month. Vakantiegeld (8%) accrues on gross earnings and is paid annually. Pension accrual under ABU CAO begins from Phase B (after week 78 of a continuous placement). Part-time workers also have the right under the Wet flexibel werken to request an increase in contracted hours if they are structurally working more than agreed.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Parttime Uitzendbureau does not provide housing. The Radarweg area in Amsterdam West is accessible by GVB tram and bus. Part-time placements are typically within Amsterdam, making public transit commuting practical for most assignments.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Key due diligence questions for this agency: What specific sectors and role types have current part-time vacancies? What is the minimum hours guarantee per week? Which CAO applies? Is the placement structure oproep, min-max, or fixed-part-time? Fixed-part-time contracts (a vaste parttime aanstelling) offer more security than oproep arrangements where hours are not guaranteed. Request written clarity on the hours structure before accepting any placement.",
+      },
+    ],
+    pros: [
+      "Niche focus on part-time placements serves students, parents, and semi-retirees who generalist bureaus often overlook",
+      "Part-time workers have the same hourly rights and CAO entitlements as full-time workers",
+      "Amsterdam location with transit-accessible address in Oud-West",
+    ],
+    cons: [
+      "Low transparency score (32/100) — limited publicly verifiable operational information",
+      "No guaranteed hours under oproep or min-max structures",
+      "WML-level part-time earnings are very modest in Amsterdam context",
+      "Pension accrual only begins from Phase B — check contract structure carefully",
+    ],
+    internalLinks: [
+      { href: "/agencies/actief65", label: "Compare with Actief65 for flexible part-time work for workers over 65" },
+      { href: "/agencies/crewmates", label: "See Crewmates for flexible oproep hospitality shifts in Amsterdam" },
+    ],
+  },
+
+  "people-marketing-amsterdam": {
+    metaTitle: "People Marketing Amsterdam Reviews | Sales Promotors & Field Sales",
+    metaDescription: "People Marketing recruits brand ambassadors and fundraisers for campaigns across the Netherlands. Read about pay, commission structures, and what sales promotors say.",
+    intro: "People Marketing is a promotional staffing and field sales agency whose core business is recruiting and deploying Sales Promotors — primarily students and young people — for fundraising campaigns and brand promotion. Candidates work as ambassadors for partner brands and charities, approaching the public in shopping areas, door-to-door, or at events to sign up donors or promote services. This is commission-heavy, face-to-face sales work. The transparency score is 72/100, indicating meaningful public information availability.",
+    sections: [
+      {
+        heading: "Salary, Commission, and Real Earnings",
+        body: "Pay in promotions and field sales is typically a base rate (often at or near WML of €14.71 per hour gross in 2026) plus commission or bonus per successful sign-up, donation agreement, or sale. Actual earnings depend heavily on location, campaign quality, product or cause, and individual sales ability. Workers who are genuinely effective at direct donor acquisition or brand promotion can earn €1,800–2,500 net per month; workers who struggle with face-to-face sales or who are placed in low-footfall locations may earn only slightly above WML equivalent. Before accepting, ask explicitly for the average actual earnings of workers in the previous campaign quarter — not just the headline earning potential.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "People Marketing does not provide housing. The agency's Amsterdam base and campaign locations span the city and beyond. Workers are expected to be locally resident. Campaign assignments may involve travel to other Dutch cities for multi-day deployments — clarify travel cost reimbursement and whether overnight accommodation is covered for out-of-Amsterdam assignments.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Street fundraising and brand ambassador work involves standing outdoors in all weather, repeated rejection, and maintaining enthusiasm through a long shift. Shift patterns include weekday daytime (shopping streets), evenings (residential door-to-door), and weekend events. The high transparency score (72/100) is positive, but candidates should ask about the specific campaign, target location, training provided, and expected earnings before their first shift.",
+      },
+    ],
+    pros: [
+      "High transparency score (72/100) — meaningful public information about operations and campaigns",
+      "Flexible scheduling appeals to students and those needing supplemental income",
+      "Potential for above-WML earnings for high-performing sales promotors",
+      "Clear sector niche with established brand and charity campaign clients",
+    ],
+    cons: [
+      "Actual earnings are highly variable and depend on individual sales ability and campaign quality",
+      "Face-to-face rejection and outdoor working conditions are demanding over extended periods",
+      "Commission structure means poor weeks can yield near-WML earnings despite high effort",
+      "Ask for verified average earnings data before accepting — headline figures may be optimistic",
+    ],
+    internalLinks: [
+      { href: "/agencies/brandpit", label: "Compare with BrandPit for professional digital marketing careers rather than field sales" },
+      { href: "/agencies/good-company-reinventing-recruitment", label: "See Good Company for IT and sales roles with more transparent salary structures" },
+    ],
+  },
+
+  "perca-search": {
+    metaTitle: "Perca Search Reviews Netherlands | IT Director & CTO Recruitment",
+    metaDescription: "Perca Search is an Amsterdam Zuidas executive search boutique for IT Director, CTO, and CIO roles. Read about the process, expectations, and market context.",
+    intro: "Perca Search, also known as Perca IT Executive Search, is based at Gustav Mahlerplein 76 in the Amsterdam Zuidas — the Netherlands' premier financial and corporate district. Active since 2015, the firm specialises in filling IT management and executive roles: IT Director, CTO, CIO, and IT Manager positions at established Dutch and international companies. Executive search at this level is a fundamentally different activity from conventional recruitment: Perca Search approaches candidates directly on the basis of their visible track record, rather than waiting for registrations. The transparency score is 52/100.",
+    sections: [
+      {
+        heading: "Salary at the IT Executive Level",
+        body: "The roles Perca Search fills command compensation well above the general IT market. In the Netherlands in 2026, IT Director level positions pay €7,000–12,000 gross per month plus bonus. CTO and CIO positions at larger organisations may reach €120,000–200,000+ gross annually, often with equity, LTIP, or profit sharing in addition to base salary. For candidates relocating internationally, the 30% ruling is almost universally applicable at these income levels and provides a significant tax advantage during the first five years. Net take-home at €10,000 gross monthly under the 30% ruling is approximately €7,500–8,000 net, compared to €5,800–6,200 under the standard regime.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "No housing is provided. Relocation costs for IT executive placements are negotiated directly with the hiring organisation. At these salary levels, Amsterdam's rental market is financially accessible — a premium two-bedroom apartment at €2,500–3,500 per month is proportionate to the salary levels involved.",
+      },
+      {
+        heading: "The Process and What to Expect",
+        body: "Executive search processes are longer and more intensive than conventional recruitment. From initial approach or candidate registration to signed offer, IT executive search typically takes 8–16 weeks. The process involves multiple interview rounds, reference verification, and often a formal assessment or presentation. Perca Search's boutique scale means senior consultant involvement throughout rather than hand-off to junior team members. Discretion is central for candidates who are approached rather than applying — simultaneous contact with multiple executive search firms is standard practice at this level.",
+      },
+    ],
+    pros: [
+      "Zuidas location and IT executive focus provides genuine access to Amsterdam's top-tier IT leadership mandates",
+      "Boutique model ensures senior consultant involvement throughout the search process",
+      "30% ruling is directly applicable at IT executive salary levels — significant financial benefit for international hires",
+      "Active since 2015 with a focused executive search track record",
+    ],
+    cons: [
+      "Moderate transparency score (52/100) — limited public placement volume data",
+      "Executive search timelines are 8–16 weeks — not suitable for candidates needing rapid placement",
+      "Only relevant for IT Director, CTO, CIO, and IT Manager level candidates",
+      "No housing support — relocation negotiations are between candidate and hiring organisation",
+    ],
+    internalLinks: [
+      { href: "/agencies/jp-gray", label: "Compare with JP Gray for senior finance and supply chain executive search" },
+      { href: "/agencies/bluebird-recruitment", label: "See Bluebird Recruitment for SaaS leadership and commercial executive hiring" },
+    ],
+  },
+
+  "poliedro-recruitment-bv": {
+    metaTitle: "Poliedro Recruitment Reviews Netherlands | Italian & Multilingual Roles",
+    metaDescription: "Poliedro Recruitment places Italian-speaking and multilingual candidates in the Netherlands. Read about pay, placement process, and language-market jobs.",
+    intro: "Poliedro Recruitment BV is an Amsterdam-based multilingual recruitment agency with nearly 25 years of experience, specialising in placing Italian-speaking and broader multilingual candidates across Europe. The agency recruits across legal, sales, administration, and technical disciplines. The Netherlands hosts a significant Italian community and is a European hub for multilingual corporate functions — making this a genuine and active niche. The transparency score of 72/100 indicates strong public information availability consistent with their long operational history.",
+    sections: [
+      {
+        heading: "Salary and the Multilingual Premium in the Dutch Market",
+        body: "Multilingual candidates in the Netherlands frequently command a salary premium for roles where language skills are operationally critical: EMEA customer service, international legal support, cross-border sales, and EU regulatory affairs. An Italian-speaking customer service professional in Amsterdam might earn €2,400–3,000 gross per month in a standard CSR role; the same candidate in an Italian-market account management or sales role could earn €3,000–4,500 gross plus commission. Legal and compliance roles for Italian-speaking lawyers or regulatory specialists in Amsterdam's financial sector start at €4,000–6,000 gross. For international candidates, the 30% ruling applies at the €46,660 annual threshold, which is achievable for senior multilingual professionals.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "No housing is provided. For Italian professionals relocating from Italy to the Netherlands, the Amsterdam rental market means €1,400–2,000 per month for a one-bedroom. Poliedro's knowledge of the Italian expat community in Amsterdam may provide informal guidance on accommodation resources, though formal housing support is not part of their service.",
+      },
+      {
+        heading: "The Placement Process and Sector Breadth",
+        body: "Poliedro's 25-year experience base suggests an established client network across Dutch and European employers seeking Italian-speaking talent. The placement process typically involves a bilingual intake, skills assessment, and matching to appropriate mandates. For Italian professionals relocating to the Netherlands, practical guidance around Dutch employment conditions — CAO rights, vakantiegeld, loonheffing — is an area where an experienced multilingual recruiter adds value over a generalist bureau. Breadth across legal, sales, admin, and technical disciplines provides more placement options than single-sector specialists.",
+      },
+    ],
+    pros: [
+      "25 years of multilingual placement experience — well-established Italian-speaking candidate network",
+      "High transparency score (72/100) indicates meaningful public accountability",
+      "Genuine niche: multilingual placements for Italian-speaking professionals in the Netherlands",
+      "Breadth across legal, sales, admin, and technical roles provides more placement options",
+    ],
+    cons: [
+      "Multilingual niche means vacancy volume is smaller than generalist agencies",
+      "No housing support for relocating Italian professionals",
+      "Placement timelines for specialist multilingual roles can be longer than for general Dutch-market positions",
+      "30% ruling threshold may not be reached for junior multilingual placements",
+    ],
+    internalLinks: [
+      { href: "/agencies/2b-connected-w-s-voor-makelaardij-en-hypotheek-professionals", label: "Compare with 2B Connected for niche professional recruitment in Amsterdam" },
+      { href: "/agencies/genius-recruitment", label: "See Genius Recruitment for multilingual finance and admin roles in Amsterdam" },
+    ],
+  },
+
+  "praktica-uitzendgroep": {
+    metaTitle: "Praktica Uitzendgroep Reviews Netherlands | Amsterdam Schiphol Staffing",
+    metaDescription: "Praktica Uitzendgroep serves employers in Amsterdam and the Schiphol region with temp, detachering, and payrolling. Read what workers say about pay and conditions.",
+    intro: "Praktica Uitzendgroep is an Amsterdam West-based staffing agency offering temporary staffing, recruitment and selection, detachering, payrolling, and ad-hoc placement services to employers in Amsterdam and the Schiphol region. The multi-service model serves employers across the full flexibility spectrum. The agency's Schiphol corridor positioning is meaningful given the sustained year-round demand in that employment zone. The transparency score of 72/100 reflects meaningful public information availability.",
+    sections: [
+      {
+        heading: "Salary and Pay Conditions Across Service Types",
+        body: "Praktica's pay picture varies significantly by placement type. Under the uitzend model (Phase A), ABU CAO terms apply: WML at €14.71 per hour gross in 2026, yielding approximately €1,850–1,950 net per month at full-time hours. Under detachering agreements, rates are typically higher — €2,800–5,000 gross monthly depending on sector and function — because detachering involves longer-term secondments with more formal employer obligations. Under payrolling, the employer directs the worker but payroll administration sits with Praktica, and pay rates are negotiated between worker and original employer. Clarify which service model applies to your specific placement before signing.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Praktica Uitzendgroep does not provide housing despite serving the Schiphol employment corridor. Badhoevedorp, Hoofddorp, and Lijnden near Schiphol offer more affordable rents than Amsterdam city (€700–1,100 per room in shared housing vs. €900–1,300 in Amsterdam), making them viable bases for Schiphol-area placements.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "The Schiphol labour corridor operates 24/7, meaning shifts starting at 04:00 or running to 23:00 are routine for aviation, logistics, and ground services placements. Early morning and late evening ATB supplements under applicable CAOs meaningfully improve effective earnings for workers on anti-social hours rosters. Confirm which CAO governs your specific placement — ABU, CAO Particuliere Beveiliging, or a sector-specific CAO — before starting.",
+      },
+    ],
+    pros: [
+      "High transparency score (72/100) — meaningful public information about services and operations",
+      "Full service model covers uitzend, detachering, payrolling, and ad-hoc placements",
+      "Schiphol corridor expertise covers the high-demand Amsterdam Airport employment zone",
+      "ATB anti-social hours supplements available for Schiphol logistics and aviation shift workers",
+    ],
+    cons: [
+      "Full-service model means candidates must clarify which service type applies to their specific placement",
+      "WML-level uitzend placements are modest relative to Amsterdam and Schiphol corridor living costs",
+      "24/7 Schiphol shift patterns are demanding over extended periods",
+      "No housing support despite Schiphol corridor focus",
+    ],
+    internalLinks: [
+      { href: "/agencies/employme", label: "Compare with EmployMe for Schiphol corridor transport and security staffing" },
+      { href: "/agencies/briqxx-people", label: "See Briqxx People for Amstelveen and Schiphol area ICT and finance placements" },
+    ],
+  },
+
+  "progressive": {
+    metaTitle: "Progressive Reviews Netherlands | Engineering & Data STEM Staffing",
+    metaDescription: "Progressive is a STEM staffing consultancy and part of SThree Group in Amsterdam. Read about engineering, data, and project management pay and placement.",
+    intro: "Progressive is a STEM workforce consultancy and part of the SThree Group — the same international staffing organisation that operates JP Gray and Real from the same Amsterdam Zuidas offices. SThree plc is listed on the London Stock Exchange. Progressive focuses on software engineers, data scientists, supply chain engineers, and project managers. The group structure provides back-office infrastructure, compliance resources, and international mobility support. The transparency score of 72/100 reflects strong public information availability consistent with a listed group entity.",
+    sections: [
+      {
+        heading: "Salary for STEM Professionals",
+        body: "Progressive's STEM focus means salaries well above WML. Reference ranges for 2026: Software Engineer (3-5 years) €4,000–6,500 gross per month; Data Scientist (3-6 years) €4,500–7,000 gross; Supply Chain Engineer (4-6 years) €3,800–5,500 gross; Project Manager (5-8 years) €4,500–7,000 gross. For ZZP contract placements, software engineers bill €75–150 per hour; senior data scientists €90–160 per hour. The 30% ruling is directly relevant for internationally recruited STEM professionals at €46,660+ annual salary — at €5,000 gross, the ruling adds approximately €500–700 net per month compared to the standard regime.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "No housing is provided. For international STEM professionals relocating to Amsterdam, the SThree group's experience with international mobility means consultants will typically have familiarity with relocation questions, though housing cost negotiation remains between the candidate and hiring employer. Amsterdam one-bedrooms at €1,600–2,000 per month are financially accessible at STEM salary levels.",
+      },
+      {
+        heading: "Placement Process and Work Conditions",
+        body: "Progressive follows the SThree specialist consultant model: consultants focus on defined disciplines rather than the sector as a whole. Permanent placement timelines for STEM roles average 6–10 weeks. Contract placements can move in 2–4 weeks for urgent client needs. Work locations span the full Amsterdam and Randstad market: Zuidas financial services, Amstel and Sloterdijk office parks, and hybrid arrangements are all common for temporary STEM placements.",
+      },
+    ],
+    pros: [
+      "Part of SThree plc — listed group infrastructure provides compliance and international mobility support",
+      "High transparency score (72/100) consistent with listed group public accountability",
+      "Over 25 years of STEM staffing experience with established Dutch corporate client relationships",
+      "30% ruling is directly applicable at Progressive's typical placement salary levels",
+    ],
+    cons: [
+      "SThree commercial targets may influence which mandates are prioritised for candidate presentation",
+      "No housing support despite significant international STEM candidate recruitment",
+      "Permanent placement timelines of 6–10 weeks require patience",
+      "Competition for contract mandates is high given Progressive's broad candidate network",
+    ],
+    internalLinks: [
+      { href: "/agencies/jp-gray", label: "Compare with JP Gray for SThree Group finance and supply chain placements" },
+      { href: "/agencies/circle-one", label: "See Circle One for boutique Data and Cloud specialist recruitment in Amsterdam" },
+    ],
+  },
+
+  "projob-bv": {
+    metaTitle: "Projob BV Reviews Netherlands | HR, Logistics & Career Services",
+    metaDescription: "Projob is an Amsterdam labour market specialist founded in 1995 covering temp staffing, detachering, and career development. Read about pay and conditions.",
+    intro: "Projob is an Amsterdam-based labour market specialist and self-described House of Careers, founded in 1995. The agency has evolved from a traditional temporary employment agency to a broader portfolio operation covering recruitment and selection, temporary staffing, detachering, payrolling, and career development services. The HR and logistics dual-focus reflects a genuine generalist labour market specialist rather than a niche boutique. The transparency score of 72/100 reflects 30 years of public operational history.",
+    sections: [
+      {
+        heading: "Salary and Pay Across Projob Service Lines",
+        body: "Pay at Projob varies by placement type and sector. Logistics and warehouse operators placed on uitzend contracts earn WML (€14.71 per hour gross in 2026) to approximately €17.00 gross for experienced operators with forklift certification — yielding roughly €1,900–1,970 net per month at full-time hours. HR professionals placed in temp or detachering roles earn €2,800–4,500 gross monthly depending on seniority: an HR coordinator earns €2,800–3,400 gross; an HR business partner €3,800–5,000 gross; an HR director €5,500–8,000 gross. Career development services including outplacement and coaching are charged to employers and are not a direct cost to workers.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Projob does not provide housing. Amsterdam placements rely on candidates' existing residential accommodation. Logistics placements may be at Amsterdam Westpoort or Schiphol-area facilities requiring own transport for early shifts.",
+      },
+      {
+        heading: "Career Development and Work Conditions",
+        body: "The career development dimension of Projob is worth noting: for workers in career transition or seeking to move from logistics to HR roles, the in-house loopbaanbegeleiding (career guidance), CV support, and training referrals may offer practical value beyond simple placement. This differentiates Projob somewhat from pure volume-placement agencies. Logistics placements in Westpoort and Schiphol may involve early starts from 06:00 requiring own transport or prior route planning.",
+      },
+    ],
+    pros: [
+      "Founded 1995 — 30 years of Amsterdam labour market presence and client relationships",
+      "High transparency score (72/100)",
+      "Full spectrum from logistics to HR placements plus career development services",
+      "House of Careers positioning means career guidance beyond simple CV forwarding",
+    ],
+    cons: [
+      "Generalist breadth across logistics and HR means less sector depth than specialists in each field",
+      "Logistics placements at WML level are modest relative to Amsterdam living costs",
+      "Career development services may require active engagement rather than automatic provision",
+      "No housing support",
+    ],
+    internalLinks: [
+      { href: "/agencies/employme", label: "Compare with EmployMe for Schiphol transport and logistics staffing" },
+      { href: "/agencies/bluepeaks", label: "See Bluepeaks for RPO and HR embedded recruitment services in Amsterdam" },
+    ],
+  },
+
+  "property-pros": {
+    metaTitle: "Property Pros Reviews Netherlands | Real Estate & Asset Management Jobs",
+    metaDescription: "Property Pros is powered by PropertyNL and places asset managers, property managers, and real estate developers. Read about salaries, the platform, and placement.",
+    intro: "PropertyProfs is a specialist real estate sector job board and recruitment platform powered by PropertyNL — the Netherlands' leading real estate media and information group. The platform focuses exclusively on vacancies within the Dutch real estate industry: asset management, property management, real estate development, valuation, and investment. The PropertyNL connection is a genuine differentiator: most Dutch real estate professionals read PropertyNL regularly, giving job listings on the platform direct visibility to the most relevant candidate audience. The high transparency score of 72/100 reflects the PropertyNL group's established public presence.",
+    sections: [
+      {
+        heading: "Salary in the Dutch Real Estate Market",
+        body: "The Dutch real estate sector in 2026 encompasses some of the highest-paying roles outside financial services. Asset manager (3-6 years experience) earns €4,500–7,500 gross per month at institutional funds or listed REITs; property manager (3-5 years) earns €3,500–5,000 gross; real estate developer (5-10 years) earns €5,000–9,000 gross; valuer (RICS-certified) earns €4,000–6,500 gross. Roles at major Dutch institutional investors (APG, PGGM, Bouwfonds) or international funds with Dutch offices carry additional bonus and long-term incentive components that substantially increase total compensation above base salary.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "PropertyProfs does not provide housing. At real estate sector salary levels, Amsterdam's rental market is accessible. For international professionals relocating for a PropertyProfs-facilitated role, relocation cost negotiation with the hiring employer is standard at senior asset management level.",
+      },
+      {
+        heading: "The Platform Model vs. Headhunting",
+        body: "PropertyProfs operates primarily as a job board and matching platform rather than a traditional headhunting boutique. Candidates can post profiles and search listings; employers post vacancies and search the candidate database. For active candidates in Amsterdam or the Netherlands who want real estate sector exposure, this provides direct access to listings without intermediary delays. For passive candidates not actively looking, direct headhunting through specialist boutiques may be more effective. The PropertyNL editorial context means the platform is visible to the exact professional audience most Dutch real estate employers want to reach.",
+      },
+    ],
+    pros: [
+      "Powered by PropertyNL — direct visibility to the Netherlands' real estate professional readership",
+      "High transparency score (72/100)",
+      "Exclusive real estate focus: asset management, property management, development, and valuation",
+      "Job board model gives candidates direct access to vacancy listings without intermediary delays",
+    ],
+    cons: [
+      "Platform model means less personalised candidate support than a dedicated headhunter",
+      "Dutch real estate market is relatively small — vacancy volume limited compared to generalist job boards",
+      "No housing or relocation support",
+      "Most effective for active job seekers; less suitable for passive candidates",
+    ],
+    internalLinks: [
+      { href: "/agencies/2b-connected-w-s-voor-makelaardij-en-hypotheek-professionals", label: "Compare with 2B Connected for mortgage and makelaardij recruitment in Amsterdam" },
+      { href: "/agencies/staatsen-executive-search", label: "See Staatsen Executive Search for C-suite and executive real estate placements" },
+    ],
+  },
+
+  "quades": {
+    metaTitle: "Quades Reviews Netherlands | Front-End, Java & Cybersecurity IT Staffing",
+    metaDescription: "Quades places IT professionals in Front-end, Java, Infrastructure, and Cybersecurity roles in Amsterdam since 2012. Read about placement, pay, and conditions.",
+    intro: "Quades is an Amsterdam-based IT staffing and recruitment agency founded in 2012, specialising in the placement of temporary IT professionals across Front-end Development, .NET, Java, Business Intelligence, IT Infrastructure, and Cybersecurity. The temporary IT staffing model places professionals on time-limited assignments with client companies, with the worker remaining employed by or contracted through Quades. The transparency score of 72/100 indicates solid public information about their operations consistent with 12+ years of activity.",
+    sections: [
+      {
+        heading: "Salary for Temporary IT Professionals",
+        body: "Temporary IT professional rates in the Amsterdam market in 2026 cover a wide range. Front-end developer (2-4 years): €55–80 per hour ZZP or €3,800–5,500 gross monthly employed. Java developer (3-6 years): €65–100 per hour ZZP or €4,500–7,000 gross employed. .NET developer (3-5 years): €60–90 per hour ZZP or €4,200–6,500 gross employed. IT Infrastructure engineer (3-6 years): €60–90 per hour ZZP or €4,000–6,000 gross. Cybersecurity specialist (3-8 years): €75–120 per hour ZZP or €5,000–8,000+ gross. For ZZP contractors, BTW, pension, and sickness insurance are the contractor's own responsibility. The 30% ruling is relevant for internationally recruited IT specialists at €46,660+ annual income.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "No housing is provided. For international IT professionals arriving for Quades-placed assignments, Amsterdam temporary accommodation (serviced apartments) runs €2,000–3,500 per month, which is financially viable at senior IT rate levels. Standard shared housing for employed IT professionals at €900–1,300 per room per month represents a manageable proportion of take-home pay at these salary levels.",
+      },
+      {
+        heading: "Placement Process and Work Conditions",
+        body: "Quades focuses on temporary assignments, meaning placement timelines are typically faster than permanent headhunting — 2–4 weeks from initial contact to assignment start for candidates with in-demand skills. The Amsterdam IT market in 2026 shows sustained demand for cybersecurity and cloud skills in particular, with Front-end React and TypeScript also consistently sought. Work locations span Zuidas financial services, Amstel and Sloterdijk office parks, and remote or hybrid arrangements — all common for temporary IT placements.",
+      },
+    ],
+    pros: [
+      "Founded 2012 — over 12 years of Amsterdam IT temporary staffing with established client relationships",
+      "High transparency score (72/100)",
+      "Covers high-demand disciplines: Front-end, Java, .NET, Infrastructure, Cybersecurity",
+      "Faster placement timelines for temporary assignments vs. permanent headhunting (2–4 weeks)",
+    ],
+    cons: [
+      "Temporary IT staffing model means assignment end dates rather than permanent positions",
+      "ZZP arrangements require self-managed pension, sickness insurance, and BTW administration",
+      "Competition for prime Amsterdam IT mandates is high given the number of IT staffing agencies",
+      "No housing support",
+    ],
+    internalLinks: [
+      { href: "/agencies/circle-one", label: "Compare with Circle One for specialist Data and Cloud boutique IT recruitment" },
+      { href: "/agencies/eswelt-b-v", label: "See Eswelt for ERP, CRM, and SAP specialist IT staffing in Amsterdam" },
+    ],
+  },
+
+  "real": {
+    metaTitle: "Real Reviews Netherlands | Biotech, Pharma & Clinical Research Jobs",
+    metaDescription: "Real is a life sciences staffing specialist and part of SThree Group in Amsterdam. Read about clinical research pay, placement process, and biotech sector conditions.",
+    intro: "Real is a life sciences staffing specialist and part of SThree plc, a global STEM staffing group listed on the London Stock Exchange. The Amsterdam office places permanent and contract professionals across biotech, pharma, medical devices, clinical research, and healthcare. The Netherlands is one of Europe's most active life sciences markets: the Greater Amsterdam and Utrecht corridor hosts IQVIA, Thermo Fisher, Lonza, MSD, and Galapagos, while Leiden and Rotterdam anchor major research and manufacturing operations. The transparency score of 65/100 reflects good public accountability.",
+    sections: [
+      {
+        heading: "Salary in Dutch Life Sciences",
+        body: "Life sciences salary ranges in the Netherlands in 2026 reflect the sector's technical demands and international competition for talent. Clinical Research Associate (2-5 years): €4,000–6,000 gross per month or €400–600 per day contract. Biotech Research Scientist (PhD, 3-6 years): €4,500–7,000 gross. Regulatory Affairs Specialist (3-6 years): €4,200–6,500 gross. Medical Science Liaison (5-8 years): €6,000–9,000 gross. Quality Assurance Manager (5-10 years): €5,000–8,000 gross. The 30% ruling is almost universally applicable for international life sciences professionals at PhD and specialist levels: at €5,500 gross, take-home approaches €4,500–4,700 net under the ruling vs. approximately €3,900 net without it.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "No housing is provided. For international life sciences professionals relocating to Amsterdam, housing cost negotiation with the hiring employer is standard at senior level. The standard Amsterdam one-bedroom at €1,600–2,000 per month is financially accessible at life sciences salary levels but represents a meaningful housing cost proportion at junior CRA salary levels.",
+      },
+      {
+        heading: "Placement Process and Clinical Research Travel",
+        body: "Real follows the SThree specialist consultant model: consultants focus on specific life sciences disciplines enabling deeper technical conversations. For CRAs and clinical research professionals, travel requirements are often part of the role — Real should clarify study travel expectations before placement. Contract placements typically operate through employed contractor or ZZP models; employed contractor arrangements provide greater social security coverage. The Amsterdam life sciences market favours candidates over employers in most specialist disciplines — supply of qualified CRAs, regulatory specialists, and PhD-level scientists is tighter than demand.",
+      },
+    ],
+    pros: [
+      "SThree group membership provides international placement infrastructure and compliance support",
+      "Netherlands is a top-tier European life sciences market with major pharma and biotech employers",
+      "Life sciences salaries well above WML with strong specialist demand",
+      "30% ruling is directly applicable for international life sciences professionals",
+    ],
+    cons: [
+      "SThree commercial targets may influence which mandates are prioritised for candidate presentation",
+      "Clinical research roles often involve significant travel that must be factored into lifestyle and contract",
+      "No housing support despite significant international candidate recruitment in life sciences",
+      "ZZP life sciences contractors must self-manage pension and sickness insurance costs",
+    ],
+    internalLinks: [
+      { href: "/agencies/progressive", label: "Compare with Progressive for STEM engineering and data science roles via SThree Group" },
+      { href: "/agencies/jp-gray", label: "See JP Gray for finance and supply chain placements within the SThree Group in Amsterdam" },
+    ],
+  },
+
+  "smartmatch-uitzendbureau": {
+    metaTitle: "SmartMatch Uitzendbureau Reviews | Project & Admin Amsterdam",
+    metaDescription: "SmartMatch is a young Amsterdam agency founded 2017 placing project managers, planners and office admins. Read about pay, conditions and matching quality.",
+    intro: "SmartMatch Uitzendbureau was founded in 2017 by two entrepreneurs in Bos en Lommer, one of Amsterdam's more community-rooted western neighbourhoods. The agency focuses on flexible personnel for project management, planning, office administration, and general logistics support. The transparency score of 60/100 — among the higher scores for a young independent bureau — suggests a reasonable level of public operational information.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Office administration placements at junior level start close to WML: €14.71–16.00 gross per hour, translating to approximately €1,700–1,900 net per month for 160 hours. Experienced office coordinators and administrative managers command €2,400–3,200 gross per month. Project management and planning roles occupy a higher bracket: a junior project coordinator earns €2,800–3,500 gross; a mid-level project manager or scheduler €3,500–5,000 gross. Net take-home from €4,000 gross runs approximately €2,900–3,050 after standard Dutch loonheffing, ZVW, and AOW deductions. Vakantiegeld of 8% accrues on all gross earnings and is paid in May. SmartMatch places workers under the ABU CAO or direct client contracts — ask explicitly about the applicable phase and contract type before starting.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "SmartMatch does not provide housing. Amsterdam-west and Bos en Lommer have some of the more affordable residential options within Amsterdam proper, with shared rooms at €750–1,000 per month. The GVB tram network serves Bos en Lommer well via tram line 13, making most Amsterdam-area client sites accessible without a car.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "A staffing agency founded in Bos en Lommer rather than the Zuidas often reflects a community-connected mission with stronger local employer relationships. Project management and planning roles placed through SmartMatch are typically office-based, Monday–Friday, standard business hours. Logistics support roles may involve earlier starts or shift patterns depending on the client. The sector mix is sensible for candidates with a generalist professional background — project coordination, scheduling, and office management skills transfer across clients and industries.",
+      },
+    ],
+    pros: [
+      "Above-average transparency score (60/100) for a young independent bureau",
+      "Focused on project management, planning, and admin — meaningful matching depth in these disciplines",
+      "Community-rooted Bos en Lommer base connects to genuine Amsterdam-west employer relationships",
+      "Founded 2017 — established enough to have developed client relationships",
+    ],
+    cons: [
+      "Independent boutique has fewer simultaneous active mandates than large national agencies",
+      "Parallel registrations with larger agencies recommended for urgent placement needs",
+      "No housing provision",
+      "Logistics support roles may involve irregular shift patterns not always clear upfront",
+    ],
+    internalLinks: [
+      { href: "/agencies/acadeem-uitzendbureau-nederland-b-v", label: "Compare with Acadeem Uitzendbureau for broader Amsterdam placement options" },
+      { href: "/agencies/staffing-force-nederland-bv", label: "See Staffing Force Nederland for finance and HR professional placements" },
+    ],
+  },
+
+  "sollia-jobs": {
+    metaTitle: "Sollia Jobs Reviews Netherlands | Production & Cleaning Agency",
+    metaDescription: "Sollia Jobs in Amsterdam places production workers, cleaners, hospitality staff and admin workers. Read about pay rates, CAO rights and working conditions.",
+    intro: "Sollia Jobs is an Amsterdam staffing agency covering a mixed portfolio of sectors: production workers, cleaning staff, hotel and hospitality workers, administrative employees, gardeners, and construction workers. This kind of multi-sector generalist agency serves employers who need flexible headcount across different functions. The transparency score of 40/100 indicates moderate but limited public information.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The salary spread across Sollia Jobs' portfolio is significant. Cleaning (schoonmaak) workers are covered by the CAO Schoonmaak- en Glazenwassersbedrijf. Under 2026 rates, a schoonmaakmedewerker earns €14.71–15.50 gross per hour at entry level. For 160 hours per month, gross is €2,352–2,480 and net approximately €1,860–1,960. Production workers fall under ABU CAO or sector-specific CAOs depending on the client, with rates between €14.71 and €18.00 gross per hour. Night shift premiums (22–25%) and weekend premiums add meaningfully for shift workers. Administrative workers sit at €2,200–3,200 gross per month. The crucial consideration with a multi-sector generalist agency is whether the correct CAO applies to each placement — workers should request written confirmation of the applicable CAO and rate card before starting any assignment.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Sollia Jobs does not provide housing. Amsterdam-area cleaning, hospitality, and administrative placements assume local residence. Transport to cleaning assignments often requires early starts (6–7am) and late finishes. Amsterdam GVB covers most areas served by commercial cleaning contracts. Industrial and logistics placements may require a car or bicycle for sites outside central Amsterdam.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Cleaning work is physically demanding — repetitive motion, chemical exposure, and irregular hours are standard. Production work involves standing for long periods, machinery noise, and physical output targets. Hospitality work carries evening and weekend patterns. Administrative placements are desk-based office hours. Sollia's multi-sector model means individual recruiters must understand a broad range of client environments, and quality of matching and conditions briefing may vary more widely across placements than at a specialist agency.",
+      },
+    ],
+    pros: [
+      "Multi-sector coverage offers placement continuity when one sector slows down",
+      "Amsterdam focus keeps logistics manageable across sectors",
+      "Production night shift and weekend premiums push effective earnings above WML",
+    ],
+    cons: [
+      "Below-average transparency score (40/100) — limited public track record data",
+      "Multi-sector model increases risk of incorrect CAO classification per assignment",
+      "Generalist model introduces more variability in conditions briefing quality",
+      "No housing provision",
+    ],
+    internalLinks: [
+      { href: "/agencies/all-star-chefs", label: "Compare with All Star Chefs for specialist culinary staffing" },
+      { href: "/agencies/circle-hospitality", label: "See Circle Hospitality for event and hospitality staffing in Amsterdam" },
+    ],
+  },
+
+  "spilberg-development-bv": {
+    metaTitle: "Spilberg Development Reviews Netherlands | IT Staffing Zuidas",
+    metaDescription: "Spilberg Development is a Zuidas-based IT staffing specialist and part of the Vibe Group. Read about software developer salaries, placement process and conditions.",
+    intro: "Spilberg Development B.V. is an IT staffing specialist founded in 2012 and operating from the Zuidas business district as part of the Vibe Group, an international tech staffing and consulting organisation. Their focus is on software developers, testers, DevOps engineers, and IT professionals placed across the Netherlands. The transparency score of 65/100 is notably above average for an independent agency.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Software development placements through Spilberg cover a wide seniority range. In 2026, realistic gross salary benchmarks are: Junior Software Developer €3,500–4,500 gross per month; Mid-level Developer (3–5 years) €4,500–6,000; Senior Developer (5+ years) €6,000–8,500; DevOps Engineer (mid-senior) €5,500–7,500; Test Engineer €4,000–5,500. Net take-home from €5,500 gross runs approximately €3,700–3,900 per month after Dutch loonheffing and premiums. For interim and contracting placements, rates typically run €75–160 per hour depending on specialism. International candidates should assess 30% ruling eligibility — the annual threshold in 2026 is €46,660, and many senior IT placements via Spilberg exceed this. The Vibe Group structure may mean both employed contractor and ZZP placement models are available; understand which applies before signing.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Spilberg does not provide housing. The Zuidas address signals a professional-market orientation with candidates expected to manage their own accommodation. At senior IT salary levels, Amsterdam housing at €1,800–2,200 per month for a one-bedroom is expensive but manageable. Relocating international candidates should discuss relocation cost negotiation with their prospective employer — this is standard practice in the Amsterdam IT market at senior level.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Being part of Vibe Group gives Spilberg access to an international client network and more active mandates than a standalone boutique, reducing wait time between registration and first placement offer. Most placements are at client office locations in the Amsterdam metropolitan area. The Zuidas base positions Spilberg well for financial services and tech company clients in that corridor. NS rail, GVB tram, and metro connections make the Zuidas and most Amsterdam tech clusters accessible without a car for most Randstad-based candidates.",
+      },
+    ],
+    pros: [
+      "Vibe Group membership provides international reach and more active mandates than standalone boutiques",
+      "Zuidas location connects directly to premium Amsterdam financial and tech sector clients",
+      "Above-average transparency score (65/100)",
+      "12+ years of Dutch IT placement experience since 2012",
+    ],
+    cons: [
+      "Mainstream stack focus (Java, Python, .NET, cloud) — less suited for highly niche technology specialists",
+      "Group orientation may favour volume placements over deep niche matching",
+      "No housing or relocation support directly from the agency",
+      "ZZP vs employed contractor distinction requires careful upfront clarification",
+    ],
+    internalLinks: [
+      { href: "/agencies/sterrk-it-recruitment-en-development", label: "Compare with Sterrk IT-recruitment for Amsterdam software developer placements" },
+      { href: "/agencies/circle-one", label: "See Circle One for Data and Cloud specialist IT recruitment" },
+    ],
+  },
+
+  "spinning-top-bv": {
+    metaTitle: "Spinning Top B.V. Reviews Netherlands | ZZP & Freelance Broker",
+    metaDescription: "Spinning Top connects freelance ZZP professionals with public sector and SME clients in the Netherlands. Read about broker fees, contracts and what freelancers say.",
+    intro: "Spinning Top B.V. is an Amsterdam-based intermediary that connects freelance professionals (zzp'ers) with organisations in the public sector, social sector, and SME market across the Netherlands. Rather than employing workers on agency contracts, Spinning Top brokers assignments between independent professionals and clients. This distinction has significant implications for pay, rights, and income structure that any freelancer considering them needs to understand upfront.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Public sector ZZP assignments in the Netherlands in 2026 range from €60–75 per hour for administrative and policy advisory roles, €75–120 per hour for project management and consultancy, and €100–170 per hour for specialist ICT and data roles. Social sector assignments (zorg, welzijn, onderwijs) typically sit at the lower end: €60–80 per hour for welfare and social work professionals. As ZZP, there is no loonheffing deduction or vakantiegeld paid by an employer. The true net comparison with employed rates must account for all self-managed costs — a useful rule of thumb is to add 20–30% to an employed gross rate to find the equivalent ZZP rate that covers self-employment costs.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Spinning Top does not provide housing. ZZP professionals are self-employed and expected to manage all personal logistics. The agency's Amsterdam base and national public sector client network means assignments may be anywhere in the Netherlands. Travel and accommodation costs for out-of-city assignments are typically included in the day rate or negotiated separately in the assignment terms.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Since the Dutch government began enforcing the Wet DBA (Wet Deregulering Beoordeling Arbeidsrelaties) more strictly from 2025, the boundary between ZZP and disguised employment (schijnzelfstandigheid) has become a live legal issue. Public sector clients are cautious about long-term engagements with the same ZZP professional in a role that resembles employment. Freelancers should ensure any Spinning Top-brokered assignment uses a Belastingdienst-approved model agreement and falls clearly outside the schijnzelfstandigheid risk zone. This is not optional bureaucracy — enforcement creates genuine financial and legal risk for both parties.",
+      },
+    ],
+    pros: [
+      "Access to public sector and social sector assignments often invisible on open job boards",
+      "Public sector procurement frequently goes through intermediaries like Spinning Top",
+      "National coverage across SME, public, and social sector clients",
+      "Day rates substantially above equivalent employed salaries in most disciplines",
+    ],
+    cons: [
+      "ZZP model provides no WW unemployment coverage, AOW pension accrual, or sick pay",
+      "Wet DBA compliance risk is real and requires careful assignment structuring",
+      "Social sector day rates are at the lower end of the ZZP market",
+      "Moderate transparency score (50/100) — limited public disclosure of client or mandate volume",
+    ],
+    internalLinks: [
+      { href: "/agencies/staffing-force-nederland-bv", label: "Compare with Staffing Force Nederland for employed Finance and HR placements" },
+      { href: "/agencies/staatsen-executive-search", label: "See Staatsen Executive Search for senior finance executive placement options" },
+    ],
+  },
+
+  "staatsen-executive-search": {
+    metaTitle: "Staatsen Executive Search Reviews Netherlands | CFO Roles",
+    metaDescription: "Staatsen Executive Search places CFOs, finance directors and NEDs in Tech and Digital companies. Read about their process, fees and what candidates say.",
+    intro: "Staatsen Executive Search is a boutique executive search firm founded in 2009, specialising in recruiting highly ambitious Finance Officers (CFOs and their direct reports) and non-executive directors in Tech and Digital companies in the Netherlands and DACH region. This is not a conventional staffing agency — Staatsen operates at the apex of the senior finance talent market, where placements involve six-figure compensation packages and multi-month search processes. The transparency score of 65/100 is strong for a boutique executive search firm.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Executive search placements through Staatsen operate in a compensation bracket where WML and ABU CAO rates are entirely irrelevant. In the Dutch Tech and Digital sector in 2026, realistic benchmarks for Staatsen's core roles are: CFO (scale-up or mid-market tech company) €180,000–350,000+ total compensation (base + bonus + equity); Finance Director €120,000–200,000 total; VP Finance €100,000–160,000 total; Non-Executive Director fees of €20,000–60,000 per year depending on company size. The 30% ruling applies to virtually all international candidates at these levels — the €46,660 annual threshold is crossed well into the junior Finance Director range. At €250,000 gross annually with the ruling, the effective tax burden is significantly lower than standard loonheffing. Equity components (stock options, RSUs, ESOP) are common in tech CFO packages and require separate specialist tax advice.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Staatsen does not provide housing. At CFO and Finance Director compensation levels, housing is an independently managed consideration. For international candidates relocating to the Netherlands for a Staatsen-placed executive role, relocation packages are standard practice and typically negotiated as part of the employment offer.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Staatsen operates on a retained search basis for senior mandates — the client pays a retainer upfront, with balance on placement. This model incentivises thorough market mapping and quality over speed. For candidates, a retained search process typically takes 3–6 months from initial contact to signed offer at CFO level. The candidate experience includes detailed career and motivation conversations before any mandate introduction, thorough preparation on client and role before meetings, and post-meeting feedback. Staatsen's 15+ years of operation in the Dutch tech-finance nexus suggests established client and candidate relationships across the Amsterdam and DACH markets.",
+      },
+    ],
+    pros: [
+      "Deep specialisation at the intersection of senior finance leadership and Tech and Digital companies",
+      "Retained search model produces quality matching over volume",
+      "Founded 2009 — 15+ years of Dutch and DACH market track record",
+      "DACH region coverage extends placement options beyond the Netherlands",
+      "Strong transparency score (65/100) for a boutique executive search firm",
+    ],
+    cons: [
+      "Boutique scale means fewer active searches at any given time than large executive search firms",
+      "Multi-month search timelines — active candidates should register with 2–3 firms simultaneously",
+      "Focus exclusively on finance leadership: CFO, Finance Director, NED — not suitable for other functions",
+      "No housing support despite recruiting internationally",
+    ],
+    internalLinks: [
+      { href: "/agencies/staffing-force-nederland-bv", label: "Compare with Staffing Force Nederland for mid-level finance and HR placements" },
+      { href: "/agencies/jp-gray", label: "See JP Gray for finance and supply chain roles across the Netherlands" },
+    ],
+  },
+
+  "staffing-force-nederland-bv": {
+    metaTitle: "Staffing Force Nederland Reviews | Finance, HR & Sustainability",
+    metaDescription: "Staffing Force Nederland places Finance, HR and Sustainability professionals across all levels. Read about salaries, B Corp certification and what candidates say.",
+    intro: "Staffing Force Nederland is a sustainable staffing and recruitment agency founded in 2007, specialising in Finance, HR, and Sustainability professionals from operational to executive level. The agency holds B Corp certification — a globally recognised standard for companies that meet verified social and environmental performance criteria. The transparency score of 65/100 is above average, reflecting genuine public information availability.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Staffing Force covers Finance, HR, and Sustainability from operational to executive level — a wide range. Operational Finance placements (junior controller, payroll administrator): €2,600–3,500 gross per month. Mid-level Finance (financial analyst, management accountant, HR business partner): €3,500–5,000 gross. Senior Finance and HR leadership: €5,000–8,000+ gross. Sustainability specialists — ESG analysts, sustainability managers, circular economy consultants — are a growing market with rates from €3,800 gross (junior ESG analyst) to €6,500+ gross (senior sustainability director). Net take-home from €4,500 gross per month runs approximately €3,200–3,350 after Dutch loonheffing and standard premiums. Vakantiegeld (8%) accrues and is paid in May. At senior executive levels, the 30% ruling is relevant for internationally recruited professionals.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Staffing Force does not provide housing. Professional-level placements across Finance, HR, and Sustainability assume candidates manage their own accommodation. The agency's national reach means placements outside Amsterdam (Rotterdam, The Hague, Utrecht) are common for the Finance and HR practices.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "B Corp certification creates genuine accountability around operating standards — for a staffing agency, the relevant dimension is how they treat placed workers. A B Corp bureau should apply rigorous standards around fair pay (at or above CAO rates), transparent employment terms, and ethical matching practices. The Netherlands is among Europe's more advanced markets for corporate sustainability function hiring, driven by CSRD reporting requirements from 2024 and Dutch corporate governance standards. Demand for ESG reporting specialists and climate risk analysts is growing faster than supply, meaning well-qualified sustainability candidates have genuine leverage.",
+      },
+    ],
+    pros: [
+      "B Corp certification creates external accountability for fair operating standards",
+      "Three-sector focus (Finance, HR, Sustainability) creates useful crossover opportunities",
+      "Founded 2007 — navigated multiple economic cycles with sustained market presence",
+      "Sustainability specialism is well-timed with growing CSRD and ESG hiring demand",
+      "Above-average transparency score (65/100)",
+    ],
+    cons: [
+      "National focus means less Amsterdam-specific client depth than local boutiques",
+      "Sustainability senior roles are still a relatively small market — vacancy volume may be limited",
+      "No housing support",
+      "Room for more public disclosure on specific placement volumes and candidate outcome data",
+    ],
+    internalLinks: [
+      { href: "/agencies/staatsen-executive-search", label: "Compare with Staatsen Executive Search for senior finance leadership roles" },
+      { href: "/agencies/genius-recruitment", label: "See Genius Recruitment for finance and admin placements in Amsterdam" },
+    ],
+  },
+
+  "startersvacatures": {
+    metaTitle: "StartersVacatures Reviews Netherlands | First Job Agency Amsterdam",
+    metaDescription: "StartersVacatures helps recent graduates find their first professional role in Amsterdam. Read about salary expectations, the matching process and what starters say.",
+    intro: "Entering the Dutch labour market as a recent graduate with no prior work experience is one of the more frustrating experiences young professionals face. StartersVacatures is an Amsterdam-based platform and staffing service specifically aimed at recent graduates and career starters — people with little to no prior work experience who need a first professional foothold. The transparency score of 30/100 indicates limited public operational information.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Salary expectations at starter level in the Netherlands depend heavily on education level and role type. An MBO-graduate starter in an administrative or sales support role typically earns €1,800–2,400 gross per month in their first position. An HBO-level starter in a junior analytical, marketing, or HR role earns €2,200–2,800 gross. A WO-level graduate starter in professional services or a technical role may start at €2,600–3,200 gross. Net take-home at €2,400 gross runs approximately €1,900–2,000 after loonheffing and standard deductions. Vakantiegeld (8%) accrues separately. Phase A ABU CAO protection (uitzendbeding) applies to temp placements — understand your termination exposure before starting. Clarify whether any specific vacancy is temporary or direct permanent hire, as this affects security significantly.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "StartersVacatures does not provide housing. Starters in Amsterdam on €1,900–2,000 net per month face a challenging housing market. Shared accommodation at €700–900 per room is the practical starting point, consuming 35–47% of net income. For starters whose family is outside the city, commuting from Haarlem, Zaandam, or Amstelveen is common and often more affordable.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "The most common complaint from recent graduates navigating the Dutch labour market is not pay — it is access. An agency focused on starters, if operating well, acts as an advocate with client employers who have agreed to hire from the starter pool. This access function is the primary value proposition of StartersVacatures. The 30/100 transparency score makes it hard to independently assess whether the agency is currently active and what the vacancy volume looks like. Before registering, contact them directly and ask: how many active starter vacancies do you currently have, and in which sectors?",
+      },
+    ],
+    pros: [
+      "Starter-specific focus means employers have already agreed to consider candidates without prior experience",
+      "Amsterdam base covers the highest concentration of junior professional vacancies in the Netherlands",
+      "Access function is genuinely valuable for MBO and HBO graduates with no sector network",
+    ],
+    cons: [
+      "Low transparency score (30/100) — limited public information about current vacancy volume",
+      "Salary expectations at starter level are modest relative to Amsterdam housing costs",
+      "Phase A uitzendbeding means limited job security on temp placements",
+      "Should be run alongside Acadeem and other graduate-focused bureaus, not as sole registration",
+    ],
+    internalLinks: [
+      { href: "/agencies/acadeem-uitzendbureau-nederland-b-v", label: "Compare with Acadeem Uitzendbureau for HBO and WO graduate placements" },
+      { href: "/agencies/smartmatch-uitzendbureau", label: "See SmartMatch for project management and admin starter roles in Amsterdam" },
+    ],
+  },
+
+  "startup-jobs": {
+    metaTitle: "Startup Jobs Amsterdam Reviews Netherlands",
+    metaDescription: "Very limited public information about Startup Jobs in Amsterdam. Read what we know and why you should verify carefully before engaging this agency.",
+    intro: "Startup Jobs is a small Amsterdam-based recruitment or staffing entity registered at Generaal Vetterstraat 51A in the Overtoomse Veld neighbourhood of western Amsterdam. No public website or online presence was found at the time of research. The transparency score of 15/100 is among the lowest in the Amsterdam market — placing Startup Jobs in the category of agencies where almost no public information is available to evaluate the operation before making contact.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "If Startup Jobs does operate in the Amsterdam startup sector as the name suggests, the labour market context is relevant. Working at an early-stage Dutch startup typically involves: equity or option packages alongside base salary; salaries at or below market rate compensated by ownership stake; broader role scope and faster career trajectory. Base salaries at Amsterdam startups for early employees tend to range from €2,800–4,500 gross per month depending on role and seniority, often with equity component. Series A and B startups offer closer to market rate with smaller equity; pre-seed and seed stage companies offer lower cash with higher equity upside. These figures are entirely contextual — nothing specific to Startup Jobs' actual placements can be confirmed from public sources.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "No housing provision is indicated. Generaal Vetterstraat in Overtoomse Veld is accessible by GVB tram. Amsterdam startup offices are scattered across the city and surroundings — specific transport requirements depend entirely on the client company's location. The registered address is residential, meaning there is no commercial office presence to visit.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Given the 15/100 transparency score and absence of any public presence, candidates should: verify the KvK registration number and confirm the entity is still active; contact the registered address by phone; ask what specific roles are currently available; and confirm the relationship with startup clients — whether placements are direct hire, temp, or advisory. Do not proceed with any formal registration or personal information submission until these basic questions are answered. The due diligence burden at a 15/100 transparency score falls entirely on the candidate.",
+      },
+    ],
+    pros: [
+      "If active in the Amsterdam startup ecosystem, could provide access to early-stage tech company roles",
+      "KvK-registered entity",
+    ],
+    cons: [
+      "Very low transparency score (15/100) — among the lowest in the Amsterdam market",
+      "No active website or online presence found at time of research",
+      "Residential registered address means no commercial office to visit",
+      "Nothing about sector focus, services, or placement volume can be confirmed independently",
+    ],
+    internalLinks: [
+      { href: "/agencies/spilberg-development-bv", label: "Compare with Spilberg Development for verified IT and tech staffing in Amsterdam" },
+      { href: "/agencies/sterrk-it-recruitment-en-development", label: "See Sterrk IT-recruitment for verified software developer placements" },
+    ],
+  },
+
+  "sterxt": {
+    metaTitle: "SterXt Reviews Netherlands | Construction Staffing Amstelveen",
+    metaDescription: "SterXt in Amstelveen has 15+ years placing construction workers, bricklayers and scaffolders in the Netherlands. Read about CAO Bouwnijverheid pay and conditions.",
+    intro: "SterXt is a construction-specialist staffing agency based in Amstelveen with over 15 years of experience placing workers in the Dutch building and construction industry. Their placements cover bricklayers, installers, scaffolders, and general construction workers across residential and commercial projects throughout the Netherlands. The construction sector operates under the CAO Bouwnijverheid — one of the strongest sectoral CAOs in the country in terms of pay and conditions.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The CAO Bouwnijverheid sets minimum hourly wages substantially above WML for most classifications. In 2026: a bricklayer (metselaar, classe D) earns approximately €20.50–22.00 gross per hour; a scaffolder €18.50–20.50 per hour; a general labourer €17.00–18.50 per hour. The CAO also mandates ADV (arbeidsduurverkorting) days — additional paid days off; bouwplaats toeslag (site premium) where applicable; VUT/prepensioen contributions; and reiskosten vergoeding (travel cost reimbursement) for sites beyond standard commute distance. For a bricklayer at €21.00 gross per hour working 160 hours per month: gross monthly income €3,360; net take-home approximately €2,500–2,650 after loonheffing and standard deductions. Vakantiegeld (8%) accrues additionally and is paid in May or upon contract end.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "SterXt does not provide SNF-certified housing. As an Amstelveen-based agency placing primarily local and regional Dutch construction workers, the assumption is commuting to sites rather than agency accommodation. For project assignments in other regions — infrastructure projects or large residential developments outside the Randstad — travel and accommodation costs should be addressed in the assignment terms before starting.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Construction work in the Netherlands operates under Arbo (health and safety) regulations with mandatory PPE requirements on all sites. SterXt placements should come with proper PPE provision or reimbursement. The Amstelveen and Amsterdam south corridor has consistent residential and commercial construction activity, providing relative work continuity for bricklayers and installers based in this area. The main risk for construction workers placed through any agency is misclassification of trade function (loongroep) — a bricklayer classified at a lower tier earns below what the CAO requires. Know your correct CAO loongroep and verify it is correctly reflected in your contract and payslip before starting.",
+      },
+    ],
+    pros: [
+      "15+ years of construction staffing experience in the Netherlands — genuine sector depth",
+      "CAO Bouwnijverheid provides among the best pay and conditions in the Dutch temp sector",
+      "Amstelveen location serves the Amsterdam south and Randstad construction market well",
+      "Moderate transparency score (50/100) — adequate public information",
+    ],
+    cons: [
+      "No housing provision despite serving a construction market with significant non-local workforce",
+      "Correct loongroep classification must be actively verified by workers — do not assume",
+      "Car or bicycle often needed for peripheral construction site locations",
+      "Reiskosten coverage must be confirmed for each assignment individually",
+    ],
+    internalLinks: [
+      { href: "/agencies/centerpoint-amsterdam", label: "Compare with Centerpoint for construction and civil engineering staffing" },
+      { href: "/agencies/employme", label: "See EmployMe for Schiphol-area logistics and industrial staffing" },
+    ],
+  },
+
+  "sterrk-it-recruitment-en-development": {
+    metaTitle: "Sterrk IT-recruitment Reviews Netherlands | Software & DevOps",
+    metaDescription: "Sterrk is an Amsterdam IT specialist founded 2012 with 20+ new vacancies monthly. Read about software developer salaries, detachering model and what candidates say.",
+    intro: "Sterrk is an Amsterdam-based IT staffing specialist founded in 2012, offering recruitment, detachering (secondment), and freelance placement for tech professionals across the Netherlands. The agency posts over 20 new IT vacancies per month, giving candidates a meaningful pipeline of active opportunities. The transparency score of 68/100 is among the highest for an independent Amsterdam IT recruiter.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "In 2026, realistic gross monthly salary benchmarks for Sterrk's core placement categories are: Junior Software Developer (Java, Python, .NET) €3,200–4,200; Mid-level Developer (3–5 years) €4,500–6,000; Senior Developer (5+ years) €6,000–8,500; DevOps / Site Reliability Engineer €5,000–7,500; Tester / QA Engineer €3,500–5,000; IT Architect €7,000–10,000. For detachering placements at €5,000 gross per month, net take-home is approximately €3,550–3,700 after standard Dutch deductions. International candidates above €46,660 annually should discuss 30% ruling eligibility upfront. Under detachering, Sterrk is the formal employer: loonheffing, ZVW, AOW, and WW are deducted and ABU CAO Phase A/B protections apply. Under ZZP, the candidate self-manages all tax and insurance.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Sterrk does not provide housing. Placements are across the Netherlands with a concentration in Amsterdam and the Randstad. IT professionals placed at €5,000+ gross are expected to manage their own accommodation. Amsterdam housing at €1,800–2,200 per month for a one-bedroom is expensive relative to European norms but manageable at senior IT salary levels.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Sterrk's three placement models (direct recruitment, detachering, and freelance ZZP) allow a frank conversation about which is most appropriate for a candidate's life circumstances — rather than funneling everyone into a single model. The 20+ new monthly vacancies across different sectors and tech stacks reduces wait time between registration and first opportunity. The detachering model specifically provides employment security (WW if terminated, AOW accrual, sick pay coverage) that ZZP-only agencies cannot offer. For IT professionals with families or mortgages, this distinction is material.",
+      },
+    ],
+    pros: [
+      "Highest transparency score among independent Amsterdam IT agencies reviewed (68/100)",
+      "Active vacancy pipeline of 20+ new openings per month",
+      "Three placement models give genuine choice between employed security and ZZP flexibility",
+      "Founded 2012 — 12+ years of Amsterdam IT market track record",
+      "Detachering model provides WW and AOW coverage absent from ZZP arrangements",
+    ],
+    cons: [
+      "Mainstream stack focus (Java, Python, .NET, DevOps) — may be less suited for highly niche technology specialists",
+      "ZZP vs detachering distinction requires careful upfront clarification for each role",
+      "No housing or relocation support",
+      "Senior specialist profiles may find better matching depth at boutiques like Circle One",
+    ],
+    internalLinks: [
+      { href: "/agencies/spilberg-development-bv", label: "Compare with Spilberg Development for IT placements via the Vibe Group" },
+      { href: "/agencies/circle-one", label: "See Circle One for Data and Cloud specialist IT recruitment in Amsterdam" },
+    ],
+  },
+
+  "sthree-holdings-bv": {
+    metaTitle: "SThree Netherlands Reviews | STEM Staffing Agency",
+    metaDescription: "SThree Holdings B.V. is the Dutch arm of the global STEM staffing group. Read reviews on pay, IT, engineering, and life sciences placements in the Netherlands.",
+    intro: "SThree is not a household name in the Netherlands the way Randstad or Adecco is, but in the specialist STEM staffing market it carries substantial weight. SThree plc is listed on the London Stock Exchange and operates across 11 countries through multiple specialist brands. The Dutch holding entity, SThree Holdings B.V., is based in Amsterdam and serves as the operational hub for Netherlands placements in software development, engineering, life sciences, and finance. If you have been approached by or are considering working with SThree in the Netherlands, this review covers what to expect.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "SThree predominantly places professionals at mid to senior level in STEM fields, meaning salaries are substantially above the Dutch statutory minimum wage of €14.71 per hour in 2026. Indicative ranges by brand: Computer Futures IT contractors earn €55–100 per hour on contract (day rates €440–800); Huxley finance professionals €4,000–8,000 gross per month in permanent roles; Progressive engineers €3,800–7,000 gross per month; Real Staffing life sciences specialists €3,500–6,500 gross per month. The 30% ruling for international knowledge workers is highly relevant at SThree salary levels — the 2026 threshold of €46,660 annual gross is crossed by most mid-level placements. Net-to-gross at €6,000 gross per month is approximately €4,150–4,400 net under standard Dutch taxation. For ZZP contractors brokered through SThree, rates are higher but self-employment taxes and VAT obligations apply.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "SThree does not provide housing. At the salary levels of a typical SThree placement, candidates are expected to arrange accommodation independently. Amsterdam one-bedroom apartments average €1,700–2,100 per month in 2026; areas like the Zuidas business district command premium rates. International STEM candidates relocating to the Netherlands should budget for at least one month of verhuurmakelaar fees plus two months deposit on top of monthly rent. For senior hires, some multinational clients include relocation allowances in the package negotiated directly with the employer.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "SThree operates through distinct specialist brands: Computer Futures (IT and technology), Huxley (financial services and banking), Progressive (engineering), and Real Staffing (life sciences and pharmaceuticals). JP Gray, reviewed separately on AgencyCheck, is also part of the SThree group. SThree offers both permanent placement services and contractor or interim solutions. For contractor placements, the worker is either formally employed by SThree or operates as ZZP through SThree as the client-facing intermediary. The transparency score for SThree Holdings B.V. is 72/100 — among the higher scores in the Amsterdam market — reflecting a verifiable public track record as a listed company.",
+      },
+    ],
+    pros: [
+      "London Stock Exchange-listed entity — subject to public reporting requirements that smaller boutiques are not",
+      "Multi-brand specialist structure covers IT, engineering, life sciences, and financial services in depth",
+      "High transparency score (72/100) — verifiable track record and client portfolio",
+      "Global STEM network with EMEA client relationships relevant to Netherlands placements",
+    ],
+    cons: [
+      "Volume model at scale means some candidates report feeling like numbers in a pipeline",
+      "Multi-brand structure can create confusion — Computer Futures and Huxley are both SThree",
+      "No housing or relocation support provided directly",
+      "Contractor model requires careful comparison of ZZP vs employed terms before signing",
+    ],
+    internalLinks: [
+      { href: "/agencies/jp-gray", label: "See JP Gray, also part of the SThree group, for finance and supply chain roles" },
+      { href: "/agencies/tergos-bv", label: "Compare with Tergos for IT infrastructure and cybersecurity staffing" },
+    ],
+  },
+
+  "support-profs-bv": {
+    metaTitle: "Support Profs Reviews Netherlands | Management Support Jobs",
+    metaDescription: "Support Profs B.V. in Amstelveen places management assistants, HR professionals, and office staff. Read about pay, conditions, and candidate experience.",
+    intro: "Management support, office administration, and HR coordination are roles that rarely generate flashy recruitment campaigns, but they are among the most consistently in-demand positions in the Dutch corporate market. Support Profs B.V., based in Amstelveen, focuses precisely on this space: connecting management assistants, sales support professionals, HR coordinators, and office administrators with organisations across the Amsterdam metropolitan area.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The management support and office admin market in the Netherlands sits at a different pay level than IT or finance recruitment. Indicative gross monthly salaries for Support Profs placements: management assistant (3–5 years experience) €2,800–3,600 gross; HR coordinator (2–4 years) €2,600–3,400 gross; office manager €3,000–4,000 gross; sales support specialist €2,600–3,200 gross. At €3,000 gross per month, loonheffing and social premiums reduce take-home to approximately €2,350–2,450 net. Vakantiegeld at 8% accrues on gross salary and is paid in May, adding around €2,880 gross annually at this salary level. Whether placements are through direct employment at the client or under an ABU CAO uitzend construction affects Phase A/B protections — clarify this with Support Profs before signing.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Support Profs does not provide housing. The Amstelveen base reflects proximity to the Zuidas and Amsterdam South corporate cluster, where many management support roles are located. Amstelveen has a more accessible rental market than central Amsterdam, with one-bedroom apartments in the €1,300–1,700 range. The area is well served by tram and bus connections to Amsterdam.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Management assistant roles typically involve diary management, correspondence, travel booking, board preparation, and stakeholder liaison. The professional environment is generally corporate — multinationals, law firms, financial services, and large consultancies are typical clients in the Zuidas area. Working hours are standard office hours (9–17:30) with occasional evening demands for board meetings or client dinners. HR coordination roles involve onboarding, documentation, HRIS management, and supporting HR business partners. The transparency score for Support Profs is 45/100 — candidates should ask explicitly about the employment construction and which CAO applies.",
+      },
+    ],
+    pros: [
+      "Sector focus prevents mismatch between EA, office manager, and administrative roles",
+      "Amstelveen location aligns with the high-density Zuidas and Amsterdam South corporate cluster",
+      "Personal boutique approach — recruiters reportedly understand management support nuance",
+    ],
+    cons: [
+      "Moderate transparency score (45/100) — limited public information about placement volumes",
+      "Geographic concentration limits relevance for candidates outside the Amsterdam South corridor",
+      "Salary levels in management support are modest relative to Amsterdam living costs",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/dijk-van-emmerik-amstelveen-hr-adviesbureau", label: "Compare with Dijk and Van Emmerik for HR advisory and reintegration in Amstelveen" },
+      { href: "/agencies/genius-recruitment", label: "See Genius Recruitment for finance, HR, and admin placements in Amsterdam" },
+    ],
+  },
+
+  "tempers": {
+    metaTitle: "Tempers Amsterdam Reviews | Staffing Agency",
+    metaDescription: "Tempers is a small Amsterdam-based staffing entity with very limited public information. Read what is known and what to verify before engaging.",
+    intro: "The Dutch employment market contains hundreds of registered staffing entities, and not all of them maintain the kind of public presence that allows candidates to evaluate them before making contact. Tempers, registered at Hestiastraat 752 in the Geuzenveld-Slotermeer district of western Amsterdam, sits firmly in this category. The agency has a transparency score of 15/100 — reflecting a near-total absence of verifiable public information. This review covers what can be established and how to approach this agency with appropriate caution.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Without knowing Tempers' sector focus, salary expectations depend entirely on the type of work they place. If operating in the general temporary staffing market — retail, cleaning, light logistics, hospitality — rates at WML level (€14.71/hr in 2026) are the starting point. At 36 hours per week, this generates approximately €2,271 gross per month, yielding around €1,900–1,960 net after standard loonheffing and social premiums. If operating in a skilled trade or professional sector, rates and conditions differ substantially. Before engaging, candidates should ask: What types of roles do you currently have available? What is the gross hourly or monthly rate? Which CAO applies?",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "No housing provision is indicated. The Geuzenveld-Slotermeer location suggests local Amsterdam-area placements. The neighbourhood is served by several GVB tram and bus routes connecting to central Amsterdam and the ring road, so most assignments should be accessible by public transit.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "For any agency with limited public presence, the minimum verification steps before committing are: confirm the KvK registration is active and current; request the employment contract in writing before starting; verify which CAO covers the placement; confirm that the agency holds SNA certification or ABU membership if they place in sectors requiring it; do not start work without a signed contract specifying rate, hours, location, and notice period. A transparency score of 15/100 is the lowest recorded in the Amsterdam dataset. This does not mean the entity is fraudulent, but standard due diligence is especially important here.",
+      },
+    ],
+    pros: [
+      "KvK-registered entity — formally exists as a legal entity",
+      "Local Amsterdam-West focus may provide community-level job connections not visible online",
+    ],
+    cons: [
+      "Transparency score of 15/100 — lowest in the Amsterdam dataset reviewed",
+      "No active website or social media presence found",
+      "Sector focus and operational status cannot be confirmed independently",
+      "Requires maximum due diligence before any commitment",
+    ],
+    internalLinks: [
+      { href: "/agencies/amsterdam-werkt-aan-de-winkel", label: "Compare with Amsterdam Werkt aan de Winkel for local employment services" },
+      { href: "/agencies/actief65", label: "See Actief65 for a verified flexible staffing option in Amsterdam" },
+    ],
+  },
+
+  "tergos-bv": {
+    metaTitle: "Tergos B.V. Reviews Netherlands | IT & Cybersecurity Staffing",
+    metaDescription: "Tergos B.V. specialises in IT infrastructure and cybersecurity staffing in the Netherlands, part of the Vibe Group. Read about pay, conditions, and contractor experience.",
+    intro: "Cybersecurity and IT infrastructure are among the fastest-growing staffing segments in the Dutch market, driven by compliance requirements, cloud migration projects, and the persistent shortage of qualified professionals. Tergos B.V. operates in this space as a specialist IT Infrastructure and Cyber Security staffing bureau, part of the Vibe Group alongside Spilberg (IT development) and Visser & Van Baars (data and analytics). All three share offices at Gustav Mahlerplein 76 in Amsterdam's Zuidas district. This review covers what IT professionals can expect when working through Tergos.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The Dutch cybersecurity and IT infrastructure market is a seller's market for qualified professionals. Indicative ranges for roles Tergos typically fills: SOC analyst (2–4 years) €3,500–5,000 gross/month employed or €65–90/hr on contract; penetration tester €4,000–6,500 gross/month or €80–110/hr; cloud or DevOps engineer €4,500–7,000 gross/month or €85–130/hr; CISO or Security Architect €7,000–12,000 gross/month employed or €130–200/hr on contract. For international cybersecurity professionals, the 30% ruling applies to most positions above the €46,660 threshold. Net calculation at €6,500 gross monthly (employed) under standard Dutch taxation: approximately €4,400–4,600 net after loonheffing and ZVW premiums.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Tergos does not provide housing. The Vibe Group's Zuidas location and client base means most placements are in Amsterdam, the Randstad, or major Dutch cities such as Utrecht, Rotterdam, and Eindhoven. The cybersecurity market has seen increasing remote and hybrid work arrangements post-2021, so candidates should clarify on-site requirements at the outset. For those relocating to Amsterdam, one-bedroom apartments average €1,700–2,100 per month.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Cybersecurity roles span a range of environments: financial services firms with strict compliance requirements, government-adjacent organisations with security clearance demands, technology companies with cloud-native security needs, and critical infrastructure operators. Some roles require AIVD screening (Dutch national security clearance), which can take 6–12 weeks and may eliminate international candidates without sufficient Dutch residency history. IT infrastructure roles may involve on-call arrangements, particularly in managed services contracts — confirm on-call expectations and associated premium rates before accepting any infrastructure placement.",
+      },
+    ],
+    pros: [
+      "Part of Vibe Group — shared back office, established client relationships, and Zuidas credibility",
+      "Specialist cybersecurity and IT infrastructure focus reduces mismatch risk",
+      "High transparency score (65/100) for an Amsterdam specialist IT agency",
+      "Multi-brand Vibe Group structure provides cross-discipline referral capability",
+    ],
+    cons: [
+      "Concentrated Randstad geography — less relevant for candidates outside Amsterdam and Utrecht corridor",
+      "Some roles require AIVD security clearance — long lead times for international candidates",
+      "On-call obligations in infrastructure roles not always clearly communicated upfront",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/sthree-holdings-bv", label: "Compare with SThree for broader STEM staffing including IT and engineering" },
+      { href: "/agencies/circle-one", label: "See Circle One for Data, Cloud, and Security specialist IT recruitment" },
+    ],
+  },
+
+  "the-boost": {
+    metaTitle: "The Boost Amsterdam Reviews | Newcomer Employment Support",
+    metaDescription: "The Boost in Amsterdam-East supports newcomers and refugees with language, community, and work reintegration. Not a commercial agency — read what it offers.",
+    intro: "Most staffing agency reviews on this platform evaluate commercial bureaus operating for profit. The Boost is a different proposition entirely. Located at Pilotenstraat 6f in Amsterdam-East, The Boost is a community hub running a free, structured programme for newcomers in the Netherlands — primarily people with refugee or asylum-seeker backgrounds. It is not a commercial uitzendbureau and does not charge placement fees or operate for commercial gain. This review explains what The Boost actually offers and whether it fits your situation.",
+    sections: [
+      {
+        heading: "What The Boost Is and Is Not",
+        body: "The Boost runs a five-days-a-week programme built around three pillars: Dutch language learning, community and network building, and personal development and work orientation. The programme is entirely free for participants. It is not a placement agency: The Boost does not have commercial clients who hire through them, does not pay participants a salary or wage for attendance, and does not operate under the ABU CAO or any commercial staffing framework. If you attend The Boost's programme, you are a participant in a community support programme, not an employee or placed worker. The programme is designed for people who have recently arrived in the Netherlands with a refugee background, are at an early stage of Dutch language acquisition, and are working toward employment but not yet work-ready in the conventional commercial sense.",
+      },
+      {
+        heading: "What Participants Gain",
+        body: "Programme participants work on Dutch language skills in a practical, daily context. The community element is deliberate: building a network of peers, mentors, and local contacts is one of the most reliable predictors of employment success for newcomers. Personal development modules address CV writing, job application conventions in the Dutch market, and navigating UWV and gemeente employment support systems. The Boost does not guarantee employment outcomes, but the programme is designed to make participants more competitive in the labour market. For participants receiving bijstand (social assistance benefit) through the gemeente Amsterdam, participation in programmes like The Boost may satisfy re-integration activity requirements — confirm this with your gemeente contact.",
+      },
+      {
+        heading: "Housing and Practical Logistics",
+        body: "The Boost does not provide housing. Participants are expected to have their own living arrangements, typically through COA (Central Agency for the Reception of Asylum Seekers) housing or independent rental. The programme is based in Amsterdam-East, accessible by metro and bus. For newcomers who are already work-ready with sufficient Dutch language skills, running commercial uitzendbureau registrations alongside The Boost programme is the most effective parallel strategy. The gemeente Amsterdam also runs employment support trajectories through Werk Amsterdam that can complement The Boost's offering.",
+      },
+    ],
+    pros: [
+      "Entirely free — no fees, no obligations, no commercial interests",
+      "Holistic approach combining language, community, and work readiness",
+      "Fills a gap that commercial agencies cannot: the pre-employment integration phase",
+      "Amsterdam-East location accessible by public transit",
+    ],
+    cons: [
+      "Not a placement agency — does not provide paid work or guaranteed employment",
+      "Transparency score methodology does not apply to non-commercial community organisations",
+      "Scope limited to the Amsterdam-East area",
+      "Standard employment law rights and CAO frameworks reviewed elsewhere do not apply here",
+    ],
+    internalLinks: [
+      { href: "/agencies/actief65", label: "See Actief65 for senior flexible employment once work-ready" },
+      { href: "/agencies/acadeem-uitzendbureau-nederland-b-v", label: "Compare with Acadeem for graduate and professional placement when ready to enter the market" },
+    ],
+  },
+
+  "the-choice-group": {
+    metaTitle: "The Choice Group Reviews Netherlands | Finance & IT Recruiter",
+    metaDescription: "The Choice Group is a boutique Amsterdam recruiter for Finance, IT & Data, and Executive roles, founded 2023. Read about pay expectations and candidate experience.",
+    intro: "Boutique recruitment firms founded by experienced practitioners tend to either punch above their weight due to genuine specialist knowledge, or struggle to differentiate in an already crowded market. The Choice Group, founded in Amsterdam in 2023 by consultants with extensive prior recruitment experience, operates across Finance, IT & Data, and Executive functions — positioning on transparency and consultant depth rather than volume. This review examines what candidates can expect from a recently founded but experience-led recruitment boutique.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The Choice Group's three disciplines each carry different salary profiles. Finance roles typically range from €3,500 gross/month for a financial controller (3–5 years) to €7,000+ gross for a CFO search. IT and Data roles span €4,000 gross/month for a junior data engineer to €8,000+ for a senior cloud architect or data science lead. Executive search mandates involve individual package negotiation, often including variable components, equity, and non-cash benefits. At €5,500 gross per month — a typical mid-level Finance or IT placement — Dutch loonheffing and premiums reduce take-home to approximately €3,850–4,000 net. The 30% ruling is relevant for international candidates at the €46,660+ threshold and should be discussed with The Choice Group for international placements.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "The Choice Group does not provide housing. As a boutique placing professionals at senior levels, the expectation is that candidates manage their own accommodation. Amsterdam placements at these salary levels are financially feasible even in the current tight rental market, though securing accommodation can take 4–8 weeks given the city's housing shortage — factor this into relocation planning.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "The boutique model means The Choice Group conducts detailed intake conversations before presenting candidates to clients. Expect a substantive discussion about career motivations, preferred company culture, technical competencies, and compensation expectations rather than a quick CV submission. The advantage is better-matched introductions and less time wasted on unsuitable applications. For Finance roles, The Choice Group likely operates primarily on contingency or retained search mandates. Candidates should ask whether their profile is being presented to a current active mandate or held on file for future opportunities — the distinction affects how actively they will be represented.",
+      },
+    ],
+    pros: [
+      "Experienced-consultant model — recruiters with prior sector backgrounds in Finance and IT",
+      "Boutique personal approach reduces mismatch risk compared to volume agencies",
+      "Covers Finance, IT & Data, and Executive — broad enough for cross-functional senior profiles",
+    ],
+    cons: [
+      "Founded 2023 — shorter placement track record than established firms",
+      "Fewer active mandates at any given time than large agencies",
+      "Moderate transparency score (60/100) for a recently founded firm",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/the-preferred-supplier", label: "Compare with The Preferred Supplier for Finance and IT specialist recruitment" },
+      { href: "/agencies/total-solutions", label: "See Total Solutions for finance, banking, and fintech staffing in Amsterdam" },
+    ],
+  },
+
+  "the-preferred-supplier": {
+    metaTitle: "The Preferred Supplier Reviews Netherlands | Finance & IT",
+    metaDescription: "The Preferred Supplier (TPS) specialises in Finance and IT recruitment in Amsterdam, founded 2019. What do candidates say about placements, pay, and the process?",
+    intro: "The Preferred Supplier — known in the market as TPS — is an Amsterdam-based recruitment agency founded in 2019 by partners Matthew and Ruben, who prior to launching TPS had together made over 100 temporary placements, 58 permanent placements, and 21 ZZP intermediations. TPS was built by people who had already proven they could do the work. The agency focuses on Finance and IT recruitment across permanent, temporary, and ZZP placement types — an unusually broad range for a boutique.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "TPS operates across both Finance and IT, two sectors with distinct but overlapping salary profiles. Finance placements: junior financial analyst €2,800–3,500 gross/month; financial controller (3–6 years) €3,500–5,000 gross/month; finance manager €5,000–7,500 gross/month; treasurer €4,500–7,000 gross/month. IT placements: application developer (2–5 years) €3,800–5,500 gross/month; IT project manager €4,500–7,000 gross/month; enterprise architect €6,000–9,000 gross/month. For ZZP intermediations, a contractor at €95/hr working 20 days per month grosses €15,200 before tax — from which they manage their own BTW, income tax, and pension contributions independently. At employed salary levels, €4,500 gross monthly yields approximately €3,250–3,400 net after Dutch loonheffing and premiums.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "TPS does not provide housing. Amsterdam-based placements assume local residency. For Finance candidates relocating from other EU markets, the combination of a competitive gross salary and a potential 30% ruling benefit (threshold €46,660 annually in 2026) makes Amsterdam financially viable despite high rents. TPS should be able to advise on whether a specific placement qualifies for the ruling.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "TPS explicitly handles temporary, permanent, and ZZP placements — a genuinely broad range for a boutique. This flexibility is a candidate advantage: if your preference is ZZP contracting but a permanent opportunity arises, TPS can handle both without referring you elsewhere. The founding partners' documented track record of 100+ temporary placements and 58 permanent placements before launching TPS provides some basis for confidence. The transparency score of 60/100 reflects adequate public information for a 2019-founded firm.",
+      },
+    ],
+    pros: [
+      "Practitioner-founded — partners had proven track record before launching TPS",
+      "Covers permanent, temporary, and ZZP placements — no need for separate recruiters",
+      "Finance and IT specialism provides genuine sector depth",
+      "30% ruling advisory capability for international candidates",
+    ],
+    cons: [
+      "Boutique size means fewer active mandates at any given time vs large agencies",
+      "Moderate transparency score (60/100) — limited public placement data",
+      "ZZP intermediation model requires self-managed tax and BTW — not suitable for all contractors",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/the-choice-group", label: "Compare with The Choice Group for Finance, IT, and Executive recruitment" },
+      { href: "/agencies/total-solutions", label: "See Total Solutions for finance, banking, and fintech staffing in Amsterdam" },
+    ],
+  },
+
+  "top-match-recruitment": {
+    metaTitle: "Top Match Recruitment Reviews Netherlands | Schiphol Jobs",
+    metaDescription: "Top Match Recruitment is based at Schiphol and specialises in airport logistics and transport. Read about pay, working conditions, and what candidates say.",
+    intro: "Working at or near Amsterdam Airport Schiphol is a distinctive employment experience. The airport is one of the Netherlands' largest employers, with thousands of workers in ground handling, cargo logistics, catering, security, and airside operations. Top Match Recruitment, located in the Caravelle office complex adjacent to Schiphol, is a specialist recruitment agency serving this market with a personal approach to candidate guidance.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Airport logistics and transport roles at Schiphol are covered by several relevant CAOs depending on the specific employer and function. Baggage handlers and ground operations workers often fall under the CAO Grondafhandelingsbedrijven. Indicative hourly rates: baggage handler or ramp agent €14.80–17.50/hr gross; cargo logistics operator €15.00–18.50/hr gross; transport coordinator €16.00–20.00/hr gross; shift supervisor €18.00–23.00/hr gross. Airport operations run 24 hours, which means night shift premiums (typically 25–40%), Sunday premiums (50% under most CAOs), and public holiday supplements significantly affect total monthly earnings. A baggage handler working 40 hours per week including regular night shifts and weekend work may earn 15–25% more than the headline hourly rate suggests. Ask Top Match to provide a worked net pay example including typical premium scenarios.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Top Match Recruitment does not provide housing. Schiphol-area employment attracts workers from across the Amsterdam metropolitan area. Proximity to the airport is operationally important for early morning shifts (4am starts are common in ground handling) when public transport options are limited. The Schiphol area — including Hoofddorp, Badhoevedorp, and Aalsmeer — has more accessible rental rates than central Amsterdam, with one-bedroom apartments in the €1,100–1,500 range. Workers relying on public transport should check whether their specific shift pattern aligns with NS rail connections to Schiphol station.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Schiphol airport employment is physically demanding for ground and cargo roles: outdoor work in all weather conditions, heavy lifting, and the stress of aircraft turnaround schedules. Security requirements are strict — all workers with airside access require a Schiphol Pas (airport pass), involving a background check that can take 2–4 weeks to process. Work cannot start until the pass is approved, so factor this into your timeline. Top Match Recruitment's personal approach includes individual guidance through the application and screening process, including the Schiphol Pas application — a meaningful differentiator compared to mass-volume recruiters who may leave candidates to navigate clearance independently.",
+      },
+    ],
+    pros: [
+      "Schiphol-specific expertise: understands airport pass process, shift rotation patterns, and ground handling employers",
+      "Personal guidance through security clearance and onboarding process",
+      "Location adjacent to Schiphol means same-day access to client contacts and employer introductions",
+      "Night and weekend CAO premiums significantly boost effective hourly earnings on rotating shifts",
+    ],
+    cons: [
+      "Moderate transparency score (45/100) — limited public information beyond location and sector",
+      "Geographic concentration: primarily relevant for Schiphol corridor roles only",
+      "Early morning shift starts make public transport unreliable — own transport often necessary",
+      "Schiphol Pas clearance adds 2–4 weeks to the start timeline",
+    ],
+    internalLinks: [
+      { href: "/agencies/employme", label: "See EmployMe for transport and logistics staffing near Schiphol" },
+      { href: "/agencies/global-talent", label: "Compare with Global Talent for international logistics and transport recruitment" },
+    ],
+  },
+
+  "top-of-minds": {
+    metaTitle: "Top of Minds Reviews Netherlands | Executive Search Firm",
+    metaDescription: "Top of Minds is one of Europe's leading executive search firms, with offices in Amsterdam, Rotterdam, Frankfurt, and Madrid. Read about C-level search and management traineeships.",
+    intro: "The gap between staffing agencies and executive search firms is not just one of salary level — it is a fundamentally different market dynamic, operating philosophy, and candidate experience. Top of Minds sits firmly in the executive search category: 80 professionals across four offices in Amsterdam, Rotterdam, Frankfurt, and Madrid, serving scale-ups and established companies searching for C-level executives, country managers, and senior leaders across Europe. This review covers what it means to engage with Top of Minds as a candidate, including their distinctive management traineeship matching service.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Top of Minds focuses on C-level roles (CEO, CFO, CMO, COO), country managers, and senior leadership positions at scale-ups and growth-phase companies. Compensation packages at this level in the Netherlands in 2026: scale-up CEO (Series B/C, 50–200 employees) €120,000–250,000 total annual compensation including equity; country manager €90,000–160,000; CFO at scale-up or mid-market €100,000–200,000; CMO €90,000–160,000. At these levels, standard loonheffing at the top Dutch rate (49.5% above €75,518 in 2026) applies to salary components. Equity, carried interest, and deferred compensation have their own tax treatments requiring specialist advice. The 30% ruling is often applicable to internationally recruited C-level executives, and Top of Minds typically ensures package negotiations include this consideration for international hires. Management traineeship placements typically offer €2,600–3,400 gross per month for WO graduates.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Top of Minds does not provide housing. At executive placement salary levels, housing is self-managed. For management trainees placed through their matchmaking service, the traineeship salary level requires either shared housing or a room in Amsterdam, Rotterdam, or Frankfurt depending on the placement city.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "In executive search, Top of Minds earns a retained fee from the hiring organisation — typically 25–33% of first-year total compensation for C-level roles. As a candidate, you pay nothing. The search firm works on behalf of the client to identify, assess, and present a shortlist. For candidates, appearing on Top of Minds' radar requires a public-facing track record: published case studies, a visible LinkedIn presence, speaking engagements, or a network referral. You cannot apply directly as you would at a uitzendbureau. The management traineeship service is a curated intermediary service connecting ambitious graduates with structured traineeship programmes at companies in their client portfolio — not a traineeship programme run by Top of Minds itself.",
+      },
+    ],
+    pros: [
+      "Transparency score 72/100 — well-documented, publicly visible European operation",
+      "Four-city footprint across Amsterdam, Rotterdam, Frankfurt, and Madrid — genuine EMEA reach",
+      "Scale-up specialisation fills a gap that traditional corporate executive search firms overlook",
+      "Management traineeship matching provides premium access not available on job boards",
+    ],
+    cons: [
+      "Candidates cannot self-refer — profile must reach Top of Minds through networks or public visibility",
+      "Executive search timelines are long: 8–16 weeks from search initiation to accepted offer",
+      "Top Dutch income tax rate (49.5%) applies to most executive salaries — specialist tax advice essential",
+      "No housing or relocation support provided",
+    ],
+    internalLinks: [
+      { href: "/agencies/the-choice-group", label: "Compare with The Choice Group for Finance and Executive search in Amsterdam" },
+      { href: "/agencies/sthree-holdings-bv", label: "See SThree Holdings for STEM professional and senior specialist placements" },
+    ],
+  },
+
+  "total-solutions": {
+    metaTitle: "Total Solutions Reviews Netherlands | Finance & IT Staffing",
+    metaDescription: "Total Solutions (ts.eu) in Amsterdam specialises in finance, banking, treasury, IT, and fintech staffing. Read about placements, pay, and candidate experience.",
+    intro: "Finance-adjacent and technology staffing in Amsterdam operates across a wide spectrum of agencies. Total Solutions — operating under the domain ts.eu — is a mid-sized Amsterdam specialist with a deliberately broad scope within professional services: banking, asset management, treasury, IT, fashion, and fintech. Their team brings direct professional experience in financial services to the staffing function, positioning them as genuine sector specialists rather than generalist recruiters who have drifted into finance.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Total Solutions serves multiple disciplines, each with distinct salary profiles. Banking and asset management: relationship manager €4,000–6,500 gross/month; portfolio analyst €3,800–6,000 gross; fund administrator €3,000–4,500 gross. Treasury: cash manager €4,500–7,000 gross; treasury analyst €3,500–5,500 gross. IT within financial services: project manager €5,000–7,500 gross; application developer €4,000–6,500 gross. FinTech: product manager €4,500–7,000 gross; payments specialist €4,000–6,500 gross. At €5,000 gross per month, the Dutch net calculation after standard loonheffing and ZVW premiums yields approximately €3,500–3,650 net. The 30% ruling is applicable to many Total Solutions placements — particularly in banking and fintech where international professionals are common — at the €46,660 annual threshold. Vakantiegeld (8%) is standard across employed placements.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Total Solutions does not provide housing. Amsterdam-based financial services and fintech professionals are expected to arrange their own accommodation. Senior placements in the banking sector often include relocation allowances negotiated at the employer level — not through Total Solutions directly. At the €5,000+ gross monthly level, Amsterdam one-bedroom apartments at €1,700–2,000 per month consume approximately 35–40% of net income, which is within standard financial planning guidelines.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Financial services roles placed through Total Solutions are typically in structured, regulated environments operating under DNB and AFM supervision. This means compliance requirements are strict, background checks are standard, and some roles may require specific certifications — CFA, DSI registration, or Wft diplomas depending on the function. FinTech placements often operate in more agile, startup-adjacent environments with flat hierarchies and broader responsibilities. Fashion sector placements — buyers, visual merchandising — are the outlier in this mix and represent a completely different environment from treasury or banking. Candidates should confirm which sector network Total Solutions has strongest relationships in relative to their specific profile.",
+      },
+    ],
+    pros: [
+      "Practitioner backgrounds in financial services provide genuine sector depth",
+      "Broad scope (banking, treasury, IT, fintech) insulates against single-sector hiring downturns",
+      "30% ruling advisory capability for international finance and fintech professionals",
+      "DNB and AFM regulated environment expertise for compliance-heavy roles",
+    ],
+    cons: [
+      "Multi-sector scope raises questions about depth in each specific discipline",
+      "Transparency score 55/100 — adequate but room for improvement in public disclosure",
+      "Fashion sector placements are an outlier in a largely financial services portfolio",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/the-preferred-supplier", label: "Compare with The Preferred Supplier for Finance and IT specialist recruitment" },
+      { href: "/agencies/the-choice-group", label: "See The Choice Group for Finance, IT, and Executive recruitment in Amsterdam" },
+    ],
+  },
+
+  "traineeshipsoverzichtnl": {
+    metaTitle: "TraineeshipsOverzicht.nl Reviews Netherlands | Graduate Platform",
+    metaDescription: "TraineeshipsOverzicht.nl matches MBO, HBO, and WO students with traineeships across the Netherlands. Read about how the platform works and what to expect.",
+    intro: "The jump from education to first professional role is where a lot of ambition gets lost in the Dutch labour market. TraineeshipsOverzicht.nl exists specifically to close that gap: a digital matching platform connecting MBO, HBO, and WO students and recent graduates with traineeships, management trainee programmes, and starter vacancies across the Netherlands. With over 8,000 listings and AI-driven matching technology, it occupies a different category from a traditional uitzendbureau. Understanding that distinction is key to using it effectively.",
+    sections: [
+      {
+        heading: "Platform vs. Agency: A Critical Distinction",
+        body: "TraineeshipsOverzicht.nl is a vacancy aggregator and matching platform, not an employment agency. The platform does not employ you, manage your payroll, or advocate on your behalf. It connects you with employers who then run their own selection processes. Think of it as a specialised job board with intelligent filtering. Registering does not guarantee placement. You still need to apply, interview, and secure a position independently. The AI matching speeds up discovery but does not replace candidate effort.",
+      },
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Traineeships in the Netherlands vary widely. Entry-level management trainee programmes at large corporates typically pay €2,400 to €3,200 gross per month for a WO graduate. Smaller company traineeships or MBO-level starter roles may pay €1,800 to €2,200 gross. At €2,400 gross, take-home after loonheffing is approximately €1,900–2,000 net per month. Not all traineeships are paid — some listings include stages that offer only a small vergoeding rather than a salary. Filter carefully between betaalde traineeship listings and stage listings before applying. Vakantiegeld (8%) applies to employed trainees on formal contracts.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "TraineeshipsOverzicht.nl does not provide housing. As a platform, housing is entirely between the candidate and their eventual employer. Most large corporate traineeships do not include housing, though some multinationals offer relocation allowances for out-of-region candidates. Amsterdam-based traineeships require candidates to secure housing in one of Europe's tightest rental markets. A shared room in Amsterdam costs €800–1,100 per month; a studio €1,200–1,600. For trainees earning €2,000 gross, housing consumes 50–60% of take-home pay in central Amsterdam. A traineeship in Eindhoven, Groningen, or Den Haag may offer a much better cost-of-living balance than an Amsterdam equivalent at the same salary.",
+      },
+    ],
+    pros: [
+      "8,000+ listings gives genuine nationwide coverage of the Dutch traineeship market",
+      "AI matching reduces time spent on obviously irrelevant listings",
+      "One centralised platform is more efficient than registering with 15 employers separately",
+      "Nearly two decades of market presence means reliable vacancy feed from established employers",
+    ],
+    cons: [
+      "Platform model provides no advocacy — you still have to apply and interview independently",
+      "Not all listings are paid — stage and vergoeding placements mixed with employed traineeships",
+      "Amsterdam traineeship salaries leave little margin after housing costs",
+      "No housing, coaching, or career support provided by the platform",
+    ],
+    internalLinks: [
+      { href: "/agencies/acadeem-uitzendbureau-nederland-b-v", label: "Compare with Acadeem Uitzendbureau for graduate placement support" },
+      { href: "/agencies/good-company-reinventing-recruitment", label: "See Good Company for graduate IT and sales roles in Amsterdam" },
+    ],
+  },
+
+  "tressunt-uitzendbureau-bv": {
+    metaTitle: "Tressunt Uitzendbureau Reviews Netherlands | Cleaning & Schiphol",
+    metaDescription: "Tressunt Uitzendbureau places cleaners and general workers, with links to Schiphol aircraft cleaning. Read about pay, hours, and what workers say.",
+    intro: "Founded in 2000 and operating from the Osdorp area of western Amsterdam, Tressunt Uitzendbureau B.V. is a mid-size staffing agency with roots in cleaning, general labour, and industrial work. The agency has documented connections to aircraft cleaning at Schiphol Airport, one of the more physically demanding niches in the Dutch uitzendbureau market. This review covers what workers in these sectors can realistically expect from a placement through Tressunt.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Cleaning and general labour placements through Tressunt operate at or near the WML of €14.71 per hour in 2026. Aircraft cleaning at Schiphol is subject to the CAO Schoonmaak, which sets minimum rates by classification and seniority. A basic cleaning worker starts at approximately €14.80–15.20 per hour under 2026 CAO rates. After loonheffing and social premiums, €15.00/hr gross on a 38-hour week yields roughly €1,700–1,800 net per month. Aircraft cleaning involves unsociable hours and the CAO Schoonmaak includes premiums for early morning shifts (before 06:00), evening shifts (after 20:00), and Sunday work. Correctly applied premiums can add €150–300 per month to net income. Workers should confirm explicitly which CAO applies and that all shift premiums are being paid.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Tressunt does not provide housing. Workers placed in Amsterdam-area cleaning roles are expected to be locally based. Schiphol aircraft cleaning shifts start before public transport is running — first trains to Schiphol from Amsterdam Centraal run from around 04:45 — making own transport almost essential for early-morning assignments.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Aircraft cleaning is physically demanding: kneeling, crouching, working in confined cabin spaces, handling cleaning chemicals, and working at pace to meet aircraft turnaround schedules. Shift lengths typically run 4–6 hours per turnaround. The Osdorp base in western Amsterdam is accessible by tram (line 17) but is less convenient for workers in eastern or southern parts of the city. For Schiphol assignments, direct bus or train connections are available but impractical for the earliest shifts.",
+      },
+    ],
+    pros: [
+      "Over 20 years of operation in Amsterdam cleaning and general labour sector",
+      "Documented Schiphol aircraft cleaning connections — relevant for aviation sector workers",
+      "Phase B employment (after 78 weeks) provides substantially more stability and higher rates",
+    ],
+    cons: [
+      "Earnings ceiling close to WML with limited upward mobility without CAO reclassification",
+      "Early morning and late night Schiphol shifts require own transport",
+      "Physically demanding work in confined spaces and all-weather conditions",
+      "Phase A uitzendbeding means limited job security in first 78 weeks",
+    ],
+    internalLinks: [
+      { href: "/agencies/triangle-interim", label: "Compare with Triangle Interim for cleaning and production placements across the Netherlands" },
+      { href: "/agencies/welkom-bij-delivery-drivers", label: "See Delivery Drivers for other Amsterdam blue-collar staffing options" },
+    ],
+  },
+
+  "triangle-interim": {
+    metaTitle: "Triangle Interim Reviews Netherlands | European Staffing Group",
+    metaDescription: "Triangle interim is a European staffing group with 9 offices in the Netherlands. Read about pay for cleaning, production, and warehouse roles before you apply.",
+    intro: "Triangle is a French-origin European staffing group with a meaningful presence in the Netherlands through 9 offices across Amsterdam, Schiphol, Apeldoorn, Deventer, Zutphen, Epe, Utrecht, Den Bosch, Sittard, and Arnhem. Founded in 2007, the group focuses on matching labour supply and demand across cleaning, production, construction, and warehouse sectors. Their Dutch operations serve both local and internationally mobile workers.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Triangle places workers primarily in blue-collar roles. The applicable CAOs vary by placement: CAO Schoonmaak for cleaning roles, CAO Bouwnijverheid for construction, and sector-specific CAOs for production and warehouse work. Most placements through Triangle in 2026 start at or near the WML of €14.71 per hour gross. For a Triangle worker on a standard 40-hour production week at €15.00/hr gross, take-home is approximately €1,700–1,800 net per month. Construction placements under the CAO Bouwnijverheid include additional allowances: a dagvergoeding (daily travel allowance), loondoorbetaling at 100% during illness from day 1, and pension contribution through the Bpf Bouw fund. Night shift work carries premiums of 22–25%. Sunday premiums run at 50%.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Triangle does not provide housing for Dutch-market placements. Workers relocating to the Netherlands from elsewhere in Europe should budget €100–150 per week for SNF-standard shared accommodation outside city centres. Workers in Apeldoorn or Zutphen placements will find the cost of living substantially more manageable than Amsterdam. Weekly rent for shared accommodation in those regions runs €80–100 per week, compared to €120–160 in the Amsterdam Randstad.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Triangle's Schiphol office suggests active placement in airport logistics and ground support, a sector with notoriously early and late shifts. Production and warehouse assignments in regions with poor public transit links may include transport arrangements from the client. Confirm before accepting any assignment outside central Amsterdam whether transport is provided, reimbursed per kilometre, or expected at the worker's own cost.",
+      },
+    ],
+    pros: [
+      "9 Dutch offices providing genuine regional coverage outside the Randstad",
+      "European group structure means experience placing internationally mobile workers",
+      "Transparency score 65/100 — one of the higher scores for a blue-collar staffing group",
+      "CAO Bouwnijverheid construction placements include day-1 illness pay and pension",
+    ],
+    cons: [
+      "Volume staffing focus means individual attention may be lower than at boutique agencies",
+      "Most placements start at or near WML — limited premium earnings without CAO reclassification",
+      "Early Schiphol shifts require own transport",
+      "No housing support for Dutch-market placements",
+    ],
+    internalLinks: [
+      { href: "/agencies/tressunt-uitzendbureau-bv", label: "Compare with Tressunt for Amsterdam cleaning and Schiphol placements" },
+      { href: "/agencies/welkom-bij-delivery-drivers", label: "See Delivery Drivers for Amsterdam logistics and courier staffing" },
+    ],
+  },
+
+  "unity-staffing-group": {
+    metaTitle: "Unity Staffing Group Reviews Netherlands | Amsterdam Agency",
+    metaDescription: "Unity Staffing Group, formerly Smith Solutions, is an Amsterdam staffing agency. Read about their rebrand, what sectors they cover, and what workers say.",
+    intro: "Unity Staffing Group operates from the Bos en Lommerplein business centre in West Amsterdam and represents an interesting case study in agency evolution: the company rebranded from its former trading name Smith Solutions to Unity Staffing Group. The transparency score of 38/100 reflects limited public information about their current operations. This review covers what is known and what to verify.",
+    sections: [
+      {
+        heading: "The Rebrand: What Candidates Should Check",
+        body: "Rebranding from Smith Solutions to Unity Staffing Group is a significant identity shift. Candidates should approach this pragmatically: verify the KvK number to confirm it is the same registered entity, check whether any existing reviews under the previous name remain relevant, and treat the agency as you would any organisation with a changed public identity. A rebrand can reflect genuine strategic evolution or a desire to distance from a previous reputation. Either way, direct verification of current operational details is more useful than assumptions.",
+      },
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The job focus listed for Unity Staffing Group is broad: professional staffing. Without confirmed sector specialisation, the wage range is wide. If the agency operates in white-collar professional sectors, placements might range €2,800–5,000 gross per month. If they also serve blue-collar markets, WML-adjacent rates around €14.71–16.00 per hour gross are more relevant. Until a candidate speaks to the agency directly and receives written confirmation of the role, rate, and applicable CAO, these are indicative ranges. Take-home at €3,000 gross is roughly €2,300–2,450 net per month.",
+      },
+      {
+        heading: "Housing and Transport",
+        body: "Unity Staffing Group does not appear to provide housing. The Bos en Lommerplein location in Amsterdam West is well connected by metro (line 50) and tram to central Amsterdam and surrounding areas. Key questions before registering: What sectors and role types currently have active vacancies? Is Unity Staffing Group ABU-affiliated, and which CAO applies? What is the formal employment contract structure? What is the typical time from registration to first assignment? Can current or recent workers be contacted as references?",
+      },
+    ],
+    pros: [
+      "West Amsterdam location may serve local SME clients that larger national bureaus underserve",
+      "Professional staffing positioning if confirmed means above-WML earnings",
+      "Bos en Lommerplein location is accessible by metro from central Amsterdam",
+    ],
+    cons: [
+      "Transparency score 38/100 — limited independently verifiable public information",
+      "Recent rebrand from Smith Solutions adds uncertainty about operational history",
+      "Sector focus and vacancy volume cannot be confirmed without direct contact",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/agile-professionals-bv", label: "Compare with Agile Professionals BV for other limited-info Amsterdam agencies" },
+      { href: "/agencies/work-on-recruitmentbureau-amsterdam", label: "See Work-on Recruitmentbureau for Amsterdam Zuidas area staffing" },
+    ],
+  },
+
+  "vie-people": {
+    metaTitle: "VIE People Reviews Netherlands | B Corp HR Recruitment Agency",
+    metaDescription: "VIE People is a B Corp certified HR consultancy and recruiter in Amsterdam with 15+ years experience. Read about their recruitment, secondment, and coaching services.",
+    intro: "B Corp certification is a meaningful differentiator in the Dutch recruitment market: it requires organisations to meet verified standards for social and environmental performance, accountability, and transparency. VIE People, based in western Amsterdam at John M. Keynesplein, holds this certification alongside over 15 years of experience and a portfolio of 100+ active clients. They operate across recruitment (permanent search), secondment (detachering), and HR coaching services, focusing on HR professionals, recruitment specialists, and people and culture roles.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay for HR Professionals",
+        body: "VIE People places professionals in a sector where salary benchmarks are well-documented. In 2026, Dutch HR salary ranges by function: HR Coordinator (2–4 years): €2,800–3,600 gross/month. HR Business Partner (4–7 years): €4,000–5,500 gross/month. Head of HR or HR Director (8+ years): €6,000–10,000 gross/month. Recruitment Specialist (2–5 years): €3,200–4,500 gross/month. People and Culture Manager (5–8 years): €4,500–6,500 gross/month. For secondment placements, workers are formally employed by VIE People and placed at client organisations. Net-to-gross conversion at €4,500 gross/month works out to approximately €3,200–3,400 net after loonheffing and social contributions. The 30% ruling is relevant for internationally recruited HR leaders at salaries above €46,660 gross annually.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "VIE People does not provide housing. HR professional placements assume candidates are established Amsterdam or Randstad residents. The John M. Keynesplein office in Amsterdam West is a business hub surrounded by both client organisations and residential areas, making commuting manageable for most professional workers in the metropolitan area.",
+      },
+      {
+        heading: "The B Corp and Retained Search Advantage",
+        body: "VIE People's B Corp status shapes how they operate in ways directly relevant to candidates. Retained search means the employer pays a fee upfront, making VIE People accountable to fill the role with the right candidate, not the fastest one. For HR professionals being placed, this translates to more thorough pre-placement vetting, better cultural and role-function matching, and lower likelihood of a poor-fit placement. The HR coaching service offered to placed workers is notable and not standard among Dutch recruitment agencies.",
+      },
+    ],
+    pros: [
+      "B Corp certified — verified standards for social performance and transparency",
+      "15+ years of experience and 100+ active client portfolio",
+      "Retained search model aligns agency incentives with candidate success",
+      "HR coaching service available to placed workers — not standard in the market",
+      "Transparency score 72/100 — among the highest in Amsterdam",
+    ],
+    cons: [
+      "Only relevant for HR, recruitment, and people-culture professionals",
+      "Retained search model produces slower timelines than contingency — expect 6–10 weeks",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/bluepeaks", label: "Compare with Bluepeaks for RPO and embedded recruitment services" },
+      { href: "/agencies/van-der-pal-recruitment", label: "See Van Der Pal Recruitment for management support and PA specialisation" },
+    ],
+  },
+
+  "van-der-pal-recruitment": {
+    metaTitle: "Van Der Pal Recruitment Reviews Netherlands | EA & PA Specialist",
+    metaDescription: "Van Der Pal Recruitment specialises in Executive Assistants, PAs, and Office Managers in the Netherlands since 2002. Read reviews and salary benchmarks.",
+    intro: "Management support professionals occupy a curious position in the Dutch labour market: they are indispensable to senior leadership, often highly experienced, and yet historically undervalued in salary benchmarking. Van Der Pal Recruitment, founded in 2002 and based in Amstelveen, has spent over two decades focusing exclusively on this niche: Executive Assistants, Personal Assistants, Management Assistants, Executive Secretaries, Project Coordinators, and Office Managers.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Management support salaries in the Netherlands have improved substantially over the past decade as role complexity has increased. In 2026, realistic salary ranges for Van Der Pal placements: Office Manager or PA (3–5 years): €2,800–3,600 gross/month. Senior EA or Management Assistant (6–10 years): €3,600–4,800 gross/month. Executive Assistant to C-suite (10+ years, English fluent, international context): €4,500–6,500 gross/month. At €4,200 gross per month, take-home after loonheffing and social premiums is approximately €3,050–3,200 net. Vakantiegeld of 8% is accrued and paid in May. Many senior EA positions in Amsterdam corporate environments include bonus structures tied to company performance, which Van Der Pal negotiates as part of the placement.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Van Der Pal does not provide housing. Amstelveen-based and Amsterdam-focused placements assume local residence. Most EA and PA positions in their portfolio are at Amsterdam corporate addresses: the Zuidas legal and financial district, Schiphol-adjacent corporate campuses, or Amsterdam city centre professional services firms.",
+      },
+      {
+        heading: "22 Years of Specialism: What It Signals",
+        body: "Founded in 2002, Van Der Pal Recruitment has survived multiple economic cycles and the rise of generalist competitors. Continued operation as an independent specialist after 22 years is a meaningful signal of genuine market value. Over this period, Van Der Pal will have placed candidates at many of the same organisations repeatedly, building insight into company culture, team dynamics, and what individual hiring managers actually want. The transparency score of 68/100 reflects a well-documented agency with clear public information about their service offering.",
+      },
+    ],
+    pros: [
+      "22 years of specialist focus on EA, PA, and management support roles",
+      "Deep Amstelveen and Amsterdam corporate client relationships built over two decades",
+      "Transparency score 68/100 — well-documented and publicly accountable",
+      "Understands bonus, benefits, and negotiation nuances specific to management support roles",
+    ],
+    cons: [
+      "Amstelveen location less convenient for candidates in Amsterdam Noord or Oost",
+      "Niche specialism means only relevant for management support professionals",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/vie-people", label: "Compare with VIE People for HR and people management specialist recruitment" },
+      { href: "/agencies/genius-recruitment", label: "See Genius Recruitment for finance, HR, and admin placements in Amsterdam" },
+    ],
+  },
+
+  "visser-van-baars-bv": {
+    metaTitle: "Visser & Van Baars Reviews Netherlands | Data Analytics Staffing",
+    metaDescription: "Visser & Van Baars specialises in data science, data engineering, and analytics staffing in the Netherlands. Read salary benchmarks and what data professionals say.",
+    intro: "Data and analytics staffing is one of the more technically demanding niches in Dutch recruitment: the hiring manager is usually data-literate and can immediately tell whether a recruiter understands the difference between a data engineer and a data scientist. Visser & Van Baars B.V., founded in 2011 and part of Vibe Group alongside Spilberg and Tergos, operates from Gustav Mahlerplein 76 in the Amsterdam Zuidas. They focus on Data Scientists, Data Engineers, Business Intelligence Developers, Data Analysts, and analytics leadership roles.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "The Dutch data market commands some of the highest salaries in the technology sector. In 2026, realistic salary benchmarks: Data Analyst (2–4 years): €3,500–4,800 gross/month. Data Scientist (3–6 years): €4,500–6,500 gross/month. Senior Data Scientist (6+ years, ML expertise): €6,500–9,000 gross/month. Data Engineer (3–6 years, Python/Spark/cloud): €4,800–7,000 gross/month. Lead or Principal Data Engineer: €7,000–10,000 gross/month. BI Developer (3–6 years): €3,800–5,500 gross/month. At €6,000 gross per month, take-home is approximately €4,100–4,300 net. The 30% ruling is highly relevant for internationally recruited data professionals — the €46,660 annual threshold is crossed at €3,890 gross monthly, meaning most mid-senior data hires are eligible. ZZP data contractors typically operate at €90–180 per hour.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Visser & Van Baars does not provide housing. The Zuidas location assumes candidates are Amsterdam or Randstad residents. For internationally recruited data scientists and engineers, the 30% ruling partially offsets Amsterdam's high rental costs. Many data professionals live in Haarlem, Amstelveen, Utrecht, or Leiden and commute via NS rail, combining Amsterdam salaries with lower housing costs.",
+      },
+      {
+        heading: "The Vibe Group Context and Work Conditions",
+        body: "Being part of Vibe Group alongside Spilberg (development) and Tergos (infrastructure) gives Visser & Van Baars access to a broader client network. A company that hires a backend developer through Spilberg may simultaneously need a data engineer through Visser & Van Baars. Recruiters who understand the difference between a Pandas-proficient analyst and a distributed systems data engineer are substantively more useful to a data professional than a generalist recruiter. The Zuidas location reflects the client base: financial services, consulting, and large technology companies dominate Amsterdam's senior data hiring.",
+      },
+    ],
+    pros: [
+      "Genuine technical specialism in Data, BI, and Analytics — not a generalist IT recruiter",
+      "Vibe Group membership extends client access across development and infrastructure sectors",
+      "Zuidas location aligns with Amsterdam's highest-paying data employers",
+      "14 years of operation — meaningful track record in a sector that has seen rapid agency proliferation",
+      "Transparency score 68/100 — solid public disclosure",
+    ],
+    cons: [
+      "Boutique scale means fewer active mandates at any time than large agencies",
+      "Senior data salaries require careful tax planning — 30% ruling eligibility must be verified",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/eswelt-b-v", label: "Compare with Eswelt for ERP, CRM, and enterprise IT staffing in Amsterdam" },
+      { href: "/agencies/circle-one", label: "See Circle One for Cloud, Security, and Data roles in Amsterdam" },
+    ],
+  },
+
+  "welkom-bij-delivery-drivers": {
+    metaTitle: "Delivery Drivers Agency Reviews Netherlands | Courier Staffing",
+    metaDescription: "Delivery Drivers is an Amsterdam agency placing bezorgers, couriers, and van drivers across the Netherlands. Read about pay, contracts, and working conditions.",
+    intro: "The delivery driver and bezorger market in the Netherlands has undergone a significant structural shift over the past five years. The rise of same-day logistics, dark stores, and e-commerce fulfilment has created sustained demand for drivers, alongside regulatory change that reclassified platform delivery workers as employees. Delivery Drivers, an Amsterdam-based specialist staffing agency on Jan Tooropstraat in western Amsterdam, places bezorgers and couriers on bike, scooter, or van with operators in the Dutch last-mile delivery market.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Driver pay through a staffing agency depends on vehicle type and contract structure. Bicycle and scooter bezorgers placed through an agency typically start at WML of €14.71 per hour gross in 2026. Van drivers, depending on licence class and cargo type, may earn €15.50–18.00 per hour gross. Long-haul and specialist logistics drivers command €18–25 per hour. For an employed bezorger working 40 hours per week at €15.00/hr gross, monthly gross is approximately €2,600, take-home is €1,950–2,100 net. Evening and Sunday premiums in most relevant CAOs: night shifts attract 22–25% supplement; Sundays carry 50%. Given that much last-mile delivery operates 7 days a week and into the evening, correctly applied premiums can add €200–400 per month to net income.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "Delivery Drivers does not provide housing. Amsterdam-based placements assume workers are local residents. Drivers completing early-morning or late-night shifts need to consider transport to and from their starting point, particularly relevant for routes starting at dark store locations in industrial zones outside easy public transport reach.",
+      },
+      {
+        heading: "Work Conditions for Bezorgers and Couriers",
+        body: "The physical demands of last-mile delivery are often underestimated. Bicycle bezorgers carry heavy cargo bags (typically 10–20kg) in all weather. Scooter and moped riders face traffic and weather exposure. Van drivers spend long periods in seated positions and handle manual loading and unloading. Delivery volumes fluctuate based on client demand — seasonal peaks in December and Q4 provide the most consistent high-volume work. Agency-employed drivers on hourly contracts are less exposed to this variability than platform gig workers, but assignment availability still fluctuates.",
+      },
+    ],
+    pros: [
+      "Agency employment provides proper contracts, CAO protections, and social insurance vs. platform gig work",
+      "Specialist focus on delivery and courier placements produces relevant, experienced matching",
+      "Regulatory shift in 2024-2025 makes agency employment the more legally sound structure for bezorgers",
+      "Evening and Sunday premiums substantially boost effective hourly earnings when correctly applied",
+    ],
+    cons: [
+      "Transparency score 48/100 — limited public disclosure; verify CAO and premium structure upfront",
+      "Physical demands are high, including heavy loads, weather exposure, and traffic",
+      "Assignment volume fluctuates seasonally — lean summer months require financial buffer",
+      "No housing support",
+    ],
+    internalLinks: [
+      { href: "/agencies/triangle-interim", label: "Compare with Triangle Interim for broader blue-collar and logistics staffing" },
+      { href: "/agencies/tressunt-uitzendbureau-bv", label: "See Tressunt Uitzendbureau for Amsterdam cleaning and general labour" },
+    ],
+  },
+
+  "werkenindehoreca": {
+    metaTitle: "WerkenindeHoreca Reviews Netherlands | Hospitality Job Platform",
+    metaDescription: "WerkenindeHoreca.nl is a hospitality job platform since 2006. Read about how it works, what pay to expect, and how it compares to a traditional uitzendbureau.",
+    intro: "WerkenindeHoreca.nl has been a fixture of the Dutch hospitality labour market since 2006. Based in Amstelveen, it operates as a vacancy aggregator and direct-application platform for the Dutch hospitality industry rather than as a traditional uitzendbureau. The platform does not place you, employ you, or manage your payroll. It connects job seekers directly with hospitality employers, who then manage their own hiring. Understanding this model is essential to using it effectively.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay in Dutch Hospitality",
+        body: "Salary benchmarks for hospitality roles on WerkenindeHoreca are governed by the CAO Horeca. In 2026, key benchmarks: Kitchen assistant (Hulpkok): €14.71–15.20/hr gross. Cook (Kok niveau 2-3): €15.50–17.80/hr gross. Head chef (Chefkok): €20.00–28.00/hr gross or equivalent monthly salary. Bartender (Barmedewerker): €14.71–15.50/hr gross. Restaurant manager: €2,800–4,500 gross/month. Sunday and public holiday work under the CAO Horeca carries a 50% premium. Evening and night work from 22:00 attracts a supplement. A bartender working every Friday and Saturday night and Sunday brunch will see their effective hourly rate substantially above their base rate when premiums are correctly applied. The platform itself does not set or guarantee any salary; rates are entirely determined by the individual employer listing the vacancy.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "WerkenindeHoreca does not provide housing. As a platform, it has no employment relationship with workers and therefore no housing responsibility. Some hospitality employers — particularly hotels and resort-type venues outside cities — offer staff housing packages. These are advertised in individual listings and are the employer's arrangement. For seasonal or resort hospitality work in Zeeland, North Holland, or Valkenburg, accommodation bundled with the job offer is worth filtering for specifically.",
+      },
+      {
+        heading: "How the Platform Works and Transport",
+        body: "WerkenindeHoreca aggregates hospitality vacancies from restaurants, hotels, catering companies, bars, and event venues across the Netherlands. Candidates apply directly to employers. The direct application model means less process friction than going through a bureau for a standard hospitality vacancy. For career-critical moves, supplementing platform use with representation by a specialist hospitality recruiter provides more leverage than a platform application alone.",
+      },
+    ],
+    pros: [
+      "Founded 2006 — nearly two decades of reliable vacancy feed from established hospitality employers",
+      "Sector-specific coverage means relevant listings without filtering through unrelated industries",
+      "Direct application model: no bureau intermediary for straightforward hospitality roles",
+      "National coverage from Amsterdam and Randstad to regional resort and hotel markets",
+    ],
+    cons: [
+      "Platform model provides no advocacy — applications and interviews entirely the candidate's responsibility",
+      "No housing, coaching, or career support provided by the platform",
+      "Salary and CAO rates not guaranteed by the platform — must verify with each employer",
+      "Senior career moves benefit from recruiter representation rather than platform application",
+    ],
+    internalLinks: [
+      { href: "/agencies/all-star-chefs", label: "Compare with All Star Chefs for chef-specific interim staffing in Amsterdam" },
+      { href: "/agencies/be-my-guest-hospitality-events", label: "See Be My Guest for Amsterdam event and hospitality staffing" },
+    ],
+  },
+
+  "work-on-recruitmentbureau-amsterdam": {
+    metaTitle: "Work-on Uitzendbureau Amsterdam Reviews Netherlands",
+    metaDescription: "Work-on Recruitmentbureau is an Amsterdam staffing agency in the Zuidas area. Read about what sectors they cover, worker conditions, and what to verify before applying.",
+    intro: "Work-on Uitzendbureau is an Amsterdam-based staffing and recruitment agency operating from Fred. Roeskestraat 115 in the Zuidas and Oud-Zuid area, one of Amsterdam's most prestigious business addresses. Located among law firms, financial institutions, and consulting practices, the Zuidas positioning suggests a professional or business services orientation, though the agency's specific sector focus is not comprehensively documented in public sources. The transparency score of 35/100 reflects this limited public verifiability.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Without confirmed sector focus, salary ranges must be presented conditionally. If Work-on serves the professional services market implied by their location, placements might range from €3,000 gross per month for junior support roles to €6,000+ for senior professional functions. Legal secretaries, financial assistants, and professional services administrators at Zuidas firms typically earn €2,800–4,200 gross. Net take-home on €3,500 gross is approximately €2,600–2,750 per month after loonheffing and premiums. If Work-on operates a broader staffing model, WML-adjacent rates of €14.71–16.00 per hour gross are more relevant. Candidates should confirm sector focus before registering.",
+      },
+      {
+        heading: "Housing and Transport",
+        body: "Work-on does not provide housing. The Zuidas location is exceptionally well connected: Amsterdam Zuid station is adjacent, making this one of the easiest business addresses in Amsterdam to reach by public transport from any direction. Candidates in Amsterdam, Amstelveen, Haarlem, or Utrecht can commute directly without changing trains.",
+      },
+      {
+        heading: "What to Establish Before Registering",
+        body: "Given the transparency score of 35/100 and limited public sector information, candidates should resolve the following before investing time: What sectors and role types currently have active vacancies? Is Work-on ABU-affiliated, and which CAO governs placed workers? What is the formal employment contract structure? What is the typical time from registration to first assignment? Can current or recent workers be contacted as references? Business hours only (08:30–17:30 weekdays) limit access for workers currently employed elsewhere who need to make contact outside office hours.",
+      },
+    ],
+    pros: [
+      "Fred. Roeskestraat Zuidas address positions the agency near Amsterdam's highest-earning employers",
+      "Professional presentation and business hours operation consistent with legitimate commercial bureau",
+      "Amsterdam Zuid transport hub makes the office easily accessible from across the metropolitan area",
+    ],
+    cons: [
+      "Transparency score 35/100 — limited independently verifiable sector or placement information",
+      "Sector focus cannot be confirmed from public sources without direct contact",
+      "Business-hours-only contact limits access for candidates currently in employment",
+      "No housing or relocation support",
+    ],
+    internalLinks: [
+      { href: "/agencies/unity-staffing-group", label: "Compare with Unity Staffing Group for other Amsterdam agencies with limited public info" },
+      { href: "/agencies/van-der-pal-recruitment", label: "See Van Der Pal Recruitment for verified Amstelveen-area professional staffing" },
+    ],
+  },
+
+  "xl-career-company-bv": {
+    metaTitle: "XL Career Company Reviews Netherlands | Graduate Recruitment",
+    metaDescription: "XL Career Company places HBO and WO graduates in management trainee and professional roles across the Netherlands. Read candidate reviews before registering.",
+    intro: "For HBO and WO graduates entering the Dutch labour market with zero to five years of experience, the recruiter you choose in those first years has an outsized impact on career trajectory. XL Career Company B.V., operating from Radarweg 539 in Amsterdam, focuses specifically on this segment: graduate starters, management trainees, and young professionals in marketing, sales, and finance. They work on a no-cure-no-pay model, which affects both the economics of the relationship and the incentives at play. This review unpacks what candidates can realistically expect.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "XL Career Company covers vacancies across nine Dutch provinces. Salary ranges for their typical placements in 2026: Graduate or Junior Marketing role €2,400–3,000 gross per month; Management trainee programme €2,600–3,200 gross; Junior Sales professional €2,800–3,400 gross; Finance graduate in controlling or accounting €2,600–3,200 gross. At €2,800 gross per month, a candidate takes home approximately €2,200–2,350 net after loonheffing and social premiums. Vakantiegeld (8% holiday allowance) accrues separately and is typically paid in May. Management trainee positions often include non-salary benefits: travel allowance, phone, laptop, or a training budget — request the full package breakdown when discussing any specific opening.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "XL Career Company does not provide housing. Candidates are expected to have their own accommodation, consistent with the professional nature of their placements. For recent graduates in Amsterdam, shared housing runs €800–1,200 per room per month. For placements in other Dutch cities through their nine-province network, costs are typically lower: €600–900 per room in cities like Eindhoven, Groningen, or Arnhem.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "XL Career Company's national reach means placements can span from Amsterdam to Zeeland. Candidates willing to relocate or commute beyond their home city have a broader range of opportunities. Management trainee programmes in particular may involve rotations between office locations or regional assignments — clarify the geographic scope of any specific vacancy upfront. Transparency score: 65/100, above average for a Dutch graduate recruiter. The no-cure-no-pay model eliminates candidate financial risk; the agency is motivated to place you quickly but is also selective about who they invest time in.",
+      },
+    ],
+    pros: [
+      "Above-average transparency score (65/100) — verifiable employer relationships and public presence",
+      "Nine-province coverage gives broader reach than Amsterdam-only graduate recruiters",
+      "No-cure-no-pay model: candidates carry no financial risk",
+      "Management trainee programmes often include training budgets and non-salary benefits",
+    ],
+    cons: [
+      "Vacancy volume at any given time depends on active client mandates — quiet periods mean fewer introductions",
+      "Selective intake means borderline-match candidates may receive limited recruiter engagement",
+      "No housing or relocation support",
+      "Running parallel registrations with 2–3 graduate agencies is advisable to maximise market coverage",
+    ],
+    internalLinks: [
+      { href: "/agencies/acadeem-uitzendbureau-nederland-b-v", label: "Compare with Acadeem Uitzendbureau for academic graduate placements" },
+      { href: "/agencies/igen-people-potential-positivity", label: "See igen for IT and tech graduate staffing in Amsterdam" },
+    ],
+  },
+
+  "igen-people-potential-positivity": {
+    metaTitle: "igen Agency Reviews Netherlands | IT and Tech Staffing",
+    metaDescription: "igen places young IT, tech and healthcare professionals in the Netherlands. Find out about pay, culture, and what candidates say about working through igen.",
+    intro: "igen is an Amsterdam-based staffing and recruitment agency with a distinct identity: they focus on the internet native generation, placing young professionals in IT, technology, and healthcare support roles. Operating from a startup-style office at John M. Keynesplein in western Amsterdam, igen emphasises community, inspiration, and team effort. This review looks at what that means in practice for candidates and workers.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "IT placements through igen for junior profiles typically fall in the €2,600–3,500 gross per month range for roles such as helpdesk support, junior developer, and IT coordinator. Mid-level software developers and IT specialists may earn €3,500–5,000 gross. Healthcare support roles in igen's portfolio tend to be lower — typically €2,200–2,800 gross — depending on function and CAO classification under CAO Zorg en Welzijn. At €3,000 gross per month, take-home is approximately €2,300–2,450 net after loonheffing and ZVW premiums. The 30% ruling applies to internationally recruited IT professionals whose annual salary exceeds €46,660 gross in 2026 — worth discussing with igen if you are relocating from abroad. Vakantiegeld (8%) accrues as standard.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "igen does not provide housing. Amsterdam-based placements assume the candidate is locally resident. For candidates relocating to Amsterdam for an igen-placed IT role, one-bedroom apartments in the city average €1,600–2,000 per month, with shared housing available at €900–1,200 per room. The Nieuw-West area near igen's office is somewhat more affordable than the city centre.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "IT work through igen is typically office-based or hybrid, with clients ranging across Amsterdam-area technology companies and healthcare organisations. The agency's transparency score of 58/100 indicates reasonable public verifiability. Healthcare support roles may involve shift patterns, weekend work, and client-specific scheduling requirements. IT roles are more likely to follow standard office hours. The startup-culture orientation translates to an expectation that candidates are proactive and self-directed rather than passive about their development.",
+      },
+    ],
+    pros: [
+      "Community-oriented approach produces more engaged recruiter conversations than transactional bureaus",
+      "Reasonable transparency score (58/100) — verifiable presence and sector clarity",
+      "IT placements well above WML — 30% ruling access for many international junior IT hires",
+      "Healthcare and tech dual focus provides two distinct placement pathways",
+    ],
+    cons: [
+      "Healthcare support placements are at notably lower salary levels than IT roles",
+      "Not relevant for professionals outside IT or healthcare-adjacent roles",
+      "No housing or relocation support",
+      "Startup-style culture is a fit signal — less suitable for candidates who prefer traditional corporate environments",
+    ],
+    internalLinks: [
+      { href: "/agencies/xl-career-company-bv", label: "Compare with XL Career Company for graduate marketing and finance roles" },
+      { href: "/agencies/agile-recruitment", label: "See Agile Recruitment for broader IT and HR placements in Amsterdam" },
+    ],
+  },
+
+  "ab-groep": {
+    metaTitle: "AB Groep Reviews Netherlands | Logistics and Warehouse Staffing",
+    metaDescription: "AB Groep places workers in logistics, production, and warehouse roles in Nieuwegein and Utrecht. Read about pay, housing deductions, and working conditions.",
+    intro: "AB Groep is a Dutch flex employment agency based in Nieuwegein, operating in the logistics, production, and warehouse sectors that form the backbone of the Utrecht and wider Randstad economy. The agency provides accommodation arrangements for workers — a defining feature of this segment of the Dutch labour market that requires close scrutiny. This review covers pay, housing deductions, and what workers in this sector should expect.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Logistics, production, and warehouse workers placed through AB Groep earn at or around WML, which in 2026 is €14.71 per hour gross. A full-time worker doing 160 hours per month grosses €2,354 before deductions. Night shifts and weekend work attract mandatory CAO supplements: Sunday work at 50% premium, and night work (typically 00:00–06:00) at 22–50% depending on the specific CAO. After loonheffing and social premiums, a WML worker at 40 hours per week takes home approximately €480–510 net per week before housing deductions. The maximum SNF housing deduction is €113.50 per week — after this, approximately €366–396 remains for all other living costs.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "AB Groep offers accommodation arrangements primarily in the Nieuwegein and Utrecht region. Verify whether their accommodation is SNF-certified — certification requires regular inspection and imposes minimum standards for room size, sanitation, kitchen facilities, and maximum occupancy. Non-certified accommodation falls outside this protection. Request the SNF registration number and verify it at normeringflexwonen.nl before signing any accommodation agreement.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Nieuwegein has reasonable public transport links to Utrecht Centraal, but many logistics facilities are on industrial estates more accessible by bicycle or car. AB Groep may offer transport to client sites — confirm whether this is included, at what cost, and whether the cost is deducted from earnings separately from housing. Logistics and warehouse work involves physically demanding conditions: repetitive lifting, standing for full shifts, and in some facilities, temperature-controlled cold storage environments.",
+      },
+    ],
+    pros: [
+      "Genuine client base in Nieuwegein and Utrecht logistics corridor — one of the main Dutch distribution hub regions",
+      "Integrated work and accommodation for workers who need both simultaneously",
+      "Shift premiums for nights and Sundays can meaningfully supplement WML base earnings",
+    ],
+    cons: [
+      "WML earnings combined with maximum SNF housing deduction leave under €400 per week disposable income",
+      "Transparency score 45/100 — mid-range, with room to improve on public accountability",
+      "Cold storage and physically demanding shifts require specific preparation",
+      "No relocation support beyond accommodation arrangement",
+    ],
+    internalLinks: [
+      { href: "/agencies/e-a-uitzendbureau", label: "Compare with E&A Uitzendbureau for North Brabant production and logistics staffing" },
+      { href: "/agencies/contrain", label: "See Contrain reviews for Limburg and Brabant production placements" },
+    ],
+  },
+
+  "contrain": {
+    metaTitle: "Contrain Reviews Netherlands | Worker Conditions and Housing",
+    metaDescription: "Contrain places migrant workers in Limburg and Brabant production roles. Worker reviews document housing concerns. Read the full picture before registering.",
+    intro: "Contrain is a Dutch employment agency active in the flex worker segment across Limburg and Brabant, placing migrant and seasonal workers in production, logistics, and greenhouse roles. The agency operates at the lower-transparency end of the market (score: 30/100 on AgencyCheck) and worker documentation from multiple sources has raised concerns about housing conditions at several of their locations. This review aims to give prospective workers an accurate picture of what to expect.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Production, logistics, and greenhouse workers placed through Contrain earn at or around WML: €14.71 per hour gross in 2026. Overtime above 40 hours per week is compensated at 125% for hours 40–50, and 150% above 50 hours under ABU CAO rules — seasonal peaks in greenhouse and production work can make these overtime tiers relevant. After loonheffing and social premiums, net take-home before deductions at 40 hours per week is approximately €480–510. After the maximum SNF housing deduction of €113.50 per week, workers retain approximately €366–396. Workers should request a full written payslip breakdown before starting: rate, supplements, housing deduction, transport deduction, insurance, and net amount.",
+      },
+      {
+        heading: "Housing Conditions: Documented Concerns",
+        body: "Worker documentation gathered by researchers indicates that housing conditions at several Contrain accommodation sites have fallen below acceptable standards. Specific issues reported include overcrowding beyond SNF-permitted maximum occupancy, inadequate sanitation facilities, and deferred maintenance. Workers paying the maximum SNF deduction for substandard accommodation are being overcharged in real terms. Before accepting: ask whether the specific site is SNF-certified and request the SNF registration number. Check occupancy rates — the SNF standard requires a minimum of 10 square metres per person in a shared room. If conditions do not meet what was promised, contact the SNF directly or the FNV union for advice.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Limburg and Brabant are less densely served by public transport than the Randstad. Many production and greenhouse facilities in this region are in rural or semi-rural areas where a company bus is the primary means of getting to and from the site. Confirm whether transport is provided, whether it is free or deducted, and what the schedule is before you arrive. Production and greenhouse work involves repetitive motions, cold or humid environments, and multi-shift patterns.",
+      },
+    ],
+    pros: [
+      "Provides a route into work for migrant and seasonal workers in the Limburg and Brabant region",
+      "Accommodation bundled with work reduces arrival logistics for new arrivals to the Netherlands",
+    ],
+    cons: [
+      "Low transparency score (30/100) — limited public accountability",
+      "Multiple documented cases of housing conditions below SNF standards",
+      "WML earnings after SNF deductions leave under €400 per week disposable income",
+      "Workers who arrange their own accommodation independently and apply direct to ABU-certified agencies will generally be in a stronger position",
+    ],
+    internalLinks: [
+      { href: "/agencies/eg-personeel", label: "Compare with EG Personeel for Westland greenhouse staffing with housing" },
+      { href: "/agencies/e-a-uitzendbureau", label: "See E&A Uitzendbureau for North Brabant production placements" },
+    ],
+  },
+
+  "e-a-uitzendbureau": {
+    metaTitle: "E&A Uitzendbureau Reviews Netherlands | Brabant Production Jobs",
+    metaDescription: "E&A Uitzendbureau places workers in North Brabant production and logistics roles with accommodation in Berghem. Read about housing conditions, pay, and deductions.",
+    intro: "E&A Uitzendbureau is a Dutch staffing agency based in Berghem, North Brabant, placing workers in production and logistics roles in the region. The agency provides accommodation at multiple locations, including a large worker residence in Berghem with shared facilities. This combination of work and housing placement is common in North Brabant's industrial corridor — and as with any such arrangement, the key questions are what workers actually earn after deductions and what the housing conditions look like in practice.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Production and logistics workers placed through E&A Uitzendbureau earn at or around WML: €14.71 per hour gross in 2026. Shift premiums apply where relevant: Sunday work at 50%, and night work at 22% or more depending on applicable CAO. Workers in Brabant's industrial facilities often work three-shift or four-shift patterns, meaning premiums can add €50–150 per week to gross earnings depending on which shifts are assigned. After loonheffing and social premiums, a WML worker at 40 hours takes home approximately €480–510 net before deductions. From this, housing deduction (maximum €113.50 per week SNF), transport deduction if applicable, and any insurance deductions are subtracted before the worker receives the remainder.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "E&A provides accommodation at a large worker residence in Berghem and at other locations. Workers considering this agency should ask explicitly: Is the Berghem accommodation SNF-certified? What is the maximum occupancy per room? What is the weekly housing deduction, and is it set below the SNF maximum? How are maintenance issues handled? Workers who have stayed at the Berghem residence report that standards can vary between wings or blocks — newer sections tend to be better maintained than older ones. Request to see the accommodation before signing if at all possible.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Berghem is a village in the municipality of Oss, North Brabant. E&A likely provides transport between accommodation and client work sites — confirm whether this is included in the housing arrangement or charged separately. Production facilities in Brabant's industrial zones are often not reachable on foot or by bike from worker accommodation. Production work spans food processing, general manufacturing, logistics picking, and automotive supply chain operations. Physical demands vary by client site.",
+      },
+    ],
+    pros: [
+      "Integrated work-and-accommodation solution for workers who need both simultaneously",
+      "North Brabant industrial base provides a wide range of production and logistics client types",
+      "Shift premium eligibility can meaningfully boost WML base earnings for workers on night or weekend patterns",
+    ],
+    cons: [
+      "Transparency score 50/100 — mid-range; accommodation quality varies by site",
+      "Net earnings after housing and transport deductions at WML are modest",
+      "Berghem location is rural — limited independent facilities without agency transport",
+      "Workers who can arrange independent accommodation typically retain more gross earnings",
+    ],
+    internalLinks: [
+      { href: "/agencies/ab-groep", label: "Compare with AB Groep for Utrecht and Nieuwegein logistics staffing" },
+      { href: "/agencies/contrain", label: "See Contrain reviews for Limburg and Brabant production placements" },
+    ],
+  },
+
+  "eg-personeel": {
+    metaTitle: "EG Personeel Reviews Netherlands | Westland Greenhouse Staffing",
+    metaDescription: "EG Personeel places workers in Westland greenhouse and horticulture roles with housing in Wateringen. Read about conditions, pay, and deductions before applying.",
+    intro: "The Westland municipality is the greenhouse capital of the Netherlands — and arguably of Europe. EG Personeel is a Dutch employment agency active specifically in this sector, placing workers in horticulture and production roles and providing shared housing in the Wateringen area. For migrant workers considering greenhouse work in the Westland region, EG Personeel is one of several agencies operating in this market. This review explains what the work involves, what you will earn, and what to check about the housing.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Greenhouse workers placed through EG Personeel earn at or around WML: €14.71 per hour gross in 2026. The relevant CAO is the CAO voor de Open en Onder Glas Tuinbouw, which sets minimum rates and defines overtime and weekend supplement rules. At 40 hours per week, a greenhouse worker grosses approximately €588 per week before deductions. After loonheffing and social premiums, net before housing is approximately €480–510. The SNF maximum housing deduction is €113.50 per week, leaving approximately €366–396 per week for all other costs. EG Personeel's transparency score is 35/100 — limited public information available to verify pay structures or CAO compliance from external sources.",
+      },
+      {
+        heading: "Housing Conditions in Wateringen",
+        body: "EG Personeel provides shared housing in the Wateringen area. The key compliance standard is SNF certification. Workers should ask EG Personeel for the SNF registration number of the specific accommodation address and verify it at normeringflexwonen.nl. SNF-certified housing must meet minimum standards for space per person (at least 10 square metres per person in a shared room) and the maximum deduction is capped at €113.50 per week. Wateringen is a relatively settled community and greenhouse worker housing here is generally less problematic than in more isolated rural locations — but conditions still vary between providers and addresses.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Westland greenhouse facilities are spread across a large area and are often reachable by bicycle from Wateringen, which makes this region more cycle-friendly than some other agricultural staffing markets. EG Personeel may provide transport for workers whose assigned site is not cycle-accessible — confirm this arrangement before accepting. Greenhouse work tasks include planting, training plants on wires, harvesting, packing, and sorting. The work is repetitive and involves bending or reaching for extended periods in humid greenhouse environments.",
+      },
+    ],
+    pros: [
+      "Westland focus means genuine client relationships in the largest greenhouse horticulture cluster in Europe",
+      "Wateringen accommodation is in a settled community with better baseline conditions than isolated rural sites",
+      "Daytime shifts are standard in greenhouse work — more predictable scheduling than industrial shift work",
+    ],
+    cons: [
+      "Low transparency score (35/100) — limited independent verification of practices",
+      "Net earnings after SNF deduction leave under €400 per week disposable income at WML",
+      "Repetitive physical work in humid conditions — not suitable for workers with joint or back issues",
+      "SNF certification must be verified independently before accepting accommodation",
+    ],
+    internalLinks: [
+      { href: "/agencies/fix-team", label: "Compare with Fix Team for Westland greenhouse staffing reviews" },
+      { href: "/agencies/contrain", label: "See Contrain for Limburg and Brabant greenhouse and production placements" },
+    ],
+  },
+
+  "eurojob": {
+    metaTitle: "EuroJob Reviews Netherlands | Worker Complaints and Conditions",
+    metaDescription: "EuroJob places migrant workers in North Brabant production roles. Worker reviews document severely substandard housing. Read the full picture before registering.",
+    intro: "EuroJob is a Dutch flex employment agency based in Bergen op Zoom, North Brabant, placing migrant workers in production and logistics roles. The agency has one of the lowest transparency scores (20/100) in the AgencyCheck dataset, and worker documentation from multiple sources raises serious concerns about housing conditions at several of their locations. This review aims to give prospective workers accurate, grounded information.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Production and logistics workers placed through EuroJob earn at or around WML: €14.71 per hour gross in 2026. At 40 hours per week, gross weekly earnings are approximately €588. After loonheffing and social premiums at WML level, net take-home before housing and transport deductions is approximately €480–510 per week. The SNF maximum housing deduction of €113.50 per week reduces this to roughly €366–396 per worker per week. Workers have documented paying housing charges that exceeded the SNF maximum without the corresponding quality standards. A worker paying above-SNF rates for below-SNF conditions is being overcharged in real terms. Request a full written itemised payslip breakdown before starting.",
+      },
+      {
+        heading: "Housing Conditions: Documented Concerns",
+        body: "Worker documentation reviewed by AgencyCheck indicates that housing conditions at multiple EuroJob-linked accommodation sites have fallen significantly below acceptable standards. The most serious documented case involves accommodation in a former animal shelter repurposed as worker housing — a site where basic sanitation, heating, and structural integrity were insufficient for residential use. Under SNF standards, accommodation must meet minimum requirements: 10 square metres per person in shared rooms, functioning sanitation and kitchen facilities, and fire safety measures. Repurposed industrial or agricultural buildings used as worker housing without SNF certification fall entirely outside this protection framework. Workers at non-SNF sites have no formal recourse through the SNF inspection system.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Bergen op Zoom is a mid-sized city in western North Brabant. Production facilities in the region include food processing, packaging, and general manufacturing. Transport between accommodation and client sites is typically provided by the agency — workers have reported transport deductions being added to housing deductions without prior clarity on the total effective weekly cost. Request confirmation of all deductions in writing before arrival. Legal options for workers who encounter problems include the FNV union, the Dutch Labour Inspectorate (nlainspectie.nl), and civil proceedings.",
+      },
+    ],
+    pros: [
+      "Provides access to work for migrant workers in North Brabant — a real labour market need",
+    ],
+    cons: [
+      "Very low transparency score (20/100) — limited public accountability",
+      "Documented use of repurposed non-residential building as worker accommodation at multiple sites",
+      "Housing deductions documented in excess of SNF maximum at below-SNF-standard conditions",
+      "No formal SNF recourse for workers at non-certified sites",
+      "Workers with alternative options should strongly consider other agencies with verified housing standards",
+    ],
+    internalLinks: [
+      { href: "/agencies/fix-team", label: "See Fix Team reviews for Westland housing concern documentation" },
+      { href: "/agencies/eg-personeel", label: "Compare with EG Personeel for Westland greenhouse staffing with SNF context" },
+    ],
+  },
+
+  "fix-team": {
+    metaTitle: "Fix Team Reviews Netherlands | Westland Housing Concerns",
+    metaDescription: "Fix Team places workers in Westland and Midden-Delfland greenhouse roles. Worker reviews document mold, damaged facilities, and overcrowding. Read before registering.",
+    intro: "Fix Team is a Dutch temporary staffing agency operating in the Westland and Midden-Delfland region, placing workers in greenhouse and production roles and providing housing. Worker documentation from multiple sources raises specific concerns about accommodation quality at Fix Team sites, including reports of mould, damaged facilities, and overcrowding. This review aims to give prospective workers an honest picture of the agency and the sector.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Greenhouse workers in the Westland region earn at WML level: €14.71 per hour gross in 2026. Under the horticulture CAO (CAO voor de Open en Onder Glas Tuinbouw), weekend and public holiday supplements apply. A 40-hour WML worker grosses €588 per week; after loonheffing and social premiums, net before deductions is approximately €480–510. Fix Team's transparency score is 22/100 — among the lowest in AgencyCheck's dataset. Workers should request a written payslip breakdown covering all deductions before the first pay period, and verify CAO compliance independently.",
+      },
+      {
+        heading: "Housing Conditions: Documented Issues",
+        body: "Worker reviews and independent documentation describe conditions at Fix Team accommodation including: mould growth on walls and ceilings, structural damage to facilities not repaired in a reasonable timeframe, and overcrowding beyond SNF-permitted maximum occupancy. Mould in sleeping and living areas is a health hazard, not a cosmetic complaint. Overcrowding reduces privacy, increases noise, and compounds hygiene problems in shared facilities. Workers paying €113.50 per week for accommodation with mould damage and illegal overcrowding are receiving materially less than the deduction rate is supposed to guarantee. Before accepting: request the SNF registration number and verify it, request to visit the accommodation, and ask how maintenance requests are handled.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Westland greenhouse facilities are geographically spread. Fix Team provides transport to client sites — confirm whether this is included in the housing package or charged separately. Greenhouse work involves standing for extended periods in humid conditions and repetitive harvesting or sorting tasks. Conditions are seasonal: summer tomato cultivation is hot and demanding; winter horticultural work is cooler and volume often decreases.",
+      },
+    ],
+    pros: [
+      "Provides access to Westland greenhouse work with accommodation included",
+      "Westland greenhouse sector offers consistent demand for agricultural labour",
+    ],
+    cons: [
+      "Very low transparency score (22/100)",
+      "Mould growth and structural damage specifically documented at accommodation sites",
+      "Overcrowding in violation of SNF maximum occupancy standards documented",
+      "Workers with alternative agency or independent accommodation options should use them",
+    ],
+    internalLinks: [
+      { href: "/agencies/eg-personeel", label: "Compare with EG Personeel for Westland greenhouse staffing with housing" },
+      { href: "/agencies/eurojob", label: "See EuroJob for North Brabant housing concern documentation context" },
+    ],
+  },
+
+  "hellojob-watchout": {
+    metaTitle: "HelloJob Watchout Reviews Netherlands | Worker Housing Concerns",
+    metaDescription: "HelloJob / Watchout places workers in Hazerswoude-Rijndijk production roles. Worker reviews describe poor and neglected housing. Read before registering.",
+    intro: "HelloJob / Watchout is a Dutch employment agency placing flex workers in production roles in the Hazerswoude-Rijndijk area of South Holland. The agency provides worker accommodation alongside employment — a common arrangement in this segment of the Dutch labour market. The agency's transparency score on AgencyCheck is 18/100 — one of the lowest in the dataset — and worker reviews describe poor and neglected housing conditions at their accommodation sites.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Production workers placed through HelloJob / Watchout in the Hazerswoude-Rijndijk area earn at WML level: €14.71 per hour gross in 2026. At 40 hours per week, gross weekly earnings are approximately €588. After loonheffing and social premiums at WML level, net take-home before housing and transport deductions is approximately €480–510 per week. The SNF maximum housing deduction of €113.50 per week reduces this to roughly €366–396. Additional transport deductions — if transport is charged separately — further reduce this margin. Workers should request a complete, itemised payslip breakdown in writing before starting any placement.",
+      },
+      {
+        heading: "Housing Conditions: Documented Neglect",
+        body: "Worker reviews submitted to AgencyCheck describe housing conditions at HelloJob / Watchout accommodation as neglected and poorly maintained. Specific complaints include deferred maintenance, unresponsive management when issues are raised, and facilities that have deteriorated over time without repair. In shared worker accommodation, maintenance neglect typically means: broken fixtures not replaced, sanitation issues not addressed promptly, and shared spaces not adequately cleaned. The key compliance standard is SNF certification. Workers should request the SNF registration number for their specific accommodation address and verify it at normeringflexwonen.nl. SNF-certified sites are subject to regular unannounced inspections; non-certified sites have no such oversight.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Hazerswoude-Rijndijk is a village in the municipality of Alphen aan den Rijn, South Holland. The area has production facilities related to horticulture, food processing, and light manufacturing. Public transport is limited, making agency-provided transport practically essential for workers without their own vehicle — confirm transport arrangements and costs before accepting. HelloJob / Watchout's transparency score of 18/100 means independent verification of pay structures and deduction practices is not possible from public sources.",
+      },
+    ],
+    pros: [
+      "Provides work and accommodation in a rural South Holland location for workers needing an immediate start",
+    ],
+    cons: [
+      "Transparency score 18/100 — one of the lowest in AgencyCheck's dataset",
+      "Worker reviews document neglected, poorly maintained housing across multiple sources",
+      "Unresponsive management for maintenance issues is a recurring documented complaint",
+      "WML earnings after deductions leave very limited financial margin",
+      "Workers with alternative options in the Alphen aan den Rijn or Leiden area should consider those first",
+    ],
+    internalLinks: [
+      { href: "/agencies/fix-team", label: "Compare with Fix Team for Westland housing concern documentation" },
+      { href: "/agencies/eg-personeel", label: "See EG Personeel for Westland greenhouse staffing with housing context" },
+    ],
+  },
+
+  "young-and-free": {
+    metaTitle: "Young and Free Reviews Netherlands | Amsterdam Staffing Agency",
+    metaDescription: "Very limited public information is available about Young and Free in Amsterdam. Read what is known and why careful verification is essential before engaging.",
+    intro: "Young and Free is a small Amsterdam-based staffing or recruitment entity registered at IJsbaanpad 1C in the Nieuw-West and Sloterplas area of Amsterdam. No public website or verifiable online presence was found at the time of AgencyCheck's research. The name suggests a focus on young workers or starters, but this could not be confirmed from any independent source. With a transparency score of 15/100 — among the lowest in the entire AgencyCheck dataset — this agency requires the highest level of caution from any prospective worker.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "If Young and Free places young workers or starters in the Amsterdam area, the relevant pay context is: WML for workers aged 21 and over is €14.71 per hour gross in 2026. For workers under 21, the jeugdloon (youth minimum wage) scales down by age — a 20-year-old earns 80% of WML, a 18-year-old earns 60%. Workers should confirm which minimum wage rate applies before accepting any offer. For starter or entry-level roles in Amsterdam (retail, hospitality, administrative support, light logistics), wages typically sit between WML and €16.50 per hour gross depending on role and sector. Net take-home from a €14.71/hr 160-hour month is approximately €1,500–1,600 after loonheffing and social premiums.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "There is no indication that Young and Free provides housing. The Amsterdam Nieuw-West registration suggests local, urban placements where candidates are expected to have their own accommodation. Amsterdam's rental market for young workers and starters is highly competitive: shared rooms in the city run €800–1,200 per month, with more affordable options in Diemen, Zaandam, or Hoofddorp.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Minimum verification steps before signing anything with Young and Free: confirm the KvK registration is current and active; ask directly what sector and type of work they currently have available; ask for the formal employment contract structure; ask which CAO applies and whether the agency is ABU-affiliated; ask for references from employers or workers who have used them recently. Any legitimate staffing agency should answer all of these immediately and in writing. Evasion, vagueness, or pressure to sign quickly without time to review terms are warning signals.",
+      },
+    ],
+    pros: [
+      "KvK-registered entity — the company formally exists",
+      "Amsterdam Nieuw-West location if the placement network is genuinely local",
+    ],
+    cons: [
+      "Transparency score 15/100 — one of the lowest in AgencyCheck's dataset",
+      "No active public website found at time of research",
+      "No independently verifiable track record, sector focus, or placement history",
+      "Multiple higher-transparency alternatives exist in the Amsterdam starter market",
+    ],
+    internalLinks: [
+      { href: "/agencies/xl-career-company-bv", label: "Compare with XL Career Company for documented graduate and starter recruitment" },
+      { href: "/agencies/igen-people-potential-positivity", label: "See igen for verified young professional IT and tech staffing in Amsterdam" },
+    ],
+  },
+
+  "uitbeenbedrijf-rien-vanoss": {
+    metaTitle: "Uitbeenbedrijf Rien vanOss Reviews | Worker Warning Netherlands",
+    metaDescription: "Documented reports of dangerous housing conditions at Rien vanOss in Oudewater. Read worker accounts of mould, overcrowding, and unsafe conditions before you apply.",
+    intro: "Uitbeenbedrijf Rien vanOss B.V. is a meat processing and agricultural labour company based in Oudewater, a small municipality in South Holland between Utrecht and Gouda. The company operates in one of the most physically demanding and poorly documented corners of the Dutch labour market: meat processing and slaughter-related agricultural work. Worker documentation describes housing conditions including mould, structural damage, and severe overcrowding. This review draws on those reports to provide an honest assessment of conditions for workers considering placement here.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Meat processing and agricultural workers in the Netherlands fall under the WML of €14.71 per hour in 2026 or the CAO Vleesverwerkende Industrie, which covers wages, bonuses for heavy or unhygienic work, and rest period entitlements. At 40 hours per week, a WML worker earns approximately €2,548 gross per month, translating to roughly €1,950–2,050 net after loonheffing and social premiums. If housing is provided and deducted, the SNF maximum is €113.50 per week (€454 per month). At WML earnings with the full SNF deduction applied, a worker may be left with approximately €1,500–1,600 net per month before any other deductions. Workers report that actual deductions sometimes exceed SNF-certified maximums and that housing quality does not correspond to the rates charged. Night shift premiums of 15–22% above base should apply under applicable CAOs — verify on payslips.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "This is the most serious documented concern. Worker reports describe accommodation including mould on walls and ceilings, structural damage to units, and severe overcrowding. SNF-certified accommodation must meet occupancy limits, functional plumbing, adequate heating, and habitability requirements. Mould, structural damage, or overcrowding may indicate non-compliance with SNF standards. Workers should: photograph all damage on arrival and notify the employer in writing immediately; request the SNF registration number and verify it at snf.nl before signing; understand that in cases of demonstrably substandard accommodation, they have grounds to involve the Inspectie SZW (Dutch labour inspectorate, 0800-5151) or the municipality. Dutch law does not permit an employer to terminate a worker's employment solely because they reject substandard accommodation.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Meat processing work involves standing on hard floors for 8–10 hours, cold working temperatures (typically 4–8 degrees Celsius in processing areas), exposure to wet conditions, and repetitive cutting and handling movements. Health risks include musculoskeletal injuries and cold-related conditions. Protective equipment must be provided at no cost to the worker under Dutch arbo regulations. Oudewater is not well connected by public transport — workers without a car are dependent on agency-arranged transport, whose terms and costs should be confirmed in writing before accepting.",
+      },
+    ],
+    pros: [
+      "Work is legal and represents genuine employment in a physically demanding sector",
+      "CAO Vleesverwerkende Industrie provides a defined framework for wages and conditions",
+    ],
+    cons: [
+      "Transparency score 10/100 — one of the lowest in the AgencyCheck dataset",
+      "Documented housing concerns: mould, structural damage, and severe overcrowding",
+      "Remote location in Oudewater with limited public transport access",
+      "Meat processing work carries significant physical health risk over extended periods",
+      "Workers report deductions may exceed SNF-certified maximums",
+    ],
+    internalLinks: [
+      { href: "/agencies/nl-jobs", label: "Compare with NL Jobs for agricultural and logistics placements with documented accommodation" },
+      { href: "/agencies/up-force", label: "See Up Force for greenhouse and agricultural work in Limburg" },
+    ],
+  },
+
+  "up-force": {
+    metaTitle: "Up Force Reviews Netherlands | Limburg Agricultural Agency",
+    metaDescription: "Up Force in Sevenum places greenhouse and production workers in Limburg. Worker reports describe 1 bathroom for 16 workers. Read conditions before applying.",
+    intro: "Up Force is a Dutch temporary employment agency based in Sevenum in northern Limburg, near Venlo. The agency places workers in greenhouse horticulture, production, and agricultural roles — a sector that draws heavily on EU migrant labour and that has faced sustained scrutiny over housing standards. Worker documentation describes accommodation with one bathroom shared between 16 workers. This review covers the financial picture and the documented concerns.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Greenhouse and agricultural workers in Limburg are covered by the CAO Glastuinbouw or, where that does not apply, the WML of €14.71 per hour in 2026. Under CAO Glastuinbouw, a starter (grade A) earns approximately €14.85–15.10 per hour, rising to €15.50–17.00 for experienced workers (grade C–D). For a 40-hour week, a grade A worker earns approximately €2,570–2,620 gross per month. If housing is provided, the SNF maximum deductible is €113.50 per week (€454 per month). After loonheffing and housing deduction, net remaining is approximately €1,450–1,550 per month before transport and insurance costs. Sunday work attracts a 50% premium and public holiday work additional compensation under CAO Glastuinbouw — verify these are applied on your payslip.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "The most significant documented concern is the accommodation. Worker reports describe a converted farm building with one bathroom shared between 16 workers. SNF standards specify minimum sanitary facility ratios — one bathroom for 16 occupants is well below what certification requires. The practical consequences include waiting for bathroom access before early morning shifts, limited hot water, and hygiene implications from overcrowded shared facilities. Workers should: ask directly whether accommodation is SNF-certified and request the registration number; visit the property before signing any housing agreement; count the sanitary facilities relative to total occupancy; check independently at snf.nl. If accommodation is not SNF-certified, the €113.50 per week maximum deduction rule still applies as a reference point, and workers should resist any attempt to charge more.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "Sevenum and the Venlo greenhouse corridor are not accessible by public transport from most origins. Workers are typically dependent on agency-arranged transport. The Venlo region is one of Europe's largest greenhouse zones, meaning assignments may cover multiple sites depending on seasonal demand. Greenhouse work involves physically repetitive tasks — planting, harvesting, pruning, transporting product on trolleys — in environments that are hot and humid in summer or cold and damp in winter. PPE must be provided at employer expense. Workers who develop repetitive strain injuries have rights to arbo (occupational health) assessment.",
+      },
+    ],
+    pros: [
+      "Greenhouse work in the Venlo region is available year-round, unlike some seasonal agricultural roles",
+      "Dense concentration of greenhouse employers means workers can potentially move between agencies",
+      "Established migrant worker infrastructure in the Venlo area: international community services, multilingual support",
+    ],
+    cons: [
+      "Transparency score 15/100 — near the bottom of the AgencyCheck dataset",
+      "Documented bathroom ratio of 1 for 16 workers is below SNF certification standards",
+      "Rural Sevenum location with no public transport requires dependence on agency transport",
+      "Physically demanding work with significant repetitive strain risk over extended placements",
+    ],
+    internalLinks: [
+      { href: "/agencies/nl-jobs", label: "Compare with NL Jobs for documented accommodation and greenhouse work placements" },
+      { href: "/agencies/uitbeenbedrijf-rien-vanoss", label: "Read the Rien vanOss review for another agricultural labour comparison" },
+    ],
+  },
+
+  "nl-jobs": {
+    metaTitle: "NL Jobs Reviews Netherlands | Warehouse & Agriculture Agency",
+    metaDescription: "NL Jobs places warehouse, logistics and greenhouse workers across the Netherlands. Reviews cover pay at WML, accommodation, and conditions in Utrecht, Breda, and more.",
+    intro: "NL Jobs is a Dutch employment agency with a broad national footprint, placing workers in logistics, warehouse, order picking, and greenhouse horticulture roles across multiple provinces. Active locations include Utrecht, Breda, Waalwijk, Tiel, the Rotterdam area, and the greenhouse-heavy regions of Maasdijk, Middenmeer, and Rilland. The agency is known for providing accommodation and, in some cases, transport for eligible workers. This review covers what workers can realistically expect from an NL Jobs placement in terms of pay, housing, and conditions.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "Most NL Jobs placements start at the Dutch WML of €14.71 per hour in 2026, yielding approximately €2,548 gross per month for a 40-hour week. Loonheffing at this income runs at approximately 10.7% effective for a single worker, leaving €1,950–2,050 net before deductions. If accommodation is provided, the SNF maximum deductible is €113.50 per week (€454 per month). After housing and a standard transport contribution, net in hand can fall to €1,300–1,500 per month. Request a written deduction breakdown before signing. NL Jobs is reported to operate alongside related agencies FIX and VZM — clarify which legal entity is your formal employer before starting. Vakantiegeld (8%) accrues on gross salary and is paid in May.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "NL Jobs provides accommodation for eligible workers across several operating regions. Logistics workers in the Breda, Waalwijk, and Tiel areas are typically housed near the industrial zones where warehouses are concentrated. Greenhouse workers in Maasdijk, Middenmeer, and Rilland are accommodated closer to the horticultural sites. Worker reviews are mixed: some note accommodation is functional and the agency-provided car is a genuine benefit for rural placements; others note that shared housing can be crowded during high-occupancy periods. All NL Jobs accommodation carrying a deduction must comply with SNF standards — verify certification at snf.nl and confirm that weekly deductions do not exceed €113.50.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "A notable feature mentioned in worker accounts is the provision of a car for some eligible workers in rural greenhouse placements — a meaningful benefit where public transport is minimal. Confirm in writing whether the car is for work travel only or also personal use, whether fuel costs are charged additionally, and what happens if the vehicle is unavailable. Warehouse and logistics shifts in Utrecht, Breda, and Waalwijk include early morning (6am starts), late evening, and overnight patterns. Forklift operator certification (VCA) opens access to better-paid assignments. Physical demands are moderate to high depending on the site and role.",
+      },
+    ],
+    pros: [
+      "National footprint across logistics, warehouse, and greenhouse sectors",
+      "Accommodation and sometimes car transport included for eligible workers",
+      "Multiple regions give some flexibility between assignment types if one sector slows",
+      "Transparency score 50/100 — better documented than many in this sector",
+    ],
+    cons: [
+      "WML starting rates are standard for the sector but not generous",
+      "Multi-entity structure across NL Jobs, FIX, and VZM can create administrative confusion",
+      "Phase A uitzendbeding means limited job security in the first 78 weeks",
+      "Shared accommodation can be crowded during high-occupancy periods",
+    ],
+    internalLinks: [
+      { href: "/agencies/international-flex-job", label: "Compare with International Flex Job for logistics and production placements" },
+      { href: "/agencies/up-force", label: "See Up Force for greenhouse and agricultural work in Limburg" },
+    ],
+  },
+
+  "international-flex-job": {
+    metaTitle: "International Flex Job Reviews Netherlands | Worker Warning",
+    metaDescription: "International Flex Job places logistics and production workers in the Netherlands. Workers report remote housing with a rat infestation. Read reviews before applying.",
+    intro: "International Flex Job is a Dutch employment agency placing workers in logistics and production roles across the Netherlands. The agency provides housing as part of its placement package, with a deduction structure that workers have documented in some detail. Worker accounts raise serious concerns about accommodation quality — including a reported rat infestation and a remote location — and the agency has received significantly lower ratings than comparable alternatives. This review presents the documented financial picture and the concerns raised by workers.",
+    sections: [
+      {
+        heading: "Salary and Real Take-Home Pay",
+        body: "International Flex Job places workers in logistics and production roles at or near the Dutch WML of €14.71 per hour in 2026. Worker reviews document a specific deduction structure: housing approximately €120 per week (€480 per month), insurance €36 per week (€144 per month), and transport €25 per week (€100 per month). Total weekly deductions of €181 leave approximately €340 net per week — roughly €1,360 per month in hand. The housing deduction of €120 per week exceeds the SNF maximum of €113.50 per week by €6.50 per week (approximately €338 per year). Workers should verify whether accommodation is SNF-certified and, if so, request the deduction be reduced to the legal maximum. The insurance deduction of €36 per week (€1,872 annually) is on the higher side — request a written itemised breakdown of what is covered before accepting.",
+      },
+      {
+        heading: "Housing Conditions",
+        body: "This is the most critical concern documented about International Flex Job. Worker reviews describe accommodation in a remote location and at least one review explicitly mentions a rat infestation. Rodent infestation represents a serious habitability failure and likely a breach of SNF standards, which require pest-free accommodation. Remote location compounds the issue: workers without personal transport who discover poor conditions are more isolated than those near urban centres with transport alternatives. Workers who encounter pest infestation should: document it immediately with photographs and timestamps; notify the employer in writing (email creates an audit trail); contact the local municipality pest control service; and contact the Inspectie SZW at 0800-5151 if the employer fails to remedy the situation. The employer is obligated to resolve habitability failures or provide alternative accommodation at no additional cost.",
+      },
+      {
+        heading: "Transport and Work Conditions",
+        body: "The transport deduction of €25 per week suggests the agency provides transport to work sites and charges for this. In remote locations this transport may be the only practical way to reach the assignment, limiting workers' ability to decline the charge. Logistics and production work involves physical loading and unloading, conveyor operations, and order picking. Shift patterns often include early morning and late evening rotations. Confirm in advance what shift patterns apply to your specific assignment and whether ABU CAO evening and Sunday premiums are included in the agreed rate. Worker reviews position International Flex Job unfavourably relative to alternatives such as Covebo, which is a larger ABU-affiliated operator with SNF-certified accommodation across multiple regions.",
+      },
+    ],
+    pros: [
+      "Bundled package (work, housing, transport) provides an entry point for workers without local infrastructure",
+      "Logistics and production sector work is available year-round across the Netherlands",
+    ],
+    cons: [
+      "Transparency score 28/100 — limited public accountability information",
+      "Documented rat infestation in worker-reported accommodation",
+      "Remote location increases dependency and limits exit options",
+      "Housing deduction of €120 per week exceeds the SNF maximum of €113.50 per week",
+      "Insurance deduction of €36 per week is high — breakdown unclear without written itemisation",
+      "Significantly lower worker ratings than comparable alternatives such as Covebo",
+    ],
+    internalLinks: [
+      { href: "/agencies/nl-jobs", label: "Compare with NL Jobs for logistics and warehouse placements with documented accommodation" },
+      { href: "/agencies/up-force", label: "See Up Force for agricultural and greenhouse alternatives in Limburg" },
+    ],
+  },
 };
