@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title:       `${agency.name} Netherlands Reviews – Worker Experiences, Salary & Housing Reports`,
     description: `${count > 0 ? `${count} worker reviews` : "Worker reviews"} for ${agency.name} in the Netherlands.${ratingStr} Salary accuracy, housing conditions, and contract transparency — reported by workers.`,
-    alternates:  { canonical: `/agencies/${agency.slug}/reviews` },
+    alternates:  { canonical: `https://agencycheck.io/agencies/${agency.slug}/reviews` },
     openGraph: {
       title:       `${agency.name} Netherlands Reviews – Worker Experiences & Salary Reports`,
       description: `Real worker reviews of ${agency.name}. Salary, housing, and management — reported unfiltered.`,

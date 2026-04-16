@@ -7,13 +7,17 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        // All crawlers: allow everything except API routes and internal query strings
+        // All crawlers: allow everything except API routes and admin
+        // NOTE: We do NOT disallow /*?* here. Blocking all query-string URLs
+        // prevents Googlebot from reading canonical tags on those URLs and
+        // was causing "Blocked by robots.txt" errors in Search Console for
+        // legitimate agency pages reached via tracking-parameter backlinks.
+        // Duplicate-content from query params is handled by canonical tags instead.
         userAgent: "*",
         allow: "/",
         disallow: [
-          "/api/",          // internal API routes — not for indexing
-          "/admin/",        // admin panel — never index
-          "/*?*",           // filter/query string pages (search, compare params) — avoid duplicate content
+          "/api/",    // internal API routes — not for indexing
+          "/admin/",  // admin panel — never index
         ],
       },
       {

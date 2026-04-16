@@ -38,7 +38,7 @@ export async function generateMetadata({
   return {
     title:       `${meta.label} Agencies Netherlands — Reviews & Housing — AgencyCheck`,
     description: `${agencies.length} employment ${agencies.length === 1 ? "agency" : "agencies"} in ${meta.label.toLowerCase()} across the Netherlands.${housingStr} Compare salary, housing, and worker reviews.`,
-    alternates:  { canonical: `/sectors/${params.sector}` },
+    alternates:  { canonical: `https://agencycheck.io/sectors/${params.sector}` },
     openGraph: {
       title:       `${meta.label} Jobs & Agencies — AgencyCheck`,
       description: `Find ${meta.label.toLowerCase()} temp agencies in the Netherlands. Worker reviews, housing info, and salary data.`,

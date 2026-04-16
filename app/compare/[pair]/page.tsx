@@ -82,7 +82,7 @@ export async function generateMetadata({
   return {
     title: `${agencyA.name} vs ${agencyB.name} — Side-by-Side Comparison — AgencyCheck`,
     description: `Compare ${agencyA.name} and ${agencyB.name}: housing, transparency, job types, and cities.${sectorNote}${cityNote} Find out which agency is better for workers in the Netherlands.`,
-    alternates: { canonical: `/compare/${params.pair}` },
+    alternates: { canonical: `https://agencycheck.io/compare/${params.pair}` },
     robots: robotsMeta,
   };
 }

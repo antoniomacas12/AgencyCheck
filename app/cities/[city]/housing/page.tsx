@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: { city: string } })
   return {
     title: `Jobs with Housing in ${city.name} — Agency Accommodation — AgencyCheck`,
     description: `Find agency jobs in ${city.name} that include housing. ${housing.length} out of ${allAgencies.length} agencies confirmed to provide accommodation for workers.${jobStr} Compare conditions, salary, and reviews.`,
-    alternates: { canonical: `/cities/${params.city}/housing` },
+    alternates: { canonical: `https://agencycheck.io/cities/${params.city}/housing` },
     openGraph: {
       title: `Agency Jobs with Housing in ${city.name} — AgencyCheck`,
       description: `${housing.length} agenc${housing.length === 1 ? "y" : "ies"} in ${city.name} include worker accommodation. Compare conditions, salary, and transport.`,

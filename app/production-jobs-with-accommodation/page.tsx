@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Production Jobs in the Netherlands with Accommodation — AgencyCheck",
   description:
     "Production and factory jobs in the Netherlands with accommodation included. Food production, assembly, and packing roles. Housing provided by agency. €11.50–€14.50/hr.",
-  alternates: { canonical: "/production-jobs-with-accommodation" },
+  alternates: { canonical: "https://agencycheck.io/production-jobs-with-accommodation" },
   openGraph: {
     title: "Production Jobs Netherlands with Accommodation — AgencyCheck",
     description:

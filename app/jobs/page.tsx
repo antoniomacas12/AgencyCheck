@@ -10,7 +10,7 @@ import { REVIEW_SEED_DATA } from "@/lib/reviewData";
 export const metadata: Metadata = {
   title:       "Agency Jobs in the Netherlands — Salary, Housing & Worker Reviews — AgencyCheck",
   description: "Find agency jobs in the Netherlands with real salary and housing data. Warehouse, forklift, production jobs — real take-home pay, accommodation options, and worker experiences. 2026 figures.",
-  alternates:  { canonical: "/jobs" },
+  alternates:  { canonical: "https://agencycheck.io/jobs" },
 };
 
 export default function JobsIndexPage() {

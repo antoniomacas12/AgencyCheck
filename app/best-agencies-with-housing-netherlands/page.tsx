@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Best Agencies with Housing Netherlands 2026 — AgencyCheck",
   description:
     `Compare ${(40).toString()}+ employment agencies in the Netherlands that provide housing for workers. Ranked by accommodation quality, job count, and worker reviews. Find the best option for you.`,
-  alternates: { canonical: "/best-agencies-with-housing-netherlands" },
+  alternates: { canonical: "https://agencycheck.io/best-agencies-with-housing-netherlands" },
   openGraph: {
     title: "Best Agencies with Housing Netherlands — AgencyCheck",
     description:

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Work in Netherlands for Foreigners — Complete Guide 2026 | AgencyCheck",
   description:
     "Complete guide to working in the Netherlands as a foreign worker. How to get a job, what documents you need, salary, housing, rights and top agencies hiring EU workers in 2026.",
-  alternates: { canonical: "/work-in-netherlands-for-foreigners" },
+  alternates: { canonical: "https://agencycheck.io/work-in-netherlands-for-foreigners" },
   openGraph: {
     title: "Work in Netherlands for Foreigners 2026 — AgencyCheck",
     description:

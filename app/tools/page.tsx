@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Worker Tools for Jobs in the Netherlands — AgencyCheck",
   description:
     "Free salary calculators, rent checker, payslip verifier, and shift tracker for flex workers at Dutch staffing agencies. Calculate your real take-home pay before you sign.",
-  alternates: { canonical: "/tools" },
+  alternates: { canonical: "https://agencycheck.io/tools" },
   openGraph: {
     title: "Free Worker Tools — Calculate Your Real Income in the Netherlands",
     description:

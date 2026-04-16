@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Employment Agencies With Housing Netherlands — Real Photos — AgencyCheck",
   description:
     "Find employment agencies in the Netherlands that provide housing for workers. See real worker-submitted housing photos from 17 agencies — bedrooms, bathrooms, shared facilities.",
-  alternates: { canonical: "/agencies-with-housing" },
+  alternates: { canonical: "https://agencycheck.io/agencies-with-housing" },
 };
 
 export const dynamic = "force-dynamic";

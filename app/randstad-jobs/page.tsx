@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     `Browse ${RANDSTAD_STATS.total} verified Randstad vacancies across the Netherlands. ` +
     "Real jobs from randstad.nl — warehouse, logistics, production, office and more. " +
     "Compare salary, hours and education requirements before applying.",
-  alternates: { canonical: "/randstad-jobs" },
+  alternates: { canonical: "https://agencycheck.io/randstad-jobs" },
   openGraph: {
     title: "Randstad Jobs Netherlands — AgencyCheck",
     description:

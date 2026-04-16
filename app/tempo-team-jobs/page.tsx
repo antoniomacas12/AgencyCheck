@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     `Browse ${TEMPO_TEAM_STATS.total} verified Tempo-Team vacancies across the Netherlands. ` +
     "Real jobs from tempo-team.nl — logistics, production, administration, catering and more. " +
     "Compare salary and hours before applying.",
-  alternates: { canonical: "/tempo-team-jobs" },
+  alternates: { canonical: "https://agencycheck.io/tempo-team-jobs" },
   openGraph: {
     title: "Tempo-Team Jobs Netherlands — AgencyCheck",
     description:

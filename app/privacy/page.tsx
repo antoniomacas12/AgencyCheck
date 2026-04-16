@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy — AgencyCheck",
   description:
     "AgencyCheck privacy policy. How we collect, store, and use data. Anonymous worker reviews, no advertising tracking, GDPR compliance.",
-  alternates: { canonical: "/privacy" },
+  alternates: { canonical: "https://agencycheck.io/privacy" },
 };
 
 const LAST_UPDATED = "April 2026";

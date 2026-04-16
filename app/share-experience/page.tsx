@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Share Your Agency Experience — Help Other Workers — AgencyCheck",
   description:
     "Did you work through an employment agency in the Netherlands? Share your experience — real salary, housing conditions, and working environment. Your information helps other workers make informed decisions.",
-  alternates: { canonical: "/share-experience" },
+  alternates: { canonical: "https://agencycheck.io/share-experience" },
   robots: { index: true, follow: true },
 };
 

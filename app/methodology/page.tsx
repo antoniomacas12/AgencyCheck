@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Salary Calculation Methodology — AgencyCheck",
   description:
     "How AgencyCheck calculates take-home pay for agency workers in the Netherlands. Tax brackets, heffingskorting, assumptions, sources, and an annotated example payslip.",
-  alternates: { canonical: "/methodology" },
+  alternates: { canonical: "https://agencycheck.io/methodology" },
 };
 
 const LAST_UPDATED    = "January 2026";

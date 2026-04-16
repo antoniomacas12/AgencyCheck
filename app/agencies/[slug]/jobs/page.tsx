@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${agency.name} Netherlands Jobs – ${jobs.length} Vacancies, Salary & Worker Experiences`,
     description: `${jobs.length} active job listings at ${agency.name}. Positions in ${[...new Set(jobs.map((j) => j.city))].slice(0, 4).join(", ")}. Worker reviews and salary info included.`,
-    alternates: { canonical: `/agencies/${agency.slug}/jobs` },
+    alternates: { canonical: `https://agencycheck.io/agencies/${agency.slug}/jobs` },
   };
 }
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Worker Guides — Netherlands Agency Jobs, Salary & Rights — AgencyCheck",
   description:
     "14 practical guides for agency workers in the Netherlands. Real salary numbers, hidden costs, housing rights, payslip breakdowns, ABU/NBBU contracts, forklift jobs, and how to prepare before you arrive. All backed by real worker data.",
-  alternates: { canonical: "/guides" },
+  alternates: { canonical: "https://agencycheck.io/guides" },
   openGraph: {
     title: "Worker Guides — Agency Jobs Netherlands — AgencyCheck",
     description:

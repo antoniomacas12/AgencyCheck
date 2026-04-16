@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Greenhouse Jobs in the Netherlands with Accommodation — AgencyCheck",
   description:
     "Greenhouse and horticulture jobs in the Netherlands with housing included. Work in Westland, Naaldwijk, and the Greenport region. Seasonal and year-round. €11.50–€14.00/hr.",
-  alternates: { canonical: "/greenhouse-jobs-with-accommodation" },
+  alternates: { canonical: "https://agencycheck.io/greenhouse-jobs-with-accommodation" },
   openGraph: {
     title: "Greenhouse Jobs Netherlands with Accommodation — AgencyCheck",
     description:

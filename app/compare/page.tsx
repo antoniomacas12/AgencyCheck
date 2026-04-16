@@ -8,7 +8,7 @@ import type { AgencyCardData } from "@/components/AgencyCard";
 export const metadata: Metadata = {
   title: "Compare Employment Agencies Netherlands — AgencyCheck",
   description: "Compare two employment agencies in the Netherlands side by side — housing, salary, transport, worker score, and open issues. Make an informed choice before you sign.",
-  alternates: { canonical: "/compare" },
+  alternates: { canonical: "https://agencycheck.io/compare" },
   robots: { index: true, follow: true },
 };
 

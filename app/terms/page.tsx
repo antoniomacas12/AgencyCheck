@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Terms of Use — AgencyCheck",
   description:
     "Terms of use for AgencyCheck. Guidelines for submitting reviews, using agency data, and understanding the limitations of worker-reported information.",
-  alternates: { canonical: "/terms" },
+  alternates: { canonical: "https://agencycheck.io/terms" },
 };
 
 const LAST_UPDATED = "April 2026";

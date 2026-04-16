@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enforce consistent non-trailing-slash URLs.
+  // Without this, /agencies/randstad-nederland/ and /agencies/randstad-nederland
+  // are both served as 200, causing "Duplicate - Google chose different canonical"
+  // errors in Search Console (16 pages affected).
+  trailingSlash: false,
+
   // TypeScript — verified clean locally (tsc --noEmit passes)
   typescript: {
     ignoreBuildErrors: true,

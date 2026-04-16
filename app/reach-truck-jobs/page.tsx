@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Reach Truck Driver Jobs in the Netherlands — AgencyCheck",
   description:
     "Reach truck driver jobs in the Netherlands. Licence required. Average €15.25/hr gross. Compare agencies, housing options, and cities. Updated worker data.",
-  alternates: { canonical: "/reach-truck-jobs" },
+  alternates: { canonical: "https://agencycheck.io/reach-truck-jobs" },
   openGraph: {
     title: "Reach Truck Jobs Netherlands — AgencyCheck",
     description:

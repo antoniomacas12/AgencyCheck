@@ -34,7 +34,7 @@ export async function generateMetadata({
   return {
     title: `${job.title} Jobs ${city.name} ${audience.labelIn} – Salary, Housing & Agencies Netherlands 2026`,
     description: `Find ${job.titleShort.toLowerCase()} jobs in ${city.name} ${audience.labelIn.toLowerCase()}. Salary €${job.salaryMin.toFixed(2)}–€${job.salaryMax.toFixed(2)}/hr. Compare top agencies with housing options. Updated 2026.`,
-    alternates: { canonical: `/work-in/${params.combo}` },
+    alternates: { canonical: `https://agencycheck.io/work-in/${params.combo}` },
     openGraph: {
       title: `${job.title} Jobs ${city.name} ${audience.labelIn} – AgencyCheck`,
       description: `${job.titleShort} jobs in ${city.name} for ${audience.label.toLowerCase()}. Real salary data, top agencies, housing info. Netherlands 2026.`,

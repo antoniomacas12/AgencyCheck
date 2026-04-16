@@ -6,7 +6,7 @@ import { AGENCIES_BY_SECTOR, getActiveSectors } from "@/lib/agencyEnriched";
 export const metadata: Metadata = {
   title:       "Employment Agency Sectors in the Netherlands — AgencyCheck",
   description: "Browse employment agencies in the Netherlands by sector: logistics, food production, construction, healthcare, IT, transport, hospitality, and more.",
-  alternates:  { canonical: "/sectors" },
+  alternates:  { canonical: "https://agencycheck.io/sectors" },
 };
 
 export default function SectorsIndexPage() {

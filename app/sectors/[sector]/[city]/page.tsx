@@ -53,7 +53,7 @@ export async function generateMetadata({
   return {
     title: `${meta.label} Agencies in ${cityObj.name} — Reviews & Housing — AgencyCheck`,
     description: `${agencies.length} ${meta.label.toLowerCase()} ${agencies.length === 1 ? "agency" : "agencies"} in ${cityObj.name}.${withHousing > 0 ? ` ${withHousing} provide housing.` : ""} Worker reviews, salary data, and housing info.`,
-    alternates: { canonical: `/sectors/${params.sector}/${params.city}` },
+    alternates: { canonical: `https://agencycheck.io/sectors/${params.sector}/${params.city}` },
     openGraph: {
       title: `${meta.label} Jobs in ${cityObj.name} — AgencyCheck`,
       description: `Compare ${agencies.length} ${meta.label.toLowerCase()} agencies in ${cityObj.name}. Reviews, housing, salary.`,

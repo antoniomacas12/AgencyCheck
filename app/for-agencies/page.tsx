@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "For Employment Agencies — AgencyCheck",
   description:
     "Information for employment agencies listed on AgencyCheck. How to dispute inaccurate data, understand your transparency score, and how worker data is handled.",
-  alternates: { canonical: "/for-agencies" },
+  alternates: { canonical: "https://agencycheck.io/for-agencies" },
 };
 
 export default function ForAgenciesPage() {

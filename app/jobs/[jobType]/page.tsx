@@ -38,7 +38,7 @@ export async function generateMetadata({
     return {
       title: `${individualJob.title} — ${individualJob.agencyName} — ${individualJob.city} — AgencyCheck`,
       description: `${individualJob.title} vacancy via ${individualJob.agencyName} in ${individualJob.city}. ${individualJob.housing === "YES" ? "Housing included. " : ""}€${individualJob.salaryMin.toFixed(2)}–€${individualJob.salaryMax.toFixed(2)}/hr gross.`,
-      alternates: { canonical: `/jobs/${individualJob.slug}` },
+      alternates: { canonical: `https://agencycheck.io/jobs/${individualJob.slug}` },
     };
   }
 
@@ -48,7 +48,7 @@ export async function generateMetadata({
   return {
     title:       `${job.title} Jobs Netherlands — Salary, Housing & Agencies — AgencyCheck`,
     description: `Find ${job.title.toLowerCase()} jobs in the Netherlands. Average pay: €${job.avg}/hr. Compare agencies, housing options, and worker reviews.`,
-    alternates:  { canonical: `/jobs/${params.jobType}` },
+    alternates:  { canonical: `https://agencycheck.io/jobs/${params.jobType}` },
     openGraph: {
       title:       `${job.title} Jobs in the Netherlands — AgencyCheck`,
       description: `${job.title} salary: €${job.min}–€${job.max}/hr. Find agencies hiring now with housing and transport options.`,

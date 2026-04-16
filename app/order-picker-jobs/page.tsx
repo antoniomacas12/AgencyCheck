@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Order Picker Jobs in the Netherlands — AgencyCheck",
   description:
     "Order picker jobs in the Netherlands. No experience required. Average €13.10/hr gross. Compare agencies, housing options, and cities. Real worker data.",
-  alternates: { canonical: "/order-picker-jobs" },
+  alternates: { canonical: "https://agencycheck.io/order-picker-jobs" },
   openGraph: {
     title: "Order Picker Jobs Netherlands — AgencyCheck",
     description:

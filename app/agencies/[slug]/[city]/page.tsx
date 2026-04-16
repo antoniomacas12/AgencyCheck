@@ -108,7 +108,7 @@ export async function generateMetadata({
   return {
     title: `${dbAgency.name} ${cityName} Reviews – Worker Experiences Netherlands`,
     description: `Read what workers say about ${dbAgency.name} in ${cityName}. Real worker-submitted comments and reviews from the Netherlands. Based on worker-submitted data on AgencyCheck.`,
-    alternates: { canonical: `/agencies/${params.slug}/${params.city}` },
+    alternates: { canonical: `https://agencycheck.io/agencies/${params.slug}/${params.city}` },
     openGraph: {
       title: `${dbAgency.name} ${cityName} – Worker Reviews`,
       description: `Worker experiences with ${dbAgency.name} in ${cityName}, Netherlands.`,

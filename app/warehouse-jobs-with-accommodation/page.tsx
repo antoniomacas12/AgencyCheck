@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Warehouse Jobs in the Netherlands with Accommodation — AgencyCheck",
   description:
     "Warehouse jobs in the Netherlands with housing included. Agencies provide accommodation in Tilburg, Venlo, and Breda. No experience required. €11.50–€15.00/hr.",
-  alternates: { canonical: "/warehouse-jobs-with-accommodation" },
+  alternates: { canonical: "https://agencycheck.io/warehouse-jobs-with-accommodation" },
   openGraph: {
     title: "Warehouse Jobs Netherlands with Accommodation — AgencyCheck",
     description:

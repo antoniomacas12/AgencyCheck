@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Otto Workforce Jobs Netherlands — Housing Included | AgencyCheck",
   description:
     "Browse Otto Workforce vacancies in the Netherlands. Warehouse, production and logistics jobs with housing and transport included. Verified listings for EU foreign workers.",
-  alternates: { canonical: "/otto-workforce-jobs" },
+  alternates: { canonical: "https://agencycheck.io/otto-workforce-jobs" },
   openGraph: {
     title: "Otto Workforce Jobs Netherlands — AgencyCheck",
     description:

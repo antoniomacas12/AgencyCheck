@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Worker Reviews — Employment Agencies Netherlands — Real Experiences — AgencyCheck",
   description:
     "Real worker reviews of employment agencies in the Netherlands. Read honest experiences about housing conditions, salary accuracy, transport, and working conditions. Anonymous. Free.",
-  alternates: { canonical: "/reviews" },
+  alternates: { canonical: "https://agencycheck.io/reviews" },
   openGraph: {
     title: "Worker Reviews — Employment Agencies Netherlands",
     description:

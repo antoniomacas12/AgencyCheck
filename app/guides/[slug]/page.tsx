@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title:       guide.metaTitle,
     description: guide.metaDesc,
-    alternates:  { canonical: `/guides/${guide.slug}` },
+    alternates:  { canonical: `https://agencycheck.io/guides/${guide.slug}` },
     openGraph: {
       title:       guide.metaTitle,
       description: guide.metaDesc,

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "About AgencyCheck — Who We Are and Why We Built This",
   description:
     "AgencyCheck is an independent platform built for agency workers in the Netherlands. Real take-home salary data, unfiltered worker reviews, and housing conditions — free, no paid rankings.",
-  alternates: { canonical: "/about" },
+  alternates: { canonical: "https://agencycheck.io/about" },
 };
 
 export default function AboutPage() {

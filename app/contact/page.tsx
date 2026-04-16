@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Contact AgencyCheck – Need Help? Write to Us",
   description:
     "Not sure if an agency is legit? Something wrong with your salary or housing? Write to us. One email: hello@agencycheck.io. We reply within 24–48 hours.",
-  alternates: { canonical: "/contact" },
+  alternates: { canonical: "https://agencycheck.io/contact" },
 };
 
 const EMAIL = LEGAL.emailGeneral; // hello@agencycheck.io
