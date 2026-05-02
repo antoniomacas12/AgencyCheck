@@ -18,8 +18,8 @@ const HOT_JOBS = [
     title: "Food Production Operator",
     location: "Netherlands",
     benefit: "Fast placement via verified agency partners",
-    href: "https://wa.me/31649210631",
-    external: true,
+    href: "/apply/food-production",
+    external: false,
   },
   {
     id: 3,
