@@ -321,6 +321,33 @@ export default async function HomePage() {
                 </span>
               </Link>
 
+              {/* ── LIVE JOB ALERT 2 ───────────────────────────────── */}
+              <a
+                href="https://wa.me/31649210631"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mb-6 flex items-center gap-3 rounded-2xl border border-emerald-400/30 bg-emerald-400/10 hover:bg-emerald-400/20 active:scale-[0.98] px-4 py-3.5 transition-all duration-150"
+              >
+                <span className="relative flex-shrink-0">
+                  <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-40" />
+                  <span className="relative flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                </span>
+                <div className="flex-1 min-w-0 text-left">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-0.5">
+                    Now Hiring · Netherlands
+                  </div>
+                  <div className="text-white font-semibold text-[14px] sm:text-[15px] leading-tight">
+                    Food Production Operator — NL&nbsp;&nbsp;·&nbsp;&nbsp;Start within 1 week via verified partners
+                  </div>
+                </div>
+                <span className="flex-shrink-0 text-[13px] font-bold text-emerald-300 group-hover:text-emerald-200 flex items-center gap-1 whitespace-nowrap">
+                  Apply now
+                  <svg className="w-3.5 h-3.5 transition-transform duration-150 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </a>
+
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-[1.04] tracking-tight text-white mb-5">
                 Already in the{" "}
