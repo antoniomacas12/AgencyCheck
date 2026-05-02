@@ -307,10 +307,10 @@ export default async function HomePage() {
                 </span>
                 <div className="flex-1 min-w-0 text-left">
                   <div className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-0.5">
-                    Now Hiring · Immediate Start
+                    Now Hiring · Dordrecht, NL
                   </div>
                   <div className="text-white font-semibold text-[14px] sm:text-[15px] leading-tight">
-                    Reachtruck Driver — Waalwijk&nbsp;&nbsp;·&nbsp;&nbsp;€16.50/hr&nbsp;&nbsp;·&nbsp;&nbsp;EU citizens only
+                    C+E Truck Driver — Dordrecht&nbsp;&nbsp;·&nbsp;&nbsp;€150/day&nbsp;&nbsp;·&nbsp;&nbsp;Direct contract
                   </div>
                 </div>
                 <span className="flex-shrink-0 text-[13px] font-bold text-amber-300 group-hover:text-amber-200 flex items-center gap-1 whitespace-nowrap">
