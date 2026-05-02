@@ -310,7 +310,7 @@ export default async function HomePage() {
                     Now Hiring · Dordrecht, NL
                   </div>
                   <div className="text-white font-semibold text-[14px] sm:text-[15px] leading-tight">
-                    C+E Truck Driver — Dordrecht&nbsp;&nbsp;·&nbsp;&nbsp;€150/day&nbsp;&nbsp;·&nbsp;&nbsp;Direct contract
+                    C+E Truck Driver — Dordrecht&nbsp;&nbsp;·&nbsp;&nbsp;Direct contract
                   </div>
                 </div>
                 <span className="flex-shrink-0 text-[13px] font-bold text-amber-300 group-hover:text-amber-200 flex items-center gap-1 whitespace-nowrap">
