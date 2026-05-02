@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:       "Reachtruck Driver Needed — Netherlands (€16.50/hr) | Apply Now",
+  title:       "C+E Truck Driver — Dordrecht, NL (€150/day) | Apply Now",
   description:
-    "We are hiring experienced reachtruck drivers for Waalwijk, Netherlands. " +
-    "€16.50 gross per hour, 2-shift rota. Minimum 3 years experience. EU citizens only. Apply now.",
+    "C+E Truck Driver needed in Dordrecht, Netherlands. " +
+    "Starting from €150/day, weekly payment, direct contract. No agency, no middlemen. Apply via WhatsApp.",
   keywords: [
-    "reachtruck driver Netherlands",
-    "reachtruck vacature Waalwijk",
-    "reach truck job Holland",
-    "warehouse driver job Netherlands",
-    "reachtruck driver €16.50",
+    "C+E truck driver Netherlands",
+    "CE truck driver Dordrecht",
+    "truck driver job Holland",
+    "international truck driver Netherlands",
+    "C+E rijbewijs vacature",
   ],
   alternates: {
     canonical: "https://agencycheck.io/apply/reachtruck",
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   openGraph: {
     type:      "website",
     siteName:  "AgencyCheck",
-    title:     "Reachtruck Driver — Netherlands (€16.50/hr)",
+    title:     "C+E Truck Driver — Dordrecht, NL (€150/day)",
     description:
-      "For experienced reachtruck operators only. Waalwijk area. Minimum 3 years experience. EU citizens. Apply takes 2 minutes.",
+      "Direct hire, no middlemen. Netherlands–France–Germany route. €150/day starting. Apply via WhatsApp.",
   },
   robots: {
     index:  true,
