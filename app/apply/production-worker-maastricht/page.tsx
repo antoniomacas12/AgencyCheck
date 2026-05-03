@@ -99,7 +99,6 @@ export default function ProductionWorkerMaastrichtPage() {
             <p className="text-amber-300 font-semibold mb-1">⚠ Important</p>
             <p className="text-gray-300">
               Own transport is required — the factory is not accessible by public transport.
-              Accommodation is <strong className="text-white">not</strong> included with this position.
             </p>
           </div>
 
