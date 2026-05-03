@@ -23,11 +23,11 @@ const HOT_JOBS = [
   },
   {
     id: 3,
-    title: "Packaging / Machine Operator",
-    location: "Netherlands",
-    benefit: "Food industry experience preferred",
-    href: "https://wa.me/31649210631",
-    external: true,
+    title: "Production Worker / Picker",
+    location: "Near Maastricht, NL",
+    benefit: "€16.12/hr + shift allowance · Cookie factory · Start ASAP",
+    href: "/apply/production-worker-maastricht",
+    external: false,
   },
   {
     id: 4,
