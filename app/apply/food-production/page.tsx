@@ -101,7 +101,7 @@ export default function FoodProductionPage() {
         {/* ── CTA ───────────────────────────────────────────────── */}
         <div className="mt-12">
           <a
-            href="https://wa.me/31649210631"
+            href="https://wa.me/31649210631?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20Food%20Production%20Operator%20position%20in%20the%20Netherlands."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 w-full bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white font-bold text-base py-4 rounded-2xl transition-all duration-150 shadow-lg shadow-green-900/40"
