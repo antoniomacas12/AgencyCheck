@@ -43,7 +43,7 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
     "/jobs-with-accommodation";
 
   const NAV_ITEMS = [
-    { href: "/apply/reachtruck",              label: "🔥 Now Hiring",            hiring: true   },
+    { href: "/apply",                          label: "🔥 Now Hiring",            hiring: true   },
     { href: housingHref,                      label: t("nav.jobs_with_housing"), highlight: true },
     { href: "/tools/real-income-calculator",  label: t("nav.real_salary")   },
     { href: "/agencies-with-housing",         label: t("nav.housing_photos") },
