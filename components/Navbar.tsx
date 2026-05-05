@@ -144,18 +144,30 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden py-2 border-t border-gray-100 flex flex-col gap-0.5">
+          <div className="md:hidden py-3 border-t border-gray-100 flex flex-col gap-1">
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + "/");
               const isHiring = (item as { hiring?: boolean }).hiring;
+
+              if (isHiring) {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="mx-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-sm font-black bg-amber-500 hover:bg-amber-600 active:scale-[0.98] text-white transition-all shadow-sm"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-3.5 rounded-xl text-sm font-medium transition-colors active:bg-gray-100 ${
-                    isHiring
-                      ? "text-amber-700 font-bold bg-amber-50 hover:bg-amber-100"
-                      : item.highlight
+                  className={`px-3 py-3 rounded-xl text-sm font-medium transition-colors active:bg-gray-100 ${
+                    item.highlight
                       ? "text-green-700 font-bold bg-green-50 hover:bg-green-100"
                       : active
                       ? "text-brand-600 font-semibold bg-brand-50"
