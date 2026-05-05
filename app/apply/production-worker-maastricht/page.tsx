@@ -4,6 +4,7 @@
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
+import JobAlertStrip from "@/components/JobAlertStrip";
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Production Worker / Picker (Near Maastricht, NL)";
@@ -133,6 +134,7 @@ export default function ProductionWorkerMaastrichtPage() {
           </p>
         </div>
 
+        <JobAlertStrip />
         <RelatedJobs currentId="production-worker-maastricht" />
 
       </div>

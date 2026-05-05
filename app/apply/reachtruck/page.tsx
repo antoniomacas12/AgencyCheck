@@ -4,6 +4,7 @@
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
+import JobAlertStrip from "@/components/JobAlertStrip";
 
 const WA_BASE  = "https://wa.me/31649210631";
 const JOB_TITLE = "C+E Truck Driver (Dordrecht, NL)";
@@ -126,6 +127,7 @@ export default function CETruckDriverPage() {
           </p>
         </div>
 
+        <JobAlertStrip />
         <RelatedJobs currentId="reachtruck" />
 
       </div>

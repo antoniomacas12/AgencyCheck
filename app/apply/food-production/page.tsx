@@ -4,6 +4,7 @@
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
+import JobAlertStrip from "@/components/JobAlertStrip";
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Food Production Operator (Netherlands)";
@@ -127,6 +128,7 @@ export default function FoodProductionPage() {
           </p>
         </div>
 
+        <JobAlertStrip />
         <RelatedJobs currentId="food-production" />
 
       </div>

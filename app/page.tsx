@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import nDynamic from "next/dynamic";
 import HotJobsBanner from "@/components/HotJobsBanner";
+import JobAlertStrip from "@/components/JobAlertStrip";
 import AgencyCard from "@/components/AgencyCard";
 import WorkerReviewCard from "@/components/WorkerReviewCard";
 import WorkerHousingStrip from "@/components/WorkerHousingStrip";
@@ -377,6 +378,9 @@ export default async function HomePage() {
 
               {/* Search */}
               <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Search agencies, cities or job types…" />
+
+              {/* Job alert strip */}
+              <JobAlertStrip />
 
               {/* Data authority strip */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-1.5 mt-5">
