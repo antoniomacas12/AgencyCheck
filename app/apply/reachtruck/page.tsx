@@ -1,14 +1,39 @@
 // /apply/reachtruck — C+E Truck Driver job posting
 // Dark theme, green accents. Apply via WhatsApp.
 
+import type { Metadata } from "next";
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
+import { jobPostingSchema } from "@/lib/schemaMarkup";
+
+export const metadata: Metadata = {
+  title: "C+E Truck Driver — Now Hiring in Dordrecht, NL | AgencyCheck",
+  description: "C+E truck driver wanted in Dordrecht, NL. Direct contract, €150+/day, no agency middlemen. Netherlands–France–Germany routes, home every day. Apply via WhatsApp.",
+  alternates: { canonical: "https://agencycheck.io/apply/reachtruck" },
+};
 
 const WA_BASE  = "https://wa.me/31649210631";
 const JOB_TITLE = "C+E Truck Driver (Dordrecht, NL)";
+
+const JOB_SCHEMA = jobPostingSchema({
+  title:          "C+E Truck Driver",
+  description:    "C+E international truck driver for Netherlands–France–Germany routes. Home every day — no nights in the cab. Direct contract, no agency middleman. Starting from €150/day. Valid C+E licence + Code 95 required.",
+  datePosted:     "2026-04-01",
+  validThrough:   "2026-09-01",
+  employmentType: "FULL_TIME",
+  city:           "Dordrecht",
+  region:         "South Holland",
+  country:        "NL",
+  currency:       "EUR",
+  minSalary:      150,
+  maxSalary:      200,
+  salaryUnit:     "DAY",
+  pageUrl:        "/apply/reachtruck",
+  applyUrl:       `${WA_BASE}?text=${encodeURIComponent("Hi, I want to apply for: C+E Truck Driver (Dordrecht, NL)")}`,
+});
 
 const FAQ_ITEMS = [
   {
@@ -40,6 +65,7 @@ const FAQ_ITEMS = [
 export default function CETruckDriverPage() {
   return (
     <div className="min-h-screen bg-[#0B1F14] text-white font-sans">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JOB_SCHEMA) }} />
       {/* Extra bottom padding on mobile so sticky bar doesn't cover content */}
       <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-10 pb-36 sm:pb-16">
 

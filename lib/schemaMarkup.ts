@@ -424,3 +424,64 @@ export function buildAgencyFaqs(agency: {
 
   return faqs;
 }
+
+// ─── JobPosting schema ────────────────────────────────────────────────────────
+// Used on individual job pages (/apply/*).
+// Enables Google's rich results: job title, salary, location, direct apply link.
+
+export interface JobPostingInput {
+  title:           string;
+  description:     string;
+  datePosted:      string;          // ISO 8601 e.g. "2026-04-01"
+  validThrough:    string;          // ISO 8601 e.g. "2026-07-01"
+  employmentType:  "FULL_TIME" | "PART_TIME" | "CONTRACTOR" | "TEMPORARY";
+  city:            string;
+  region:          string;
+  country:         string;
+  currency:        string;
+  minSalary:       number;
+  maxSalary:       number;
+  salaryUnit:      "HOUR" | "DAY" | "WEEK" | "MONTH" | "YEAR";
+  pageUrl:         string;
+  applyUrl:        string;
+}
+
+export function jobPostingSchema(job: JobPostingInput) {
+  return {
+    "@context":        "https://schema.org/",
+    "@type":           "JobPosting",
+    title:             job.title,
+    description:       job.description,
+    datePosted:        job.datePosted,
+    validThrough:      job.validThrough,
+    employmentType:    job.employmentType,
+    hiringOrganization: {
+      "@type": "Organization",
+      name:    "AgencyCheck",
+      sameAs:  BASE_URL,
+      logo:    `${BASE_URL}/logo.svg`,
+    },
+    jobLocation: {
+      "@type":   "Place",
+      address: {
+        "@type":           "PostalAddress",
+        addressLocality:   job.city,
+        addressRegion:     job.region,
+        addressCountry:    job.country,
+      },
+    },
+    baseSalary: {
+      "@type":    "MonetaryAmount",
+      currency:   job.currency,
+      value: {
+        "@type":    "QuantitativeValue",
+        minValue:   job.minSalary,
+        maxValue:   job.maxSalary,
+        unitText:   job.salaryUnit,
+      },
+    },
+    url:          `${BASE_URL}${job.pageUrl}`,
+    applyUrl:     job.applyUrl,
+    directApply:  true,
+  };
+}

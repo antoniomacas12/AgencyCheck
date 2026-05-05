@@ -1,14 +1,39 @@
 // /apply/food-production — Food Production Operator job posting
 // Dark theme, green accents. Apply via WhatsApp.
 
+import type { Metadata } from "next";
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
+import { jobPostingSchema } from "@/lib/schemaMarkup";
+
+export const metadata: Metadata = {
+  title: "Food Production Operator — Now Hiring in Netherlands | AgencyCheck",
+  description: "Food production operator jobs in the Netherlands. Fast placement via verified agency partners. Legal contract, start within 1 week. Apply via WhatsApp.",
+  alternates: { canonical: "https://agencycheck.io/apply/food-production" },
+};
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Food Production Operator (Netherlands)";
+
+const JOB_SCHEMA = jobPostingSchema({
+  title:          "Food Production Operator",
+  description:    "Food production and processing work in the Netherlands. Placed via established agency partners — fast onboarding, legal contracts. Start within 1 week. Basic English or Dutch required. EU work authorisation required.",
+  datePosted:     "2026-04-01",
+  validThrough:   "2026-09-01",
+  employmentType: "FULL_TIME",
+  city:           "Netherlands",
+  region:         "Netherlands",
+  country:        "NL",
+  currency:       "EUR",
+  minSalary:      14.71,
+  maxSalary:      16,
+  salaryUnit:     "HOUR",
+  pageUrl:        "/apply/food-production",
+  applyUrl:       `${WA_BASE}?text=${encodeURIComponent("Hi, I want to apply for: Food Production Operator (Netherlands)")}`,
+});
 
 const FAQ_ITEMS = [
   {
@@ -40,6 +65,7 @@ const FAQ_ITEMS = [
 export default function FoodProductionPage() {
   return (
     <div className="min-h-screen bg-[#0B1F14] text-white font-sans">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JOB_SCHEMA) }} />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-10 pb-36 sm:pb-16">
 
         {/* ── Badge ─────────────────────────────────────────────── */}

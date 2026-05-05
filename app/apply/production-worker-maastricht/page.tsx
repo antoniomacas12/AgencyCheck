@@ -1,14 +1,39 @@
 // /apply/production-worker-maastricht — Production Worker / Picker
 // Dark theme, green accents. Apply via WhatsApp.
 
+import type { Metadata } from "next";
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
+import { jobPostingSchema } from "@/lib/schemaMarkup";
+
+export const metadata: Metadata = {
+  title: "Production Worker / Picker — Cookie Factory near Maastricht | AgencyCheck",
+  description: "Production worker and picker jobs in a cookie factory near Maastricht. €16.12/hr, shift allowance on top, immediate start. Own transport required. Apply via WhatsApp.",
+  alternates: { canonical: "https://agencycheck.io/apply/production-worker-maastricht" },
+};
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Production Worker / Picker (Near Maastricht, NL)";
+
+const JOB_SCHEMA = jobPostingSchema({
+  title:          "Production Worker / Picker",
+  description:    "Production and picking work in a cookie factory near Maastricht, Netherlands. €16.12/hr with shift allowance on top. 2 or 3 shift system. Immediate start available. Own transport required — factory is not accessible by public transport. Basic English or Dutch required. EU work authorisation required.",
+  datePosted:     "2026-04-01",
+  validThrough:   "2026-09-01",
+  employmentType: "FULL_TIME",
+  city:           "Maastricht",
+  region:         "Limburg",
+  country:        "NL",
+  currency:       "EUR",
+  minSalary:      16.12,
+  maxSalary:      18,
+  salaryUnit:     "HOUR",
+  pageUrl:        "/apply/production-worker-maastricht",
+  applyUrl:       `${WA_BASE}?text=${encodeURIComponent("Hi, I want to apply for: Production Worker / Picker (Near Maastricht, NL)")}`,
+});
 
 const FAQ_ITEMS = [
   {
@@ -44,6 +69,7 @@ const FAQ_ITEMS = [
 export default function ProductionWorkerMaastrichtPage() {
   return (
     <div className="min-h-screen bg-[#0B1F14] text-white font-sans">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JOB_SCHEMA) }} />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-10 pb-36 sm:pb-16">
 
         {/* ── Badge ─────────────────────────────────────────────── */}
