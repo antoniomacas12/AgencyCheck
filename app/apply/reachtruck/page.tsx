@@ -8,12 +8,20 @@ import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
 import ShareJobButton from "@/components/ShareJobButton";
-import { jobPostingSchema } from "@/lib/schemaMarkup";
+import { jobPostingSchema, breadcrumbSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
   title: "C+E Truck Driver — Now Hiring in Dordrecht, NL | AgencyCheck",
   description: "C+E truck driver wanted in Dordrecht, NL. Direct contract, €150+/day, no agency middlemen. Netherlands–France–Germany routes, home every day. Apply via WhatsApp.",
-  alternates: { canonical: "https://agencycheck.io/apply/reachtruck" },
+  alternates: {
+    canonical: "https://agencycheck.io/apply/reachtruck",
+    languages: {
+      "en":        "https://agencycheck.io/apply/reachtruck",
+      "pl":        "https://agencycheck.io/pl/oferty-pracy/kierowca-ce",
+      "ro":        "https://agencycheck.io/ro/oferte-de-munca/sofer-ce",
+      "x-default": "https://agencycheck.io/apply/reachtruck",
+    },
+  },
 };
 
 const WA_BASE  = "https://wa.me/31649210631";
@@ -67,6 +75,11 @@ export default function CETruckDriverPage() {
   return (
     <div className="min-h-screen bg-[#0B1F14] text-white font-sans">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JOB_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema([
+        { name: "Home",       url: "/" },
+        { name: "Now Hiring", url: "/apply" },
+        { name: "C+E Truck Driver", url: "/apply/reachtruck" },
+      ])) }} />
       {/* Extra bottom padding on mobile so sticky bar doesn't cover content */}
       <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-10 pb-36 sm:pb-16">
 

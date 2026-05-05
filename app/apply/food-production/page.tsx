@@ -8,12 +8,20 @@ import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
 import ShareJobButton from "@/components/ShareJobButton";
-import { jobPostingSchema } from "@/lib/schemaMarkup";
+import { jobPostingSchema, breadcrumbSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
   title: "Food Production Operator — Now Hiring in Netherlands | AgencyCheck",
   description: "Food production operator jobs in the Netherlands. Fast placement via verified agency partners. Legal contract, start within 1 week. Apply via WhatsApp.",
-  alternates: { canonical: "https://agencycheck.io/apply/food-production" },
+  alternates: {
+    canonical: "https://agencycheck.io/apply/food-production",
+    languages: {
+      "en":        "https://agencycheck.io/apply/food-production",
+      "pl":        "https://agencycheck.io/pl/oferty-pracy/operator-produkcji",
+      "ro":        "https://agencycheck.io/ro/oferte-de-munca/operator-productie-alimentara",
+      "x-default": "https://agencycheck.io/apply/food-production",
+    },
+  },
 };
 
 const WA_BASE   = "https://wa.me/31649210631";
@@ -67,6 +75,11 @@ export default function FoodProductionPage() {
   return (
     <div className="min-h-screen bg-[#0B1F14] text-white font-sans">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JOB_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema([
+        { name: "Home",       url: "/" },
+        { name: "Now Hiring", url: "/apply" },
+        { name: "Food Production Operator", url: "/apply/food-production" },
+      ])) }} />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-10 pb-36 sm:pb-16">
 
         {/* ── Badge ─────────────────────────────────────────────── */}

@@ -10,7 +10,15 @@ export const metadata: Metadata = {
   title: "Now Hiring in the Netherlands — Open Positions | AgencyCheck",
   description:
     "Active job openings in the Netherlands — truck drivers, production workers, warehouse staff. Apply directly via WhatsApp. No agency fees, fast process.",
-  alternates: { canonical: "https://agencycheck.io/apply" },
+  alternates: {
+    canonical: "https://agencycheck.io/apply",
+    languages: {
+      "en":        "https://agencycheck.io/apply",
+      "pl":        "https://agencycheck.io/pl/oferty-pracy",
+      "ro":        "https://agencycheck.io/ro/oferte-de-munca",
+      "x-default": "https://agencycheck.io/apply",
+    },
+  },
 };
 
 // Extra detail per job for the listing cards

@@ -8,12 +8,20 @@ import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
 import ShareJobButton from "@/components/ShareJobButton";
-import { jobPostingSchema } from "@/lib/schemaMarkup";
+import { jobPostingSchema, breadcrumbSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
   title: "Production Worker / Picker — Cookie Factory near Maastricht | AgencyCheck",
   description: "Production worker and picker jobs in a cookie factory near Maastricht. €16.12/hr, shift allowance on top, immediate start. Own transport required. Apply via WhatsApp.",
-  alternates: { canonical: "https://agencycheck.io/apply/production-worker-maastricht" },
+  alternates: {
+    canonical: "https://agencycheck.io/apply/production-worker-maastricht",
+    languages: {
+      "en":        "https://agencycheck.io/apply/production-worker-maastricht",
+      "pl":        "https://agencycheck.io/pl/oferty-pracy/pracownik-produkcji-maastricht",
+      "ro":        "https://agencycheck.io/ro/oferte-de-munca/lucrator-productie-maastricht",
+      "x-default": "https://agencycheck.io/apply/production-worker-maastricht",
+    },
+  },
 };
 
 const WA_BASE   = "https://wa.me/31649210631";
@@ -71,6 +79,11 @@ export default function ProductionWorkerMaastrichtPage() {
   return (
     <div className="min-h-screen bg-[#0B1F14] text-white font-sans">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JOB_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema([
+        { name: "Home",       url: "/" },
+        { name: "Now Hiring", url: "/apply" },
+        { name: "Production Worker / Picker", url: "/apply/production-worker-maastricht" },
+      ])) }} />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-10 pb-36 sm:pb-16">
 
         {/* ── Badge ─────────────────────────────────────────────── */}

@@ -8,13 +8,21 @@ import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
 import ShareJobButton from "@/components/ShareJobButton";
-import { jobPostingSchema } from "@/lib/schemaMarkup";
+import { jobPostingSchema, breadcrumbSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
   title: "Warehouse Worker with Housing — Netherlands | AgencyCheck",
   description:
     "Warehouse worker jobs in the Netherlands with accommodation included. Picking, packing, sorting. Min. wage+, immediate start. Apply via WhatsApp.",
-  alternates: { canonical: "https://agencycheck.io/apply/warehouse" },
+  alternates: {
+    canonical: "https://agencycheck.io/apply/warehouse",
+    languages: {
+      "en":        "https://agencycheck.io/apply/warehouse",
+      "pl":        "https://agencycheck.io/pl/oferty-pracy/pracownik-magazynu",
+      "ro":        "https://agencycheck.io/ro/oferte-de-munca/lucrator-depozit",
+      "x-default": "https://agencycheck.io/apply/warehouse",
+    },
+  },
 };
 
 const WA_BASE   = "https://wa.me/31649210631";
@@ -72,6 +80,11 @@ export default function WarehousePage() {
   return (
     <div className="min-h-screen bg-[#0B1F14] text-white font-sans">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JOB_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema([
+        { name: "Home",             url: "/" },
+        { name: "Now Hiring",       url: "/apply" },
+        { name: "Warehouse Worker", url: "/apply/warehouse" },
+      ])) }} />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-10 pb-36 sm:pb-16">
 
         {/* ── Badge ─────────────────────────────────────────────── */}

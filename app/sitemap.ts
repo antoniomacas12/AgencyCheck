@@ -165,6 +165,68 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "weekly",
       priority:         0.85,
     },
+    // ── Polish job pages ─────────────────────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/pl/oferty-pracy`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/pl/oferty-pracy/kierowca-ce`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.82,
+    },
+    {
+      url:              `${BASE_URL}/pl/oferty-pracy/operator-produkcji`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.82,
+    },
+    {
+      url:              `${BASE_URL}/pl/oferty-pracy/pracownik-produkcji-maastricht`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.82,
+    },
+    {
+      url:              `${BASE_URL}/pl/oferty-pracy/pracownik-magazynu`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.82,
+    },
+    // ── Romanian job pages ───────────────────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/ro/oferte-de-munca`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/ro/oferte-de-munca/sofer-ce`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.82,
+    },
+    {
+      url:              `${BASE_URL}/ro/oferte-de-munca/operator-productie-alimentara`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.82,
+    },
+    {
+      url:              `${BASE_URL}/ro/oferte-de-munca/lucrator-productie-maastricht`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.82,
+    },
+    {
+      url:              `${BASE_URL}/ro/oferte-de-munca/lucrator-depozit`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.82,
+    },
     {
       url:              `${BASE_URL}/sectors`,
       lastModified:     STATIC_DATE,
