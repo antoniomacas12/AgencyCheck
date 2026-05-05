@@ -3,6 +3,7 @@
 
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
+import RelatedJobs from "@/components/RelatedJobs";
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Food Production Operator (Netherlands)";
@@ -125,6 +126,8 @@ export default function FoodProductionPage() {
             Fastest way to apply · We reply within 24h
           </p>
         </div>
+
+        <RelatedJobs currentId="food-production" />
 
       </div>
 

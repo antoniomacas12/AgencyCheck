@@ -3,6 +3,7 @@
 
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
+import RelatedJobs from "@/components/RelatedJobs";
 
 const WA_BASE  = "https://wa.me/31649210631";
 const JOB_TITLE = "C+E Truck Driver (Dordrecht, NL)";
@@ -125,9 +126,10 @@ export default function CETruckDriverPage() {
           </p>
         </div>
 
+        <RelatedJobs currentId="reachtruck" />
+
       </div>
 
-      {/* ── Sticky bar (mobile only) ───────────────────────────── */}
       <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} />
 
     </div>

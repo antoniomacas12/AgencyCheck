@@ -3,6 +3,7 @@
 
 import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
+import RelatedJobs from "@/components/RelatedJobs";
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Production Worker / Picker (Near Maastricht, NL)";
@@ -131,6 +132,8 @@ export default function ProductionWorkerMaastrichtPage() {
             Fastest way to apply · We reply within 24h
           </p>
         </div>
+
+        <RelatedJobs currentId="production-worker-maastricht" />
 
       </div>
 
