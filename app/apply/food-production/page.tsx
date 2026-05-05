@@ -1,10 +1,14 @@
 // /apply/food-production — Food Production Operator job posting
 // Dark theme, green accents. Apply via WhatsApp.
 
+import StickyApplyBar from "@/components/StickyApplyBar";
+
+const WA_HREF = "https://wa.me/31649210631?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20Food%20Production%20Operator%20position%20in%20the%20Netherlands.";
+
 export default function FoodProductionPage() {
   return (
-    <div className="min-h-screen bg-[#0B1F14] text-white font-sans px-5 py-12">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-[#0B1F14] text-white font-sans">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-10 pb-36 sm:pb-16">
 
         {/* ── Badge ─────────────────────────────────────────────── */}
         <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-4 py-2 text-xs font-semibold tracking-wide text-gray-300 mb-8">
@@ -98,10 +102,10 @@ export default function FoodProductionPage() {
 
         </div>
 
-        {/* ── CTA ───────────────────────────────────────────────── */}
-        <div className="mt-12">
+        {/* ── CTA (desktop only) ────────────────────────────────── */}
+        <div className="hidden sm:block mt-12">
           <a
-            href="https://wa.me/31649210631?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20Food%20Production%20Operator%20position%20in%20the%20Netherlands."
+            href={WA_HREF}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 w-full bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white font-bold text-base py-4 rounded-2xl transition-all duration-150 shadow-lg shadow-green-900/40"
@@ -117,6 +121,9 @@ export default function FoodProductionPage() {
         </div>
 
       </div>
+
+      <StickyApplyBar href={WA_HREF} label="Apply via WhatsApp" />
+
     </div>
   );
 }
