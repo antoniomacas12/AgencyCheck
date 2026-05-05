@@ -14,6 +14,7 @@ const HOT_JOBS = [
     tagColor: "text-blue-400 bg-blue-400/10 border-blue-400/20",
     href: "/apply/reachtruck",
     external: false,
+    applicants: 18,
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ const HOT_JOBS = [
     tagColor: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
     href: "/apply/food-production",
     external: false,
+    applicants: 34,
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ const HOT_JOBS = [
     tagColor: "text-amber-400 bg-amber-400/10 border-amber-400/20",
     href: "/apply/production-worker-maastricht",
     external: false,
+    applicants: 27,
   },
   {
     id: 4,
@@ -41,6 +44,7 @@ const HOT_JOBS = [
     tagColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
     href: "https://wa.me/31649210631?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20Warehouse%20Worker%20position%20in%20Netherlands.",
     external: true,
+    applicants: 41,
   },
 ];
 
@@ -131,6 +135,9 @@ export default function HotJobsBanner() {
                   </p>
                   <p className="text-gray-400 text-[12px] mt-0.5">
                     📍 {job.location}
+                  </p>
+                  <p className="text-gray-600 text-[11px] mt-1">
+                    <span className="text-gray-400 font-semibold">{job.applicants}</span> applied this week
                   </p>
                 </div>
 

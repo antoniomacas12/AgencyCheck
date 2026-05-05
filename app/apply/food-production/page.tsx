@@ -2,6 +2,7 @@
 // Dark theme, green accents. Apply via WhatsApp.
 
 import StickyApplyBar from "@/components/StickyApplyBar";
+import ApplicantBadge from "@/components/ApplicantBadge";
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Food Production Operator (Netherlands)";
@@ -21,9 +22,13 @@ export default function FoodProductionPage() {
         <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-3 text-white">
           Food Production Operator
         </h1>
-        <p className="text-[#22C55E] font-semibold text-sm mb-10 tracking-wide uppercase">
+        <p className="text-[#22C55E] font-semibold text-sm mb-4 tracking-wide uppercase">
           Fast placement · Via verified agency partners
         </p>
+
+        <div className="mb-8">
+          <ApplicantBadge count={34} hoursAgo={1} />
+        </div>
 
         {/* ── Divider ───────────────────────────────────────────── */}
         <div className="border-t border-white/10 mb-10" />

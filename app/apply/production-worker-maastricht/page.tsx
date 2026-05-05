@@ -2,6 +2,7 @@
 // Dark theme, green accents. Apply via WhatsApp.
 
 import StickyApplyBar from "@/components/StickyApplyBar";
+import ApplicantBadge from "@/components/ApplicantBadge";
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Production Worker / Picker (Near Maastricht, NL)";
@@ -23,9 +24,13 @@ export default function ProductionWorkerMaastrichtPage() {
           <span className="text-[#22C55E]">/ Picker</span>
         </h1>
         <p className="text-gray-400 text-sm mb-2">Near Maastricht, Netherlands</p>
-        <p className="text-[#22C55E] font-semibold text-sm mb-10 tracking-wide uppercase">
+        <p className="text-[#22C55E] font-semibold text-sm mb-4 tracking-wide uppercase">
           €16.12/hr · Immediate start · Cookie factory
         </p>
+
+        <div className="mb-8">
+          <ApplicantBadge count={27} hoursAgo={5} />
+        </div>
 
         {/* ── Quick highlights ──────────────────────────────────── */}
         <div className="grid grid-cols-3 gap-2 mb-10">
