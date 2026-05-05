@@ -42,8 +42,13 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
     locale === "pt" ? "/pt/trabalho-com-alojamento" :
     "/jobs-with-accommodation";
 
+  const hiringHref =
+    locale === "pl" ? "/pl/oferty-pracy" :
+    locale === "ro" ? "/ro/oferte-de-munca" :
+    "/apply";
+
   const NAV_ITEMS = [
-    { href: "/apply",                          label: "🔥 Now Hiring",            hiring: true   },
+    { href: hiringHref,                        label: "🔥 Now Hiring",            hiring: true   },
     { href: housingHref,                      label: t("nav.jobs_with_housing"), highlight: true },
     { href: "/tools/real-income-calculator",  label: t("nav.real_salary")   },
     { href: "/agencies-with-housing",         label: t("nav.housing_photos") },
