@@ -3,18 +3,19 @@
 import ApplyPreScreen from "@/components/ApplyPreScreen";
 
 interface Props {
-  waBase: string;   // e.g. "https://wa.me/31649210631"
-  jobTitle: string; // e.g. "C+E Truck Driver"
+  waBase: string;    // e.g. "https://wa.me/31649210631"
+  jobTitle: string;  // e.g. "C+E Truck Driver"
+  source?: string;   // tracking slug, e.g. "reachtruck"
 }
 
-export default function StickyApplyBar({ waBase, jobTitle }: Props) {
+export default function StickyApplyBar({ waBase, jobTitle, source }: Props) {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
       {/* Soft fade above the bar */}
       <div className="pointer-events-none h-10 bg-gradient-to-t from-[#0B1F14] to-transparent" />
 
       <div className="bg-[#0B1F14] border-t border-white/10 px-4 pb-5 pt-3">
-        <ApplyPreScreen jobTitle={jobTitle} waBase={waBase}>
+        <ApplyPreScreen jobTitle={jobTitle} waBase={waBase} source={source}>
           {(openFn) => (
             <button
               onClick={openFn}

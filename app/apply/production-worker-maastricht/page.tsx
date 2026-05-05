@@ -177,7 +177,7 @@ export default function ProductionWorkerMaastrichtPage() {
         {/* ── CTA (desktop only) ────────────────────────────────── */}
         <div className="hidden sm:block mt-12">
           <a
-            href={`${WA_BASE}?text=${encodeURIComponent(`Hi, I want to apply for: ${JOB_TITLE}`)}`}
+            href={`${WA_BASE}?text=${encodeURIComponent(`Hi, I want to apply for: ${JOB_TITLE} [src:maastricht]`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 w-full bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white font-bold text-base py-4 rounded-2xl transition-all duration-150 shadow-lg shadow-green-900/40"
@@ -202,7 +202,7 @@ export default function ProductionWorkerMaastrichtPage() {
 
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} />
+      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="maastricht" />
 
     </div>
   );

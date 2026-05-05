@@ -5,7 +5,8 @@ import { useState } from "react";
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface Props {
   jobTitle: string;
-  waBase: string; // wa.me URL without text param, e.g. "https://wa.me/31649210631"
+  waBase: string;    // wa.me URL without text param, e.g. "https://wa.me/31649210631"
+  source?: string;   // tracking slug, e.g. "reachtruck" — appended to WA message
   children: (openFn: () => void) => React.ReactNode;
 }
 
@@ -13,7 +14,13 @@ type EUAnswer = "yes" | "no" | null;
 type StartAnswer = "asap" | "2weeks" | "month" | null;
 
 // ─── Helper: build WhatsApp URL with pre-filled message ────────────────────────
-function buildWaUrl(waBase: string, jobTitle: string, eu: EUAnswer, start: StartAnswer) {
+function buildWaUrl(
+  waBase: string,
+  jobTitle: string,
+  eu: EUAnswer,
+  start: StartAnswer,
+  source?: string,
+) {
   const euText   = eu    === "yes"    ? "✅ EU work permit: Yes"
                  : eu    === "no"     ? "❌ EU work permit: No"
                  : "";
@@ -21,13 +28,14 @@ function buildWaUrl(waBase: string, jobTitle: string, eu: EUAnswer, start: Start
                   : start === "2weeks" ? "📅 Start: Within 2 weeks"
                   : start === "month"  ? "🗓 Start: Next month"
                   : "";
+  const srcTag = source ? ` [src:${source}]` : "";
 
-  const msg = `Hi, I want to apply for: ${jobTitle}\n${euText}\n${startText}`.trim();
+  const msg = `Hi, I want to apply for: ${jobTitle}${srcTag}\n${euText}\n${startText}`.trim();
   return `${waBase}?text=${encodeURIComponent(msg)}`;
 }
 
 // ─── Component ─────────────────────────────────────────────────────────────────
-export default function ApplyPreScreen({ jobTitle, waBase, children }: Props) {
+export default function ApplyPreScreen({ jobTitle, waBase, source, children }: Props) {
   const [open, setOpen]     = useState(false);
   const [eu, setEu]         = useState<EUAnswer>(null);
   const [start, setStart]   = useState<StartAnswer>(null);
@@ -42,7 +50,7 @@ export default function ApplyPreScreen({ jobTitle, waBase, children }: Props) {
   }
 
   function handleApply() {
-    const url = buildWaUrl(waBase, jobTitle, eu, start);
+    const url = buildWaUrl(waBase, jobTitle, eu, start, source);
     window.open(url, "_blank", "noopener,noreferrer");
     setOpen(false);
   }
