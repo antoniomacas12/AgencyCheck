@@ -57,13 +57,18 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center h-16">
 
-          {/* Logo + motto — fixed-width zone */}
-          <div className="flex flex-col justify-center shrink-0 md:w-52 w-auto">
+          {/* Logo + motto — fixed-width zone
+               Logo size="sm": icon w=30px, gap=15px → wordmark starts at 45px
+               Motto is inset exactly to that x-position so it sits under "Agency" */}
+          <div className="flex flex-col justify-center shrink-0 md:w-52 w-auto gap-[3px]">
             <Logo
               href={locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : locale === "pt" ? "/pt" : "/"}
               size="sm"
             />
-            <span className="text-[10px] font-bold text-[#22C55E] tracking-wide leading-none mt-0.5 pl-0.5">
+            <span
+              className="text-[9px] font-bold uppercase text-[#22C55E] leading-none tracking-[0.12em]"
+              style={{ paddingLeft: "45px" }}
+            >
               Check, don&apos;t guess!
             </span>
           </div>
