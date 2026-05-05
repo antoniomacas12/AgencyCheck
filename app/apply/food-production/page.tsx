@@ -7,6 +7,7 @@ import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
+import ShareJobButton from "@/components/ShareJobButton";
 import { jobPostingSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
@@ -82,8 +83,9 @@ export default function FoodProductionPage() {
           Fast placement · Via verified agency partners
         </p>
 
-        <div className="mb-8">
+        <div className="mb-8 flex items-center justify-between flex-wrap gap-3">
           <ApplicantBadge count={34} hoursAgo={1} />
+          <ShareJobButton title="Food Production Operator — Netherlands" />
         </div>
 
         {/* ── Divider ───────────────────────────────────────────── */}

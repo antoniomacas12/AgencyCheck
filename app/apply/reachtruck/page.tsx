@@ -7,6 +7,7 @@ import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import JobFAQ from "@/components/JobFAQ";
+import ShareJobButton from "@/components/ShareJobButton";
 import { jobPostingSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
@@ -83,8 +84,9 @@ export default function CETruckDriverPage() {
           Direct hire · No agency · No middlemen
         </p>
 
-        <div className="mb-8">
+        <div className="mb-8 flex items-center justify-between flex-wrap gap-3">
           <ApplicantBadge count={18} hoursAgo={3} />
+          <ShareJobButton title="C+E Truck Driver — Dordrecht, NL" />
         </div>
 
         {/* ── Divider ───────────────────────────────────────────── */}
