@@ -36,9 +36,8 @@ export const ALL_JOBS = [
     location: "Netherlands",
     tag: "Housing available",
     tagColor: "text-purple-400 border-purple-400/30",
-    href: "https://wa.me/31649210631?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20Warehouse%20Worker%20position%20in%20Netherlands.",
+    href: "/apply/warehouse",
     applicants: 41,
-    external: true,
   },
 ];
 

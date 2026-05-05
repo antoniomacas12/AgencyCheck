@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block admin and API routes
+Disallow: /admin
+Disallow: /api/
+Disallow: /_next/
+
+# Block search result pages with query params (avoid duplicate content)
+Disallow: /search?
+
+Sitemap: https://agencycheck.io/sitemap.xml

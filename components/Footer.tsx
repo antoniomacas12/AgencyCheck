@@ -156,6 +156,7 @@ export default async function Footer() {
               <li><Link href="/apply/reachtruck"                   className="hover:text-brand-600">🚛 C+E Truck Driver</Link></li>
               <li><Link href="/apply/food-production"              className="hover:text-brand-600">🏭 Food Production Operator</Link></li>
               <li><Link href="/apply/production-worker-maastricht" className="hover:text-brand-600">🍪 Production Worker Maastricht</Link></li>
+              <li><Link href="/apply/warehouse" className="hover:text-brand-600">📦 Warehouse Worker</Link></li>
             </ul>
 
             <p className="font-semibold text-gray-800 mb-3">{t("footer.job_types")}</p>
