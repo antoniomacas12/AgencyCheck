@@ -55,14 +55,17 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center h-14">
+        <div className="flex items-center h-16">
 
-          {/* Logo — fixed-width zone so it sits centered between the left edge and "Now Hiring" */}
-          <div className="flex items-center justify-center shrink-0 md:w-52 w-auto">
+          {/* Logo + motto — fixed-width zone */}
+          <div className="flex flex-col justify-center shrink-0 md:w-52 w-auto">
             <Logo
               href={locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : locale === "pt" ? "/pt" : "/"}
               size="sm"
             />
+            <span className="text-[10px] font-bold text-[#22C55E] tracking-wide leading-none mt-0.5 pl-0.5">
+              Check, don&apos;t guess!
+            </span>
           </div>
 
           {/* Desktop Nav */}

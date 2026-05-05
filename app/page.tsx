@@ -298,11 +298,6 @@ export default async function HomePage() {
                 </span>
               </div>
 
-              {/* Motto */}
-              <p className="text-[#22C55E] font-bold text-sm tracking-wide mb-5">
-                Check, don&apos;t guess!
-              </p>
-
               {/* ── HOT JOBS BANNER ────────────────────────────────── */}
               <HotJobsBanner />
 
