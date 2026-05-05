@@ -134,6 +134,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "weekly",
       priority:         0.8,
     },
+    // ── Active job application pages ─────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/apply`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/apply/reachtruck`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/apply/food-production`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/apply/production-worker-maastricht`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.85,
+    },
     {
       url:              `${BASE_URL}/sectors`,
       lastModified:     STATIC_DATE,
