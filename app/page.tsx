@@ -291,12 +291,17 @@ export default async function HomePage() {
             <div className="hero-col-left flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-6">
 
               {/* Identity badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-300">
                   🇳🇱 Netherlands · {totalAgencies} agencies verified
                 </span>
               </div>
+
+              {/* Motto */}
+              <p className="text-[#22C55E] font-bold text-sm tracking-wide mb-5">
+                Check, don&apos;t guess!
+              </p>
 
               {/* ── HOT JOBS BANNER ────────────────────────────────── */}
               <HotJobsBanner />
