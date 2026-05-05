@@ -3,7 +3,8 @@
 
 import StickyApplyBar from "@/components/StickyApplyBar";
 
-const WA_HREF = "https://wa.me/31649210631?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20C%2BE%20Truck%20Driver%20position%20in%20Dordrecht%2C%20NL.";
+const WA_BASE  = "https://wa.me/31649210631";
+const JOB_TITLE = "C+E Truck Driver (Dordrecht, NL)";
 
 export default function CETruckDriverPage() {
   return (
@@ -104,7 +105,7 @@ export default function CETruckDriverPage() {
         {/* ── CTA (desktop — hidden on mobile, sticky bar handles it) ── */}
         <div className="hidden sm:block mt-12">
           <a
-            href={WA_HREF}
+            href={`${WA_BASE}?text=${encodeURIComponent(`Hi, I want to apply for: ${JOB_TITLE}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 w-full bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white font-bold text-base py-4 rounded-2xl transition-all duration-150 shadow-lg shadow-green-900/40"
@@ -122,7 +123,7 @@ export default function CETruckDriverPage() {
       </div>
 
       {/* ── Sticky bar (mobile only) ───────────────────────────── */}
-      <StickyApplyBar href={WA_HREF} label="Apply via WhatsApp" />
+      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} />
 
     </div>
   );
