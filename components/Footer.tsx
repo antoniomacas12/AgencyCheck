@@ -146,6 +146,18 @@ export default async function Footer() {
 
           {/* Jobs column */}
           <div>
+            {/* Now Hiring — active positions */}
+            <p className="font-semibold text-gray-800 mb-3 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse inline-block" />
+              Now Hiring
+            </p>
+            <ul className="space-y-2 text-gray-500 text-xs mb-4">
+              <li><Link href="/apply" className="hover:text-brand-600 font-medium text-brand-600">→ All open positions</Link></li>
+              <li><Link href="/apply/reachtruck"                   className="hover:text-brand-600">🚛 C+E Truck Driver</Link></li>
+              <li><Link href="/apply/food-production"              className="hover:text-brand-600">🏭 Food Production Operator</Link></li>
+              <li><Link href="/apply/production-worker-maastricht" className="hover:text-brand-600">🍪 Production Worker Maastricht</Link></li>
+            </ul>
+
             <p className="font-semibold text-gray-800 mb-3">{t("footer.job_types")}</p>
             <ul className="space-y-2 text-gray-500 text-xs">
               {TOP_JOBS.map((j) => (

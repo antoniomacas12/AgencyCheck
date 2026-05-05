@@ -4,6 +4,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ALL_JOBS } from "@/components/RelatedJobs";
+import { WA_NUMBER } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Now Hiring in the Netherlands — Open Positions | AgencyCheck",
@@ -20,7 +21,7 @@ const JOB_DETAILS: Record<string, { pay: string; type: string; emoji: string }> 
   "warehouse":                   { pay: "Min. wage+", type: "Housing available",        emoji: "📦" },
 };
 
-const WA_BASE = "https://wa.me/31649210631";
+const WA_BASE = `https://wa.me/${WA_NUMBER}`;
 
 export default function ApplyIndexPage() {
   return (
