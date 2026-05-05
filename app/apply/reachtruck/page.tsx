@@ -5,9 +5,37 @@ import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
+import JobFAQ from "@/components/JobFAQ";
 
 const WA_BASE  = "https://wa.me/31649210631";
 const JOB_TITLE = "C+E Truck Driver (Dordrecht, NL)";
+
+const FAQ_ITEMS = [
+  {
+    q: "How do I apply for this position?",
+    a: "Tap the 'Apply via WhatsApp' button — it opens a pre-filled message directly to us. We typically respond within 24 hours to discuss next steps and schedule a quick call.",
+  },
+  {
+    q: "Do I need to speak Dutch?",
+    a: "No. Basic English is enough. Many of our drivers are from outside the Netherlands and manage fine with English on the road and in the depot.",
+  },
+  {
+    q: "Is accommodation included?",
+    a: "Accommodation is not included with this position. Candidates must be based in or able to relocate to the Dordrecht area independently.",
+  },
+  {
+    q: "What documents do I need?",
+    a: "You'll need a valid C+E driving licence, Code 95 certificate, and proof of EU work authorisation (e.g. EU passport or valid work permit). We'll confirm exactly what's needed when you apply.",
+  },
+  {
+    q: "How quickly can I start?",
+    a: "If your documents are in order we can typically get you started within 1–2 weeks. No long waiting process.",
+  },
+  {
+    q: "Is this a direct contract or via an agency?",
+    a: "This is a direct contract — no middlemen, no agency fees deducted from your pay. You sign directly with the employer.",
+  },
+];
 
 export default function CETruckDriverPage() {
   return (
@@ -125,6 +153,11 @@ export default function CETruckDriverPage() {
           <p className="text-center text-gray-500 text-xs mt-3">
             Fastest way to apply · We reply within 24h
           </p>
+        </div>
+
+        {/* ── FAQ ───────────────────────────────────────────────── */}
+        <div className="border-t border-white/10 mt-10">
+          <JobFAQ items={FAQ_ITEMS} />
         </div>
 
         <JobAlertStrip />

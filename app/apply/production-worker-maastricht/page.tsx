@@ -5,9 +5,41 @@ import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
+import JobFAQ from "@/components/JobFAQ";
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Production Worker / Picker (Near Maastricht, NL)";
+
+const FAQ_ITEMS = [
+  {
+    q: "How do I apply?",
+    a: "Tap the 'Apply via WhatsApp' button — it opens a pre-filled message directly to us. We typically respond within 24 hours to discuss availability and next steps.",
+  },
+  {
+    q: "Do I need experience in a factory or production environment?",
+    a: "No prior experience is required. The work involves production line tasks and picking — full training is provided on site. If you're physically fit and reliable, you're a good fit.",
+  },
+  {
+    q: "Do I need a car or own transport?",
+    a: "Yes — own transport is required. The factory is located outside Maastricht and is not accessible by public transport. This is a firm requirement.",
+  },
+  {
+    q: "Do I need to speak Dutch?",
+    a: "No. Basic English is enough to communicate on the production floor and with the team. Colleagues come from various countries.",
+  },
+  {
+    q: "Is accommodation included?",
+    a: "Accommodation is not included. Candidates must arrange their own housing in or near the Maastricht area.",
+  },
+  {
+    q: "What shifts are available?",
+    a: "The factory operates a 2 or 3 shift system. Exact shift patterns will be confirmed when you apply — we'll match you based on your availability.",
+  },
+  {
+    q: "What documents do I need?",
+    a: "A valid EU passport or work permit (proof of right to work in the Netherlands) is required. We'll confirm the full document list when you contact us.",
+  },
+];
 
 export default function ProductionWorkerMaastrichtPage() {
   return (
@@ -132,6 +164,11 @@ export default function ProductionWorkerMaastrichtPage() {
           <p className="text-center text-gray-500 text-xs mt-3">
             Fastest way to apply · We reply within 24h
           </p>
+        </div>
+
+        {/* ── FAQ ───────────────────────────────────────────────── */}
+        <div className="border-t border-white/10 mt-10">
+          <JobFAQ items={FAQ_ITEMS} />
         </div>
 
         <JobAlertStrip />

@@ -5,9 +5,37 @@ import StickyApplyBar from "@/components/StickyApplyBar";
 import ApplicantBadge from "@/components/ApplicantBadge";
 import RelatedJobs from "@/components/RelatedJobs";
 import JobAlertStrip from "@/components/JobAlertStrip";
+import JobFAQ from "@/components/JobFAQ";
 
 const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Food Production Operator (Netherlands)";
+
+const FAQ_ITEMS = [
+  {
+    q: "How do I apply?",
+    a: "Tap the 'Apply via WhatsApp' button — it opens a pre-filled message directly to us. We typically respond within 24 hours and guide you through the next steps.",
+  },
+  {
+    q: "Do I need previous experience in food production?",
+    a: "Previous food industry or production experience is preferred but not always required. If you're physically fit and reliable, we still want to hear from you — many of our placements start with no prior factory experience.",
+  },
+  {
+    q: "Do I need to speak Dutch?",
+    a: "No. Basic English is sufficient for communication on the production floor and with us. Many workers placed through our partners don't speak Dutch.",
+  },
+  {
+    q: "Is accommodation included?",
+    a: "Accommodation is not included with this position. Candidates must be based in the Netherlands or able to arrange their own housing before starting.",
+  },
+  {
+    q: "How quickly can I start?",
+    a: "We target a start within 1 week if your documents are ready. Placement is handled through verified agency partners who move fast.",
+  },
+  {
+    q: "What documents do I need?",
+    a: "You'll need a valid EU passport or work permit confirming your right to work in the Netherlands, and a BSN number (or ability to obtain one quickly). We'll walk you through the exact requirements when you apply.",
+  },
+];
 
 export default function FoodProductionPage() {
   return (
@@ -126,6 +154,11 @@ export default function FoodProductionPage() {
           <p className="text-center text-gray-500 text-xs mt-3">
             Fastest way to apply · We reply within 24h
           </p>
+        </div>
+
+        {/* ── FAQ ───────────────────────────────────────────────── */}
+        <div className="border-t border-white/10 mt-10">
+          <JobFAQ items={FAQ_ITEMS} />
         </div>
 
         <JobAlertStrip />
