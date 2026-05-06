@@ -184,6 +184,12 @@ export default function HomepageHeroCalculator() {
         >
           Full calculator with payslip export →
         </Link>
+        <Link
+          href="/reviews/submit"
+          className="flex items-center justify-center gap-1.5 w-full rounded-xl border border-dashed border-amber-500/30 bg-amber-500/5 hover:bg-amber-500/10 py-2.5 text-[11px] font-semibold text-amber-400 hover:text-amber-300 transition-colors"
+        >
+          ✍️ Worked in an agency? Tell people what to expect
+        </Link>
       </div>
 
     </div>
