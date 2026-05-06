@@ -6,6 +6,7 @@
 
 import { useT, type Locale } from "@/lib/i18n";
 import { ReviewComments } from "@/components/ReviewComments";
+import TranslateButton from "@/components/TranslateButton";
 
 // ─── Relative date helper (pure — no React hooks required) ───────────────────
 
@@ -253,9 +254,12 @@ export default function WorkerReviewCard({
 
       {/* ── Comment ── */}
       {review.comment && (
-        <blockquote className="border-l-2 border-gray-100 pl-3 text-xs text-gray-600 leading-relaxed">
-          &ldquo;{review.comment}&rdquo;
-        </blockquote>
+        <>
+          <blockquote className="border-l-2 border-gray-100 pl-3 text-xs text-gray-600 leading-relaxed">
+            &ldquo;{review.comment}&rdquo;
+          </blockquote>
+          <TranslateButton text={review.comment} />
+        </>
       )}
 
       {/* ── Footer verification line ── */}

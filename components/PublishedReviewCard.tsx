@@ -7,6 +7,7 @@
 
 import { useState } from "react";
 import { ReviewComments, type ReviewCommentData } from "./ReviewComments";
+import TranslateButton from "@/components/TranslateButton";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -260,6 +261,7 @@ export function PublishedReviewCard({ review }: { review: PublishedReview }) {
               {expanded ? "Show less" : "Read more"}
             </button>
           )}
+          <TranslateButton text={review.comment} />
         </div>
       )}
 
