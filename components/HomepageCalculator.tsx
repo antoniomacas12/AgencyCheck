@@ -322,6 +322,13 @@ export default function HomepageCalculator() {
             Open full calculator with payslip export
           </Link>
 
+          <Link
+            href="/reviews/submit"
+            className="flex items-center justify-center gap-2 w-full rounded-xl border border-dashed border-amber-400/40 bg-amber-50 hover:bg-amber-100 py-3 text-sm font-semibold text-amber-700 hover:text-amber-800 transition-colors"
+          >
+            ✍️ Worked in an agency? Tell people what to expect
+          </Link>
+
         </div>
       </div>
     </div>
