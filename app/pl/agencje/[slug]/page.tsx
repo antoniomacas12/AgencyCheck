@@ -145,6 +145,62 @@ function getTips(sector: string): string[] {
   return SECTOR_TIPS_PL[sector] ?? SECTOR_TIPS_PL["general-staffing"];
 }
 
+// ─── Transport info by sector (PL) ────────────────────────────────────────────
+
+const SECTOR_TRANSPORT_PL: Record<string, { info: string; cost: string }> = {
+  "logistics":         { info: "Agencje logistyczne często organizują autobus firmowy z wyznaczonego miejsca zbiórki do magazynu.", cost: "Koszt transportu: ~€10–25/tydzień odliczane z wynagrodzenia. Zawsze pytaj o dokładną kwotę przed podpisaniem umowy." },
+  "food-production":   { info: "Zakłady spożywcze zazwyczaj organizują busy do fabryki. Sprawdź, czy agencja ma własny transport lub czy musisz się dostać sam.", cost: "Transport może być wliczony lub potrącany z pensji (€10–20/tydzień). Zapytaj przed startem." },
+  "construction":      { info: "W budownictwie rzadko organizuje się transport grupowy. Większość pracowników dojeżdża własnym samochodem lub carpoolem z kolegami.", cost: "Koszty paliwa/dojazdu są zazwyczaj na koszt pracownika. Niektóre agencje refundują przejazd — zapytaj." },
+  "agriculture":       { info: "Agencje rolnicze często organizują transport na pola lub do szklarni z centralnego miejsca zbiórki.", cost: "Transport do miejsca pracy jest zwykle wliczony lub potrącany symbolicznie (€5–15/tydzień)." },
+  "healthcare":        { info: "Placówki medyczne są zwykle dostępne komunikacją miejską. Część agencji refunduje koszty transportu publicznego.", cost: "Refundacja biletu miesięcznego (OV-chipkaart) jest możliwa — zapytaj agencję o politykę transportową." },
+  "transport":         { info: "Kierowcy często startują z bazy firmy. Sprawdź, czy agencja zapewnia zakwaterowanie blisko bazy, aby uniknąć długich dojazdów.", cost: "Transport do bazy jest zazwyczaj na koszt pracownika, chyba że umowa stanowi inaczej." },
+  "manufacturing":     { info: "Fabryki zazwyczaj oferują busy z centrum miasta. Zapytaj agencję o rozkład jazdy i miejsce zbiórki.", cost: "Koszt busa fabrycznego: €10–20/tydzień. Sprawdź, czy jest potrącany automatycznie czy płatny osobno." },
+  "industrial":        { info: "Zakłady przemysłowe często leżą poza centrum. Busy organizowane przez agencję są standardem w tym sektorze.", cost: "Transport przemysłowy: €10–25/tydzień. Upewnij się, że kwota jest w umowie." },
+  "cleaning":          { info: "Sprzątacze często muszą dojeżdżać własnym środkiem transportu (wcześnie rano lub późno w nocy). Sprawdź lokalizację obiektu z wyprzedzeniem.", cost: "Transport zazwyczaj na koszt pracownika. Nieliczne agencje oferują refundację — warto zapytać." },
+  "hospitality":       { info: "Hotele i restauracje zazwyczaj nie organizują transportu. Komunikacja miejska lub rower są najczęstszym rozwiązaniem.", cost: "Koszty dojazdu pokrywa pracownik. Sprawdź dostępność połączeń nocnych, jeśli pracujesz na wieczornych zmianach." },
+  "office-admin":      { info: "Biura są zwykle zlokalizowane w centrum lub dobrze skomunikowane z komunikacją miejską. Opcja pracy zdalnej bywa dostępna.", cost: "Część pracodawców refunduje bilet miesięczny lub oferuje ryczałt na dojazd — zapytaj podczas rekrutacji." },
+  "it-tech":           { info: "Praca zdalna (remote/hybryda) jest standardem w IT. Jeśli wymagana jest obecność, biura są zwykle w centrum miast.", cost: "Pracodawcy IT często w pełni refundują koszty dojazdu lub zapewniają ryczałt transportowy." },
+  "general-staffing":  { info: "Transport zależy od konkretnego zlecenia. Zawsze pytaj agencję o transport przed przyjęciem oferty — szczegóły mogą się znacznie różnić.", cost: "Sprawdź, czy transport jest organizowany, ile kosztuje i czy jest potrącany z wynagrodzenia automatycznie." },
+};
+
+function getTransport(sector: string) {
+  return SECTOR_TRANSPORT_PL[sector] ?? SECTOR_TRANSPORT_PL["general-staffing"];
+}
+
+// ─── Common problems by sector (PL) ───────────────────────────────────────────
+
+const SECTOR_PROBLEMS_PL: Record<string, string[]> = {
+  "logistics":       [
+    "Nieoczekiwane potrącenia za transport lub zakwaterowanie odkryte dopiero na pierwszej wypłacie.",
+    "Zmiana lokalizacji magazynu bez wcześniejszego powiadomienia, co wydłuża czas dojazdu.",
+    "Nadgodziny bez odpowiednich dopłat — sprawdź stawkę za godziny powyżej normy w umowie.",
+  ],
+  "food-production": [
+    "Wysoka rotacja personelu i krótkie kontrakty — często trudno przejść na dłuższą umowę (Fase B).",
+    "Brak klimatyzacji lub ogrzewania w zakładach produkcyjnych (praca w ekstremalnych temperaturach).",
+    "Zmiana grafiku w ostatniej chwili — sprawdź w umowie minimalny okres wyprzedzenia.",
+  ],
+  "construction":    [
+    "Opóźnienia w płatności lub niejasne rozliczenia za nadgodziny i przestoje.",
+    "Praca na czarno lub bez odpowiednich ubezpieczeń — zawsze sprawdzaj numer ABU/NBBU agencji.",
+    "Brak zapewnienia niezbędnego sprzętu BHP — pracodawca ma obowiązek zapewnić środki ochrony.",
+  ],
+  "agriculture":     [
+    "Praca silnie uzależniona od pogody — brak wynagrodzenia w dniach bez pracy jest częstym problemem.",
+    "Sezonowość — oferty kończą się nagle, a kolejna praca może być w innym regionie Holandii.",
+    "Złe warunki zakwaterowania w sezonie zbiorów — przeludnione domy dla pracowników sezonowych.",
+  ],
+  "general-staffing":[
+    "Niejasne warunki umowy dotyczące potrąceń — zawsze czytaj aneks do umowy.",
+    "Brak ciągłości pracy — zlecenia kończą się nagle bez ostrzeżenia.",
+    "Trudność z przejściem z Fase A na B — agencje często 'resetują' licznik zatrudnienia.",
+  ],
+};
+
+function getProblems(sector: string): string[] {
+  return SECTOR_PROBLEMS_PL[sector] ?? SECTOR_PROBLEMS_PL["general-staffing"];
+}
+
 // ─── FAQ generator (PL) ───────────────────────────────────────────────────────
 
 function buildFaq(agencyName: string, acc: string, sector: string, cities: string[], score: number) {
@@ -315,10 +371,12 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
     .sort((a, b) => b.transparencyScore - a.transparencyScore)
     .slice(0, 4);
 
-  const salaryInfo  = getSalarySector(sector);
-  const accInfo     = getAccommodationInfo(accommodation);
-  const tips        = getTips(sector);
-  const faqItems    = buildFaq(agencyName, accommodation, sector, supportedCities, transparencyScore);
+  const salaryInfo    = getSalarySector(sector);
+  const accInfo       = getAccommodationInfo(accommodation);
+  const tips          = getTips(sector);
+  const transportInfo = getTransport(sector);
+  const problems      = getProblems(sector);
+  const faqItems      = buildFaq(agencyName, accommodation, sector, supportedCities, transparencyScore);
 
   const accBorderColor = accInfo.color === "green" ? "border-green-200 bg-green-50"
     : accInfo.color === "red" ? "border-red-100 bg-red-50"
@@ -487,6 +545,26 @@ export default async function PlAgencyPage({ params }: { params: { slug: string 
             <li key={i} className="flex items-start gap-2 text-sm text-amber-900">
               <span className="shrink-0 text-amber-500 mt-0.5">→</span>
               {tip}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Transport info */}
+      <section className="mb-8 rounded-xl border border-indigo-100 bg-indigo-50 p-4">
+        <h2 className="text-sm font-bold text-indigo-800 mb-3">🚌 Transport do pracy — {sector.replace(/-/g, " ")}</h2>
+        <p className="text-sm text-indigo-900 mb-2">{transportInfo.info}</p>
+        <p className="text-xs text-indigo-700 font-medium">{transportInfo.cost}</p>
+      </section>
+
+      {/* Common problems */}
+      <section className="mb-8 rounded-xl border border-red-100 bg-red-50 p-4">
+        <h2 className="text-sm font-bold text-red-800 mb-3">⚠️ Najczęstsze problemy — {sector.replace(/-/g, " ")}</h2>
+        <ul className="space-y-2">
+          {problems.map((p, i) => (
+            <li key={i} className="flex items-start gap-2 text-sm text-red-900">
+              <span className="shrink-0 text-red-400 mt-0.5">!</span>
+              {p}
             </li>
           ))}
         </ul>

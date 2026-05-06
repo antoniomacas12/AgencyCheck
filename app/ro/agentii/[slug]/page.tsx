@@ -145,6 +145,62 @@ function getTips(sector: string): string[] {
   return SECTOR_TIPS_RO[sector] ?? SECTOR_TIPS_RO["general-staffing"];
 }
 
+// ─── Transport info by sector (RO) ────────────────────────────────────────────
+
+const SECTOR_TRANSPORT_RO: Record<string, { info: string; cost: string }> = {
+  "logistics":         { info: "Agențiile de logistică organizează adesea un autobuz de la un punct de adunare central până la depozit.", cost: "Costul transportului: ~€10–25/săptămână, reținut din salariu. Întotdeauna întreabă despre suma exactă înainte de a semna." },
+  "food-production":   { info: "Fabricile alimentare organizează de obicei microbuze până la fabrică. Verifică dacă agenția are transport propriu sau trebuie să ajungi singur.", cost: "Transportul poate fi inclus sau reținut din salariu (€10–20/săptămână). Întreabă înainte de a începe." },
+  "construction":      { info: "În construcții, transportul de grup este rar. Majoritatea muncitorilor ajung cu mașina proprie sau în carpool cu colegii.", cost: "Costurile de transport sunt de obicei suportate de angajat. Unele agenții rambursează deplasarea — întreabă." },
+  "agriculture":       { info: "Agențiile agricole organizează frecvent transport spre câmpuri sau sere dintr-un punct central de adunare.", cost: "Transportul la locul de muncă este de obicei inclus sau reținut simbolic (€5–15/săptămână)." },
+  "healthcare":        { info: "Unitățile medicale sunt de obicei accesibile cu transportul public. Unele agenții rambursează costurile transportului public.", cost: "Rambursarea abonamentului lunar (OV-chipkaart) este posibilă — întreabă agenția despre politica de transport." },
+  "transport":         { info: "Șoferii pornesc de obicei din baza companiei. Verifică dacă agenția oferă cazare aproape de bază pentru a evita naveta lungă.", cost: "Transportul până la bază este de obicei în sarcina angajatului, dacă contractul nu prevede altfel." },
+  "manufacturing":     { info: "Fabricile oferă de obicei autobuze din centrul orașului. Întreabă agenția despre orar și punctul de adunare.", cost: "Costul autobuzului fabricii: €10–20/săptămână. Verifică dacă este reținut automat sau plătit separat." },
+  "industrial":        { info: "Unitățile industriale sunt adesea la periferie. Autobuzele organizate de agenție sunt standard în acest sector.", cost: "Transport industrial: €10–25/săptămână. Asigură-te că suma apare în contract." },
+  "cleaning":          { info: "Personalul de curățenie trebuie adesea să ajungă singur la locul de muncă (dimineața devreme sau noaptea târziu). Verifică locația din timp.", cost: "Transportul este de obicei în sarcina angajatului. Puține agenții oferă rambursare — merită întrebat." },
+  "hospitality":       { info: "Hotelurile și restaurantele nu organizează de obicei transport. Transportul public sau bicicleta sunt cele mai frecvente soluții.", cost: "Costurile de deplasare sunt suportate de angajat. Verifică conexiunile de noapte dacă lucrezi în ture de seară." },
+  "office-admin":      { info: "Birourile sunt de obicei în centrul orașului sau bine conectate cu transportul public. Munca de acasă este uneori disponibilă.", cost: "Unii angajatori rambursează abonamentul lunar sau oferă un forfet de transport — întreabă la recrutare." },
+  "it-tech":           { info: "Munca remote sau hibridă este standard în IT. Dacă prezența fizică este necesară, birourile sunt de obicei în centrul marilor orașe.", cost: "Angajatorii IT rambursează adesea integral costurile de transport sau oferă un forfet lunar." },
+  "general-staffing":  { info: "Transportul depinde de misiunea specifică. Întotdeauna întreabă agenția despre transport înainte de a accepta o ofertă — detaliile pot varia mult.", cost: "Verifică dacă transportul este organizat, cât costă și dacă este reținut automat din salariu." },
+};
+
+function getTransport(sector: string) {
+  return SECTOR_TRANSPORT_RO[sector] ?? SECTOR_TRANSPORT_RO["general-staffing"];
+}
+
+// ─── Common problems by sector (RO) ───────────────────────────────────────────
+
+const SECTOR_PROBLEMS_RO: Record<string, string[]> = {
+  "logistics":       [
+    "Rețineri neașteptate pentru transport sau cazare descoperite abia la primul salariu.",
+    "Schimbarea locației depozitului fără notificare prealabilă, ceea ce prelungește naveta.",
+    "Ore suplimentare fără sporuri corespunzătoare — verifică tariful pentru orele peste normă în contract.",
+  ],
+  "food-production": [
+    "Rotație mare de personal și contracte scurte — adesea dificil de trecut la un contract mai lung (Fase B).",
+    "Lipsa climatizării sau încălzirii în fabrici (muncă în temperaturi extreme).",
+    "Schimbarea programului în ultimul moment — verifică în contract perioada minimă de preaviz.",
+  ],
+  "construction":    [
+    "Întârzieri la plată sau calcule neclare pentru orele suplimentare și timpii de așteptare.",
+    "Muncă la negru sau fără asigurări corespunzătoare — verifică întotdeauna numărul ABU/NBBU al agenției.",
+    "Lipsa echipamentului de protecție necesar — angajatorul este obligat să furnizeze mijloace de protecție.",
+  ],
+  "agriculture":     [
+    "Munca este puternic dependentă de vreme — salariul în zilele fără lucru este o problemă frecventă.",
+    "Sezonalitate — ofertele se termină brusc, iar următoarea muncă poate fi în altă regiune din Olanda.",
+    "Condiții de cazare proaste în sezonul recoltei — case supraaglomerate pentru muncitori sezonieri.",
+  ],
+  "general-staffing":[
+    "Condiții contractuale neclare privind reținerile — citește întotdeauna anexa la contract.",
+    "Lipsa continuității muncii — misiunile se termină brusc fără avertisment.",
+    "Dificultate în trecerea de la Fase A la B — agențiile resetează adesea contorul de angajare.",
+  ],
+};
+
+function getProblems(sector: string): string[] {
+  return SECTOR_PROBLEMS_RO[sector] ?? SECTOR_PROBLEMS_RO["general-staffing"];
+}
+
 // ─── FAQ generator (RO) ───────────────────────────────────────────────────────
 
 function buildFaq(agencyName: string, acc: string, sector: string, cities: string[], score: number) {
@@ -315,10 +371,12 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
     .sort((a, b) => b.transparencyScore - a.transparencyScore)
     .slice(0, 4);
 
-  const salaryInfo = getSalarySector(sector);
-  const accInfo    = getAccommodationInfo(accommodation);
-  const tips       = getTips(sector);
-  const faqItems   = buildFaq(agencyName, accommodation, sector, supportedCities, transparencyScore);
+  const salaryInfo    = getSalarySector(sector);
+  const accInfo       = getAccommodationInfo(accommodation);
+  const tips          = getTips(sector);
+  const transportInfo = getTransport(sector);
+  const problems      = getProblems(sector);
+  const faqItems      = buildFaq(agencyName, accommodation, sector, supportedCities, transparencyScore);
 
   const accBorderColor = accInfo.color === "green" ? "border-green-200 bg-green-50"
     : accInfo.color === "red" ? "border-red-100 bg-red-50"
@@ -487,6 +545,26 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
             <li key={i} className="flex items-start gap-2 text-sm text-amber-900">
               <span className="shrink-0 text-amber-500 mt-0.5">→</span>
               {tip}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Transport info */}
+      <section className="mb-8 rounded-xl border border-indigo-100 bg-indigo-50 p-4">
+        <h2 className="text-sm font-bold text-indigo-800 mb-3">🚌 Transport la muncă — {sector.replace(/-/g, " ")}</h2>
+        <p className="text-sm text-indigo-900 mb-2">{transportInfo.info}</p>
+        <p className="text-xs text-indigo-700 font-medium">{transportInfo.cost}</p>
+      </section>
+
+      {/* Common problems */}
+      <section className="mb-8 rounded-xl border border-red-100 bg-red-50 p-4">
+        <h2 className="text-sm font-bold text-red-800 mb-3">⚠️ Probleme frecvente — {sector.replace(/-/g, " ")}</h2>
+        <ul className="space-y-2">
+          {problems.map((p, i) => (
+            <li key={i} className="flex items-start gap-2 text-sm text-red-900">
+              <span className="shrink-0 text-red-400 mt-0.5">!</span>
+              {p}
             </li>
           ))}
         </ul>

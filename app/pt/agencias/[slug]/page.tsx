@@ -145,6 +145,62 @@ function getTips(sector: string): string[] {
   return SECTOR_TIPS_PT[sector] ?? SECTOR_TIPS_PT["general-staffing"];
 }
 
+// ─── Transport info by sector (PT) ────────────────────────────────────────────
+
+const SECTOR_TRANSPORT_PT: Record<string, { info: string; cost: string }> = {
+  "logistics":         { info: "As agências de logística organizam frequentemente um autocarro de um ponto de encontro central até ao armazém.", cost: "Custo do transporte: ~€10–25/semana, descontado do salário. Pergunte sempre pelo valor exato antes de assinar." },
+  "food-production":   { info: "As fábricas alimentares organizam normalmente carrinhas até à fábrica. Verifique se a agência tem transporte próprio ou se tem de chegar por conta própria.", cost: "O transporte pode ser incluído ou descontado do salário (€10–20/semana). Pergunte antes de começar." },
+  "construction":      { info: "Na construção, o transporte de grupo é raro. A maioria dos trabalhadores desloca-se de carro próprio ou em carpool com colegas.", cost: "Os custos de deslocação são normalmente suportados pelo trabalhador. Algumas agências reembolsam — pergunte." },
+  "agriculture":       { info: "As agências agrícolas organizam frequentemente transporte para os campos ou estufas a partir de um ponto central.", cost: "O transporte para o local de trabalho é geralmente incluído ou descontado simbolicamente (€5–15/semana)." },
+  "healthcare":        { info: "As unidades de saúde são geralmente acessíveis por transporte público. Algumas agências reembolsam os custos de transporte público.", cost: "O reembolso do passe mensal (OV-chipkaart) é possível — pergunte à agência sobre a política de transporte." },
+  "transport":         { info: "Os motoristas partem geralmente da base da empresa. Verifique se a agência oferece alojamento perto da base para evitar deslocações longas.", cost: "O transporte até à base é normalmente a cargo do trabalhador, salvo disposição contratual em contrário." },
+  "manufacturing":     { info: "As fábricas oferecem normalmente autocarros do centro da cidade. Pergunte à agência sobre o horário e o ponto de encontro.", cost: "Custo do autocarro da fábrica: €10–20/semana. Verifique se é descontado automaticamente ou pago separadamente." },
+  "industrial":        { info: "As instalações industriais estão frequentemente na periferia. Os autocarros organizados pela agência são padrão neste setor.", cost: "Transporte industrial: €10–25/semana. Certifique-se de que o valor consta do contrato." },
+  "cleaning":          { info: "O pessoal de limpeza tem frequentemente de se deslocar por conta própria (de madrugada ou à noite). Verifique a localização com antecedência.", cost: "O transporte é normalmente a cargo do trabalhador. Poucas agências oferecem reembolso — vale a pena perguntar." },
+  "hospitality":       { info: "Hotéis e restaurantes não organizam normalmente transporte. O transporte público ou a bicicleta são as soluções mais comuns.", cost: "Os custos de deslocação são suportados pelo trabalhador. Verifique as ligações noturnas se trabalhar em turnos da noite." },
+  "office-admin":      { info: "Os escritórios estão geralmente no centro da cidade ou bem servidos por transporte público. O teletrabalho está por vezes disponível.", cost: "Alguns empregadores reembolsam o passe mensal ou oferecem um subsídio de transporte — pergunte no recrutamento." },
+  "it-tech":           { info: "O trabalho remoto ou híbrido é padrão em TI. Se a presença física for necessária, os escritórios estão geralmente no centro das grandes cidades.", cost: "Os empregadores de TI reembolsam frequentemente na totalidade os custos de transporte ou oferecem um subsídio mensal." },
+  "general-staffing":  { info: "O transporte depende da missão específica. Pergunte sempre à agência sobre o transporte antes de aceitar uma oferta — os detalhes podem variar muito.", cost: "Verifique se o transporte é organizado, quanto custa e se é descontado automaticamente do salário." },
+};
+
+function getTransport(sector: string) {
+  return SECTOR_TRANSPORT_PT[sector] ?? SECTOR_TRANSPORT_PT["general-staffing"];
+}
+
+// ─── Common problems by sector (PT) ───────────────────────────────────────────
+
+const SECTOR_PROBLEMS_PT: Record<string, string[]> = {
+  "logistics":       [
+    "Descontos inesperados de transporte ou alojamento descobertos apenas no primeiro salário.",
+    "Mudança de localização do armazém sem aviso prévio, aumentando o tempo de deslocação.",
+    "Horas extra sem os devidos subsídios — verifique no contrato a tarifa para horas acima da norma.",
+  ],
+  "food-production": [
+    "Grande rotação de pessoal e contratos curtos — frequentemente difícil de transitar para um contrato mais longo (Fase B).",
+    "Falta de ar condicionado ou aquecimento nas fábricas (trabalho em temperaturas extremas).",
+    "Alteração de horário em cima da hora — verifique no contrato o período mínimo de pré-aviso.",
+  ],
+  "construction":    [
+    "Atrasos no pagamento ou cálculos pouco claros para horas extra e tempos de espera.",
+    "Trabalho não declarado ou sem seguros adequados — verifique sempre o número ABU/NBBU da agência.",
+    "Falta do equipamento de proteção necessário — o empregador tem obrigação de fornecer meios de proteção.",
+  ],
+  "agriculture":     [
+    "O trabalho é fortemente dependente do tempo — a falta de remuneração nos dias sem trabalho é um problema frequente.",
+    "Sazonalidade — as ofertas terminam abruptamente e o próximo trabalho pode ser noutra região da Holanda.",
+    "Más condições de alojamento na época de colheita — casas sobrelotadas para trabalhadores sazonais.",
+  ],
+  "general-staffing":[
+    "Condições contratuais pouco claras sobre os descontos — leia sempre o anexo ao contrato.",
+    "Falta de continuidade de trabalho — as missões terminam abruptamente sem aviso.",
+    "Dificuldade em transitar de Fase A para B — as agências frequentemente reiniciam o contador de emprego.",
+  ],
+};
+
+function getProblems(sector: string): string[] {
+  return SECTOR_PROBLEMS_PT[sector] ?? SECTOR_PROBLEMS_PT["general-staffing"];
+}
+
 // ─── FAQ generator (PT) ───────────────────────────────────────────────────────
 
 function buildFaq(agencyName: string, acc: string, sector: string, cities: string[], score: number) {
@@ -315,10 +371,12 @@ export default async function PtAgencyPage({ params }: { params: { slug: string 
     .sort((a, b) => b.transparencyScore - a.transparencyScore)
     .slice(0, 4);
 
-  const salaryInfo = getSalarySector(sector);
-  const accInfo    = getAccommodationInfo(accommodation);
-  const tips       = getTips(sector);
-  const faqItems   = buildFaq(agencyName, accommodation, sector, supportedCities, transparencyScore);
+  const salaryInfo    = getSalarySector(sector);
+  const accInfo       = getAccommodationInfo(accommodation);
+  const tips          = getTips(sector);
+  const transportInfo = getTransport(sector);
+  const problems      = getProblems(sector);
+  const faqItems      = buildFaq(agencyName, accommodation, sector, supportedCities, transparencyScore);
 
   const accBorderColor = accInfo.color === "green" ? "border-green-200 bg-green-50"
     : accInfo.color === "red" ? "border-red-100 bg-red-50"
@@ -487,6 +545,26 @@ export default async function PtAgencyPage({ params }: { params: { slug: string 
             <li key={i} className="flex items-start gap-2 text-sm text-amber-900">
               <span className="shrink-0 text-amber-500 mt-0.5">→</span>
               {tip}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Transport info */}
+      <section className="mb-8 rounded-xl border border-indigo-100 bg-indigo-50 p-4">
+        <h2 className="text-sm font-bold text-indigo-800 mb-3">🚌 Transporte para o trabalho — {sector.replace(/-/g, " ")}</h2>
+        <p className="text-sm text-indigo-900 mb-2">{transportInfo.info}</p>
+        <p className="text-xs text-indigo-700 font-medium">{transportInfo.cost}</p>
+      </section>
+
+      {/* Common problems */}
+      <section className="mb-8 rounded-xl border border-red-100 bg-red-50 p-4">
+        <h2 className="text-sm font-bold text-red-800 mb-3">⚠️ Problemas frequentes — {sector.replace(/-/g, " ")}</h2>
+        <ul className="space-y-2">
+          {problems.map((p, i) => (
+            <li key={i} className="flex items-start gap-2 text-sm text-red-900">
+              <span className="shrink-0 text-red-400 mt-0.5">!</span>
+              {p}
             </li>
           ))}
         </ul>
