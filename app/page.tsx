@@ -481,6 +481,14 @@ export default async function HomePage() {
                     Based on 2026 Dutch tax law (belastingdienst.nl) + SNF housing limits
                   </p>
 
+                  {/* Review CTA */}
+                  <Link
+                    href="/reviews/submit"
+                    className="mt-4 flex items-center justify-center gap-2 w-full rounded-xl border border-dashed border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 py-2.5 text-[12px] font-semibold text-amber-300 hover:text-amber-200 transition-colors"
+                  >
+                    ✍️ Worked in an agency? Tell people what to expect
+                  </Link>
+
                 </div>
               </div>
 
