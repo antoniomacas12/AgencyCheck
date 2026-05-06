@@ -2,32 +2,63 @@
 
 /**
  * HeroReviewInline — compact inline review form shown directly below
- * the hero salary card. No click needed to open — fields are immediately
- * visible. On submit redirects to /reviews/submit with pre-filled data.
+ * the hero salary card. Submits directly to POST /api/reviews so the
+ * review appears on the reviews page immediately, no redirect needed.
+ *
+ * The single star rating is applied to all required sub-ratings
+ * (salary, management, contract clarity) since this is a quick-entry form.
  */
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 const STARS = [1, 2, 3, 4, 5];
+const LABELS = ["", "Very bad", "Bad", "OK", "Good", "Excellent"];
+
+type Status = "idle" | "loading" | "success" | "error";
 
 export default function HeroReviewInline() {
-  const router  = useRouter();
-  const [agency, setAgency]   = useState("");
-  const [rating, setRating]   = useState(0);
+  const [agency,  setAgency]  = useState("");
+  const [rating,  setRating]  = useState(0);
   const [hovered, setHovered] = useState(0);
   const [comment, setComment] = useState("");
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const params = new URLSearchParams();
-    if (agency) params.set("agency", agency);
-    if (rating) params.set("rating", String(rating));
-    if (comment) params.set("comment", comment);
-    router.push(`/reviews/submit?${params.toString()}`);
-  }
+  const [status,  setStatus]  = useState<Status>("idle");
 
   const activeRating = hovered || rating;
+  const canSubmit    = agency.trim().length > 0 && rating > 0;
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!canSubmit) return;
+
+    setStatus("loading");
+
+    const fd = new FormData();
+    fd.append("agencyName",            agency.trim());
+    fd.append("salaryRating",          String(rating));
+    fd.append("managementRating",      String(rating));
+    fd.append("contractClarityRating", String(rating));
+    fd.append("overallRating",         String(rating));
+    if (comment.trim()) fd.append("comment", comment.trim());
+
+    try {
+      const res = await fetch("/api/reviews", { method: "POST", body: fd });
+      if (!res.ok) throw new Error("failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  /* ── Success state ── */
+  if (status === "success") {
+    return (
+      <div className="mt-4 w-full rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
+        <div className="text-2xl mb-2">✅</div>
+        <p className="text-sm font-bold text-emerald-300 mb-1">Review submitted!</p>
+        <p className="text-xs text-gray-400">It&apos;s now live on the reviews page. Thank you.</p>
+      </div>
+    );
+  }
 
   return (
     <form
@@ -62,10 +93,8 @@ export default function HeroReviewInline() {
             <span className={s <= activeRating ? "text-amber-400" : "text-gray-600"}>★</span>
           </button>
         ))}
-        {rating > 0 && (
-          <span className="text-xs text-gray-400 ml-1">
-            {["", "Very bad", "Bad", "OK", "Good", "Excellent"][rating]}
-          </span>
+        {activeRating > 0 && (
+          <span className="text-xs text-gray-400 ml-1">{LABELS[activeRating]}</span>
         )}
       </div>
 
@@ -78,12 +107,16 @@ export default function HeroReviewInline() {
         className="w-full rounded-lg bg-white/[0.07] border border-white/[0.12] text-white placeholder-gray-500 text-sm px-3 py-2.5 focus:outline-none focus:border-amber-400/50 transition-colors resize-none"
       />
 
+      {status === "error" && (
+        <p className="text-xs text-red-400">Something went wrong. Please try again.</p>
+      )}
+
       <button
         type="submit"
-        disabled={!agency && !comment}
+        disabled={!canSubmit || status === "loading"}
         className="w-full rounded-xl bg-amber-500 hover:bg-amber-400 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-sm py-2.5 transition-colors active:scale-[0.98]"
       >
-        Continue &amp; submit review →
+        {status === "loading" ? "Submitting…" : "Submit review →"}
       </button>
     </form>
   );
