@@ -9,7 +9,7 @@ import {
   type DbReview,
   type DbCityMention,
 } from "@/lib/agencyDb";
-import { ALL_AGENCY_MAP } from "@/lib/agencyEnriched";
+import { ALL_AGENCIES, ALL_AGENCY_MAP } from "@/lib/agencyEnriched";
 import { AGENCY_STRINGS, CITY_STRINGS, AGENCY_BASE, CITY_BASE, EN_AGENCY_BASE, renderStars, type I18nLocale } from "@/lib/agencyI18nStrings";
 import { toCitySlug } from "@/lib/cityNormalization";
 import { prisma } from "@/lib/prisma";
@@ -27,9 +27,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const staticAgency = ALL_AGENCY_MAP[params.slug];
   const agencyName   = staticAgency?.name ?? params.slug.replace(/-/g, " ");
+  const city         = staticAgency?.city ?? "Olanda";
+  const sector       = staticAgency?.sector ?? "general-staffing";
+  const hasHousing   = staticAgency?.accommodation === "confirmed_with_deduction" || staticAgency?.accommodation === "confirmed_no_deduction";
 
-  const title       = `${agencyName} ${S.metaTitleSuffix} – munca în Olanda`;
-  const description = S.agencyMetaDesc(agencyName);
+  const title = `${agencyName} păreri – salariu, cazare, muncă în Olanda`;
+  const description = `${agencyName} este o agenție de muncă în ${city}, Olanda. Sector: ${sector}. ${
+    hasHousing ? "Cazare disponibilă pentru angajați. " : ""
+  }Citește părerile muncitorilor despre salarii, condiții de muncă și cazare.`;
+
   return {
     title,
     description,
@@ -45,10 +51,140 @@ export async function generateMetadata({
       `${agencyName} munca Olanda`,
       `${agencyName} cazare`,
       `${agencyName} salariu`,
-      "agentie munca Olanda",
+      `agentie munca ${city}`,
       "munca in Olanda pareri",
     ],
   };
+}
+
+// ─── Sector salary ranges (RO) ────────────────────────────────────────────────
+
+const SECTOR_SALARY_RO: Record<string, { min: string; max: string; note: string }> = {
+  "logistics":         { min: "€13,50", max: "€16,00", note: "muncă în depozite, picking și packing, operare stivuitor" },
+  "food-production":   { min: "€13,50", max: "€15,50", note: "linie de producție, ambalare, control calitate" },
+  "construction":      { min: "€16,00", max: "€24,00", note: "tarifele depind de calificări și tipul lucrărilor de construcție" },
+  "office-admin":      { min: "€15,00", max: "€28,00", note: "muncă de birou și administrativă, adesea contracte pe termen lung" },
+  "general-staffing":  { min: "€13,27", max: "€16,00", note: "diverse sectoare, salariul minim WML 2026 = €14,71/oră" },
+  "agriculture":       { min: "€13,27", max: "€14,50", note: "muncă sezonieră pe câmp, recoltare, sere" },
+  "healthcare":        { min: "€15,00", max: "€32,00", note: "personal medical și de îngrijire, necesită certificate" },
+  "transport":         { min: "€14,50", max: "€20,00", note: "șoferi (C, CE), operatori, muncă în ture" },
+  "manufacturing":     { min: "€13,50", max: "€17,00", note: "producție industrială, operare utilaje, muncă în schimburi" },
+  "industrial":        { min: "€13,50", max: "€17,50", note: "operare mașini, asamblare, hale de producție" },
+  "cleaning":          { min: "€13,27", max: "€14,50", note: "curățenie industrială și de birouri" },
+  "hospitality":       { min: "€13,27", max: "€15,50", note: "hoteluri, restaurante, catering" },
+  "it-tech":           { min: "€25,00", max: "€65,00", note: "IT, development, muncă remote sau hibrid" },
+};
+
+function getSalarySector(sector: string) {
+  return SECTOR_SALARY_RO[sector] ?? SECTOR_SALARY_RO["general-staffing"];
+}
+
+// ─── Accommodation details (RO) ───────────────────────────────────────────────
+
+function getAccommodationInfo(acc: string): { label: string; detail: string; color: string } {
+  switch (acc) {
+    case "confirmed_with_deduction":
+      return {
+        label:  "✅ Cazare disponibilă",
+        detail: "Agenția oferă cazare angajaților. Costul este de obicei ~€80–100/săptămână, reținut direct din salariu (conform normelor SNF). Înainte de a semna contractul, întreabă despre suma exactă a reținerii săptămânale și numărul de persoane în cameră.",
+        color:  "green",
+      };
+    case "confirmed_no_deduction":
+      return {
+        label:  "✅ Cazare inclusă",
+        detail: "Agenția oferă cazare fără rețineri din salariu. Aceasta este o opțiune rară și avantajoasă — asigură-te totuși în scris că nu există taxe administrative ascunse.",
+        color:  "green",
+      };
+    case "not_provided":
+      return {
+        label:  "❌ Fără cazare",
+        detail: "Agenția nu oferă cazare. Angajații trebuie să-și găsească singuri locuință. Chiria medie pentru o cameră în Olanda este €500–900/lună, în funcție de regiune.",
+        color:  "red",
+      };
+    case "unverified_claim":
+      return {
+        label:  "⚠ Cazare declarată",
+        detail: "Agenția declară că oferă cazare, dar acest lucru nu a fost verificat de AgencyCheck. Contactează direct agenția pentru a clarifica condițiile și costurile înainte de a semna contractul.",
+        color:  "amber",
+      };
+    default:
+      return {
+        label:  "❓ Status cazare necunoscut",
+        detail: "Nu avem informații confirmate despre cazare la această agenție. Întotdeauna întreabă despre cazare la primul contact cu agenția.",
+        color:  "gray",
+      };
+  }
+}
+
+// ─── Worker tips by sector (RO) ───────────────────────────────────────────────
+
+const SECTOR_TIPS_RO: Record<string, string[]> = {
+  "logistics":       [
+    "Înainte de a semna contractul, verifică dacă agenția reține costurile de transport până la depozit.",
+    "Întreabă cum se calculează orele suplimentare — în Olanda depinde de contractul colectiv de muncă (CAO).",
+    "Munca în ture (ochtend/avond) are adesea tarife mai mari — întreabă despre sporurile pentru ture de noapte și weekend.",
+  ],
+  "food-production": [
+    "În fabricile alimentare se cere adesea echipament de protecție propriu — întreabă ce asigură agenția.",
+    "Munca pe linie de producție poate fi monotonă — asigură-te că tariful orar este clar peste salariul minim.",
+    "Verifică dacă agenția plătește contribuțiile sociale (sociale verzekering) — acesta este dreptul tău în Olanda.",
+  ],
+  "construction":    [
+    "Agențiile de construcții cer adesea unelte proprii sau autorizații speciale — verifică cerințele în avans.",
+    "Tarifele pentru construcții pot diferi mult față de cele din ofertă — întreabă despre tariful net după rețineri.",
+    "În construcții se aplică adesea CAO Bouw — asigură-te că agenția îl respectă.",
+  ],
+  "general-staffing":[
+    "Verifică dacă contractul este Uitzendovereenkomst — acesta este contractul standard temporar în Olanda.",
+    "Tariful minim în 2026 este €14,71/oră (WML) — nicio agenție nu poate oferi mai puțin.",
+    "Întreabă despre sistemul de faze (Fase A/B/C) — de el depinde protecția angajării tale.",
+  ],
+};
+
+function getTips(sector: string): string[] {
+  return SECTOR_TIPS_RO[sector] ?? SECTOR_TIPS_RO["general-staffing"];
+}
+
+// ─── FAQ generator (RO) ───────────────────────────────────────────────────────
+
+function buildFaq(agencyName: string, acc: string, sector: string, cities: string[], score: number) {
+  const salary = getSalarySector(sector);
+  const cityList = cities.slice(0, 3).map((c) => c.charAt(0).toUpperCase() + c.slice(1)).join(", ");
+
+  return [
+    {
+      q: `${agencyName} oferă cazare?`,
+      a: acc === "confirmed_with_deduction"
+        ? `Da — ${agencyName} oferă cazare angajaților. Costul este reținut din salariul săptămânal (de obicei €80–100/săptămână conform normelor SNF). Întreabă agenția despre tariful actual.`
+        : acc === "confirmed_no_deduction"
+        ? `Da — ${agencyName} oferă cazare fără rețineri din salariu. Aceasta este o opțiune rară și foarte avantajoasă.`
+        : acc === "not_provided"
+        ? `Nu — ${agencyName} nu oferă cazare. Trebuie să-ți găsești singur locuință. Chiria medie în Olanda este €500–900/lună pentru o cameră.`
+        : `Statutul cazării la ${agencyName} este incert — contactează direct agenția pentru a clarifica înainte de a semna contractul.`,
+    },
+    {
+      q: `Cât poți câștiga lucrând prin ${agencyName}?`,
+      a: `Agenția ${agencyName} este specializată în sectorul: ${sector}. Tarifele orare tipice în această industrie în Olanda sunt ${salary.min}–${salary.max}/oră brut. Reține că din suma brută se rețin impozitul olandez, contribuțiile de asigurare (ZVW ~€35/săptămână) și eventualele costuri de cazare și transport.`,
+    },
+    {
+      q: `În ce orașe activează ${agencyName}?`,
+      a: cityList
+        ? `${agencyName} deservește angajați în următoarele orașe: ${cityList}${cities.length > 3 ? ` și altele` : ""}. Contactează agenția pentru disponibilitatea ofertelor într-un anumit oraș.`
+        : `${agencyName} activează pe teritoriul Olandei. Contactează direct agenția pentru a verifica locațiile disponibile.`,
+    },
+    {
+      q: `Cum evaluează angajații ${agencyName}?`,
+      a: score >= 70
+        ? `${agencyName} obține un scor de transparență relativ ridicat (${score}/100) conform datelor AgencyCheck. Un scor mare înseamnă că agenția este activă, are date de contact disponibile și nu este raportată de angajați pentru practici neetice.`
+        : score >= 50
+        ? `${agencyName} obține un scor mediu de transparență (${score}/100). Înainte de a semna contractul, verifică părerile angajaților și întreabă despre condițiile esențiale de angajare.`
+        : `${agencyName} obține un scor scăzut de transparență (${score}/100). Recomandăm precauție deosebită și verificarea atentă a condițiilor contractuale înainte de semnare.`,
+    },
+    {
+      q: `Ce trebuie să verifici înainte de a semna un contract cu o agenție de muncă în Olanda?`,
+      a: `Verifică întotdeauna: (1) tariful orar brut și toate reținerile, (2) costul cazării și regulamentul SNF, (3) costurile transportului la muncă, (4) sistemul de faze și tipul contractului (Fase A/B/C), (5) numărul de înregistrare ABU/NBBU al agenției. Tariful minim în 2026 = €14,71/oră.`,
+    },
+  ];
 }
 
 // ─── Star helper ───────────────────────────────────────────────────────────────
@@ -143,6 +279,14 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
   const agencyId     = dbAgency?.id ?? null;
   const isUnverified = !staticAgency;
 
+  const sector          = staticAgency?.sector ?? "general-staffing";
+  const accommodation   = staticAgency?.accommodation ?? "unknown";
+  const supportedCities = staticAgency?.supportedCities ?? [];
+  const jobFocus        = staticAgency?.jobFocus ?? [];
+  const transparencyScore = staticAgency?.transparencyScore ?? 0;
+  const description     = staticAgency?.description ?? null;
+  const city            = staticAgency?.city ?? dbAgency?.city ?? "Olanda";
+
   const cityMentions: DbCityMention[] = agencyId
     ? await getAgencyCityMentions(agencyId)
     : [];
@@ -162,9 +306,28 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
         }).catch(() => [])
       : [];
 
-  const cityDisplay = dbAgency?.city && dbAgency.city !== "unknown"
-    ? dbAgency.city
-    : staticAgency?.city ?? "Olanda";
+  // Related agencies: same city/sector, different slug
+  const relatedAgencies = ALL_AGENCIES
+    .filter((a) =>
+      a.slug !== params.slug &&
+      (a.city === city || a.sector === sector)
+    )
+    .sort((a, b) => b.transparencyScore - a.transparencyScore)
+    .slice(0, 4);
+
+  const salaryInfo = getSalarySector(sector);
+  const accInfo    = getAccommodationInfo(accommodation);
+  const tips       = getTips(sector);
+  const faqItems   = buildFaq(agencyName, accommodation, sector, supportedCities, transparencyScore);
+
+  const accBorderColor = accInfo.color === "green" ? "border-green-200 bg-green-50"
+    : accInfo.color === "red" ? "border-red-100 bg-red-50"
+    : accInfo.color === "amber" ? "border-amber-200 bg-amber-50"
+    : "border-gray-100 bg-gray-50";
+  const accTextColor = accInfo.color === "green" ? "text-green-800"
+    : accInfo.color === "red" ? "text-red-700"
+    : accInfo.color === "amber" ? "text-amber-800"
+    : "text-gray-700";
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-8 pb-24">
@@ -210,6 +373,15 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
               {S.unverifiedBadge}
             </span>
           )}
+          {!isUnverified && transparencyScore > 0 && (
+            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
+              transparencyScore >= 70 ? "bg-green-50 text-green-700 border-green-200" :
+              transparencyScore >= 50 ? "bg-amber-50 text-amber-700 border-amber-200" :
+              "bg-red-50 text-red-700 border-red-100"
+            }`}>
+              Transparență: {transparencyScore}/100
+            </span>
+          )}
           {directReviews.length > 0 && (
             <span className="text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-100 px-2 py-0.5 rounded-full">
               {S.reviewsCount(directReviews.length)}
@@ -218,19 +390,63 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
         </div>
 
         <h1 className="text-2xl font-bold text-gray-900 leading-tight">
-          {agencyName} {S.h1Suffix}
+          {agencyName} — păreri angajați
           <span className="block text-sm font-normal text-gray-400 mt-0.5">
-            {S.h1SubTitle}
+            Salariu · Cazare · Condiții de muncă în Olanda
           </span>
         </h1>
         <p className="text-sm text-gray-500 mt-1">
-          📍 {cityDisplay}, Olanda
+          📍 {city}, Olanda
           {" · "}
           <Link href={`${EN_AGENCY_BASE}/${params.slug}`} className="text-brand-600 hover:underline text-xs">
             English version →
           </Link>
         </p>
       </header>
+
+      {/* Agency description (unique per agency) */}
+      {description && (
+        <section className="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Despre agenție</p>
+          <p className="text-sm text-gray-700 leading-relaxed">{description}</p>
+          {jobFocus.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              {jobFocus.map((j) => (
+                <span key={j} className="text-[11px] bg-white border border-gray-200 text-gray-600 px-2.5 py-0.5 rounded-full">
+                  {j.replace(/-/g, " ")}
+                </span>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* Salary section */}
+      <section className="mb-6 rounded-xl border border-blue-100 bg-blue-50 p-4">
+        <p className="text-xs font-bold text-blue-700 uppercase tracking-widest mb-2">💶 Salariu în {sector.replace(/-/g, " ")}</p>
+        <div className="flex items-baseline gap-2 mb-1">
+          <span className="text-2xl font-black text-blue-900">{salaryInfo.min} – {salaryInfo.max}</span>
+          <span className="text-sm text-blue-600">/oră brut</span>
+        </div>
+        <p className="text-xs text-blue-700 mb-2">{salaryInfo.note}</p>
+        <p className="text-[11px] text-blue-500">
+          După reținerea impozitului, ZVW (~€35/săptămână) și eventualele costuri de cazare și transport, salariul real „în mână" poate fi cu 25–40% mai mic decât suma brută.
+          <Link href="/tools/real-income-calculator" className="ml-1 underline font-semibold">Calculează venitul tău real →</Link>
+        </p>
+      </section>
+
+      {/* Accommodation section */}
+      <section className={`mb-6 rounded-xl border p-4 ${accBorderColor}`}>
+        <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "inherit" }}>🏠 Cazare</p>
+        <p className={`text-sm font-semibold mb-1 ${accTextColor}`}>{accInfo.label}</p>
+        <p className={`text-sm leading-relaxed ${accTextColor}`}>{accInfo.detail}</p>
+        {supportedCities.length > 0 && (
+          <p className="text-xs text-gray-500 mt-2">
+            Orașe deservite: {supportedCities.slice(0, 5).map((c) => c.charAt(0).toUpperCase() + c.slice(1)).join(", ")}
+            {supportedCities.length > 5 && ` +${supportedCities.length - 5} altele`}
+          </p>
+        )}
+      </section>
 
       {/* Rating summary */}
       {avgRatings && avgRatings.count > 0 && (
@@ -242,9 +458,9 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
               <p className="text-[10px] text-gray-400 mt-1">{S.reviewsCount(avgRatings.count)}</p>
             </div>
             <div className="flex-1 space-y-2">
-              <RatingRow label={S.salaryLabel}   value={avgRatings.salary   ?? avgRatings.overall} />
-              <RatingRow label={S.managementLabel} value={avgRatings.mgmt   ?? avgRatings.overall} />
-              <RatingRow label={S.contractLabel}  value={avgRatings.contract ?? avgRatings.overall} />
+              <RatingRow label={S.salaryLabel}     value={avgRatings.salary   ?? avgRatings.overall} />
+              <RatingRow label={S.managementLabel} value={avgRatings.mgmt     ?? avgRatings.overall} />
+              <RatingRow label={S.contractLabel}   value={avgRatings.contract ?? avgRatings.overall} />
             </div>
           </div>
         </section>
@@ -262,6 +478,19 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
           <p className="text-[11px] text-gray-400 mt-3 italic">{S.trustNote}</p>
         </section>
       )}
+
+      {/* Worker tips */}
+      <section className="mb-8 rounded-xl border border-amber-100 bg-amber-50 p-4">
+        <h2 className="text-sm font-bold text-amber-800 mb-3">💡 Sfaturi pentru angajați — {sector.replace(/-/g, " ")}</h2>
+        <ul className="space-y-2">
+          {tips.map((tip, i) => (
+            <li key={i} className="flex items-start gap-2 text-sm text-amber-900">
+              <span className="shrink-0 text-amber-500 mt-0.5">→</span>
+              {tip}
+            </li>
+          ))}
+        </ul>
+      </section>
 
       {/* Worker comments */}
       {recentComments.length > 0 && (
@@ -297,12 +526,46 @@ export default async function RoAgencyPage({ params }: { params: { slug: string 
         </section>
       )}
 
+      {/* FAQ */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-4">Întrebări frecvente despre {agencyName}</h2>
+        <div className="space-y-3">
+          {faqItems.map((item) => (
+            <div key={item.q} className="border border-gray-200 rounded-xl px-5 py-4 bg-white">
+              <p className="text-sm font-semibold text-gray-900 mb-2">{item.q}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Related agencies (internal linking) */}
+      {relatedAgencies.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-sm font-bold text-gray-800 mb-3">Agenții similare de muncă în Olanda</h2>
+          <div className="grid grid-cols-2 gap-2">
+            {relatedAgencies.map((a) => (
+              <Link
+                key={a.slug}
+                href={`${AGENCY_BASE.ro}/${a.slug}`}
+                className="border border-gray-100 rounded-xl px-3 py-2.5 bg-white hover:border-brand-200 hover:shadow-sm transition-all"
+              >
+                <p className="text-xs font-semibold text-gray-800 leading-tight truncate">{a.name}</p>
+                <p className="text-[10px] text-gray-400 mt-0.5">
+                  {a.city} · {a.transparencyScore}/100
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <div className="bg-brand-50 border border-brand-100 rounded-xl p-5 text-center mb-6">
         <p className="text-sm font-bold text-brand-800 mb-1">{S.ctaHeading(agencyName)}</p>
         <p className="text-xs text-brand-600 mb-3">{S.ctaBody}</p>
         <Link
-          href={`/share-experience?agency=${encodeURIComponent(agencyName)}`}
+          href={`/reviews/submit?agency=${encodeURIComponent(agencyName)}`}
           className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold
             px-5 py-2.5 rounded-xl transition-colors"
         >
