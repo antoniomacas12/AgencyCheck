@@ -28,6 +28,7 @@ import { WA_LINK } from "@/lib/whatsapp";
 const HomepageCalculator     = nDynamic(() => import("@/components/HomepageCalculator"),     { ssr: false });
 const HomepageLeadForm       = nDynamic(() => import("@/components/HomepageLeadForm"),        { ssr: false });
 const HomepageStickyBar      = nDynamic(() => import("@/components/HomepageStickyBar"),       { ssr: false });
+const HeroReviewInline       = nDynamic(() => import("@/components/HeroReviewInline"),        { ssr: false });
 
 export const metadata: Metadata = {
   title: "AgencyCheck – Real Salary, Housing & Job Transparency in the Netherlands",
@@ -484,13 +485,8 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              {/* Review CTA — below the card */}
-              <Link
-                href="/reviews/submit"
-                className="mt-4 flex items-center justify-center gap-2 w-full rounded-xl border border-dashed border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 px-4 py-4 text-sm font-bold text-amber-300 hover:text-amber-200 transition-colors"
-              >
-                ✍️ Worked in an agency? Tell people what to expect
-              </Link>
+              {/* Review inline form — below the card */}
+              <HeroReviewInline />
 
             </div>
           </div>
