@@ -25,13 +25,13 @@ export default function HousingChoiceModal({ onChoice, onClose }: HousingChoiceM
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      {/* Backdrop — no backdrop-blur to avoid GPU flicker with slide animation */}
+      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
       {/* Panel */}
       <div
         className="relative z-10 w-full sm:max-w-sm mx-0 sm:mx-4 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl px-5 pt-6 pb-7"
-        style={{ animation: "slideUp .22s ease" }}
+        style={{ animation: "slideUp .22s ease", willChange: "transform" }}
       >
         {/* Close button */}
         <button

@@ -413,7 +413,7 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
   return (
     <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center">
       {/* Backdrop — always present */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
       <style>{`@keyframes applySlideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
 
       {/* ── Qualify panel ──────────────────────────────────────────────────── */}
@@ -421,7 +421,7 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
         <div
           key="qualify"
           className="relative z-10 w-full sm:max-w-md mx-0 sm:mx-4 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-          style={{ animation: "applySlideUp .3s ease", maxHeight: "92vh" }}
+          style={{ animation: "applySlideUp .3s ease", maxHeight: "92vh", willChange: "transform" }}
         >
           {/* Header */}
           <div className="px-5 pt-5 pb-3 border-b border-gray-100 shrink-0">
@@ -510,7 +510,7 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
         <div
           key="done"
           className="relative z-10 w-full sm:max-w-md mx-4 sm:mx-auto bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl p-8 text-center"
-          style={{ animation: "applySlideUp .3s ease" }}
+          style={{ animation: "applySlideUp .3s ease", willChange: "transform" }}
         >
           <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
             <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -537,7 +537,7 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
           key="form"
           ref={panelRef}
           className="relative z-10 w-full sm:max-w-lg mx-0 sm:mx-4 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col"
-          style={{ animation: "applySlideUp .3s ease", maxHeight: "92vh" }}
+          style={{ animation: "applySlideUp .3s ease", maxHeight: "92vh", willChange: "transform" }}
         >
           {/* Header */}
           <div className="flex items-center justify-between px-5 pt-5 pb-3 border-b border-gray-100 shrink-0">

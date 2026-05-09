@@ -54,13 +54,13 @@ function ModalPanel({ agencySlug, agencyName, proof, motivation, onClose, onSucc
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/60" onClick={onClose} aria-hidden="true" />
 
       {/* Panel */}
       <style>{`@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
       <div
         className="relative z-10 w-full sm:max-w-lg bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[94vh] flex flex-col sm:mx-4"
-        style={{ animation: "slideUp 0.28s ease-out" }}
+        style={{ animation: "slideUp 0.28s ease-out", willChange: "transform" }}
         role="dialog"
         aria-modal="true"
         aria-label={`Review form for ${agencyName}`}
