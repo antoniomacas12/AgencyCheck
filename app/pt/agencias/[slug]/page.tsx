@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { agencyAlternatesLocale } from "@/lib/seoAlternates";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import nDynamic from "next/dynamic";
 import {
   getDbAgency,
   getAgencyCityMentions,
@@ -13,6 +14,8 @@ import { ALL_AGENCIES, ALL_AGENCY_MAP } from "@/lib/agencyEnriched";
 import { AGENCY_STRINGS, CITY_STRINGS, AGENCY_BASE, CITY_BASE, EN_AGENCY_BASE, renderStars, type I18nLocale } from "@/lib/agencyI18nStrings";
 import { toCitySlug } from "@/lib/cityNormalization";
 import { prisma } from "@/lib/prisma";
+
+const HeroReviewInline = nDynamic(() => import("@/components/HeroReviewInline"), { ssr: false });
 
 export const dynamic = "force-dynamic";
 const LOCALE: I18nLocale = "pt";
@@ -525,17 +528,33 @@ export default async function PtAgencyPage({ params }: { params: { slug: string 
       )}
 
       {/* Worker reviews from DB */}
-      {directReviews.length > 0 && (
-        <section className="mb-8">
-          <h2 className="text-base font-bold text-gray-900 mb-4">{S.workerReviews}</h2>
-          <div className="space-y-3">
-            {directReviews.slice(0, 5).map((r) => (
-              <ReviewCard key={r.id} r={r} />
-            ))}
-          </div>
-          <p className="text-[11px] text-gray-400 mt-3 italic">{S.trustNote}</p>
-        </section>
-      )}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-gray-900 mb-4">{S.workerReviews}</h2>
+        {directReviews.length > 0 ? (
+          <>
+            <div className="space-y-3">
+              {directReviews.slice(0, 5).map((r) => (
+                <ReviewCard key={r.id} r={r} />
+              ))}
+            </div>
+            <p className="text-[11px] text-gray-400 mt-3 italic">{S.trustNote}</p>
+          </>
+        ) : (
+          <HeroReviewInline
+            agencyName={agencyName}
+            beFirst
+            labels={{
+              heading:        "✍️ Trabalhaste nesta agência? Ajuda os outros",
+              placeholder:    "Como foi o alojamento, salário, gestão?",
+              submit:         "Enviar avaliação →",
+              successTitle:   "Avaliação enviada!",
+              successSub:     "Obrigado. A tua avaliação já está visível na página de avaliações.",
+              beFirstHeading: `Sê o primeiro a avaliar a ${agencyName}`,
+              beFirstSub:     "Trabalhadores como tu dependem de avaliações honestas para evitar más agências. Demora 30 segundos.",
+            }}
+          />
+        )}
+      </section>
 
       {/* Worker tips */}
       <section className="mb-8 rounded-xl border border-amber-100 bg-amber-50 p-4">
@@ -638,18 +657,21 @@ export default async function PtAgencyPage({ params }: { params: { slug: string 
         </section>
       )}
 
-      {/* CTA */}
-      <div className="bg-brand-50 border border-brand-100 rounded-xl p-5 text-center mb-6">
-        <p className="text-sm font-bold text-brand-800 mb-1">{S.ctaHeading(agencyName)}</p>
-        <p className="text-xs text-brand-600 mb-3">{S.ctaBody}</p>
-        <Link
-          href={`/reviews/submit?agency=${encodeURIComponent(agencyName)}`}
-          className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold
-            px-5 py-2.5 rounded-xl transition-colors"
-        >
-          {S.ctaButton}
-        </Link>
-      </div>
+      {/* Inline review form CTA */}
+      {directReviews.length > 0 && (
+        <div className="mb-6">
+          <HeroReviewInline
+            agencyName={agencyName}
+            labels={{
+              heading:      "✍️ Trabalhaste nesta agência? Ajuda os outros",
+              placeholder:  "Como foi o alojamento, salário, gestão?",
+              submit:       "Enviar avaliação →",
+              successTitle: "Avaliação enviada!",
+              successSub:   "Obrigado. A tua avaliação já está visível na página de avaliações.",
+            }}
+          />
+        </div>
+      )}
 
       {/* Footer nav */}
       <div className="pt-6 border-t border-gray-100 flex items-center justify-between text-sm">
