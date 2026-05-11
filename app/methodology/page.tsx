@@ -14,9 +14,9 @@ import {
 } from "@/lib/dutchTax";
 
 export const metadata: Metadata = {
-  title: "Salary Calculation Methodology — AgencyCheck",
+  title: "Verification & Salary Methodology — AgencyCheck",
   description:
-    "How AgencyCheck calculates take-home pay for agency workers in the Netherlands. Tax brackets, heffingskorting, assumptions, sources, and an annotated example payslip.",
+    "How AgencyCheck researches and scores agencies, validates worker reviews, and calculates take-home pay. Sources, weights, anti-manipulation rules, and an annotated example payslip.",
   alternates: { canonical: "https://agencycheck.io/methodology" },
 };
 
@@ -59,34 +59,380 @@ export default function MethodologyPage() {
     <div className="max-w-3xl mx-auto px-4 py-12">
 
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-10">
         <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">
           Transparency
         </p>
         <h1 className="text-3xl font-black text-gray-900 mb-2">
-          How we calculate take-home pay
+          How AgencyCheck researches, scores, and validates
         </h1>
         <p className="text-sm text-gray-500 leading-relaxed max-w-xl">
-          Every number on AgencyCheck is computed — not guessed. This page explains
-          exactly what goes into our salary estimates, what we include, what we don&apos;t,
-          and where the numbers come from.
+          This page documents every methodology decision: how agencies are researched and scored,
+          how worker reviews are collected and validated, and how take-home salary is calculated.
+          Nothing here is proprietary — every rule is public so agencies and workers can audit it.
         </p>
         <div className="flex flex-wrap gap-3 mt-4">
           <span className="text-xs bg-gray-100 text-gray-600 rounded-full px-3 py-1">
-            Last updated: {LAST_UPDATED}
+            Agency research: March 2026
           </span>
           <span className="text-xs bg-gray-100 text-gray-600 rounded-full px-3 py-1">
-            Tax tables verified: {LAST_VERIFIED}
+            Tax tables: {LAST_VERIFIED}
           </span>
           <span className="text-xs bg-green-100 text-green-700 rounded-full px-3 py-1 font-semibold">
-            2026 Dutch tax law
+            2026 Dutch law
           </span>
         </div>
       </div>
 
+      {/* ── Jump nav ── */}
+      <nav className="mb-10 p-4 rounded-xl border border-gray-200 bg-gray-50">
+        <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+        <div className="flex flex-wrap gap-2 text-xs">
+          {[
+            ["#agency-research",    "Agency research"],
+            ["#transparency-score", "Transparency score"],
+            ["#confidence-levels",  "Confidence levels"],
+            ["#review-validation",  "Review validation"],
+            ["#salary-model",       "Salary model"],
+            ["#sources",            "Data sources"],
+          ].map(([href, label]) => (
+            <a key={href} href={href} className="text-blue-600 font-semibold hover:underline bg-white border border-blue-100 rounded-full px-3 py-1">
+              {label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <div className="space-y-14 text-sm text-gray-700 leading-relaxed">
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          PART 1 — AGENCY RESEARCH & SCORING
+      ══════════════════════════════════════════════════════════════════════ */}
+
+      {/* ── Agency research ── */}
+      <section id="agency-research">
+        <h2 className="text-xl font-black text-gray-900 mb-1">Part 1 — Agency research methodology</h2>
+        <p className="text-gray-500 mb-5">How each agency profile is built from scratch using public sources.</p>
+
+        <h3 className="font-bold text-gray-800 mb-3">Research process — step by step</h3>
+        <div className="space-y-3 mb-6">
+          {[
+            {
+              n: "1",
+              title: "KvK (Chamber of Commerce) lookup",
+              detail: "Every agency is verified at kvk.nl. We record: legal entity name, registration number, registered address, date of incorporation, and whether the company is still active. An inactive KvK means the agency cannot legally operate — we flag these immediately.",
+              source: "kvk.nl public register",
+            },
+            {
+              n: "2",
+              title: "ABU / NBBU membership check",
+              detail: "The ABU (Algemene Bond Uitzendondernemingen) and NBBU (Nederlandse Bond van Bemiddelings- en Uitzendondernemingen) are the two main Dutch temp agency trade associations. Members must comply with stricter CAO rules and minimum standards. We check the public member lists of both.",
+              source: "abu.nl/leden · nbbu.nl/leden",
+            },
+            {
+              n: "3",
+              title: "SNA / NEN-4400 certification",
+              detail: "SNA (Stichting Normering Arbeid) certification requires an independent audit every 18–24 months. It is the strongest quality mark for Dutch temp agencies. We check sna.nl for current certificate status, expiry date, and scope. A certificate that expired more than 6 months ago is treated as non-current.",
+              source: "sna.nl public certificate register",
+            },
+            {
+              n: "4",
+              title: "Website and contact verification",
+              detail: "We check for: a functional agency website, a Dutch-domain or verifiable email address, a physical contact address (not just a PO box), and a contact form or phone number. Sites that are offline, parked, or consist only of a landing page receive reduced scores.",
+              source: "Direct website inspection",
+            },
+            {
+              n: "5",
+              title: "Housing policy documentation",
+              detail: "We look for explicit statements about: whether housing is available, what the weekly cost is, whether it is SNF-certified, and whether it is compulsory. Agencies that bury housing costs in small print or require calling to find out are scored lower.",
+              source: "Agency website + SNF register",
+            },
+            {
+              n: "6",
+              title: "Salary and CAO transparency",
+              detail: "We look for: published hourly rates, CAO reference (ABU CAO or NBBU CAO), and whether shift differentials (weekend, night, public holiday) are mentioned. Agencies that only say 'competitive salary' with no further detail receive the minimum score on this component.",
+              source: "Agency website + CAO publications",
+            },
+          ].map((step) => (
+            <div key={step.n} className="flex gap-4 rounded-xl border border-gray-100 p-4">
+              <div className="shrink-0 w-7 h-7 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black">
+                {step.n}
+              </div>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <p className="text-sm font-bold text-gray-900">{step.title}</p>
+                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-full px-2 py-0.5">
+                    Source: {step.source}
+                  </span>
+                </div>
+                <p className="text-xs text-gray-600 leading-relaxed">{step.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Transparency score ── */}
+      <section id="transparency-score">
+        <h2 className="text-lg font-black text-gray-900 mb-1">Transparency score (0–100)</h2>
+        <p className="text-gray-500 mb-4">
+          The transparency score measures how much verifiable information an agency makes publicly available.
+          It is not a quality score or a recommendation — it is a documentation completeness score.
+          An agency can have excellent worker reviews and a low transparency score (because they don&apos;t
+          publish their information), or vice versa.
+        </p>
+
+        <div className="overflow-x-auto rounded-xl border border-gray-200 mb-4">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="text-left px-4 py-2.5 font-semibold text-gray-600">Component</th>
+                <th className="text-right px-4 py-2.5 font-semibold text-gray-600">Weight</th>
+                <th className="text-left px-4 py-2.5 font-semibold text-gray-600">How it is scored</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {[
+                { comp: "Legal registration (KvK)", w: 20, how: "0 = not found or inactive, 10 = found but unverifiable, 20 = active KvK with matched name and address" },
+                { comp: "Housing transparency",     w: 20, how: "0 = no mention, 10 = mentioned but cost hidden, 20 = cost, SNF status, and optionality all stated" },
+                { comp: "Salary clarity",           w: 15, how: "0 = 'competitive salary' only, 8 = sector/CAO mentioned, 15 = hourly rate or range published" },
+                { comp: "Contract transparency",    w: 15, how: "0 = no contract info, 8 = contract mentioned, 15 = phase A/B/C explained with practical detail" },
+                { comp: "Contact & website",        w: 15, how: "0 = offline/parked, 8 = basic page with email, 15 = full site with address, phone, and contact form" },
+                { comp: "SNA / NEN-4400 cert.",     w: 10, how: "0 = no certificate or expired >6 months, 10 = current certificate verifiable on sna.nl" },
+                { comp: "Worker data signal",        w: 5,  how: "0–5 based on volume and consistency of worker reviews on AgencyCheck" },
+              ].map((r) => (
+                <tr key={r.comp}>
+                  <td className="px-4 py-3 font-medium text-gray-800">{r.comp}</td>
+                  <td className="px-4 py-3 text-right font-mono font-bold text-gray-900 whitespace-nowrap">{r.w} pts</td>
+                  <td className="px-4 py-3 text-gray-500 text-xs">{r.how}</td>
+                </tr>
+              ))}
+              <tr className="bg-gray-50 font-bold">
+                <td className="px-4 py-3 text-gray-900">Total</td>
+                <td className="px-4 py-3 text-right font-mono text-gray-900">100 pts</td>
+                <td className="px-4 py-3 text-gray-500 text-xs">Score is calculated by algorithm — no manual adjustment</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-800">
+          <strong>No human override:</strong> The transparency score is calculated entirely by algorithm
+          from the six public sources above. No AgencyCheck employee can manually change an agency&apos;s
+          score. Agencies that want a higher score must publish more information.
+        </div>
+      </section>
+
+      {/* ── Confidence levels ── */}
+      <section id="confidence-levels">
+        <h2 className="text-lg font-black text-gray-900 mb-1">Research confidence levels</h2>
+        <p className="text-gray-500 mb-4">
+          In addition to the transparency score, every agency profile carries a confidence level
+          reflecting how much of the profile data we could independently verify.
+        </p>
+
+        <div className="space-y-3">
+          {[
+            {
+              level: "High",
+              color: "border-emerald-200 bg-emerald-50",
+              labelColor: "text-emerald-700 bg-emerald-100",
+              criteria: [
+                "KvK number confirmed active",
+                "ABU or NBBU membership verified on official register",
+                "SNA certificate current and verifiable",
+                "Website with full contact info and pricing",
+                "2+ independent worker reports consistent with stated data",
+              ],
+              meaning: "All core facts are independently verifiable. Profile data is reliable.",
+            },
+            {
+              level: "Medium",
+              color: "border-blue-200 bg-blue-50",
+              labelColor: "text-blue-700 bg-blue-100",
+              criteria: [
+                "KvK confirmed active",
+                "Website and contact info present",
+                "Some housing or salary info published",
+                "Not in ABU/NBBU or SNA not verified",
+              ],
+              meaning: "Core identity verified. Some operational details not independently confirmed.",
+            },
+            {
+              level: "Low",
+              color: "border-amber-200 bg-amber-50",
+              labelColor: "text-amber-700 bg-amber-100",
+              criteria: [
+                "KvK found but limited detail",
+                "Website minimal or outdated",
+                "No ABU/NBBU/SNA membership found",
+                "Housing and salary data unavailable",
+              ],
+              meaning: "Basic identity confirmed but operating practices largely unverifiable. Treat profile data with caution.",
+            },
+            {
+              level: "Very low",
+              color: "border-red-200 bg-red-50",
+              labelColor: "text-red-700 bg-red-100",
+              criteria: [
+                "Agency name found in worker reports or job listings only",
+                "No verifiable KvK or website",
+                "Unverified DB-only agency",
+              ],
+              meaning: "Profile is based on worker-reported mentions only. None of the operational data has been independently verified.",
+            },
+          ].map((item) => (
+            <div key={item.level} className={`rounded-xl border p-4 ${item.color}`}>
+              <div className="flex items-center gap-2 mb-2">
+                <span className={`text-xs font-black rounded-full px-2.5 py-1 ${item.labelColor}`}>
+                  {item.level} confidence
+                </span>
+              </div>
+              <ul className="text-xs space-y-0.5 mb-2">
+                {item.criteria.map((c) => (
+                  <li key={c} className="flex items-start gap-1.5 text-gray-700">
+                    <span className="mt-0.5 shrink-0">·</span>{c}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs font-semibold text-gray-700 border-t border-current/20 pt-2 mt-2">
+                {item.meaning}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Review validation ── */}
+      <section id="review-validation">
+        <h2 className="text-lg font-black text-gray-900 mb-1">Worker review collection and validation</h2>
+        <p className="text-gray-500 mb-5">
+          AgencyCheck collects structured anonymous reviews from workers. This section explains
+          exactly how reviews are collected, what checks are applied, and what we can and cannot verify.
+        </p>
+
+        <h3 className="font-bold text-gray-800 mb-3">What workers submit</h3>
+        <div className="overflow-x-auto rounded-xl border border-gray-200 mb-6">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="text-left px-4 py-2.5 font-semibold text-gray-600">Field</th>
+                <th className="text-left px-4 py-2.5 font-semibold text-gray-600">Type</th>
+                <th className="text-left px-4 py-2.5 font-semibold text-gray-600">Required</th>
+                <th className="text-left px-4 py-2.5 font-semibold text-gray-600">Purpose</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 text-xs">
+              {[
+                { field: "Agency name",         type: "Text",       req: "Yes", purpose: "Matched against agency database; unmatched names create new unverified entry" },
+                { field: "Overall rating",      type: "1–5 stars",  req: "Yes", purpose: "Primary sort signal for agency ratings page" },
+                { field: "Salary rating",       type: "1–5 stars",  req: "No",  purpose: "Cross-validation: inconsistent with overall rating flags review for inspection" },
+                { field: "Housing rating",      type: "1–5 stars",  req: "No",  purpose: "Only displayed if worker provided (avoids fabricating housing opinions for office workers)" },
+                { field: "Management rating",   type: "1–5 stars",  req: "No",  purpose: "Cross-validation signal" },
+                { field: "Contract clarity",    type: "1–5 stars",  req: "No",  purpose: "Cross-validation signal" },
+                { field: "Written comment",     type: "Free text",  req: "No",  purpose: "Published verbatim — no editing. Language detection applied for routing." },
+                { field: "IP address (hashed)", type: "System",     req: "Auto","purpose": "Duplicate detection — stored as one-way hash, not reversible" },
+              ].map((r) => (
+                <tr key={r.field}>
+                  <td className="px-4 py-2.5 font-medium text-gray-800">{r.field}</td>
+                  <td className="px-4 py-2.5 text-gray-600">{r.type}</td>
+                  <td className={`px-4 py-2.5 font-semibold ${r.req === "Yes" ? "text-blue-700" : r.req === "Auto" ? "text-gray-400" : "text-gray-500"}`}>{r.req}</td>
+                  <td className="px-4 py-2.5 text-gray-500">{r.purpose}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="font-bold text-gray-800 mb-3">Validation checks applied to every submission</h3>
+        <div className="space-y-3 mb-6">
+          {[
+            {
+              check: "Duplicate session detection",
+              how: "Each submission is fingerprinted by hashed IP + user agent. A second identical submission within 24 hours from the same fingerprint is silently rejected. Workers who clear cookies or use a VPN can theoretically bypass this — we accept that tradeoff to preserve anonymity.",
+              pass: "Published",
+              fail: "Silently rejected",
+            },
+            {
+              check: "Rate limiting",
+              how: "Maximum 3 reviews per IP hash per 24-hour window, regardless of agency. Excessive volume from one source (bot-like pattern) triggers a hold for admin review.",
+              pass: "Published",
+              fail: "Held for review",
+            },
+            {
+              check: "Sub-rating consistency",
+              how: "If overall rating = 5 but all sub-ratings = 1 (or vice versa), the review is flagged for admin inspection. We check for logical inconsistencies, not for opinions we disagree with.",
+              pass: "Published",
+              fail: "Flagged — usually published after inspection",
+            },
+            {
+              check: "Agency match",
+              how: "Submitted agency name is fuzzy-matched against the verified agency database. Matched reviews are attached to the agency profile. Unmatched names create a new unverified (DB-only) entry that is searchable but marked clearly as 'worker-reported, unverified'.",
+              pass: "Matched to profile",
+              fail: "Unverified entry created",
+            },
+            {
+              check: "Content moderation",
+              how: "Reviews containing personal names of individual employees, phone numbers, or links are held for admin review. We remove content that could enable harassment of individual people — agency-level criticism is always published.",
+              pass: "Published",
+              fail: "Redacted or held",
+            },
+          ].map((item) => (
+            <div key={item.check} className="rounded-xl border border-gray-100 p-4">
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <p className="text-sm font-bold text-gray-900">{item.check}</p>
+                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-full px-2 py-0.5">
+                  Pass → {item.pass}
+                </span>
+                <span className="text-[10px] font-bold text-red-700 bg-red-50 border border-red-100 rounded-full px-2 py-0.5">
+                  Fail → {item.fail}
+                </span>
+              </div>
+              <p className="text-xs text-gray-600 leading-relaxed">{item.how}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-gray-900 text-white rounded-xl p-5">
+          <p className="font-black text-sm mb-2">What we cannot verify</p>
+          <p className="text-xs text-gray-300 leading-relaxed mb-3">
+            We cannot verify that a reviewer actually worked at the agency they are reviewing. Requiring
+            identity verification would destroy anonymity and deter exactly the workers who have the most
+            important things to report. Our position: anonymous volume from many independent sources
+            is more reliable than a small number of verified-identity reviews.
+          </p>
+          <p className="text-xs text-gray-400">
+            The correct signal to look for: 8 reviews from different periods, different cities, different
+            sub-rating patterns, all saying the same thing about housing — that is credible. A single
+            anonymous 1-star with no comment and no sub-ratings — treat with appropriate skepticism.
+          </p>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          PART 2 — SALARY CALCULATION
+      ══════════════════════════════════════════════════════════════════════ */}
+
+      <div className="border-t-2 border-gray-900 pt-10">
+        <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Part 2</p>
+        <h2 className="text-xl font-black text-gray-900 mb-1" id="salary-model">Salary calculation methodology</h2>
+        <p className="text-sm text-gray-500 leading-relaxed max-w-xl">
+          Every salary number on AgencyCheck is computed from official 2026 Dutch tax tables — not
+          guessed. This section explains exactly what is included, what is not, and why.
+        </p>
+        <div className="flex flex-wrap gap-3 mt-4 mb-8">
+          <span className="text-xs bg-gray-100 text-gray-600 rounded-full px-3 py-1">Last updated: {LAST_UPDATED}</span>
+          <span className="text-xs bg-gray-100 text-gray-600 rounded-full px-3 py-1">Tax tables verified: {LAST_VERIFIED}</span>
+          <span className="text-xs bg-green-100 text-green-700 rounded-full px-3 py-1 font-semibold">2026 Dutch tax law</span>
+        </div>
+      </div>
+
+      </div>{/* close space-y-14 Part 1 wrapper */}
+
       <div className="space-y-10 text-sm text-gray-700 leading-relaxed">
 
         {/* ── Sources ── */}
+        <div id="sources" />
         <section>
           <h2 className="text-lg font-black text-gray-900 mb-4">Data sources</h2>
           <div className="space-y-3">

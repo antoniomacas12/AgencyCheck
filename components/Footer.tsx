@@ -99,6 +99,8 @@ export default async function Footer() {
             </a>
             <ul className="space-y-0.5 text-xs text-gray-500">
               <li><Link href="/about"             className="block py-1.5 hover:text-brand-600">{t("footer.about")}</Link></li>
+              <li><Link href="/methodology"       className="block py-1.5 hover:text-brand-600">Methodology</Link></li>
+              <li><Link href="/transparency"      className="block py-1.5 hover:text-brand-600">Legal transparency</Link></li>
               <li><Link href="/share-experience"  className="block py-1.5 hover:text-brand-600 font-medium text-brand-600">{t("footer.share")}</Link></li>
               <li><Link href="/for-agencies"      className="block py-1.5 hover:text-brand-600">{t("footer.for_agencies")}</Link></li>
               <li><Link href="/contact"           className="block py-1.5 hover:text-brand-600">{t("footer.contact")}</Link></li>
@@ -280,11 +282,12 @@ export default async function Footer() {
             {t("footer.copyright", { year: new Date().getFullYear() })}
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/about"        className="hover:text-brand-600">{t("footer.about_link")}</Link>
-            <Link href="/contact"      className="hover:text-brand-600">{t("footer.contact_link")}</Link>
-            <Link href="/privacy"      className="hover:text-brand-600">{t("footer.privacy_link")}</Link>
-            <Link href="/terms"        className="hover:text-brand-600">{t("footer.terms_link")}</Link>
-            <Link href="/methodology"  className="hover:text-brand-600">Methodology</Link>
+            <Link href="/about"         className="hover:text-brand-600">{t("footer.about_link")}</Link>
+            <Link href="/contact"       className="hover:text-brand-600">{t("footer.contact_link")}</Link>
+            <Link href="/methodology"   className="hover:text-brand-600">Methodology</Link>
+            <Link href="/transparency"  className="hover:text-brand-600">Legal transparency</Link>
+            <Link href="/privacy"       className="hover:text-brand-600">{t("footer.privacy_link")}</Link>
+            <Link href="/terms"         className="hover:text-brand-600">{t("footer.terms_link")}</Link>
           </div>
         </div>
       </div>
