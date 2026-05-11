@@ -11,6 +11,7 @@ import {
   type DbCityMention,
 } from "@/lib/agencyDb";
 import { ALL_AGENCIES, ALL_AGENCY_MAP } from "@/lib/agencyEnriched";
+import { getAgencyPageIndexStatus, getRobotsDirective } from "@/lib/pageEligibility";
 import { AGENCY_STRINGS, CITY_STRINGS, AGENCY_BASE, CITY_BASE, EN_AGENCY_BASE, renderStars, type I18nLocale } from "@/lib/agencyI18nStrings";
 import { toCitySlug } from "@/lib/cityNormalization";
 import { prisma } from "@/lib/prisma";
@@ -39,9 +40,14 @@ export async function generateMetadata({
     hasHousing ? "Cazare disponibilă pentru angajați. " : ""
   }Citește părerile muncitorilor despre salarii, condiții de muncă și cazare.`;
 
+  const robotsDirective = staticAgency
+    ? getRobotsDirective(getAgencyPageIndexStatus(staticAgency))
+    : { index: false, follow: true };
+
   return {
     title,
     description,
+    robots:    robotsDirective,
     alternates: agencyAlternatesLocale(params.slug, "ro"),
     openGraph: {
       title,

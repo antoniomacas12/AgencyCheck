@@ -732,57 +732,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // ── 15. Polish agency pages (/pl/agencje/[slug]) ───────────────────────────
-  // Mirror of /agencies/[slug] — one PL page per verified + DB-only agency.
-  const plAgencyPages: MetadataRoute.Sitemap = [
-    ...VERIFIED_AGENCIES.map((agency) => ({
-      url:             `${BASE_URL}${AGENCY_BASE.pl}/${agency.slug}`,
-      lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
-      changeFrequency: "monthly" as const,
-      priority:        0.75,
-    })),
-    ...workerReportedSlugs
-      .filter((row) => !verifiedSlugsSet.has(row.slug))
-      .map((row) => ({
-        url:             `${BASE_URL}${AGENCY_BASE.pl}/${row.slug}`,
-        lastModified:    row.createdAt.toISOString().split("T")[0],
-        changeFrequency: "weekly" as const,
-        priority:        0.5 as const,
-      })),
-  ];
+  // Only include VERIFIED agencies with rich locale-specific content.
+  // Worker-reported (DB-only) agencies are excluded: their locale pages are
+  // thin near-duplicates of the EN page and cause "Alternative page" GSC errors.
+  const plAgencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
+    url:             `${BASE_URL}${AGENCY_BASE.pl}/${agency.slug}`,
+    lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
+    changeFrequency: "monthly" as const,
+    priority:        0.75,
+  }));
 
   // ── 16. Romanian agency pages (/ro/agentii/[slug]) ────────────────────────
-  const roAgencyPages: MetadataRoute.Sitemap = [
-    ...VERIFIED_AGENCIES.map((agency) => ({
-      url:             `${BASE_URL}${AGENCY_BASE.ro}/${agency.slug}`,
-      lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
-      changeFrequency: "monthly" as const,
-      priority:        0.72,
-    })),
-    ...workerReportedSlugs
-      .filter((row) => !verifiedSlugsSet.has(row.slug))
-      .map((row) => ({
-        url:             `${BASE_URL}${AGENCY_BASE.ro}/${row.slug}`,
-        lastModified:    row.createdAt.toISOString().split("T")[0],
-        changeFrequency: "weekly" as const,
-        priority:        0.5 as const,
-      })),
-  ];
+  // Same policy — verified agencies only for locale pages.
+  const roAgencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
+    url:             `${BASE_URL}${AGENCY_BASE.ro}/${agency.slug}`,
+    lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
+    changeFrequency: "monthly" as const,
+    priority:        0.72,
+  }));
 
   // ── 17. Polish + Romanian agency+city pages ────────────────────────────────
-  // DB-driven: only pairs with at least 1 mention. Same pairs as section 10b.
-  const plAgencyCityPages: MetadataRoute.Sitemap = dbAgencyCityPairs.map((pair) => ({
-    url:             `${BASE_URL}${AGENCY_BASE.pl}/${pair.agencySlug}/${toCitySlug(pair.cityNormalized)}`,
-    lastModified:    pair.lastSeenAt.toISOString().split("T")[0],
-    changeFrequency: "weekly" as const,
-    priority:        pair.mentionCount >= 3 ? 0.6 : 0.5,
-  }));
-
-  const roAgencyCityPages: MetadataRoute.Sitemap = dbAgencyCityPairs.map((pair) => ({
-    url:             `${BASE_URL}${AGENCY_BASE.ro}/${pair.agencySlug}/${toCitySlug(pair.cityNormalized)}`,
-    lastModified:    pair.lastSeenAt.toISOString().split("T")[0],
-    changeFrequency: "weekly" as const,
-    priority:        pair.mentionCount >= 3 ? 0.55 : 0.45,
-  }));
+  // REMOVED: these locale agency+city sub-pages are thin (city comments only,
+  // usually empty) and produce hundreds of "Alternative page with correct
+  // canonical tag" errors in Google Search Console. Pages are marked noindex
+  // in their generateMetadata. EN equivalents remain in sitemap (section 10b).
+  const plAgencyCityPages: MetadataRoute.Sitemap = [];
+  const roAgencyCityPages: MetadataRoute.Sitemap = [];
 
   // ── 18. Polish + Romanian + Portuguese city pages ──────────────────────────
   // DB-driven: only cities that have at least one agency mention in the DB.
@@ -810,30 +785,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // ── 19. Portuguese agency pages (/pt/agencias/[slug]) ────────────────────
-  const ptAgencyPages: MetadataRoute.Sitemap = [
-    ...VERIFIED_AGENCIES.map((agency) => ({
-      url:             `${BASE_URL}${AGENCY_BASE.pt}/${agency.slug}`,
-      lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
-      changeFrequency: "monthly" as const,
-      priority:        0.7,
-    })),
-    ...workerReportedSlugs
-      .filter((row) => !verifiedSlugsSet.has(row.slug))
-      .map((row) => ({
-        url:             `${BASE_URL}${AGENCY_BASE.pt}/${row.slug}`,
-        lastModified:    row.createdAt.toISOString().split("T")[0],
-        changeFrequency: "weekly" as const,
-        priority:        0.45 as const,
-      })),
-  ];
+  // Only verified agencies — same policy as PL/RO to avoid thin duplicate pages.
+  const ptAgencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
+    url:             `${BASE_URL}${AGENCY_BASE.pt}/${agency.slug}`,
+    lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
+    changeFrequency: "monthly" as const,
+    priority:        0.7,
+  }));
 
   // ── 20. Portuguese agency+city pages (/pt/agencias/[slug]/[city]) ────────
-  const ptAgencyCityPages: MetadataRoute.Sitemap = dbAgencyCityPairs.map((pair) => ({
-    url:             `${BASE_URL}${AGENCY_BASE.pt}/${pair.agencySlug}/${toCitySlug(pair.cityNormalized)}`,
-    lastModified:    pair.lastSeenAt.toISOString().split("T")[0],
-    changeFrequency: "weekly" as const,
-    priority:        pair.mentionCount >= 3 ? 0.55 : 0.45,
-  }));
+  // REMOVED: thin pages, marked noindex in generateMetadata (same as PL/RO).
+  const ptAgencyCityPages: MetadataRoute.Sitemap = [];
 
   // ── 21. Portuguese static content pages ───────────────────────────────────
   const ptStaticPages: MetadataRoute.Sitemap = [

@@ -42,6 +42,10 @@ export async function generateMetadata({
   return {
     title,
     description,
+    // Locale agency+city pages are thin (city-specific comments only) and are
+    // near-duplicates of the EN equivalents. Mark noindex so Google does not
+    // treat them as "Alternative page with correct canonical tag".
+    robots: { index: false, follow: true },
     alternates: agencyCityAlternatesLocale(params.slug, params.city, "ro"),
     openGraph: {
       title,
