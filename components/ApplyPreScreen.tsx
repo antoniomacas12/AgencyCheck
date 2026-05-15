@@ -83,14 +83,13 @@ export default function ApplyPreScreen({
   jobId,
   children,
 }: Props) {
-  const [open, setOpen]       = useState(false);
-  const [euCitizen, setEu]    = useState<YesNo>(null);
-  const [hasBsn, setBsn]      = useState<YesNo>(null);
-  const [saving, setSaving]   = useState(false);
+  const [open, setOpen]    = useState(false);
+  const [euCitizen, setEu] = useState<YesNo>(null);
+  const [hasBsn, setBsn]   = useState<YesNo>(null);
 
-  const bothAnswered  = euCitizen !== null && hasBsn !== null;
-  const qualified     = euCitizen === "yes" && hasBsn === "yes";
-  const disqualified  = bothAnswered && !qualified;
+  const bothAnswered = euCitizen !== null && hasBsn !== null;
+  const qualified    = euCitizen === "yes" && hasBsn === "yes";
+  const disqualified = bothAnswered && !qualified;
 
   function handleOpen() {
     setOpen(true);
@@ -99,23 +98,23 @@ export default function ApplyPreScreen({
     setSaving(false);
   }
 
-  async function handleApply() {
+  function handleApply() {
     if (!qualified) return;
-    setSaving(true);
 
-    // Save to DB (non-blocking — we open WA regardless of save result)
-    await savePreQual({
+    // Open WhatsApp FIRST — must be synchronous with the click event,
+    // otherwise browser popup blocker will block window.open after an await.
+    const url = buildWaUrl(waBase, jobTitle, source);
+    window.open(url, "_blank", "noopener,noreferrer");
+    setOpen(false);
+
+    // Save analytics fire-and-forget AFTER opening WA
+    savePreQual({
       isEuCitizen: true,
       hasBsn: true,
       jobId,
       jobTitle,
       source,
     });
-
-    const url = buildWaUrl(waBase, jobTitle, source);
-    window.open(url, "_blank", "noopener,noreferrer");
-    setOpen(false);
-    setSaving(false);
   }
 
   // Save disqualified answers when both are answered (for analytics)
@@ -210,12 +209,12 @@ export default function ApplyPreScreen({
         {!disqualified && (
           <button
             onClick={handleApply}
-            disabled={!qualified || saving}
+            disabled={!qualified}
             className={`
               w-full flex items-center justify-center gap-2.5
               font-black text-[16px] py-4 rounded-2xl
               transition-all duration-150
-              ${qualified && !saving
+              ${qualified
                 ? "bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white shadow-lg shadow-green-900/40"
                 : "bg-white/10 text-gray-500 cursor-not-allowed"}
             `}
@@ -229,11 +228,7 @@ export default function ApplyPreScreen({
             >
               <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.95 7.95 0 01-4.07-1.116l-.292-.174-3.036.868.872-3.046-.19-.31A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.29-5.89c-.233-.117-1.379-.681-1.593-.759-.214-.077-.37-.116-.526.117-.155.232-.603.759-.739.915-.136.155-.272.174-.505.058-.233-.117-.982-.362-1.87-1.154-.691-.617-1.158-1.38-1.294-1.613-.136-.232-.014-.358.103-.474.105-.104.233-.272.35-.408.116-.136.155-.233.233-.388.077-.155.039-.291-.019-.407-.059-.117-.527-1.27-.722-1.739-.19-.456-.384-.394-.527-.401l-.448-.008c-.156 0-.408.059-.621.291-.214.233-.814.796-.814 1.94s.834 2.25.95 2.406c.116.155 1.64 2.504 3.975 3.512.556.24 1.99.52 2.315.336.233-.136.942-.385 1.074-.756.131-.37.131-.686.092-.756-.039-.077-.155-.116-.388-.233z" />
             </svg>
-            {saving
-              ? "Opening WhatsApp…"
-              : qualified
-              ? "Continue to WhatsApp →"
-              : "Answer both questions"}
+            {qualified ? "Continue to WhatsApp →" : "Answer both questions"}
           </button>
         )}
 
