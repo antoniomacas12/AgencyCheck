@@ -432,6 +432,34 @@ model LeadSend {
   @@map("lead_sends")
 }
 
+// ─── Pre-Qualification Gate ───────────────────────────────────────────────────
+// Stores every EU citizen + BSN check before the Apply/WhatsApp button is shown.
+// Used for analytics: total attempts, qualified, rejected.
+
+model PreQualification {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Job context
+  jobId    String?  // slug or listing id, e.g. "warehouse", "reachtruck"
+  jobTitle String?
+
+  // Answers
+  isEuCitizen Boolean
+  hasBsn      Boolean
+
+  // Computed gate result: true only when isEuCitizen && hasBsn
+  qualified Boolean
+
+  // Tracking slug passed from apply page (same as ApplyPreScreen `source` prop)
+  source String?
+
+  @@index([createdAt])
+  @@index([qualified])
+  @@index([jobId])
+  @@map("pre_qualifications")
+}
+
 // ─── Agency City Mentions — cities extracted from worker comments ──────────────
 // Tracks which cities workers mention for a given agency.
 // Powers "Cities workers mention" SEO sections on agency pages.
