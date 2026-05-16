@@ -4,6 +4,7 @@ import { getLocale } from "@/lib/getLocale";
 import { getT } from "@/lib/i18n";
 import { LEGAL } from "@/lib/legalConfig";
 import { WA_LINK } from "@/lib/whatsapp";
+import GateLink from "@/components/GateLink";
 
 const TOP_CITIES = [
   { name: "Amsterdam",  slug: "amsterdam"  },
@@ -83,10 +84,8 @@ export default async function Footer() {
               {t("footer.tagline")}
             </p>
             {/* WhatsApp apply — primary contact CTA in footer */}
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+            <GateLink
+              source="footer"
               className="flex items-center gap-2 w-full mb-4 px-3.5 py-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/25 hover:bg-[#25D366]/20 transition-colors group"
             >
               <svg className="w-4 h-4 text-[#25D366] shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -96,7 +95,7 @@ export default async function Footer() {
                 <p className="text-xs font-bold text-[#25D366] leading-tight group-hover:underline">Apply on WhatsApp</p>
                 <p className="text-[10px] text-gray-400 leading-tight">Message us directly for jobs</p>
               </div>
-            </a>
+            </GateLink>
             <ul className="space-y-0.5 text-xs text-gray-500">
               <li><Link href="/about"             className="block py-1.5 hover:text-brand-600">{t("footer.about")}</Link></li>
               <li><Link href="/methodology"       className="block py-1.5 hover:text-brand-600">Methodology</Link></li>

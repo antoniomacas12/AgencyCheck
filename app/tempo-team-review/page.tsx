@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { WA_LINK } from "@/lib/whatsapp";
+import GateLink from "@/components/GateLink";
 
 export const metadata: Metadata = {
   title: "Tempo-Team Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
@@ -99,11 +100,9 @@ function WhatsAppCTA({ variant = "default" }: { variant?: "default" | "compact" 
   if (variant === "compact") {
     return (
       <div className="my-6 flex flex-col sm:flex-row items-start sm:items-center gap-3 rounded-xl bg-[#0d1f14] border border-[#25D366]/20 px-5 py-4">
-        <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all px-5 py-3 text-sm font-black text-white shrink-0"
-          style={{ boxShadow: "0 4px 18px rgba(37,211,102,0.28)" }}>
+        <GateLink source="tempo-team-review" className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all px-5 py-3 text-sm font-black text-white shrink-0" style={{ boxShadow: "0 4px 18px rgba(37,211,102,0.28)" }}>
           <WAIcon className="w-4 h-4" /> Apply on WhatsApp
-        </a>
+        </GateLink>
         <p className="text-sm text-gray-300 leading-snug">
           Looking for jobs with accommodation in the Netherlands?{" "}
           <span className="text-white font-medium">We reply fast.</span>
@@ -121,11 +120,9 @@ function WhatsAppCTA({ variant = "default" }: { variant?: "default" | "compact" 
         <p className="text-gray-400 text-base mb-6 max-w-md mx-auto leading-relaxed">
           Send your job preference, location, and start date — we match you with verified agencies and real openings.
         </p>
-        <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all px-8 py-4 text-base font-black text-white mb-4"
-          style={{ boxShadow: "0 8px 32px rgba(37,211,102,0.30)" }}>
+        <GateLink source="tempo-team-review" className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all px-8 py-4 text-base font-black text-white mb-4" style={{ boxShadow: "0 8px 32px rgba(37,211,102,0.30)" }}>
           <WAIcon className="w-5 h-5" /> Send a message on WhatsApp
-        </a>
+        </GateLink>
         <p className="text-[12px] text-gray-500">+31 6 49 21 06 31 · We reply as fast as possible</p>
       </section>
     );
@@ -138,11 +135,9 @@ function WhatsAppCTA({ variant = "default" }: { variant?: "default" | "compact" 
           <p className="text-white font-bold text-lg leading-snug mb-1">Apply via WhatsApp — we help you find jobs with accommodation in the Netherlands.</p>
           <p className="text-gray-400 text-sm">Tell us your preference. We match you with the right opening.</p>
         </div>
-        <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all px-6 py-3.5 text-[15px] font-black text-white shrink-0 w-full sm:w-auto"
-          style={{ boxShadow: "0 6px 24px rgba(37,211,102,0.28)" }}>
+        <GateLink source="tempo-team-review" className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all px-6 py-3.5 text-[15px] font-black text-white shrink-0 w-full sm:w-auto" style={{ boxShadow: "0 6px 24px rgba(37,211,102,0.28)" }}>
           <WAIcon className="w-4 h-4" /> Chat on WhatsApp
-        </a>
+        </GateLink>
       </div>
       <p className="text-[11px] text-gray-500 mt-3">+31 6 49 21 06 31 · Fastest way to apply · We reply fast</p>
     </div>
