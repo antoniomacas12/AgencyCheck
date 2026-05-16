@@ -131,17 +131,9 @@ export default function PlOffertyPracyPage() {
         {/* Not sure */}
         <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5">
           <p className="text-white font-bold text-[14px] mb-1">Nie wiesz, która oferta jest dla Ciebie?</p>
-          <p className="text-gray-500 text-[13px] mb-4">
-            Napisz do nas — dopasujemy Cię do odpowiedniej oferty na podstawie Twojego doświadczenia.
+          <p className="text-gray-500 text-[13px]">
+            Wybierz dowolną ofertę powyżej i kliknij <strong className="text-gray-300">Aplikuj przez WhatsApp</strong> — odpowiedz na 2 pytania kwalifikacyjne, a my dopasujemy Cię do odpowiedniej pracy.
           </p>
-          <a
-            href={`${WA_BASE}?text=${encodeURIComponent("Cześć, szukam pracy w Holandii. Możesz mi pomóc znaleźć odpowiednie stanowisko?")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#22C55E]/15 hover:bg-[#22C55E]/25 border border-[#22C55E]/30 text-[#22C55E] font-bold text-[13px] px-4 py-2.5 rounded-xl transition-all duration-150"
-          >
-            Napisz na WhatsApp
-          </a>
         </div>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-gray-600 text-[11px]">

@@ -250,11 +250,9 @@ export default function FloatingStack() {
             : "translate-y-4 opacity-0 pointer-events-none"}
         `}
       >
-        {/* ── 1. Apply — same pill size as all other stack buttons ────────── */}
+        {/* ── 1. Apply — routes to apply listing where EU+BSN gate is enforced ── */}
         <a
-          href={WA_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/apply"
           aria-label="Apply"
           className="
             flex items-center gap-1.5
