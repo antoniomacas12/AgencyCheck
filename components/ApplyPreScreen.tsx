@@ -95,7 +95,6 @@ export default function ApplyPreScreen({
     setOpen(true);
     setEu(null);
     setBsn(null);
-    setSaving(false);
   }
 
   function handleApply() {
