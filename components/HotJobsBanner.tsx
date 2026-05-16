@@ -42,8 +42,8 @@ const HOT_JOBS = [
     location: "Netherlands",
     tag: "Housing available",
     tagColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
-    href: "https://wa.me/31649210631?text=Hi%2C%20I%20want%20to%20apply%20for%20the%20Warehouse%20Worker%20position%20in%20Netherlands.",
-    external: true,
+    href: "/apply/warehouse",
+    external: false,
     applicants: 41,
   },
 ];
