@@ -1,45 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import {
+  getAllRecruiters,
+  getClickStatsMap,
+  setRecruiterEnabled,
+  ensureDbReady,
+} from "@/lib/recruiter-db";
 
 export const dynamic = "force-dynamic";
 
 // ─── GET /api/admin/recruiters ────────────────────────────────────────────────
-// Returns all recruiters with their click counts and enabled status.
+// Returns all recruiters with click counts and last-click timestamp.
 
 export async function GET(_req: NextRequest) {
   try {
-    const recruiters = await prisma.$queryRaw<
-      { id: string; name: string; waUrl: string; enabled: boolean; sortOrder: number; createdAt: Date }[]
-    >`
-      SELECT "id", "name", "waUrl", "enabled", "sortOrder", "createdAt"
-      FROM recruiter_config
-      ORDER BY "sortOrder" ASC
-    `;
+    // ensureDbReady() is called inside getAllRecruiters, but we call it explicitly
+    // here so tables + seeds exist even if no apply has ever been made.
+    await ensureDbReady();
+
+    const recruiters = await getAllRecruiters();
+
+    console.log(`[admin/recruiters] GET — found ${recruiters.length} recruiter(s)`);
 
     if (recruiters.length === 0) {
       return NextResponse.json({ recruiters: [] });
     }
 
-    // Click counts per recruiter
-    const counts = await prisma.$queryRaw<
-      { recruiter: string; total: bigint; lastClick: Date | null }[]
-    >`
-      SELECT
-        "recruiter",
-        COUNT(*)        AS total,
-        MAX("createdAt") AS "lastClick"
-      FROM referral_clicks
-      WHERE "recruiter" = ANY(${recruiters.map((r) => r.name)})
-      GROUP BY "recruiter"
-    `;
-
-    const countMap: Record<string, { total: number; lastClick: Date | null }> = {};
-    for (const row of counts) {
-      countMap[row.recruiter] = {
-        total:     Number(row.total),
-        lastClick: row.lastClick,
-      };
-    }
+    const statsMap = await getClickStatsMap(recruiters.map((r) => r.name));
 
     return NextResponse.json({
       recruiters: recruiters.map((r) => ({
@@ -48,8 +34,8 @@ export async function GET(_req: NextRequest) {
         waUrl:     r.waUrl,
         enabled:   r.enabled,
         sortOrder: r.sortOrder,
-        clicks:    countMap[r.name]?.total     ?? 0,
-        lastClick: countMap[r.name]?.lastClick ?? null,
+        clicks:    statsMap[r.name]?.total     ?? 0,
+        lastClick: statsMap[r.name]?.lastClick ?? null,
       })),
     });
   } catch (err) {
@@ -60,7 +46,6 @@ export async function GET(_req: NextRequest) {
 
 // ─── PATCH /api/admin/recruiters ──────────────────────────────────────────────
 // Body: { id: string, enabled: boolean }
-// Toggles a recruiter's enabled status.
 
 export async function PATCH(req: NextRequest) {
   try {
@@ -68,12 +53,12 @@ export async function PATCH(req: NextRequest) {
     const { id, enabled } = body as { id: string; enabled: boolean };
 
     if (!id || typeof enabled !== "boolean") {
-      return NextResponse.json({ error: "id and enabled required" }, { status: 400 });
+      return NextResponse.json({ error: "id and enabled are required" }, { status: 400 });
     }
 
-    await prisma.$executeRaw`
-      UPDATE recruiter_config SET "enabled" = ${enabled} WHERE "id" = ${id}
-    `;
+    await setRecruiterEnabled(id, enabled);
+
+    console.log(`[admin/recruiters] PATCH — id=${id} enabled=${enabled}`);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
