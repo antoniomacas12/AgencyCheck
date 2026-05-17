@@ -59,9 +59,10 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    const [total, qualified, byJob] = await Promise.all([
+    const [total, qualified, firstRecord, byJob] = await Promise.all([
       prisma.preQualification.count(),
       prisma.preQualification.count({ where: { qualified: true } }),
+      prisma.preQualification.findFirst({ orderBy: { createdAt: "asc" }, select: { createdAt: true } }),
       prisma.preQualification.groupBy({
         by: ["jobId", "jobTitle"],
         _count: { id: true },
@@ -89,6 +90,7 @@ export async function GET(req: NextRequest) {
       qualified,
       rejected: total - qualified,
       qualifiedRate: total > 0 ? Math.round((qualified / total) * 100) : 0,
+      trackingSince: firstRecord?.createdAt ?? null,
       perJob: perJobStats.map((r) => ({
         jobId:     r.job_id,
         jobTitle:  r.job_title,
