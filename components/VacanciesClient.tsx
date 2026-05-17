@@ -178,7 +178,7 @@ export default function VacanciesClient() {
             Current openings · Netherlands & Greece
           </p>
           <h1 className="text-white font-extrabold text-[26px] sm:text-[30px] leading-tight mb-2">
-            Open Vacancies
+            Actual Jobs
           </h1>
           <p className="text-gray-400 text-[13px]">
             {JOBS.length} positions · EU citizens only · Immediate start · +31 649 210 631
