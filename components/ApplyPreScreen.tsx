@@ -16,7 +16,7 @@ type YesNo = "yes" | "no" | null;
 // ─── Helper: build WhatsApp URL with pre-filled message ────────────────────────
 function buildWaUrl(waBase: string, jobTitle: string, source?: string) {
   const srcTag = source ? ` [src:${source}]` : "";
-  const msg = `Hi, I want to apply for: ${jobTitle}${srcTag}\n✅ EU citizen: Yes\n✅ BSN: Yes`.trim();
+  const msg = `Hi, I want to apply for: ${jobTitle}${srcTag}`.trim();
   return `${waBase}?text=${encodeURIComponent(msg)}`;
 }
 

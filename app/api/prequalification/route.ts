@@ -1,28 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-// ─── POST /api/prequalification ───────────────────────────────────────────────
-// Records EU citizen + BSN answers before the Apply/WhatsApp button is shown.
-// Returns { qualified: boolean } so the client can gate the next step.
-//
-// Body: { isEuCitizen: boolean, hasBsn: boolean, jobId?: string, jobTitle?: string, source?: string }
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const dynamic = "force-dynamic";
+
+// ─── Auto-create table if it doesn't exist yet ────────────────────────────────
+// Runs once per cold-start. Eliminates the need for `prisma db push` in prod.
+// Prisma creates columns in camelCase — we mirror that exactly.
+
+let tableReady = false;
+
+async function ensureTable() {
+  if (tableReady) return;
+  try {
+    await prisma.$executeRaw`
+      CREATE TABLE IF NOT EXISTS pre_qualifications (
+        "id"          TEXT        PRIMARY KEY,
+        "createdAt"   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        "jobId"       TEXT,
+        "jobTitle"    TEXT,
+        "isEuCitizen" BOOLEAN     NOT NULL,
+        "hasBsn"      BOOLEAN     NOT NULL,
+        "qualified"   BOOLEAN     NOT NULL,
+        "source"      TEXT
+      )
+    `;
+    await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS pq_created_at_idx ON pre_qualifications ("createdAt")`;
+    await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS pq_qualified_idx  ON pre_qualifications ("qualified")`;
+    await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS pq_job_id_idx     ON pre_qualifications ("jobId")`;
+  } catch {
+    // Table already exists — ignore
+  }
+  tableReady = true;
+}
+
+// ─── POST /api/prequalification ───────────────────────────────────────────────
+// Called fire-and-forget after candidate passes EU + BSN gate.
+// Body: { isEuCitizen: boolean, hasBsn: boolean, jobId?, jobTitle?, source? }
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    await ensureTable();
 
+    const body = await req.json();
     const { isEuCitizen, hasBsn, jobId, jobTitle, source } = body as {
       isEuCitizen: boolean;
-      hasBsn: boolean;
-      jobId?: string;
-      jobTitle?: string;
-      source?: string;
+      hasBsn:      boolean;
+      jobId?:      string;
+      jobTitle?:   string;
+      source?:     string;
     };
 
-    // Validate required fields
     if (typeof isEuCitizen !== "boolean" || typeof hasBsn !== "boolean") {
       return NextResponse.json(
         { error: "isEuCitizen and hasBsn must be booleans" },
@@ -32,68 +59,70 @@ export async function POST(req: NextRequest) {
 
     const qualified = isEuCitizen === true && hasBsn === true;
 
-    // Persist to DB (fire-and-forget pattern — don't block the response)
-    await prisma.preQualification.create({
-      data: {
-        isEuCitizen,
-        hasBsn,
-        qualified,
-        jobId:    jobId    ?? null,
-        jobTitle: jobTitle ?? null,
-        source:   source   ?? null,
-      },
-    });
+    // Use raw insert so we control the exact column names (camelCase, no Prisma mapping surprises)
+    const id = crypto.randomUUID();
+    await prisma.$executeRaw`
+      INSERT INTO pre_qualifications
+        ("id", "isEuCitizen", "hasBsn", "qualified", "jobId", "jobTitle", "source")
+      VALUES
+        (${id}, ${isEuCitizen}, ${hasBsn}, ${qualified}, ${jobId ?? null}, ${jobTitle ?? null}, ${source ?? null})
+    `;
 
     return NextResponse.json({ qualified });
   } catch (err) {
     console.error("[prequalification] POST error:", err);
-    // Return a safe fallback — don't surface DB errors to the client
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 
-// ─── GET /api/prequalification/stats ─────────────────────────────────────────
-// Simple analytics: total, qualified, rejected counts (and per-job breakdown).
-// Not publicly linked — admin use only.
-// ─────────────────────────────────────────────────────────────────────────────
+// ─── GET /api/prequalification ────────────────────────────────────────────────
+// Returns WhatsApp lead count + tracking start date for admin dashboard.
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
-    const [total, qualified, firstRecord, byJob] = await Promise.all([
-      prisma.preQualification.count(),
-      prisma.preQualification.count({ where: { qualified: true } }),
-      prisma.preQualification.findFirst({ orderBy: { createdAt: "asc" }, select: { createdAt: true } }),
-      prisma.preQualification.groupBy({
-        by: ["jobId", "jobTitle"],
-        _count: { id: true },
-        _sum:   { qualified: true } as never, // qualified is boolean, counts via raw
-        orderBy: { _count: { id: "desc" } },
-      }),
-    ]);
+    await ensureTable();
 
-    // Compute per-job qualified counts separately (groupBy on boolean is cleaner this way)
-    const perJobStats = await prisma.$queryRaw<
-      { job_id: string | null; job_title: string | null; attempts: bigint; qualified: bigint }[]
+    // All counts via raw SQL with correct camelCase column names
+    const [totals] = await prisma.$queryRaw<
+      { total: bigint; qualified: bigint }[]
     >`
       SELECT
-        job_id,
-        job_title,
-        COUNT(*) AS attempts,
-        COUNT(*) FILTER (WHERE qualified = true) AS qualified
+        COUNT(*)                                    AS total,
+        COUNT(*) FILTER (WHERE "qualified" = true)  AS qualified
       FROM pre_qualifications
-      GROUP BY job_id, job_title
+    `;
+
+    const firstRow = await prisma.$queryRaw<
+      { createdAt: Date | null }[]
+    >`
+      SELECT "createdAt" FROM pre_qualifications ORDER BY "createdAt" ASC LIMIT 1
+    `;
+
+    const perJob = await prisma.$queryRaw<
+      { jobId: string | null; jobTitle: string | null; attempts: bigint; qualified: bigint }[]
+    >`
+      SELECT
+        "jobId",
+        "jobTitle",
+        COUNT(*)                                    AS attempts,
+        COUNT(*) FILTER (WHERE "qualified" = true)  AS qualified
+      FROM pre_qualifications
+      GROUP BY "jobId", "jobTitle"
       ORDER BY attempts DESC
     `;
+
+    const total     = Number(totals.total);
+    const qualified = Number(totals.qualified);
 
     return NextResponse.json({
       total,
       qualified,
-      rejected: total - qualified,
+      rejected:      total - qualified,
       qualifiedRate: total > 0 ? Math.round((qualified / total) * 100) : 0,
-      trackingSince: firstRecord?.createdAt ?? null,
-      perJob: perJobStats.map((r) => ({
-        jobId:     r.job_id,
-        jobTitle:  r.job_title,
+      trackingSince: firstRow[0]?.createdAt ?? null,
+      perJob: perJob.map((r) => ({
+        jobId:     r.jobId,
+        jobTitle:  r.jobTitle,
         attempts:  Number(r.attempts),
         qualified: Number(r.qualified),
         rejected:  Number(r.attempts) - Number(r.qualified),
