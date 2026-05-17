@@ -117,17 +117,21 @@ export async function GET(req: NextRequest) {
     }
 
     // ── 4. Insert referral click ─────────────────────────────────────────────
+    // source is always 'AgencyCheck' — this is the proof of origin.
+    // The incoming `source` query param is a page-level tracking slug (internal only).
     const id = crypto.randomUUID();
     await prisma.$executeRaw`
       INSERT INTO referral_clicks
         ("id", "recruiter", "recruiterWa", "jobId", "jobTitle", "source")
       VALUES
-        (${id}, ${assigned.name}, ${assigned.waUrl}, ${jobId ?? null}, ${jobTitle ?? null}, ${source})
+        (${id}, ${assigned.name}, ${assigned.waUrl}, ${jobId ?? null}, ${jobTitle ?? null}, 'AgencyCheck')
     `;
 
     // ── 5. Redirect to recruiter WhatsApp ────────────────────────────────────
-    // Build wa.me URL with pre-filled message
-    const waMsg  = jobTitle ? `Hi, I want to apply for: ${jobTitle} [src:${source}]` : `Hi, I'm applying via AgencyCheck [src:${source}]`;
+    // WA message always tags AgencyCheck as the source — proof even if candidate edits text.
+    const waMsg  = jobTitle
+      ? `Hi, I want to apply for: ${jobTitle} [src:AgencyCheck]`
+      : `Hi, I'm applying via AgencyCheck [src:AgencyCheck]`;
     const waUrl  = `${assigned.waUrl}?text=${encodeURIComponent(waMsg)}`;
 
     return NextResponse.redirect(waUrl, 302);
