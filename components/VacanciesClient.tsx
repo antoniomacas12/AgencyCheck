@@ -261,7 +261,7 @@ export default function VacanciesClient() {
         )}
 
         <p className="text-center text-gray-600 text-[11px] mt-8">
-          All positions require EU citizenship and existing BSN · +31 649 210 631
+          All positions require EU citizenship · +31 649 210 631
         </p>
       </div>
     </div>

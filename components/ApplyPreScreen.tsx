@@ -85,16 +85,13 @@ export default function ApplyPreScreen({
 }: Props) {
   const [open, setOpen]    = useState(false);
   const [euCitizen, setEu] = useState<YesNo>(null);
-  const [hasBsn, setBsn]   = useState<YesNo>(null);
 
-  const bothAnswered = euCitizen !== null && hasBsn !== null;
-  const qualified    = euCitizen === "yes" && hasBsn === "yes";
-  const disqualified = bothAnswered && !qualified;
+  const qualified    = euCitizen === "yes";
+  const disqualified = euCitizen === "no";
 
   function handleOpen() {
     setOpen(true);
     setEu(null);
-    setBsn(null);
   }
 
   function handleApply() {
@@ -116,26 +113,17 @@ export default function ApplyPreScreen({
     });
   }
 
-  // Save disqualified answers when both are answered (for analytics)
-  function handleAnswer(field: "eu" | "bsn", val: YesNo) {
-    const nextEu  = field === "eu"  ? val : euCitizen;
-    const nextBsn = field === "bsn" ? val : hasBsn;
-
-    if (field === "eu")  setEu(val);
-    if (field === "bsn") setBsn(val);
-
-    // Fire analytics save when a disqualifying combination is complete
-    if (nextEu !== null && nextBsn !== null) {
-      const isQualified = nextEu === "yes" && nextBsn === "yes";
-      if (!isQualified) {
-        savePreQual({
-          isEuCitizen: nextEu === "yes",
-          hasBsn: nextBsn === "yes",
-          jobId,
-          jobTitle,
-          source,
-        });
-      }
+  function handleAnswer(val: YesNo) {
+    setEu(val);
+    // Fire analytics for disqualified immediately
+    if (val === "no") {
+      savePreQual({
+        isEuCitizen: false,
+        hasBsn: false,
+        jobId,
+        jobTitle,
+        source,
+      });
     }
   }
 
@@ -173,7 +161,7 @@ export default function ApplyPreScreen({
         {/* Header */}
         <div className="mb-6">
           <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 mb-1">
-            Eligibility check · 2 questions
+            Eligibility check · 1 question
           </p>
           <h2 className="text-white font-bold text-[18px] leading-snug">
             {jobTitle}
@@ -181,26 +169,18 @@ export default function ApplyPreScreen({
         </div>
 
         {/* ── Q1: EU citizen ───────────────────────────────────── */}
-        <div className="mb-5">
+        <div className="mb-6">
           <p className="text-gray-300 text-[13px] font-semibold mb-3">
             Are you an EU citizen?
           </p>
-          <YesNoButtons value={euCitizen} onChange={(v) => handleAnswer("eu", v)} />
-        </div>
-
-        {/* ── Q2: BSN ──────────────────────────────────────────── */}
-        <div className="mb-6">
-          <p className="text-gray-300 text-[13px] font-semibold mb-3">
-            Do you already have a BSN number?
-          </p>
-          <YesNoButtons value={hasBsn} onChange={(v) => handleAnswer("bsn", v)} />
+          <YesNoButtons value={euCitizen} onChange={handleAnswer} />
         </div>
 
         {/* ── Disqualified message ─────────────────────────────── */}
         {disqualified && (
           <div className="mb-4 rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-4">
             <p className="text-red-300 text-[13px] font-semibold leading-snug text-center">
-              This position is currently available only for EU candidates with an existing BSN number.
+              This position is currently available for EU citizens only.
             </p>
           </div>
         )}
@@ -219,7 +199,6 @@ export default function ApplyPreScreen({
                 : "bg-white/10 text-gray-500 cursor-not-allowed"}
             `}
           >
-            {/* WhatsApp icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -228,7 +207,7 @@ export default function ApplyPreScreen({
             >
               <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.95 7.95 0 01-4.07-1.116l-.292-.174-3.036.868.872-3.046-.19-.31A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.29-5.89c-.233-.117-1.379-.681-1.593-.759-.214-.077-.37-.116-.526.117-.155.232-.603.759-.739.915-.136.155-.272.174-.505.058-.233-.117-.982-.362-1.87-1.154-.691-.617-1.158-1.38-1.294-1.613-.136-.232-.014-.358.103-.474.105-.104.233-.272.35-.408.116-.136.155-.233.233-.388.077-.155.039-.291-.019-.407-.059-.117-.527-1.27-.722-1.739-.19-.456-.384-.394-.527-.401l-.448-.008c-.156 0-.408.059-.621.291-.214.233-.814.796-.814 1.94s.834 2.25.95 2.406c.116.155 1.64 2.504 3.975 3.512.556.24 1.99.52 2.315.336.233-.136.942-.385 1.074-.756.131-.37.131-.686.092-.756-.039-.077-.155-.116-.388-.233z" />
             </svg>
-            {qualified ? "Continue to WhatsApp →" : "Answer both questions"}
+            {qualified ? "Continue to WhatsApp →" : "Answer to proceed"}
           </button>
         )}
 
@@ -237,7 +216,7 @@ export default function ApplyPreScreen({
             ? "Opens WhatsApp · Your details are sent automatically"
             : disqualified
             ? "Check other positions that may suit your profile"
-            : "Both questions required to proceed"}
+            : "EU citizenship required to apply"}
         </p>
       </div>
     </>

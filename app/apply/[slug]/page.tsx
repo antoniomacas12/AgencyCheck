@@ -175,10 +175,6 @@ export default async function JobPage(
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-emerald-400 font-bold">✓</span>
-                Valid BSN number
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-emerald-400 font-bold">✓</span>
                 English communication skills
               </li>
               {v.b.includes("car") && (
@@ -256,7 +252,7 @@ export default async function JobPage(
           </ApplyPreScreen>
 
           <p className="text-center text-gray-600 text-[11px] mb-8">
-            EU + BSN eligibility check · Opens WhatsApp directly
+            EU citizenship check · Opens WhatsApp directly
           </p>
 
           {/* ── Related jobs ────────────────────────────────────────── */}
