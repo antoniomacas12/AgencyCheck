@@ -64,10 +64,21 @@ export default function ReferralsAdminPage() {
       ]);
       const rJson = await rRes.json();
       const dJson = await dRes.json();
+
       setRecruiters(rJson.recruiters ?? []);
-      setData(dJson);
+
+      // Guard: only store data if it has the expected shape.
+      // If the API returned { error: "..." } we fall back to an empty state
+      // so the render never tries to access .recent / .perVacancy on undefined.
+      if (dJson && Array.isArray(dJson.recent) && Array.isArray(dJson.perVacancy)) {
+        setData(dJson);
+      } else {
+        if (dJson?.error) setError(`Analytics: ${dJson.error}`);
+        setData({ total: 0, perVacancy: [], recent: [] });
+      }
     } catch {
       setError("Failed to load data");
+      setData({ total: 0, perVacancy: [], recent: [] });
     } finally {
       setLoading(false);
     }
@@ -215,7 +226,7 @@ export default function ReferralsAdminPage() {
         )}
 
         {/* ── Per vacancy ─────────────────────────────────────────── */}
-        {data && data.perVacancy.length > 0 && (
+        {data && (data.perVacancy?.length ?? 0) > 0 && (
           <div className="mb-6">
             <p className="text-[11px] font-black uppercase tracking-widest text-gray-500 mb-3">
               By vacancy
@@ -249,9 +260,9 @@ export default function ReferralsAdminPage() {
         {/* ── Recent clicks timeline ──────────────────────────────── */}
         <div>
           <p className="text-[11px] font-black uppercase tracking-widest text-gray-500 mb-3">
-            Assignment history ({data?.recent.length ?? 0})
+            Assignment history ({data?.recent?.length ?? 0})
           </p>
-          {!data?.recent.length ? (
+          {!data?.recent?.length ? (
             <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-10 text-center text-gray-600 text-[13px]">
               No assignments yet. Tracking starts on the first qualified application.
             </div>
