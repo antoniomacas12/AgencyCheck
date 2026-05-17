@@ -13,7 +13,9 @@ import {
   type Vacancy,
 } from "@/lib/vacanciesData";
 
-const WA_BASE = "https://wa.me/31649210631";
+const WA_BASE        = "https://wa.me/31649210631";
+const RECRUITER_WA   = "https://wa.me/31613754893";
+const RECRUITER_NAME = "Tuga Recruitment";
 const ALL_CATS = Object.keys(CAT_LABELS) as Category[];
 
 export default function VacanciesClient() {
@@ -237,6 +239,8 @@ export default function VacanciesClient() {
                             jobTitle={job.t}
                             source={`vacancies-${c}`}
                             jobId={job.slug}
+                            recruiterWa={RECRUITER_WA}
+                            recruiterName={RECRUITER_NAME}
                           >
                             {(openFn) => (
                               <button

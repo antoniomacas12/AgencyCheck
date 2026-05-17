@@ -265,6 +265,18 @@ export default function LeadsDashboard() {
               )}
             </div>
           )}
+
+          {/* Referral tracking link */}
+          <Link
+            href="/admin/referrals"
+            className="flex items-center gap-2 bg-white border border-gray-200 rounded-xl px-4 py-3 w-full hover:bg-gray-50 transition-colors"
+          >
+            <span className="text-lg">🔗</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 leading-none mb-0.5">Recruiter Referrals</p>
+              <p className="text-sm font-bold text-gray-900">View lead tracking →</p>
+            </div>
+          </Link>
         </div>
       </div>
 

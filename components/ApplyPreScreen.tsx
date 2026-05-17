@@ -5,38 +5,55 @@ import { useState } from "react";
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface Props {
   jobTitle: string;
-  waBase: string;    // wa.me URL without text param, e.g. "https://wa.me/31649210631"
-  source?: string;   // tracking slug, e.g. "reachtruck" — appended to WA message
-  jobId?: string;    // job slug / page identifier for analytics, e.g. "warehouse"
+  waBase: string;         // owner's WA number (fallback / non-recruiter flow)
+  source?: string;        // tracking slug appended to WA message
+  jobId?: string;         // vacancy slug / page identifier
+  // Recruiter partnership tracking (optional)
+  recruiterWa?: string;   // if set, candidate is sent HERE instead of waBase
+  recruiterName?: string; // e.g. "Tuga Recruitment" — saved to referral_clicks
   children: (openFn: () => void) => React.ReactNode;
 }
 
 type YesNo = "yes" | "no" | null;
 
-// ─── Helper: build WhatsApp URL with pre-filled message ────────────────────────
-function buildWaUrl(waBase: string, jobTitle: string, source?: string) {
+// ─── Helper: build WhatsApp URL ────────────────────────────────────────────────
+function buildWaUrl(base: string, jobTitle: string, source?: string) {
   const srcTag = source ? ` [src:${source}]` : "";
-  const msg = `Hi, I want to apply for: ${jobTitle}${srcTag}`.trim();
-  return `${waBase}?text=${encodeURIComponent(msg)}`;
+  const msg    = `Hi, I want to apply for: ${jobTitle}${srcTag}`.trim();
+  return `${base}?text=${encodeURIComponent(msg)}`;
 }
 
-// ─── Analytics: fire-and-forget DB save ───────────────────────────────────────
+// ─── Analytics: pre-qualification save ────────────────────────────────────────
 async function savePreQual(payload: {
   isEuCitizen: boolean;
-  hasBsn: boolean;
-  jobId?: string;
-  jobTitle?: string;
-  source?: string;
+  hasBsn:      boolean;
+  jobId?:      string;
+  jobTitle?:   string;
+  source?:     string;
 }) {
   try {
     await fetch("/api/prequalification", {
-      method: "POST",
+      method:  "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body:    JSON.stringify(payload),
     });
-  } catch {
-    // Non-blocking — never interrupt the user flow for analytics
-  }
+  } catch { /* non-blocking */ }
+}
+
+// ─── Recruiter referral tracking ──────────────────────────────────────────────
+async function saveReferralClick(payload: {
+  recruiter:   string;
+  recruiterWa: string;
+  jobId?:      string;
+  jobTitle?:   string;
+}) {
+  try {
+    await fetch("/api/referral-click", {
+      method:  "POST",
+      headers: { "Content-Type": "application/json" },
+      body:    JSON.stringify({ ...payload, source: "AgencyCheck" }),
+    });
+  } catch { /* non-blocking */ }
 }
 
 // ─── Sub-component: Yes/No button pair ────────────────────────────────────────
@@ -81,6 +98,8 @@ export default function ApplyPreScreen({
   waBase,
   source,
   jobId,
+  recruiterWa,
+  recruiterName,
   children,
 }: Props) {
   const [open, setOpen]    = useState(false);
@@ -97,33 +116,33 @@ export default function ApplyPreScreen({
   function handleApply() {
     if (!qualified) return;
 
-    // Open WhatsApp FIRST — must be synchronous with the click event,
-    // otherwise browser popup blocker will block window.open after an await.
-    const url = buildWaUrl(waBase, jobTitle, source);
-    window.open(url, "_blank", "noopener,noreferrer");
+    // Determine destination — recruiter WA takes priority over owner WA
+    const destination = recruiterWa
+      ? buildWaUrl(recruiterWa, jobTitle, source)
+      : buildWaUrl(waBase, jobTitle, source);
+
+    // Open WhatsApp FIRST (must be synchronous with click — popup blocker)
+    window.open(destination, "_blank", "noopener,noreferrer");
     setOpen(false);
 
-    // Save analytics fire-and-forget AFTER opening WA
-    savePreQual({
-      isEuCitizen: true,
-      hasBsn: true,
-      jobId,
-      jobTitle,
-      source,
-    });
+    // Fire-and-forget: pre-qual analytics
+    savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
+
+    // Fire-and-forget: recruiter referral tracking
+    if (recruiterWa && recruiterName) {
+      saveReferralClick({
+        recruiter:   recruiterName,
+        recruiterWa: recruiterWa,
+        jobId,
+        jobTitle,
+      });
+    }
   }
 
   function handleAnswer(val: YesNo) {
     setEu(val);
-    // Fire analytics for disqualified immediately
     if (val === "no") {
-      savePreQual({
-        isEuCitizen: false,
-        hasBsn: false,
-        jobId,
-        jobTitle,
-        source,
-      });
+      savePreQual({ isEuCitizen: false, hasBsn: false, jobId, jobTitle, source });
     }
   }
 
@@ -166,9 +185,14 @@ export default function ApplyPreScreen({
           <h2 className="text-white font-bold text-[18px] leading-snug">
             {jobTitle}
           </h2>
+          {recruiterName && (
+            <p className="text-gray-500 text-[11px] mt-1">
+              via {recruiterName} · source: AgencyCheck
+            </p>
+          )}
         </div>
 
-        {/* ── Q1: EU citizen ───────────────────────────────────── */}
+        {/* ── Q: EU citizen ────────────────────────────────────── */}
         <div className="mb-6">
           <p className="text-gray-300 text-[13px] font-semibold mb-3">
             Are you an EU citizen?
