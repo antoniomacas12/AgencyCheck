@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 // ─── Static numbers ────────────────────────────────────────────────────────────
 const VERIFIED_COUNT   = VERIFIED_AGENCIES.length;
-const HOUSING_COUNT    = VERIFIED_AGENCIES.filter((a) => a.accommodation && a.accommodation !== "unknown" && a.accommodation !== "not_offered").length;
+const HOUSING_COUNT    = VERIFIED_AGENCIES.filter((a) => a.accommodation && a.accommodation !== "unknown" && (a.accommodation as string) !== "not_offered").length;
 const COUNTRIES_SERVED = ["Poland", "Romania", "Portugal", "Bulgaria", "Slovakia", "Ukraine"];
 
 // ─── Transparency score components ────────────────────────────────────────────

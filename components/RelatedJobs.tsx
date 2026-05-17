@@ -2,7 +2,18 @@ import Link from "next/link";
 
 // ─── All available jobs ────────────────────────────────────────────────────────
 // When you add a new job page, add it here too.
-export const ALL_JOBS = [
+interface JobEntry {
+  id: string;
+  title: string;
+  location: string;
+  tag: string;
+  tagColor: string;
+  href: string;
+  applicants: number;
+  external?: boolean;
+}
+
+export const ALL_JOBS: JobEntry[] = [
   {
     id: "reachtruck",
     title: "C+E Truck Driver",
