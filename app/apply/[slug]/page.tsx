@@ -12,7 +12,7 @@ import {
   BADGE_META,
 } from "@/lib/vacanciesData";
 
-const WA_BASE = "https://wa.me/31649210631";
+const WA_BASE = "https://wa.me/31613754893";
 
 // ─── Static generation ────────────────────────────────────────────────────────
 export async function generateStaticParams() {

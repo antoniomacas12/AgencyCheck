@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import ApplyPreScreen from "@/components/ApplyPreScreen";
 
-const WA_BASE = "https://wa.me/31649210631";
+const WA_BASE = "https://wa.me/31613754893";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface LinkJob {

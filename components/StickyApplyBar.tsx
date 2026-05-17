@@ -3,7 +3,7 @@
 import ApplyPreScreen from "@/components/ApplyPreScreen";
 
 interface Props {
-  waBase: string;    // e.g. "https://wa.me/31649210631"
+  waBase: string;    // e.g. "https://wa.me/31613754893"
   jobTitle: string;  // e.g. "C+E Truck Driver"
   source?: string;   // tracking slug, e.g. "reachtruck"
   jobId?: string;    // job slug for analytics, e.g. "reachtruck"

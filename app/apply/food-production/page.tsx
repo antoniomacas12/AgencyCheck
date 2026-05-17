@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-const WA_BASE   = "https://wa.me/31649210631";
+const WA_BASE   = "https://wa.me/31613754893";
 const JOB_TITLE = "Food Production Operator (Netherlands)";
 
 const JOB_SCHEMA = jobPostingSchema({

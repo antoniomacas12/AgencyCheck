@@ -13,7 +13,7 @@ import {
   type Vacancy,
 } from "@/lib/vacanciesData";
 
-const WA_BASE = "https://wa.me/31649210631";
+const WA_BASE = "https://wa.me/31613754893";
 const ALL_CATS = Object.keys(CAT_LABELS) as Category[];
 
 export default function VacanciesClient() {
