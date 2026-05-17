@@ -5,22 +5,29 @@ import { useState } from "react";
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface Props {
   jobTitle: string;
-  waBase: string;         // owner's WA number (fallback / non-recruiter flow)
-  source?: string;        // tracking slug appended to WA message
-  jobId?: string;         // vacancy slug / page identifier
-  // Recruiter partnership tracking (optional)
-  recruiterWa?: string;   // if set, candidate is sent HERE instead of waBase
-  recruiterName?: string; // e.g. "Tuga Recruitment" — saved to referral_clicks
+  waBase: string;        // owner WA fallback (used when referralMode is false)
+  source?: string;       // tracking slug
+  jobId?: string;        // vacancy slug / page identifier
+  referralMode?: boolean; // if true → server-side recruiter rotation via /api/referral-redirect
   children: (openFn: () => void) => React.ReactNode;
 }
 
 type YesNo = "yes" | "no" | null;
 
-// ─── Helper: build WhatsApp URL ────────────────────────────────────────────────
+// ─── Helper: build WhatsApp URL (non-rotation flow) ───────────────────────────
 function buildWaUrl(base: string, jobTitle: string, source?: string) {
   const srcTag = source ? ` [src:${source}]` : "";
   const msg    = `Hi, I want to apply for: ${jobTitle}${srcTag}`.trim();
   return `${base}?text=${encodeURIComponent(msg)}`;
+}
+
+// ─── Helper: build referral-redirect URL (rotation flow) ─────────────────────
+function buildRedirectUrl(jobId?: string, jobTitle?: string, source?: string) {
+  const params = new URLSearchParams();
+  if (jobId)    params.set("jobId",    jobId);
+  if (jobTitle) params.set("jobTitle", jobTitle);
+  if (source)   params.set("source",  source);
+  return `/api/referral-redirect?${params.toString()}`;
 }
 
 // ─── Analytics: pre-qualification save ────────────────────────────────────────
@@ -36,22 +43,6 @@ async function savePreQual(payload: {
       method:  "POST",
       headers: { "Content-Type": "application/json" },
       body:    JSON.stringify(payload),
-    });
-  } catch { /* non-blocking */ }
-}
-
-// ─── Recruiter referral tracking ──────────────────────────────────────────────
-async function saveReferralClick(payload: {
-  recruiter:   string;
-  recruiterWa: string;
-  jobId?:      string;
-  jobTitle?:   string;
-}) {
-  try {
-    await fetch("/api/referral-click", {
-      method:  "POST",
-      headers: { "Content-Type": "application/json" },
-      body:    JSON.stringify({ ...payload, source: "AgencyCheck" }),
     });
   } catch { /* non-blocking */ }
 }
@@ -98,8 +89,7 @@ export default function ApplyPreScreen({
   waBase,
   source,
   jobId,
-  recruiterWa,
-  recruiterName,
+  referralMode = false,
   children,
 }: Props) {
   const [open, setOpen]    = useState(false);
@@ -116,27 +106,21 @@ export default function ApplyPreScreen({
   function handleApply() {
     if (!qualified) return;
 
-    // Determine destination — recruiter WA takes priority over owner WA
-    const destination = recruiterWa
-      ? buildWaUrl(recruiterWa, jobTitle, source)
+    // Build destination URL:
+    //   referralMode → /api/referral-redirect (server picks recruiter + saves + 302)
+    //   normal       → direct wa.me link
+    const destination = referralMode
+      ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck")
       : buildWaUrl(waBase, jobTitle, source);
 
-    // Open WhatsApp FIRST (must be synchronous with click — popup blocker)
+    // Open new tab synchronously — MUST stay in the same click event stack
+    // to avoid browser popup blockers.
     window.open(destination, "_blank", "noopener,noreferrer");
     setOpen(false);
 
-    // Fire-and-forget: pre-qual analytics
+    // Fire-and-forget: pre-qual analytics (non-rotation flow saves recruiter
+    // tracking inside /api/referral-redirect itself)
     savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
-
-    // Fire-and-forget: recruiter referral tracking
-    if (recruiterWa && recruiterName) {
-      saveReferralClick({
-        recruiter:   recruiterName,
-        recruiterWa: recruiterWa,
-        jobId,
-        jobTitle,
-      });
-    }
   }
 
   function handleAnswer(val: YesNo) {
@@ -185,9 +169,9 @@ export default function ApplyPreScreen({
           <h2 className="text-white font-bold text-[18px] leading-snug">
             {jobTitle}
           </h2>
-          {recruiterName && (
-            <p className="text-gray-500 text-[11px] mt-1">
-              via {recruiterName} · source: AgencyCheck
+          {referralMode && (
+            <p className="text-gray-600 text-[11px] mt-1">
+              via AgencyCheck · recruiter assigned automatically
             </p>
           )}
         </div>
@@ -237,7 +221,7 @@ export default function ApplyPreScreen({
 
         <p className="text-center text-gray-600 text-[11px] mt-3">
           {qualified
-            ? "Opens WhatsApp · Your details are sent automatically"
+            ? "Opens WhatsApp · recruiter assigned automatically"
             : disqualified
             ? "Check other positions that may suit your profile"
             : "EU citizenship required to apply"}

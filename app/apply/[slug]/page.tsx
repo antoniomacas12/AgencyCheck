@@ -12,9 +12,7 @@ import {
   BADGE_META,
 } from "@/lib/vacanciesData";
 
-const WA_BASE        = "https://wa.me/31649210631";
-const RECRUITER_WA   = "https://wa.me/31613754893";
-const RECRUITER_NAME = "Tuga Recruitment";
+const WA_BASE = "https://wa.me/31649210631";
 
 // ─── Static generation ────────────────────────────────────────────────────────
 export async function generateStaticParams() {
@@ -231,8 +229,7 @@ export default async function JobPage(
             jobTitle={v.t}
             source={`job-page-${v.c}`}
             jobId={v.slug}
-            recruiterWa={RECRUITER_WA}
-            recruiterName={RECRUITER_NAME}
+            referralMode
           >
             {(openFn) => (
               <button

@@ -234,6 +234,7 @@ export default function HotJobsBanner() {
                   jobTitle={job.title}
                   source={job.source}
                   jobId={job.jobId}
+                  referralMode
                 >
                   {(openFn) => (
                     <button onClick={openFn} className="w-full text-left">
