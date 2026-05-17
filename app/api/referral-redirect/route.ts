@@ -1,16 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { RECRUITER_SEEDS } from "@/lib/recruiters";
+import { prisma }                    from "@/lib/prisma";
+import { RECRUITER_SEEDS }           from "@/lib/recruiters";
+import { isBotRequest }              from "@/lib/bot-detection";
 
 export const dynamic = "force-dynamic";
+
+// ─── Param limits ─────────────────────────────────────────────────────────────
+const MAX_JOB_ID_LEN    = 120;
+const MAX_JOB_TITLE_LEN = 200;
+const MAX_SOURCE_LEN    = 100;
 
 // ─── DB setup (runs once per cold-start) ─────────────────────────────────────
 let setupDone = false;
 
-async function ensureSetup() {
+async function ensureSetup(): Promise<void> {
   if (setupDone) return;
 
-  // 1. referral_clicks table (may already exist from previous deployment)
   await prisma.$executeRaw`
     CREATE TABLE IF NOT EXISTS referral_clicks (
       "id"          TEXT        PRIMARY KEY,
@@ -22,11 +27,10 @@ async function ensureSetup() {
       "source"      TEXT        NOT NULL DEFAULT 'AgencyCheck'
     )
   `;
-  await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS rc_created_at_idx  ON referral_clicks ("createdAt")`;
-  await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS rc_recruiter_idx   ON referral_clicks ("recruiter")`;
-  await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS rc_job_id_idx      ON referral_clicks ("jobId")`;
+  await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS rc_created_at_idx ON referral_clicks ("createdAt")`;
+  await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS rc_recruiter_idx  ON referral_clicks ("recruiter")`;
+  await prisma.$executeRaw`CREATE INDEX IF NOT EXISTS rc_job_id_idx     ON referral_clicks ("jobId")`;
 
-  // 2. recruiter_config table
   await prisma.$executeRaw`
     CREATE TABLE IF NOT EXISTS recruiter_config (
       "id"        TEXT        PRIMARY KEY,
@@ -38,7 +42,6 @@ async function ensureSetup() {
     )
   `;
 
-  // 3. Seed recruiters (upsert — safe to run repeatedly)
   for (const r of RECRUITER_SEEDS) {
     await prisma.$executeRaw`
       INSERT INTO recruiter_config ("id", "name", "waUrl", "enabled", "sortOrder")
@@ -53,27 +56,57 @@ async function ensureSetup() {
   setupDone = true;
 }
 
+// ─── Param sanitisation ───────────────────────────────────────────────────────
+function sanitise(value: string | null, maxLen: number): string | undefined {
+  if (!value) return undefined;
+  // Strip null bytes and control characters, then trim
+  const cleaned = value.replace(/[\x00-\x1F\x7F]/g, "").trim();
+  return cleaned.length > 0 ? cleaned.slice(0, maxLen) : undefined;
+}
+
+// ─── Safe 204 response for bots ───────────────────────────────────────────────
+function botResponse(): NextResponse {
+  return new NextResponse(null, { status: 204 });
+}
+
 // ─── GET /api/referral-redirect ───────────────────────────────────────────────
-// Called via window.open() — MUST be a GET (opened as a new tab URL).
+// Opened via window.open() as a new tab — MUST be GET.
 // Query params: jobId, jobTitle, source
 //
-// Logic:
-//   1. Get enabled recruiters (sorted by sortOrder)
-//   2. Count existing referral_clicks per recruiter
-//   3. Assign to the one with the FEWEST clicks (ties → lowest sortOrder)
-//   4. Insert click record
-//   5. 302-redirect to recruiter's WA URL
+// Flow:
+//   1. Reject bots / crawlers → 204 No Content (no DB write, no redirect)
+//   2. Validate + sanitise params
+//   3. Fetch enabled recruiters (round-robin: fewest clicks → lowest sortOrder)
+//   4. Insert click record (failure here is non-fatal — redirect still happens)
+//   5. 302 redirect to recruiter WA with pre-filled message tagged [src:AgencyCheck]
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest): Promise<NextResponse> {
+  const ts      = new Date().toISOString();
+  const route   = "GET /api/referral-redirect";
+  const ua      = req.headers.get("user-agent") ?? "(none)";
+  const ip      = req.headers.get("x-forwarded-for") ?? req.headers.get("x-real-ip") ?? "(unknown)";
+  const rawParams = req.nextUrl.searchParams.toString();
+
+  // ── 1. Bot / crawler check ────────────────────────────────────────────────
+  if (isBotRequest(req)) {
+    console.info(
+      `[${route}] BOT blocked — ts=${ts} ua="${ua}" ip=${ip} params=${rawParams}`
+    );
+    return botResponse();
+  }
+
+  // ── 2. Param validation + sanitisation ────────────────────────────────────
+  const { searchParams } = req.nextUrl;
+  const jobId    = sanitise(searchParams.get("jobId"),    MAX_JOB_ID_LEN);
+  const jobTitle = sanitise(searchParams.get("jobTitle"), MAX_JOB_TITLE_LEN);
+  const source   = sanitise(searchParams.get("source"),   MAX_SOURCE_LEN) ?? "AgencyCheck";
+
+  // ── 3. Recruiter rotation ─────────────────────────────────────────────────
+  let assigned: { name: string; waUrl: string } = RECRUITER_SEEDS[0];
+
   try {
     await ensureSetup();
 
-    const { searchParams } = req.nextUrl;
-    const jobId    = searchParams.get("jobId")    ?? undefined;
-    const jobTitle = searchParams.get("jobTitle") ?? undefined;
-    const source   = searchParams.get("source")   ?? "AgencyCheck";
-
-    // ── 1. Fetch enabled recruiters ──────────────────────────────────────────
     const recruiters = await prisma.$queryRaw<
       { id: string; name: string; waUrl: string; sortOrder: number }[]
     >`
@@ -84,41 +117,41 @@ export async function GET(req: NextRequest) {
     `;
 
     if (recruiters.length === 0) {
-      // No enabled recruiters — fallback to first seed entry
-      const fallback = RECRUITER_SEEDS[0];
-      return NextResponse.redirect(fallback.waUrl, 302);
-    }
+      console.warn(`[${route}] No enabled recruiters — using seed fallback ts=${ts}`);
+    } else {
+      const clickCounts = await prisma.$queryRaw<
+        { recruiter: string; cnt: bigint }[]
+      >`
+        SELECT "recruiter", COUNT(*) AS cnt
+        FROM referral_clicks
+        WHERE "recruiter" = ANY(${recruiters.map((r) => r.name)})
+        GROUP BY "recruiter"
+      `;
 
-    // ── 2. Count clicks per enabled recruiter ────────────────────────────────
-    const clickCounts = await prisma.$queryRaw<
-      { recruiter: string; cnt: bigint }[]
-    >`
-      SELECT "recruiter", COUNT(*) AS cnt
-      FROM referral_clicks
-      WHERE "recruiter" = ANY(${recruiters.map((r) => r.name)})
-      GROUP BY "recruiter"
-    `;
-
-    const countMap: Record<string, number> = {};
-    for (const row of clickCounts) {
-      countMap[row.recruiter] = Number(row.cnt);
-    }
-
-    // ── 3. Pick recruiter with fewest clicks (tie → lowest sortOrder) ────────
-    let assigned = recruiters[0];
-    let minClicks = countMap[recruiters[0].name] ?? 0;
-
-    for (const r of recruiters.slice(1)) {
-      const c = countMap[r.name] ?? 0;
-      if (c < minClicks) {
-        minClicks = c;
-        assigned  = r;
+      const countMap: Record<string, number> = {};
+      for (const row of clickCounts) {
+        countMap[row.recruiter] = Number(row.cnt);
       }
-    }
 
-    // ── 4. Insert referral click ─────────────────────────────────────────────
-    // source is always 'AgencyCheck' — this is the proof of origin.
-    // The incoming `source` query param is a page-level tracking slug (internal only).
+      let pick     = recruiters[0];
+      let minCount = countMap[pick.name] ?? 0;
+      for (const r of recruiters.slice(1)) {
+        const c = countMap[r.name] ?? 0;
+        if (c < minCount) { minCount = c; pick = r; }
+      }
+      assigned = pick;
+    }
+  } catch (err) {
+    console.error(
+      `[${route}] DB error during recruiter selection — falling back to seed. ` +
+      `ts=${ts} ua="${ua}" ip=${ip} params=${rawParams}`,
+      err,
+    );
+    // assigned already set to RECRUITER_SEEDS[0] — continue to redirect
+  }
+
+  // ── 4. Insert click record (non-fatal) ────────────────────────────────────
+  try {
     const id = crypto.randomUUID();
     await prisma.$executeRaw`
       INSERT INTO referral_clicks
@@ -126,20 +159,22 @@ export async function GET(req: NextRequest) {
       VALUES
         (${id}, ${assigned.name}, ${assigned.waUrl}, ${jobId ?? null}, ${jobTitle ?? null}, 'AgencyCheck')
     `;
-
-    // ── 5. Redirect to recruiter WhatsApp ────────────────────────────────────
-    // WA message always tags AgencyCheck as the source — proof even if candidate edits text.
-    const waMsg  = jobTitle
-      ? `Hi, I want to apply for: ${jobTitle} [src:AgencyCheck]`
-      : `Hi, I'm applying via AgencyCheck [src:AgencyCheck]`;
-    const waUrl  = `${assigned.waUrl}?text=${encodeURIComponent(waMsg)}`;
-
-    return NextResponse.redirect(waUrl, 302);
-
   } catch (err) {
-    console.error("[referral-redirect] GET error:", err);
-    // Fallback: redirect to first recruiter without saving
-    const fallback = RECRUITER_SEEDS[0];
-    return NextResponse.redirect(fallback.waUrl, 302);
+    // Log but do NOT abort — candidate must still reach recruiter
+    console.error(
+      `[${route}] DB insert FAILED (click not saved). ` +
+      `ts=${ts} ua="${ua}" ip=${ip} recruiter="${assigned.name}" jobId="${jobId ?? ""}" jobTitle="${jobTitle ?? ""}"`,
+      err,
+    );
   }
+
+  // ── 5. Redirect to recruiter WhatsApp ─────────────────────────────────────
+  // Message is hardcoded with [src:AgencyCheck] — permanent proof of origin
+  // even if the candidate edits the pre-filled text before sending.
+  const waMsg = jobTitle
+    ? `Hi, I want to apply for: ${jobTitle} [src:AgencyCheck]`
+    : `Hi, I'm applying via AgencyCheck [src:AgencyCheck]`;
+  const waUrl = `${assigned.waUrl}?text=${encodeURIComponent(waMsg)}`;
+
+  return NextResponse.redirect(waUrl, 302);
 }
