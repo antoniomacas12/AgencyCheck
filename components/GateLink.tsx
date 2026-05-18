@@ -39,6 +39,7 @@ export default function GateLink({
       jobTitle={jobTitle}
       source={source}
       jobId={jobId}
+      referralMode
     >
       {(openFn) => (
         <button onClick={openFn} className={className} style={style} type="button">
