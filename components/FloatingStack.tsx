@@ -257,6 +257,7 @@ export default function FloatingStack() {
           jobTitle="Work in the Netherlands"
           source="floating-stack"
           jobId="general"
+          referralMode
         >
           {(openFn) => (
             <button
