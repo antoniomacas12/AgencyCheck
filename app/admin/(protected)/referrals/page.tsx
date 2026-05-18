@@ -116,14 +116,32 @@ export default function ReferralsAdminPage() {
       <div className="max-w-3xl mx-auto">
 
         {/* ── Header ─────────────────────────────────────────────── */}
-        <div className="mb-8">
-          <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 mb-1">
-            Admin · Recruiter Rotation
-          </p>
-          <h1 className="text-white font-extrabold text-[24px]">Lead Tracking</h1>
-          <p className="text-gray-500 text-[13px] mt-1">
-            Round-robin distribution · source: AgencyCheck · {enabledCount} recruiter{enabledCount !== 1 ? "s" : ""} active
-          </p>
+        <div className="mb-8 flex items-start justify-between gap-4">
+          <div>
+            <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 mb-1">
+              Admin · Recruiter Rotation
+            </p>
+            <h1 className="text-white font-extrabold text-[24px]">Lead Tracking</h1>
+            <p className="text-gray-500 text-[13px] mt-1">
+              Round-robin distribution · source: AgencyCheck · {enabledCount} recruiter{enabledCount !== 1 ? "s" : ""} active
+            </p>
+          </div>
+          <div className="flex gap-2 shrink-0 mt-1">
+            <button
+              onClick={() => { setLoading(true); load(); }}
+              className="text-[12px] font-bold px-3 py-1.5 rounded-lg border border-emerald-400/30 text-emerald-400 hover:bg-emerald-400/10 transition-all"
+            >
+              ↻ Refresh
+            </button>
+            <a
+              href="/api/admin/debug-referrals"
+              target="_blank"
+              rel="noopener"
+              className="text-[12px] font-bold px-3 py-1.5 rounded-lg border border-gray-600/50 text-gray-500 hover:text-gray-300 hover:bg-white/5 transition-all"
+            >
+              🔍 Debug
+            </a>
+          </div>
         </div>
 
         {error && (
