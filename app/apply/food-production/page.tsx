@@ -184,6 +184,7 @@ export default function FoodProductionPage() {
         <div className="hidden sm:block mt-12">
           <DesktopApplyButton
             waBase={WA_BASE}
+            referralMode
             jobTitle={JOB_TITLE}
             source="food-production"
             jobId="food-production"
@@ -203,7 +204,7 @@ export default function FoodProductionPage() {
 
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="food-production" jobId="food-production" />
+      <StickyApplyBar referralMode waBase={WA_BASE} jobTitle={JOB_TITLE} source="food-production" jobId="food-production" />
 
     </div>
   );

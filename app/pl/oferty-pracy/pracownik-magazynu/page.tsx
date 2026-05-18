@@ -162,7 +162,7 @@ export default function PracownikMagazynuPage() {
 
         <div className="hidden sm:block mt-12">
           <DesktopApplyButton
-            waBase={WA_BASE}
+            referralMode waBase={WA_BASE}
             jobTitle={JOB_TITLE}
             source="warehouse-pl"
             jobId="warehouse"
@@ -187,7 +187,7 @@ export default function PracownikMagazynuPage() {
         </div>
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="warehouse-pl" jobId="warehouse" />
+      <StickyApplyBar referralMode waBase={WA_BASE} jobTitle={JOB_TITLE} source="warehouse-pl" jobId="warehouse" />
     </div>
   );
 }

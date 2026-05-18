@@ -156,7 +156,7 @@ export default function LucratorProductieMaastrichtPage() {
 
         <div className="hidden sm:block mt-12">
           <DesktopApplyButton
-            waBase={WA_BASE}
+            referralMode waBase={WA_BASE}
             jobTitle={JOB_TITLE}
             source="maastricht-ro"
             jobId="production-worker-maastricht"
@@ -181,7 +181,7 @@ export default function LucratorProductieMaastrichtPage() {
         </div>
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="maastricht-ro" jobId="production-worker-maastricht" />
+      <StickyApplyBar referralMode waBase={WA_BASE} jobTitle={JOB_TITLE} source="maastricht-ro" jobId="production-worker-maastricht" />
     </div>
   );
 }

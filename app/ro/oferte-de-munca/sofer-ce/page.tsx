@@ -153,7 +153,7 @@ export default function SoferCEPage() {
 
         <div className="hidden sm:block mt-12">
           <DesktopApplyButton
-            waBase={WA_BASE}
+            referralMode waBase={WA_BASE}
             jobTitle={JOB_TITLE}
             source="reachtruck-ro"
             jobId="reachtruck"
@@ -178,7 +178,7 @@ export default function SoferCEPage() {
         </div>
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="reachtruck-ro" jobId="reachtruck" />
+      <StickyApplyBar referralMode waBase={WA_BASE} jobTitle={JOB_TITLE} source="reachtruck-ro" jobId="reachtruck" />
     </div>
   );
 }

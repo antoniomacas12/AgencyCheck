@@ -194,6 +194,7 @@ export default function ProductionWorkerMaastrichtPage() {
         <div className="hidden sm:block mt-12">
           <DesktopApplyButton
             waBase={WA_BASE}
+            referralMode
             jobTitle={JOB_TITLE}
             source="maastricht"
             jobId="production-worker-maastricht"
@@ -213,7 +214,7 @@ export default function ProductionWorkerMaastrichtPage() {
 
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="maastricht" jobId="production-worker-maastricht" />
+      <StickyApplyBar referralMode waBase={WA_BASE} jobTitle={JOB_TITLE} source="maastricht" jobId="production-worker-maastricht" />
 
     </div>
   );

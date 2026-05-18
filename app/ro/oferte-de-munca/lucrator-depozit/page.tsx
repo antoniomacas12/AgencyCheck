@@ -159,7 +159,7 @@ export default function LucratorDepozitPage() {
 
         <div className="hidden sm:block mt-12">
           <DesktopApplyButton
-            waBase={WA_BASE}
+            referralMode waBase={WA_BASE}
             jobTitle={JOB_TITLE}
             source="warehouse-ro"
             jobId="warehouse"
@@ -184,7 +184,7 @@ export default function LucratorDepozitPage() {
         </div>
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="warehouse-ro" jobId="warehouse" />
+      <StickyApplyBar referralMode waBase={WA_BASE} jobTitle={JOB_TITLE} source="warehouse-ro" jobId="warehouse" />
     </div>
   );
 }

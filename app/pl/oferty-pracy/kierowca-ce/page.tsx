@@ -156,7 +156,7 @@ export default function KierowcaCEPage() {
         {/* CTA desktop */}
         <div className="hidden sm:block mt-12">
           <DesktopApplyButton
-            waBase={WA_BASE}
+            referralMode waBase={WA_BASE}
             jobTitle={JOB_TITLE}
             source="reachtruck-pl"
             jobId="reachtruck"
@@ -182,7 +182,7 @@ export default function KierowcaCEPage() {
         </div>
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="reachtruck-pl" jobId="reachtruck" />
+      <StickyApplyBar referralMode waBase={WA_BASE} jobTitle={JOB_TITLE} source="reachtruck-pl" jobId="reachtruck" />
     </div>
   );
 }

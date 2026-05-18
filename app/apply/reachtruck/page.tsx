@@ -183,6 +183,7 @@ export default function CETruckDriverPage() {
         <div className="hidden sm:block mt-12">
           <DesktopApplyButton
             waBase={WA_BASE}
+            referralMode
             jobTitle={JOB_TITLE}
             source="reachtruck"
             jobId="reachtruck"
@@ -202,7 +203,7 @@ export default function CETruckDriverPage() {
 
       </div>
 
-      <StickyApplyBar waBase={WA_BASE} jobTitle={JOB_TITLE} source="reachtruck" jobId="reachtruck" />
+      <StickyApplyBar referralMode waBase={WA_BASE} jobTitle={JOB_TITLE} source="reachtruck" jobId="reachtruck" />
 
     </div>
   );
