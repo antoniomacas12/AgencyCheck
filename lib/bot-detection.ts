@@ -21,6 +21,15 @@ const BOT_PATTERNS: RegExp[] = [
   /petalbot/i,
   /seznambot/i,
 
+  // AI crawlers
+  /perplexitybot/i,   // Perplexity AI
+  /gptbot/i,          // OpenAI
+  /claudebot/i,       // Anthropic
+  /bytespider/i,      // ByteDance / TikTok
+  /amazonbot/i,       // Amazon
+  /cohere-ai/i,       // Cohere
+  /diffbot/i,
+
   // SEO / analytics tools
   /mj12bot/i,         // Majestic
   /ahrefsbot/i,
