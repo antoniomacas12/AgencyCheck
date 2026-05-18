@@ -6,6 +6,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminRequest, unauthorizedJson } from "@/lib/adminAuth";
 import { prisma } from "@/lib/prisma";
+import { getNoteCountsForLeads, getLeadIdsWithNotes } from "@/lib/reliability-db";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,8 @@ export async function GET(req: NextRequest) {
     const accommodation = searchParams.get("accommodation");
     const workType      = searchParams.get("workType")      ?? undefined;
     const q             = searchParams.get("q")             ?? undefined;
+    const hasNotes      = searchParams.get("hasNotes");
+    const highSeverity  = searchParams.get("highSeverity");
     const page          = Math.max(1, parseInt(searchParams.get("page")  ?? "1",  10));
     const limit         = Math.min(100, parseInt(searchParams.get("limit") ?? "50", 10));
 
@@ -54,6 +57,18 @@ export async function GET(req: NextRequest) {
       ];
     }
 
+    // Reliability notes filters — fetch matching leadIds from notes table
+    if (hasNotes === "true" || highSeverity === "true") {
+      try {
+        const leadIdsWithNotes = await getLeadIdsWithNotes(
+          highSeverity === "true" ? { severityIn: ["high"] } : undefined,
+        );
+        where.id = { in: leadIdsWithNotes };
+      } catch {
+        // Non-fatal — notes table may not exist yet on first deploy
+      }
+    }
+
     const [leads, total] = await Promise.all([
       prisma.lead.findMany({
         where,
@@ -70,8 +85,20 @@ export async function GET(req: NextRequest) {
       prisma.lead.count({ where }),
     ]);
 
+    // Attach reliability note counts to each lead (non-fatal if notes table missing)
+    let noteCounts: Record<string, number> = {};
+    try {
+      const leadIds = leads.map((l) => l.id);
+      noteCounts = await getNoteCountsForLeads(leadIds);
+    } catch { /* notes table not yet created — safe to ignore */ }
+
+    const parsedLeads = leads.map((l) => ({
+      ...parseLead(l),
+      reliabilityNoteCount: noteCounts[l.id] ?? 0,
+    }));
+
     const pages = Math.max(1, Math.ceil(total / limit));
-    return NextResponse.json({ leads: leads.map(parseLead), total, page, pages });
+    return NextResponse.json({ leads: parsedLeads, total, page, pages });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("[GET /api/admin/leads]", err);

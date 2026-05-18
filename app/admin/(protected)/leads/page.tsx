@@ -19,6 +19,7 @@ interface Lead {
   tags: string[]; assignedTo?: string; assignedAgencies: string[]; sentAt?: string;
   internalNotes?: string;
   availability?: Availability; locationStatus?: LocationStatus; leadScore?: number;
+  reliabilityNoteCount?: number;
 }
 
 // ─── Meta ──────────────────────────────────────────────────────────────────────
@@ -126,6 +127,7 @@ export default function LeadsDashboard() {
   const [accomF,         setAccomF]         = useState("");
   const [workF,          setWorkF]          = useState("");
   const [sourceF,        setSourceF]        = useState("");
+  const [notesF,         setNotesF]         = useState("");
   const [acting,         setActing]         = useState<string | null>(null);
   const [actionError,    setActionError]    = useState<string | null>(null);
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
@@ -145,6 +147,8 @@ export default function LeadsDashboard() {
       if (accomF)  p.set("accommodation", accomF);
       if (workF)   p.set("workType", workF);
       if (sourceF) p.set("sourceType", sourceF);
+      if (notesF === "has_notes")   p.set("hasNotes", "true");
+      if (notesF === "high_severity") p.set("highSeverity", "true");
       const res = await fetch(`/api/admin/leads?${p}`);
       if (res.status === 401) { window.location.href = "/admin/login"; return; }
       const data = await res.json().catch(() => ({}));
@@ -155,10 +159,10 @@ export default function LeadsDashboard() {
       setLeads(data.leads ?? []); setTotal(data.total ?? 0); setPages(data.pages ?? 1);
     } catch (e) { setError(e instanceof Error ? e.message : "Failed to load"); }
     finally { setLoading(false); }
-  }, [page, q, statusF, accomF, workF, sourceF]);
+  }, [page, q, statusF, accomF, workF, sourceF, notesF]);
 
   useEffect(() => { fetchLeads(); }, [fetchLeads]);
-  useEffect(() => { setPage(1); }, [q, statusF, accomF, workF, sourceF]);
+  useEffect(() => { setPage(1); }, [q, statusF, accomF, workF, sourceF, notesF]);
 
   // ── WhatsApp leads stat ──────────────────────────────────────────────────────
   useEffect(() => {
@@ -329,6 +333,14 @@ export default function LeadsDashboard() {
               {(Object.keys(SOURCE_LABELS) as LeadSourceType[]).map((s) => <option key={s} value={s}>{SOURCE_LABELS[s]}</option>)}
             </select>
           </div>
+          <div>
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Reliability</label>
+            <select value={notesF} onChange={(e) => setNotesF(e.target.value)} className="text-sm border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-none bg-white">
+              <option value="">All candidates</option>
+              <option value="has_notes">⚠️ Has reliability notes</option>
+              <option value="high_severity">🔴 High severity notes</option>
+            </select>
+          </div>
           <button onClick={fetchLeads} className="px-4 py-1.5 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Refresh ↻</button>
         </div>
 
@@ -396,9 +408,20 @@ export default function LeadsDashboard() {
 
                       {/* Candidate (name + contact + qual badges) */}
                       <td className="px-3 py-3">
-                        <Link href={`/admin/leads/${lead.id}`} className="font-semibold text-gray-900 hover:text-blue-600 hover:underline text-sm">
-                          {lead.fullName}
-                        </Link>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <Link href={`/admin/leads/${lead.id}`} className="font-semibold text-gray-900 hover:text-blue-600 hover:underline text-sm">
+                            {lead.fullName}
+                          </Link>
+                          {(lead.reliabilityNoteCount ?? 0) > 0 && (
+                            <Link
+                              href={`/admin/reliability-notes?leadId=${lead.id}`}
+                              title="This candidate has reliability notes — click to view"
+                              className="inline-flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-orange-100 text-orange-700 border border-orange-200 hover:bg-orange-200 transition"
+                            >
+                              ⚠️ {lead.reliabilityNoteCount} note{(lead.reliabilityNoteCount ?? 0) !== 1 ? "s" : ""}
+                            </Link>
+                          )}
+                        </div>
                         {(lead.nationality || lead.currentCountry) && (
                           <p className="text-[10px] text-gray-400 mt-0.5">
                             {lead.nationality}{lead.nationality && lead.currentCountry ? " · " : ""}{lead.currentCountry}
