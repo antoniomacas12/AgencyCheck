@@ -239,9 +239,8 @@ export default function FloatingStack() {
       {/* ── Floating stack ─────────────────────────────────────────────────── */}
       <div
         className={`
-          fixed
-          right-3 bottom-24
-          sm:right-5 sm:bottom-8
+          fixed floating-stack-bottom
+          right-3 sm:right-5
           z-40
           flex flex-col items-end gap-2.5
           transition-all duration-300

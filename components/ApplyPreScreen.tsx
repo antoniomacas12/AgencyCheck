@@ -215,11 +215,12 @@ export default function ApplyPreScreen({
         className={`
           fixed bottom-0 left-0 right-0 z-50
           bg-[#0f2318] border-t border-white/10
-          rounded-t-3xl px-5 pt-5 pb-8
-          max-h-[92vh] overflow-y-auto
+          rounded-t-3xl px-5 pt-5
+          max-h-[90svh] overflow-y-auto
           transition-transform duration-300 ease-out
           ${open ? "translate-y-0" : "translate-y-full"}
         `}
+        style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}
       >
         {/* Handle bar */}
         <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-5" />
