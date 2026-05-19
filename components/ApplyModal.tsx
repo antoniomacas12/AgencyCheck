@@ -351,15 +351,24 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
         body: JSON.stringify(payload),
       });
 
+      if (!res.ok) {
+        // DB failure — revert to form so the user can retry
+        console.error("[ApplyModal] lead save failed, status =", res.status);
+        setStep("form");
+        setFormError("Temporary issue. Please try again in a moment.");
+        return;
+      }
+
       let data: Record<string, unknown> = {};
       try { data = await res.json(); } catch { /* ignore */ }
 
-      const returnedId = res.ok && typeof data.id === "string" ? data.id : null;
+      const returnedId = typeof data.id === "string" ? data.id : null;
       console.log("[ApplyModal] apply submit success, id =", returnedId);
       setLeadId(returnedId);
     } catch (err) {
-      console.error("[ApplyModal] submit error (lead still shown qualify step):", err);
-      // Don't show form error — user already sees qualify step
+      console.error("[ApplyModal] submit network error:", err);
+      setStep("form");
+      setFormError("Temporary issue. Please try again in a moment.");
     } finally {
       setSubmitting(false);
     }
@@ -383,7 +392,7 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
     };
     console.log("[ApplyModal] sending qualify payload:", payload, "leadId:", leadId);
     try {
-      if (leadId && !leadId.startsWith("fallback-")) {
+      if (leadId) {
         const res = await fetch(`/api/leads/${leadId}/qualify`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -391,9 +400,6 @@ export default function ApplyModal({ context, onClose, housingPreference }: Appl
         });
         const result = await res.json().catch(() => ({}));
         console.log("[ApplyModal] qualify response:", res.status, result);
-      } else {
-        // Fallback id or no id — log answers, cannot persist to DB
-        console.warn("[ApplyModal] qualify skipped (fallback/no leadId), answers:", payload);
       }
     } catch (err) {
       console.error("[ApplyModal] qualify fetch error:", err);

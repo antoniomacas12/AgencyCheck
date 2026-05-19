@@ -187,8 +187,7 @@ function QualifyScreen({
     };
     console.log("[QualifyScreen] finish application clicked, payload:", payload);
     try {
-      const isFallback = !leadId || leadId.startsWith("fallback-");
-      if (!isFallback) {
+      if (leadId) {
         const res = await fetch(`/api/leads/${leadId}/qualify`, {
           method:  "POST",
           headers: { "Content-Type": "application/json" },
@@ -196,8 +195,6 @@ function QualifyScreen({
         });
         const result = await res.json().catch(() => ({}));
         console.log("[QualifyScreen] qualify save success, response:", res.status, result);
-      } else {
-        console.warn("[QualifyScreen] fallback leadId — answers logged only:", payload);
       }
     } catch (err) {
       console.error("[QualifyScreen] qualify fetch error:", err);
@@ -398,7 +395,10 @@ export default function HomepageLeadForm() {
         setStatus("success");
       } else {
         const d = await res.json().catch(() => ({}));
-        setErrorMsg(d.error ?? "Something went wrong. Please try again.");
+        const msg = d.error === "temporary_issue"
+          ? "Temporary issue. Please try again in a moment."
+          : (d.error ?? "Something went wrong. Please try again.");
+        setErrorMsg(msg);
         setStatus("error");
       }
     } catch {
