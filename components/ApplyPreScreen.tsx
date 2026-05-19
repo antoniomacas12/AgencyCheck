@@ -134,17 +134,12 @@ export default function ApplyPreScreen({
       setScreen("disqualified");
       savePreQual({ isEuCitizen: false, hasBsn: false, jobId, jobTitle, source });
     } else if (val === "yes") {
-      // If referralMode, add phone step for restriction check.
-      // If direct WA mode, skip phone step and go straight through.
-      if (referralMode) {
-        setScreen("phone");
-      } else {
-        // Non-referral: just redirect directly (old behaviour, no restriction check)
-        const dest = buildWaUrl(waBase, jobTitle, source);
-        setDestination(dest);
-        setScreen("ready");
-        savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
-      }
+      const dest = referralMode
+        ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck")
+        : buildWaUrl(waBase, jobTitle, source);
+      setDestination(dest);
+      setScreen("ready");
+      savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
     }
   }
 
