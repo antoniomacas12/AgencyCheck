@@ -94,6 +94,12 @@ export default async function AdminLayout({
               ⚠️ Reliability
             </a>
             <a
+              href="/admin/restrictions"
+              className="px-3 py-1.5 rounded-lg text-red-400 hover:text-white hover:bg-white/10 transition font-semibold"
+            >
+              🚫 Restricted
+            </a>
+            <a
               href="/admin/launch-checklist"
               className="px-3 py-1.5 rounded-lg text-amber-400 hover:text-white hover:bg-white/10 transition font-semibold"
             >
