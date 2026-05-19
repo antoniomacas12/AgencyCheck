@@ -191,13 +191,6 @@ export default function ApplyPreScreen({
     }
   }
 
-  // Called synchronously from a button click — safe for window.open().
-  function handleFinalApply() {
-    if (!destination) return;
-    window.open(destination, "_blank", "noopener,noreferrer");
-    setOpen(false);
-  }
-
   return (
     <>
       {/* Trigger */}
@@ -350,7 +343,7 @@ export default function ApplyPreScreen({
           </div>
         )}
 
-        {/* ── SCREEN: ready — final synchronous WhatsApp button ────── */}
+        {/* ── SCREEN: ready — final WhatsApp link ────────────────── */}
         {screen === "ready" && (
           <>
             <div className="mb-5 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.06] px-4 py-3">
@@ -359,8 +352,12 @@ export default function ApplyPreScreen({
               </p>
             </div>
 
-            <button
-              onClick={handleFinalApply}
+            {/* Use <a> tag — guaranteed to open on all browsers/mobile (no popup blocker) */}
+            <a
+              href={destination}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
               className="
                 w-full flex items-center justify-center gap-2.5
                 bg-[#22C55E] hover:bg-green-400 active:scale-[0.98]
@@ -368,11 +365,12 @@ export default function ApplyPreScreen({
                 py-4 rounded-2xl
                 shadow-lg shadow-green-900/40
                 transition-all duration-150
+                cursor-pointer
               "
             >
               <WAIcon />
               Open WhatsApp →
-            </button>
+            </a>
             <p className="text-center text-gray-600 text-[11px] mt-3">
               Opens WhatsApp · recruiter assigned automatically
             </p>
