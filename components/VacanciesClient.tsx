@@ -59,7 +59,7 @@ export default function VacanciesClient() {
             Actual Jobs
           </h1>
           <p className="text-gray-400 text-[13px]">
-            {VACANCIES.length} positions · EU citizens only · Immediate start · +31 649 210 631
+            {VACANCIES.length} positions · EU citizens only · Immediate start
           </p>
         </div>
 
@@ -262,7 +262,7 @@ export default function VacanciesClient() {
         )}
 
         <p className="text-center text-gray-600 text-[11px] mt-8">
-          All positions require EU citizenship · +31 649 210 631
+          All positions require EU citizenship
         </p>
       </div>
     </div>
