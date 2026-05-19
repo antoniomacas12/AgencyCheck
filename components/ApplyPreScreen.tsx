@@ -148,8 +148,8 @@ export default function ApplyPreScreen({
     }
   }
 
-  // Called when user clicks "Check & Apply" on the phone screen.
-  // Async check — then sets screen to "ready" or "blocked".
+  // Called when user clicks "Check & Continue" on the phone screen.
+  // Async check with 5 s timeout — always fail-open (never block on error).
   async function handlePhoneCheck() {
     const trimmed = phone.trim();
     if (trimmed.length < 7) {
@@ -159,16 +159,25 @@ export default function ApplyPreScreen({
     setPhoneErr("");
     setScreen("checking");
 
+    const failOpen = () => {
+      const dest = buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck");
+      setDestination(dest);
+      setScreen("ready");
+      savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
+    };
+
+    // 5-second hard timeout — if API hangs, let the candidate through
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 5_000);
+
     try {
       const res  = await fetch("/api/check-restriction", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({
-          phone:    trimmed,
-          jobId,
-          jobTitle,
-        }),
+        signal:  controller.signal,
+        body:    JSON.stringify({ phone: trimmed, jobId, jobTitle }),
       });
+      clearTimeout(timer);
       const data = await res.json().catch(() => ({ blocked: false }));
 
       if (data.blocked === true) {
@@ -183,11 +192,9 @@ export default function ApplyPreScreen({
       savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
 
     } catch {
-      // Fail-open: if check errors, let the candidate through
-      const dest = buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck");
-      setDestination(dest);
-      setScreen("ready");
-      savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
+      clearTimeout(timer);
+      // Fail-open: network error, timeout, or any other issue → let through
+      failOpen();
     }
   }
 
@@ -323,6 +330,12 @@ export default function ApplyPreScreen({
           <div className="py-6 text-center">
             <div className="w-8 h-8 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
             <p className="text-gray-400 text-[13px]">Verifying eligibility…</p>
+            <button
+              onClick={() => setScreen("phone")}
+              className="mt-4 text-gray-600 text-[11px] underline underline-offset-2 hover:text-gray-400 transition"
+            >
+              ← Go back
+            </button>
           </div>
         )}
 
