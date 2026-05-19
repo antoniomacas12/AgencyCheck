@@ -134,11 +134,12 @@ export default function ApplyPreScreen({
       setScreen("disqualified");
       savePreQual({ isEuCitizen: false, hasBsn: false, jobId, jobTitle, source });
     } else if (val === "yes") {
+      // Open WhatsApp immediately — called synchronously from click, so no popup blocker
       const dest = referralMode
         ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck")
         : buildWaUrl(waBase, jobTitle, source);
-      setDestination(dest);
-      setScreen("ready");
+      window.open(dest, "_blank", "noopener,noreferrer");
+      setOpen(false);
       savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
     }
   }
