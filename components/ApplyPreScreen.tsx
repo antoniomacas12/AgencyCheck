@@ -148,23 +148,27 @@ export default function ApplyPreScreen({
     }
   }
 
-  // Called when user clicks "Check & Continue" on the phone screen.
-  // Async check with 5 s timeout — always fail-open (never block on error).
+  // Called when user clicks "Continue" on the phone screen.
+  // Phone is OPTIONAL — if blank/too short, skip restriction check (fail-open).
+  // Always has a 5 s timeout so the screen never hangs.
   async function handlePhoneCheck() {
     const trimmed = phone.trim();
-    if (trimmed.length < 7) {
-      setPhoneErr("Please enter a valid phone number.");
-      return;
-    }
     setPhoneErr("");
-    setScreen("checking");
 
-    const failOpen = () => {
+    const goReady = () => {
       const dest = buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck");
       setDestination(dest);
       setScreen("ready");
       savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
     };
+
+    // Phone is optional — if not provided (or too short), skip restriction check
+    if (trimmed.length < 7) {
+      goReady();
+      return;
+    }
+
+    setScreen("checking");
 
     // 5-second hard timeout — if API hangs, let the candidate through
     const controller = new AbortController();
@@ -184,17 +188,12 @@ export default function ApplyPreScreen({
         setScreen("blocked");
         return;
       }
-
-      // Passed — pre-build the destination URL before showing the button.
-      const dest = buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck");
-      setDestination(dest);
-      setScreen("ready");
-      savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
+      goReady();
 
     } catch {
       clearTimeout(timer);
       // Fail-open: network error, timeout, or any other issue → let through
-      failOpen();
+      goReady();
     }
   }
 
@@ -280,10 +279,10 @@ export default function ApplyPreScreen({
           <>
             <div className="mb-6">
               <p className="text-gray-300 text-[13px] font-semibold mb-2">
-                Your WhatsApp number
+                Your WhatsApp number <span className="text-gray-600 font-normal">(optional)</span>
               </p>
               <p className="text-gray-500 text-[11px] mb-3">
-                The recruiter will contact you on this number.
+                Leave blank to skip — or enter your number so the recruiter can contact you directly.
               </p>
               <input
                 type="tel"
@@ -307,17 +306,16 @@ export default function ApplyPreScreen({
 
             <button
               onClick={handlePhoneCheck}
-              disabled={phone.trim().length < 7}
-              className={`
+              className="
                 w-full flex items-center justify-center gap-2.5
-                font-black text-[16px] py-4 rounded-2xl
+                bg-[#22C55E] hover:bg-green-400 active:scale-[0.98]
+                text-white font-black text-[16px]
+                py-4 rounded-2xl
+                shadow-lg shadow-green-900/40
                 transition-all duration-150
-                ${phone.trim().length >= 7
-                  ? "bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white shadow-lg shadow-green-900/40"
-                  : "bg-white/10 text-gray-500 cursor-not-allowed"}
-              `}
+              "
             >
-              Check &amp; Continue →
+              Continue →
             </button>
             <p className="text-center text-gray-600 text-[11px] mt-3">
               Number is only shared with your assigned recruiter
