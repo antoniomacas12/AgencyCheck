@@ -135,9 +135,17 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
             <LanguageSwitcher currentLocale={locale} />
           </div>
 
+          {/* Mobile-only Hot Jobs pill — fills the gap between logo and hamburger */}
+          <Link
+            href={hiringHref}
+            className="md:hidden ml-auto mr-1 flex items-center gap-1 px-3 py-1.5 rounded-full bg-amber-500 active:bg-amber-600 text-white text-[13px] font-bold whitespace-nowrap leading-none"
+          >
+            🔥 Hot Jobs
+          </Link>
+
           {/* Mobile hamburger — min 44×44px touch target */}
           <button
-            className="md:hidden ml-auto p-3 rounded-xl text-gray-500 hover:bg-gray-100 active:bg-gray-200 transition-colors"
+            className="md:hidden p-3 rounded-xl text-gray-500 hover:bg-gray-100 active:bg-gray-200 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
