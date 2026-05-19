@@ -149,10 +149,16 @@ export default function ApplyPreScreen({
   }
 
   // Called when user clicks "Continue" on the phone screen.
-  // Phone is OPTIONAL — if blank/too short, skip restriction check (fail-open).
+  // Phone is REQUIRED — shows inline error if too short (button never disabled).
   // Always has a 5 s timeout so the screen never hangs.
   async function handlePhoneCheck() {
     const trimmed = phone.trim();
+
+    // Validate on click — button is never disabled so autofill issues are irrelevant
+    if (trimmed.length < 7) {
+      setPhoneErr("Please enter your WhatsApp number to continue.");
+      return;
+    }
     setPhoneErr("");
 
     const goReady = () => {
@@ -161,12 +167,6 @@ export default function ApplyPreScreen({
       setScreen("ready");
       savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
     };
-
-    // Phone is optional — if not provided (or too short), skip restriction check
-    if (trimmed.length < 7) {
-      goReady();
-      return;
-    }
 
     setScreen("checking");
 
@@ -279,10 +279,10 @@ export default function ApplyPreScreen({
           <>
             <div className="mb-6">
               <p className="text-gray-300 text-[13px] font-semibold mb-2">
-                Your WhatsApp number <span className="text-gray-600 font-normal">(optional)</span>
+                Your WhatsApp number
               </p>
               <p className="text-gray-500 text-[11px] mb-3">
-                Leave blank to skip — or enter your number so the recruiter can contact you directly.
+                The recruiter will contact you on this number.
               </p>
               <input
                 type="tel"
