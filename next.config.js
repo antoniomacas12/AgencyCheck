@@ -1,3 +1,6 @@
+// @ts-check
+const { withSentryConfig } = require("@sentry/nextjs");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enforce consistent non-trailing-slash URLs.
@@ -20,6 +23,8 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: "10mb",
     },
+    // Required for instrumentation.ts (Sentry server-side init)
+    instrumentationHook: true,
   },
   images: {
     remotePatterns: [
@@ -58,4 +63,24 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withSentryConfig(nextConfig, {
+  // ── Source maps ───────────────────────────────────────────────────────────
+  // Upload source maps to Sentry so stack traces show real code, not minified.
+  // Requires SENTRY_AUTH_TOKEN env var (set in Vercel, not committed to git).
+  org:     process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+
+  // Silent during builds — no Sentry output in Vercel build logs
+  silent: true,
+
+  // ── Minimal bundle impact ─────────────────────────────────────────────────
+  // Disable features we don't use to keep bundle size down
+  disableLogger: true,           // remove Sentry.logger calls from bundle
+  hideSourceMaps: true,          // don't expose source maps to end users
+  widenClientFileUpload: false,  // only upload files Sentry needs
+
+  // ── Tunneling (optional but recommended) ─────────────────────────────────
+  // Routes Sentry requests through your own domain to bypass ad-blockers.
+  // Comment this out if you don't want the extra /monitoring route.
+  // tunnelRoute: "/monitoring",
+});

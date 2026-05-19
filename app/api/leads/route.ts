@@ -6,6 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import * as Sentry from "@sentry/nextjs";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -135,9 +136,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
 
   } catch (err: unknown) {
-    // Log the full error so it appears in Vercel function logs for diagnosis.
+    // Log to Vercel function logs and send to Sentry for alerting.
     // Do NOT silently swallow this — the lead is NOT saved.
     console.error(`❌ [POST /api/leads] Database write failed for "${fullName}" <${phone ?? email}>:`, err);
+
+    Sentry.captureException(err, {
+      tags:  { route: "POST /api/leads" },
+      extra: { fullName, sourceType, sourcePage },
+    });
 
     return NextResponse.json(
       { ok: false, error: "temporary_issue" },

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import * as Sentry                   from "@sentry/nextjs";
 import { RECRUITER_SEEDS }           from "@/lib/recruiters";
 import { isBotRequest }              from "@/lib/bot-detection";
 import {
@@ -85,6 +86,10 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       `ts=${ts} ua="${ua}" ip=${ip}`,
       err,
     );
+    Sentry.captureException(err, {
+      tags:  { route: "GET /api/referral-redirect", failure: "recruiter_lookup" },
+      extra: { jobId, jobTitle },
+    });
   }
 
   // ── 4. Save click record (non-fatal) ──────────────────────────────────────
@@ -104,6 +109,10 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       `jobId="${jobId ?? ""}" jobTitle="${jobTitle ?? ""}"`,
       err,
     );
+    Sentry.captureException(err, {
+      tags:  { route: "GET /api/referral-redirect", failure: "saveClick" },
+      extra: { recruiter: assigned.name, jobId, jobTitle },
+    });
   }
 
   // ── 5. Redirect to recruiter WhatsApp ─────────────────────────────────────
