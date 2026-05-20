@@ -217,8 +217,8 @@ export default function ApplyPreScreen({
           bg-[#0f2318] border-t border-white/10
           rounded-t-3xl px-5 pt-5
           max-h-[90svh] overflow-y-auto
-          transition-transform duration-300 ease-out
-          ${open ? "translate-y-0" : "translate-y-full"}
+          transition-all duration-300 ease-out
+          ${open ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"}
         `}
         style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}
       >
