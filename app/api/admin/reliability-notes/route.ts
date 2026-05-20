@@ -93,7 +93,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true, id });
   } catch (err) {
-    console.error("[reliability-notes] POST error:", err);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[reliability-notes] POST error:", msg);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
