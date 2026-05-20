@@ -59,10 +59,13 @@ function fmtDate(iso: string) {
 
 function AddNoteForm({ onAdded }: { onAdded: () => void }) {
   const [open,            setOpen]            = useState(false);
+  // candidateName: free-text, required. Can be typed directly or auto-filled by lead search.
+  const [candidateName,   setCandidateName]   = useState("");
   const [searchQ,         setSearchQ]         = useState("");
   const [searchResults,   setSearchResults]   = useState<LeadSearchResult[]>([]);
   const [searching,       setSearching]       = useState(false);
-  const [selectedLead,    setSelectedLead]    = useState<LeadSearchResult | null>(null);
+  const [linkedLead,      setLinkedLead]      = useState<LeadSearchResult | null>(null);
+  const [showSearch,      setShowSearch]      = useState(false);
   const [noteType,        setNoteType]        = useState<NoteType>("no_show_interview");
   const [severity,        setSeverity]        = useState<Severity>("medium");
   const [recruiterSource, setRecruiterSource] = useState("");
@@ -87,20 +90,37 @@ function AddNoteForm({ onAdded }: { onAdded: () => void }) {
     return () => clearTimeout(t);
   }, [searchQ]);
 
+  function handleLinkLead(lead: LeadSearchResult) {
+    setLinkedLead(lead);
+    setCandidateName(lead.fullName);
+    setSearchQ(""); setSearchResults([]); setShowSearch(false);
+  }
+
+  function handleUnlink() {
+    setLinkedLead(null);
+    setShowSearch(false);
+    setSearchQ(""); setSearchResults([]);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!selectedLead) { setError("Select a candidate first"); return; }
-    if (!noteText.trim() && noteType !== "other") {
-      // noteText optional but encouraged
-    }
+    const name = candidateName.trim();
+    if (!name) { setError("Enter the candidate name to continue."); return; }
+
     setSaving(true); setError(null);
+
+    // 15-second timeout — prevents saving state from getting permanently stuck
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15_000);
+
     try {
       const res = await fetch("/api/admin/reliability-notes", {
         method:  "POST",
+        signal:  controller.signal,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          leadId:          selectedLead.id,
-          candidateName:   selectedLead.fullName,
+          leadId:          linkedLead?.id ?? "unlinked",
+          candidateName:   name,
           noteType,
           severity,
           recruiterSource: recruiterSource.trim() || undefined,
@@ -108,18 +128,23 @@ function AddNoteForm({ onAdded }: { onAdded: () => void }) {
           noteText:        noteText.trim() || undefined,
         }),
       });
+      clearTimeout(timer);
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
         throw new Error(d.error ?? "Failed to save");
       }
       // Reset form
       setOpen(false);
-      setSelectedLead(null); setSearchQ(""); setSearchResults([]);
-      setNoteType("no_show_interview"); setSeverity("medium");
+      setCandidateName(""); setLinkedLead(null); setSearchQ(""); setSearchResults([]);
+      setShowSearch(false); setNoteType("no_show_interview"); setSeverity("medium");
       setRecruiterSource(""); setIncidentDate(""); setNoteText("");
       onAdded();
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to save note");
+    } catch (err) {
+      clearTimeout(timer);
+      const msg = err instanceof Error
+        ? (err.name === "AbortError" ? "Request timed out — please try again." : err.message)
+        : "Failed to save note";
+      setError(msg);
     } finally { setSaving(false); }
   }
 
@@ -148,39 +173,58 @@ function AddNoteForm({ onAdded }: { onAdded: () => void }) {
 
       <form onSubmit={handleSubmit} className="space-y-4">
 
-        {/* Candidate search */}
+        {/* Candidate name — free-text, always editable */}
         <div>
           <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">
-            Candidate *
+            Candidate name *
           </label>
-          {selectedLead ? (
-            <div className="flex items-center justify-between bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
-              <div>
-                <p className="text-sm font-semibold text-gray-900">{selectedLead.fullName}</p>
-                <p className="text-xs text-gray-500">{selectedLead.phone}{selectedLead.email ? ` · ${selectedLead.email}` : ""}</p>
-              </div>
-              <button type="button" onClick={() => { setSelectedLead(null); setSearchQ(""); }}
-                className="text-xs text-blue-600 hover:text-blue-800 font-semibold">Change</button>
+          <div className="flex gap-2">
+            <input
+              value={candidateName}
+              onChange={(e) => { setCandidateName(e.target.value); if (linkedLead) handleUnlink(); }}
+              placeholder="Type candidate name…"
+              className="flex-1 text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+              autoComplete="off"
+            />
+            <button
+              type="button"
+              onClick={() => setShowSearch((v) => !v)}
+              className="shrink-0 px-3 py-2 text-xs font-semibold border border-gray-200 rounded-lg bg-gray-50 hover:bg-gray-100 text-gray-600 transition"
+              title="Search existing leads to link"
+            >
+              🔍 Link lead
+            </button>
+          </div>
+
+          {/* Linked lead badge */}
+          {linkedLead && (
+            <div className="mt-1.5 flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-lg px-3 py-1.5">
+              <span className="text-xs text-blue-700 font-semibold flex-1">
+                🔗 Linked: {linkedLead.phone}{linkedLead.email ? ` · ${linkedLead.email}` : ""}
+              </span>
+              <button type="button" onClick={handleUnlink} className="text-xs text-blue-500 hover:text-blue-800">Unlink</button>
             </div>
-          ) : (
-            <div className="relative">
+          )}
+
+          {/* Optional lead search dropdown */}
+          {showSearch && !linkedLead && (
+            <div className="mt-1.5 relative">
               <input
                 value={searchQ}
                 onChange={(e) => setSearchQ(e.target.value)}
                 placeholder="Search by name, phone, email…"
-                className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                className="w-full text-sm border border-orange-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50"
                 autoComplete="off"
+                autoFocus
               />
-              {searching && (
-                <p className="text-xs text-gray-400 mt-1">Searching…</p>
-              )}
-              {searchResults.length > 0 && !selectedLead && (
+              {searching && <p className="text-xs text-gray-400 mt-1">Searching…</p>}
+              {searchResults.length > 0 && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden max-h-48 overflow-y-auto">
                   {searchResults.map((lead) => (
                     <button
                       key={lead.id}
                       type="button"
-                      onClick={() => { setSelectedLead(lead); setSearchResults([]); setSearchQ(""); }}
+                      onClick={() => handleLinkLead(lead)}
                       className="w-full text-left px-3 py-2.5 hover:bg-blue-50 border-b border-gray-50 last:border-0 transition"
                     >
                       <p className="text-sm font-semibold text-gray-900">{lead.fullName}</p>
@@ -188,6 +232,9 @@ function AddNoteForm({ onAdded }: { onAdded: () => void }) {
                     </button>
                   ))}
                 </div>
+              )}
+              {searchQ.trim().length >= 2 && !searching && searchResults.length === 0 && (
+                <p className="text-xs text-gray-400 mt-1 px-1">No results — you can still save with the typed name above.</p>
               )}
             </div>
           )}
@@ -288,7 +335,7 @@ function AddNoteForm({ onAdded }: { onAdded: () => void }) {
             className="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
             Cancel
           </button>
-          <button type="submit" disabled={saving || !selectedLead}
+          <button type="submit" disabled={saving}
             className="px-4 py-2 text-sm font-semibold bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:opacity-50 transition">
             {saving ? "Saving…" : "Save note"}
           </button>
@@ -488,13 +535,19 @@ export default function ReliabilityNotesPage() {
 
                         {/* Candidate */}
                         <td className="px-3 py-3">
-                          <Link
-                            href={`/admin/leads/${note.leadId}`}
-                            className="text-sm font-semibold text-gray-900 hover:text-blue-600 hover:underline"
-                          >
-                            {note.candidateName}
-                          </Link>
-                          <p className="text-[10px] text-gray-400 font-mono mt-0.5">{note.leadId.slice(0, 8)}…</p>
+                          {note.leadId === "unlinked" ? (
+                            <span className="text-sm font-semibold text-gray-900">{note.candidateName}</span>
+                          ) : (
+                            <Link
+                              href={`/admin/leads/${note.leadId}`}
+                              className="text-sm font-semibold text-gray-900 hover:text-blue-600 hover:underline"
+                            >
+                              {note.candidateName}
+                            </Link>
+                          )}
+                          <p className="text-[10px] text-gray-400 font-mono mt-0.5">
+                            {note.leadId === "unlinked" ? "no lead linked" : `${note.leadId.slice(0, 8)}…`}
+                          </p>
                         </td>
 
                         {/* Type */}
