@@ -115,7 +115,7 @@ export async function createReliabilityNote(input: CreateNoteInput): Promise<str
     VALUES
       (${id}, ${input.leadId}, ${input.candidateName}, ${input.noteType},
        ${input.severity}, ${input.recruiterSource ?? null},
-       ${input.incidentDate ?? null}, ${input.noteText ?? null},
+       ${input.incidentDate ? new Date(input.incidentDate) : null}, ${input.noteText ?? null},
        ${input.createdByAdmin ?? null})
   `;
 
