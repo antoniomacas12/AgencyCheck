@@ -21,9 +21,14 @@ export async function generateStaticParams() {
   return VACANCIES.map((v) => ({ slug: v.slug }));
 }
 
-// Unknown slugs → clean 404, never a dynamic render.
-// This is the primary defence against bot/crawler 500s on crafted URLs.
+// Never run server code for unknown slugs — clean 404 at the framework level.
 export const dynamicParams = false;
+
+// Belt-and-suspenders: force the entire segment to be purely static.
+// Prevents Sentry instrumentation or parent-layout ISR from triggering
+// a dynamic server render of this page, which is the root cause of the
+// intermittent 5xx errors (try/catch was swallowing Next.js redirect throws).
+export const dynamic = "force-static";
 
 // ─── Slug validation ──────────────────────────────────────────────────────────
 const MAX_SLUG_LEN = 120;
@@ -74,10 +79,12 @@ export async function generateMetadata(
 export default async function JobPage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
+  // Resolve slug outside try/catch so it's available for error logging below.
+  // In Next.js 14, params is a plain object; await is safe on non-Promises.
+  const { slug } = await params;
+
   try {
     // ── Slug validation ─────────────────────────────────────────────────────
-    const { slug } = await params;
-
     if (!isValidSlug(slug)) {
       console.warn(`[apply/[slug]] invalid slug rejected: "${String(slug).slice(0, 60)}"`);
       redirect("/apply");
@@ -86,7 +93,7 @@ export default async function JobPage(
     // ── Vacancy lookup ──────────────────────────────────────────────────────
     const v = getVacancyBySlug(slug);
     if (!v) {
-      console.warn(`[apply/[slug]] missing vacancy for slug: "${slug}"`);
+      console.warn(`[apply/[slug]] no vacancy for slug: "${slug}"`);
       notFound();
     }
 
@@ -193,14 +200,18 @@ export default async function JobPage(
               <span className="text-gray-400 text-[13px]">
                 📍 {v.l}, {countryName}
               </span>
-              {v.b.map((badge) => (
-                <span
-                  key={badge}
-                  className={`text-[11px] font-bold border rounded-md px-2 py-1 ${BADGE_META[badge].color}`}
-                >
-                  {BADGE_META[badge].label}
-                </span>
-              ))}
+              {v.b.map((badge) => {
+                const meta = BADGE_META[badge];
+                if (!meta) return null; // unknown badge — skip rather than crash
+                return (
+                  <span
+                    key={badge}
+                    className={`text-[11px] font-bold border rounded-md px-2 py-1 ${meta.color}`}
+                  >
+                    {meta.label}
+                  </span>
+                );
+              })}
             </div>
 
             {/* ── Requirements card ───────────────────────────────────── */}
@@ -342,9 +353,20 @@ export default async function JobPage(
     );
 
   } catch (err) {
-    // Last-resort catch — should never be reached after slug validation + dynamicParams=false,
-    // but guards against any unexpected runtime error (bad import, data corruption, etc.)
-    console.error("[apply/[slug]] unexpected page error:", err);
+    // ── CRITICAL: re-throw Next.js internal errors BEFORE any user handling ──
+    // redirect() and notFound() work by throwing special errors (NEXT_REDIRECT,
+    // NEXT_NOT_FOUND). If caught here and not re-thrown, Sentry's instrumentation
+    // wrapper mis-handles them and returns 500 instead of a redirect/404.
+    const digest = (err as { digest?: string })?.digest ?? "";
+    if (digest.startsWith("NEXT_")) throw err;
+
+    // ── Genuine unexpected error ──────────────────────────────────────────────
+    console.error("[apply/[slug]] unexpected page error", {
+      route:   "/apply/[slug]",
+      slug,
+      message: err instanceof Error ? err.message : String(err),
+      stack:   err instanceof Error ? err.stack : undefined,
+    });
     redirect("/apply");
   }
 }
