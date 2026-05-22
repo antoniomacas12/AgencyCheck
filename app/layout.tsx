@@ -1,22 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
-import { headers } from "next/headers";
-import nDynamic from "next/dynamic";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Footer            from "@/components/Footer";
+import LayoutClientShell from "@/components/LayoutClientShell";
 import { BLUR_PLACEHOLDER_IMAGES } from "@/lib/siteConfig";
-import type { Locale } from "@/lib/i18n";
-
-// These widgets start hidden and access browser APIs (sessionStorage,
-// window.scrollY, window.location) on mount. SSR-ing them causes React
-// hydration mismatch errors #418/#423 because server and client render
-// differ. ssr:false ensures they only mount after hydration completes.
-const StickyIncomeStrip = nDynamic(() => import("@/components/StickyIncomeStrip"), { ssr: false });
-const WorkerQAPanel     = nDynamic(() => import("@/components/WorkerQAPanel"),     { ssr: false });
-const FloatingStack     = nDynamic(() => import("@/components/FloatingStack"),     { ssr: false });
-const CookieNotice      = nDynamic(() => import("@/components/CookieNotice"),      { ssr: false });
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -70,31 +58,29 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
+// NOTE: No `export const dynamic` here — the root layout is now static by
+// default.  Routes that need dynamic rendering (agencies, reviews, etc.)
+// declare their own `export const dynamic = "force-dynamic"` at the page
+// level.  This allows /apply/[slug] pages to be served from the static
+// pre-render cache instead of being re-rendered on every request.
+//
+// Per-request behaviour (admin detection, locale detection) has moved into
+// LayoutClientShell, which uses usePathname() — available during SSR without
+// opting any route into dynamic rendering.
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Read locale set by middleware (x-ac-locale header).
-  // Defaults to "en" for all existing English routes.
-  // /pl/* routes get "pl", /ro/* routes get "ro".
-  const headersList = headers();
-  const locale  = (headersList.get("x-ac-locale") ?? "en") as Locale;
-  // Admin routes: suppress public navigation / widgets
-  const isAdmin = headersList.get("x-ac-admin") === "true";
-
   return (
-    <html lang={locale} className={`${inter.variable} ${jakarta.variable}`}>
+    // Default lang="en". LayoutClientShell patches this to the correct locale
+    // for /pl/*, /ro/*, etc. routes via useEffect after hydration.
+    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className={`${inter.className} bg-white flex flex-col min-h-screen overflow-x-hidden${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
-        {!isAdmin && <Navbar locale={locale} />}
-        <main className={isAdmin ? "flex-1" : "flex-1 pb-14"}>{children}</main>
-        {!isAdmin && <Footer />}
-        {!isAdmin && <StickyIncomeStrip />}
-        {!isAdmin && <WorkerQAPanel hideTrigger />}
-        {!isAdmin && <FloatingStack />}
-        {!isAdmin && <CookieNotice />}
+        <LayoutClientShell footer={<Footer />}>
+          {children}
+        </LayoutClientShell>
         <Analytics />
       </body>
     </html>

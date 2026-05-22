@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "@/components/Logo";
-import { getLocale } from "@/lib/getLocale";
-import { getT } from "@/lib/i18n";
+import { useT, type Locale } from "@/lib/i18n";
 import { LEGAL } from "@/lib/legalConfig";
 import { WA_LINK } from "@/lib/whatsapp";
 import GateLink from "@/components/GateLink";
@@ -63,9 +65,20 @@ const KEY_GUIDES = [
   { label: "Check your agency",            href: "/check-agency"                              },
 ];
 
-export default async function Footer() {
-  const locale = getLocale();
-  const t = await getT(locale);
+// Mirrors the path-prefix detection in middleware.ts / LayoutClientShell.tsx.
+function localeFromPath(pathname: string): Locale {
+  if (pathname === "/pl" || pathname.startsWith("/pl/")) return "pl";
+  if (pathname === "/ro" || pathname.startsWith("/ro/")) return "ro";
+  if (pathname === "/pt" || pathname.startsWith("/pt/")) return "pt";
+  if (pathname === "/sk" || pathname.startsWith("/sk/")) return "sk";
+  if (pathname === "/bg" || pathname.startsWith("/bg/")) return "bg";
+  return "en";
+}
+
+export default function Footer() {
+  const pathname = usePathname();
+  const locale   = localeFromPath(pathname);
+  const t        = useT(locale);
 
   return (
     <footer className="bg-white border-t border-gray-200 mt-16">
