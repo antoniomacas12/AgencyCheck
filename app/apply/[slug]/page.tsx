@@ -79,84 +79,84 @@ export async function generateMetadata(
 export default async function JobPage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  // Resolve slug outside try/catch so it's available for error logging below.
-  // In Next.js 14, params is a plain object; await is safe on non-Promises.
   const { slug } = await params;
 
-  try {
-    // ── Slug validation ─────────────────────────────────────────────────────
-    if (!isValidSlug(slug)) {
-      console.warn(`[apply/[slug]] invalid slug rejected: "${String(slug).slice(0, 60)}"`);
-      redirect("/apply");
-    }
+  // ── Slug validation ───────────────────────────────────────────────────────
+  // IMPORTANT: do NOT wrap redirect() / notFound() in a try/catch.
+  // They work by throwing special errors (NEXT_REDIRECT, NEXT_NOT_FOUND).
+  // If caught and re-thrown from a catch block, Sentry's instrumentation
+  // mis-identifies them as application errors and returns 500.
+  // Letting them bubble from the top level is the only safe pattern.
+  if (!isValidSlug(slug)) {
+    redirect("/apply");
+  }
 
-    // ── Vacancy lookup ──────────────────────────────────────────────────────
-    const v = getVacancyBySlug(slug);
-    if (!v) {
-      console.warn(`[apply/[slug]] no vacancy for slug: "${slug}"`);
-      notFound();
-    }
+  // ── Vacancy lookup ────────────────────────────────────────────────────────
+  const v = getVacancyBySlug(slug);
+  if (!v) {
+    notFound();
+  }
 
-    const country     = getCountry(v.l);
-    const countryName = country === "NL" ? "Netherlands" : country === "GR" ? "Greece" : "Belgium";
-    const salStr      = v.sm > 0 ? v.s : null;
+  const country     = getCountry(v.l);
+  const countryName = country === "NL" ? "Netherlands" : country === "GR" ? "Greece" : "Belgium";
+  const salStr      = v.sm > 0 ? v.s : null;
 
-    // ── Related jobs (same category, different slug, max 3) ─────────────────
-    const related = VACANCIES.filter((r) => r.c === v.c && r.slug !== v.slug).slice(0, 3);
+  // ── Related jobs (same category, different slug, max 3) ───────────────────
+  const related = VACANCIES.filter((r) => r.c === v.c && r.slug !== v.slug).slice(0, 3);
 
-    // ── JobPosting JSON-LD ───────────────────────────────────────────────────
-    const jobPosting: Record<string, unknown> = {
-      "@context":          "https://schema.org",
-      "@type":             "JobPosting",
-      title:               v.t,
-      description:         buildDescription(v),
-      hiringOrganization: {
-        "@type":  "Organization",
-        name:     "AgencyCheck",
-        sameAs:   "https://agencycheck.io",
+  // ── JobPosting JSON-LD ─────────────────────────────────────────────────────
+  const jobPosting: Record<string, unknown> = {
+    "@context":          "https://schema.org",
+    "@type":             "JobPosting",
+    title:               v.t,
+    description:         buildDescription(v),
+    hiringOrganization: {
+      "@type":  "Organization",
+      name:     "AgencyCheck",
+      sameAs:   "https://agencycheck.io",
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type":          "PostalAddress",
+        addressLocality:  v.l,
+        addressCountry:   country,
       },
-      jobLocation: {
-        "@type": "Place",
-        address: {
-          "@type":          "PostalAddress",
-          addressLocality:  v.l,
-          addressCountry:   country,
-        },
-      },
-      employmentType:   "FULL_TIME",
-      datePosted:       "2026-05-01",
-      validThrough:     "2026-09-30",
-      directApply:      true,
-      applicantLocationRequirements: {
-        "@type": "Country",
-        name:    "European Union",
+    },
+    employmentType:   "FULL_TIME",
+    datePosted:       "2026-05-01",
+    validThrough:     "2026-09-30",
+    directApply:      true,
+    applicantLocationRequirements: {
+      "@type": "Country",
+      name:    "European Union",
+    },
+  };
+
+  if (v.sm > 0) {
+    jobPosting.baseSalary = {
+      "@type":    "MonetaryAmount",
+      currency:   "EUR",
+      value: {
+        "@type":    "QuantitativeValue",
+        minValue:   v.sm,
+        ...(v.sx > 0 ? { maxValue: v.sx } : {}),
+        unitText:   "WEEK",
       },
     };
+  }
 
-    if (v.sm > 0) {
-      jobPosting.baseSalary = {
-        "@type":    "MonetaryAmount",
-        currency:   "EUR",
-        value: {
-          "@type":    "QuantitativeValue",
-          minValue:   v.sm,
-          ...(v.sx > 0 ? { maxValue: v.sx } : {}),
-          unitText:   "WEEK",
-        },
-      };
-    }
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type":    "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",        item: "https://agencycheck.io" },
+      { "@type": "ListItem", position: 2, name: "Actual Jobs", item: "https://agencycheck.io/apply" },
+      { "@type": "ListItem", position: 3, name: v.t,           item: `https://agencycheck.io/apply/${v.slug}` },
+    ],
+  };
 
-    const breadcrumb = {
-      "@context": "https://schema.org",
-      "@type":    "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home",        item: "https://agencycheck.io" },
-        { "@type": "ListItem", position: 2, name: "Actual Jobs", item: "https://agencycheck.io/apply" },
-        { "@type": "ListItem", position: 3, name: v.t,           item: `https://agencycheck.io/apply/${v.slug}` },
-      ],
-    };
-
-    return (
+  return (
       <>
         {/* ── Structured data ─────────────────────────────────────────── */}
         <script
@@ -351,22 +351,4 @@ export default async function JobPage(
         </div>
       </>
     );
-
-  } catch (err) {
-    // ── CRITICAL: re-throw Next.js internal errors BEFORE any user handling ──
-    // redirect() and notFound() work by throwing special errors (NEXT_REDIRECT,
-    // NEXT_NOT_FOUND). If caught here and not re-thrown, Sentry's instrumentation
-    // wrapper mis-handles them and returns 500 instead of a redirect/404.
-    const digest = (err as { digest?: string })?.digest ?? "";
-    if (digest.startsWith("NEXT_")) throw err;
-
-    // ── Genuine unexpected error ──────────────────────────────────────────────
-    console.error("[apply/[slug]] unexpected page error", {
-      route:   "/apply/[slug]",
-      slug,
-      message: err instanceof Error ? err.message : String(err),
-      stack:   err instanceof Error ? err.stack : undefined,
-    });
-    redirect("/apply");
-  }
 }
