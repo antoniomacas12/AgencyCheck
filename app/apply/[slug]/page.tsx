@@ -124,8 +124,11 @@ export default async function JobPage(
       },
     },
     employmentType:   "FULL_TIME",
-    datePosted:       "2026-05-01",
-    validThrough:     "2026-09-30",
+    // datePosted = today so Google Jobs treats this as a fresh listing.
+    // validThrough = 90 days from today — rolling window so listings never
+    // silently expire and disappear from Google Jobs results.
+    datePosted:       new Date().toISOString().split("T")[0],
+    validThrough:     new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
     directApply:      true,
     applicantLocationRequirements: {
       "@type": "Country",
@@ -325,7 +328,7 @@ export default async function JobPage(
                     href="/apply"
                     className="text-[12px] font-bold text-emerald-400 hover:text-emerald-300 underline underline-offset-2"
                   >
-                    ← Back to all 65 vacancies
+                    ← Back to all {VACANCIES.length} vacancies
                   </Link>
                 </div>
               </div>
