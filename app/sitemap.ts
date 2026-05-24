@@ -5,6 +5,7 @@ import { ALL_AGENCIES } from "@/lib/agencyEnriched";
 import { JOB_LISTINGS } from "@/lib/jobData";
 import { GUIDES } from "@/lib/guideData";
 import { allWorkInCombos } from "@/lib/workInSeoData";
+import { VACANCIES } from "@/lib/vacanciesData";
 import { getWorkerReportedAgencySlugs, getAllAgencyCityPairsForSitemap } from "@/lib/agencyDb";
 import { toCitySlug } from "@/lib/cityNormalization";
 import {
@@ -165,6 +166,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "weekly",
       priority:         0.85,
     },
+    // ── Dynamic /apply/[slug] job pages (generated from VACANCIES) ──────────────
+    // All 95 individual job pages with JobPosting schema — high-value for Google
+    // Jobs indexing. changeFrequency "weekly" because salaries/status may change.
+    ...VACANCIES.map((v) => ({
+      url:             `${BASE_URL}/apply/${v.slug}`,
+      lastModified:    TODAY,
+      changeFrequency: "weekly" as const,
+      priority:        0.85,
+    })),
     // ── Polish job pages ─────────────────────────────────────────────────────────
     {
       url:              `${BASE_URL}/pl/oferty-pracy`,
