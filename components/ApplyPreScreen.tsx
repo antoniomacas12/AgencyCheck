@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal }        from "react-dom";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface Props {
@@ -164,9 +165,12 @@ export default function ApplyPreScreen({
   referralMode = false,
   children,
 }: Props) {
-  const [open,   setOpen]   = useState(false);
-  const [screen, setScreen] = useState<Screen>("gate");
-  const [errors, setErrors] = useState(false);
+  const [open,    setOpen]    = useState(false);
+  const [screen,  setScreen]  = useState<Screen>("gate");
+  const [errors,  setErrors]  = useState(false);
+  // Portal mount guard — prevents SSR/hydration mismatch
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   // ── Form state ────────────────────────────────────────────────────────────
   const [bsn,      setBsn]      = useState<BSN | null>(null);
@@ -244,11 +248,14 @@ export default function ApplyPreScreen({
   // Progress (1 = gate, 2 = details_a, 3 = details_b)
   const step = screen === "gate" ? 1 : screen === "details_a" ? 2 : 3;
 
-  return (
+  // ── Portal modal — rendered at document.body level ──────────────────────────
+  // IMPORTANT: backdrop + sheet MUST render outside any ancestor with a CSS
+  // transform (e.g. FloatingStack uses translate-y-* animations). A transformed
+  // ancestor creates a new "containing block" for fixed-positioned descendants,
+  // which would clip/misplace the sheet to the button's bounding box instead
+  // of the viewport. createPortal escapes that containing block entirely.
+  const modal = (
     <>
-      {/* Trigger — rendered by caller */}
-      {children(handleOpen)}
-
       {/* Backdrop */}
       {open && (
         <div
@@ -516,6 +523,17 @@ export default function ApplyPreScreen({
 
         </div>{/* /inner wrapper */}
       </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Trigger — rendered inline wherever the component is placed */}
+      {children(handleOpen)}
+
+      {/* Modal — portalled to body so CSS transforms on ancestors can't
+          create a new fixed containing block and clip the sheet */}
+      {mounted && createPortal(modal, document.body)}
     </>
   );
 }
