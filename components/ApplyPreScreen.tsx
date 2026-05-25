@@ -267,7 +267,7 @@ export default function ApplyPreScreen({
           fixed bottom-0 left-0 right-0 z-50
           bg-[#0f2318] border-t border-white/10
           rounded-t-3xl
-          max-h-[92svh] overflow-y-auto overflow-x-hidden
+          min-h-[50svh] max-h-[92svh] overflow-y-auto overflow-x-hidden
           transition-all duration-300 ease-out
           ${open
             ? "translate-y-0 opacity-100"
