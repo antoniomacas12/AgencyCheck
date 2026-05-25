@@ -4,39 +4,90 @@ import { useState } from "react";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface Props {
-  jobTitle: string;
-  waBase: string;        // owner WA fallback (used when referralMode is false)
-  source?: string;       // tracking slug
-  jobId?: string;        // vacancy slug / page identifier
-  referralMode?: boolean; // if true → server-side recruiter rotation via /api/referral-redirect
-  children: (openFn: () => void) => React.ReactNode;
+  jobTitle:      string;
+  waBase:        string;        // owner WA fallback (used when referralMode is false)
+  source?:       string;        // tracking slug
+  jobId?:        string;        // vacancy slug / page identifier
+  referralMode?: boolean;       // if true → server-side recruiter rotation via /api/referral-redirect
+  children:      (openFn: () => void) => React.ReactNode;
 }
 
-type YesNo  = "yes" | "no" | null;
-type Screen =
-  | "gate"          // EU citizen question
-  | "phone"         // phone number entry + restriction check
-  | "checking"      // async restriction check in progress
-  | "blocked"       // restriction found — show neutral message
-  | "ready"         // check passed — show final WhatsApp button
-  | "disqualified"; // EU = no
+type Screen = "gate" | "details_a" | "details_b" | "disqualified";
+type BSN    = "yes" | "no" | "not_yet";
+type Avail  = "immediately" | "week1" | "week2" | "later";
+type Eng    = "basic" | "good" | "fluent";
+type Group  = "alone" | "partner" | "group";
 
-// ─── Helpers ───────────────────────────────────────────────────────────────────
-
-function buildWaUrl(base: string, jobTitle: string, source?: string) {
-  const srcTag = source ? ` [src:${source}]` : "";
-  const msg    = `Hi, I want to apply for: ${jobTitle}${srcTag}`.trim();
-  return `${base}?text=${encodeURIComponent(msg)}`;
-}
-
-function buildRedirectUrl(jobId?: string, jobTitle?: string, source?: string) {
+// ─── URL builders ──────────────────────────────────────────────────────────────
+function buildRedirectUrl(
+  jobId?:     string,
+  jobTitle?:  string,
+  source?:    string,
+  customMsg?: string,
+): string {
   const params = new URLSearchParams();
-  if (jobId)    params.set("jobId",    jobId);
-  if (jobTitle) params.set("jobTitle", jobTitle);
-  if (source)   params.set("source",  source);
+  if (jobId)     params.set("jobId",     jobId);
+  if (jobTitle)  params.set("jobTitle",  jobTitle);
+  if (source)    params.set("source",    source);
+  if (customMsg) params.set("customMsg", customMsg);
   return `/api/referral-redirect?${params.toString()}`;
 }
 
+// ─── WhatsApp message builder ─────────────────────────────────────────────────
+// Builds the full pre-filled candidate message that appears in WhatsApp.
+function buildCandidateMsg(
+  jobTitle: string,
+  source:   string | undefined,
+  bsn:      BSN,
+  driving:  "yes" | "no",
+  housing:  "yes" | "no",
+  avail:    Avail,
+  location: string,
+  english:  Eng,
+  group:    Group,
+  cv:       "yes" | "no",
+): string {
+  const bsnLabel: Record<BSN, string> = {
+    yes:     "Yes",
+    no:      "No",
+    not_yet: "Not yet (willing to arrange)",
+  };
+  const availLabel: Record<Avail, string> = {
+    immediately: "Immediately",
+    week1:       "Within 1 week",
+    week2:       "Within 2 weeks",
+    later:       "Later",
+  };
+  const engLabel: Record<Eng, string> = {
+    basic:  "Basic",
+    good:   "Good",
+    fluent: "Fluent",
+  };
+  const groupLabel: Record<Group, string> = {
+    alone:   "Alone",
+    partner: "With partner",
+    group:   "With friend/group",
+  };
+
+  const srcTag = source ? ` [src:${source}]` : " [src:AgencyCheck]";
+
+  return [
+    `Hi, I want to apply for: ${jobTitle}${srcTag}`,
+    ``,
+    `Candidate details:`,
+    `- EU citizenship: Yes`,
+    `- BSN: ${bsnLabel[bsn]}`,
+    `- Driving licence: ${driving === "yes" ? "Yes" : "No"}`,
+    `- Housing needed: ${housing === "yes" ? "Yes" : "No"}`,
+    `- Current location: ${location}`,
+    `- Available from: ${availLabel[avail]}`,
+    `- English level: ${engLabel[english]}`,
+    `- Applying: ${groupLabel[group]}`,
+    `- CV ready: ${cv === "yes" ? "Yes" : "No"}`,
+  ].join("\n");
+}
+
+// Non-blocking — logs candidate pre-qual data, never blocks the apply flow
 async function savePreQual(payload: {
   isEuCitizen: boolean;
   hasBsn:      boolean;
@@ -53,52 +104,58 @@ async function savePreQual(payload: {
   } catch { /* non-blocking */ }
 }
 
-// ─── Sub-component: Yes/No button pair ────────────────────────────────────────
-function YesNoButtons({
-  value,
-  onChange,
+// ─── Sub-components ────────────────────────────────────────────────────────────
+
+/** Single selectable option button */
+function Opt({
+  label,
+  selected,
+  onClick,
 }: {
-  value: YesNo;
-  onChange: (v: YesNo) => void;
+  label:    string;
+  selected: boolean;
+  onClick:  () => void;
 }) {
   return (
-    <div className="grid grid-cols-2 gap-2">
-      <button
-        onClick={() => onChange("yes")}
-        className={`
-          py-3.5 rounded-xl border text-[14px] font-bold transition-all duration-150
-          ${value === "yes"
-            ? "border-emerald-400 bg-emerald-400/15 text-emerald-300"
-            : "border-white/10 bg-white/5 text-gray-400 hover:bg-white/10"}
-        `}
-      >
-        ✅&nbsp; Yes
-      </button>
-      <button
-        onClick={() => onChange("no")}
-        className={`
-          py-3.5 rounded-xl border text-[14px] font-bold transition-all duration-150
-          ${value === "no"
-            ? "border-red-400/60 bg-red-400/10 text-red-300"
-            : "border-white/10 bg-white/5 text-gray-400 hover:bg-white/10"}
-        `}
-      >
-        ❌&nbsp; No
-      </button>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`
+        py-2.5 px-3 rounded-xl border text-[13px] font-semibold
+        transition-all duration-150 text-left
+        ${selected
+          ? "border-emerald-400 bg-emerald-400/15 text-emerald-300"
+          : "border-white/10 bg-white/5 text-gray-400 hover:bg-white/10"}
+      `}
+    >
+      {selected && <span className="mr-1 text-emerald-400 text-[11px]">✓ </span>}
+      {label}
+    </button>
+  );
+}
+
+/** Question wrapper with label and optional error highlight */
+function Question({
+  label,
+  children,
+  error,
+}: {
+  label:    string;
+  children: React.ReactNode;
+  error?:   boolean;
+}) {
+  return (
+    <div className="mb-4">
+      <p className={`text-[12px] font-bold mb-2 ${error ? "text-red-400" : "text-gray-400"}`}>
+        {label}
+        {error && <span className="ml-1 text-red-400">*</span>}
+      </p>
+      {children}
     </div>
   );
 }
 
-// ─── WA icon ─────────────────────────────────────────────────────────────────
-function WAIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
-      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.962-1.418A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.95 7.95 0 01-4.07-1.116l-.292-.174-3.036.868.872-3.046-.19-.31A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.29-5.89c-.233-.117-1.379-.681-1.593-.759-.214-.077-.37-.116-.526.117-.155.232-.603.759-.739.915-.136.155-.272.174-.505.058-.233-.117-.982-.362-1.87-1.154-.691-.617-1.158-1.38-1.294-1.613-.136-.232-.014-.358.103-.474.105-.104.233-.272.35-.408.116-.136.155-.233.233-.388.077-.155.039-.291-.019-.407-.059-.117-.527-1.27-.722-1.739-.19-.456-.384-.394-.527-.401l-.448-.008c-.156 0-.408.059-.621.291-.214.233-.814.796-.814 1.94s.834 2.25.95 2.406c.116.155 1.64 2.504 3.975 3.512.556.24 1.99.52 2.315.336.233-.136.942-.385 1.074-.756.131-.37.131-.686.092-.756-.039-.077-.155-.116-.388-.233z" />
-    </svg>
-  );
-}
-
-// ─── Component ─────────────────────────────────────────────────────────────────
+// ─── Main Component ────────────────────────────────────────────────────────────
 export default function ApplyPreScreen({
   jobTitle,
   waBase,
@@ -107,95 +164,89 @@ export default function ApplyPreScreen({
   referralMode = false,
   children,
 }: Props) {
-  const [open,    setOpen]    = useState(false);
-  const [screen,  setScreen]  = useState<Screen>("gate");
-  const [euCitizen, setEu]    = useState<YesNo>(null);
-  const [phone,   setPhone]   = useState("");
-  const [phoneErr, setPhoneErr] = useState("");
-  // destination URL built after successful check — used by the synchronous click
-  const [destination, setDestination] = useState("");
+  const [open,   setOpen]   = useState(false);
+  const [screen, setScreen] = useState<Screen>("gate");
+  const [errors, setErrors] = useState(false);
 
+  // ── Form state ────────────────────────────────────────────────────────────
+  const [bsn,      setBsn]      = useState<BSN | null>(null);
+  const [driving,  setDriving]  = useState<"yes" | "no" | null>(null);
+  const [housing,  setHousing]  = useState<"yes" | "no" | null>(null);
+  const [avail,    setAvail]    = useState<Avail | null>(null);
+  const [location, setLocation] = useState("");
+  const [english,  setEnglish]  = useState<Eng | null>(null);
+  const [group,    setGroup]    = useState<Group | null>(null);
+  const [cv,       setCv]       = useState<"yes" | "no" | null>(null);
+
+  // ── Handlers ──────────────────────────────────────────────────────────────
   function handleOpen() {
     setOpen(true);
     setScreen("gate");
-    setEu(null);
-    setPhone("");
-    setPhoneErr("");
-    setDestination("");
+    setErrors(false);
+    setBsn(null);
+    setDriving(null);
+    setHousing(null);
+    setAvail(null);
+    setLocation("");
+    setEnglish(null);
+    setGroup(null);
+    setCv(null);
   }
 
-  function handleClose() {
-    setOpen(false);
+  function handleClose() { setOpen(false); }
+
+  function handleEuYes() {
+    setErrors(false);
+    setScreen("details_a");
   }
 
-  function handleEuAnswer(val: YesNo) {
-    setEu(val);
-    if (val === "no") {
-      setScreen("disqualified");
-      savePreQual({ isEuCitizen: false, hasBsn: false, jobId, jobTitle, source });
-    } else if (val === "yes") {
-      // Open WhatsApp immediately — called synchronously from click, so no popup blocker
-      const dest = referralMode
-        ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck")
-        : buildWaUrl(waBase, jobTitle, source);
-      window.open(dest, "_blank", "noopener,noreferrer");
-      setOpen(false);
-      savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
-    }
-  }
-
-  // Called when user clicks "Continue" on the phone screen.
-  // Phone is REQUIRED — shows inline error if too short (button never disabled).
-  // Always has a 5 s timeout so the screen never hangs.
-  async function handlePhoneCheck() {
-    const trimmed = phone.trim();
-
-    // Validate on click — button is never disabled so autofill issues are irrelevant
-    if (trimmed.length < 7) {
-      setPhoneErr("Please enter your WhatsApp number to continue.");
+  function handleDetailsA() {
+    if (!bsn || !driving || !housing || !avail) {
+      setErrors(true);
       return;
     }
-    setPhoneErr("");
-
-    const goReady = () => {
-      const dest = buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck");
-      setDestination(dest);
-      setScreen("ready");
-      savePreQual({ isEuCitizen: true, hasBsn: true, jobId, jobTitle, source });
-    };
-
-    setScreen("checking");
-
-    // 5-second hard timeout — if API hangs, let the candidate through
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 5_000);
-
-    try {
-      const res  = await fetch("/api/check-restriction", {
-        method:  "POST",
-        headers: { "Content-Type": "application/json" },
-        signal:  controller.signal,
-        body:    JSON.stringify({ phone: trimmed, jobId, jobTitle }),
-      });
-      clearTimeout(timer);
-      const data = await res.json().catch(() => ({ blocked: false }));
-
-      if (data.blocked === true) {
-        setScreen("blocked");
-        return;
-      }
-      goReady();
-
-    } catch {
-      clearTimeout(timer);
-      // Fail-open: network error, timeout, or any other issue → let through
-      goReady();
-    }
+    setErrors(false);
+    setScreen("details_b");
   }
+
+  // Called from button onClick — MUST remain synchronous so popup blocker
+  // never intercepts the window.open() call.
+  function handleSubmit() {
+    if (!english || !group || !cv || location.trim().length < 2) {
+      setErrors(true);
+      return;
+    }
+
+    const msg = buildCandidateMsg(
+      jobTitle, source,
+      bsn!, driving!, housing!, avail!,
+      location.trim(), english!, group!, cv!,
+    );
+
+    const dest = referralMode
+      ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck", msg)
+      : `${waBase}?text=${encodeURIComponent(msg)}`;
+
+    // Synchronous — called directly from click event, no async gap
+    window.open(dest, "_blank", "noopener,noreferrer");
+    setOpen(false);
+
+    // Fire-and-forget logging (non-blocking, never delays WA open)
+    savePreQual({
+      isEuCitizen: true,
+      hasBsn:      bsn === "yes" || bsn === "not_yet",
+      jobId,
+      jobTitle,
+      source,
+    });
+  }
+
+  // Progress (1 = gate, 2 = details_a, 3 = details_b)
+  const step = screen === "gate" ? 1 : screen === "details_a" ? 2 : 3;
 
   return (
     <>
-      {/* Trigger */}
+      {/* Trigger — rendered by caller */}
       {children(handleOpen)}
 
       {/* Backdrop */}
@@ -211,177 +262,249 @@ export default function ApplyPreScreen({
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Application eligibility check"
+        aria-label="Application pre-qualification"
         className={`
           fixed bottom-0 left-0 right-0 z-50
           bg-[#0f2318] border-t border-white/10
           rounded-t-3xl px-5 pt-5
-          max-h-[90svh] overflow-y-auto
+          max-h-[92svh] overflow-y-auto
           transition-all duration-300 ease-out
-          ${open ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"}
+          ${open
+            ? "translate-y-0 opacity-100"
+            : "translate-y-full opacity-0 pointer-events-none"}
         `}
         style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}
       >
         {/* Handle bar */}
-        <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-5" />
+        <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-4" />
 
-        {/* Header */}
-        <div className="mb-6">
-          <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 mb-1">
-            {screen === "phone" || screen === "checking" || screen === "ready"
-              ? "Almost there · step 2 of 2"
-              : "Eligibility check"}
-          </p>
-          <h2 className="text-white font-bold text-[18px] leading-snug">
-            {jobTitle}
-          </h2>
-          {referralMode && screen !== "blocked" && (
-            <p className="text-gray-600 text-[11px] mt-1">
-              via AgencyCheck · recruiter assigned automatically
-            </p>
-          )}
-        </div>
-
-        {/* ── SCREEN: gate (EU question) ───────────────────────────── */}
-        {screen === "gate" && (
-          <>
-            <div className="mb-6">
-              <p className="text-gray-300 text-[13px] font-semibold mb-3">
-                Are you an EU citizen?
+        {/* Header (hidden on disqualified screen) */}
+        {screen !== "disqualified" && (
+          <div className="mb-5">
+            <div className="flex items-center justify-between mb-1">
+              <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400">
+                Step {step} of 3 · Application
               </p>
-              <YesNoButtons value={euCitizen} onChange={handleEuAnswer} />
+              <button
+                onClick={handleClose}
+                className="text-gray-600 hover:text-gray-400 text-[18px] leading-none"
+                aria-label="Close"
+              >
+                ×
+              </button>
             </div>
-            <p className="text-center text-gray-600 text-[11px] mt-3">
-              EU citizenship required to apply
-            </p>
-          </>
-        )}
-
-        {/* ── SCREEN: disqualified ─────────────────────────────────── */}
-        {screen === "disqualified" && (
-          <>
-            <div className="mb-4 rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-4">
-              <p className="text-red-300 text-[13px] font-semibold leading-snug text-center">
-                This position is currently available for EU citizens only.
-              </p>
-            </div>
-            <p className="text-center text-gray-600 text-[11px] mt-3">
-              Check other positions that may suit your profile
-            </p>
-          </>
-        )}
-
-        {/* ── SCREEN: phone entry ──────────────────────────────────── */}
-        {screen === "phone" && (
-          <>
-            <div className="mb-6">
-              <p className="text-gray-300 text-[13px] font-semibold mb-2">
-                Your WhatsApp number
-              </p>
-              <p className="text-gray-500 text-[11px] mb-3">
-                The recruiter will contact you on this number.
-              </p>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => { setPhone(e.target.value); setPhoneErr(""); }}
-                onKeyDown={(e) => { if (e.key === "Enter") handlePhoneCheck(); }}
-                placeholder="+31 6 12 34 56 78"
-                autoComplete="tel"
-                inputMode="tel"
-                className="
-                  w-full bg-white/5 border border-white/10 rounded-xl
-                  px-4 py-3.5 text-white text-[15px] placeholder-gray-600
-                  focus:outline-none focus:border-emerald-400/50
-                  transition-colors
-                "
+            <h2 className="text-white font-bold text-[17px] leading-snug">{jobTitle}</h2>
+            {/* Progress bar */}
+            <div className="mt-2.5 h-1 rounded-full bg-white/10 overflow-hidden">
+              <div
+                className="h-full bg-emerald-400 rounded-full transition-all duration-300"
+                style={{ width: `${(step / 3) * 100}%` }}
               />
-              {phoneErr && (
-                <p className="text-red-400 text-[11px] mt-2">{phoneErr}</p>
-              )}
             </div>
-
-            <button
-              onClick={handlePhoneCheck}
-              className="
-                w-full flex items-center justify-center gap-2.5
-                bg-[#22C55E] hover:bg-green-400 active:scale-[0.98]
-                text-white font-black text-[16px]
-                py-4 rounded-2xl
-                shadow-lg shadow-green-900/40
-                transition-all duration-150
-              "
-            >
-              Continue →
-            </button>
-            <p className="text-center text-gray-600 text-[11px] mt-3">
-              Number is only shared with your assigned recruiter
-            </p>
-          </>
-        )}
-
-        {/* ── SCREEN: checking ─────────────────────────────────────── */}
-        {screen === "checking" && (
-          <div className="py-6 text-center">
-            <div className="w-8 h-8 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-gray-400 text-[13px]">Verifying eligibility…</p>
-            <button
-              onClick={() => setScreen("phone")}
-              className="mt-4 text-gray-600 text-[11px] underline underline-offset-2 hover:text-gray-400 transition"
-            >
-              ← Go back
-            </button>
           </div>
         )}
 
-        {/* ── SCREEN: blocked — NEUTRAL public message ─────────────── */}
-        {screen === "blocked" && (
-          <div className="py-4">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-6 text-center">
+        {/* ── SCREEN: gate — EU citizenship ──────────────────────────────── */}
+        {screen === "gate" && (
+          <>
+            <Question label="Are you an EU citizen?">
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={handleEuYes}
+                  className="
+                    py-3.5 rounded-xl border border-white/10 bg-white/5
+                    text-gray-400 text-[14px] font-bold
+                    hover:border-emerald-400/50 hover:bg-emerald-400/10 hover:text-emerald-300
+                    transition-all duration-150
+                  "
+                >
+                  ✅ Yes
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setScreen("disqualified")}
+                  className="
+                    py-3.5 rounded-xl border border-white/10 bg-white/5
+                    text-gray-400 text-[14px] font-bold
+                    hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-300
+                    transition-all duration-150
+                  "
+                >
+                  ❌ No
+                </button>
+              </div>
+            </Question>
+            <p className="text-center text-gray-600 text-[11px] mt-1">
+              EU citizenship required for most positions
+            </p>
+          </>
+        )}
+
+        {/* ── SCREEN: disqualified ────────────────────────────────────────── */}
+        {screen === "disqualified" && (
+          <div className="py-2">
+            <p className="text-[11px] font-black uppercase tracking-widest text-red-400 mb-4">
+              Not eligible
+            </p>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 mb-5">
               <p className="text-white font-semibold text-[15px] leading-snug mb-2">
                 Thank you for your interest.
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
-                Unfortunately we are unable to process your application at this time.
+                Our current job offers are mainly available for EU citizens. We are unable to process your application at this time, but we may have more options in the future.
               </p>
             </div>
-            <p className="text-center text-gray-600 text-[11px] mt-4">
-              You may browse other opportunities on our site.
-            </p>
+            <button
+              onClick={handleClose}
+              className="
+                w-full py-3.5 rounded-xl border border-white/10
+                text-gray-500 text-[13px] font-semibold
+                hover:bg-white/5 transition
+              "
+            >
+              Close
+            </button>
           </div>
         )}
 
-        {/* ── SCREEN: ready — final WhatsApp link ────────────────── */}
-        {screen === "ready" && (
+        {/* ── SCREEN: details_a — BSN, driving, housing, availability ─────── */}
+        {screen === "details_a" && (
           <>
-            <div className="mb-5 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.06] px-4 py-3">
-              <p className="text-emerald-400 text-[12px] font-semibold text-center">
-                ✓ Eligibility confirmed — recruiter assigned
-              </p>
-            </div>
+            <Question label="Do you have a BSN number?" error={errors && !bsn}>
+              <div className="grid grid-cols-3 gap-2">
+                <Opt label="Yes"     selected={bsn === "yes"}     onClick={() => setBsn("yes")} />
+                <Opt label="No"      selected={bsn === "no"}      onClick={() => setBsn("no")} />
+                <Opt label="Not yet" selected={bsn === "not_yet"} onClick={() => setBsn("not_yet")} />
+              </div>
+            </Question>
 
-            {/* Use <a> tag — guaranteed to open on all browsers/mobile (no popup blocker) */}
-            <a
-              href={destination}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
+            <Question label="Do you have a driving licence?" error={errors && !driving}>
+              <div className="grid grid-cols-2 gap-2">
+                <Opt label="Yes" selected={driving === "yes"} onClick={() => setDriving("yes")} />
+                <Opt label="No"  selected={driving === "no"}  onClick={() => setDriving("no")} />
+              </div>
+            </Question>
+
+            <Question label="Do you need accommodation / housing?" error={errors && !housing}>
+              <div className="grid grid-cols-2 gap-2">
+                <Opt label="Yes" selected={housing === "yes"} onClick={() => setHousing("yes")} />
+                <Opt label="No"  selected={housing === "no"}  onClick={() => setHousing("no")} />
+              </div>
+            </Question>
+
+            <Question label="Available from when?" error={errors && !avail}>
+              <div className="grid grid-cols-2 gap-2">
+                <Opt label="Immediately"    selected={avail === "immediately"} onClick={() => setAvail("immediately")} />
+                <Opt label="Within 1 week"  selected={avail === "week1"}       onClick={() => setAvail("week1")} />
+                <Opt label="Within 2 weeks" selected={avail === "week2"}       onClick={() => setAvail("week2")} />
+                <Opt label="Later"          selected={avail === "later"}       onClick={() => setAvail("later")} />
+              </div>
+            </Question>
+
+            {errors && (
+              <p className="text-red-400 text-[11px] mb-3">
+                Please answer all questions to continue.
+              </p>
+            )}
+
+            <button
+              onClick={handleDetailsA}
+              className="
+                w-full flex items-center justify-center gap-2
+                bg-[#22C55E] hover:bg-green-400 active:scale-[0.98]
+                text-white font-black text-[15px]
+                py-4 rounded-2xl
+                shadow-lg shadow-green-900/30
+                transition-all duration-150 mb-3
+              "
+            >
+              Continue →
+            </button>
+            <button
+              onClick={() => { setErrors(false); setScreen("gate"); }}
+              className="w-full py-2 text-gray-600 text-[11px] hover:text-gray-400 transition"
+            >
+              ← Back
+            </button>
+          </>
+        )}
+
+        {/* ── SCREEN: details_b — location, english, group, CV ────────────── */}
+        {screen === "details_b" && (
+          <>
+            <Question
+              label="Current country / city"
+              error={errors && location.trim().length < 2}
+            >
+              <input
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="e.g. Poland, Warsaw"
+                className="
+                  w-full bg-white/5 border border-white/10 rounded-xl
+                  px-4 py-3 text-white text-[14px] placeholder-gray-600
+                  focus:outline-none focus:border-emerald-400/50
+                  transition-colors
+                "
+              />
+            </Question>
+
+            <Question label="English level" error={errors && !english}>
+              <div className="grid grid-cols-3 gap-2">
+                <Opt label="Basic"  selected={english === "basic"}  onClick={() => setEnglish("basic")} />
+                <Opt label="Good"   selected={english === "good"}   onClick={() => setEnglish("good")} />
+                <Opt label="Fluent" selected={english === "fluent"} onClick={() => setEnglish("fluent")} />
+              </div>
+            </Question>
+
+            <Question label="Applying alone or with someone?" error={errors && !group}>
+              <div className="grid grid-cols-3 gap-2">
+                <Opt label="Alone"        selected={group === "alone"}   onClick={() => setGroup("alone")} />
+                <Opt label="With partner" selected={group === "partner"} onClick={() => setGroup("partner")} />
+                <Opt label="With friend"  selected={group === "group"}   onClick={() => setGroup("group")} />
+              </div>
+            </Question>
+
+            <Question label="Do you have a CV ready?" error={errors && !cv}>
+              <div className="grid grid-cols-2 gap-2">
+                <Opt label="Yes" selected={cv === "yes"} onClick={() => setCv("yes")} />
+                <Opt label="No"  selected={cv === "no"}  onClick={() => setCv("no")} />
+              </div>
+            </Question>
+
+            {errors && (
+              <p className="text-red-400 text-[11px] mb-3">
+                Please answer all questions to continue.
+              </p>
+            )}
+
+            {/* handleSubmit is synchronous — window.open() called directly
+                from click event so popup blockers do not interfere */}
+            <button
+              onClick={handleSubmit}
               className="
                 w-full flex items-center justify-center gap-2.5
                 bg-[#22C55E] hover:bg-green-400 active:scale-[0.98]
                 text-white font-black text-[16px]
                 py-4 rounded-2xl
-                shadow-lg shadow-green-900/40
-                transition-all duration-150
-                cursor-pointer
+                shadow-lg shadow-green-900/30
+                transition-all duration-150 mb-3
               "
             >
-              <WAIcon />
-              Open WhatsApp →
-            </a>
-            <p className="text-center text-gray-600 text-[11px] mt-3">
-              Opens WhatsApp · recruiter assigned automatically
-            </p>
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              Apply via WhatsApp
+            </button>
+
+            <button
+              onClick={() => { setErrors(false); setScreen("details_a"); }}
+              className="w-full py-2 text-gray-600 text-[11px] hover:text-gray-400 transition"
+            >
+              ← Back
+            </button>
           </>
         )}
       </div>

@@ -11,9 +11,10 @@ import {
 export const dynamic = "force-dynamic";
 
 // ─── Param limits ─────────────────────────────────────────────────────────────
-const MAX_JOB_ID_LEN    = 120;
-const MAX_JOB_TITLE_LEN = 200;
-const MAX_SOURCE_LEN    = 100;
+const MAX_JOB_ID_LEN     = 120;
+const MAX_JOB_TITLE_LEN  = 200;
+const MAX_SOURCE_LEN     = 100;
+const MAX_CUSTOM_MSG_LEN = 2000;
 
 function sanitise(value: string | null, maxLen: number): string | undefined {
   if (!value) return undefined;
@@ -53,12 +54,13 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
   // ── 2. Param sanitisation ─────────────────────────────────────────────────
   const { searchParams } = req.nextUrl;
-  const jobId    = sanitise(searchParams.get("jobId"),    MAX_JOB_ID_LEN);
-  const jobTitle = sanitise(searchParams.get("jobTitle"), MAX_JOB_TITLE_LEN);
-  const source   = sanitise(searchParams.get("source"),   MAX_SOURCE_LEN) ?? "AgencyCheck";
+  const jobId     = sanitise(searchParams.get("jobId"),     MAX_JOB_ID_LEN);
+  const jobTitle  = sanitise(searchParams.get("jobTitle"),  MAX_JOB_TITLE_LEN);
+  const source    = sanitise(searchParams.get("source"),    MAX_SOURCE_LEN) ?? "AgencyCheck";
+  const customMsg = sanitise(searchParams.get("customMsg"), MAX_CUSTOM_MSG_LEN);
 
   console.log(
-    `[${route}] params — jobId="${jobId ?? ""}" jobTitle="${jobTitle ?? ""}" source="${source}"`,
+    `[${route}] params — jobId="${jobId ?? ""}" jobTitle="${jobTitle ?? ""}" source="${source}" customMsg="${customMsg ? `[${customMsg.length} chars]` : "none"}"`,
   );
 
   // ── 3. Ensure tables exist + pick recruiter ───────────────────────────────
@@ -116,11 +118,16 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   }
 
   // ── 5. Redirect to recruiter WhatsApp ─────────────────────────────────────
-  // [src:AgencyCheck] is hardcoded — permanent proof of origin even if
-  // the candidate edits the pre-filled message before sending.
-  const waMsg = jobTitle
-    ? `Hi, I want to apply for: ${jobTitle} [src:AgencyCheck]`
-    : `Hi, I'm applying via AgencyCheck [src:AgencyCheck]`;
+  // customMsg carries the full pre-qualification answers from ApplyPreScreen.
+  // Falls back to a plain message if not provided (backward-compatible —
+  // all existing apply buttons without the pre-qual form still work).
+  // [src:AgencyCheck] is always appended — permanent proof of origin even
+  // if the candidate edits the pre-filled message before sending.
+  const waMsg = customMsg
+    ? customMsg
+    : jobTitle
+      ? `Hi, I want to apply for: ${jobTitle} [src:AgencyCheck]`
+      : `Hi, I'm applying via AgencyCheck [src:AgencyCheck]`;
   const waUrl = `${assigned.waUrl}?text=${encodeURIComponent(waMsg)}`;
 
   console.log(`[${route}] redirect executed — recruiter="${assigned.name}" waUrl=${waUrl}`);
