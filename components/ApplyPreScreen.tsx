@@ -121,8 +121,8 @@ function Opt({
       type="button"
       onClick={onClick}
       className={`
-        py-2.5 px-3 rounded-xl border text-[13px] font-semibold
-        transition-all duration-150 text-left
+        w-full py-2.5 px-3 rounded-xl border text-[13px] font-semibold
+        transition-all duration-150 text-left leading-snug break-words
         ${selected
           ? "border-emerald-400 bg-emerald-400/15 text-emerald-300"
           : "border-white/10 bg-white/5 text-gray-400 hover:bg-white/10"}
@@ -266,36 +266,41 @@ export default function ApplyPreScreen({
         className={`
           fixed bottom-0 left-0 right-0 z-50
           bg-[#0f2318] border-t border-white/10
-          rounded-t-3xl px-5 pt-5
-          max-h-[92svh] overflow-y-auto
+          rounded-t-3xl
+          max-h-[92svh] overflow-y-auto overflow-x-hidden
           transition-all duration-300 ease-out
           ${open
             ? "translate-y-0 opacity-100"
             : "translate-y-full opacity-0 pointer-events-none"}
         `}
-        style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}
       >
+        {/* Inner wrapper — constrains width + safe-area padding */}
+        <div
+          className="px-5 pt-5 w-full max-w-lg mx-auto"
+          style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}
+        >
+
         {/* Handle bar */}
         <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-4" />
 
         {/* Header (hidden on disqualified screen) */}
         {screen !== "disqualified" && (
           <div className="mb-5">
-            <div className="flex items-center justify-between mb-1">
-              <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 shrink-0">
                 Step {step} of 3 · Application
               </p>
               <button
                 onClick={handleClose}
-                className="text-gray-600 hover:text-gray-400 text-[18px] leading-none"
+                className="text-gray-600 hover:text-gray-400 text-[20px] leading-none shrink-0 ml-auto"
                 aria-label="Close"
               >
                 ×
               </button>
             </div>
-            <h2 className="text-white font-bold text-[17px] leading-snug">{jobTitle}</h2>
+            <h2 className="text-white font-bold text-[17px] leading-snug break-words w-full">{jobTitle}</h2>
             {/* Progress bar */}
-            <div className="mt-2.5 h-1 rounded-full bg-white/10 overflow-hidden">
+            <div className="mt-2.5 h-1 w-full rounded-full bg-white/10 overflow-hidden">
               <div
                 className="h-full bg-emerald-400 rounded-full transition-all duration-300"
                 style={{ width: `${(step / 3) * 100}%` }}
@@ -442,11 +447,12 @@ export default function ApplyPreScreen({
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="e.g. Poland, Warsaw"
+                autoComplete="off"
                 className="
-                  w-full bg-white/5 border border-white/10 rounded-xl
+                  block w-full bg-white/5 border border-white/10 rounded-xl
                   px-4 py-3 text-white text-[14px] placeholder-gray-600
                   focus:outline-none focus:border-emerald-400/50
-                  transition-colors
+                  transition-colors min-w-0
                 "
               />
             </Question>
@@ -507,6 +513,8 @@ export default function ApplyPreScreen({
             </button>
           </>
         )}
+
+        </div>{/* /inner wrapper */}
       </div>
     </>
   );
