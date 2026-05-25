@@ -173,3 +173,119 @@ export function buildDescription(v: Vacancy): string {
   const lang = v.b.includes("eng") ? " Language requirement applies." : "";
   return `${v.t} job in ${v.l}, ${getCountry(v.l) === "NL" ? "Netherlands" : getCountry(v.l) === "GR" ? "Greece" : "Belgium"}.${sal} EU citizens only, immediate start. Apply on WhatsApp.${acc}${lang}`;
 }
+
+// ─── Structured data address helpers ──────────────────────────────────────────
+// Used by /apply/[slug]/page.tsx to fill Google JobPosting schema address fields.
+// streetAddress = best-effort city-level reference (no street data available).
+// postalCode    = representative postcode for geocoding (4-digit NL, 5-digit GR).
+// addressRegion = Dutch province, Belgian province, or Greek region.
+
+export interface AddressMeta {
+  streetAddress:   string;
+  addressLocality: string;
+  addressRegion:   string;
+  postalCode:      string;
+}
+
+const CITY_META: Record<string, AddressMeta> = {
+  // ── Netherlands ──────────────────────────────────────────────────────────────
+  "Bodegraven":            { streetAddress: "Bodegraven",            addressLocality: "Bodegraven",            addressRegion: "Zuid-Holland",  postalCode: "2411" },
+  "Rotterdam":             { streetAddress: "Rotterdam",              addressLocality: "Rotterdam",              addressRegion: "Zuid-Holland",  postalCode: "3011" },
+  "Bunschoten Spakenburg": { streetAddress: "Bunschoten Spakenburg",  addressLocality: "Bunschoten Spakenburg",  addressRegion: "Utrecht",        postalCode: "3752" },
+  "Bunschoten":            { streetAddress: "Bunschoten",             addressLocality: "Bunschoten",             addressRegion: "Utrecht",        postalCode: "3751" },
+  "Hellevoetsluis":        { streetAddress: "Hellevoetsluis",         addressLocality: "Hellevoetsluis",         addressRegion: "Zuid-Holland",  postalCode: "3221" },
+  "Heinoord":              { streetAddress: "Heinoord",               addressLocality: "Heinoord",               addressRegion: "Zuid-Holland",  postalCode: "3274" },
+  "Sevenum":               { streetAddress: "Sevenum",                addressLocality: "Sevenum",                addressRegion: "Limburg",        postalCode: "5975" },
+  "Roosendaal":            { streetAddress: "Roosendaal",             addressLocality: "Roosendaal",             addressRegion: "Noord-Brabant", postalCode: "4701" },
+  "Obdam":                 { streetAddress: "Obdam",                  addressLocality: "Obdam",                  addressRegion: "Noord-Holland", postalCode: "1695" },
+  "Akersloot":             { streetAddress: "Akersloot",              addressLocality: "Akersloot",              addressRegion: "Noord-Holland", postalCode: "1921" },
+  "Amsterdam":             { streetAddress: "Amsterdam",              addressLocality: "Amsterdam",              addressRegion: "Noord-Holland", postalCode: "1011" },
+  "Hardenberg":            { streetAddress: "Hardenberg",             addressLocality: "Hardenberg",             addressRegion: "Overijssel",     postalCode: "7771" },
+  "Uden":                  { streetAddress: "Uden",                   addressLocality: "Uden",                   addressRegion: "Noord-Brabant", postalCode: "5401" },
+  "Posterholt":            { streetAddress: "Posterholt",             addressLocality: "Posterholt",             addressRegion: "Limburg",        postalCode: "6061" },
+  "Purmerend":             { streetAddress: "Purmerend",              addressLocality: "Purmerend",              addressRegion: "Noord-Holland", postalCode: "1441" },
+  "Beverwijk":             { streetAddress: "Beverwijk",              addressLocality: "Beverwijk",              addressRegion: "Noord-Holland", postalCode: "1941" },
+  "Moergestel":            { streetAddress: "Moergestel",             addressLocality: "Moergestel",             addressRegion: "Noord-Brabant", postalCode: "5066" },
+  "Hulst":                 { streetAddress: "Hulst",                  addressLocality: "Hulst",                  addressRegion: "Zeeland",        postalCode: "4561" },
+  "Waardenburg":           { streetAddress: "Waardenburg",            addressLocality: "Waardenburg",            addressRegion: "Gelderland",     postalCode: "4181" },
+  "Oirschot":              { streetAddress: "Oirschot",               addressLocality: "Oirschot",               addressRegion: "Noord-Brabant", postalCode: "5688" },
+  "Oisterwijk":            { streetAddress: "Oisterwijk",             addressLocality: "Oisterwijk",             addressRegion: "Noord-Brabant", postalCode: "5061" },
+  "Son":                   { streetAddress: "Son en Breugel",         addressLocality: "Son en Breugel",         addressRegion: "Noord-Brabant", postalCode: "5691" },
+  "Nieuwegein":            { streetAddress: "Nieuwegein",             addressLocality: "Nieuwegein",             addressRegion: "Utrecht",        postalCode: "3431" },
+  "Waalwijk":              { streetAddress: "Waalwijk",               addressLocality: "Waalwijk",               addressRegion: "Noord-Brabant", postalCode: "5141" },
+  "Grubbenvorst":          { streetAddress: "Grubbenvorst",           addressLocality: "Grubbenvorst",           addressRegion: "Limburg",        postalCode: "5971" },
+  "Veghel":                { streetAddress: "Veghel",                 addressLocality: "Veghel",                 addressRegion: "Noord-Brabant", postalCode: "5461" },
+  "Helmond":               { streetAddress: "Helmond",                addressLocality: "Helmond",                addressRegion: "Noord-Brabant", postalCode: "5701" },
+  "Deurne":                { streetAddress: "Deurne",                 addressLocality: "Deurne",                 addressRegion: "Noord-Brabant", postalCode: "5751" },
+  "Eindhoven":             { streetAddress: "Eindhoven",              addressLocality: "Eindhoven",              addressRegion: "Noord-Brabant", postalCode: "5611" },
+  "Apeldoorn":             { streetAddress: "Apeldoorn",              addressLocality: "Apeldoorn",              addressRegion: "Gelderland",     postalCode: "7311" },
+  "Waddinxveen":           { streetAddress: "Waddinxveen",            addressLocality: "Waddinxveen",            addressRegion: "Zuid-Holland",  postalCode: "2741" },
+  "Veenendaal":            { streetAddress: "Veenendaal",             addressLocality: "Veenendaal",             addressRegion: "Utrecht",        postalCode: "3901" },
+  "Venlo":                 { streetAddress: "Venlo",                  addressLocality: "Venlo",                  addressRegion: "Limburg",        postalCode: "5911" },
+  "Alkmaar":               { streetAddress: "Alkmaar",                addressLocality: "Alkmaar",                addressRegion: "Noord-Holland", postalCode: "1811" },
+  "Zaandam":               { streetAddress: "Zaandam",                addressLocality: "Zaandam",                addressRegion: "Noord-Holland", postalCode: "1501" },
+  "Vianen":                { streetAddress: "Vianen",                 addressLocality: "Vianen",                 addressRegion: "Utrecht",        postalCode: "4131" },
+  "Hoorn":                 { streetAddress: "Hoorn",                  addressLocality: "Hoorn",                  addressRegion: "Noord-Holland", postalCode: "1621" },
+  "Alblasserdam":          { streetAddress: "Alblasserdam",           addressLocality: "Alblasserdam",           addressRegion: "Zuid-Holland",  postalCode: "2951" },
+  "Numansdorp":            { streetAddress: "Numansdorp",             addressLocality: "Numansdorp",             addressRegion: "Zuid-Holland",  postalCode: "3281" },
+  "Horst":                 { streetAddress: "Horst",                  addressLocality: "Horst",                  addressRegion: "Limburg",        postalCode: "5961" },
+  "Haarlem":               { streetAddress: "Haarlem",                addressLocality: "Haarlem",                addressRegion: "Noord-Holland", postalCode: "2011" },
+  "Nieuw-Bergen":          { streetAddress: "Nieuw-Bergen",           addressLocality: "Nieuw-Bergen",           addressRegion: "Limburg",        postalCode: "5854" },
+  "Goor":                  { streetAddress: "Goor",                   addressLocality: "Goor",                   addressRegion: "Overijssel",     postalCode: "7471" },
+  "Harderwijk":            { streetAddress: "Harderwijk",             addressLocality: "Harderwijk",             addressRegion: "Gelderland",     postalCode: "3841" },
+  "Tholen":                { streetAddress: "Tholen",                 addressLocality: "Tholen",                 addressRegion: "Zeeland",        postalCode: "4691" },
+  "Yerseke":               { streetAddress: "Yerseke",                addressLocality: "Yerseke",                addressRegion: "Zeeland",        postalCode: "4401" },
+  "Breskens":              { streetAddress: "Breskens",               addressLocality: "Breskens",               addressRegion: "Zeeland",        postalCode: "4511" },
+  "Ridderkerk":            { streetAddress: "Ridderkerk",             addressLocality: "Ridderkerk",             addressRegion: "Zuid-Holland",  postalCode: "2981" },
+  "Venray":                { streetAddress: "Venray",                 addressLocality: "Venray",                 addressRegion: "Limburg",        postalCode: "5801" },
+  "Tilburg":               { streetAddress: "Tilburg",                addressLocality: "Tilburg",                addressRegion: "Noord-Brabant", postalCode: "5011" },
+  "Utrecht":               { streetAddress: "Utrecht",                addressLocality: "Utrecht",                addressRegion: "Utrecht",        postalCode: "3511" },
+  "Den Bosch":             { streetAddress: "Den Bosch",              addressLocality: "'s-Hertogenbosch",       addressRegion: "Noord-Brabant", postalCode: "5211" },
+  // ── Belgium ───────────────────────────────────────────────────────────────────
+  "Antwerp":               { streetAddress: "Antwerp",                addressLocality: "Antwerp",                addressRegion: "Antwerpen",      postalCode: "2000" },
+  // ── Greece ────────────────────────────────────────────────────────────────────
+  "Rhodes":                { streetAddress: "Rhodes Town",            addressLocality: "Rhodes",                 addressRegion: "South Aegean",   postalCode: "85100" },
+  "Crete":                 { streetAddress: "Heraklion",              addressLocality: "Heraklion",              addressRegion: "Crete",          postalCode: "71201" },
+  "Kos":                   { streetAddress: "Kos Town",               addressLocality: "Kos",                    addressRegion: "South Aegean",   postalCode: "85300" },
+  // ── Generic NL fallback ───────────────────────────────────────────────────────
+  "Netherlands":           { streetAddress: "Amsterdam",              addressLocality: "Amsterdam",              addressRegion: "Noord-Holland", postalCode: "1011" },
+};
+
+/**
+ * Extract JobPosting address meta from a vacancy location string.
+ * Location strings may contain multiple cities ("Helmond / Deurne / Eindhoven",
+ * "Rotterdam area", "Rhodes, Crete, Kos") — we match the first recognised city.
+ */
+export function getAddressMeta(location: string): AddressMeta {
+  // Split on comma, slash, or " / " and try each token
+  const tokens = location.split(/[,/]/).map((s) => s.trim());
+
+  for (const token of tokens) {
+    // 1. Exact key match
+    if (CITY_META[token]) return CITY_META[token];
+
+    // 2. Token contains a known key (e.g. "Rotterdam area" → "Rotterdam")
+    for (const key of Object.keys(CITY_META)) {
+      if (token.toLowerCase().includes(key.toLowerCase())) {
+        return CITY_META[key];
+      }
+    }
+  }
+
+  // 3. Full location string contains a known key (last resort)
+  for (const key of Object.keys(CITY_META)) {
+    if (location.toLowerCase().includes(key.toLowerCase())) {
+      return CITY_META[key];
+    }
+  }
+
+  return CITY_META["Netherlands"];
+}
+
+/**
+ * Return the correct Schema.org unitText for baseSalary.
+ * Greek jobs are paid monthly; everything else is converted to weekly.
+ */
+export function getSalaryUnit(salaryDisplay: string): "WEEK" | "MONTH" {
+  return salaryDisplay.includes("/mo") ? "MONTH" : "WEEK";
+}

@@ -7,6 +7,8 @@ import {
   getVacancyBySlug,
   getCountry,
   buildDescription,
+  getAddressMeta,
+  getSalaryUnit,
   CAT_LABELS,
   CAT_ICONS,
   BADGE_META,
@@ -100,6 +102,7 @@ export default async function JobPage(
   const country     = getCountry(v.l);
   const countryName = country === "NL" ? "Netherlands" : country === "GR" ? "Greece" : "Belgium";
   const salStr      = v.sm > 0 ? v.s : null;
+  const addrMeta    = getAddressMeta(v.l);
 
   // ── Related jobs (same category, different slug, max 3) ───────────────────
   const related = VACANCIES.filter((r) => r.c === v.c && r.slug !== v.slug).slice(0, 3);
@@ -118,9 +121,12 @@ export default async function JobPage(
     jobLocation: {
       "@type": "Place",
       address: {
-        "@type":          "PostalAddress",
-        addressLocality:  v.l,
-        addressCountry:   country,
+        "@type":           "PostalAddress",
+        streetAddress:     addrMeta.streetAddress,
+        addressLocality:   addrMeta.addressLocality,
+        addressRegion:     addrMeta.addressRegion,
+        postalCode:        addrMeta.postalCode,
+        addressCountry:    country,
       },
     },
     employmentType:   "FULL_TIME",
@@ -137,14 +143,16 @@ export default async function JobPage(
   };
 
   if (v.sm > 0) {
+    // maxValue is always emitted — set to minValue for single-rate jobs so
+    // Google does not warn about missing maxValue in baseSalary.value.
     jobPosting.baseSalary = {
       "@type":    "MonetaryAmount",
       currency:   "EUR",
       value: {
         "@type":    "QuantitativeValue",
         minValue:   v.sm,
-        ...(v.sx > 0 ? { maxValue: v.sx } : {}),
-        unitText:   "WEEK",
+        maxValue:   v.sx > 0 ? v.sx : v.sm,
+        unitText:   getSalaryUnit(v.s),
       },
     };
   }
