@@ -86,7 +86,7 @@ export default function NotFound() {
 
       {/* Tagline */}
       <p className="text-xs text-gray-400 uppercase tracking-widest font-bold">
-        AgencyCheck · Check, don&apos;t guess!
+        AgencyCheck · Check &amp; Hire.
       </p>
     </div>
   );

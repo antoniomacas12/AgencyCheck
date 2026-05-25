@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name:             "AgencyCheck",
     short_name:       "AgencyCheck",
-    description:      "Employment agency reviews & jobs in the Netherlands. Check, don't guess!",
+    description:      "Employment agency reviews & jobs in the Netherlands. Check & Hire.",
     start_url:        "/",
     display:          "standalone",
     background_color: "#ffffff",

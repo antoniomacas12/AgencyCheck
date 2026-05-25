@@ -74,7 +74,7 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
               className="text-[9px] font-bold uppercase text-[#22C55E] leading-none tracking-[0.12em]"
               style={{ paddingLeft: "45px" }}
             >
-              Check, don&apos;t guess!
+              Check &amp; Hire.
             </span>
           </div>
 
