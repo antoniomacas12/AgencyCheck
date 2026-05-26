@@ -71,7 +71,7 @@ function buildCandidateMsg(
     group:   "With friend/group",
   };
 
-  const srcTag = source ? ` [src:${source}]` : " [src:AgencyCheck]";
+  const srcTag = source ? ` [AgencyCheck · src:${source}]` : " [AgencyCheck]";
 
   return [
     `Hi, I want to apply for: ${jobTitle}${srcTag}`,
