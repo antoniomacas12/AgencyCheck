@@ -13,7 +13,7 @@ interface Props {
   children:      (openFn: () => void) => React.ReactNode;
 }
 
-type Screen = "gate" | "details_a" | "details_b" | "disqualified" | "geo_blocked";
+type Screen = "gate" | "details_a" | "details_b" | "disqualified" | "geo_blocked" | "already_applied";
 type BSN    = "yes" | "no" | "not_yet";
 type Avail  = "immediately" | "week1" | "week2" | "later";
 type Eng    = "basic" | "good" | "fluent";
@@ -88,6 +88,37 @@ function buildCandidateMsg(
     `- Applying: ${groupLabel[group]}`,
     `- CV ready: ${cv === "yes" ? "Yes" : "No"}`,
   ].join("\n");
+}
+
+// ─── Duplicate-application guard (localStorage) ───────────────────────────────
+// Key: "ac_apply_guard" → JSON array of { phone: string; ts: number }
+// A candidate with the same phone number can only apply once per 24 hours.
+// Fail-open: if localStorage is unavailable, the check is skipped so real
+// candidates are never blocked by a storage error.
+
+const DEDUP_KEY = "ac_apply_guard";
+const DEDUP_TTL = 86_400_000; // 24 hours in ms
+
+function checkDuplicate(phone: string): boolean {
+  try {
+    const raw = localStorage.getItem(DEDUP_KEY);
+    if (!raw) return false;
+    const entries: { phone: string; ts: number }[] = JSON.parse(raw);
+    const now = Date.now();
+    return entries.some((e) => e.phone === phone && now - e.ts < DEDUP_TTL);
+  } catch {
+    return false; // fail-open on any storage error
+  }
+}
+
+function saveDedupEntry(phone: string): void {
+  try {
+    const raw = localStorage.getItem(DEDUP_KEY);
+    const entries: { phone: string; ts: number }[] = raw ? JSON.parse(raw) : [];
+    entries.push({ phone, ts: Date.now() });
+    // Keep last 30 entries max — avoids unbounded growth
+    localStorage.setItem(DEDUP_KEY, JSON.stringify(entries.slice(-30)));
+  } catch { /* non-blocking */ }
 }
 
 // Non-blocking — logs candidate pre-qual data, never blocks the apply flow
@@ -246,6 +277,12 @@ export default function ApplyPreScreen({
       return;
     }
 
+    // ── Duplicate guard — block same phone within 24 h ───────────────────
+    if (checkDuplicate(phoneClean)) {
+      setScreen("already_applied");
+      return;
+    }
+
     const msg = buildCandidateMsg(
       jobTitle, source,
       bsn!, driving!, housing!, avail!,
@@ -258,6 +295,11 @@ export default function ApplyPreScreen({
 
     // Synchronous — called directly from click event, no async gap
     window.open(dest, "_blank", "noopener,noreferrer");
+
+    // Save dedup entry AFTER successful open so a popup-blocked attempt
+    // does not permanently lock the candidate out.
+    saveDedupEntry(phoneClean);
+
     setOpen(false);
 
     // Fire-and-forget logging (non-blocking, never delays WA open)
@@ -316,8 +358,8 @@ export default function ApplyPreScreen({
         {/* Handle bar */}
         <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-4" />
 
-        {/* Header (hidden on disqualified / geo_blocked screens) */}
-        {screen !== "disqualified" && screen !== "geo_blocked" && (
+        {/* Header (hidden on disqualified / geo_blocked / already_applied screens) */}
+        {screen !== "disqualified" && screen !== "geo_blocked" && screen !== "already_applied" && (
           <div className="mb-5">
             <div className="flex items-center justify-between gap-2 mb-1">
               <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 shrink-0">
@@ -418,6 +460,33 @@ export default function ApplyPreScreen({
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
                 Our positions require candidates to be based in the European Union. You can still browse all job listings and agency reviews on our platform.
+              </p>
+            </div>
+            <button
+              onClick={handleClose}
+              className="
+                w-full py-3.5 rounded-xl border border-white/10
+                text-gray-500 text-[13px] font-semibold
+                hover:bg-white/5 transition
+              "
+            >
+              Close
+            </button>
+          </div>
+        )}
+
+        {/* ── SCREEN: already_applied — duplicate within 24 h ────────────── */}
+        {screen === "already_applied" && (
+          <div className="py-2">
+            <p className="text-[11px] font-black uppercase tracking-widest text-yellow-400 mb-4">
+              Already applied today
+            </p>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 mb-5">
+              <p className="text-white font-semibold text-[15px] leading-snug mb-2">
+                You already applied today.
+              </p>
+              <p className="text-gray-400 text-[13px] leading-relaxed">
+                A recruiter will contact you if your profile matches. Please try again tomorrow if you haven&apos;t heard back.
               </p>
             </div>
             <button
