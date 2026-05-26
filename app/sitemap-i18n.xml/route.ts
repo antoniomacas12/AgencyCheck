@@ -59,6 +59,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 3600; // Regenerate at most once per hour
 
 export async function GET() {
+  try {
   const FALLBACK = "2026-03-14";
 
   // Fetch dynamic last-modified dates
@@ -108,4 +109,15 @@ ${blocks.join("\n")}
       "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
     },
   });
+  } catch (err) {
+    console.error("[sitemap-i18n.xml] generation failed:", err);
+    // Return an empty but valid sitemap rather than a 500
+    return new NextResponse(
+      '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"></urlset>',
+      {
+        status: 200,
+        headers: { "Content-Type": "application/xml; charset=utf-8" },
+      },
+    );
+  }
 }

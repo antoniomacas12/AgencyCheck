@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyAdminRequest, unauthorizedJson } from "@/lib/adminAuth";
 
+export const dynamic = "force-dynamic";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const db = prisma as any;
 

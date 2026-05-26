@@ -15,6 +15,8 @@ import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 import { extractAgencies, generateAgencySlug } from "@/lib/agencyExtractor";
 
+export const dynamic = "force-dynamic";
+
 // ─── Slug generator (for worker-reported agencies) ────────────────────────────
 
 function generateSlug(name: string): string {

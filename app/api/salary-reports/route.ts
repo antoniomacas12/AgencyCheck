@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 // ─── Allowed enum values ──────────────────────────────────────────────────────
 
 const HOUSING_VALUES = ["YES", "NO", "UNKNOWN"] as const;

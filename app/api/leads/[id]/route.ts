@@ -11,6 +11,8 @@ import { verifyAdminRequest, unauthorizedJson } from "@/lib/adminAuth";
 import { leadDelegate } from "@/lib/leadClient";
 import type { LeadUpdateInput, LeadStatus } from "@/lib/leadClient";
 
+export const dynamic = "force-dynamic";
+
 // Parse JSON-string fields back to arrays before returning in HTTP responses.
 // tags and assignedAgencies are stored as JSON strings in PostgreSQL.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

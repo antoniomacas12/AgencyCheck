@@ -57,13 +57,29 @@ const STATIC_DATE  = "2026-03-14";
 // Agency and city pages use the date of the most recent published review.
 // All other pages use static dates.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Fetch dynamic lastmod maps (fail-safe — empty map if DB is unavailable)
-  const [agencyLastMod, cityLastMod, workerReportedSlugs, dbAgencyCityPairs] = await Promise.all([
-    getLastReviewDates(),
-    getLastCityReviewDates(),
-    getWorkerReportedAgencySlugs(),
-    getAllAgencyCityPairsForSitemap(1), // threshold: at least 1 comment mentioning that city
-  ]);
+  // Fetch dynamic lastmod maps — each helper already has its own try/catch
+  // returning empty collections on DB failure, but we add a top-level guard
+  // here so a Promise.all rejection (e.g. Prisma connection timeout that
+  // escapes an inner catch) never turns the entire sitemap into a 500.
+  let agencyLastMod:      Awaited<ReturnType<typeof getLastReviewDates>>;
+  let cityLastMod:        Awaited<ReturnType<typeof getLastCityReviewDates>>;
+  let workerReportedSlugs: Awaited<ReturnType<typeof getWorkerReportedAgencySlugs>>;
+  let dbAgencyCityPairs:  Awaited<ReturnType<typeof getAllAgencyCityPairsForSitemap>>;
+
+  try {
+    [agencyLastMod, cityLastMod, workerReportedSlugs, dbAgencyCityPairs] = await Promise.all([
+      getLastReviewDates(),
+      getLastCityReviewDates(),
+      getWorkerReportedAgencySlugs(),
+      getAllAgencyCityPairsForSitemap(1),
+    ]);
+  } catch (err) {
+    console.error("[sitemap] DB fetch failed — serving static-only sitemap:", err);
+    agencyLastMod       = new Map();
+    cityLastMod         = new Map();
+    workerReportedSlugs = [];
+    dbAgencyCityPairs   = [];
+  }
   // ── 1. Static core pages ──────────────────────────────────────────────────
   const corePages: MetadataRoute.Sitemap = [
     {

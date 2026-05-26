@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { adminLogout } from "@/lib/adminAuth";
 
+export const dynamic = "force-dynamic";
+
 // Handles both POST (from fetch) and GET (from form submission)
 export async function POST() {
   await adminLogout();
