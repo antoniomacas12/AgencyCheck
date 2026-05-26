@@ -44,6 +44,7 @@ function buildCandidateMsg(
   housing:  "yes" | "no",
   avail:    Avail,
   location: string,
+  phone:    string,
   english:  Eng,
   group:    Group,
   cv:       "yes" | "no",
@@ -81,6 +82,7 @@ function buildCandidateMsg(
     `- Driving licence: ${driving === "yes" ? "Yes" : "No"}`,
     `- Housing needed: ${housing === "yes" ? "Yes" : "No"}`,
     `- Current location: ${location}`,
+    `- Phone: ${phone}`,
     `- Available from: ${availLabel[avail]}`,
     `- English level: ${engLabel[english]}`,
     `- Applying: ${groupLabel[group]}`,
@@ -178,6 +180,7 @@ export default function ApplyPreScreen({
   const [housing,  setHousing]  = useState<"yes" | "no" | null>(null);
   const [avail,    setAvail]    = useState<Avail | null>(null);
   const [location, setLocation] = useState("");
+  const [phone,    setPhone]    = useState("");
   const [english,  setEnglish]  = useState<Eng | null>(null);
   const [group,    setGroup]    = useState<Group | null>(null);
   const [cv,       setCv]       = useState<"yes" | "no" | null>(null);
@@ -192,6 +195,7 @@ export default function ApplyPreScreen({
     setHousing(null);
     setAvail(null);
     setLocation("");
+    setPhone("");
     setEnglish(null);
     setGroup(null);
     setCv(null);
@@ -216,7 +220,10 @@ export default function ApplyPreScreen({
   // Called from button onClick — MUST remain synchronous so popup blocker
   // never intercepts the window.open() call.
   function handleSubmit() {
-    if (!english || !group || !cv || location.trim().length < 2) {
+    const phoneClean = phone.trim();
+    const phoneValid = phoneClean.length >= 7 && /^[+\d\s\-()]+$/.test(phoneClean);
+
+    if (!english || !group || !cv || location.trim().length < 2 || !phoneValid) {
       setErrors(true);
       return;
     }
@@ -224,7 +231,7 @@ export default function ApplyPreScreen({
     const msg = buildCandidateMsg(
       jobTitle, source,
       bsn!, driving!, housing!, avail!,
-      location.trim(), english!, group!, cv!,
+      location.trim(), phoneClean, english!, group!, cv!,
     );
 
     const dest = referralMode
@@ -462,6 +469,29 @@ export default function ApplyPreScreen({
                   transition-colors min-w-0
                 "
               />
+            </Question>
+
+            <Question
+              label="Phone number"
+              error={errors && !(phone.trim().length >= 7 && /^[+\d\s\-()]+$/.test(phone.trim()))}
+            >
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="e.g. +48 123 456 789"
+                autoComplete="tel"
+                inputMode="tel"
+                className="
+                  block w-full bg-white/5 border border-white/10 rounded-xl
+                  px-4 py-3 text-white text-[14px] placeholder-gray-600
+                  focus:outline-none focus:border-emerald-400/50
+                  transition-colors min-w-0
+                "
+              />
+              <p className="text-gray-600 text-[11px] mt-1">
+                So the recruiter can reach you directly
+              </p>
             </Question>
 
             <Question label="English level" error={errors && !english}>
