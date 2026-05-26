@@ -13,7 +13,7 @@ interface Props {
   children:      (openFn: () => void) => React.ReactNode;
 }
 
-type Screen = "gate" | "details_a" | "details_b" | "disqualified";
+type Screen = "gate" | "details_a" | "details_b" | "disqualified" | "geo_blocked";
 type BSN    = "yes" | "no" | "not_yet";
 type Avail  = "immediately" | "week1" | "week2" | "later";
 type Eng    = "basic" | "good" | "fluent";
@@ -172,7 +172,17 @@ export default function ApplyPreScreen({
   const [errors,  setErrors]  = useState(false);
   // Portal mount guard — prevents SSR/hydration mismatch
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  // Geo gate — null = unknown (fail-open), false = non-EU blocked
+  const [isEU,    setIsEU]    = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+    // Fetch geo on mount — result cached for 10 min (private)
+    fetch("/api/geo")
+      .then((r) => r.json())
+      .then((d: { isEU: boolean }) => setIsEU(d.isEU))
+      .catch(() => setIsEU(null)); // fail-open on network error
+  }, []);
 
   // ── Form state ────────────────────────────────────────────────────────────
   const [bsn,      setBsn]      = useState<BSN | null>(null);
@@ -187,6 +197,14 @@ export default function ApplyPreScreen({
 
   // ── Handlers ──────────────────────────────────────────────────────────────
   function handleOpen() {
+    // isEU === false means we have a confirmed non-EU IP — block the apply flow.
+    // isEU === null means geo check failed/pending — fail-open so real candidates
+    // are never blocked by a network error.
+    if (isEU === false) {
+      setOpen(true);
+      setScreen("geo_blocked");
+      return;
+    }
     setOpen(true);
     setScreen("gate");
     setErrors(false);
@@ -255,6 +273,7 @@ export default function ApplyPreScreen({
   // Progress (1 = gate, 2 = details_a, 3 = details_b)
   const step = screen === "gate" ? 1 : screen === "details_a" ? 2 : 3;
 
+
   // ── Portal modal — rendered at document.body level ──────────────────────────
   // IMPORTANT: backdrop + sheet MUST render outside any ancestor with a CSS
   // transform (e.g. FloatingStack uses translate-y-* animations). A transformed
@@ -297,8 +316,8 @@ export default function ApplyPreScreen({
         {/* Handle bar */}
         <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-4" />
 
-        {/* Header (hidden on disqualified screen) */}
-        {screen !== "disqualified" && (
+        {/* Header (hidden on disqualified / geo_blocked screens) */}
+        {screen !== "disqualified" && screen !== "geo_blocked" && (
           <div className="mb-5">
             <div className="flex items-center justify-between gap-2 mb-1">
               <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 shrink-0">
@@ -372,6 +391,33 @@ export default function ApplyPreScreen({
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
                 Our current job offers are mainly available for EU citizens. We are unable to process your application at this time, but we may have more options in the future.
+              </p>
+            </div>
+            <button
+              onClick={handleClose}
+              className="
+                w-full py-3.5 rounded-xl border border-white/10
+                text-gray-500 text-[13px] font-semibold
+                hover:bg-white/5 transition
+              "
+            >
+              Close
+            </button>
+          </div>
+        )}
+
+        {/* ── SCREEN: geo_blocked — non-EU IP detected ────────────────────── */}
+        {screen === "geo_blocked" && (
+          <div className="py-2">
+            <p className="text-[11px] font-black uppercase tracking-widest text-orange-400 mb-4">
+              Applications unavailable
+            </p>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 mb-5">
+              <p className="text-white font-semibold text-[15px] leading-snug mb-2">
+                Applications are open for EU residents only.
+              </p>
+              <p className="text-gray-400 text-[13px] leading-relaxed">
+                Our positions require candidates to be based in the European Union. You can still browse all job listings and agency reviews on our platform.
               </p>
             </div>
             <button
