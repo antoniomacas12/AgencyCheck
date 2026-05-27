@@ -328,6 +328,27 @@ export default function ApplyPreScreen({
       jobTitle,
       source,
     });
+
+    // Fire-and-forget recruiter webhook (proxied server-side, token never in browser)
+    fetch("/api/apply-webhook", {
+      method:  "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jobId,
+        jobTitle,
+        source:   source ?? null,
+        phone:    phoneClean,
+        location: location.trim(),
+        bsn,
+        driving,
+        housing,
+        avail,
+        english,
+        group,
+        cv,
+        waMessage: msg,
+      }),
+    }).catch(() => { /* non-blocking */ });
   }
 
   // Progress (1 = gate, 2 = details_a, 3 = details_b)
