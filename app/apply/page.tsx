@@ -1,9 +1,10 @@
 // /apply — All open positions ("Actual Jobs") landing page
 import type { Metadata } from "next";
 import VacanciesClient from "@/components/VacanciesClient";
+import { VACANCIES } from "@/lib/vacanciesData";
 
 export const metadata: Metadata = {
-  title: "Actual Jobs in the Netherlands — 65 Open Positions | AgencyCheck",
+  title: `Actual Jobs in the Netherlands — ${VACANCIES.length} Open Positions | AgencyCheck`,
   description:
     "Current open vacancies in the Netherlands: truck drivers, welders, electricians, warehouse workers, bus drivers and more. EU citizens only. Immediate start. Apply on WhatsApp.",
   alternates: {
