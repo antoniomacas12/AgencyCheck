@@ -48,6 +48,7 @@ const CookieNotice      = dynamic(() => import("@/components/CookieNotice"),    
 
 // Mirrors the path-prefix detection in middleware.ts.
 function localeFromPath(pathname: string): Locale {
+  if (pathname === "/nl" || pathname.startsWith("/nl/")) return "nl";
   if (pathname === "/pl" || pathname.startsWith("/pl/")) return "pl";
   if (pathname === "/ro" || pathname.startsWith("/ro/")) return "ro";
   if (pathname === "/pt" || pathname.startsWith("/pt/")) return "pt";
