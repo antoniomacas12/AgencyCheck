@@ -15,12 +15,13 @@
  *   t("homepage.badge", { housingCount: 42 })  // replaces {housingCount}
  */
 
-export type Locale = "en" | "pl" | "ro" | "pt" | "sk" | "bg";
-export const SUPPORTED_LOCALES: Locale[] = ["en", "pl", "ro", "pt", "sk", "bg"];
+export type Locale = "en" | "nl" | "pl" | "ro" | "pt" | "sk" | "bg";
+export const SUPPORTED_LOCALES: Locale[] = ["en", "nl", "pl", "ro", "pt", "sk", "bg"];
 export const DEFAULT_LOCALE: Locale = "en";
 
 export const LOCALE_LABELS: Record<Locale, { label: string; flag: string; nativeName: string }> = {
   en: { label: "English",    flag: "🇬🇧", nativeName: "English"    },
+  nl: { label: "Dutch",      flag: "🇳🇱", nativeName: "Nederlands" },
   pl: { label: "Polish",     flag: "🇵🇱", nativeName: "Polski"     },
   ro: { label: "Romanian",   flag: "🇷🇴", nativeName: "Română"     },
   pt: { label: "Portuguese", flag: "🇵🇹", nativeName: "Português"  },
@@ -90,6 +91,7 @@ export async function getT(locale: Locale = DEFAULT_LOCALE) {
 // For Client Components, import the JSON directly.
 
 import enJson from "@/locales/en.json";
+import nlJson from "@/locales/nl.json";
 import plJson from "@/locales/pl.json";
 import roJson from "@/locales/ro.json";
 import ptJson from "@/locales/pt.json";
@@ -98,6 +100,7 @@ import bgJson from "@/locales/bg.json";
 
 const LOCALE_DATA: Record<Locale, Translations> = {
   en: enJson as unknown as Translations,
+  nl: nlJson as unknown as Translations,
   pl: plJson as unknown as Translations,
   ro: roJson as unknown as Translations,
   pt: ptJson as unknown as Translations,
@@ -151,6 +154,7 @@ export function localePath(locale: Locale, path: string): string {
 /**
  * Strips the locale prefix from a path.
  * "/pl/praca-z-zakwaterowaniem" → "/praca-z-zakwaterowaniem"
+ * "/nl/vacatures" → "/vacatures"
  */
 export function stripLocalePrefix(path: string): { locale: Locale; rest: string } {
   for (const loc of SUPPORTED_LOCALES) {

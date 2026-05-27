@@ -13,6 +13,7 @@ import { useT, type Locale } from "@/lib/i18n";
 // ensures the Navbar is correct even during client-side navigation.
 function detectLocale(pathname: string, localeProp: Locale): Locale {
   if (localeProp !== "en") return localeProp;
+  if (pathname === "/nl" || pathname.startsWith("/nl/")) return "nl";
   if (pathname === "/pl" || pathname.startsWith("/pl/")) return "pl";
   if (pathname === "/ro" || pathname.startsWith("/ro/")) return "ro";
   if (pathname === "/pt" || pathname.startsWith("/pt/")) return "pt";
@@ -37,12 +38,14 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
 
   // ─── Locale-aware nav items (translated via useT) ──────────────────────────
   const housingHref =
+    locale === "nl" ? "/nl/werk-met-huisvesting" :
     locale === "pl" ? "/pl/praca-z-zakwaterowaniem" :
     locale === "ro" ? "/ro/locuri-de-munca-cu-cazare" :
     locale === "pt" ? "/pt/trabalho-com-alojamento" :
     "/jobs-with-accommodation";
 
   const hiringHref =
+    locale === "nl" ? "/nl/vacatures" :
     locale === "pl" ? "/pl/oferty-pracy" :
     locale === "ro" ? "/ro/oferte-de-munca" :
     "/apply";
@@ -67,7 +70,7 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
                Motto is inset exactly to that x-position so it sits under "Agency" */}
           <div className="flex flex-col justify-center shrink-0 md:w-52 w-auto gap-[3px]">
             <Logo
-              href={locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : locale === "pt" ? "/pt" : "/"}
+              href={locale === "nl" ? "/nl" : locale === "pl" ? "/pl" : locale === "ro" ? "/ro" : locale === "pt" ? "/pt" : "/"}
               size="sm"
             />
             <span
@@ -199,7 +202,7 @@ export default function Navbar({ locale: localeProp = "en" }: NavbarProps) {
             })}
             {/* Language switcher in mobile menu */}
             <div className="px-3 pt-3 border-t border-gray-100 mt-1 pb-1">
-              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Language / Język / Limbă</p>
+              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Language / Taal / Język / Limbă</p>
               <LanguageSwitcher currentLocale={locale} />
             </div>
           </div>

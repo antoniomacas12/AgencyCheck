@@ -918,5 +918,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority:        0.8,
     })),
+    // ── Dutch landing + job pages (/nl) ───────────────────────────────────────
+    { url: `${BASE_URL}/nl`,          lastModified: TODAY, changeFrequency: "weekly"   as const, priority: 0.9 },
+    { url: `${BASE_URL}/nl/vacatures`, lastModified: TODAY, changeFrequency: "daily"   as const, priority: 0.9 },
+    ...VACANCIES.map((v) => ({
+      url:             `${BASE_URL}/nl/vacatures/${v.slug}`,
+      lastModified:    TODAY,
+      changeFrequency: "monthly" as const,
+      priority:        0.8,
+    })),
   ];
 }

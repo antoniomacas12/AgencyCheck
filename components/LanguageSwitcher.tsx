@@ -28,6 +28,7 @@ interface Props {
 // Maps locale → root path
 const LOCALE_ROOT_PATHS: Record<Locale, string> = {
   en: "/",
+  nl: "/nl",
   pl: "/pl",
   ro: "/ro",
   pt: "/pt",
@@ -38,9 +39,10 @@ const LOCALE_ROOT_PATHS: Record<Locale, string> = {
 // The cookie name must match middleware.ts
 const LOCALE_COOKIE = "ac_locale";
 
-/** True when the current path lives under a locale prefix (/pl/…, /ro/…, /pt/…, /sk/…, /bg/…) */
+/** True when the current path lives under a locale prefix (/nl/…, /pl/…, /ro/…, /pt/…, /sk/…, /bg/…) */
 function isLocalePrefixedPath(pathname: string): boolean {
-  return pathname === "/pl" || pathname.startsWith("/pl/") ||
+  return pathname === "/nl" || pathname.startsWith("/nl/") ||
+         pathname === "/pl" || pathname.startsWith("/pl/") ||
          pathname === "/ro" || pathname.startsWith("/ro/") ||
          pathname === "/pt" || pathname.startsWith("/pt/") ||
          pathname === "/sk" || pathname.startsWith("/sk/") ||
@@ -49,7 +51,7 @@ function isLocalePrefixedPath(pathname: string): boolean {
 
 /** Strip the locale prefix from a path (returns "/" if nothing left) */
 function stripLocalePrefix(pathname: string): string {
-  const stripped = pathname.replace(/^\/(pl|ro|pt|sk|bg)(\/|$)/, "/");
+  const stripped = pathname.replace(/^\/(nl|pl|ro|pt|sk|bg)(\/|$)/, "/");
   return stripped || "/";
 }
 
@@ -152,7 +154,7 @@ export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
           })}
           <div className="border-t border-gray-100 px-4 py-2 bg-gray-50">
             <p className="text-[9px] text-gray-400 leading-snug">
-              Content in EN/PL/RO/PT/SK/BG
+              EN · NL · PL · RO · PT · SK · BG
             </p>
           </div>
         </div>

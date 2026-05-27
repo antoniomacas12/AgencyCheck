@@ -19,6 +19,7 @@ const LOCALE_HEADER  = "x-ac-locale";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
 
 function pathToLocale(pathname: string): Locale {
+  if (pathname === "/nl" || pathname.startsWith("/nl/")) return "nl";
   if (pathname === "/pl" || pathname.startsWith("/pl/")) return "pl";
   if (pathname === "/ro" || pathname.startsWith("/ro/")) return "ro";
   if (pathname === "/pt" || pathname.startsWith("/pt/")) return "pt";
@@ -52,7 +53,7 @@ export function middleware(request: NextRequest) {
 
   // If the URL has no locale prefix, fall back to the cookie so that English-URL
   // pages (/agencies, /jobs, etc.) still render in the user's chosen language.
-  if (locale === "en" && (cookieLocale === "pl" || cookieLocale === "ro" || cookieLocale === "pt" || cookieLocale === "sk" || cookieLocale === "bg")) {
+  if (locale === "en" && (cookieLocale === "nl" || cookieLocale === "pl" || cookieLocale === "ro" || cookieLocale === "pt" || cookieLocale === "sk" || cookieLocale === "bg")) {
     locale = cookieLocale;
   }
 

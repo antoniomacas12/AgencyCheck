@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal }        from "react-dom";
+import { useT, type Locale }   from "@/lib/i18n";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface Props {
@@ -205,6 +206,8 @@ export default function ApplyPreScreen({
   const [mounted, setMounted] = useState(false);
   // Geo gate — null = unknown (fail-open), false = non-EU blocked
   const [isEU,    setIsEU]    = useState<boolean | null>(null);
+  // Locale — read from ac_locale cookie so UI matches the user's language
+  const [locale,  setLocale]  = useState<Locale>("en");
 
   useEffect(() => {
     setMounted(true);
@@ -213,7 +216,14 @@ export default function ApplyPreScreen({
       .then((r) => r.json())
       .then((d: { isEU: boolean }) => setIsEU(d.isEU))
       .catch(() => setIsEU(null)); // fail-open on network error
+    // Read locale from cookie — fail-open to English
+    try {
+      const match = document.cookie.match(/(?:^|;\s*)ac_locale=([^;]+)/);
+      if (match?.[1]) setLocale(match[1] as Locale);
+    } catch { /* non-blocking */ }
   }, []);
+
+  const t = useT(locale);
 
   // ── Form state ────────────────────────────────────────────────────────────
   const [bsn,      setBsn]      = useState<BSN | null>(null);
@@ -371,7 +381,7 @@ export default function ApplyPreScreen({
           <div className="mb-5">
             <div className="flex items-center justify-between gap-2 mb-1">
               <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 shrink-0">
-                Step {step} of 3 · Application
+                {t("apply_screen.step_label").replace("{step}", String(step))}
               </p>
               <button
                 onClick={handleClose}
@@ -395,7 +405,7 @@ export default function ApplyPreScreen({
         {/* ── SCREEN: gate — EU citizenship ──────────────────────────────── */}
         {screen === "gate" && (
           <>
-            <Question label="Are you an EU citizen?">
+            <Question label={t("apply_screen.question_eu")}>
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
@@ -407,7 +417,7 @@ export default function ApplyPreScreen({
                     transition-all duration-150
                   "
                 >
-                  ✅ Yes
+                  ✅ {t("apply_screen.bsn_yes")}
                 </button>
                 <button
                   type="button"
@@ -419,12 +429,12 @@ export default function ApplyPreScreen({
                     transition-all duration-150
                   "
                 >
-                  ❌ No
+                  ❌ {t("apply_screen.bsn_no")}
                 </button>
               </div>
             </Question>
             <p className="text-center text-gray-600 text-[11px] mt-1">
-              EU citizenship required for most positions
+              {t("apply_screen.eu_note")}
             </p>
           </>
         )}
@@ -433,14 +443,14 @@ export default function ApplyPreScreen({
         {screen === "disqualified" && (
           <div className="py-2">
             <p className="text-[11px] font-black uppercase tracking-widest text-red-400 mb-4">
-              Not eligible
+              {t("apply_screen.disqualified_label")}
             </p>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 mb-5">
               <p className="text-white font-semibold text-[15px] leading-snug mb-2">
-                Thank you for your interest.
+                {t("apply_screen.disqualified_title")}
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
-                Our current job offers are mainly available for EU citizens. We are unable to process your application at this time, but we may have more options in the future.
+                {t("apply_screen.disqualified_body")}
               </p>
             </div>
             <button
@@ -451,7 +461,7 @@ export default function ApplyPreScreen({
                 hover:bg-white/5 transition
               "
             >
-              Close
+              {t("apply_screen.btn_close")}
             </button>
           </div>
         )}
@@ -460,14 +470,14 @@ export default function ApplyPreScreen({
         {screen === "geo_blocked" && (
           <div className="py-2">
             <p className="text-[11px] font-black uppercase tracking-widest text-orange-400 mb-4">
-              Applications unavailable
+              {t("apply_screen.geo_blocked_label")}
             </p>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 mb-5">
               <p className="text-white font-semibold text-[15px] leading-snug mb-2">
-                Applications are open for EU residents only.
+                {t("apply_screen.geo_blocked_title")}
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
-                Our positions require candidates to be based in the European Union. You can still browse all job listings and agency reviews on our platform.
+                {t("apply_screen.geo_blocked_body")}
               </p>
             </div>
             <button
@@ -478,7 +488,7 @@ export default function ApplyPreScreen({
                 hover:bg-white/5 transition
               "
             >
-              Close
+              {t("apply_screen.btn_close")}
             </button>
           </div>
         )}
@@ -487,14 +497,14 @@ export default function ApplyPreScreen({
         {screen === "already_applied" && (
           <div className="py-2">
             <p className="text-[11px] font-black uppercase tracking-widest text-yellow-400 mb-4">
-              Already applied today
+              {t("apply_screen.already_applied_label")}
             </p>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 mb-5">
               <p className="text-white font-semibold text-[15px] leading-snug mb-2">
-                You already applied today.
+                {t("apply_screen.already_applied_title")}
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
-                A recruiter will contact you if your profile matches. Please try again tomorrow if you haven&apos;t heard back.
+                {t("apply_screen.already_applied_body")}
               </p>
             </div>
             <button
@@ -505,7 +515,7 @@ export default function ApplyPreScreen({
                 hover:bg-white/5 transition
               "
             >
-              Close
+              {t("apply_screen.btn_close")}
             </button>
           </div>
         )}
@@ -514,14 +524,14 @@ export default function ApplyPreScreen({
         {screen === "bsn_blocked" && (
           <div className="py-2">
             <p className="text-[11px] font-black uppercase tracking-widest text-red-400 mb-4">
-              BSN required
+              {t("apply_screen.bsn_blocked_label")}
             </p>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 mb-5">
               <p className="text-white font-semibold text-[15px] leading-snug mb-2">
-                BSN number is required.
+                {t("apply_screen.bsn_blocked_title")}
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
-                Most current jobs require a BSN number or the possibility to obtain one. At the moment, we cannot forward your application to the recruiter.
+                {t("apply_screen.bsn_blocked_body")}
               </p>
             </div>
             <button
@@ -532,7 +542,7 @@ export default function ApplyPreScreen({
                 hover:bg-white/5 transition
               "
             >
-              Close
+              {t("apply_screen.btn_close")}
             </button>
           </div>
         )}
@@ -540,40 +550,40 @@ export default function ApplyPreScreen({
         {/* ── SCREEN: details_a — BSN, driving, housing, availability ─────── */}
         {screen === "details_a" && (
           <>
-            <Question label="Do you have a BSN number?" error={errors && !bsn}>
+            <Question label={t("apply_screen.question_bsn")} error={errors && !bsn}>
               <div className="grid grid-cols-3 gap-2">
-                <Opt label="Yes"     selected={bsn === "yes"}     onClick={() => setBsn("yes")} />
-                <Opt label="No"      selected={bsn === "no"}      onClick={() => setBsn("no")} />
-                <Opt label="Not yet" selected={bsn === "not_yet"} onClick={() => setBsn("not_yet")} />
+                <Opt label={t("apply_screen.bsn_yes")}     selected={bsn === "yes"}     onClick={() => setBsn("yes")} />
+                <Opt label={t("apply_screen.bsn_no")}      selected={bsn === "no"}      onClick={() => setBsn("no")} />
+                <Opt label={t("apply_screen.bsn_not_yet")} selected={bsn === "not_yet"} onClick={() => setBsn("not_yet")} />
               </div>
             </Question>
 
-            <Question label="Do you have a driving licence?" error={errors && !driving}>
+            <Question label={t("apply_screen.question_driving")} error={errors && !driving}>
               <div className="grid grid-cols-2 gap-2">
-                <Opt label="Yes" selected={driving === "yes"} onClick={() => setDriving("yes")} />
-                <Opt label="No"  selected={driving === "no"}  onClick={() => setDriving("no")} />
+                <Opt label={t("apply_screen.bsn_yes")} selected={driving === "yes"} onClick={() => setDriving("yes")} />
+                <Opt label={t("apply_screen.bsn_no")}  selected={driving === "no"}  onClick={() => setDriving("no")} />
               </div>
             </Question>
 
-            <Question label="Do you need accommodation / housing?" error={errors && !housing}>
+            <Question label={t("apply_screen.question_housing")} error={errors && !housing}>
               <div className="grid grid-cols-2 gap-2">
-                <Opt label="Yes" selected={housing === "yes"} onClick={() => setHousing("yes")} />
-                <Opt label="No"  selected={housing === "no"}  onClick={() => setHousing("no")} />
+                <Opt label={t("apply_screen.bsn_yes")} selected={housing === "yes"} onClick={() => setHousing("yes")} />
+                <Opt label={t("apply_screen.bsn_no")}  selected={housing === "no"}  onClick={() => setHousing("no")} />
               </div>
             </Question>
 
-            <Question label="Available from when?" error={errors && !avail}>
+            <Question label={t("apply_screen.question_avail")} error={errors && !avail}>
               <div className="grid grid-cols-2 gap-2">
-                <Opt label="Immediately"    selected={avail === "immediately"} onClick={() => setAvail("immediately")} />
-                <Opt label="Within 1 week"  selected={avail === "week1"}       onClick={() => setAvail("week1")} />
-                <Opt label="Within 2 weeks" selected={avail === "week2"}       onClick={() => setAvail("week2")} />
-                <Opt label="Later"          selected={avail === "later"}       onClick={() => setAvail("later")} />
+                <Opt label={t("apply_screen.avail_immediately")} selected={avail === "immediately"} onClick={() => setAvail("immediately")} />
+                <Opt label={t("apply_screen.avail_week1")}       selected={avail === "week1"}       onClick={() => setAvail("week1")} />
+                <Opt label={t("apply_screen.avail_week2")}       selected={avail === "week2"}       onClick={() => setAvail("week2")} />
+                <Opt label={t("apply_screen.avail_later")}       selected={avail === "later"}       onClick={() => setAvail("later")} />
               </div>
             </Question>
 
             {errors && (
               <p className="text-red-400 text-[11px] mb-3">
-                Please answer all questions to continue.
+                {t("apply_screen.error_all_required")}
               </p>
             )}
 
@@ -588,13 +598,13 @@ export default function ApplyPreScreen({
                 transition-all duration-150 mb-3
               "
             >
-              Continue →
+              {t("apply_screen.btn_continue")}
             </button>
             <button
               onClick={() => { setErrors(false); setScreen("gate"); }}
               className="w-full py-2 text-gray-600 text-[11px] hover:text-gray-400 transition"
             >
-              ← Back
+              {t("apply_screen.btn_back")}
             </button>
           </>
         )}
@@ -603,14 +613,14 @@ export default function ApplyPreScreen({
         {screen === "details_b" && (
           <>
             <Question
-              label="Current country / city"
+              label={t("apply_screen.question_location")}
               error={errors && location.trim().length < 2}
             >
               <input
                 type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                placeholder="e.g. Poland, Warsaw"
+                placeholder={t("apply_screen.location_placeholder")}
                 autoComplete="off"
                 className="
                   block w-full bg-white/5 border border-white/10 rounded-xl
@@ -622,14 +632,14 @@ export default function ApplyPreScreen({
             </Question>
 
             <Question
-              label="Phone number"
+              label={t("apply_screen.question_phone")}
               error={errors && !(phone.trim().length >= 7 && /^[+\d\s\-()]+$/.test(phone.trim()))}
             >
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="e.g. +48 123 456 789"
+                placeholder={t("apply_screen.phone_placeholder")}
                 autoComplete="tel"
                 inputMode="tel"
                 className="
@@ -640,36 +650,36 @@ export default function ApplyPreScreen({
                 "
               />
               <p className="text-gray-600 text-[11px] mt-1">
-                So the recruiter can reach you directly
+                {t("apply_screen.phone_hint")}
               </p>
             </Question>
 
-            <Question label="English level" error={errors && !english}>
+            <Question label={t("apply_screen.question_english")} error={errors && !english}>
               <div className="grid grid-cols-3 gap-2">
-                <Opt label="Basic"  selected={english === "basic"}  onClick={() => setEnglish("basic")} />
-                <Opt label="Good"   selected={english === "good"}   onClick={() => setEnglish("good")} />
-                <Opt label="Fluent" selected={english === "fluent"} onClick={() => setEnglish("fluent")} />
+                <Opt label={t("apply_screen.eng_basic")}  selected={english === "basic"}  onClick={() => setEnglish("basic")} />
+                <Opt label={t("apply_screen.eng_good")}   selected={english === "good"}   onClick={() => setEnglish("good")} />
+                <Opt label={t("apply_screen.eng_fluent")} selected={english === "fluent"} onClick={() => setEnglish("fluent")} />
               </div>
             </Question>
 
-            <Question label="Applying alone or with someone?" error={errors && !group}>
+            <Question label={t("apply_screen.question_group")} error={errors && !group}>
               <div className="grid grid-cols-3 gap-2">
-                <Opt label="Alone"        selected={group === "alone"}   onClick={() => setGroup("alone")} />
-                <Opt label="With partner" selected={group === "partner"} onClick={() => setGroup("partner")} />
-                <Opt label="With friend"  selected={group === "group"}   onClick={() => setGroup("group")} />
+                <Opt label={t("apply_screen.group_alone")}   selected={group === "alone"}   onClick={() => setGroup("alone")} />
+                <Opt label={t("apply_screen.group_partner")} selected={group === "partner"} onClick={() => setGroup("partner")} />
+                <Opt label={t("apply_screen.group_friend")}  selected={group === "group"}   onClick={() => setGroup("group")} />
               </div>
             </Question>
 
-            <Question label="Do you have a CV ready?" error={errors && !cv}>
+            <Question label={t("apply_screen.question_cv")} error={errors && !cv}>
               <div className="grid grid-cols-2 gap-2">
-                <Opt label="Yes" selected={cv === "yes"} onClick={() => setCv("yes")} />
-                <Opt label="No"  selected={cv === "no"}  onClick={() => setCv("no")} />
+                <Opt label={t("apply_screen.bsn_yes")} selected={cv === "yes"} onClick={() => setCv("yes")} />
+                <Opt label={t("apply_screen.bsn_no")}  selected={cv === "no"}  onClick={() => setCv("no")} />
               </div>
             </Question>
 
             {errors && (
               <p className="text-red-400 text-[11px] mb-3">
-                Please answer all questions to continue.
+                {t("apply_screen.error_all_required")}
               </p>
             )}
 
@@ -689,14 +699,14 @@ export default function ApplyPreScreen({
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
               </svg>
-              Apply via WhatsApp
+              {t("apply_screen.btn_apply_wa")}
             </button>
 
             <button
               onClick={() => { setErrors(false); setScreen("details_a"); }}
               className="w-full py-2 text-gray-600 text-[11px] hover:text-gray-400 transition"
             >
-              ← Back
+              {t("apply_screen.btn_back")}
             </button>
           </>
         )}
