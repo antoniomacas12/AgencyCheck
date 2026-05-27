@@ -92,7 +92,10 @@ export function middleware(request: NextRequest) {
     // Case B — first visit, no cookie; try Accept-Language detection.
     const acceptLanguage = request.headers.get("accept-language");
     const detected = detectLocaleFromHeader(acceptLanguage);
-    if (detected !== "en") {
+    // "nl" is excluded from auto-detection — the site's primary audience is
+    // foreign workers (PL/RO/PT/SK/BG) for whom English is the default.
+    // Dutch speakers can switch via the language switcher like any other locale.
+    if (detected !== "en" && detected !== "nl") {
       response.cookies.set(LOCALE_COOKIE, detected, cookieOptions);
     }
   }
