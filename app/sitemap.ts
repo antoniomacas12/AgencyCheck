@@ -909,5 +909,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // ── /bg and /sk landing pages (exist, self-canonical, previously missing from sitemap)
     { url: `${BASE_URL}/bg`, lastModified: STATIC_DATE, changeFrequency: "monthly" as const, priority: 0.8 },
     { url: `${BASE_URL}/sk`, lastModified: STATIC_DATE, changeFrequency: "monthly" as const, priority: 0.8 },
+    // ── Polish job pages (/pl/oferty-pracy/[slug]) — mirrors /apply/[slug] ──
+    // 95 Polish-language job pages targeting "praca Holandia" search traffic.
+    // Each page has its own Polish canonical + hreflang pointing to EN original.
+    ...VACANCIES.map((v) => ({
+      url:             `${BASE_URL}/pl/oferty-pracy/${v.slug}`,
+      lastModified:    TODAY,
+      changeFrequency: "monthly" as const,
+      priority:        0.8,
+    })),
   ];
 }
