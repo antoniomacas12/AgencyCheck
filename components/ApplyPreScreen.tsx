@@ -13,7 +13,7 @@ interface Props {
   children:      (openFn: () => void) => React.ReactNode;
 }
 
-type Screen = "gate" | "details_a" | "details_b" | "disqualified" | "geo_blocked" | "already_applied";
+type Screen = "gate" | "details_a" | "details_b" | "disqualified" | "geo_blocked" | "already_applied" | "bsn_blocked";
 type BSN    = "yes" | "no" | "not_yet";
 type Avail  = "immediately" | "week1" | "week2" | "later";
 type Eng    = "basic" | "good" | "fluent";
@@ -262,6 +262,14 @@ export default function ApplyPreScreen({
       setErrors(true);
       return;
     }
+    // BSN = No → blocked. Log for analytics, do NOT continue to WhatsApp.
+    if (bsn === "no") {
+      setErrors(false);
+      setScreen("bsn_blocked");
+      // Fire-and-forget analytics log — not a lead, never sent to recruiter
+      savePreQual({ isEuCitizen: true, hasBsn: false, jobId, jobTitle, source });
+      return;
+    }
     setErrors(false);
     setScreen("details_b");
   }
@@ -358,8 +366,8 @@ export default function ApplyPreScreen({
         {/* Handle bar */}
         <div className="w-10 h-1 rounded-full bg-white/20 mx-auto mb-4" />
 
-        {/* Header (hidden on disqualified / geo_blocked / already_applied screens) */}
-        {screen !== "disqualified" && screen !== "geo_blocked" && screen !== "already_applied" && (
+        {/* Header (hidden on terminal screens) */}
+        {screen !== "disqualified" && screen !== "geo_blocked" && screen !== "already_applied" && screen !== "bsn_blocked" && (
           <div className="mb-5">
             <div className="flex items-center justify-between gap-2 mb-1">
               <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400 shrink-0">
@@ -487,6 +495,33 @@ export default function ApplyPreScreen({
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
                 A recruiter will contact you if your profile matches. Please try again tomorrow if you haven&apos;t heard back.
+              </p>
+            </div>
+            <button
+              onClick={handleClose}
+              className="
+                w-full py-3.5 rounded-xl border border-white/10
+                text-gray-500 text-[13px] font-semibold
+                hover:bg-white/5 transition
+              "
+            >
+              Close
+            </button>
+          </div>
+        )}
+
+        {/* ── SCREEN: bsn_blocked — BSN = No ─────────────────────────────── */}
+        {screen === "bsn_blocked" && (
+          <div className="py-2">
+            <p className="text-[11px] font-black uppercase tracking-widest text-red-400 mb-4">
+              BSN required
+            </p>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-5 mb-5">
+              <p className="text-white font-semibold text-[15px] leading-snug mb-2">
+                BSN number is required.
+              </p>
+              <p className="text-gray-400 text-[13px] leading-relaxed">
+                Most current jobs require a BSN number or the possibility to obtain one. At the moment, we cannot forward your application to the recruiter.
               </p>
             </div>
             <button
