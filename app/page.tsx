@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     canonical: "https://agencycheck.io/",
     languages: {
       "en":        "https://agencycheck.io/",
+      "nl":        "https://agencycheck.io/nl",
       "pl":        "https://agencycheck.io/pl",
       "ro":        "https://agencycheck.io/ro",
       "x-default": "https://agencycheck.io/",

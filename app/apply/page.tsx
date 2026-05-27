@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://agencycheck.io/apply",
     languages: {
       "en":        "https://agencycheck.io/apply",
+      "nl":        "https://agencycheck.io/nl/vacatures",
       "pl":        "https://agencycheck.io/pl/oferty-pracy",
       "ro":        "https://agencycheck.io/ro/oferte-de-munca",
       "x-default": "https://agencycheck.io/apply",

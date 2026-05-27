@@ -63,7 +63,15 @@ export async function generateMetadata(
     return {
       title:       `${v.t} in ${v.l}${salStr} — Now Hiring | AgencyCheck`,
       description: buildDescription(v),
-      alternates:  { canonical: `https://agencycheck.io/apply/${v.slug}` },
+      alternates:  {
+        canonical: `https://agencycheck.io/apply/${v.slug}`,
+        languages: {
+          "en":        `https://agencycheck.io/apply/${v.slug}`,
+          "nl":        `https://agencycheck.io/nl/vacatures/${v.slug}`,
+          "pl":        `https://agencycheck.io/pl/oferty-pracy/${v.slug}`,
+          "x-default": `https://agencycheck.io/apply/${v.slug}`,
+        },
+      },
       openGraph: {
         title:       `${v.t} — Now Hiring in ${v.l}, ${countryName}`,
         description: buildDescription(v),

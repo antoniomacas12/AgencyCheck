@@ -88,9 +88,82 @@ export default async function NlHomepage() {
     sameAs: [`${BASE}/nl`],
   };
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type":    "WebSite",
+    name:       "AgencyCheck",
+    url:        `${BASE}/nl`,
+    inLanguage: "nl",
+    description: "Vergelijk uitzendbureaus in Nederland — reëele salarissen, reviews en huisvesting.",
+    potentialAction: {
+      "@type":       "SearchAction",
+      target:        `${BASE}/nl/vacatures?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type":    "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",      item: `${BASE}/nl` },
+      { "@type": "ListItem", position: 2, name: "Vacatures", item: `${BASE}/nl/vacatures` },
+    ],
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type":    "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name:    "Hoeveel houd ik netto over als werknemer via een uitzendbureau in Nederland?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Na aftrek van huisvesting (€95–€170/week), belasting, transport en verzekering houd je gemiddeld €243–€345 per week netto over van een brutoloon van €588 (WML 2026, 40 uur). Exacte bedragen verschillen per bureau.",
+        },
+      },
+      {
+        "@type": "Question",
+        name:    "Mag een uitzendbureau huisvestingskosten inhouden op mijn loon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ja, maar de SNF-norm stelt een maximum van €103/week (2026). Sommige bureaus rekenen meer via 'bijkomende kosten'. Controleer altijd je loonstrook en vergelijk bureaus op AgencyCheck.",
+        },
+      },
+      {
+        "@type": "Question",
+        name:    "Heb ik een BSN-nummer nodig om bij een uitzendbureau te werken?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ja, een BSN-nummer is verplicht voor loonbelasting en sociale premies in Nederland. Je kunt een BSN aanvragen bij de gemeente na aankomst. Sommige bureaus helpen hierbij.",
+        },
+      },
+      {
+        "@type": "Question",
+        name:    "Welke uitzendbureaus in Nederland bieden huisvesting aan?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `AgencyCheck vermeldt ${housingCount}+ uitzendbureaus in Nederland die huisvesting aanbieden. Vergelijk kosten, reviews en voorwaarden op de vacaturespagina.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name:    "Heb ik EU-burgerschap nodig om via AgencyCheck werk te vinden?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ja, de meeste vacatures op AgencyCheck zijn beschikbaar voor EU-burgers. Dit is vereist vanwege arbeidsregelgeving voor uitzendbureaus in Nederland.",
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <HomepageStickyBar />
 
       {/* ════════════════════════════════════════════════════════════
