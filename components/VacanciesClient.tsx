@@ -21,7 +21,10 @@ export default function VacanciesClient() {
   const [cat,       setCat]       = useState<"all" | Category>("all");
   const [minSal,    setMinSal]    = useState(0);
   const [badge,     setBadge]     = useState<"" | Badge>("");
-  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
+  // All categories start collapsed — user expands the one they want
+  const [collapsed, setCollapsed] = useState<Record<string, boolean>>(
+    () => Object.fromEntries(ALL_CATS.map((c) => [c, true]))
+  );
 
   function toggleCat(c: string) {
     setCollapsed((prev) => ({ ...prev, [c]: !prev[c] }));
