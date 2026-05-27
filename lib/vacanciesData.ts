@@ -3,7 +3,7 @@
 //   - /apply listing page (VacanciesClient)
 //   - /apply/[slug] individual job pages (SEO + JobPosting schema)
 
-export type Badge    = "acc" | "car" | "eng";
+export type Badge    = "acc" | "car" | "eng" | "vog";
 export type Category =
   | "technical"
   | "production"
@@ -14,14 +14,15 @@ export type Category =
   | "hospitality";
 
 export interface Vacancy {
-  slug: string;    // unique URL slug, e.g. "electrician-bodegraven"
-  t:    string;    // title
-  c:    Category;
-  s:    string;    // salary display string (e.g. "€550–€650/wk")
-  sm:   number;    // salary min for filtering (0 = not listed)
-  sx:   number;    // salary max for schema (0 = not listed)
-  l:    string;    // location
-  b:    Badge[];   // badges
+  slug:      string;    // unique URL slug, e.g. "electrician-bodegraven"
+  t:         string;    // title
+  c:         Category;
+  s:         string;    // salary display string (e.g. "€550–€650/wk")
+  sm:        number;    // salary min for filtering (0 = not listed)
+  sx:        number;    // salary max for schema (0 = not listed)
+  l:         string;    // location
+  b:         Badge[];   // badges
+  featured?: boolean;   // true = shown in "Direct Offer" section at top
 }
 
 export const CAT_LABELS: Record<Category, string> = {
@@ -48,9 +49,23 @@ export const BADGE_META: Record<Badge, { label: string; color: string }> = {
   eng: { label: "Language req.",       color: "text-blue-300 bg-blue-400/10 border-blue-400/20" },
   car: { label: "Own car required",    color: "text-purple-300 bg-purple-400/10 border-purple-400/20" },
   acc: { label: "Accommodation incl.", color: "text-emerald-300 bg-emerald-400/10 border-emerald-400/20" },
+  vog: { label: "Clean record (VOG)",  color: "text-amber-300 bg-amber-400/10 border-amber-400/20" },
 };
 
 export const VACANCIES: Vacancy[] = [
+  // ── Direct Offers — sent directly by recruiter ────────────────────────────
+  {
+    slug:     "pharmacy-warehouse-worker-sevenum",
+    t:        "Pharmacy Warehouse Worker",
+    c:        "warehouse",
+    s:        "€14.75/h gross",
+    sm:       590,
+    sx:       0,
+    l:        "Sevenum",
+    b:        ["vog"],
+    featured: true,
+  },
+
   // ── Technical & Construction ──────────────────────────────────────────────
   { slug: "electrician-bodegraven",              t: "Electrician",                                        c: "technical",   s: "€550–€650/wk",   sm: 550,  sx: 650,  l: "Bodegraven",                        b: [] },
   { slug: "construction-welder-mig-mag",         t: "Construction Welder (MIG/MAG)",                      c: "technical",   s: "€650/wk",        sm: 650,  sx: 650,  l: "Rotterdam area",                    b: [] },
