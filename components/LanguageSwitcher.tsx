@@ -57,10 +57,29 @@ function stripLocalePrefix(pathname: string): string {
 
 export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
   const [open, setOpen] = useState(false);
-  const pathname        = usePathname();
-  const ref             = useRef<HTMLDivElement>(null);
+  // actualLocale: the real active locale — URL prefix takes priority, then cookie.
+  // Starts with currentLocale (SSR-safe), updated from cookie after mount.
+  const [actualLocale, setActualLocale] = useState<Locale>(currentLocale);
+  const pathname = usePathname();
+  const ref      = useRef<HTMLDivElement>(null);
 
-  const current = LOCALE_LABELS[currentLocale];
+  // After hydration, read cookie so the switcher reflects the real active language
+  // on English-URL pages that are rendered in another locale via the cookie.
+  useEffect(() => {
+    if (currentLocale !== "en") {
+      // URL prefix is definitive — no need to check cookie
+      setActualLocale(currentLocale);
+      return;
+    }
+    try {
+      const match = document.cookie.match(/(?:^|;\s*)ac_locale=([^;]+)/);
+      const cookieLoc = match?.[1] as Locale | undefined;
+      if (cookieLoc && cookieLoc !== "en") setActualLocale(cookieLoc);
+      else setActualLocale("en");
+    } catch { /* non-blocking */ }
+  }, [currentLocale]);
+
+  const current = LOCALE_LABELS[actualLocale];
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -75,7 +94,7 @@ export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
 
   function switchLocale(locale: Locale) {
     setOpen(false);
-    if (locale === currentLocale) return;
+    if (locale === actualLocale) return;
 
     // 1. Persist choice in cookie (1 year)
     document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
@@ -129,7 +148,7 @@ export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
         >
           {SUPPORTED_LOCALES.map((locale) => {
             const info    = LOCALE_LABELS[locale];
-            const isActive = locale === currentLocale;
+            const isActive = locale === actualLocale;
             return (
               <button
                 key={locale}
