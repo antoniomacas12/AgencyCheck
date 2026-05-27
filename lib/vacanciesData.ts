@@ -130,6 +130,9 @@ export const VACANCIES: Vacancy[] = [
   { slug: "expedition-employee-night-shift",              t: "Expedition Employee (orders & loading, night shift)",       c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Netherlands",                       b: [] },
   { slug: "order-picker-cold-ridderkerk",               t: "Order Picker with Experience (cooled, approx. 5–7°C)",      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Ridderkerk",                        b: [] },
   { slug: "ept-driver-logistics-venray",                t: "EPT Driver / General Logistics Worker",                     c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Venray",                            b: [] },
+  { slug: "forklift-driver-ijmuiden",                      t: "Forklift Driver (with valid certificate)",                  c: "warehouse",   s: "€16.05/h gross", sm: 642,  sx: 0,    l: "IJmuiden",                          b: [] },
+  { slug: "forklift-driver-loader-tiel",                   t: "Forklift Driver / Loader / Wrapper",                        c: "warehouse",   s: "€15.29/h gross", sm: 611,  sx: 0,    l: "Tiel",                              b: [] },
+  { slug: "stable-cleaner-kootwijkerbroek",                t: "Stable Cleaner (with farm experience)",                     c: "food",        s: "€16.25/h gross", sm: 650,  sx: 0,    l: "Kootwijkerbroek",                   b: [] },
   { slug: "reach-truck-driver-certificate-amsterdam",     t: "Reach Truck Driver with Certificate",                       c: "driving",     s: "€15.35/h gross", sm: 614,  sx: 0,    l: "Amsterdam",                         b: [] },
   { slug: "order-picker-clean-record-amsterdam",          t: "Order Picker (clean criminal record)",                      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Amsterdam",                         b: [] },
   // ── Driving Jobs ─────────────────────────────────────────────────────────
@@ -262,6 +265,9 @@ const CITY_META: Record<string, AddressMeta> = {
   "Rhodes":                { streetAddress: "Rhodes Town",            addressLocality: "Rhodes",                 addressRegion: "South Aegean",   postalCode: "85100" },
   "Crete":                 { streetAddress: "Heraklion",              addressLocality: "Heraklion",              addressRegion: "Crete",          postalCode: "71201" },
   "Kos":                   { streetAddress: "Kos Town",               addressLocality: "Kos",                    addressRegion: "South Aegean",   postalCode: "85300" },
+  "IJmuiden":              { streetAddress: "IJmuiden",               addressLocality: "IJmuiden",               addressRegion: "Noord-Holland", postalCode: "1971" },
+  "Tiel":                  { streetAddress: "Tiel",                   addressLocality: "Tiel",                   addressRegion: "Gelderland",     postalCode: "4001" },
+  "Kootwijkerbroek":       { streetAddress: "Kootwijkerbroek",        addressLocality: "Kootwijkerbroek",        addressRegion: "Gelderland",     postalCode: "3774" },
   // ── Generic NL fallback ───────────────────────────────────────────────────────
   "Netherlands":           { streetAddress: "Amsterdam",              addressLocality: "Amsterdam",              addressRegion: "Noord-Holland", postalCode: "1011" },
 };
