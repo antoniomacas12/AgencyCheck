@@ -108,11 +108,15 @@ export const VACANCIES: Vacancy[] = [
   { slug: "assembly-mechanic-oisterwijk",        t: "Assembly Mechanic",                                  c: "production",  s: "€450–€550/wk",   sm: 450,  sx: 550,  l: "Oisterwijk",                        b: [] },
   { slug: "assembly-worker-son",                 t: "Assembly Worker (with experience)",                  c: "production",  s: "€16.83/h gross", sm: 673,  sx: 0,    l: "Son",                               b: [] },
   { slug: "production-packing-worker-nieuwegein",t: "Production & Packing Worker",                        c: "production",  s: "€16.43/h gross", sm: 657,  sx: 0,    l: "Nieuwegein",                        b: [] },
+  { slug: "nutrition-bar-packaging-worker",      t: "Nutrition Bar Packaging Worker",                     c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
+  { slug: "metalworker-production-netherlands",  t: "Metalworker (Production Employee)",                  c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
+  { slug: "flexible-production-employee",        t: "Flexible Production Employee",                       c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
   // ── Warehouse & Logistics ─────────────────────────────────────────────────
   { slug: "warehouse-worker-waalwijk",                    t: "Warehouse Worker",                                          c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Waalwijk",                          b: [] },
   { slug: "warehouse-employee-ept-grubbenvorst",          t: "Warehouse Employee (EPT, cold environment)",                c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Grubbenvorst",                      b: [] },
   { slug: "deepfreeze-warehouse-sligro",                  t: "Deepfreeze Warehouse Worker (Sligro)",                      c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Veghel",                            b: [] },
   { slug: "allround-warehouse-eindhoven",                 t: "All-round Warehouse Employee (Live interview needed)",      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Helmond / Deurne / Eindhoven",      b: [] },
+  { slug: "flexible-warehouse-worker-netherlands",        t: "Flexible Warehouse Worker (with experience)",               c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
   // ── Warehouse & Logistics — poster import 19/05/2026 ─────────────────────
   { slug: "order-picker-ept-driver-food-freezer-waalwijk",t: "Order Picker / EPT Driver (food freezer)",                  c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Waalwijk",                          b: [] },
   { slug: "warehouse-worker-amsterdam-tilburg-den-bosch", t: "Warehouse Worker",                                          c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Amsterdam, Tilburg, Den Bosch",     b: [] },
@@ -158,6 +162,7 @@ export const VACANCIES: Vacancy[] = [
   { slug: "meat-factory-worker-haarlem",         t: "Meat Factory Production Worker & Cleaner",           c: "food",        s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Haarlem",                           b: [] },
   { slug: "wooden-packaging-worker",             t: "Wooden Packaging Production Worker",                 c: "food",        s: "€400–€500/wk",   sm: 400,  sx: 500,  l: "Nieuw-Bergen",                      b: [] },
   { slug: "poultry-hanger-goor",                 t: "Poultry Hanger",                                     c: "food",        s: "€320–€370/wk",   sm: 320,  sx: 370,  l: "Goor",                              b: [] },
+  { slug: "poultry-hanger-belgium",              t: "Poultry Hanger (with experience)",                   c: "food",        s: "—",              sm: 0,    sx: 0,    l: "Belgium",                           b: [] },
   { slug: "cookie-factory-workers-harderwijk",   t: "Cookie Factory Worker",                              c: "food",        s: "€16.47/h gross", sm: 658,  sx: 0,    l: "Harderwijk",                        b: [] },
   { slug: "production-employee-seafood-tholen",  t: "Production Employee (Seafood)",                      c: "food",        s: "€15.00/h gross", sm: 600,  sx: 0,    l: "Tholen",                            b: [] },
   { slug: "seafood-filleting-yerseke",           t: "Seafood Filleting Employee (filleting knife exp.)",   c: "food",        s: "€15.50/h gross", sm: 620,  sx: 0,    l: "Yerseke",                           b: [] },
@@ -180,7 +185,7 @@ export function getVacancyBySlug(slug: string): Vacancy | undefined {
 
 /** Derive addressCountry from location string */
 export function getCountry(location: string): string {
-  if (location.includes("Antwerp")) return "BE";
+  if (location.includes("Antwerp") || location.includes("Belgium")) return "BE";
   if (location.includes("Rhodes") || location.includes("Crete") || location.includes("Kos")) return "GR";
   return "NL";
 }
@@ -262,6 +267,7 @@ const CITY_META: Record<string, AddressMeta> = {
   "Den Bosch":             { streetAddress: "Den Bosch",              addressLocality: "'s-Hertogenbosch",       addressRegion: "Noord-Brabant", postalCode: "5211" },
   // ── Belgium ───────────────────────────────────────────────────────────────────
   "Antwerp":               { streetAddress: "Antwerp",                addressLocality: "Antwerp",                addressRegion: "Antwerpen",      postalCode: "2000" },
+  "Belgium":               { streetAddress: "Brussels",               addressLocality: "Brussels",               addressRegion: "Brussels",       postalCode: "1000" },
   // ── Greece ────────────────────────────────────────────────────────────────────
   "Rhodes":                { streetAddress: "Rhodes Town",            addressLocality: "Rhodes",                 addressRegion: "South Aegean",   postalCode: "85100" },
   "Crete":                 { streetAddress: "Heraklion",              addressLocality: "Heraklion",              addressRegion: "Crete",          postalCode: "71201" },
