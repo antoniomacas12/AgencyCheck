@@ -84,6 +84,7 @@ export const VACANCIES: Vacancy[] = [
   { slug: "mag-welder-assembler-akersloot",      t: "MAG Welder / Assembler",                             c: "technical",   s: "€640/wk",        sm: 640,  sx: 640,  l: "Akersloot",                         b: [] },
   { slug: "junior-construction-plumber",         t: "Junior Construction Plumber",                        c: "technical",   s: "€535–€575/wk",   sm: 535,  sx: 575,  l: "Rotterdam area",                    b: [] },
   { slug: "plumber-amsterdam",                   t: "Plumber",                                            c: "technical",   s: "€560–€660/wk",   sm: 560,  sx: 660,  l: "Amsterdam",                         b: [] },
+  { slug: "plumber-netherlands",                 t: "Plumber",                                            c: "technical",   s: "€620–€650/wk",   sm: 620,  sx: 650,  l: "Netherlands",                       b: [] },
   { slug: "tiler-hardenberg",                    t: "Tiler",                                              c: "technical",   s: "€560–€660/wk",   sm: 560,  sx: 660,  l: "Hardenberg",                        b: [] },
   { slug: "prefab-wood-construction-worker",     t: "Prefab Wood Construction Worker",                    c: "technical",   s: "€490–€530/wk",   sm: 490,  sx: 530,  l: "Uden",                              b: [] },
   { slug: "pvc-window-fitter",                   t: "PVC Window Fitter",                                  c: "technical",   s: "€535/wk",        sm: 535,  sx: 535,  l: "Posterholt / Purmerend",             b: ["car"] },
