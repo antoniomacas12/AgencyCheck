@@ -20,17 +20,9 @@ type Avail  = "immediately" | "week1" | "week2" | "later";
 type Eng    = "basic" | "good" | "fluent";
 type Group  = "alone" | "partner" | "group";
 
-// ─── EU countries list ────────────────────────────────────────────────────────
-const EU_COUNTRIES = [
-  "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus",
-  "Czech Republic", "Denmark", "Estonia", "Finland", "France",
-  "Germany", "Greece", "Hungary", "Ireland", "Italy",
-  "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands",
-  "Poland", "Portugal", "Romania", "Slovakia", "Slovenia",
-  "Spain", "Sweden",
-] as const;
-
-type EUCountry = typeof EU_COUNTRIES[number];
+// Citizenship is stored as a free-text string (e.g. "Poland", "Romania").
+// Using string rather than a locked-down union so the input is flexible.
+type EUCountry = string;
 
 // ─── URL builders ──────────────────────────────────────────────────────────────
 function buildRedirectUrl(
@@ -91,7 +83,7 @@ function buildCandidateMsg(
     `Hi, I want to apply for: ${jobTitle}${srcTag}`,
     ``,
     `Candidate details:`,
-    `- EU citizenship: ${citizenship} (EU)`,
+    `- EU citizenship: ${citizenship.trim()} (EU)`,
     `- BSN: ${bsnLabel[bsn]}`,
     `- Driving licence: ${driving === "yes" ? "Yes" : "No"}`,
     `- Housing needed: ${housing === "yes" ? "Yes" : "No"}`,
@@ -273,7 +265,7 @@ export default function ApplyPreScreen({
   function handleClose() { setOpen(false); }
 
   function handleEuContinue() {
-    if (!citizenship) {
+    if (citizenship === null || citizenship.trim().length < 2) {
       setErrors(true);
       return;
     }
@@ -442,70 +434,87 @@ export default function ApplyPreScreen({
           </div>
         )}
 
-        {/* ── SCREEN: gate — EU citizenship country selector ─────────────── */}
+        {/* ── SCREEN: gate — EU citizenship ──────────────────────────────── */}
         {screen === "gate" && (
           <>
-            <Question
-              label={t("apply_screen.question_eu")}
-              error={errors && !citizenship}
-            >
-              <select
-                value={citizenship ?? ""}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  setCitizenship(val ? (val as EUCountry) : null);
-                  setErrors(false);
-                }}
-                className={`
-                  block w-full bg-white/5 border rounded-xl
-                  px-4 py-3 text-[14px] font-semibold
-                  focus:outline-none transition-colors
-                  appearance-none
-                  ${citizenship
-                    ? "border-emerald-400/50 text-emerald-300"
-                    : errors
-                      ? "border-red-400/50 text-gray-500"
-                      : "border-white/10 text-gray-500"}
-                `}
-                style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center", backgroundSize: "16px" }}
-              >
-                <option value="" disabled>— Select your EU country —</option>
-                {EU_COUNTRIES.map((c) => (
-                  <option key={c} value={c} style={{ background: "#0f2318", color: "#fff" }}>{c}</option>
-                ))}
-              </select>
+            <Question label="Are you an EU citizen?">
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => { setCitizenship("" as EUCountry); setErrors(false); }}
+                  className={`
+                    py-3.5 rounded-xl border text-[14px] font-bold
+                    transition-all duration-150
+                    ${citizenship !== null
+                      ? "border-emerald-400 bg-emerald-400/15 text-emerald-300"
+                      : "border-white/10 bg-white/5 text-gray-400 hover:border-emerald-400/50 hover:bg-emerald-400/10 hover:text-emerald-300"}
+                  `}
+                >
+                  ✅ Yes
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setScreen("disqualified")}
+                  className="
+                    py-3.5 rounded-xl border border-white/10 bg-white/5
+                    text-gray-400 text-[14px] font-bold
+                    hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-300
+                    transition-all duration-150
+                  "
+                >
+                  ❌ No
+                </button>
+              </div>
             </Question>
 
-            {errors && !citizenship && (
-              <p className="text-red-400 text-[11px] mb-3 -mt-2">
-                Please select your country of citizenship to continue.
-              </p>
+            {/* Country input — shown only after clicking Yes */}
+            {citizenship !== null && (
+              <Question
+                label="Which EU country are you from?"
+                error={errors && citizenship.trim().length < 2}
+              >
+                <input
+                  type="text"
+                  value={citizenship}
+                  onChange={(e) => setCitizenship(e.target.value as EUCountry)}
+                  placeholder="e.g. Poland, Romania, Bulgaria..."
+                  autoComplete="off"
+                  autoFocus
+                  className={`
+                    block w-full bg-white/5 border rounded-xl
+                    px-4 py-3 text-white text-[14px] placeholder-gray-600
+                    focus:outline-none transition-colors min-w-0
+                    ${citizenship.trim().length >= 2
+                      ? "border-emerald-400/50"
+                      : errors
+                        ? "border-red-400/50"
+                        : "border-white/10 focus:border-emerald-400/50"}
+                  `}
+                />
+              </Question>
             )}
 
             <button
               type="button"
               onClick={handleEuContinue}
+              disabled={citizenship === null || citizenship.trim().length < 2}
               className={`
                 w-full py-3.5 rounded-xl text-[14px] font-bold
                 transition-all duration-150 mb-3
-                ${citizenship
-                  ? "border border-emerald-400/50 bg-emerald-400/10 text-emerald-300 hover:bg-emerald-400/20"
+                ${citizenship !== null && citizenship.trim().length >= 2
+                  ? "bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white shadow-lg shadow-green-900/30 cursor-pointer"
                   : "border border-white/10 bg-white/5 text-gray-500 cursor-not-allowed"}
               `}
             >
-              {citizenship ? `Continue as ${citizenship} citizen →` : "Select your country to continue"}
+              {citizenship !== null && citizenship.trim().length >= 2
+                ? `Continue as EU citizen (${citizenship.trim()}) →`
+                : citizenship !== null
+                  ? "Enter your country to continue"
+                  : "Confirm EU citizenship to continue"}
             </button>
 
-            <button
-              type="button"
-              onClick={() => setScreen("disqualified")}
-              className="w-full text-center text-gray-600 text-[11px] hover:text-gray-400 transition py-1"
-            >
-              I am not an EU citizen
-            </button>
-
-            <p className="text-center text-gray-600 text-[11px] mt-2">
-              {t("apply_screen.eu_note")}
+            <p className="text-center text-gray-600 text-[11px] mt-1">
+              EU citizenship required for all positions
             </p>
           </>
         )}
