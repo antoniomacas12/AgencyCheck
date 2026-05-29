@@ -485,6 +485,45 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "monthly",
       priority:         0.6,
     },
+    // ── Country-origin landing pages (new SEO) ────────────────────────────────
+    {
+      url:              `${BASE_URL}/work-netherlands-from-poland`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/work-netherlands-from-romania`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/work-netherlands-from-bulgaria`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "monthly",
+      priority:         0.9,
+    },
+    // ── Job-type guides (new SEO) ─────────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/what-is-order-picking`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    {
+      url:              `${BASE_URL}/what-is-production-work-netherlands`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
+    // ── After-apply guide (funnel SEO) ────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/after-you-apply`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "monthly",
+      priority:         0.85,
+    },
     // ── Polish SEO content pages ──────────────────────────────────────────────
     {
       url:              `${BASE_URL}/pl`,
