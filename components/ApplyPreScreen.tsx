@@ -20,6 +20,18 @@ type Avail  = "immediately" | "week1" | "week2" | "later";
 type Eng    = "basic" | "good" | "fluent";
 type Group  = "alone" | "partner" | "group";
 
+// ─── EU countries list ────────────────────────────────────────────────────────
+const EU_COUNTRIES = [
+  "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus",
+  "Czech Republic", "Denmark", "Estonia", "Finland", "France",
+  "Germany", "Greece", "Hungary", "Ireland", "Italy",
+  "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands",
+  "Poland", "Portugal", "Romania", "Slovakia", "Slovenia",
+  "Spain", "Sweden",
+] as const;
+
+type EUCountry = typeof EU_COUNTRIES[number];
+
 // ─── URL builders ──────────────────────────────────────────────────────────────
 function buildRedirectUrl(
   jobId?:     string,
@@ -38,17 +50,18 @@ function buildRedirectUrl(
 // ─── WhatsApp message builder ─────────────────────────────────────────────────
 // Builds the full pre-filled candidate message that appears in WhatsApp.
 function buildCandidateMsg(
-  jobTitle: string,
-  source:   string | undefined,
-  bsn:      BSN,
-  driving:  "yes" | "no",
-  housing:  "yes" | "no",
-  avail:    Avail,
-  location: string,
-  phone:    string,
-  english:  Eng,
-  group:    Group,
-  cv:       "yes" | "no",
+  jobTitle:    string,
+  source:      string | undefined,
+  citizenship: EUCountry,
+  bsn:         BSN,
+  driving:     "yes" | "no",
+  housing:     "yes" | "no",
+  avail:       Avail,
+  location:    string,
+  phone:       string,
+  english:     Eng,
+  group:       Group,
+  cv:          "yes" | "no",
 ): string {
   const bsnLabel: Record<BSN, string> = {
     yes:     "Yes",
@@ -78,7 +91,7 @@ function buildCandidateMsg(
     `Hi, I want to apply for: ${jobTitle}${srcTag}`,
     ``,
     `Candidate details:`,
-    `- EU citizenship: Yes`,
+    `- EU citizenship: ${citizenship} (EU)`,
     `- BSN: ${bsnLabel[bsn]}`,
     `- Driving licence: ${driving === "yes" ? "Yes" : "No"}`,
     `- Housing needed: ${housing === "yes" ? "Yes" : "No"}`,
@@ -226,15 +239,16 @@ export default function ApplyPreScreen({
   const t = useT(locale);
 
   // ── Form state ────────────────────────────────────────────────────────────
-  const [bsn,      setBsn]      = useState<BSN | null>(null);
-  const [driving,  setDriving]  = useState<"yes" | "no" | null>(null);
-  const [housing,  setHousing]  = useState<"yes" | "no" | null>(null);
-  const [avail,    setAvail]    = useState<Avail | null>(null);
-  const [location, setLocation] = useState("");
-  const [phone,    setPhone]    = useState("");
-  const [english,  setEnglish]  = useState<Eng | null>(null);
-  const [group,    setGroup]    = useState<Group | null>(null);
-  const [cv,       setCv]       = useState<"yes" | "no" | null>(null);
+  const [citizenship, setCitizenship] = useState<EUCountry | null>(null);
+  const [bsn,         setBsn]         = useState<BSN | null>(null);
+  const [driving,     setDriving]     = useState<"yes" | "no" | null>(null);
+  const [housing,     setHousing]     = useState<"yes" | "no" | null>(null);
+  const [avail,       setAvail]       = useState<Avail | null>(null);
+  const [location,    setLocation]    = useState("");
+  const [phone,       setPhone]       = useState("");
+  const [english,     setEnglish]     = useState<Eng | null>(null);
+  const [group,       setGroup]       = useState<Group | null>(null);
+  const [cv,          setCv]          = useState<"yes" | "no" | null>(null);
 
   // ── Handlers ──────────────────────────────────────────────────────────────
   function handleOpen() {
@@ -249,6 +263,7 @@ export default function ApplyPreScreen({
     setOpen(true);
     setScreen("gate");
     setErrors(false);
+    setCitizenship(null);
     setBsn(null);
     setDriving(null);
     setHousing(null);
@@ -262,7 +277,11 @@ export default function ApplyPreScreen({
 
   function handleClose() { setOpen(false); }
 
-  function handleEuYes() {
+  function handleEuContinue() {
+    if (!citizenship) {
+      setErrors(true);
+      return;
+    }
     setErrors(false);
     setScreen("details_a");
   }
@@ -303,7 +322,7 @@ export default function ApplyPreScreen({
 
     const msg = buildCandidateMsg(
       jobTitle, source,
-      bsn!, driving!, housing!, avail!,
+      citizenship!, bsn!, driving!, housing!, avail!,
       location.trim(), phoneClean, english!, group!, cv!,
     );
 
@@ -423,38 +442,69 @@ export default function ApplyPreScreen({
           </div>
         )}
 
-        {/* ── SCREEN: gate — EU citizenship ──────────────────────────────── */}
+        {/* ── SCREEN: gate — EU citizenship country selector ─────────────── */}
         {screen === "gate" && (
           <>
-            <Question label={t("apply_screen.question_eu")}>
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={handleEuYes}
-                  className="
-                    py-3.5 rounded-xl border border-white/10 bg-white/5
-                    text-gray-400 text-[14px] font-bold
-                    hover:border-emerald-400/50 hover:bg-emerald-400/10 hover:text-emerald-300
-                    transition-all duration-150
-                  "
-                >
-                  ✅ {t("apply_screen.bsn_yes")}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setScreen("disqualified")}
-                  className="
-                    py-3.5 rounded-xl border border-white/10 bg-white/5
-                    text-gray-400 text-[14px] font-bold
-                    hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-300
-                    transition-all duration-150
-                  "
-                >
-                  ❌ {t("apply_screen.bsn_no")}
-                </button>
-              </div>
+            <Question
+              label={t("apply_screen.question_eu")}
+              error={errors && !citizenship}
+            >
+              <select
+                value={citizenship ?? ""}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setCitizenship(val ? (val as EUCountry) : null);
+                  setErrors(false);
+                }}
+                className={`
+                  block w-full bg-white/5 border rounded-xl
+                  px-4 py-3 text-[14px] font-semibold
+                  focus:outline-none transition-colors
+                  appearance-none
+                  ${citizenship
+                    ? "border-emerald-400/50 text-emerald-300"
+                    : errors
+                      ? "border-red-400/50 text-gray-500"
+                      : "border-white/10 text-gray-500"}
+                `}
+                style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center", backgroundSize: "16px" }}
+              >
+                <option value="" disabled>— Select your EU country —</option>
+                {EU_COUNTRIES.map((c) => (
+                  <option key={c} value={c} style={{ background: "#0f2318", color: "#fff" }}>{c}</option>
+                ))}
+              </select>
             </Question>
-            <p className="text-center text-gray-600 text-[11px] mt-1">
+
+            {errors && !citizenship && (
+              <p className="text-red-400 text-[11px] mb-3 -mt-2">
+                Please select your country of citizenship to continue.
+              </p>
+            )}
+
+            <button
+              type="button"
+              onClick={handleEuContinue}
+              className={`
+                w-full py-3.5 rounded-xl text-[14px] font-bold
+                transition-all duration-150 mb-3
+                ${citizenship
+                  ? "border border-emerald-400/50 bg-emerald-400/10 text-emerald-300 hover:bg-emerald-400/20"
+                  : "border border-white/10 bg-white/5 text-gray-500 cursor-not-allowed"}
+              `}
+            >
+              {citizenship ? `Continue as ${citizenship} citizen →` : "Select your country to continue"}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setScreen("disqualified")}
+              className="w-full text-center text-gray-600 text-[11px] hover:text-gray-400 transition py-1"
+            >
+              I am not an EU citizen
+            </button>
+
+            <p className="text-center text-gray-600 text-[11px] mt-2">
               {t("apply_screen.eu_note")}
             </p>
           </>
@@ -622,7 +672,7 @@ export default function ApplyPreScreen({
               {t("apply_screen.btn_continue")}
             </button>
             <button
-              onClick={() => { setErrors(false); setScreen("gate"); }}
+              onClick={() => { setErrors(false); setCitizenship(null); setScreen("gate"); }}
               className="w-full py-2 text-gray-600 text-[11px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}

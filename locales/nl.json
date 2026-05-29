@@ -771,7 +771,7 @@
   },
   "apply_screen": {
     "step_label": "Stap {step} van 3 · Sollicitatie",
-    "question_eu": "Ben je een EU-burger?",
+    "question_eu": "Selecteer uw EU-land van staatsburgerschap",
     "eu_note": "EU-burgerschap vereist voor de meeste functies",
     "question_bsn": "Heb je een BSN-nummer?",
     "bsn_yes": "Ja",
