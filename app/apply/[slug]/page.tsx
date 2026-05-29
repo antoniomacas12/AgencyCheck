@@ -12,6 +12,7 @@ import {
   CAT_LABELS,
   CAT_ICONS,
   BADGE_META,
+  CAT_JOB_DESCRIPTIONS,
 } from "@/lib/vacanciesData";
 
 const WA_BASE = "https://wa.me/31613754893";
@@ -114,6 +115,9 @@ export default async function JobPage(
 
   // ── Related jobs (same category, different slug, max 3) ───────────────────
   const related = VACANCIES.filter((r) => r.c === v.c && r.slug !== v.slug).slice(0, 3);
+
+  // ── Category description (unique content per category for SEO) ────────────
+  const catDesc = CAT_JOB_DESCRIPTIONS[v.c];
 
   // ── JobPosting JSON-LD ─────────────────────────────────────────────────────
   const jobPosting: Record<string, unknown> = {
@@ -231,6 +235,26 @@ export default async function JobPage(
                   </span>
                 );
               })}
+            </div>
+
+            {/* ── About this role ─────────────────────────────────────── */}
+            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] px-5 py-5 mb-6">
+              <p className="text-[12px] font-black uppercase tracking-widest text-gray-500 mb-3">About this role</p>
+              <p className="text-[14px] text-gray-300 leading-relaxed mb-4">{catDesc.intro}</p>
+              <p className="text-[12px] font-black uppercase tracking-widest text-gray-500 mb-3">Your responsibilities</p>
+              <ul className="space-y-2">
+                {catDesc.duties.map((duty, i) => (
+                  <li key={i} className="flex items-start gap-2 text-[13px] text-gray-300">
+                    <span className="text-emerald-400 font-bold mt-0.5 shrink-0">→</span>
+                    {duty}
+                  </li>
+                ))}
+              </ul>
+              {catDesc.extra && (
+                <p className="text-[13px] text-gray-400 leading-relaxed mt-4 pt-4 border-t border-white/[0.06]">
+                  {catDesc.extra}
+                </p>
+              )}
             </div>
 
             {/* ── Requirements card ───────────────────────────────────── */}

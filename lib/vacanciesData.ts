@@ -52,6 +52,83 @@ export const BADGE_META: Record<Badge, { label: string; color: string }> = {
   vog: { label: "Clean record (VOG)",  color: "text-amber-300 bg-amber-400/10 border-amber-400/20" },
 };
 
+// ─── Category job descriptions ─────────────────────────────────────────────────
+// Rendered on individual /apply/[slug] pages to give Google unique, meaningful
+// content per category. Without this, all job pages are near-identical templates
+// which Google treats as thin content and refuses to index.
+export const CAT_JOB_DESCRIPTIONS: Record<Category, { intro: string; duties: string[]; extra: string }> = {
+  technical: {
+    intro: "This is a hands-on technical or construction role based in the Netherlands, placed through a certified Dutch employment agency. You will work on real projects alongside experienced local teams with full legal employment from day one.",
+    duties: [
+      "Carry out your trade work according to Dutch industry standards (NEN/VCA)",
+      "Read and follow technical drawings, work orders, and safety instructions in English",
+      "Collaborate with on-site supervisors and report progress daily",
+      "Maintain tools, PPE, and worksite in line with Dutch safety regulations",
+    ],
+    extra: "No Dutch language required — English is the working language on international crews. VCA Basic certificate is a plus but not always mandatory; training can be arranged.",
+  },
+  production: {
+    intro: "This production or manufacturing role is based at an industrial facility in the Netherlands. You will work within a structured shift environment, contributing to the output of a Dutch or multinational manufacturer, with a legal employment contract from the start.",
+    duties: [
+      "Operate machinery or production lines according to daily targets and quality standards",
+      "Perform quality checks and report deviations to the shift supervisor",
+      "Follow strict hygiene, safety, and PPE protocols at all times",
+      "Participate in handover briefings at the start and end of each shift",
+    ],
+    extra: "Most production roles require no prior Dutch language skills — instructions are given in English or with visual aids. 2-shift or 3-shift patterns are common; flexibility is expected.",
+  },
+  warehouse: {
+    intro: "This warehouse or logistics role is based at a distribution centre or fulfilment hub in the Netherlands. You will work in a fast-paced environment where accuracy and physical fitness are important. All positions come with a legal Dutch employment contract.",
+    duties: [
+      "Pick, pack, scan, and sort goods according to daily order lists",
+      "Operate warehouse equipment such as EPT, reach truck, or hand scanner",
+      "Maintain correct stock locations and report discrepancies to the team leader",
+      "Meet daily productivity targets while following safety and hygiene rules",
+    ],
+    extra: "A valid Dutch EPT or reach-truck certificate is required for driving roles; other positions require no certification. Clean criminal record (VOG) may be requested depending on the client.",
+  },
+  driving: {
+    intro: "This driving role is based in the Netherlands or Belgium and requires a valid Dutch or EU driving licence for the applicable category (C, CE, or D). You will be employed via a registered transport agency with a full legal Dutch employment contract.",
+    duties: [
+      "Carry out distribution, transport, or logistics runs according to the daily planning",
+      "Perform pre-trip vehicle checks and report defects before departure",
+      "Adhere to EU driving-time regulations (tacho) and Dutch traffic law",
+      "Communicate delivery statuses and issues to dispatch in real time",
+    ],
+    extra: "For CE and C category roles, a valid Dutch or EU licence with the appropriate code is mandatory. Experience with Dutch roads and navigation apps is a strong advantage. Accommodation is sometimes available for long-haul roles.",
+  },
+  automotive: {
+    intro: "This automotive role is based at a car repair workshop, bodyshop, or fleet maintenance facility in the Netherlands. You will work with professional equipment on passenger and commercial vehicles, employed via a certified Dutch agency.",
+    duties: [
+      "Diagnose, repair, and service vehicles according to manufacturer standards",
+      "Use diagnostic software and workshop equipment for fault-finding",
+      "Complete service reports accurately and on time",
+      "Maintain a clean, organised workstation in line with workshop safety standards",
+    ],
+    extra: "A relevant automotive or body-repair qualification is expected. Experience with Dutch or European vehicle brands is an advantage. No Dutch language required — technical communication in English is standard.",
+  },
+  food: {
+    intro: "This food production or agricultural role is based in the Netherlands or Belgium. You will work in a food-safe environment — processing plant, slaughterhouse, fish facility, or farm — with full legal employment and compliance with Dutch food safety standards.",
+    duties: [
+      "Process, pack, or handle food products according to HACCP and hygiene guidelines",
+      "Wear full PPE including waterproof clothing, gloves, and safety boots at all times",
+      "Meet line-speed and accuracy targets set by the shift supervisor",
+      "Report any contamination risks, equipment faults, or safety hazards immediately",
+    ],
+    extra: "Physical resilience in cold or wet environments is essential for most food roles. No prior Dutch language is needed. Some roles require a clean criminal record (VOG) due to food safety compliance requirements.",
+  },
+  hospitality: {
+    intro: "This hospitality role is based in the Netherlands or on a Greek island (Rhodes, Crete, or Kos). You will work in a hotel, resort, or catering environment with a legal employment contract. For Greek island roles, accommodation is included in the package.",
+    duties: [
+      "Deliver professional service to international guests in a busy hospitality setting",
+      "Follow house standards for hygiene, presentation, and guest interaction",
+      "Communicate clearly with colleagues and supervisors in English",
+      "Handle shift duties as assigned — service, prep, housekeeping, or kitchen support",
+    ],
+    extra: "For island roles in Greece, accommodation and meals are typically included. For Dutch roles, experience in a similar position is expected. English is the primary working language; knowledge of other languages is a bonus.",
+  },
+};
+
 export const VACANCIES: Vacancy[] = [
   // ── Direct Offers — sent directly by recruiter ────────────────────────────
   {
