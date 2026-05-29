@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import nDynamic from "next/dynamic";
-import HotJobsBanner from "@/components/HotJobsBanner";
+import JobsUrgencyBar from "@/components/JobsUrgencyBar";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import AgencyCard from "@/components/AgencyCard";
 import WorkerReviewCard from "@/components/WorkerReviewCard";
@@ -303,8 +303,8 @@ export default async function HomePage() {
                 </span>
               </div>
 
-              {/* ── HOT JOBS BANNER ────────────────────────────────── */}
-              <HotJobsBanner />
+              {/* ── JOBS URGENCY BAR ───────────────────────────────── */}
+              <JobsUrgencyBar totalJobs={VACANCIES.length} />
 
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-[1.04] tracking-tight text-white mb-5">
