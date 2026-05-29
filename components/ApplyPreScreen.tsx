@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal }        from "react-dom";
-import { useT, type Locale }   from "@/lib/i18n";
+import { useT }                from "@/lib/i18n";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface Props {
@@ -219,8 +219,7 @@ export default function ApplyPreScreen({
   const [mounted, setMounted] = useState(false);
   // Geo gate — null = unknown (fail-open), false = non-EU blocked
   const [isEU,    setIsEU]    = useState<boolean | null>(null);
-  // Locale — read from ac_locale cookie so UI matches the user's language
-  const [locale,  setLocale]  = useState<Locale>("en");
+  // Apply form is always in English — language never changes regardless of locale
 
   useEffect(() => {
     setMounted(true);
@@ -229,14 +228,10 @@ export default function ApplyPreScreen({
       .then((r) => r.json())
       .then((d: { isEU: boolean }) => setIsEU(d.isEU))
       .catch(() => setIsEU(null)); // fail-open on network error
-    // Read locale from cookie — fail-open to English
-    try {
-      const match = document.cookie.match(/(?:^|;\s*)ac_locale=([^;]+)/);
-      if (match?.[1]) setLocale(match[1] as Locale);
-    } catch { /* non-blocking */ }
   }, []);
 
-  const t = useT(locale);
+  // Always English — recruiter must understand the candidate's answers
+  const t = useT("en");
 
   // ── Form state ────────────────────────────────────────────────────────────
   const [citizenship, setCitizenship] = useState<EUCountry | null>(null);
