@@ -97,13 +97,38 @@ function buildCandidateMsg(
 }
 
 // ─── Duplicate-application guard (localStorage) ───────────────────────────────
-// Key: "ac_apply_guard" → JSON array of { phone: string; ts: number }
-// A candidate with the same phone number can only apply once per 24 hours.
-// Fail-open: if localStorage is unavailable, the check is skipped so real
-// candidates are never blocked by a storage error.
+// Two-layer dedup:
+//
+// 1. DEVICE lock  — "ac_device_applied" → timestamp of last successful apply.
+//    Checked in handleOpen() so the form never even opens for 24 h after applying.
+//    Device-level: works regardless of phone number used.
+//
+// 2. PHONE lock   — "ac_apply_guard" → array of { phone, ts }.
+//    Checked in handleSubmit() as a second line of defence for cases where
+//    someone clears storage but uses the same number from another device.
+//
+// Both fail-open: if localStorage is unavailable the check is skipped so
+// real candidates are never permanently locked out by a storage error.
 
-const DEDUP_KEY = "ac_apply_guard";
-const DEDUP_TTL = 86_400_000; // 24 hours in ms
+const DEVICE_KEY = "ac_device_applied";
+const DEDUP_KEY  = "ac_apply_guard";
+const DEDUP_TTL  = 86_400_000; // 24 hours in ms
+
+function deviceAlreadyApplied(): boolean {
+  try {
+    const ts = localStorage.getItem(DEVICE_KEY);
+    if (!ts) return false;
+    return Date.now() - Number(ts) < DEDUP_TTL;
+  } catch {
+    return false;
+  }
+}
+
+function saveDeviceLock(): void {
+  try {
+    localStorage.setItem(DEVICE_KEY, String(Date.now()));
+  } catch { /* non-blocking */ }
+}
 
 function checkDuplicate(phone: string): boolean {
   try {
@@ -113,7 +138,7 @@ function checkDuplicate(phone: string): boolean {
     const now = Date.now();
     return entries.some((e) => e.phone === phone && now - e.ts < DEDUP_TTL);
   } catch {
-    return false; // fail-open on any storage error
+    return false;
   }
 }
 
@@ -122,7 +147,6 @@ function saveDedupEntry(phone: string): void {
     const raw = localStorage.getItem(DEDUP_KEY);
     const entries: { phone: string; ts: number }[] = raw ? JSON.parse(raw) : [];
     entries.push({ phone, ts: Date.now() });
-    // Keep last 30 entries max — avoids unbounded growth
     localStorage.setItem(DEDUP_KEY, JSON.stringify(entries.slice(-30)));
   } catch { /* non-blocking */ }
 }
@@ -239,7 +263,13 @@ export default function ApplyPreScreen({
 
   // ── Handlers ──────────────────────────────────────────────────────────────
   function handleOpen() {
-    // isEU === false means we have a confirmed non-EU IP — block the apply flow.
+    // Layer 1: device lock — this device already applied in the last 24 h
+    if (deviceAlreadyApplied()) {
+      setOpen(true);
+      setScreen("already_applied");
+      return;
+    }
+    // Layer 2: geo block — confirmed non-EU IP
     // isEU === null means geo check failed/pending — fail-open so real candidates
     // are never blocked by a network error.
     if (isEU === false) {
@@ -320,8 +350,9 @@ export default function ApplyPreScreen({
     // Synchronous — called directly from click event, no async gap
     window.open(dest, "_blank", "noopener,noreferrer");
 
-    // Save dedup entry AFTER successful open so a popup-blocked attempt
+    // Save both locks AFTER successful open so a popup-blocked attempt
     // does not permanently lock the candidate out.
+    saveDeviceLock();
     saveDedupEntry(phoneClean);
 
     setOpen(false);
