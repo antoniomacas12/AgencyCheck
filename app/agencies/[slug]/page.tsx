@@ -23,9 +23,6 @@ import { ALL_AGENCIES, ALL_AGENCY_MAP, getTransparencyTier, getSectorMeta } from
 import { WML_HOURLY_2026 } from "@/lib/dutchTax";
 import { getTopJobsForAgency, type JobListing } from "@/lib/jobData";
 import AgencyRealityCheck from "@/components/AgencyRealityCheck";
-import HousingGallery from "@/components/HousingGallery";
-import HousingPhotoSubmit from "@/components/HousingPhotoSubmit";
-import { getHousingImages } from "@/lib/housingImages";
 import { getReviewsByAgency } from "@/lib/reviewData";
 import type { WorkerReview } from "@/components/WorkerReviewCard";
 import { getQAsForContext } from "@/lib/qaData";
@@ -593,7 +590,6 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
   });
   const isAboveWML    = !agency.avgHourlyPay || agency.avgHourlyPay >= WML_HOURLY_2026;
   const activeJobs    = getTopJobsForAgency(params.slug, 8);
-  const housingImages = getHousingImages(params.slug);
   const cityDisplay   = agency.city !== "unknown" ? agency.city : "Netherlands";
 
   const seedReviews = getReviewsByAgency(params.slug);
@@ -1113,42 +1109,6 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
         </div>
       </section>
 
-      {/* ── Housing photos section ── */}
-      <section className="mb-5">
-        <div className="card p-4">
-          <div className="flex items-center justify-between gap-2 mb-3">
-            <h2 className="text-sm font-bold text-gray-800 flex items-center gap-2">
-              {t("agency_detail.housing_photos_title")}
-              <span className="text-[10px] font-normal text-gray-400 bg-gray-50 rounded-full px-2 py-0.5">{t("agency_detail.housing_photos_badge")}</span>
-            </h2>
-            <HousingPhotoSubmit agencySlug={params.slug} agencyName={agency.name} variant="button" />
-          </div>
-
-          {housingImages.length > 0 ? (
-            <>
-              <p className="text-xs text-gray-500 mb-3 leading-relaxed">
-                {t("agency_detail.housing_photos_real").replace("{agencyName}", agency.name)}
-              </p>
-              <HousingGallery images={housingImages} agencyName={agency.name} />
-              <div className="mt-4 pt-4 border-t border-gray-100">
-                <p className="text-xs text-gray-500 mb-2 font-medium">{t("agency_detail.housing_photos_have_photos")}</p>
-                <HousingPhotoSubmit agencySlug={params.slug} agencyName={agency.name} variant="cta" />
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="text-xs text-gray-500 mb-4 leading-relaxed">
-                {t("agency_detail.housing_photos_empty").replace("{agencyName}", agency.name)}
-                {agency.housing === "YES"
-                  ? ` ${t("agency_detail.housing_photos_empty_has_housing")}`
-                  : ` ${t("agency_detail.housing_photos_empty_no_housing")}`
-                }
-              </p>
-              <HousingPhotoSubmit agencySlug={params.slug} agencyName={agency.name} variant="cta" />
-            </>
-          )}
-        </div>
-      </section>
 
       <section className="mb-5">
         <RiskPanel signals={riskSignals} title={t("agency_detail.risk_title")} />
