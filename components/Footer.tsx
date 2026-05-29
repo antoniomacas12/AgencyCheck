@@ -222,7 +222,6 @@ export default function Footer() {
               <li><Link href="/tools/real-income-calculator" className="hover:text-brand-600">{t("footer.real_income_calc")}</Link></li>
               <li><Link href="/tools/payslip-checker"        className="hover:text-brand-600">{t("footer.payslip_checker")}</Link></li>
               <li><Link href="/tools/shift-tracker"          className="hover:text-brand-600">{t("footer.shift_tracker")}</Link></li>
-              <li><Link href="/agencies-with-housing"        className="hover:text-brand-600">{t("footer.with_housing")}</Link></li>
               <li><Link href="/compare"                      className="hover:text-brand-600">{t("footer.compare")}</Link></li>
             </ul>
             <p className="font-semibold text-gray-800 mb-3">{t("footer.legal")}</p>

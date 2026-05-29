@@ -94,12 +94,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "weekly",
       priority:         0.9,
     },
-    {
-      url:              `${BASE_URL}/agencies-with-housing`,
-      lastModified:     AGENCY_DATE,
-      changeFrequency:  "weekly",
-      priority:         0.8,
-    },
     // ── Job-type SEO landing pages ───────────────────────────────────────────
     {
       url:              `${BASE_URL}/jobs-with-accommodation`,
