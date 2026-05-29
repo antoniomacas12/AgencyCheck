@@ -24,12 +24,14 @@ import {
   faqPageSchema,
 } from "@/lib/schemaMarkup";
 import { WA_LINK } from "@/lib/whatsapp";
+import { VACANCIES } from "@/lib/vacanciesData";
 import GateLink from "@/components/GateLink";
 
 const HomepageCalculator     = nDynamic(() => import("@/components/HomepageCalculator"),     { ssr: false });
 const HomepageLeadForm       = nDynamic(() => import("@/components/HomepageLeadForm"),        { ssr: false });
 const HomepageStickyBar      = nDynamic(() => import("@/components/HomepageStickyBar"),       { ssr: false });
 const HeroReviewInline       = nDynamic(() => import("@/components/HeroReviewInline"),        { ssr: false });
+const HomepageJobsCard       = nDynamic(() => import("@/components/HomepageJobsCard"),        { ssr: false });
 
 export const metadata: Metadata = {
   title: "AgencyCheck – Real Salary, Housing & Job Transparency in the Netherlands",
@@ -420,70 +422,8 @@ export default async function HomePage() {
                 ))}
               </div>
 
-              {/* Glassmorphism card */}
-              <div
-                className="relative rounded-2xl border border-white/[0.12] bg-white/[0.05] backdrop-blur-2xl overflow-hidden"
-                style={{ boxShadow: "0 12px 56px rgba(0,0,0,0.65), 0 2px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.10)" }}
-              >
-                {/* Inner glow top-right */}
-                <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-emerald-500/[0.12] blur-3xl" aria-hidden="true" />
-                {/* Inner glow bottom-left */}
-                <div className="pointer-events-none absolute bottom-0 left-0 w-40 h-40 rounded-full bg-blue-500/[0.08] blur-2xl" aria-hidden="true" />
-
-                <div className="relative p-6">
-
-                  {/* Real net salary badge */}
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/[0.12] px-2.5 py-1 mb-5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400">Real net salary</span>
-                  </div>
-
-                  {/* Big salary range */}
-                  <div className="mb-1">
-                    <span className="text-[50px] xl:text-[56px] font-black leading-none text-white tabular-nums tracking-tight">
-                      €320–€450
-                    </span>
-                  </div>
-                  <p className="text-sm font-semibold text-gray-300 mb-0.5">per week take-home</p>
-                  <p className="text-[11px] text-gray-300 mb-5">after rent, insurance and transport</p>
-
-                  {/* Divider */}
-                  <div className="border-t border-white/[0.07] mb-4" />
-
-                  {/* Payslip breakdown rows */}
-                  <div className="space-y-3">
-                    {[
-                      { label: "Gross pay  (WML · 40h/week)",  value: "+€588", accent: false },
-                      { label: "Tax & social contributions",    value: "−€63",  accent: true  },
-                      { label: "Agency housing (SNF)",          value: "−€95",  accent: true  },
-                      { label: "Transport + insurance + admin", value: "−€85",  accent: true  },
-                    ].map((row) => (
-                      <div key={row.label} className="flex items-center justify-between">
-                        <span className="text-[12px] text-gray-400">{row.label}</span>
-                        <span className={`text-[13px] font-bold tabular-nums ${row.accent ? "text-red-400" : "text-gray-300"}`}>
-                          {row.value}
-                        </span>
-                      </div>
-                    ))}
-                    {/* Net row */}
-                    <div
-                      className="flex items-center justify-between pt-3 mt-1 border-t border-white/[0.07]"
-                    >
-                      <span className="text-sm font-bold text-gray-200">You keep</span>
-                      <span
-                        className="text-xl font-black tabular-nums text-emerald-400"
-                        style={{ textShadow: "0 0 20px rgba(52,211,153,0.4)" }}
-                      >€345</span>
-                    </div>
-                  </div>
-
-                  {/* Source note */}
-                  <p className="text-[10px] text-gray-200 mt-4 pt-3 border-t border-white/[0.05]">
-                    Based on 2026 Dutch tax law (belastingdienst.nl) + SNF housing limits
-                  </p>
-
-                </div>
-              </div>
+              {/* Now Hiring jobs card */}
+              <HomepageJobsCard totalJobs={VACANCIES.length} />
 
               {/* Review inline form — below the card */}
               <HeroReviewInline />
