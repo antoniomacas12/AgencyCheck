@@ -327,7 +327,7 @@ export default async function HomePage() {
 
         {/* ── Content ──────────────────────────────────────────────────── */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-10 xl:gap-20">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 xl:gap-20">
 
             {/* ── Left: copy ─────────────────────────────────────────── */}
             <div className="hero-col-left flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-6">
@@ -344,9 +344,8 @@ export default async function HomePage() {
               {/* ── JOBS URGENCY BAR ───────────────────────────────── */}
               <JobsUrgencyBar totalJobs={VACANCIES.length} />
 
-              {/* Headline — text-3xl on mobile (30px) so lines fit in ~340px viewport.
-                  text-4xl (36px) caused "Start working next week" to be ~530px, overflowing. */}
-              <h1 className="text-3xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-[1.04] tracking-tight text-white mb-5">
+              {/* Headline */}
+              <h1 className="text-[22px] sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-tight tracking-tight text-white mb-3 sm:mb-5">
                 Already in the{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
                   Netherlands?
@@ -356,7 +355,7 @@ export default async function HomePage() {
               </h1>
 
               {/* Subtext */}
-              <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-5 max-w-xl mx-auto lg:mx-0">
+              <p className="text-sm sm:text-xl text-gray-400 leading-relaxed mb-4 sm:mb-5 max-w-xl mx-auto lg:mx-0">
                 Get matched with real jobs in the Netherlands in just a few steps.{" "}
                 <span className="text-gray-200 font-medium">Accommodation available.</span>
               </p>
@@ -381,10 +380,10 @@ export default async function HomePage() {
               </div>
 
               {/* CTA buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-3">
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center lg:justify-start mb-3">
                 <a
                   href="#lead-form"
-                  className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-black text-white"
+                  className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-black text-white"
                   style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.35), 0 8px 36px rgba(52,211,153,0.25)" }}
                 >
                   Get matched with a job
@@ -394,17 +393,17 @@ export default async function HomePage() {
                 </a>
                 <a
                   href="#calculator"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.14] bg-white/[0.05] hover:bg-white/[0.10] active:scale-[0.97] transition-all duration-150 px-8 py-4 text-base font-semibold text-gray-200"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.14] bg-white/[0.05] hover:bg-white/[0.10] active:scale-[0.97] transition-all duration-150 px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-gray-200"
                 >
                   Calculate salary
                 </a>
               </div>
 
               {/* WhatsApp apply — fastest path, mobile-first */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-5">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-4 sm:mb-5">
                 <GateLink
                   source="homepage-hero"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all duration-150 px-7 py-3.5 text-[15px] font-black text-white"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all duration-150 px-5 py-3 sm:px-7 sm:py-3.5 text-[14px] sm:text-[15px] font-black text-white"
                   style={{ boxShadow: "0 0 0 1px rgba(37,211,102,0.30), 0 8px 28px rgba(37,211,102,0.20)" }}
                 >
                   {/* WhatsApp icon */}
@@ -664,7 +663,7 @@ export default async function HomePage() {
             ].map((stat) => (
               <div key={stat.label} className="sm:px-7 first:pl-0 last:pr-0">
                 <div className="flex items-baseline gap-1.5 mb-1">
-                  <span className={`text-2xl sm:text-3xl font-black tabular-nums ${stat.color}`}>{stat.value}</span>
+                  <span className={`text-xl sm:text-3xl font-black tabular-nums ${stat.color}`}>{stat.value}</span>
                   <span className="text-xs font-bold text-gray-300">{stat.label}</span>
                 </div>
                 <p className="text-[10px] text-gray-400 leading-snug max-w-[200px]">{stat.sub}</p>
@@ -699,13 +698,13 @@ export default async function HomePage() {
           §3  WHY AGENCYCHECK — benefits section
           ════════════════════════════════════════════════════════════ */}
       <section className="border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-500">
               Why workers choose AgencyCheck
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">
+            <h2 className="text-xl sm:text-4xl font-black text-white mb-4">
               The fastest way to start working{" "}
               <span className="text-emerald-400">in the Netherlands</span>
             </h2>
@@ -778,13 +777,13 @@ export default async function HomePage() {
           §4  REAL WORKER TESTIMONIALS — authentic, imperfect
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white/[0.025] border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Real workers. Real words.
             </p>
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
+            <h2 className="text-xl sm:text-3xl font-black text-white mb-2">
               What workers actually told us
             </h2>
             <p className="text-xs text-gray-400 font-semibold">
@@ -931,7 +930,7 @@ export default async function HomePage() {
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-1.5">
                 Free matching service — no fees, no obligation
               </p>
-              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
+              <h2 className="text-xl sm:text-3xl font-black text-white leading-tight">
                 Find a verified agency hiring right now
               </h2>
               <p className="mt-2 text-sm text-gray-400 leading-relaxed max-w-xl">
@@ -988,13 +987,13 @@ export default async function HomePage() {
           §6  SALARY CALCULATOR
           ════════════════════════════════════════════════════════════ */}
       <section id="calculator" className="bg-white/[0.025] border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Instant salary calculator — 2026 Dutch tax rates
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">
+            <h2 className="text-xl sm:text-4xl font-black text-white mb-3">
               What will you actually keep?
             </h2>
             <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
@@ -1012,7 +1011,7 @@ export default async function HomePage() {
           §7  METHODOLOGY TRUST BLOCK
           ════════════════════════════════════════════════════════════ */}
       <section className="border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-14">
 
           <div className="text-center mb-8">
             <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400">Calculation methodology</p>
@@ -1129,11 +1128,11 @@ export default async function HomePage() {
           §8  SALARY PAIN → CTA
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-surface-hero text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-14 text-center">
           <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">
             Now you know what €345/week looks like
           </p>
-          <h2 className="text-2xl sm:text-4xl font-black leading-tight mb-4">
+          <h2 className="text-xl sm:text-4xl font-black leading-tight mb-4">
             Some agencies let you keep{" "}
             <span className="text-emerald-400">€80–€120 more</span>
             <br className="hidden sm:block" />
@@ -1222,11 +1221,11 @@ export default async function HomePage() {
           §9  WHAT GOOD AGENCIES OFFER
           ════════════════════════════════════════════════════════════ */}
       <section className="border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-400">Verified agencies on AgencyCheck</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">What a good agency package includes</h2>
+            <h2 className="text-xl sm:text-4xl font-black text-white mb-4">What a good agency package includes</h2>
             <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
               Every agency on AgencyCheck is reviewed by real workers. Here is what the best-rated ones consistently deliver.
             </p>
@@ -1256,10 +1255,10 @@ export default async function HomePage() {
           §10  HOUSING PROOF
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white/[0.025] border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Real housing — not brochures</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">See where you&apos;ll actually live</h2>
+            <h2 className="text-xl sm:text-4xl font-black text-white mb-3">See where you&apos;ll actually live</h2>
             <p className="text-gray-400 text-sm max-w-md mx-auto">
               Worker-submitted photos and descriptions. No stock images. No agency PR.
             </p>
@@ -1280,13 +1279,13 @@ export default async function HomePage() {
           §11  VERIFIED AGENCY CARDS
           ════════════════════════════════════════════════════════════ */}
       <section className="border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Research-checked agencies
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">
+            <h2 className="text-xl sm:text-4xl font-black text-white mb-3">
               Transparent offers — real net income shown
             </h2>
             <p className="text-gray-400 text-sm max-w-xl mx-auto leading-relaxed mb-4">
@@ -1408,14 +1407,14 @@ export default async function HomePage() {
           §12  PAYSLIP TOOL CTA
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gradient-to-br from-gray-900 via-gray-900 to-blue-950 text-white border-b border-gray-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-14">
           <div className="max-w-3xl mx-auto">
             <div className="grid sm:grid-cols-2 gap-8 items-center">
               <div>
                 <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/15 border border-amber-400/20 rounded-full px-3 py-1 mb-5">
                   ⚡ Free tool
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-4">
+                <h2 className="text-xl sm:text-3xl font-black text-white leading-tight mb-4">
                   Did your agency underpay you?
                 </h2>
                 <p className="text-gray-300 text-sm leading-relaxed mb-3">
@@ -1461,7 +1460,7 @@ export default async function HomePage() {
           SEO content + FAQ + city grid
           ════════════════════════════════════════════════════════════ */}
       <section className="border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-14">
           <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
 
             <div>
@@ -1543,10 +1542,10 @@ export default async function HomePage() {
 
       {/* FAQ */}
       <section className="bg-white/[0.025] border-b border-white/[0.06]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-14">
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">FAQ</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">Questions workers actually ask</h2>
+            <h2 className="text-xl sm:text-3xl font-black text-white">Questions workers actually ask</h2>
           </div>
           <HomepageFAQ />
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
@@ -1568,7 +1567,7 @@ export default async function HomePage() {
       <section className="bg-gradient-to-b from-blue-900 via-blue-950 to-gray-950 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-18 sm:py-24">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight mb-5">
+            <h2 className="text-2xl sm:text-5xl font-black text-white leading-tight mb-5">
               Know the truth<br />before you sign.
             </h2>
             <p className="text-blue-200 text-base sm:text-lg leading-relaxed mb-4 max-w-lg mx-auto">

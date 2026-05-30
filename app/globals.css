@@ -127,6 +127,15 @@
   }
 }
 
+/* ── Section-level overflow guard ─────────────────────────────────────────────
+   Prevents any individual section from expanding the iOS Safari scroll width.
+   overflow-x:clip (not hidden) so position:fixed modals/sticky bars are not
+   trapped. Falls back to the html/body overflow-x:hidden for Safari <15.4.     */
+section, main {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 @layer utilities {
   /* ── Hero depth gradient — consistent across all dark hero sections ────────
      Combines the base color with a very subtle top-blue + bottom-darkening
