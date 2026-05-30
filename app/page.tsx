@@ -326,11 +326,11 @@ export default async function HomePage() {
         />
 
         {/* ── Content ──────────────────────────────────────────────────── */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10 xl:gap-20">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-10 lg:py-14">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 sm:gap-6 lg:gap-10 xl:gap-20">
 
             {/* ── Left: copy ─────────────────────────────────────────── */}
-            <div className="hero-col-left flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-6">
+            <div className="hero-col-left flex-1 min-w-0 w-full max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-6">
 
               {/* Identity badge — max-w-full + overflow-hidden prevents the wide
                   tracking-widest uppercase text from pushing past the mobile viewport */}
@@ -342,10 +342,12 @@ export default async function HomePage() {
               </div>
 
               {/* ── JOBS URGENCY BAR ───────────────────────────────── */}
-              <JobsUrgencyBar totalJobs={VACANCIES.length} />
+              <div className="w-full overflow-hidden">
+                <JobsUrgencyBar totalJobs={VACANCIES.length} />
+              </div>
 
               {/* Headline */}
-              <h1 className="text-[22px] sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-tight tracking-tight text-white mb-3 sm:mb-5">
+              <h1 className="text-[18px] sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-tight tracking-tight text-white mb-3 sm:mb-5 w-full break-words">
                 Already in the{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
                   Netherlands?
@@ -369,7 +371,7 @@ export default async function HomePage() {
                 ].map((label) => (
                   <span
                     key={label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.12] bg-white/[0.05] px-3.5 py-1.5 text-[12px] font-medium text-gray-300"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.12] bg-white/[0.05] px-2.5 py-1 text-[11px] sm:px-3.5 sm:py-1.5 sm:text-[12px] font-medium text-gray-300"
                   >
                     <svg className="w-3 h-3 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
@@ -383,7 +385,7 @@ export default async function HomePage() {
               <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center lg:justify-start mb-3">
                 <a
                   href="#lead-form"
-                  className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-black text-white"
+                  className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-black text-white"
                   style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.35), 0 8px 36px rgba(52,211,153,0.25)" }}
                 >
                   Get matched with a job
@@ -393,7 +395,7 @@ export default async function HomePage() {
                 </a>
                 <a
                   href="#calculator"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.14] bg-white/[0.05] hover:bg-white/[0.10] active:scale-[0.97] transition-all duration-150 px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-gray-200"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.14] bg-white/[0.05] hover:bg-white/[0.10] active:scale-[0.97] transition-all duration-150 w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-gray-200"
                 >
                   Calculate salary
                 </a>
@@ -418,10 +420,14 @@ export default async function HomePage() {
               </div>
 
               {/* Search */}
-              <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Search agencies, cities or job types…" />
+              <div className="w-full overflow-hidden">
+                <SmartSearch suggestions={searchSuggestions} size="large" placeholder="Search agencies, cities or job types…" />
+              </div>
 
               {/* Job alert strip */}
-              <JobAlertStrip />
+              <div className="w-full overflow-hidden">
+                <JobAlertStrip />
+              </div>
 
               {/* Data authority strip */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-1.5 mt-5">
@@ -441,7 +447,7 @@ export default async function HomePage() {
             </div>
 
             {/* ── Right: money card ──────────────────────────────────── */}
-            <div className="hero-col-right w-full lg:w-[390px] xl:w-[420px] shrink-0 mx-auto lg:mx-0 max-w-sm lg:max-w-none">
+            <div className="hero-col-right w-full lg:w-[390px] xl:w-[420px] shrink-0 mx-auto lg:mx-0">
 
               {/* Micro-info bar — desktop only, above the card */}
               <div className="hidden lg:flex items-center gap-2 flex-wrap mb-4">
