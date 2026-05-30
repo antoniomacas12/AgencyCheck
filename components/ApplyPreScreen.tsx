@@ -179,6 +179,19 @@ async function savePreQual(payload: {
   } catch { /* non-blocking */ }
 }
 
+// ─── UUID helper — falls back to Math.random on browsers without crypto.randomUUID ──
+function makeUUID(): string {
+  try {
+    return crypto.randomUUID();
+  } catch {
+    // Fallback: RFC-4122 v4 UUID via Math.random (good enough for funnel session IDs)
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+    });
+  }
+}
+
 // ─── Funnel tracking ──────────────────────────────────────────────────────────
 // Fire-and-forget — never blocks the apply flow.
 // Events: "open" | "gate_passed" | "details_a_passed" | "completed" | "abandoned" | "disqualified"
@@ -329,7 +342,7 @@ export default function ApplyPreScreen({
   // ── Handlers ──────────────────────────────────────────────────────────────
   function handleOpen() {
     // Generate a fresh session ID for this apply attempt
-    const sid = crypto.randomUUID();
+    const sid = makeUUID();
     sessionIdRef.current = sid;
 
     // Layer 1: device lock — this device already applied in the last 24 h
