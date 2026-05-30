@@ -9,6 +9,7 @@ import { JOB_SALARY_DATA } from "@/lib/seoData";
 import { WML_HOURLY_2026 } from "@/lib/dutchTax";
 import { getLocale } from "@/lib/getLocale";
 import { getT } from "@/lib/i18n";
+import { VACANCIES, BADGE_META } from "@/lib/vacanciesData";
 
 export const metadata: Metadata = {
   title: "Jobs with Housing in the Netherlands — Real Salary After Costs — AgencyCheck",
@@ -28,6 +29,10 @@ export const metadata: Metadata = {
 // ─── Data prep ────────────────────────────────────────────────────────────────
 
 const housingListings = JOB_LISTINGS.filter((j) => j.housing === "YES" && j.isActive);
+
+// Vacancies from vacanciesData with confirmed or available housing
+const vacanciesConfirmed = VACANCIES.filter((v) => v.b.includes("acc"));
+const vacanciesAvailable = VACANCIES.filter((v) => v.b.includes("acc_ask"));
 
 const allHousingAgencies = [...HOUSING_AGENCIES].sort((a, b) => {
   const aJobs = housingListings.filter((l) => l.agencySlug === a.slug).length;
@@ -170,6 +175,100 @@ export default async function JobsWithAccommodationPage() {
           </div>
         )}
       </section>
+
+      {/* ══ SECTION 1b: DIRECT VACANCIES WITH HOUSING ══════════════════════════
+          Jobs from our recruiter network — apply directly on WhatsApp.
+          Confirmed housing first, then "available on request" listings.
+      ════════════════════════════════════════════════════════════════════════ */}
+
+      {/* ── Confirmed housing ── */}
+      {vacanciesConfirmed.length > 0 && (
+        <section className="mb-6">
+          <div className="flex items-center gap-2 mb-3">
+            <h2 className="text-base font-bold text-gray-900">Direct jobs — housing included</h2>
+            <span className="text-[11px] bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-full px-2 py-0.5 font-bold">
+              {vacanciesConfirmed.length} jobs
+            </span>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {vacanciesConfirmed.map((v) => (
+              <Link
+                key={v.slug}
+                href={`/apply/${v.slug}`}
+                className="card p-0 overflow-hidden flex flex-col hover:shadow-md hover:border-emerald-200 hover:-translate-y-0.5 transition-all"
+              >
+                <div className="bg-emerald-600 px-3.5 pt-3 pb-2.5">
+                  <p className="text-[9px] font-black uppercase tracking-widest text-emerald-100 mb-0.5">Housing included</p>
+                  <p className="text-sm font-black text-white leading-tight">{v.t}</p>
+                </div>
+                <div className="px-3.5 py-2.5 flex-1">
+                  <p className="text-xs text-gray-500 mb-1.5">📍 {v.l}</p>
+                  {v.sm > 0 && (
+                    <p className="text-sm font-bold text-gray-800">{v.s}</p>
+                  )}
+                  <div className="flex flex-wrap gap-1 mt-2">
+                    {v.b.map((b) => (
+                      <span key={b} className={`text-[10px] font-bold border rounded px-1.5 py-0.5 ${BADGE_META[b].color}`}>
+                        {BADGE_META[b].label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="px-3.5 pb-3">
+                  <span className="block w-full text-center py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition">
+                    Apply on WhatsApp →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ── Housing available (ask when applying) ── */}
+      {vacanciesAvailable.length > 0 && (
+        <section className="mb-8">
+          <div className="flex items-center gap-2 mb-1">
+            <h2 className="text-base font-bold text-gray-900">Jobs where housing may be available</h2>
+            <span className="text-[11px] bg-sky-100 text-sky-800 border border-sky-200 rounded-full px-2 py-0.5 font-bold">
+              {vacanciesAvailable.length} jobs
+            </span>
+          </div>
+          <p className="text-xs text-gray-400 mb-3">
+            Most of these roles offer agency housing — confirm availability when you apply.
+          </p>
+          <div className="rounded-xl border border-gray-100 divide-y divide-gray-100 overflow-hidden">
+            {vacanciesAvailable.map((v) => (
+              <Link
+                key={v.slug}
+                href={`/apply/${v.slug}`}
+                className="flex items-center justify-between gap-3 px-4 py-3 bg-white hover:bg-sky-50/50 transition-colors group"
+              >
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-gray-800 truncate group-hover:text-sky-700 transition-colors">
+                    {v.t}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-0.5">
+                    📍 {v.l}
+                    {v.sm > 0 && <span className="ml-2 text-emerald-600 font-medium">{v.s}</span>}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="text-[10px] font-bold border rounded px-1.5 py-0.5 text-sky-600 bg-sky-50 border-sky-200 hidden sm:block">
+                    🏠 Housing available
+                  </span>
+                  <svg className="w-4 h-4 text-gray-300 group-hover:text-sky-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <p className="text-xs text-gray-400 mt-2 text-center">
+            All positions EU citizens only · Apply via WhatsApp · Immediate start
+          </p>
+        </section>
+      )}
 
       {/* ══ SECTION 2: SINGLE CTA — placed after jobs, not repeated elsewhere ══
           The sticky bar (mobile) and floating pill (desktop) from ApplyBar
