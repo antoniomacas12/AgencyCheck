@@ -320,14 +320,8 @@ export default function ApplyPreScreen({
       setErrors(true);
       return;
     }
-    // BSN = No → blocked. Log for analytics, do NOT continue to WhatsApp.
-    if (bsn === "no") {
-      setErrors(false);
-      setScreen("bsn_blocked");
-      // Fire-and-forget analytics log — not a lead, never sent to recruiter
-      savePreQual({ isEuCitizen: true, hasBsn: false, jobId, jobTitle, source });
-      return;
-    }
+    // All BSN answers (yes / no / not_yet) continue to details_b.
+    // Recruiter sees the BSN status in the WhatsApp message and decides.
     setErrors(false);
     setScreen("details_b");
   }
