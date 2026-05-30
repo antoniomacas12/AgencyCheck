@@ -299,6 +299,10 @@ export default function ApplyPreScreen({
   const [english,     setEnglish]     = useState<Eng | null>(null);
   const [group,       setGroup]       = useState<Group | null>(null);
   const [cv,          setCv]          = useState<"yes" | "no" | null>(null);
+  // CV confirmation — shown when user selects "no" for CV
+  // null = unanswered, true = will prepare CV, false = won't (blocked)
+  const [cvPrompt,    setCvPrompt]    = useState(false);
+  const [cvConfirmed, setCvConfirmed] = useState<boolean | null>(null);
 
   // ── Handlers ──────────────────────────────────────────────────────────────
   function handleOpen() {
@@ -329,6 +333,8 @@ export default function ApplyPreScreen({
     setEnglish(null);
     setGroup(null);
     setCv(null);
+    setCvPrompt(false);
+    setCvConfirmed(null);
   }
 
   function handleClose() { setOpen(false); }
@@ -462,7 +468,9 @@ export default function ApplyPreScreen({
   const detailsAReady  = !!bsn && !!driving && !!housing && !!avail;
   const phoneNorm      = normalisePhone(phone.trim()); // consistent with server-side normalisation
   const phoneValid     = phoneNorm.length >= 7 && /^[+\d]+$/.test(phoneNorm);
-  const detailsBReady  = location.trim().length >= 2 && phoneValid && !!english && !!group && !!cv;
+  // CV is OK if: has one ("yes") OR selected "no" but confirmed they'll prepare ("no" + cvConfirmed=true)
+  const cvOk           = cv === "yes" || (cv === "no" && cvConfirmed === true);
+  const detailsBReady  = location.trim().length >= 2 && phoneValid && !!english && !!group && cvOk;
 
 
   // ── Portal modal — rendered at document.body level ──────────────────────────
@@ -850,11 +858,77 @@ export default function ApplyPreScreen({
               </div>
             </Question>
 
-            <Question label={t("apply_screen.question_cv")} error={errors && !cv}>
+            <Question label={t("apply_screen.question_cv")} error={errors && !cvOk}>
               <div className="grid grid-cols-2 gap-2">
-                <Opt label={t("apply_screen.bsn_yes")} selected={cv === "yes"} onClick={() => setCv("yes")} />
-                <Opt label={t("apply_screen.bsn_no")}  selected={cv === "no"}  onClick={() => setCv("no")} />
+                <Opt
+                  label={t("apply_screen.bsn_yes")}
+                  selected={cv === "yes"}
+                  onClick={() => { setCv("yes"); setCvPrompt(false); setCvConfirmed(null); }}
+                />
+                <Opt
+                  label={t("apply_screen.bsn_no")}
+                  selected={cv === "no"}
+                  onClick={() => { setCv("no"); setCvPrompt(true); setCvConfirmed(null); }}
+                />
               </div>
+
+              {/* ── CV confirmation prompt — shown when user selects "No" ── */}
+              {cv === "no" && cvPrompt && cvConfirmed === null && (
+                <div className="mt-3 rounded-xl border border-amber-400/30 bg-amber-400/[0.08] p-4">
+                  <p className="text-amber-300 font-bold text-[13px] mb-1.5">
+                    📄 A CV is required to apply
+                  </p>
+                  <p className="text-gray-400 text-[12px] leading-relaxed mb-3">
+                    All agencies require a CV before they can consider your application.
+                    Are you ready to prepare one?
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => { setCvConfirmed(true); setCvPrompt(false); }}
+                      className="py-2.5 rounded-xl border border-emerald-400/40 bg-emerald-400/[0.12] text-emerald-300 text-[13px] font-bold hover:bg-emerald-400/20 transition-all"
+                    >
+                      ✅ Yes, I&apos;ll prepare one
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { setCvConfirmed(false); setCvPrompt(false); }}
+                      className="py-2.5 rounded-xl border border-red-400/30 bg-red-400/[0.08] text-red-300 text-[13px] font-bold hover:bg-red-400/15 transition-all"
+                    >
+                      ❌ No, I can&apos;t
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* ── Blocked state — user said "No, I can't make a CV" ── */}
+              {cv === "no" && !cvPrompt && cvConfirmed === false && (
+                <div className="mt-3 rounded-xl border border-red-400/30 bg-red-400/[0.08] p-4">
+                  <p className="text-red-300 font-bold text-[13px] mb-1.5">
+                    ❌ CV required — cannot proceed
+                  </p>
+                  <p className="text-gray-400 text-[12px] leading-relaxed mb-3">
+                    A CV is mandatory for all positions. Without one, agencies cannot process your application.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => { setCvPrompt(true); setCvConfirmed(null); }}
+                    className="text-[11px] text-gray-500 hover:text-gray-300 transition underline"
+                  >
+                    I changed my mind — I&apos;ll prepare one
+                  </button>
+                </div>
+              )}
+
+              {/* ── Confirmed state — user said they'll prepare CV ── */}
+              {cv === "no" && cvConfirmed === true && (
+                <div className="mt-3 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.06] px-3.5 py-2.5 flex items-center gap-2">
+                  <span className="text-emerald-400 text-[14px] shrink-0">✓</span>
+                  <p className="text-emerald-300 text-[12px] font-semibold">
+                    Great — have your CV ready before the recruiter contacts you.
+                  </p>
+                </div>
+              )}
             </Question>
 
             {errors && (
@@ -898,7 +972,7 @@ export default function ApplyPreScreen({
             </button>
 
             <button
-              onClick={() => { setErrors(false); setScreen("details_a"); }}
+              onClick={() => { setErrors(false); setCv(null); setCvPrompt(false); setCvConfirmed(null); setScreen("details_a"); }}
               className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}
