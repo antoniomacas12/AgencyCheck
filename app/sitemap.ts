@@ -12,6 +12,7 @@ import {
   filterEligibleComparisons,
   filterEligibleAgencyCityPairs,
   canGenerateAgencyCityPage,
+  getAgencyPageIndexStatus,
 } from "@/lib/pageEligibility";
 import {
   getAllComboParams,
@@ -845,7 +846,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Only include VERIFIED agencies with rich locale-specific content.
   // Worker-reported (DB-only) agencies are excluded: their locale pages are
   // thin near-duplicates of the EN page and cause "Alternative page" GSC errors.
-  const plAgencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
+  // Also exclude agencies that would be noindex on locale pages (transparencyScore < threshold)
+  // to prevent "submitted URL has noindex tag" GSC coverage errors.
+  const indexableVerifiedAgencies = VERIFIED_AGENCIES.filter(
+    (agency) => !getAgencyPageIndexStatus(agency).noindex,
+  );
+
+  const plAgencyPages: MetadataRoute.Sitemap = indexableVerifiedAgencies.map((agency) => ({
     url:             `${BASE_URL}${AGENCY_BASE.pl}/${agency.slug}`,
     lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
     changeFrequency: "monthly" as const,
@@ -853,8 +860,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // ── 16. Romanian agency pages (/ro/agentii/[slug]) ────────────────────────
-  // Same policy — verified agencies only for locale pages.
-  const roAgencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
+  // Same policy — verified agencies only, noindex-filtered.
+  const roAgencyPages: MetadataRoute.Sitemap = indexableVerifiedAgencies.map((agency) => ({
     url:             `${BASE_URL}${AGENCY_BASE.ro}/${agency.slug}`,
     lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
     changeFrequency: "monthly" as const,
@@ -895,8 +902,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // ── 19. Portuguese agency pages (/pt/agencias/[slug]) ────────────────────
-  // Only verified agencies — same policy as PL/RO to avoid thin duplicate pages.
-  const ptAgencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
+  // Only verified agencies — same policy as PL/RO, noindex-filtered.
+  const ptAgencyPages: MetadataRoute.Sitemap = indexableVerifiedAgencies.map((agency) => ({
     url:             `${BASE_URL}${AGENCY_BASE.pt}/${agency.slug}`,
     lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
     changeFrequency: "monthly" as const,
