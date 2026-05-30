@@ -49,13 +49,10 @@ export function middleware(request: NextRequest) {
   const pathLocale   = pathToLocale(pathname);
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value as Locale | undefined;
 
-  let locale: Locale = pathLocale;
-
-  // If the URL has no locale prefix, fall back to the cookie so that English-URL
-  // pages (/agencies, /jobs, etc.) still render in the user's chosen language.
-  if (locale === "en" && (cookieLocale === "nl" || cookieLocale === "pl" || cookieLocale === "ro" || cookieLocale === "pt" || cookieLocale === "sk" || cookieLocale === "bg")) {
-    locale = cookieLocale;
-  }
+  // English-URL pages always render in English regardless of cookie.
+  // If a user wants a different language they use the locale-prefixed URLs (/pl/, /ro/, etc.).
+  // Cookie is only applied when the URL itself already has a locale prefix.
+  const locale: Locale = pathLocale;
 
   // ── CRITICAL: forward locale as a REQUEST header so that headers() in server
   // components (app/layout.tsx, page.tsx, etc.) can read it.

@@ -63,20 +63,11 @@ export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
   const pathname = usePathname();
   const ref      = useRef<HTMLDivElement>(null);
 
-  // After hydration, read cookie so the switcher reflects the real active language
-  // on English-URL pages that are rendered in another locale via the cookie.
+  // Sync actualLocale from the prop (set server-side from URL prefix).
+  // English-URL pages always report "en" — cookie is not consulted because
+  // middleware no longer applies cookie locale to non-prefixed paths.
   useEffect(() => {
-    if (currentLocale !== "en") {
-      // URL prefix is definitive — no need to check cookie
-      setActualLocale(currentLocale);
-      return;
-    }
-    try {
-      const match = document.cookie.match(/(?:^|;\s*)ac_locale=([^;]+)/);
-      const cookieLoc = match?.[1] as Locale | undefined;
-      if (cookieLoc && cookieLoc !== "en") setActualLocale(cookieLoc);
-      else setActualLocale("en");
-    } catch { /* non-blocking */ }
+    setActualLocale(currentLocale);
   }, [currentLocale]);
 
   const current = LOCALE_LABELS[actualLocale];
@@ -108,12 +99,11 @@ export default function LanguageSwitcher({ currentLocale = "en" }: Props) {
       window.location.href = dest;
     } else {
       // On English-URL page (/agencies, /jobs, /, etc.)
+      // English pages always render in English — switching to another language
+      // navigates to that locale's root (path-prefix drives the locale server-side).
       if (locale === "en") {
-        // Reload current page — middleware will clear the locale cookie and serve EN
-        window.location.reload();
+        window.location.reload(); // already English; no-op but satisfies any stale state
       } else {
-        // Navigate to the locale root so middleware reads path-prefix (highest priority)
-        // which guarantees the page renders in the correct language immediately
         window.location.href = LOCALE_ROOT_PATHS[locale];
       }
     }
