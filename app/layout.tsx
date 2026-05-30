@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -56,6 +56,13 @@ export const metadata: Metadata = {
   verification: {
     google: "DWZA4IknSEh6vJWfUUmo_KacL4aYYCMhFYKOqNKyW38",
   },
+};
+
+// Explicit viewport — ensures iOS Safari uses device width and does not
+// scale or expand the layout viewport to accommodate overflowing content.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 // NOTE: No `export const dynamic` here — the root layout is now static by

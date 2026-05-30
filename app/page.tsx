@@ -255,7 +255,7 @@ export default async function HomePage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-surface-base">
+    <div className="min-h-screen bg-surface-base" style={{ overflowX: "clip" }}>
 
       {/* JSON-LD structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)       }} />
@@ -270,7 +270,7 @@ export default async function HomePage() {
           correctly clip filter:blur() children inside overflow:hidden.
           Without it, large blurred absolute divs escape the clipping boundary
           and push the mobile page width wider than the viewport. */}
-      <section className="relative overflow-hidden bg-hero-depth text-white" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}>
+      <section className="relative overflow-hidden bg-hero-depth text-white" style={{ contain: "paint", transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}>
 
         {/* ── Fade-in keyframes ──────────────────────────────────────── */}
         <style>{`
@@ -306,18 +306,21 @@ export default async function HomePage() {
             clip filter:blur() at the overflow:hidden boundary (WebKit bug workaround).
             Layout: left glow starts at left-0 (no negative offset), right glow at
             right-0, bottom glow capped at w-[180px] on mobile.                       */}
+        {/* Ambient glows — hidden on mobile to prevent iOS Safari blur-escape overflow bug.
+            On desktop (sm+) they're safely clipped by the section's overflow:hidden + contain:paint.
+            translateZ(0) forces a GPU compositing layer for correct clipping in WebKit. */}
         <div
-          className="pointer-events-none absolute top-0 left-0 w-[260px] sm:w-[600px] h-[400px] sm:h-[500px] rounded-full bg-indigo-600/[0.14] blur-[80px] sm:blur-[100px]"
+          className="pointer-events-none hidden sm:block absolute top-0 left-0 sm:w-[600px] sm:h-[500px] rounded-full bg-indigo-600/[0.14] sm:blur-[100px]"
           style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute top-1/4 right-0 w-[220px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full bg-emerald-600/[0.09] blur-[60px] sm:blur-[90px]"
+          className="pointer-events-none hidden sm:block absolute top-1/4 right-0 sm:w-[400px] sm:h-[400px] rounded-full bg-emerald-600/[0.09] sm:blur-[90px]"
           style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute bottom-0 left-0 w-[180px] sm:w-[400px] sm:left-1/3 h-[240px] sm:h-[300px] rounded-full bg-blue-600/[0.08] blur-[60px] sm:blur-[80px]"
+          className="pointer-events-none hidden sm:block absolute bottom-0 sm:left-1/3 sm:w-[400px] sm:h-[300px] rounded-full bg-blue-600/[0.08] sm:blur-[80px]"
           style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
           aria-hidden="true"
         />
