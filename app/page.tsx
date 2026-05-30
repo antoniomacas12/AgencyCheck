@@ -123,37 +123,52 @@ const AGENCYCHECK_BENEFITS = [
   {
     icon: "⚡",
     label: "Fast response — same day",
-    detail: "Apply via WhatsApp and get a reply from a real recruiter the same day. No waiting weeks to hear back.",
+    detail: "Apply via WhatsApp and get a reply from a real recruiter within hours — not weeks. Most applications on AgencyCheck receive a response the same working day. Job start dates are typically within 7–14 days of first contact, including housing arrangement.",
   },
   {
     icon: "🏠",
-    label: "Housing included",
-    detail: "All agencies on AgencyCheck offer accommodation as part of the package. No need to find your own place.",
+    label: "SNF-certified housing included",
+    detail: "All agencies on AgencyCheck offer accommodation as part of your work package — no upfront deposit, no separate apartment hunt. Housing is SNF-inspected and costs €85–€113/week (the 2026 SNF maximum is €113.50/week), deducted directly from your gross wage.",
   },
   {
     icon: "📋",
     label: "Transparent contracts",
-    detail: "See exactly what will be deducted before you sign — housing, transport, insurance. No surprises after arrival.",
+    detail: "Under Dutch ABU/NBBU CAO rules, every deduction must be itemised in writing before your first working day. On AgencyCheck you see housing cost, transport, and health insurance broken out line by line — in your own language — before you commit to anything.",
   },
   {
     icon: "🆓",
     label: "100% free for workers",
-    detail: "AgencyCheck is completely free to use. Agencies pay us — you never do. No commission, no hidden fees.",
+    detail: "AgencyCheck is completely free to use. Agencies pay a placement fee — you never pay anything. No registration cost, no commission, no deposit. Dutch law also prohibits agencies from charging workers a finder's fee (Wet Toelating Terbeschikkingstelling van Arbeidskrachten, 2024).",
   },
 ];
 
 // ─── What good agencies offer ─────────────────────────────────────────────────
 const AGENCY_OFFERS = [
-  { icon: "📄", title: "Written contract before you start",
-    body: "A good agency always gives you a written contract in advance. You should know your pay rate, housing cost, and start date before travelling." },
-  { icon: "🏠", title: "SNF-certified housing",
-    body: "Top agencies hold SNF certification — an independent Dutch standard for quality worker housing. Look for this when comparing agencies." },
-  { icon: "⏱", title: "Overtime paid correctly",
-    body: "Under Dutch CAO rules, overtime earns a premium (125%–150%). Good agencies apply this automatically and show it clearly on your payslip." },
-  { icon: "🚌", title: "Organised transport to work",
-    body: "Most agencies arrange transport to the worksite. The best ones include it in the package or charge only the actual cost." },
-  { icon: "💬", title: "Dutch language support",
-    body: "Good agencies have staff who speak your language — Polish, Romanian, Bulgarian. You should always be able to ask questions and get answers." },
+  {
+    icon: "📄",
+    title: "Written contract before you travel",
+    body: "A legitimate Dutch employment agency always provides a written contract before your start date — specifying your hourly rate, CAO scale (Phase A/B/C), housing cost, transport arrangement, and exact start date. Under Dutch law (Wet allocatie arbeidskrachten door intermediairs), agencies must register with SNA or hold ABU/NBBU membership. Never travel without a signed contract in hand.",
+  },
+  {
+    icon: "🏠",
+    title: "SNF-certified housing",
+    body: "SNF (Stichting Normering Flexwonen) is the independent Dutch body that inspects and certifies agency housing for room size, fire safety, and basic hygiene. SNF certification caps accommodation costs at €113.50/week maximum (2026 standard). You can verify any agency's SNF number at snf.nl before signing anything.",
+  },
+  {
+    icon: "⏱",
+    title: "Overtime paid at the correct premium",
+    body: "Under the Dutch ABU and NBBU Collective Labour Agreement (CAO), overtime earns a statutory premium: 125% for hours beyond 40 per week, 150% for Sundays and public holidays. Top agencies apply this automatically and list it clearly as 'overwerktoeslag' on your weekly payslip (loonstrook). Ask to see a sample payslip before you sign.",
+  },
+  {
+    icon: "🚌",
+    title: "Organised transport to the worksite",
+    body: "Most warehouses, greenhouse complexes, and production sites are located outside city centres with limited public transport access. Good agencies arrange a dedicated bus from a central meeting point. Transport costs — when charged — are typically €20–€30/week and must appear as a separate, clearly named line in your contract (not bundled into housing).",
+  },
+  {
+    icon: "💬",
+    title: "Support in your own language",
+    body: "The best Dutch staffing agencies have recruitment staff who speak Polish, Romanian, Bulgarian, or Slovak — not just Dutch and English. You should be able to ask questions about your payslip, contract terms, or housing situation and receive clear answers. This also matters if there is ever a dispute: you need to understand what you signed.",
+  },
 ];
 
 function StarRating({ value }: { value: number }) {
