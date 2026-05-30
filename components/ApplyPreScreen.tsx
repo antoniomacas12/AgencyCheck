@@ -96,23 +96,34 @@ function buildCandidateMsg(
   ].join("\n");
 }
 
-// ─── Duplicate-application guard (localStorage) ───────────────────────────────
-// Two-layer dedup:
+// ─── Duplicate-application guard ─────────────────────────────────────────────
+// Three-layer dedup — each layer covers a different bypass scenario:
 //
-// 1. DEVICE lock  — "ac_device_applied" → timestamp of last successful apply.
-//    Checked in handleOpen() so the form never even opens for 24 h after applying.
-//    Device-level: works regardless of phone number used.
+// 1. DEVICE lock  — localStorage "ac_device_applied" → timestamp.
+//    Checked in handleOpen() so the form never even opens for 24 h.
+//    Device-level: works regardless of phone number. Fastest check.
 //
-// 2. PHONE lock   — "ac_apply_guard" → array of { phone, ts }.
-//    Checked in handleSubmit() as a second line of defence for cases where
-//    someone clears storage but uses the same number from another device.
+// 2. PHONE lock   — localStorage "ac_apply_guard" → [{phone, ts}].
+//    Checked in handleSubmit() before opening WhatsApp.
+//    Same device, different session (e.g. cleared cache but same browser).
 //
-// Both fail-open: if localStorage is unavailable the check is skipped so
-// real candidates are never permanently locked out by a storage error.
+// 3. SERVER lock  — POST /api/check-phone → DB PhoneApplication table.
+//    Called after window.open("about:blank") using blank-window trick so
+//    popup blocker is never triggered. Covers: incognito, different device,
+//    Vercel cold starts (in-memory Map would have been reset).
+//
+// All layers fail-open: a storage/network error never permanently blocks
+// a real candidate.
 
 const DEVICE_KEY = "ac_device_applied";
 const DEDUP_KEY  = "ac_apply_guard";
 const DEDUP_TTL  = 86_400_000; // 24 hours in ms
+
+/** Normalise phone to a canonical form for comparison.
+ *  Matches the normalisation used server-side in /api/apply-webhook and /api/check-phone. */
+function normalisePhone(raw: string): string {
+  return raw.replace(/[\s\-()]/g, "").toLowerCase();
+}
 
 function deviceAlreadyApplied(): boolean {
   try {
@@ -228,13 +239,14 @@ export default function ApplyPreScreen({
   referralMode = false,
   children,
 }: Props) {
-  const [open,    setOpen]    = useState(false);
-  const [screen,  setScreen]  = useState<Screen>("gate");
-  const [errors,  setErrors]  = useState(false);
+  const [open,       setOpen]       = useState(false);
+  const [screen,     setScreen]     = useState<Screen>("gate");
+  const [errors,     setErrors]     = useState(false);
+  const [submitting, setSubmitting] = useState(false); // true while server dedup check is in-flight
   // Portal mount guard — prevents SSR/hydration mismatch
-  const [mounted, setMounted] = useState(false);
+  const [mounted,    setMounted]    = useState(false);
   // Geo gate — null = unknown (fail-open), false = non-EU blocked
-  const [isEU,    setIsEU]    = useState<boolean | null>(null);
+  const [isEU,       setIsEU]       = useState<boolean | null>(null);
   // Apply form is always in English — language never changes regardless of locale
 
   useEffect(() => {
@@ -320,81 +332,116 @@ export default function ApplyPreScreen({
     setScreen("details_b");
   }
 
-  // Called from button onClick — MUST remain synchronous so popup blocker
-  // never intercepts the window.open() call.
+  // handleSubmit uses the "blank-window" technique:
+  //
+  // 1. window.open("about:blank") — SYNCHRONOUS in the click event.
+  //    Popup blocker sees this as a user-initiated open → always allowed.
+  //
+  // 2. fetch("/api/check-phone") — ASYNC server-side dedup check (DB-backed).
+  //    If duplicate: close the blank window, show already_applied screen.
+  //    If allowed:   redirect the blank window to the WhatsApp URL.
+  //
+  // This gives us a server-side check (cross-device, cross-session, persistent)
+  // without ever triggering the popup blocker. Fails open if server is unreachable.
   function handleSubmit() {
-    const phoneClean = phone.trim();
-    const phoneValid = phoneClean.length >= 7 && /^[+\d\s\-()]+$/.test(phoneClean);
+    const phoneRaw   = phone.trim();
+    const phoneClean = normalisePhone(phoneRaw);   // remove spaces/dashes/brackets
+    const phoneValid = phoneClean.length >= 7 && /^[+\d]+$/.test(phoneClean);
 
     if (!english || !group || !cv || location.trim().length < 2 || !phoneValid) {
       setErrors(true);
       return;
     }
 
-    // ── Duplicate guard — block same phone within 24 h ───────────────────
+    // Layer 1: device lock (fastest — no network round-trip)
+    if (deviceAlreadyApplied()) {
+      setScreen("already_applied");
+      return;
+    }
+
+    // Layer 2: local phone lock (same device, cleared cache)
     if (checkDuplicate(phoneClean)) {
       setScreen("already_applied");
       return;
     }
 
+    // Build the WhatsApp message and destination URL now (needed in both branches)
     const msg = buildCandidateMsg(
       jobTitle, source,
       citizenship!, bsn!, driving!, housing!, avail!,
       location.trim(), phoneClean, english!, group!, cv!,
     );
-
     const dest = referralMode
       ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck", msg)
       : `${waBase}?text=${encodeURIComponent(msg)}`;
 
-    // Synchronous — called directly from click event, no async gap
-    window.open(dest, "_blank", "noopener,noreferrer");
+    // ── BLANK WINDOW TRICK ────────────────────────────────────────────────────
+    // Open about:blank synchronously (popup blocker treats it as user-initiated).
+    // The actual URL is set asynchronously after the server check.
+    const win = window.open("about:blank", "_blank", "noopener,noreferrer");
+    setSubmitting(true);
 
-    // Save both locks AFTER successful open so a popup-blocked attempt
-    // does not permanently lock the candidate out.
-    saveDeviceLock();
-    saveDedupEntry(phoneClean);
+    // Layer 3: server-side DB check (cross-device, cross-session, persistent)
+    const finish = () => {
+      // Redirect the pre-opened blank window to WhatsApp
+      if (win && !win.closed) {
+        win.location.href = dest;
+      } else {
+        // Fallback if blank window was closed/blocked in the meantime
+        window.open(dest, "_blank", "noopener,noreferrer");
+      }
+      // Save local locks
+      saveDeviceLock();
+      saveDedupEntry(phoneClean);
+      setOpen(false);
+      setSubmitting(false);
+      // Fire-and-forget logging (non-blocking)
+      savePreQual({ isEuCitizen: true, hasBsn: bsn === "yes" || bsn === "not_yet", jobId, jobTitle, source });
+      // Fire-and-forget recruiter webhook (proxied server-side, token never in browser)
+      fetch("/api/apply-webhook", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jobId, jobTitle,
+          source:   source ?? null,
+          phone:    phoneClean,
+          location: location.trim(),
+          bsn, driving, housing, avail, english, group, cv,
+          waMessage: msg,
+        }),
+      }).catch(() => { /* non-blocking */ });
+    };
 
-    setOpen(false);
-
-    // Fire-and-forget logging (non-blocking, never delays WA open)
-    savePreQual({
-      isEuCitizen: true,
-      hasBsn:      bsn === "yes" || bsn === "not_yet",
-      jobId,
-      jobTitle,
-      source,
-    });
-
-    // Fire-and-forget recruiter webhook (proxied server-side, token never in browser)
-    fetch("/api/apply-webhook", {
+    fetch("/api/check-phone", {
       method:  "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        jobId,
-        jobTitle,
-        source:   source ?? null,
-        phone:    phoneClean,
-        location: location.trim(),
-        bsn,
-        driving,
-        housing,
-        avail,
-        english,
-        group,
-        cv,
-        waMessage: msg,
-      }),
-    }).catch(() => { /* non-blocking */ });
+      body: JSON.stringify({ phone: phoneClean }),
+    })
+      .then((r) => r.json())
+      .then(({ allowed }: { allowed: boolean }) => {
+        if (!allowed) {
+          // Server confirmed duplicate — close blank window, show screen
+          win?.close();
+          setScreen("already_applied");
+          setSubmitting(false);
+          return;
+        }
+        finish();
+      })
+      .catch(() => {
+        // Fail-open: server unreachable → proceed so real candidates aren't blocked
+        finish();
+      });
   }
 
   // Progress (1 = gate, 2 = details_a, 3 = details_b)
   const step = screen === "gate" ? 1 : screen === "details_a" ? 2 : 3;
 
   // ── Readiness guards — buttons are only enabled when ALL fields on that screen are filled ──
-  const detailsAReady = !!bsn && !!driving && !!housing && !!avail;
-  const phoneValid    = phone.trim().length >= 7 && /^[+\d\s\-()]+$/.test(phone.trim());
-  const detailsBReady = location.trim().length >= 2 && phoneValid && !!english && !!group && !!cv;
+  const detailsAReady  = !!bsn && !!driving && !!housing && !!avail;
+  const phoneNorm      = normalisePhone(phone.trim()); // consistent with server-side normalisation
+  const phoneValid     = phoneNorm.length >= 7 && /^[+\d]+$/.test(phoneNorm);
+  const detailsBReady  = location.trim().length >= 2 && phoneValid && !!english && !!group && !!cv;
 
 
   // ── Portal modal — rendered at document.body level ──────────────────────────
@@ -796,22 +843,31 @@ export default function ApplyPreScreen({
               </p>
             )}
 
-            {/* handleSubmit is synchronous — window.open() called directly
-                from click event so popup blockers do not interfere */}
+            {/* handleSubmit opens about:blank synchronously then does async server check.
+                The button is disabled while the check is in-flight (submitting=true). */}
             <button
               onClick={handleSubmit}
-              disabled={!detailsBReady}
+              disabled={!detailsBReady || submitting}
               className={`
                 w-full flex items-center justify-center gap-2.5
                 text-[16px] font-black
                 py-4 rounded-2xl
                 transition-all duration-150 mb-3
-                ${detailsBReady
+                ${detailsBReady && !submitting
                   ? "bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white shadow-lg shadow-green-900/30 cursor-pointer"
                   : "bg-white/10 text-gray-500 cursor-not-allowed"}
               `}
             >
-              {detailsBReady ? (
+              {submitting ? (
+                // Loading state while server dedup check is in-flight (~200–400ms)
+                <>
+                  <svg className="w-4 h-4 animate-spin shrink-0" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+                  </svg>
+                  Checking…
+                </>
+              ) : detailsBReady ? (
                 <>
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
