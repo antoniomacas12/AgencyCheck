@@ -47,33 +47,13 @@ const SALARY_ROWS = [
   { label: "💶 Jij houdt over",                       amount: "€345",  green: true,  bold: true  },
 ] as const;
 
-// ─── Hidden deductions ────────────────────────────────────────────────────────
-const HIDDEN_DEDUCTIONS = [
-  {
-    icon: "🚌",
-    label: "Overprijs transport",
-    amount: "€40–€60/maand extra",
-    detail: "Bureusbus kost €25–€30/week — maar sommige bureaus rekenen €40+. Soms zelfs als je zelf reist.",
-  },
-  {
-    icon: "🏠",
-    label: "Illegale woonkosten",
-    amount: "€110–€170/week",
-    detail: "SNF-limiet is €103/week (2026). Sommige bureaus rekenen meer via 'bijkomende kosten'. Check altijd de exacte inhouding.",
-  },
-  {
-    icon: "📄",
-    label: "Onduidelijk contract",
-    amount: "Risico: onbetaalde uren",
-    detail: "Tijdelijk contract betekent dat het bureau je contract elk moment kan beëindigen. Zorg dat alles op papier staat.",
-  },
-  {
-    icon: "💊",
-    label: "Verborgen verzekeringen",
-    amount: "€20–€40/week",
-    detail: "Zorgverzekering, aansprakelijkheidsverzekering, uitrustingsverzekering — soms ingehouden zonder uitleg.",
-  },
-] as const;
+// ─── AgencyCheck benefits ─────────────────────────────────────────────────────
+const AGENCYCHECK_BENEFITS = [
+  { icon: "⚡", label: "Zelfde dag reactie", detail: "Solliciteer via WhatsApp en ontvang nog dezelfde dag een reactie van een echte recruiter. Geen weken wachten." },
+  { icon: "🏠", label: "Huisvesting inbegrepen", detail: "Alle bureaus op AgencyCheck bieden huisvesting als onderdeel van het pakket. Geen eigen woning zoeken nodig." },
+  { icon: "📋", label: "Transparant contract", detail: "Voordat je tekent zie je precies wat er ingehouden wordt: huisvesting, transport, verzekering. Geen verrassingen na aankomst." },
+  { icon: "🆓", label: "100% gratis voor werknemers", detail: "AgencyCheck is volledig gratis voor werknemers. Bureaus betalen voor toegang — jij betaalt nooit iets." },
+];
 
 export default async function NlHomepage() {
   const stats   = await getPublishedReviewStats();
@@ -232,14 +212,14 @@ export default async function NlHomepage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">
-              ⚠️ Reality check — Nederland 2026
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">
+              Voordelen van AgencyCheck — Nederland 2026
             </p>
             <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
-              Wat verdien je <em>echt</em>?
+              Begin je werk in Nederland <em>goed voorbereid</em>
             </h2>
             <p className="text-sm text-gray-500 max-w-xl mx-auto">
-              Bij WML €14,71/u · 40 uur/week · bureauhuisvesting · typische inhoudingen
+              AgencyCheck koppelt werknemers aan geverifieerde bureaus met transparante voorwaarden
             </p>
           </div>
 
@@ -277,16 +257,15 @@ export default async function NlHomepage() {
             </div>
           </div>
 
-          {/* Hidden deductions grid */}
+          {/* AgencyCheck benefits grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {HIDDEN_DEDUCTIONS.map((item) => (
+            {AGENCYCHECK_BENEFITS.map((item) => (
               <div
                 key={item.label}
-                className="rounded-2xl border border-red-100 bg-red-50/30 p-5 hover:border-red-200 hover:bg-red-50/60 transition-colors"
+                className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors"
               >
                 <span className="text-2xl mb-3 block">{item.icon}</span>
                 <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs font-bold text-red-600 mb-2">{item.amount}</p>
                 <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
               </div>
             ))}

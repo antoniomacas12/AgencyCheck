@@ -68,12 +68,12 @@ const SALARY_ROWS = [
   { label: "💶 Zostáva vám",                  amount: "€345",  green: true,  bold: true  },
 ] as const;
 
-// ─── Hidden deductions ────────────────────────────────────────────────────────
-const HIDDEN_DEDUCTIONS = [
-  { icon: "🚌", label: "Predražená doprava",              amount: "€40–€60/mes. navyše",    detail: "Autobus agentúry stojí €25–€30/týždeň — niektoré agentúry účtujú €40+. Niekedy aj keď dochádzate sami." },
-  { icon: "🏠", label: "Nelegálne poplatky za ubytovanie", amount: "€50–€100/mes. ukradnuté", detail: "Maximálny poplatok SNF pre zdieľané izby je €113,50/týždeň. Mnohé agentúry účtujú €120–€140. Preplatok je nelegálny." },
-  { icon: "⏱", label: "Nezaplatené nadčasy",              amount: "€80–€200/mes. stratené",  detail: "Odpracované hodiny sa neobjavujú na výplatnej páske. Príplatky za víkendy a nedele jednoducho miznú." },
-  { icon: "📄", label: "Nejasné poplatky",                 amount: "€20–€80/mes. chýba",      detail: "Posteľná bielizeň, upratovanie, administratíva — poplatky pridané po podpise, ktoré neboli v kontraktu." },
+// ─── AgencyCheck benefits ─────────────────────────────────────────────────────
+const AGENCYCHECK_BENEFITS = [
+  { icon: "⚡", label: "Odpoveď v ten istý deň",     detail: "Prihlás sa cez WhatsApp a dostaneš odpoveď od skutočného recruitera ešte v ten istý deň. Žiadne čakanie týždne." },
+  { icon: "🏠", label: "Ubytovanie v balíku",         detail: "Všetky agentúry na AgencyCheck ponúkajú ubytovanie ako súčasť balíka. Nemusíš hľadať vlastný byt." },
+  { icon: "📋", label: "Transparentná zmluva",        detail: "Pred podpisom vidíš presne čo sa bude strhávať: ubytovanie, doprava, poistenie. Žiadne prekvapenia po príchode." },
+  { icon: "🆓", label: "Úplne zdarma pre pracovníkov", detail: "AgencyCheck je 100% bezplatný pre pracovníkov. Agentúry platia za prístup — ty neplatíš nikdy nič." },
 ];
 
 // ─── Worker testimonials ──────────────────────────────────────────────────────
@@ -83,13 +83,13 @@ const WORKER_TESTIMONIALS = [
   { quote: "I work here 3 years already, with good agency now. My first agency was terrible. Use this site please. I wish someone tell me before.",    name: "Olena V.",   from: "Ukrajina",  job: "Skleník, Westland",           flag: "🇺🇦", rating: 5 },
 ];
 
-// ─── Worker problems ──────────────────────────────────────────────────────────
-const WORKER_PROBLEMS = [
-  { icon: "💸", title: "Skryté zrážky z výplaty",     freq: "68% pracovníkov", body: "Ubytovanie, poistenie, doprava a administratívne poplatky odpočítané priamo z brutto — často bez vysvetlenia na výplatnej páske." },
-  { icon: "⏱", title: "Nezaplatené nadčasy",          freq: "41% pracovníkov", body: "Odpracované hodiny sa neobjavujú na výplate. Celé víkendy a príplatky za nedele jednoducho miznú." },
-  { icon: "🏠", title: "Preplnené ubytovanie",        freq: "34% pracovníkov", body: "4 osoby v izbe určenej pre 2. Platenie €95+/týždeň za takéto podmienky porušuje normy ubytovania SNF." },
-  { icon: "🌡", title: "Pleseň a nedostatok kúrenia", freq: "22% pracovníkov", body: "Holandské právo garantuje obývateľné podmienky. Správy o plesnivosti, pokazenom kúrení a vlhkosti sú bežné." },
-  { icon: "🚌", title: "Podvody s dopravou",          freq: "29% pracovníkov", body: "Účtovaných €25–€40/týždeň za autobusy nespoľahlivé alebo preplnené. Niektoré agentúry účtujú aj keď dochádzate samostatne." },
+// ─── What good agencies offer ─────────────────────────────────────────────────
+const AGENCY_OFFERS = [
+  { icon: "📄", title: "Písomná zmluva pred odchodom",   body: "Dobrá agentúra vždy dá písomnú zmluvu vopred. Poznáš hodinovú sadzbu, cenu ubytovania a dátum nástupu skôr, ako odídeš." },
+  { icon: "🏠", title: "SNF certifikované ubytovanie",   body: "Najlepšie agentúry majú SNF certifikáciu — nezávislý holandský štandard kvality pre pracovnícke ubytovanie." },
+  { icon: "⏱", title: "Nadčasy správne zaplatené",       body: "Podľa holandského CAO sa nadčasy platia s príplatkom (125%–150%). Dobré agentúry to aplikujú automaticky a jasne zobrazujú na výplatnej páske." },
+  { icon: "🚌", title: "Organizovaná doprava do práce",  body: "Väčšina agentúr organizuje dopravu na pracovisko. Najlepšie ju zahrňujú do balíka alebo účtujú len skutočné náklady." },
+  { icon: "💬", title: "Podpora v slovenčine",           body: "Dobré agentúry majú zamestnancov hovoriacich po slovensky. Môžeš klásť otázky a vždy dostaneš jasné odpovede." },
 ];
 
 function StarRating({ value }: { value: number }) {
@@ -272,28 +272,26 @@ export default async function SkHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §3  MONEY-LOSS FRAMING
+          §3  AGENCYCHECK BENEFITS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">Skryté náklady práce cez agentúry</p>
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Prečo pracovníci vyberajú AgencyCheck</p>
             <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
-              Väčšina pracovníkov stráca{" "}
-              <span className="text-red-500">€300–€500 mesačne</span>{" "}
-              na skrytých zrážkach
+              Najrýchlejší spôsob, ako začať pracovať{" "}
+              <span className="text-emerald-600">v Holandsku</span>
             </h2>
             <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Tieto zrážky sa často nespomínajú pred podpisom zmluvy — a mnohé z nich sú čiastočne alebo úplne nelegálne.
+              Spájame ťa s overenými agentúrami, ktoré ponúkajú ubytovanie, dopravu a jasnú zmluvu — všetko cez jeden WhatsApp rozhovor.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-            {HIDDEN_DEDUCTIONS.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-red-100 bg-red-50/30 p-5 hover:border-red-200 hover:bg-red-50/60 transition-colors">
+            {AGENCYCHECK_BENEFITS.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
-                <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs font-bold text-red-600 mb-2">{item.amount}</p>
+                <h3 className="text-sm font-black text-gray-900 mb-2">{item.label}</h3>
                 <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
               </div>
             ))}
@@ -626,32 +624,31 @@ export default async function SkHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §9  WORKER PROBLEMS
+          §9  WHAT GOOD AGENCIES OFFER
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">Čo vám žiadna agentúra nepovie</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Typické problémy hlásené pracovníkmi</h2>
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Overené agentúry na AgencyCheck</p>
+            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Čo ponúka dobrý agentúrny balík</h2>
             <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
-              Na základe {totalReviews}+ overených správ pracovníkov. Vedieť to vás chráni pred podpisom.
+              Každá agentúra na AgencyCheck je hodnotená skutočnými pracovníkmi. Tu je to, čo najlepšie hodnotené konzistentne ponúkajú.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
-            {WORKER_PROBLEMS.map((p, i) => (
+            {AGENCY_OFFERS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-gray-100 bg-gray-50 hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
                 <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-3">{p.body}</p>
-                <span className="inline-block text-[11px] font-bold text-red-600 bg-red-50 border border-red-100 rounded-full px-3 py-1">⚠ {p.freq}</span>
+                <p className="text-sm text-gray-600 leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
           <div className="text-center">
             <Link href="/reviews"
               className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
-              📋 Čítajte skutočné skúsenosti pracovníkov →
+              📋 Čítajte {totalReviews}+ hodnotení skutočných pracovníkov →
             </Link>
           </div>
         </div>

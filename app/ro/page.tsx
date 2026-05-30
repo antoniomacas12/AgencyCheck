@@ -107,46 +107,21 @@ const WORKER_TESTIMONIALS = [
   },
 ];
 
-// ─── Hidden deductions (RO) ───────────────────────────────────────────────────
-const HIDDEN_DEDUCTIONS = [
-  {
-    icon: "🚌",
-    label: "Suprataxare transport",
-    amount: "€40–€60/lună extra",
-    detail: "Autobuzul agenției costă €25–€30/săpt. — dar unele agenții percep €40+. Unele percep chiar și când te deplasezi independent.",
-  },
-  {
-    icon: "🏠",
-    label: "Taxe ilegale de cazare",
-    amount: "€50–€100/lună furate",
-    detail: "Deducerea legală maximă SNF pentru camere partajate certificate este €113,50/săpt. Multe agenții percep €120–€140. Diferența este pur și simplu ilegală.",
-  },
-  {
-    icon: "⏱",
-    label: "Ore suplimentare neplătite",
-    amount: "€80–€200/lună pierdute",
-    detail: "Ore lucrate care nu apar pe fluturașul de salariu. Prime de weekend și duminică care pur și simplu dispar.",
-  },
-  {
-    icon: "📄",
-    label: "Deduceri inexplicabile",
-    amount: "€20–€80/lună lipsesc",
-    detail: "Lenjerie de pat, curățenie, administrare — taxe adăugate după semnare care nu erau în contract.",
-  },
+// ─── AgencyCheck benefits (RO) ───────────────────────────────────────────────
+const AGENCYCHECK_BENEFITS = [
+  { icon: "⚡", label: "Răspuns în aceeași zi", detail: "Aplică prin WhatsApp și primești răspuns de la un recrutor real în aceeași zi. Fără săptămâni de așteptare." },
+  { icon: "🏠", label: "Cazare certificată SNF", detail: "Agențiile de pe AgencyCheck oferă cazare ca parte din pachet. Standardele SNF garantează condiții decente de locuit." },
+  { icon: "📋", label: "Contract transparent", detail: "Înainte să semnezi, știi exact ce se deduce: cazare, transport, asigurare. Fără surprize după sosire." },
+  { icon: "🆓", label: "Gratuit pentru lucrători", detail: "AgencyCheck este 100% gratuit pentru lucrători. Agențiile plătesc pentru acces — tu nu plătești nimic, niciodată." },
 ];
 
-// ─── Worker problems (RO) ─────────────────────────────────────────────────────
-const WORKER_PROBLEMS = [
-  { icon: "💸", title: "Deduceri salariale ascunse", freq: "68% din lucrători",
-    body: "Cazare, asigurare, transport și taxe administrative deduse direct din brut — adesea fără explicație pe fluturașul de salariu." },
-  { icon: "⏱", title: "Ore suplimentare neplătite", freq: "41% din lucrători",
-    body: "Ore lucrate în plus care nu apar pe fluturașul de salariu. Weekenduri întregi și prime de duminică pur și simplu dispar." },
-  { icon: "🏠", title: "Cazare supraaglomerată",     freq: "34% din lucrători",
-    body: "4 lucrători într-o cameră concepută pentru 2. Plata a €95+/săpt. pentru astfel de condiții încalcă standardele de cazare SNF." },
-  { icon: "🌡", title: "Mucegai și fără încălzire",  freq: "22% din lucrători",
-    body: "Legea olandeză garantează condiții de locuit decente. Totuși, rapoartele despre mucegai, încălzire defectă și umezeală sunt frecvente." },
-  { icon: "🚌", title: "Escrocherii transport",      freq: "29% din lucrători",
-    body: "Se percep €25–€40/săpt. pentru autobuze nesigure sau supraaglomerate. Unele agenții percep chiar și când te deplasezi independent." },
+// ─── Agency offers (RO) ──────────────────────────────────────────────────────
+const AGENCY_OFFERS = [
+  { icon: "📄", title: "Contract scris înainte de plecare", body: "O agenție bună oferă întotdeauna contract scris în avans. Cunoști tariful orar, costul cazării și data de start înainte să pleci." },
+  { icon: "🏠", title: "Cazare certificată SNF", body: "Cele mai bune agenții dețin certificarea SNF — standardul olandez independent pentru calitatea locuințelor lucrătorilor." },
+  { icon: "⏱", title: "Ore suplimentare plătite corect", body: "Conform CAO olandez, orele suplimentare sunt remunerate mai bine (125%–150%). Agențiile bune aplică asta automat." },
+  { icon: "🚌", title: "Transport organizat la locul de muncă", body: "Cele mai multe agenții organizează transport. Cele mai bune îl includ în pachet sau taxează doar costul real." },
+  { icon: "💬", title: "Sprijin în limba română", body: "Agențiile bune au angajați care vorbesc română. Poți pune întrebări și vei primi mereu răspunsuri clare." },
 ];
 
 function StarRating({ value }: { value: number }) {
@@ -379,33 +354,30 @@ export default async function RoHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §3  MONEY-LOSS FRAMING
+          §3  AGENCYCHECK BENEFITS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">
-              Costurile ascunse ale lucrului prin agenții
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">
+              De ce să începi prin AgencyCheck
             </p>
             <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
-              Majoritatea lucrătorilor pierd{" "}
-              <span className="text-red-500">€300–€500 în fiecare lună</span>{" "}
-              din deduceri ascunse
+              Începe lucrul în Olanda{" "}
+              <span className="text-emerald-500">sigur și informat</span>
             </h2>
             <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Aceste deduceri adesea nu sunt menționate înainte de semnare — și multe sunt
-              parțial sau complet ilegale. Majoritatea lucrătorilor nu știu niciodată că se întâmplă.
+              AgencyCheck conectează lucrătorii cu agenții verificate care oferă condiții transparente și pachete corecte.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-            {HIDDEN_DEDUCTIONS.map((item) => (
+            {AGENCYCHECK_BENEFITS.map((item) => (
               <div key={item.label}
-                className="rounded-2xl border border-red-100 bg-red-50/30 p-5 hover:border-red-200 hover:bg-red-50/60 transition-colors">
+                className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
                 <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs font-bold text-red-600 mb-2">{item.amount}</p>
                 <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
               </div>
             ))}
@@ -776,29 +748,26 @@ export default async function RoHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §9  WORKER PROBLEMS
+          §9  AGENCY OFFERS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">Ce nu îți va spune nicio agenție</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Probleme frecvente raportate de lucrători</h2>
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Ce oferă cele mai bune agenții</p>
+            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Ce includ ofertele celor mai bune agenții</h2>
             <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
-              Bazat pe {totalReviews}+ rapoarte verificate de lucrători. Știind asta te protejează înainte de a semna.
+              Bazat pe {totalReviews}+ rapoarte verificate de lucrători. Știi ce să cauți când alegi o agenție.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
-            {WORKER_PROBLEMS.map((p, i) => (
+            {AGENCY_OFFERS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-gray-100 bg-gray-50 hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
                 <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-3">{p.body}</p>
-                <span className="inline-block text-[11px] font-bold text-red-600 bg-red-50 border border-red-100 rounded-full px-3 py-1">
-                  ⚠ {p.freq}
-                </span>
+                <p className="text-sm text-gray-600 leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>

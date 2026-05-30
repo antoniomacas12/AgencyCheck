@@ -105,9 +105,9 @@ export default function CheckAgencyPage() {
             </h1>
 
             <p className="text-base text-gray-300 leading-relaxed">
-              Agencies promise good pay, housing included, easy start. What workers actually find is different —
-              overcrowded rooms, deductions they weren&apos;t told about, and contracts that only protect the agency.
-              Before you commit to anything, run these four checks. Takes 15 minutes. Could save you months of problems.
+              Agencies offer housing, pay, and an easy start in the Netherlands. But not all agencies are equal —
+              standards vary significantly across registration, housing quality, and contract clarity.
+              Before you commit to anything, run these four checks. Takes 15 minutes and gives you a clear picture.
             </p>
 
           </div>
@@ -169,9 +169,9 @@ export default function CheckAgencyPage() {
                 for a room with six people in it.
               </p>
               <p className="text-sm text-gray-300 leading-relaxed mb-4">
-                The real problem workers run into: the housing looks fine in the photo. In person,
-                it&apos;s a room with five or six other people, shared bathrooms with broken locks,
-                and deductions higher than what was in the contract. This happens more than agencies will admit.
+                SNF certification also sets a legal ceiling: agencies cannot charge you more than €113.50/week
+                for shared accommodation. Verifying SNF status before you sign is the easiest way to confirm
+                that housing costs and quality standards are in order.
               </p>
               <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.05] px-5 py-4">
                 <p className="text-xs font-black uppercase tracking-widest text-amber-400 mb-2">Ask before you sign</p>

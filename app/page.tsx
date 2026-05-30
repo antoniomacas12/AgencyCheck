@@ -118,46 +118,42 @@ const WORKER_TESTIMONIALS = [
   },
 ];
 
-// ─── Hidden deduction types ───────────────────────────────────────────────────
-const HIDDEN_DEDUCTIONS = [
+// ─── Why AgencyCheck benefits ─────────────────────────────────────────────────
+const AGENCYCHECK_BENEFITS = [
   {
-    icon: "🚌",
-    label: "Transport overcharges",
-    amount: "€40–€60/month extra",
-    detail: "Agency bus costs €25–€30/wk — but some agencies charge €40+. Some charge even when you travel independently.",
+    icon: "⚡",
+    label: "Fast response — same day",
+    detail: "Apply via WhatsApp and get a reply from a real recruiter the same day. No waiting weeks to hear back.",
   },
   {
     icon: "🏠",
-    label: "Illegal housing fees",
-    amount: "€50–€100/month stolen",
-    detail: "SNF legal maximum is €113.50/wk for shared rooms. Many agencies charge €120–€140. The extra is simply illegal.",
+    label: "Housing included",
+    detail: "All agencies on AgencyCheck offer accommodation as part of the package. No need to find your own place.",
   },
   {
-    icon: "⏱",
-    label: "Unpaid overtime",
-    amount: "€80–€200/month lost",
-    detail: "Extra hours worked but not appearing on the payslip. Weekend and Sunday premiums that simply disappear.",
+    icon: "📋",
+    label: "Transparent contracts",
+    detail: "See exactly what will be deducted before you sign — housing, transport, insurance. No surprises after arrival.",
   },
   {
-    icon: "📄",
-    label: "Unexplained deductions",
-    amount: "€20–€80/month missing",
-    detail: "Bedding, cleaning, admin, processing — fees added after signing that were never in the contract.",
+    icon: "🆓",
+    label: "100% free for workers",
+    detail: "AgencyCheck is completely free to use. Agencies pay us — you never do. No commission, no hidden fees.",
   },
 ];
 
-// ─── Worker problems ──────────────────────────────────────────────────────────
-const WORKER_PROBLEMS = [
-  { icon: "💸", title: "Hidden salary deductions", freq: "68% of workers",
-    body: "Housing, insurance, transport and admin fees deducted directly from gross — often without explanation on your payslip." },
-  { icon: "⏱", title: "Unpaid overtime",           freq: "41% of workers",
-    body: "Extra hours worked but not appearing on the payslip. Entire weekends and Sunday premiums simply disappear." },
-  { icon: "🏠", title: "Overcrowded housing",       freq: "34% of workers",
-    body: "4 workers in a room designed for 2. Paying €95+/week for these conditions violates SNF housing standards." },
-  { icon: "🌡", title: "Mould and no heating",      freq: "22% of workers",
-    body: "Dutch law guarantees habitable accommodation. Yet reports of mould, broken heating and dampness are widespread." },
-  { icon: "🚌", title: "Transport scams",           freq: "29% of workers",
-    body: "Charged €25–€40/week for buses that are unreliable or overcrowded. Some agencies charge even when you travel independently." },
+// ─── What good agencies offer ─────────────────────────────────────────────────
+const AGENCY_OFFERS = [
+  { icon: "📄", title: "Written contract before you start",
+    body: "A good agency always gives you a written contract in advance. You should know your pay rate, housing cost, and start date before travelling." },
+  { icon: "🏠", title: "SNF-certified housing",
+    body: "Top agencies hold SNF certification — an independent Dutch standard for quality worker housing. Look for this when comparing agencies." },
+  { icon: "⏱", title: "Overtime paid correctly",
+    body: "Under Dutch CAO rules, overtime earns a premium (125%–150%). Good agencies apply this automatically and show it clearly on your payslip." },
+  { icon: "🚌", title: "Organised transport to work",
+    body: "Most agencies arrange transport to the worksite. The best ones include it in the package or charge only the actual cost." },
+  { icon: "💬", title: "Dutch language support",
+    body: "Good agencies have staff who speak your language — Polish, Romanian, Bulgarian. You should always be able to ask questions and get answers." },
 ];
 
 function StarRating({ value }: { value: number }) {
@@ -657,80 +653,77 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §3  MONEY-LOSS FRAMING — the pain section
+          §3  WHY AGENCYCHECK — benefits section
           ════════════════════════════════════════════════════════════ */}
       <section className="border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">
-              The money they don&apos;t tell you about
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-500">
+              Why workers choose AgencyCheck
             </p>
             <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">
-              Right now, you are losing{" "}
-              <span className="text-red-500">€300–€500 every month</span>
-              <br className="hidden sm:block" />
-              {" "}— and you don&apos;t know it
+              The fastest way to start working{" "}
+              <span className="text-emerald-400">in the Netherlands</span>
             </h2>
             <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              These deductions are not mentioned before you sign. Many are illegal.
-              And almost no one ever finds out.
+              We connect you with verified agencies that offer housing, transport and a clear contract —
+              all in one WhatsApp conversation.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-            {HIDDEN_DEDUCTIONS.map((item) => (
+            {AGENCYCHECK_BENEFITS.map((item) => (
               <div key={item.label}
-                className="rounded-2xl border border-red-500/[0.25] bg-red-500/[0.1] p-5 hover:border-red-500/[0.35] hover:bg-red-500/[0.15] transition-colors">
+                className="rounded-2xl border border-emerald-500/[0.2] bg-emerald-500/[0.07] p-5 hover:border-emerald-500/[0.35] hover:bg-emerald-500/[0.12] transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
-                <h3 className="text-sm font-black text-white mb-1">{item.label}</h3>
-                <p className="text-xs font-bold text-red-400 mb-2">{item.amount}</p>
+                <h3 className="text-sm font-black text-white mb-2">{item.label}</h3>
                 <p className="text-xs text-gray-300 leading-relaxed">{item.detail}</p>
               </div>
             ))}
           </div>
 
-          {/* Comparison bar: what you think vs what you get */}
+          {/* Salary breakdown — neutral, informational */}
           <div className="max-w-3xl mx-auto rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden">
             <div className="bg-gray-900 px-6 py-3">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                WML worker · €14.71/hr · 40h/week · Agency housing + transport
+                Example: WML worker · €14.71/hr · 40h/week · Agency housing + transport included
               </p>
             </div>
             <div className="p-6 space-y-3">
-              {/* Bar 1: Gross (100% baseline) */}
+              {/* Bar 1: Gross */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-300">What the agency advertises (gross)</span>
+                  <span className="text-xs font-bold text-gray-300">Gross weekly pay (before tax)</span>
                   <span className="text-sm font-black text-white">€588/week</span>
                 </div>
                 <div className="h-3 rounded-full bg-white/[0.1] w-full" />
               </div>
-              {/* Bar 2: After Dutch tax — €588 − €63 tax = €525 (89% of gross) */}
+              {/* Bar 2: After Dutch tax */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-300">After Dutch tax (incl. heffingskorting credits)</span>
+                  <span className="text-xs font-bold text-gray-300">After Dutch income tax (incl. heffingskorting)</span>
                   <span className="text-sm font-black text-gray-200">€525/week</span>
                 </div>
                 <div className="h-3 rounded-full bg-amber-300" style={{ width: "89%" }} />
               </div>
-              {/* Bar 3: Real take-home — €525 − €95 − €35 − €25 − €25 = €345 (59% of gross) */}
+              {/* Bar 3: After living costs */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-red-400">What you actually take home</span>
-                  <span className="text-sm font-black text-red-400">€345/week</span>
+                  <span className="text-xs font-bold text-emerald-400">Take-home after housing, transport & insurance</span>
+                  <span className="text-sm font-black text-emerald-400">€345–€390/week</span>
                 </div>
-                <div className="h-3 rounded-full bg-red-400" style={{ width: "59%" }} />
+                <div className="h-3 rounded-full bg-emerald-400" style={{ width: "64%" }} />
               </div>
             </div>
             <div className="px-6 pb-4 flex items-center justify-between">
               <p className="text-[11px] text-gray-400">
-                Deductions: €63 tax + €95 housing + €35 insurance + €25 transport + €25 admin fees.{" "}
-                <Link href="/methodology" className="text-blue-600 underline">See full methodology →</Link>
+                Housing ~€95/wk · Transport ~€25/wk · Health insurance ~€35/wk.{" "}
+                <Link href="/methodology" className="text-blue-600 underline">Full methodology →</Link>
               </p>
               <a href="#lead-form"
                 className="shrink-0 ml-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-5 py-2.5 text-xs font-black text-white active:scale-[0.98]">
-                See jobs with better pay →
+                Find a job →
               </a>
             </div>
           </div>
@@ -810,10 +803,10 @@ export default async function HomePage() {
                 Free matching service — no fees, no obligation
               </p>
               <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
-                Find a verified agency that shows real deductions
+                Find a verified agency hiring right now
               </h2>
               <p className="mt-2 text-sm text-gray-400 leading-relaxed max-w-xl">
-                <span className="font-semibold text-gray-200">Transparent deductions</span> ·{" "}
+                <span className="font-semibold text-gray-200">Transparent contracts</span> ·{" "}
                 <span className="font-semibold text-gray-200">Verified housing</span> ·{" "}
                 <span className="font-semibold text-gray-200">Real worker reviews</span>{" "}
                 — We match you only with agencies that pass our verification checks.
@@ -1097,29 +1090,26 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §9  WORKER PROBLEMS / RISKS
+          §9  WHAT GOOD AGENCIES OFFER
           ════════════════════════════════════════════════════════════ */}
       <section className="border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">What no agency will tell you</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">Common problems reported by workers</h2>
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-400">Verified agencies on AgencyCheck</p>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">What a good agency package includes</h2>
             <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
-              Based on {totalReviews}+ verified worker reports. Knowing this protects you before you sign.
+              Every agency on AgencyCheck is reviewed by real workers. Here is what the best-rated ones consistently deliver.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
-            {WORKER_PROBLEMS.map((p, i) => (
+            {AGENCY_OFFERS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-500/[0.25] bg-red-500/[0.12]" : "border-white/[0.08] bg-white/[0.03] hover:border-red-500/[0.25] hover:bg-red-500/[0.08] transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-500/[0.25] bg-emerald-500/[0.08]" : "border-white/[0.08] bg-white/[0.03] hover:border-emerald-500/[0.2] hover:bg-emerald-500/[0.06] transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
                 <h3 className="text-base font-black text-white mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-300 leading-relaxed mb-3">{p.body}</p>
-                <span className="inline-block text-[11px] font-bold text-red-400 bg-red-500/[0.1] border border-red-500/[0.25] rounded-full px-3 py-1">
-                  ⚠ {p.freq}
-                </span>
+                <p className="text-sm text-gray-300 leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
@@ -1127,7 +1117,7 @@ export default async function HomePage() {
           <div className="text-center">
             <Link href="/reviews"
               className="inline-flex items-center gap-2 rounded-xl border border-white/[0.15] bg-white/[0.05] hover:bg-white/[0.1] transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-sm">
-              📋 Read real worker experiences →
+              📋 Read {totalReviews}+ real worker reviews →
             </Link>
           </div>
         </div>

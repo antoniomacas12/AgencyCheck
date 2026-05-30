@@ -107,46 +107,21 @@ const WORKER_TESTIMONIALS = [
   },
 ];
 
-// ─── Hidden deductions (PL) ───────────────────────────────────────────────────
-const HIDDEN_DEDUCTIONS = [
-  {
-    icon: "🚌",
-    label: "Przepłacony transport",
-    amount: "€40–€60/mies. ekstra",
-    detail: "Bus agencji kosztuje €25–€30/tydz. — ale niektóre agencje pobierają €40+. Zdarzają się opłaty nawet gdy dojeżdżasz samodzielnie.",
-  },
-  {
-    icon: "🏠",
-    label: "Nielegalne opłaty za mieszkanie",
-    amount: "€50–€100/mies. skradzione",
-    detail: "Maksymalna opłata SNF za certyfikowane pokoje wieloosobowe to €113,50/tydz. Wiele agencji pobiera €120–€140. Nadwyżka jest po prostu nielegalna.",
-  },
-  {
-    icon: "⏱",
-    label: "Nieopłacone nadgodziny",
-    amount: "€80–€200/mies. stracone",
-    detail: "Przepracowane godziny nie pojawiają się na odcinku płacowym. Premie za weekendy i niedziele po prostu znikają.",
-  },
-  {
-    icon: "📄",
-    label: "Niejasne potrącenia",
-    amount: "€20–€80/mies. brakuje",
-    detail: "Pościel, sprzątanie, administracja — opłaty dodawane po podpisaniu umowy, których nie było w kontrakcie.",
-  },
+// ─── AgencyCheck benefits (PL) ───────────────────────────────────────────────
+const AGENCYCHECK_BENEFITS = [
+  { icon: "⚡", label: "Odpowiedź tego samego dnia", detail: "Aplikuj przez WhatsApp i otrzymaj odpowiedź od prawdziwego rekrutera jeszcze tego samego dnia. Bez tygodni oczekiwania." },
+  { icon: "🏠", label: "Mieszkanie w pakiecie", detail: "Wszystkie agencje na AgencyCheck oferują zakwaterowanie jako część pakietu. Nie musisz szukać własnego lokum." },
+  { icon: "📋", label: "Przejrzysta umowa", detail: "Zanim podpiszesz — widzisz dokładnie co będzie odliczane: mieszkanie, transport, ubezpieczenie. Żadnych niespodzianek po przyjeździe." },
+  { icon: "🆓", label: "Całkowicie bezpłatne", detail: "AgencyCheck jest w 100% bezpłatny dla pracowników. Agencje płacą za dostęp — Ty nie płacisz nic i nie ma żadnych ukrytych prowizji." },
 ];
 
-// ─── Worker problems (PL) ─────────────────────────────────────────────────────
-const WORKER_PROBLEMS = [
-  { icon: "💸", title: "Ukryte potrącenia z wypłaty", freq: "68% pracowników",
-    body: "Zakwaterowanie, ubezpieczenie, transport i opłaty administracyjne odliczane bezpośrednio z brutto — często bez wyjaśnienia na odcinku płacowym." },
-  { icon: "⏱", title: "Nieopłacone nadgodziny",       freq: "41% pracowników",
-    body: "Przepracowane godziny nie widnieją na wypłacie. Całe weekendy i premie niedzielne po prostu znikają." },
-  { icon: "🏠", title: "Przepełnione zakwaterowanie",  freq: "34% pracowników",
-    body: "4 osoby w pokoju przeznaczonym dla 2. Płacenie €95+/tydz. za takie warunki narusza normy zakwaterowania SNF." },
-  { icon: "🌡", title: "Pleśń i brak ogrzewania",     freq: "22% pracowników",
-    body: "Holenderskie prawo gwarantuje nadające się do zamieszkania warunki. Jednak raporty o pleśni, zepsutym ogrzewaniu i wilgoci są powszechne." },
-  { icon: "🚌", title: "Oszustwa transportowe",        freq: "29% pracowników",
-    body: "Pobierane €25–€40/tydz. za busy, które są zawodne lub przepełnione. Niektóre agencje pobierają opłatę nawet gdy dojeżdżasz samemu." },
+// ─── Agency offers (PL) ──────────────────────────────────────────────────────
+const AGENCY_OFFERS = [
+  { icon: "📄", title: "Pisemna umowa przed startem", body: "Dobra agencja zawsze daje pisemną umowę z wyprzedzeniem. Znasz stawkę godzinową, koszt mieszkania i datę startu zanim wyjedziesz." },
+  { icon: "🏠", title: "Certyfikowane zakwaterowanie SNF", body: "Najlepsze agencje posiadają certyfikat SNF — niezależny holenderski standard jakości mieszkań pracowniczych. Szukaj tego certyfikatu." },
+  { icon: "⏱", title: "Nadgodziny opłacane prawidłowo", body: "Zgodnie z holenderskim CAO nadgodziny są wyceniane wyżej (125%–150%). Dobre agencje stosują to automatycznie i pokazują wyraźnie na odcinku płacowym." },
+  { icon: "🚌", title: "Zorganizowany transport do pracy", body: "Większość agencji organizuje transport do miejsca pracy. Najlepsze wliczają go w pakiet lub doliczają tylko rzeczywisty koszt." },
+  { icon: "💬", title: "Wsparcie w języku polskim", body: "Dobra agencja ma pracowników mówiących po polsku. Możesz zadawać pytania i zawsze uzyskasz jasne odpowiedzi." },
 ];
 
 function StarRating({ value }: { value: number }) {
@@ -379,33 +354,30 @@ export default async function PlHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §3  MONEY-LOSS FRAMING
+          §3  AGENCYCHECK BENEFITS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">
-              Ukryte koszty pracy przez agencje
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">
+              Dlaczego warto zacząć przez AgencyCheck
             </p>
             <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
-              Większość pracowników traci{" "}
-              <span className="text-red-500">€300–€500 miesięcznie</span>{" "}
-              na ukrytych potrąceniach
+              Zacznij pracę w Holandii{" "}
+              <span className="text-emerald-500">pewnie i świadomie</span>
             </h2>
             <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Te potrącenia często nie są wspominane przed podpisaniem umowy — a wiele z nich jest
-              częściowo lub całkowicie nielegalnych. Większość pracowników nigdy się o nich nie dowiaduje.
+              AgencyCheck łączy pracowników ze sprawdzonymi agencjami, które oferują przejrzyste warunki i uczciwe pakiety.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-            {HIDDEN_DEDUCTIONS.map((item) => (
+            {AGENCYCHECK_BENEFITS.map((item) => (
               <div key={item.label}
-                className="rounded-2xl border border-red-100 bg-red-50/30 p-5 hover:border-red-200 hover:bg-red-50/60 transition-colors">
+                className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
                 <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs font-bold text-red-600 mb-2">{item.amount}</p>
                 <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
               </div>
             ))}
@@ -776,29 +748,26 @@ export default async function PlHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §9  WORKER PROBLEMS
+          §9  AGENCY OFFERS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">Czego żadna agencja Ci nie powie</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Typowe problemy zgłaszane przez pracowników</h2>
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Co oferują najlepsze agencje</p>
+            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Co zawierają oferty najlepszych agencji</h2>
             <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
-              Na podstawie {totalReviews}+ zweryfikowanych raportów pracowników. Wiedza o tym chroni Cię przed podpisaniem.
+              Na podstawie {totalReviews}+ zweryfikowanych raportów pracowników. Wiedz, czego szukać przy wyborze agencji.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
-            {WORKER_PROBLEMS.map((p, i) => (
+            {AGENCY_OFFERS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-gray-100 bg-gray-50 hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
                 <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-3">{p.body}</p>
-                <span className="inline-block text-[11px] font-bold text-red-600 bg-red-50 border border-red-100 rounded-full px-3 py-1">
-                  ⚠ {p.freq}
-                </span>
+                <p className="text-sm text-gray-600 leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>

@@ -78,32 +78,12 @@ const SALARY_ROWS = [
   { label: "💶 Задържате",                      amount: "€345",  green: true,  bold: true  },
 ] as const;
 
-// ─── Hidden deductions (BG) ───────────────────────────────────────────────────
-const HIDDEN_DEDUCTIONS = [
-  {
-    icon: "🚌",
-    label: "Надплатен транспорт",
-    amount: "€40–€60/мес. допълнително",
-    detail: "Автобусът на агенцията струва €25–€30/седмица — но някои агенции начисляват €40+. Понякога таксите се начисляват дори когато пътувате сами.",
-  },
-  {
-    icon: "🏠",
-    label: "Незаконни такси за жилище",
-    amount: "€50–€100/мес. откраднати",
-    detail: "Максималната такса SNF за сертифицирани споделени стаи е €113,50/седмица. Много агенции начисляват €120–€140. Надплащането е просто незаконно.",
-  },
-  {
-    icon: "⏱",
-    label: "Незаплатени извънредни часове",
-    amount: "€80–€200/мес. изгубени",
-    detail: "Отработените часове не се появяват на фиша. Надбавките за уикенди и неделя просто изчезват.",
-  },
-  {
-    icon: "📄",
-    label: "Неясни удръжки",
-    amount: "€20–€80/мес. липсват",
-    detail: "Спално бельо, почистване, администрация — такси добавени след подписването на договора, отсъстващи в оригиналния контракт.",
-  },
+// ─── AgencyCheck benefits (BG) ───────────────────────────────────────────────
+const AGENCYCHECK_BENEFITS = [
+  { icon: "✅", label: "Проверени агенции", detail: "Всяка агенция в AgencyCheck е проверена от реални работници. Виждате оценки и условия преди да решите." },
+  { icon: "🏠", label: "Жилище включено", detail: "Всички агенции на AgencyCheck предлагат жилище като част от пакета. Не е нужно да търсите сами." },
+  { icon: "💬", label: "Поддръжка на вашия език", detail: "Добрите агенции разполагат с персонал, говорещ вашия език. Задавайте въпроси и получавайте ясни отговори." },
+  { icon: "🆓", label: "Напълно безплатно", detail: "AgencyCheck е 100% безплатен за работниците. Агенциите плащат за достъп — вие не плащате нищо." },
 ];
 
 // ─── Worker testimonials (BG) ─────────────────────────────────────────────────
@@ -134,18 +114,13 @@ const WORKER_TESTIMONIALS = [
   },
 ];
 
-// ─── Worker problems (BG) ─────────────────────────────────────────────────────
-const WORKER_PROBLEMS = [
-  { icon: "💸", title: "Скрити удръжки от заплатата",    freq: "68% от работниците",
-    body: "Жилище, застраховка, транспорт и административни такси, приспаднати директно от брутото — често без обяснение във фиша." },
-  { icon: "⏱", title: "Незаплатени извънредни часове",   freq: "41% от работниците",
-    body: "Отработените часове не се появяват на фиша. Цели уикенди и неделни надбавки просто изчезват." },
-  { icon: "🏠", title: "Пренаселено жилище",              freq: "34% от работниците",
-    body: "4 души в стая за 2. Плащане на €95+/седмица за такива условия нарушава жилищните норми SNF." },
-  { icon: "🌡", title: "Мухъл и липса на отопление",     freq: "22% от работниците",
-    body: "Нидерландското право гарантира годни за обитаване условия. Въпреки това докладите за мухъл, развалено отопление и влага са чести." },
-  { icon: "🚌", title: "Транспортни измами",              freq: "29% от работниците",
-    body: "Начисляват €25–€40/седмица за автобуси, ненадеждни или препълнени. Някои агенции начисляват такса дори когато пътувате сами." },
+// ─── Agency offers (BG) ──────────────────────────────────────────────────────
+const AGENCY_OFFERS = [
+  { icon: "📄", title: "Писмен договор преди тръгване", body: "Добрата агенция винаги дава писмен договор предварително. Знаете часовата ставка, цената на жилището и датата на започване." },
+  { icon: "🏠", title: "SNF сертифицирано жилище", body: "Най-добрите агенции имат SNF сертификация — независим холандски стандарт за качество на работническо жилище." },
+  { icon: "⏱", title: "Извънреден труд, платен правилно", body: "Съгласно холандския CAO извънредният труд се заплаща с надбавка (125%–150%). Добрите агенции прилагат това автоматично." },
+  { icon: "🚌", title: "Организиран транспорт до работа", body: "Повечето агенции организират транспорт до работното място. Най-добрите го включват в пакета." },
+  { icon: "💬", title: "Поддръжка на български", body: "Добрите агенции имат служители, говорещи български. Можете да задавате въпроси и ще получите ясни отговори." },
 ];
 
 function StarRating({ value }: { value: number }) {
@@ -328,28 +303,26 @@ export default async function BgHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §3  MONEY-LOSS FRAMING
+          §3  AGENCYCHECK BENEFITS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">Скрити разходи при работа през агенция</p>
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Защо да започнете чрез AgencyCheck</p>
             <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
-              Повечето работници губят{" "}
-              <span className="text-red-500">€300–€500 на месец</span>{" "}
-              от скрити удръжки
+              Започнете работа в Нидерландия{" "}
+              <span className="text-emerald-500">уверено и информирано</span>
             </h2>
             <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-              Тези удръжки често не се споменават преди подписването на договора — и много от тях са частично или напълно незаконни.
+              AgencyCheck свързва работниците с проверени агенции, предлагащи прозрачни условия и честни пакети.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-            {HIDDEN_DEDUCTIONS.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-red-100 bg-red-50/30 p-5 hover:border-red-200 hover:bg-red-50/60 transition-colors">
+            {AGENCYCHECK_BENEFITS.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
                 <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs font-bold text-red-600 mb-2">{item.amount}</p>
                 <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
               </div>
             ))}
@@ -682,25 +655,24 @@ export default async function BgHomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §9  WORKER PROBLEMS
+          §9  AGENCY OFFERS
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-10">
-            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-red-500">Това, което никоя агенция няма да ви каже</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Типични проблеми, докладвани от работници</h2>
+            <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Какво предлагат най-добрите агенции</p>
+            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Какво включват офертите на най-добрите агенции</h2>
             <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
-              Въз основа на {totalReviews}+ проверени доклада от работници. Знаенето ви защитава преди подписване.
+              Въз основа на {totalReviews}+ проверени доклада от работници. Знайте какво да търсите при избор на агенция.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
-            {WORKER_PROBLEMS.map((p, i) => (
+            {AGENCY_OFFERS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-red-100 bg-red-50/40" : "border-gray-100 bg-gray-50 hover:border-red-100 hover:bg-red-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-gray-100 bg-gray-50 hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
                 <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-3">{p.body}</p>
-                <span className="inline-block text-[11px] font-bold text-red-600 bg-red-50 border border-red-100 rounded-full px-3 py-1">⚠ {p.freq}</span>
+                <p className="text-sm text-gray-600 leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
