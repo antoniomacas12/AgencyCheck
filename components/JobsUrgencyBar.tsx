@@ -20,8 +20,8 @@ export default function JobsUrgencyBar({ totalJobs }: { totalJobs: number }) {
     <div className="mb-6">
       <Link href="/apply" className="block group">
         <div className="relative overflow-hidden rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.06] hover:bg-emerald-500/[0.10] transition-all duration-200 active:scale-[0.99]">
-          {/* Subtle glow */}
-          <div className="pointer-events-none absolute -top-8 -right-8 w-32 h-32 rounded-full bg-emerald-400/10 blur-2xl" />
+          {/* Subtle glow — no negative offsets, translateZ(0) for iOS blur clipping */}
+          <div className="pointer-events-none absolute top-0 right-0 w-24 h-24 rounded-full bg-emerald-400/10 blur-xl" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }} />
 
           <div className="relative flex items-center gap-3.5 px-4 py-3.5 sm:px-5">
             {/* Animated live dot */}

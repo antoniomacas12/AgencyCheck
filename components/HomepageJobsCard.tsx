@@ -45,10 +45,10 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
     <div className="relative rounded-2xl border border-white/[0.12] bg-white/[0.05] backdrop-blur-2xl overflow-hidden"
       style={{ boxShadow: "0 12px 56px rgba(0,0,0,0.65), 0 2px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.10)" }}
     >
-      {/* Glow top-right */}
-      <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-emerald-500/[0.12] blur-3xl" aria-hidden="true" />
-      {/* Glow bottom-left */}
-      <div className="pointer-events-none absolute bottom-0 left-0 w-40 h-40 rounded-full bg-blue-500/[0.08] blur-2xl" aria-hidden="true" />
+      {/* Glows — no negative offsets; translateZ(0) forces GPU compositing so
+          filter:blur() is correctly clipped by overflow:hidden on iOS Safari. */}
+      <div className="pointer-events-none absolute top-0 right-0 w-32 h-32 rounded-full bg-emerald-500/[0.12] blur-2xl" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }} aria-hidden="true" />
+      <div className="pointer-events-none absolute bottom-0 left-0 w-32 h-32 rounded-full bg-blue-500/[0.08] blur-2xl" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }} aria-hidden="true" />
 
       <div className="relative p-6">
 

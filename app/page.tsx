@@ -300,12 +300,27 @@ export default async function HomePage() {
           }}
           aria-hidden="true"
         />
-        {/* Ambient glows — kept inside bounds so they don't create horizontal overflow on mobile.
-            Negative offsets were replaced with right-0/top-0 to keep glows within the section.
-            translateZ(0) on the section (above) also ensures they're properly clipped on iOS. */}
-        <div className="pointer-events-none absolute -top-24 -left-12 w-[600px] h-[500px] rounded-full bg-indigo-600/[0.14] blur-[100px]" aria-hidden="true" />
-        <div className="pointer-events-none absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-emerald-600/[0.09] blur-[90px]" aria-hidden="true" />
-        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-blue-600/[0.08] blur-[80px]" aria-hidden="true" />
+        {/* Ambient glows — mobile sizes are deliberately small so no glow ever exceeds
+            the section's right edge on a 375px viewport. translateZ(0) on each glow
+            forces a separate GPU compositing layer, which makes iOS Safari correctly
+            clip filter:blur() at the overflow:hidden boundary (WebKit bug workaround).
+            Layout: left glow starts at left-0 (no negative offset), right glow at
+            right-0, bottom glow capped at w-[180px] on mobile.                       */}
+        <div
+          className="pointer-events-none absolute top-0 left-0 w-[260px] sm:w-[600px] h-[400px] sm:h-[500px] rounded-full bg-indigo-600/[0.14] blur-[80px] sm:blur-[100px]"
+          style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute top-1/4 right-0 w-[220px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full bg-emerald-600/[0.09] blur-[60px] sm:blur-[90px]"
+          style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 w-[180px] sm:w-[400px] sm:left-1/3 h-[240px] sm:h-[300px] rounded-full bg-blue-600/[0.08] blur-[60px] sm:blur-[80px]"
+          style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
+          aria-hidden="true"
+        />
 
         {/* ── Content ──────────────────────────────────────────────────── */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">

@@ -38,9 +38,13 @@
     min-height: 100vh;
     /* Safe area for notch/home indicator (iOS) */
     padding-bottom: env(safe-area-inset-bottom, 0px);
-    /* Clip any element wider than the viewport */
+    /* iOS Safari critical: overflow-x:hidden alone is ignored by iOS Safari
+       unless position:relative is also set on body. Without it, filter:blur()
+       children that extend beyond overflow:hidden boundaries still widen the
+       page's scrollable area and cause horizontal scroll on iOS. */
     overflow-x: hidden;
     max-width: 100%;
+    position: relative;
   }
 
   *, *::before, *::after {
