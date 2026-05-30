@@ -543,6 +543,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "yearly",
       priority:         0.88,
     },
+    {
+      url:              `${BASE_URL}/minimum-wage-netherlands-2026`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "yearly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/greenhouse-work-netherlands`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "yearly",
+      priority:         0.88,
+    },
+    {
+      url:              `${BASE_URL}/work-netherlands-from-slovakia`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "yearly",
+      priority:         0.88,
+    },
     // ── Polish SEO content pages ──────────────────────────────────────────────
     {
       url:              `${BASE_URL}/pl`,
@@ -593,6 +611,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "monthly",
       priority:         0.9,
     },
+    // ── Locale SEO guide pages — minimum wage, greenhouse, Slovakia (PL/RO/BG/SK) ──
+    { url: `${BASE_URL}/pl/minimalna-placa-holandia-2026`,      lastModified: "2026-05-01", changeFrequency: "yearly" as const, priority: 0.82 },
+    { url: `${BASE_URL}/ro/salariul-minim-olanda-2026`,         lastModified: "2026-05-01", changeFrequency: "yearly" as const, priority: 0.82 },
+    { url: `${BASE_URL}/bg/minimalna-zaplata-niderlandiya-2026`,lastModified: "2026-05-01", changeFrequency: "yearly" as const, priority: 0.82 },
+    { url: `${BASE_URL}/pl/praca-w-szklarniach-holandia`,       lastModified: "2026-05-01", changeFrequency: "yearly" as const, priority: 0.82 },
+    { url: `${BASE_URL}/ro/lucru-in-sere-olanda`,               lastModified: "2026-05-01", changeFrequency: "yearly" as const, priority: 0.82 },
+    { url: `${BASE_URL}/bg/rabota-v-oranzherii-niderlandiya`,   lastModified: "2026-05-01", changeFrequency: "yearly" as const, priority: 0.82 },
+    { url: `${BASE_URL}/sk/praca-v-holandsku-zo-slovenska`,     lastModified: "2026-05-01", changeFrequency: "yearly" as const, priority: 0.85 },
   ];
 
   // ── 2. Agency profile pages (150+ static + DB-only worker-reported) ─────────
