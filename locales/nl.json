@@ -831,6 +831,7 @@
     "filter_any_salary": "Elk salaris",
     "filter_all_jobs": "Alle vacatures",
     "filter_acc": "Huisvesting inbegrepen",
+    "filter_acc_ask": "Huisvesting mogelijk",
     "filter_car": "Eigen auto nodig",
     "filter_eng": "Taalvereiste",
     "no_match": "Geen vacatures voldoen aan jouw filters.",
@@ -864,6 +865,7 @@
     "badge_eng": "Taalvereiste",
     "badge_car": "Eigen auto vereist",
     "badge_acc": "Huisvesting inbegrepen",
+    "badge_acc_ask": "Huisvesting mogelijk",
     "badge_vog": "Verklaring Omtrent Gedrag (VOG)"
   }
 }

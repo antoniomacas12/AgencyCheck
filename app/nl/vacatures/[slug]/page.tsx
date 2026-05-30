@@ -36,10 +36,11 @@ const NL_CAT: Record<Category, string> = {
 };
 
 const NL_BADGE: Record<Badge, { label: string; color: string }> = {
-  eng: { label: "Taalvereiste",                   color: "text-blue-300 bg-blue-400/10 border-blue-400/20"     },
-  car: { label: "Eigen auto vereist",              color: "text-purple-300 bg-purple-400/10 border-purple-400/20" },
-  acc: { label: "Huisvesting inbegrepen",          color: "text-emerald-300 bg-emerald-400/10 border-emerald-400/20" },
-  vog: { label: "Verklaring Omtrent Gedrag (VOG)", color: "text-amber-300 bg-amber-400/10 border-amber-400/20" },
+  eng:     { label: "Taalvereiste",                   color: "text-blue-300 bg-blue-400/10 border-blue-400/20"     },
+  car:     { label: "Eigen auto vereist",              color: "text-purple-300 bg-purple-400/10 border-purple-400/20" },
+  acc:     { label: "Huisvesting inbegrepen",          color: "text-emerald-300 bg-emerald-400/10 border-emerald-400/20" },
+  acc_ask: { label: "Huisvesting mogelijk",            color: "text-sky-300 bg-sky-400/10 border-sky-400/20" },
+  vog:     { label: "Verklaring Omtrent Gedrag (VOG)", color: "text-amber-300 bg-amber-400/10 border-amber-400/20" },
 };
 
 // ─── Slug validation ──────────────────────────────────────────────────────────

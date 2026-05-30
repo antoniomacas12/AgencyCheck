@@ -36,10 +36,11 @@ const PL_CAT: Record<Category, string> = {
 };
 
 const PL_BADGE: Record<Badge, { label: string; color: string }> = {
-  eng: { label: "Wymagania językowe",      color: "text-blue-300 bg-blue-400/10 border-blue-400/20" },
-  car: { label: "Własny samochód wymagany", color: "text-purple-300 bg-purple-400/10 border-purple-400/20" },
-  acc: { label: "Zakwaterowanie wliczone",  color: "text-emerald-300 bg-emerald-400/10 border-emerald-400/20" },
-  vog: { label: "Czysta kartoteka (VOG)",   color: "text-amber-300 bg-amber-400/10 border-amber-400/20" },
+  eng:     { label: "Wymagania językowe",        color: "text-blue-300 bg-blue-400/10 border-blue-400/20" },
+  car:     { label: "Własny samochód wymagany",   color: "text-purple-300 bg-purple-400/10 border-purple-400/20" },
+  acc:     { label: "Zakwaterowanie wliczone",    color: "text-emerald-300 bg-emerald-400/10 border-emerald-400/20" },
+  acc_ask: { label: "Zakwaterowanie dostępne",    color: "text-sky-300 bg-sky-400/10 border-sky-400/20" },
+  vog:     { label: "Czysta kartoteka (VOG)",     color: "text-amber-300 bg-amber-400/10 border-amber-400/20" },
 };
 
 // ─── Slug validation ──────────────────────────────────────────────────────────

@@ -30,10 +30,11 @@ const CAT_T_KEY: Record<Category, string> = {
 };
 
 const BADGE_T_KEY: Record<Badge, string> = {
-  eng: "vacatures.badge_eng",
-  car: "vacatures.badge_car",
-  acc: "vacatures.badge_acc",
-  vog: "vacatures.badge_vog",
+  eng:     "vacatures.badge_eng",
+  car:     "vacatures.badge_car",
+  acc:     "vacatures.badge_acc",
+  acc_ask: "vacatures.badge_acc_ask",
+  vog:     "vacatures.badge_vog",
 };
 
 export default function VacanciesClient() {
@@ -185,6 +186,7 @@ export default function VacanciesClient() {
           >
             <option value="">{t("vacatures.filter_all_jobs")}</option>
             <option value="acc">{t("vacatures.filter_acc")}</option>
+            <option value="acc_ask">{t("vacatures.filter_acc_ask")}</option>
             <option value="car">{t("vacatures.filter_car")}</option>
             <option value="eng">{t("vacatures.filter_eng")}</option>
           </select>

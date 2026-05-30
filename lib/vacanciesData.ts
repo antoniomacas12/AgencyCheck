@@ -3,7 +3,7 @@
 //   - /apply listing page (VacanciesClient)
 //   - /apply/[slug] individual job pages (SEO + JobPosting schema)
 
-export type Badge    = "acc" | "car" | "eng" | "vog";
+export type Badge    = "acc" | "acc_ask" | "car" | "eng" | "vog";
 export type Category =
   | "technical"
   | "production"
@@ -46,10 +46,11 @@ export const CAT_ICONS: Record<Category, string> = {
 };
 
 export const BADGE_META: Record<Badge, { label: string; color: string }> = {
-  eng: { label: "Language req.",       color: "text-blue-300 bg-blue-400/10 border-blue-400/20" },
-  car: { label: "Own car required",    color: "text-purple-300 bg-purple-400/10 border-purple-400/20" },
-  acc: { label: "Accommodation incl.", color: "text-emerald-300 bg-emerald-400/10 border-emerald-400/20" },
-  vog: { label: "Clean record (VOG)",  color: "text-amber-300 bg-amber-400/10 border-amber-400/20" },
+  eng:     { label: "Language req.",       color: "text-blue-300 bg-blue-400/10 border-blue-400/20" },
+  car:     { label: "Own car required",    color: "text-purple-300 bg-purple-400/10 border-purple-400/20" },
+  acc:     { label: "Accommodation incl.", color: "text-emerald-300 bg-emerald-400/10 border-emerald-400/20" },
+  acc_ask: { label: "Housing available",   color: "text-sky-300 bg-sky-400/10 border-sky-400/20" },
+  vog:     { label: "Clean record (VOG)",  color: "text-amber-300 bg-amber-400/10 border-amber-400/20" },
 };
 
 // ─── Category job descriptions ─────────────────────────────────────────────────
@@ -171,52 +172,52 @@ export const VACANCIES: Vacancy[] = [
   { slug: "modular-houses-assembly-carpentry",   t: "Modular Houses Assembly (Carpentry)",                c: "technical",   s: "€520/wk",        sm: 520,  sx: 520,  l: "Hulst",                             b: ["car"] },
   { slug: "work-planner-petrochemical-antwerp",  t: "Work Planner / Project Coordinator (Petrochemical)", c: "technical",   s: "€830+/wk",       sm: 830,  sx: 0,    l: "Antwerp",                           b: ["eng"] },
   // ── Production & Manufacturing ────────────────────────────────────────────
-  { slug: "car-frame-builder-assembly",          t: "Car Frame Builder / Assembly Worker",                c: "production",  s: "€550–€650/wk",   sm: 550,  sx: 650,  l: "Waardenburg",                       b: [] },
-  { slug: "automotive-electrician",              t: "Automotive Electrician",                             c: "production",  s: "€550–€650/wk",   sm: 550,  sx: 650,  l: "Netherlands",                       b: [] },
-  { slug: "welding-robot-operator",              t: "Welding Robot Operator",                             c: "production",  s: "€520–€650/wk",   sm: 520,  sx: 650,  l: "Netherlands",                       b: [] },
-  { slug: "cnc-milling-operator-oirschot",       t: "CNC Milling Operator (2nd shift)",                   c: "production",  s: "€630/wk",        sm: 630,  sx: 630,  l: "Oirschot",                          b: ["car"] },
-  { slug: "cnc-operator-programmer",             t: "CNC Operator / Programmer",                          c: "production",  s: "€500+/wk",       sm: 500,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "tig-welder-production",               t: "TIG Welder",                                         c: "production",  s: "€500+/wk",       sm: 500,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "migmag-welder-production",            t: "MIG/MAG Welder",                                     c: "production",  s: "€500+/wk",       sm: 500,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "cnc-turner-mazak-mazatrol",           t: "CNC Turner (Mazak / Mazatrol)",                      c: "production",  s: "€580–€650/wk",   sm: 580,  sx: 650,  l: "Breskens",                          b: [] },
-  { slug: "cnc-turners-millers-programmers",     t: "CNC Turners & Millers (Programmers)",                c: "production",  s: "€650/wk",        sm: 650,  sx: 650,  l: "Netherlands",                       b: [] },
-  { slug: "workshop-carpenter",                  t: "Workshop Carpenter",                                 c: "production",  s: "€620/wk",        sm: 620,  sx: 620,  l: "Netherlands",                       b: ["car"] },
-  { slug: "industrial-painter-oisterwijk",       t: "Industrial Painter",                                 c: "production",  s: "€500/wk",        sm: 500,  sx: 500,  l: "Oisterwijk",                        b: [] },
-  { slug: "assembly-mechanic-oisterwijk",        t: "Assembly Mechanic",                                  c: "production",  s: "€450–€550/wk",   sm: 450,  sx: 550,  l: "Oisterwijk",                        b: [] },
-  { slug: "assembly-worker-son",                 t: "Assembly Worker (with experience)",                  c: "production",  s: "€16.83/h gross", sm: 673,  sx: 0,    l: "Son",                               b: [] },
-  { slug: "production-packing-worker-nieuwegein",t: "Production & Packing Worker",                        c: "production",  s: "€16.43/h gross", sm: 657,  sx: 0,    l: "Nieuwegein",                        b: [] },
-  { slug: "nutrition-bar-packaging-worker",      t: "Nutrition Bar Packaging Worker",                     c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "metalworker-production-netherlands",  t: "Metalworker (Production Employee)",                  c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "flexible-production-employee",        t: "Flexible Production Employee",                       c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
+  { slug: "car-frame-builder-assembly",          t: "Car Frame Builder / Assembly Worker",                c: "production",  s: "€550–€650/wk",   sm: 550,  sx: 650,  l: "Waardenburg",                       b: ["acc_ask"] },
+  { slug: "automotive-electrician",              t: "Automotive Electrician",                             c: "production",  s: "€550–€650/wk",   sm: 550,  sx: 650,  l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "welding-robot-operator",              t: "Welding Robot Operator",                             c: "production",  s: "€520–€650/wk",   sm: 520,  sx: 650,  l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "cnc-milling-operator-oirschot",       t: "CNC Milling Operator (2nd shift)",                   c: "production",  s: "€630/wk",        sm: 630,  sx: 630,  l: "Oirschot",                          b: ["car", "acc_ask"] },
+  { slug: "cnc-operator-programmer",             t: "CNC Operator / Programmer",                          c: "production",  s: "€500+/wk",       sm: 500,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "tig-welder-production",               t: "TIG Welder",                                         c: "production",  s: "€500+/wk",       sm: 500,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "migmag-welder-production",            t: "MIG/MAG Welder",                                     c: "production",  s: "€500+/wk",       sm: 500,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "cnc-turner-mazak-mazatrol",           t: "CNC Turner (Mazak / Mazatrol)",                      c: "production",  s: "€580–€650/wk",   sm: 580,  sx: 650,  l: "Breskens",                          b: ["acc_ask"] },
+  { slug: "cnc-turners-millers-programmers",     t: "CNC Turners & Millers (Programmers)",                c: "production",  s: "€650/wk",        sm: 650,  sx: 650,  l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "workshop-carpenter",                  t: "Workshop Carpenter",                                 c: "production",  s: "€620/wk",        sm: 620,  sx: 620,  l: "Netherlands",                       b: ["car", "acc_ask"] },
+  { slug: "industrial-painter-oisterwijk",       t: "Industrial Painter",                                 c: "production",  s: "€500/wk",        sm: 500,  sx: 500,  l: "Oisterwijk",                        b: ["acc_ask"] },
+  { slug: "assembly-mechanic-oisterwijk",        t: "Assembly Mechanic",                                  c: "production",  s: "€450–€550/wk",   sm: 450,  sx: 550,  l: "Oisterwijk",                        b: ["acc_ask"] },
+  { slug: "assembly-worker-son",                 t: "Assembly Worker (with experience)",                  c: "production",  s: "€16.83/h gross", sm: 673,  sx: 0,    l: "Son",                               b: ["acc_ask"] },
+  { slug: "production-packing-worker-nieuwegein",t: "Production & Packing Worker",                        c: "production",  s: "€16.43/h gross", sm: 657,  sx: 0,    l: "Nieuwegein",                        b: ["acc_ask"] },
+  { slug: "nutrition-bar-packaging-worker",      t: "Nutrition Bar Packaging Worker",                     c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "metalworker-production-netherlands",  t: "Metalworker (Production Employee)",                  c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "flexible-production-employee",        t: "Flexible Production Employee",                       c: "production",  s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
   // ── Warehouse & Logistics ─────────────────────────────────────────────────
-  { slug: "warehouse-worker-waalwijk",                    t: "Warehouse Worker",                                          c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Waalwijk",                          b: [] },
-  { slug: "warehouse-employee-ept-grubbenvorst",          t: "Warehouse Employee (EPT, cold environment)",                c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Grubbenvorst",                      b: [] },
-  { slug: "deepfreeze-warehouse-sligro",                  t: "Deepfreeze Warehouse Worker (Sligro)",                      c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Veghel",                            b: [] },
-  { slug: "allround-warehouse-eindhoven",                 t: "All-round Warehouse Employee (Live interview needed)",      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Helmond / Deurne / Eindhoven",      b: [] },
-  { slug: "flexible-warehouse-worker-netherlands",        t: "Flexible Warehouse Worker (with experience)",               c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
+  { slug: "warehouse-worker-waalwijk",                    t: "Warehouse Worker",                                          c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Waalwijk",                          b: ["acc_ask"] },
+  { slug: "warehouse-employee-ept-grubbenvorst",          t: "Warehouse Employee (EPT, cold environment)",                c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Grubbenvorst",                      b: ["acc_ask"] },
+  { slug: "deepfreeze-warehouse-sligro",                  t: "Deepfreeze Warehouse Worker (Sligro)",                      c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Veghel",                            b: ["acc_ask"] },
+  { slug: "allround-warehouse-eindhoven",                 t: "All-round Warehouse Employee (Live interview needed)",      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Helmond / Deurne / Eindhoven",      b: ["acc_ask"] },
+  { slug: "flexible-warehouse-worker-netherlands",        t: "Flexible Warehouse Worker (with experience)",               c: "warehouse",   s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
   // ── Warehouse & Logistics — poster import 19/05/2026 ─────────────────────
-  { slug: "order-picker-ept-driver-food-freezer-waalwijk",t: "Order Picker / EPT Driver (food freezer)",                  c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Waalwijk",                          b: [] },
-  { slug: "warehouse-worker-amsterdam-tilburg-den-bosch", t: "Warehouse Worker",                                          c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Amsterdam, Tilburg, Den Bosch",     b: [] },
-  { slug: "order-picker-ept-driver-experience-alkmaar",   t: "Order Picker / EPT Driver (with experience)",               c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Alkmaar",                           b: [] },
-  { slug: "order-picker-ept-experience-fresh-netherlands",t: "Order Picker with EPT Experience (Fresh department)",       c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "order-picker-ept-experience-apeldoorn",        t: "Order Picker (with EPT experience)",                        c: "warehouse",   s: "€16.47/h gross", sm: 658,  sx: 0,    l: "Apeldoorn",                         b: [] },
-  { slug: "warehouse-worker-experience-waddinxveen",      t: "Warehouse Worker with Experience",                          c: "warehouse",   s: "€16.47/h gross", sm: 658,  sx: 0,    l: "Waddinxveen",                       b: [] },
-  { slug: "warehouse-worker-experience-oirschot",         t: "Warehouse Worker (with experience & clean criminal record)",c: "warehouse",   s: "€14.76/h gross", sm: 590,  sx: 0,    l: "Oirschot",                          b: [] },
-  { slug: "warehouse-worker-zaandam",                     t: "Warehouse Worker",                                          c: "warehouse",   s: "€14.94/h gross", sm: 597,  sx: 0,    l: "Zaandam",                           b: [] },
-  { slug: "warehouse-worker-loader-night-shift",          t: "Warehouse Worker / Loader (night shift)",                   c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "warehouse-worker-experience-veenendaal",       t: "Warehouse Worker (with experience & clean criminal record)",c: "warehouse",   s: "€14.76/h gross", sm: 590,  sx: 0,    l: "Veenendaal",                        b: [] },
-  { slug: "warehouse-worker-clean-record-venlo",          t: "Warehouse Worker (clean criminal record)",                  c: "warehouse",   s: "€14.77/h gross", sm: 590,  sx: 0,    l: "Venlo",                             b: [] },
-  { slug: "loader-unloader-experience-netherlands",       t: "Loader / Unloader with Experience (clean criminal record)", c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "container-loader-netherlands",                 t: "Container Loader",                                          c: "warehouse",   s: "€15.27/h gross", sm: 610,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "warehouse-worker-fresh-department",            t: "Warehouse Worker (Fresh department)",                       c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "expedition-employee-night-shift",              t: "Expedition Employee (orders & loading, night shift)",       c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Netherlands",                       b: [] },
-  { slug: "order-picker-cold-ridderkerk",               t: "Order Picker with Experience (cooled, approx. 5–7°C)",      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Ridderkerk",                        b: [] },
-  { slug: "ept-driver-logistics-venray",                t: "EPT Driver / General Logistics Worker",                     c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Venray",                            b: [] },
-  { slug: "forklift-driver-ijmuiden",                      t: "Forklift Driver (with valid certificate)",                  c: "warehouse",   s: "€16.05/h gross", sm: 642,  sx: 0,    l: "IJmuiden",                          b: [] },
-  { slug: "forklift-driver-loader-tiel",                   t: "Forklift Driver / Loader / Wrapper",                        c: "warehouse",   s: "€15.29/h gross", sm: 611,  sx: 0,    l: "Tiel",                              b: [] },
-  { slug: "stable-cleaner-kootwijkerbroek",                t: "Stable Cleaner (with farm experience)",                     c: "food",        s: "€16.25/h gross", sm: 650,  sx: 0,    l: "Kootwijkerbroek",                   b: [] },
+  { slug: "order-picker-ept-driver-food-freezer-waalwijk",t: "Order Picker / EPT Driver (food freezer)",                  c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Waalwijk",                          b: ["acc_ask"] },
+  { slug: "warehouse-worker-amsterdam-tilburg-den-bosch", t: "Warehouse Worker",                                          c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Amsterdam, Tilburg, Den Bosch",     b: ["acc_ask"] },
+  { slug: "order-picker-ept-driver-experience-alkmaar",   t: "Order Picker / EPT Driver (with experience)",               c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Alkmaar",                           b: ["acc_ask"] },
+  { slug: "order-picker-ept-experience-fresh-netherlands",t: "Order Picker with EPT Experience (Fresh department)",       c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "order-picker-ept-experience-apeldoorn",        t: "Order Picker (with EPT experience)",                        c: "warehouse",   s: "€16.47/h gross", sm: 658,  sx: 0,    l: "Apeldoorn",                         b: ["acc_ask"] },
+  { slug: "warehouse-worker-experience-waddinxveen",      t: "Warehouse Worker with Experience",                          c: "warehouse",   s: "€16.47/h gross", sm: 658,  sx: 0,    l: "Waddinxveen",                       b: ["acc_ask"] },
+  { slug: "warehouse-worker-experience-oirschot",         t: "Warehouse Worker (with experience & clean criminal record)",c: "warehouse",   s: "€14.76/h gross", sm: 590,  sx: 0,    l: "Oirschot",                          b: ["acc_ask"] },
+  { slug: "warehouse-worker-zaandam",                     t: "Warehouse Worker",                                          c: "warehouse",   s: "€14.94/h gross", sm: 597,  sx: 0,    l: "Zaandam",                           b: ["acc_ask"] },
+  { slug: "warehouse-worker-loader-night-shift",          t: "Warehouse Worker / Loader (night shift)",                   c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "warehouse-worker-experience-veenendaal",       t: "Warehouse Worker (with experience & clean criminal record)",c: "warehouse",   s: "€14.76/h gross", sm: 590,  sx: 0,    l: "Veenendaal",                        b: ["acc_ask"] },
+  { slug: "warehouse-worker-clean-record-venlo",          t: "Warehouse Worker (clean criminal record)",                  c: "warehouse",   s: "€14.77/h gross", sm: 590,  sx: 0,    l: "Venlo",                             b: ["acc_ask"] },
+  { slug: "loader-unloader-experience-netherlands",       t: "Loader / Unloader with Experience (clean criminal record)", c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "container-loader-netherlands",                 t: "Container Loader",                                          c: "warehouse",   s: "€15.27/h gross", sm: 610,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "warehouse-worker-fresh-department",            t: "Warehouse Worker (Fresh department)",                       c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "expedition-employee-night-shift",              t: "Expedition Employee (orders & loading, night shift)",       c: "warehouse",   s: "€14.98/h gross", sm: 599,  sx: 0,    l: "Netherlands",                       b: ["acc_ask"] },
+  { slug: "order-picker-cold-ridderkerk",               t: "Order Picker with Experience (cooled, approx. 5–7°C)",      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Ridderkerk",                        b: ["acc_ask"] },
+  { slug: "ept-driver-logistics-venray",                t: "EPT Driver / General Logistics Worker",                     c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Venray",                            b: ["acc_ask"] },
+  { slug: "forklift-driver-ijmuiden",                      t: "Forklift Driver (with valid certificate)",                  c: "warehouse",   s: "€16.05/h gross", sm: 642,  sx: 0,    l: "IJmuiden",                          b: ["acc_ask"] },
+  { slug: "forklift-driver-loader-tiel",                   t: "Forklift Driver / Loader / Wrapper",                        c: "warehouse",   s: "€15.29/h gross", sm: 611,  sx: 0,    l: "Tiel",                              b: ["acc_ask"] },
+  { slug: "stable-cleaner-kootwijkerbroek",                t: "Stable Cleaner (with farm experience)",                     c: "food",        s: "€16.25/h gross", sm: 650,  sx: 0,    l: "Kootwijkerbroek",                   b: ["acc_ask"] },
   { slug: "reach-truck-driver-certificate-amsterdam",     t: "Reach Truck Driver with Certificate",                       c: "driving",     s: "€15.35/h gross", sm: 614,  sx: 0,    l: "Amsterdam",                         b: [] },
-  { slug: "order-picker-clean-record-amsterdam",          t: "Order Picker (clean criminal record)",                      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Amsterdam",                         b: [] },
+  { slug: "order-picker-clean-record-amsterdam",          t: "Order Picker (clean criminal record)",                      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Amsterdam",                         b: ["acc_ask"] },
   // ── Driving Jobs ─────────────────────────────────────────────────────────
   { slug: "ce-truck-driver-hook-arm-eindhoven",  t: "CE Truck Driver (Hook arm)",                         c: "driving",     s: "€1000–€1200/wk", sm: 1000, sx: 1200, l: "Eindhoven",                         b: [] },
   { slug: "ce-truck-driver-car-transport-vianen",t: "CE Truck Driver – Car Transportation",               c: "driving",     s: "€800–€1000/wk",  sm: 800,  sx: 1000, l: "Vianen",                            b: [] },
@@ -236,13 +237,13 @@ export const VACANCIES: Vacancy[] = [
   { slug: "car-painter",                         t: "Car Painter",                                        c: "automotive",  s: "€600–€750/wk",   sm: 600,  sx: 750,  l: "Netherlands",                       b: [] },
   { slug: "car-mechanic",                        t: "Car Mechanic",                                       c: "automotive",  s: "€550+/wk",       sm: 550,  sx: 0,    l: "Netherlands",                       b: [] },
   // ── Food Production ───────────────────────────────────────────────────────
-  { slug: "meat-factory-worker-haarlem",         t: "Meat Factory Production Worker & Cleaner",           c: "food",        s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Haarlem",                           b: [] },
-  { slug: "wooden-packaging-worker",             t: "Wooden Packaging Production Worker",                 c: "food",        s: "€400–€500/wk",   sm: 400,  sx: 500,  l: "Nieuw-Bergen",                      b: [] },
-  { slug: "poultry-hanger-goor",                 t: "Poultry Hanger",                                     c: "food",        s: "€320–€370/wk",   sm: 320,  sx: 370,  l: "Goor",                              b: [] },
-  { slug: "poultry-hanger-belgium",              t: "Poultry Hanger (with experience)",                   c: "food",        s: "—",              sm: 0,    sx: 0,    l: "Belgium",                           b: [] },
-  { slug: "cookie-factory-workers-harderwijk",   t: "Cookie Factory Worker",                              c: "food",        s: "€16.47/h gross", sm: 658,  sx: 0,    l: "Harderwijk",                        b: [] },
-  { slug: "production-employee-seafood-tholen",  t: "Production Employee (Seafood)",                      c: "food",        s: "€15.00/h gross", sm: 600,  sx: 0,    l: "Tholen",                            b: [] },
-  { slug: "seafood-filleting-yerseke",           t: "Seafood Filleting Employee (filleting knife exp.)",   c: "food",        s: "€15.50/h gross", sm: 620,  sx: 0,    l: "Yerseke",                           b: [] },
+  { slug: "meat-factory-worker-haarlem",         t: "Meat Factory Production Worker & Cleaner",           c: "food",        s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Haarlem",                           b: ["acc_ask"] },
+  { slug: "wooden-packaging-worker",             t: "Wooden Packaging Production Worker",                 c: "food",        s: "€400–€500/wk",   sm: 400,  sx: 500,  l: "Nieuw-Bergen",                      b: ["acc_ask"] },
+  { slug: "poultry-hanger-goor",                 t: "Poultry Hanger",                                     c: "food",        s: "€320–€370/wk",   sm: 320,  sx: 370,  l: "Goor",                              b: ["acc_ask"] },
+  { slug: "poultry-hanger-belgium",              t: "Poultry Hanger (with experience)",                   c: "food",        s: "—",              sm: 0,    sx: 0,    l: "Belgium",                           b: ["acc_ask"] },
+  { slug: "cookie-factory-workers-harderwijk",   t: "Cookie Factory Worker",                              c: "food",        s: "€16.47/h gross", sm: 658,  sx: 0,    l: "Harderwijk",                        b: ["acc_ask"] },
+  { slug: "production-employee-seafood-tholen",  t: "Production Employee (Seafood)",                      c: "food",        s: "€15.00/h gross", sm: 600,  sx: 0,    l: "Tholen",                            b: ["acc_ask"] },
+  { slug: "seafood-filleting-yerseke",           t: "Seafood Filleting Employee (filleting knife exp.)",   c: "food",        s: "€15.50/h gross", sm: 620,  sx: 0,    l: "Yerseke",                           b: ["acc_ask"] },
   // ── Hospitality ───────────────────────────────────────────────────────────
   { slug: "housekeeper-netherlands",             t: "Housekeeper (1–2 yrs exp.)",                         c: "hospitality", s: "€17.65/h gross", sm: 706,  sx: 0,    l: "Amsterdam / Utrecht / Coast / Tilburg", b: [] },
   { slug: "cook-netherlands",                    t: "Cook (with experience)",                              c: "hospitality", s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
@@ -270,7 +271,7 @@ export function getCountry(location: string): string {
 /** Build a one-sentence job description for meta tags */
 export function buildDescription(v: Vacancy): string {
   const sal  = v.sm > 0 ? ` Salary: ${v.s}.` : "";
-  const acc  = v.b.includes("acc") ? " Accommodation included." : "";
+  const acc  = v.b.includes("acc") ? " Accommodation included." : v.b.includes("acc_ask") ? " Housing may be available — ask when applying." : "";
   const lang = v.b.includes("eng") ? " Language requirement applies." : "";
   return `${v.t} job in ${v.l}, ${getCountry(v.l) === "NL" ? "Netherlands" : getCountry(v.l) === "GR" ? "Greece" : "Belgium"}.${sal} EU citizens only, immediate start. Apply on WhatsApp.${acc}${lang}`;
 }

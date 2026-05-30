@@ -831,6 +831,7 @@
     "filter_any_salary": "Any salary",
     "filter_all_jobs": "All jobs",
     "filter_acc": "Accommodation incl.",
+    "filter_acc_ask": "Housing available",
     "filter_car": "Own car needed",
     "filter_eng": "Language req.",
     "no_match": "No vacancies match your filters.",
@@ -849,6 +850,7 @@
     "badge_eng": "Language requirement",
     "badge_car": "Own car required",
     "badge_acc": "Accommodation included",
+    "badge_acc_ask": "Housing available",
     "badge_vog": "Certificate of Conduct (VOG)"
   }
 }
