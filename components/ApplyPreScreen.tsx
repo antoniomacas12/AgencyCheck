@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { createPortal }        from "react-dom";
-import { useT }                from "@/lib/i18n";
+import { useState, useEffect, useRef } from "react";
+import { createPortal }               from "react-dom";
+import { useT }                       from "@/lib/i18n";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 interface Props {
@@ -179,6 +179,26 @@ async function savePreQual(payload: {
   } catch { /* non-blocking */ }
 }
 
+// ─── Funnel tracking ──────────────────────────────────────────────────────────
+// Fire-and-forget — never blocks the apply flow.
+// Events: "open" | "gate_passed" | "details_a_passed" | "completed" | "abandoned" | "disqualified"
+// Steps:  "gate" | "details_a" | "details_b" | "geo_blocked" | "already_applied" | "complete"
+async function trackFunnel(payload: {
+  sessionId: string;
+  event:     string;
+  step:      string;
+  jobId?:    string;
+  source?:   string;
+}) {
+  try {
+    await fetch("/api/funnel-event", {
+      method:  "POST",
+      headers: { "Content-Type": "application/json" },
+      body:    JSON.stringify(payload),
+    });
+  } catch { /* non-blocking */ }
+}
+
 // ─── Sub-components ────────────────────────────────────────────────────────────
 
 /** Single selectable option button */
@@ -246,6 +266,8 @@ export default function ApplyPreScreen({
   const [submitting, setSubmitting] = useState(false); // true while server dedup check is in-flight
   // Portal mount guard — prevents SSR/hydration mismatch
   const [mounted,    setMounted]    = useState(false);
+  // Per-attempt session ID for funnel tracking — regenerated on every open()
+  const sessionIdRef = useRef<string>("");
   // Geo gate — null = unknown (fail-open), false = non-EU blocked
   const [isEU,       setIsEU]       = useState<boolean | null>(null);
   // Apply form is always in English — language never changes regardless of locale
@@ -306,10 +328,15 @@ export default function ApplyPreScreen({
 
   // ── Handlers ──────────────────────────────────────────────────────────────
   function handleOpen() {
+    // Generate a fresh session ID for this apply attempt
+    const sid = crypto.randomUUID();
+    sessionIdRef.current = sid;
+
     // Layer 1: device lock — this device already applied in the last 24 h
     if (deviceAlreadyApplied()) {
       setOpen(true);
       setScreen("already_applied");
+      trackFunnel({ sessionId: sid, event: "disqualified", step: "already_applied", jobId, source });
       return;
     }
     // Layer 2: geo block — confirmed non-EU IP
@@ -318,6 +345,7 @@ export default function ApplyPreScreen({
     if (isEU === false) {
       setOpen(true);
       setScreen("geo_blocked");
+      trackFunnel({ sessionId: sid, event: "disqualified", step: "geo_blocked", jobId, source });
       return;
     }
     setOpen(true);
@@ -335,9 +363,17 @@ export default function ApplyPreScreen({
     setCv(null);
     setCvPrompt(false);
     setCvConfirmed(null);
+    // Track: modal opened
+    trackFunnel({ sessionId: sid, event: "open", step: "gate", jobId, source });
   }
 
-  function handleClose() { setOpen(false); }
+  function handleClose() {
+    // Track abandonment — record which step the user was on when they closed
+    if (open && screen !== "disqualified" && screen !== "geo_blocked" && screen !== "already_applied" && screen !== "bsn_blocked") {
+      trackFunnel({ sessionId: sessionIdRef.current, event: "abandoned", step: screen, jobId, source });
+    }
+    setOpen(false);
+  }
 
   function handleEuContinue() {
     if (citizenship === null || citizenship.trim().length < 2) {
@@ -346,6 +382,7 @@ export default function ApplyPreScreen({
     }
     setErrors(false);
     setScreen("details_a");
+    trackFunnel({ sessionId: sessionIdRef.current, event: "gate_passed", step: "details_a", jobId, source });
   }
 
   function handleDetailsA() {
@@ -357,6 +394,7 @@ export default function ApplyPreScreen({
     // Recruiter sees the BSN status in the WhatsApp message and decides.
     setErrors(false);
     setScreen("details_b");
+    trackFunnel({ sessionId: sessionIdRef.current, event: "details_a_passed", step: "details_b", jobId, source });
   }
 
   // handleSubmit uses the "blank-window" technique:
@@ -423,6 +461,7 @@ export default function ApplyPreScreen({
       setOpen(false);
       setSubmitting(false);
       // Fire-and-forget logging (non-blocking)
+      trackFunnel({ sessionId: sessionIdRef.current, event: "completed", step: "complete", jobId, source });
       savePreQual({ isEuCitizen: true, hasBsn: bsn === "yes" || bsn === "not_yet", jobId, jobTitle, source });
       // Fire-and-forget recruiter webhook (proxied server-side, token never in browser)
       fetch("/api/apply-webhook", {

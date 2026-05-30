@@ -596,3 +596,33 @@ model AgencyCityMention {
   @@index([mentionCount])
   @@map("agency_city_mentions")
 }
+
+// ─── Apply Funnel Events — step-by-step tracking of the apply modal ──────────
+// Every apply attempt fires a series of events that can be replayed to find
+// exactly where candidates dropped off.
+//
+// event values:
+//   "open"              — modal opened (step: "gate")
+//   "gate_passed"       — EU citizenship confirmed, moved to step 2
+//   "details_a_passed"  — BSN/driving/housing/avail filled, moved to step 3
+//   "completed"         — WhatsApp opened (step: "complete")
+//   "abandoned"         — modal closed mid-flow (step = last screen seen)
+//   "disqualified"      — non-EU / already applied / BSN blocked, etc.
+
+model ApplyFunnelEvent {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Client-generated UUID per open — groups all events for one apply attempt
+  sessionId String
+  event     String
+  // "gate" | "details_a" | "details_b" | "geo_blocked" | "already_applied" | "complete"
+  step      String
+  jobId     String?
+  source    String?
+
+  @@index([sessionId])
+  @@index([createdAt])
+  @@index([event])
+  @@map("apply_funnel_events")
+}
