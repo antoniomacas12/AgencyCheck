@@ -10,7 +10,7 @@ interface Props {
   waBase:        string;        // owner WA fallback (used when referralMode is false)
   source?:       string;        // tracking slug
   jobId?:        string;        // vacancy slug / page identifier
-  referralMode?: boolean;       // if true → server-side recruiter rotation via /api/referral-redirect
+  referralMode?: boolean;       // default true → server-side recruiter rotation via /api/referral-redirect. Pass false to use waBase directly.
   children:      (openFn: () => void) => React.ReactNode;
 }
 
@@ -236,7 +236,7 @@ export default function ApplyPreScreen({
   waBase,
   source,
   jobId,
-  referralMode = false,
+  referralMode = true,   // default: all WA applies go through recruiter rotation
   children,
 }: Props) {
   const [open,       setOpen]       = useState(false);
