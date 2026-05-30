@@ -460,6 +460,99 @@ model PreQualification {
   @@map("pre_qualifications")
 }
 
+// ─── Recruiter Config — round-robin recruiter list (managed via raw SQL in lib/recruiter-db.ts) ──
+// Added to schema so prisma db push does not drop the table.
+
+model RecruiterConfig {
+  id        String   @id
+  name      String
+  waUrl     String
+  enabled   Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("recruiter_config")
+}
+
+// ─── Referral Clicks — every recruiter redirect logged here ──────────────────────
+// Added to schema so prisma db push does not drop the table (89 rows).
+
+model ReferralClick {
+  id          String   @id
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+  recruiter   String
+  recruiterWa String
+  jobId       String?
+  jobTitle    String?
+  source      String   @default("AgencyCheck")
+
+  @@index([createdAt], name: "rc_created_at_idx")
+  @@index([recruiter],  name: "rc_recruiter_idx")
+  @@index([jobId],      name: "rc_job_id_idx")
+  @@map("referral_clicks")
+}
+
+// ─── Candidate Reliability Notes — private admin-only notes on candidate behaviour ──
+// Added to schema so prisma db push does not drop the table.
+
+model CandidateReliabilityNote {
+  id              String    @id
+  leadId          String
+  candidateName   String
+  noteType        String
+  severity        String    @default("medium")
+  recruiterSource String?
+  incidentDate    DateTime? @db.Date
+  noteText        String?
+  createdByAdmin  String?
+  createdAt       DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@index([leadId],    name: "crn_lead_id_idx")
+  @@index([severity],  name: "crn_severity_idx")
+  @@index([noteType],  name: "crn_note_type_idx")
+  @@index([createdAt], name: "crn_created_at_idx")
+  @@map("candidate_reliability_notes")
+}
+
+// ─── Candidate Restrictions — blocked phone numbers (admin-managed) ───────────────
+// Added to schema so prisma db push does not drop the table.
+
+model CandidateRestriction {
+  id              String    @id
+  phoneNormalized String
+  phoneRaw        String
+  reasonCategory  String
+  severity        String    @default("medium")
+  internalNote    String?
+  recruiterName   String?
+  dateReported    DateTime? @db.Date
+  active          Boolean   @default(true)
+  createdByAdmin  String?
+  createdAt       DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@index([phoneNormalized], name: "cr_phone_idx")
+  @@index([active],          name: "cr_active_idx")
+  @@map("candidate_restrictions")
+}
+
+// ─── Restriction Blocked Attempts — log of every blocked apply attempt ────────────
+
+model RestrictionBlockedAttempt {
+  id                String   @id
+  restrictionId     String
+  phoneNormalized   String
+  attemptedJobId    String?
+  attemptedJobTitle String?
+  source            String   @default("AgencyCheck")
+  ipAddress         String?
+  userAgent         String?
+  createdAt         DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([restrictionId], name: "rba_restriction_idx")
+  @@index([createdAt],     name: "rba_created_at_idx")
+  @@map("restriction_blocked_attempts")
+}
+
 // ─── Phone Application Log — persistent dedup across devices and sessions ────────
 // Stores normalised phone numbers of successful WhatsApp apply events.
 // Checked by /api/check-phone (read) and written by /api/apply-webhook (write).
