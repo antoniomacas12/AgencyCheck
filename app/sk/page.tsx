@@ -70,10 +70,10 @@ const SALARY_ROWS = [
 
 // ─── AgencyCheck benefits ─────────────────────────────────────────────────────
 const AGENCYCHECK_BENEFITS = [
-  { icon: "⚡", label: "Odpoveď v ten istý deň",     detail: "Prihlás sa cez WhatsApp a dostaneš odpoveď od skutočného recruitera ešte v ten istý deň. Žiadne čakanie týždne." },
-  { icon: "🏠", label: "Ubytovanie v balíku",         detail: "Všetky agentúry na AgencyCheck ponúkajú ubytovanie ako súčasť balíka. Nemusíš hľadať vlastný byt." },
-  { icon: "📋", label: "Transparentná zmluva",        detail: "Pred podpisom vidíš presne čo sa bude strhávať: ubytovanie, doprava, poistenie. Žiadne prekvapenia po príchode." },
-  { icon: "🆓", label: "Úplne zdarma pre pracovníkov", detail: "AgencyCheck je 100% bezplatný pre pracovníkov. Agentúry platia za prístup — ty neplatíš nikdy nič." },
+  { icon: "⚡", label: "Odpoveď v ten istý deň",     detail: "Prihlás sa cez WhatsApp a dostaneš odpoveď od skutočného recruitera ešte v ten istý pracovný deň — typický čas reakcie sú hodiny, nie týždne. Nástup do práce v Holandsku je možný už 7–14 dní od prvého kontaktu vrátane zabezpečenia ubytovania. Slovenské komunity sú rozšírené najmä v Eindhovene a Tilburgu — overte si pred nástupom, do ktorého mesta idete." },
+  { icon: "🏠", label: "Ubytovanie s certifikátom SNF", detail: "Všetky agentúry na AgencyCheck ponúkajú ubytovanie ako súčasť pracovného balíka — nemusíš hľadať vlastný byt v cudzej krajine. Certifikácia SNF (Stichting Normering Flexwonen), overiteľná na snf.nl, garantuje maximálnu zákonnú zrážku €113,50/týždeň (norma 2026) a nezávislú kontrolu kvality priestorov vrátane protipožiarnej bezpečnosti a hygienických štandardov." },
+  { icon: "📋", label: "Transparentná zmluva pred odchodom", detail: "Pred podpisom vidíš presne, čo sa bude strhávať: ubytovanie, doprava (samostatná položka na loonstrook: €20–€30/týžd.), zdravotné poistenie. Podľa holandského zákona WAADI nesmie agentúra účtovať pracovníkovi poplatok za sprostredkovanie. Zmluva musí obsahovať hodinovú sadzbu (min. WML €14,71/h), CAO fázu (Fáza A — prvých 78 týždňov) a dátum nástupu." },
+  { icon: "🆓", label: "Úplne zdarma — garantované zákonom", detail: "AgencyCheck je 100% bezplatný pre pracovníkov — holandský zákon WAADI zakazuje agentúram účtovať sprostredkovateľský poplatok pracovníkom. Agentúry v našej databáze sú registrované v KvK (Holandská obchodná komora) a členom ABU alebo NBBU. Ako občan EÚ máš plné pracovné práva v Holandsku od prvého dňa — rodné číslo (rodné číslo SR) nahradíš holandským BSN číslom potrebným na daňové účely." },
 ];
 
 // ─── Worker testimonials ──────────────────────────────────────────────────────
@@ -85,11 +85,11 @@ const WORKER_TESTIMONIALS = [
 
 // ─── What good agencies offer ─────────────────────────────────────────────────
 const AGENCY_OFFERS = [
-  { icon: "📄", title: "Písomná zmluva pred odchodom",   body: "Dobrá agentúra vždy dá písomnú zmluvu vopred. Poznáš hodinovú sadzbu, cenu ubytovania a dátum nástupu skôr, ako odídeš." },
-  { icon: "🏠", title: "SNF certifikované ubytovanie",   body: "Najlepšie agentúry majú SNF certifikáciu — nezávislý holandský štandard kvality pre pracovnícke ubytovanie." },
-  { icon: "⏱", title: "Nadčasy správne zaplatené",       body: "Podľa holandského CAO sa nadčasy platia s príplatkom (125%–150%). Dobré agentúry to aplikujú automaticky a jasne zobrazujú na výplatnej páske." },
-  { icon: "🚌", title: "Organizovaná doprava do práce",  body: "Väčšina agentúr organizuje dopravu na pracovisko. Najlepšie ju zahrňujú do balíka alebo účtujú len skutočné náklady." },
-  { icon: "💬", title: "Podpora v slovenčine",           body: "Dobré agentúry majú zamestnancov hovoriacich po slovensky. Môžeš klásť otázky a vždy dostaneš jasné odpovede." },
+  { icon: "📄", title: "Písomná zmluva pred odchodom",   body: "Dobrá agentúra vždy dá písomnú zmluvu vopred — skôr, ako kúpiš letenku. Zmluva musí obsahovať: hodinovú sadzbu (min. WML €14,71/h), cenu ubytovania (max. €113,50/týžd. podľa SNF), dátum nástupu a CAO fázu (Fáza A — prvých 78 týždňov). Ako občan EÚ máš právo žiadať zmluvu pred akýmkoľvek cestovaním — agentúra, ktorá to odmieta, porušuje zákon WAADI." },
+  { icon: "🏠", title: "SNF certifikované ubytovanie — overiteľné", body: "Najlepšie agentúry majú certifikáciu SNF (Stichting Normering Flexwonen), overiteľnú verejne na snf.nl — nezávislý holandský štandard kvality pre pracovnícke ubytovanie s maximálnou zrážkou €113,50/týždeň (2026). Slovenské komunity pracujú najmä v Eindhovene a Tilburgu — opýtaj sa na vzdialenosť od ubytovania na pracovisko a či je doprava zahrnutá alebo účtovaná osobitne." },
+  { icon: "⏱", title: "Nadčasy — overwerktoeslag podľa CAO",       body: "Podľa ABU/NBBU CAO sa nadčasy (overwerktoeslag) priplácajú: 125% v pracovné dni a 150% v nedeľu a štátne sviatky. Dobré agentúry to aplikujú automaticky a zobrazujú jasne na loonstrook (výplatnej páske). Skontroluj tiež, či je vakantiegeld (dovolenkový príspevok) aspoň 8% z hrubej mzdy — táto zrážka je povinná zo zákona a musí byť viditeľná na loonstrook." },
+  { icon: "🚌", title: "Doprava, BSN a rodné číslo",  body: "Väčšina agentúr organizuje dopravu na pracovisko — typická cena je €20–€30/týždeň a musí figurovať ako samostatná položka v zmluve, nie skrytá v iných poplatkoch. Po príchode do Holandska potrebuješ BSN (burgerservicenummer) — holandský ekvivalent slovenského rodného čísla, nevyhnutný na daňové účely. Agentúra ti musí pomôcť dohodnúť stretnutie na obecnom úrade (gemeente), bez BSN ťa nemôžu legálne zamestnať." },
+  { icon: "💬", title: "Podpora v slovenčine a právna ochrana",           body: "Dobré agentúry majú zamestnancov hovoriacich po slovensky a vysvetľujú každú položku na loonstrook. Ako občan EÚ v Holandsku máš rovnaké práva ako holandský pracovník: garantovaná minimálna mzda WML, ochrana podľa CAO ABU/NBBU a prístup k odborovým organizáciám FNV a CNV. Akékoľvek porušenie môžeš nahlásiť na Inspectie SZW (inspectieszw.nl) — anonymne a bezplatne." },
 ];
 
 function StarRating({ value }: { value: number }) {

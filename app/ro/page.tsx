@@ -109,19 +109,19 @@ const WORKER_TESTIMONIALS = [
 
 // ─── AgencyCheck benefits (RO) ───────────────────────────────────────────────
 const AGENCYCHECK_BENEFITS = [
-  { icon: "⚡", label: "Răspuns în aceeași zi", detail: "Aplică prin WhatsApp și primești răspuns de la un recrutor real în aceeași zi. Fără săptămâni de așteptare." },
-  { icon: "🏠", label: "Cazare certificată SNF", detail: "Agențiile de pe AgencyCheck oferă cazare ca parte din pachet. Standardele SNF garantează condiții decente de locuit." },
-  { icon: "📋", label: "Contract transparent", detail: "Înainte să semnezi, știi exact ce se deduce: cazare, transport, asigurare. Fără surprize după sosire." },
-  { icon: "🆓", label: "Gratuit pentru lucrători", detail: "AgencyCheck este 100% gratuit pentru lucrători. Agențiile plătesc pentru acces — tu nu plătești nimic, niciodată." },
+  { icon: "⚡", label: "Răspuns în aceeași zi", detail: "Aplică prin WhatsApp și primești răspuns de la un recrutor real în aceeași zi lucrătoare — ruta România–Olanda este una dintre cele mai frecventate căi de migrație a forței de muncă din UE. Poți începe în 7–14 zile de la primul contact. Nicio săptămână de așteptare, niciun bot automat." },
+  { icon: "🏠", label: "Cazare certificată SNF", detail: "Agențiile de pe AgencyCheck oferă cazare ca parte din pachet. Certificarea SNF (verificabilă la snf.nl) garantează condiții decente: deducerea maximă legală este €113,50/săptămână (2026). Mulți români lucrează în serele din Westland — locul de muncă influențează și locația cazării, deci verifică distanța față de fabrică sau seră înainte de a semna." },
+  { icon: "📋", label: "Contract transparent înainte de plecare", detail: "Înainte să semnezi, știi exact ce se deduce: cazare, transport (linie separată în contract: €20–€30/săpt.), asigurare. Ai nevoie de BSN (burgerservicenummer) în primele săptămâni — agența trebuie să te ajute să îl obții. Vakantiegeld (concediu plătit) reprezintă 8% din salariul brut și se plătește de două ori pe an — verifică să fie inclus în calcule." },
+  { icon: "🆓", label: "Gratuit pentru lucrători — mereu", detail: "AgencyCheck este 100% gratuit pentru lucrători. Legea olandeză WAADI interzice explicit perceperea de taxe de plasament de la lucrători. Agențiile din baza noastră sunt înregistrate la KvK (Camera de Comerț olandeză) și afiliate ABU sau NBBU. Sindicatele CNV și FNV sunt disponibile și pentru lucrătorii români în caz de litigii." },
 ];
 
 // ─── Agency offers (RO) ──────────────────────────────────────────────────────
 const AGENCY_OFFERS = [
-  { icon: "📄", title: "Contract scris înainte de plecare", body: "O agenție bună oferă întotdeauna contract scris în avans. Cunoști tariful orar, costul cazării și data de start înainte să pleci." },
-  { icon: "🏠", title: "Cazare certificată SNF", body: "Cele mai bune agenții dețin certificarea SNF — standardul olandez independent pentru calitatea locuințelor lucrătorilor." },
-  { icon: "⏱", title: "Ore suplimentare plătite corect", body: "Conform CAO olandez, orele suplimentare sunt remunerate mai bine (125%–150%). Agențiile bune aplică asta automat." },
-  { icon: "🚌", title: "Transport organizat la locul de muncă", body: "Cele mai multe agenții organizează transport. Cele mai bune îl includ în pachet sau taxează doar costul real." },
-  { icon: "💬", title: "Sprijin în limba română", body: "Agențiile bune au angajați care vorbesc română. Poți pune întrebări și vei primi mereu răspunsuri clare." },
+  { icon: "📄", title: "Contract scris înainte de plecare", body: "O agenție bună oferă întotdeauna contract scris în avans, înainte să pășești în avion. Contractul trebuie să specifice: tariful orar (minim WML €14,71/oră), costul cazării (max. €113,50/săpt. conform SNF), data de start și faza CAO în care ești încadrat (Faza A — primele 78 de săptămâni). Absența unui contract scris înainte de plecare este un semnal de alarmă serios." },
+  { icon: "🏠", title: "Cazare certificată SNF — verificabilă", body: "Cele mai bune agenții dețin certificarea SNF (Stichting Normering Flexwonen), verificabilă public pe snf.nl — standardul olandez independent pentru calitatea locuințelor lucrătorilor. Mulți români sunt plasați în serele din Westland sau în producția alimentară; verifica distanța de la cazare la locul de muncă și dacă transportul este inclus sau facturat separat (max. €20–€30/săpt.)." },
+  { icon: "⏱", title: "Ore suplimentare plătite conform CAO", body: "Conform ABU/NBBU CAO, orele suplimentare (overwerktoeslag) sunt remunerate la 125% în zilele lucrătoare și 150% duminica și de sărbători. Agențiile bune aplică asta automat și afișează clar pe loonstrook (fluturașul de salariu). Vakantiegeld (indemnizație de concediu) reprezintă 8% din salariul brut și este plătit de două ori pe an — verifică dacă apare pe fluturiș." },
+  { icon: "🚌", title: "Transport și BSN — pași concreți", body: "Cele mai multe agenții organizează transport la locul de muncă — costul tipic este €20–€30/săptămână și trebuie să apară ca linie separată pe loonstrook, nu ascuns în alte taxe. În primele săptămâni ai nevoie de BSN (burgerservicenummer) pentru impozitare — agența trebuie să te ajute să programezi o întâlnire la primărie (gemeente). Fără BSN nu poți fi plătit legal." },
+  { icon: "💬", title: "Sprijin în română și drepturi sindicale", body: "Agențiile bune au angajați care vorbesc română și explică clar fiecare deducere de pe fluturiș. Ca cetățean UE în Olanda ai aceleași drepturi ca un lucrător olandez: salariu minim garantat (WML), protecție prin CAO și acces la sindicatele FNV și CNV care oferă consiliere și în limba română. Orice problemă cu plata poate fi sesizată la Inspectie SZW." },
 ];
 
 function StarRating({ value }: { value: number }) {
