@@ -5,12 +5,26 @@ import HousingBadge from "@/components/HousingBadge";
 import { AGENCIES }  from "@/lib/agencyData";
 import type { AgencyCardData } from "@/components/AgencyCard";
 
-export const metadata: Metadata = {
-  title: "Compare Employment Agencies Netherlands — AgencyCheck",
-  description: "Compare two employment agencies in the Netherlands side by side — housing, salary, transport, worker score, and open issues. Make an informed choice before you sign.",
-  alternates: { canonical: "https://agencycheck.io/compare" },
-  robots: { index: true, follow: true },
-};
+// ─── Dynamic metadata — noindex when query params present ────────────────────
+// /compare?agencies=a,b generates thousands of URL combinations (n*(n-1)/2 for
+// n agencies). Canonical tags alone don't prevent Google crawling them and
+// burning crawl budget. noindex+follow when params are present kills the waste
+// while keeping the base /compare page and /compare/a-vs-b static pages indexed.
+export function generateMetadata({ searchParams }: ComparePageProps): Metadata {
+  const hasParams = Boolean(searchParams.agencies);
+  return {
+    title: "Compare Employment Agencies Netherlands — AgencyCheck",
+    description:
+      "Compare two employment agencies in the Netherlands side by side — housing, salary, transport, worker score, and open issues. Make an informed choice before you sign.",
+    alternates: { canonical: "https://agencycheck.io/compare" },
+    // noindex when showing a specific query-param comparison — prevents Google
+    // indexing all n*(n-1)/2 URL combinations as separate pages.
+    // The /compare/agency-a-vs-agency-b static pages are still fully indexed.
+    robots: hasParams
+      ? { index: false, follow: true }
+      : { index: true,  follow: true },
+  };
+}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

@@ -16,8 +16,11 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
         disallow: [
-          "/api/",    // internal API routes — not for indexing
-          "/admin/",  // admin panel — never index
+          "/api/",       // internal API routes — not for indexing
+          "/admin/",     // admin panel — never index
+          "/compare?",   // query-param compare URLs (/compare?agencies=a,b) generate
+                         // n*(n-1)/2 combinations that burn crawl budget.
+                         // /compare/agency-a-vs-agency-b static pages are still allowed.
         ],
       },
       {
