@@ -196,14 +196,15 @@ function Opt({
       type="button"
       onClick={onClick}
       className={`
-        w-full py-2.5 px-3 rounded-xl border text-[13px] font-semibold
+        w-full min-h-[44px] py-2.5 px-3 rounded-xl border text-[13px] font-semibold
         transition-all duration-150 text-left leading-snug break-words
+        flex items-center
         ${selected
           ? "border-emerald-400 bg-emerald-400/15 text-emerald-300"
           : "border-white/10 bg-white/5 text-gray-400 hover:bg-white/10"}
       `}
     >
-      {selected && <span className="mr-1 text-emerald-400 text-[11px]">✓ </span>}
+      {selected && <span className="mr-1 text-emerald-400 text-[11px] shrink-0">✓ </span>}
       {label}
     </button>
   );
@@ -257,6 +258,32 @@ export default function ApplyPreScreen({
       .then((d: { isEU: boolean }) => setIsEU(d.isEU))
       .catch(() => setIsEU(null)); // fail-open on network error
   }, []);
+
+  // Body scroll lock — prevents the background page from scrolling while the
+  // bottom sheet is open. Uses the fixed-position technique because it's the
+  // only approach that works reliably on iOS Safari (overflow:hidden on body
+  // does not prevent momentum-scroll on iOS).
+  useEffect(() => {
+    if (!mounted) return;
+    if (open) {
+      const y = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top      = `-${y}px`;
+      document.body.style.width    = "100%";
+    } else {
+      const savedY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top      = "";
+      document.body.style.width    = "";
+      if (savedY) window.scrollTo(0, -parseInt(savedY, 10));
+    }
+    return () => {
+      // Cleanup on unmount — always restore scroll
+      document.body.style.position = "";
+      document.body.style.top      = "";
+      document.body.style.width    = "";
+    };
+  }, [open, mounted]);
 
   // Always English — recruiter must understand the candidate's answers
   const t = useT("en");
@@ -551,10 +578,9 @@ export default function ApplyPreScreen({
                   onChange={(e) => setCitizenship(e.target.value as EUCountry)}
                   placeholder="e.g. Poland, Romania, Bulgaria..."
                   autoComplete="off"
-                  autoFocus
                   className={`
                     block w-full bg-white/5 border rounded-xl
-                    px-4 py-3 text-white text-[14px] placeholder-gray-600
+                    px-4 py-3 text-white text-base placeholder-gray-600
                     focus:outline-none transition-colors min-w-0
                     ${citizenship.trim().length >= 2
                       ? "border-emerald-400/50"
@@ -756,7 +782,7 @@ export default function ApplyPreScreen({
             </button>
             <button
               onClick={() => { setErrors(false); setCitizenship(null); setScreen("gate"); }}
-              className="w-full py-2 text-gray-600 text-[11px] hover:text-gray-400 transition"
+              className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}
             </button>
@@ -778,7 +804,7 @@ export default function ApplyPreScreen({
                 autoComplete="off"
                 className="
                   block w-full bg-white/5 border border-white/10 rounded-xl
-                  px-4 py-3 text-white text-[14px] placeholder-gray-600
+                  px-4 py-3 text-white text-base placeholder-gray-600
                   focus:outline-none focus:border-emerald-400/50
                   transition-colors min-w-0
                 "
@@ -798,7 +824,7 @@ export default function ApplyPreScreen({
                 inputMode="tel"
                 className="
                   block w-full bg-white/5 border border-white/10 rounded-xl
-                  px-4 py-3 text-white text-[14px] placeholder-gray-600
+                  px-4 py-3 text-white text-base placeholder-gray-600
                   focus:outline-none focus:border-emerald-400/50
                   transition-colors min-w-0
                 "
@@ -873,7 +899,7 @@ export default function ApplyPreScreen({
 
             <button
               onClick={() => { setErrors(false); setScreen("details_a"); }}
-              className="w-full py-2 text-gray-600 text-[11px] hover:text-gray-400 transition"
+              className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}
             </button>

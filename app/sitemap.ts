@@ -562,6 +562,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "yearly",
       priority:         0.88,
     },
+    // ── Worker acquisition landing pages (EU → NL) ────────────────────────────
+    // 4 targeted pages from the 2026-05 brief targeting EU workers searching for NL jobs.
+    // Each has JobPosting schema, hreflang, and a WhatsApp apply flow.
+    {
+      url:              `${BASE_URL}/work-netherlands-warehouse`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/praca-holandia-magazyn`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/praca-holandia-zakwaterowanie`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/praca-holandia-bez-jezyka`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.9,
+    },
     // ── Polish SEO content pages ──────────────────────────────────────────────
     {
       url:              `${BASE_URL}/pl`,

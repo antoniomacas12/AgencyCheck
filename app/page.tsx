@@ -264,7 +264,11 @@ export default async function HomePage() {
       {/* ════════════════════════════════════════════════════════════
           §1  HERO — premium, trust-first, conversion-focused
           ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-hero-depth text-white">
+      {/* transform:translateZ(0) forces a GPU composite layer — makes iOS Safari
+          correctly clip filter:blur() children inside overflow:hidden.
+          Without it, large blurred absolute divs escape the clipping boundary
+          and push the mobile page width wider than the viewport. */}
+      <section className="relative overflow-hidden bg-hero-depth text-white" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}>
 
         {/* ── Fade-in keyframes ──────────────────────────────────────── */}
         <style>{`
@@ -294,10 +298,12 @@ export default async function HomePage() {
           }}
           aria-hidden="true"
         />
-        {/* Ambient glows */}
-        <div className="pointer-events-none absolute -top-48 -left-24 w-[700px] h-[600px] rounded-full bg-indigo-600/[0.14] blur-[130px]" aria-hidden="true" />
-        <div className="pointer-events-none absolute top-1/4 -right-32 w-[550px] h-[500px] rounded-full bg-emerald-600/[0.09] blur-[110px]" aria-hidden="true" />
-        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-blue-600/[0.08] blur-[90px]" aria-hidden="true" />
+        {/* Ambient glows — kept inside bounds so they don't create horizontal overflow on mobile.
+            Negative offsets were replaced with right-0/top-0 to keep glows within the section.
+            translateZ(0) on the section (above) also ensures they're properly clipped on iOS. */}
+        <div className="pointer-events-none absolute -top-24 -left-12 w-[600px] h-[500px] rounded-full bg-indigo-600/[0.14] blur-[100px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-emerald-600/[0.09] blur-[90px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-blue-600/[0.08] blur-[80px]" aria-hidden="true" />
 
         {/* ── Content ──────────────────────────────────────────────────── */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">
@@ -306,10 +312,11 @@ export default async function HomePage() {
             {/* ── Left: copy ─────────────────────────────────────────── */}
             <div className="hero-col-left flex-1 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-6">
 
-              {/* Identity badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-3">
+              {/* Identity badge — max-w-full + overflow-hidden prevents the wide
+                  tracking-widest uppercase text from pushing past the mobile viewport */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-3 max-w-full overflow-hidden">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-300">
+                <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-300 truncate">
                   🇳🇱 Netherlands · {totalAgencies} agencies verified
                 </span>
               </div>
@@ -317,8 +324,9 @@ export default async function HomePage() {
               {/* ── JOBS URGENCY BAR ───────────────────────────────── */}
               <JobsUrgencyBar totalJobs={VACANCIES.length} />
 
-              {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-[1.04] tracking-tight text-white mb-5">
+              {/* Headline — text-3xl on mobile (30px) so lines fit in ~340px viewport.
+                  text-4xl (36px) caused "Start working next week" to be ~530px, overflowing. */}
+              <h1 className="text-3xl sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-[1.04] tracking-tight text-white mb-5">
                 Already in the{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
                   Netherlands?

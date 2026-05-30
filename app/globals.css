@@ -26,6 +26,10 @@
     text-size-adjust: 100%;
     /* Ensure Inter variable font is active globally */
     font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+    /* iOS Safari fix: overflow-x:hidden on body alone does not prevent
+       horizontal scrolling on iOS. Must be on html too. */
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
   body {
@@ -34,6 +38,9 @@
     min-height: 100vh;
     /* Safe area for notch/home indicator (iOS) */
     padding-bottom: env(safe-area-inset-bottom, 0px);
+    /* Clip any element wider than the viewport */
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
   *, *::before, *::after {
