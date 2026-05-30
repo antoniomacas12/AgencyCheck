@@ -524,6 +524,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "monthly",
       priority:         0.85,
     },
+    // ── Salary & admin guides (high search volume) ────────────────────────────
+    {
+      url:              `${BASE_URL}/how-to-read-dutch-payslip`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "yearly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/bsn-number-netherlands-guide`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "yearly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/et-scheme-netherlands-explained`,
+      lastModified:     "2026-05-01",
+      changeFrequency:  "yearly",
+      priority:         0.88,
+    },
     // ── Polish SEO content pages ──────────────────────────────────────────────
     {
       url:              `${BASE_URL}/pl`,
