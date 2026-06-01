@@ -27,7 +27,6 @@ import {
 import { ALL_AGENCIES, type EnrichedAgency } from "@/lib/agencyEnriched";
 import { JOB_LISTINGS, type JobListing } from "@/lib/jobData";
 import { calculateTakeHome, fmtEur, WML_HOURLY_2026 } from "@/lib/dutchTax";
-import { getCityContent } from "@/lib/cityContent";
 
 // ─── Static params ─────────────────────────────────────────────────────────────
 export function generateStaticParams() {
@@ -131,102 +130,6 @@ function buildCityJsonLd(cityName: string, jobs: JobListing[]) {
   return { "@context": "https://schema.org", "@graph": postings };
 }
 
-// ─── Per-agency city highlight ────────────────────────────────────────────────
-// Each agency card on a city page gets a unique 1-liner based on whichever
-// attribute is most distinctive for that agency — housing first, then reviews,
-// score, transport, geographic reach, or sector. No two agencies will lead with
-// the same icon unless they genuinely share the exact same top attribute.
-
-const SECTOR_LABEL: Record<string, string> = {
-  "logistics":       "Logistics & warehouse",
-  "food-production": "Food production",
-  "construction":    "Construction",
-  "healthcare":      "Healthcare staffing",
-  "it-tech":         "IT & tech recruiting",
-  "transport":       "Transport & driving",
-  "hospitality":     "Hospitality & events",
-  "agriculture":     "Greenhouse & agriculture",
-  "cleaning":        "Cleaning services",
-  "general-staffing":"Multi-sector staffing",
-  "office-admin":    "Office & admin",
-  "engineering":     "Engineering & technical",
-};
-
-const FOCUS_LABEL: Record<string, string> = {
-  "order-picker":          "Warehouse picking",
-  "warehouse-worker":      "Warehouse work",
-  "forklift-driver":       "Forklift operation",
-  "reach-truck-driver":    "Reach-truck driving",
-  "production-worker":     "Production lines",
-  "packing-operator":      "Packing & sorting",
-  "truck-driver":          "Truck driving",
-  "delivery-driver":       "Delivery logistics",
-  "machine-operator":      "Machine operation",
-  "assembly-worker":       "Assembly work",
-  "greenhouse-worker":     "Greenhouse cultivation",
-  "cleaning-staff":        "Cleaning staff",
-  "care-worker":           "Care work",
-  "nursing":               "Nursing",
-  "home-care":             "Home care",
-  "software-developer":    "Software development",
-  "it-infrastructure":     "IT infrastructure",
-  "data-analyst":          "Data analysis",
-  "hospitality-staff":     "Hospitality staff",
-  "event-crew":            "Event crew",
-  "seasonal-farm-worker":  "Seasonal farm work",
-  "admin-worker":          "Office admin",
-  "finance-clerk":         "Finance & accounting",
-  "technical-specialist":  "Technical specialist",
-  "construction-trade":    "Trades & construction",
-  "installation-technician":"Installation tech",
-};
-
-function getAgencyPriorityHighlight(
-  agency: EnrichedAgency,
-  cityName: string,
-): { icon: string; text: string } {
-  const reviewCount    = agency.reviewCount ?? 0;
-  const score          = agency.transparencyScore ?? 0;
-  const cityCount      = agency.cities?.length ?? 0;
-  const sectorLabel    = SECTOR_LABEL[agency.sector] ?? "Staffing";
-  const topFocus       = agency.jobFocus?.[0] ? (FOCUS_LABEL[agency.jobFocus[0]] ?? sectorLabel) : sectorLabel;
-  const secondFocus    = agency.jobFocus?.[1] ? (FOCUS_LABEL[agency.jobFocus[1]] ?? null) : null;
-  const focusStr       = secondFocus ? `${topFocus} & ${secondFocus.toLowerCase()}` : topFocus;
-
-  // 1. Housing is the most decisive differentiator
-  if (agency.housing === "YES") {
-    return { icon: "🏠", text: `Accommodation provided · ${topFocus} in ${cityName}` };
-  }
-
-  // 2. Strong review base → social proof signal
-  if (reviewCount >= 25) {
-    return { icon: "⭐", text: `${reviewCount} worker reviews · ${focusStr}` };
-  }
-
-  // 3. Very high transparency score
-  if (score >= 80) {
-    return { icon: "✅", text: `High transparency score (${score}/100) · ${topFocus}` };
-  }
-
-  // 4. Transport arranged
-  if (agency.transport === "YES") {
-    return { icon: "🚌", text: `Transport arranged · ${focusStr} in ${cityName}` };
-  }
-
-  // 5. Wide national network
-  if (cityCount >= 8) {
-    return { icon: "🗺️", text: `${cityCount} cities covered · ${sectorLabel}` };
-  }
-
-  // 6. Solid reviews (5–24)
-  if (reviewCount >= 5) {
-    return { icon: "💬", text: `${reviewCount} worker reviews · ${focusStr} · ${cityName}` };
-  }
-
-  // 7. Fall back to sector focus
-  return { icon: "🎯", text: `${focusStr} · ${cityName} region` };
-}
-
 // ═══════════════════════════════════════════════════════════════════════════════
 // Helpers – Job-type view
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -320,8 +223,6 @@ function CityJobsView({ params }: { params: { city: string } }) {
     healthcareOwnRisk: 30,
   });
 
-  const cityContent = getCityContent(params.city);
-
   const jobsByType = jobTypes
     .map((jt) => ({ ...jt, jobs: jobs.filter((j) => j.jobType === jt.slug) }))
     .filter((jt) => jt.jobs.length > 0);
@@ -345,43 +246,14 @@ function CityJobsView({ params }: { params: { city: string } }) {
         {/* Hero */}
         <div className="mb-8">
           <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3">
-            {cityContent?.headline ?? `Agency Jobs in ${cityData.name}, Netherlands`}
+            Agency Jobs in {cityData.name}, Netherlands
           </h1>
-
-          {/* City-specific intro or generic fallback */}
-          {cityContent ? (
-            <div className="mb-4">
-              <p className="text-base text-gray-700 max-w-3xl leading-relaxed mb-3">
-                {cityContent.intro}
-              </p>
-              {cityContent.industryFocus.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {cityContent.industryFocus.map((sector) => (
-                    <span
-                      key={sector}
-                      className="text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200 rounded-full px-3 py-1"
-                    >
-                      {sector}
-                    </span>
-                  ))}
-                </div>
-              )}
-              {cityContent.keyEmployers && cityContent.keyEmployers.length > 0 && (
-                <p className="text-xs text-gray-500">
-                  Key employers:{" "}
-                  {cityContent.keyEmployers.slice(0, 5).join(" · ")}
-                </p>
-              )}
-            </div>
-          ) : (
-            <p className="text-lg text-gray-600 max-w-2xl mb-4">
-              {jobs.length > 0
-                ? `${jobs.length} active listings from ${agencies.length} verified agencies in ${cityData.name}, ${cityData.region}. Based on worker-reported data.`
-                : `Browse employment agencies operating in ${cityData.name}, ${cityData.region}. Worker-reported salary and housing data.`}
-            </p>
-          )}
-
-          <div className="mt-1 flex flex-wrap gap-3">
+          <p className="text-lg text-gray-600 max-w-2xl">
+            {jobs.length > 0
+              ? `${jobs.length} active listings from ${agencies.length} verified agencies in ${cityData.name}, ${cityData.region}. Based on worker-reported data.`
+              : `Browse employment agencies operating in ${cityData.name}, ${cityData.region}. Worker-reported salary and housing data.`}
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
             {[
               { label: "Active jobs",       value: jobs.length.toString(),             icon: "💼" },
               { label: "Agencies here",     value: agencies.length.toString(),         icon: "🏢" },
@@ -397,20 +269,7 @@ function CityJobsView({ params }: { params: { city: string } }) {
           </div>
         </div>
 
-        <WorkerDisclaimer variant="salary" size="banner" className="mb-6" />
-
-        {/* Worker note — city-specific warning/tip */}
-        {cityContent?.workerNote && (
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 flex gap-3 items-start">
-            <span className="text-xl shrink-0">⚠️</span>
-            <div>
-              <p className="text-sm font-semibold text-amber-900 mb-0.5">
-                Before you come to {cityData.name}
-              </p>
-              <p className="text-sm text-amber-800 leading-relaxed">{cityContent.workerNote}</p>
-            </div>
-          </div>
-        )}
+        <WorkerDisclaimer variant="salary" size="banner" className="mb-8" />
 
         {/* Salary reality block */}
         <div className="bg-gray-950 text-white rounded-2xl p-6 mb-8">
@@ -503,23 +362,14 @@ function CityJobsView({ params }: { params: { city: string } }) {
                 <h2 className="text-xl font-bold text-gray-900 mb-4">
                   Agencies hiring in {cityData.name} ({agencies.length})
                 </h2>
-                <div className="grid gap-5 sm:grid-cols-2">
-                  {agencies.slice(0, 6).map((agency) => {
-                    const highlight = getAgencyPriorityHighlight(agency, cityData.name);
-                    return (
-                      <div key={agency.slug} className="flex flex-col">
-                        <AgencyCard
-                          agency={agency}
-                          jobCount={jobs.filter((j) => j.agencySlug === agency.slug).length}
-                        />
-                        {/* Per-agency city insight — unique per card based on top attribute */}
-                        <div className="mt-1.5 px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg flex items-center gap-1.5">
-                          <span className="text-sm leading-none">{highlight.icon}</span>
-                          <span className="text-xs text-gray-600">{highlight.text}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {agencies.slice(0, 6).map((agency) => (
+                    <AgencyCard
+                      key={agency.slug}
+                      agency={agency}
+                      jobCount={jobs.filter((j) => j.agencySlug === agency.slug).length}
+                    />
+                  ))}
                 </div>
                 {agencies.length > 6 && (
                   <div className="mt-4 text-center">
@@ -568,14 +418,6 @@ function CityJobsView({ params }: { params: { city: string } }) {
                     </Link>
                   ))}
                 </div>
-              </div>
-            )}
-
-            {/* Housing note — city-specific if available */}
-            {cityContent?.housingNote && (
-              <div className="border border-gray-200 rounded-xl p-4">
-                <h3 className="font-bold text-gray-900 text-sm mb-2">🏠 Housing in {cityData.name}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{cityContent.housingNote}</p>
               </div>
             )}
 
