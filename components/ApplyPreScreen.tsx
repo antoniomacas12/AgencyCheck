@@ -108,9 +108,7 @@ function buildCandidateMsg(
 //    Same device, different session (e.g. cleared cache but same browser).
 //
 // 3. SERVER lock  — POST /api/check-phone → DB PhoneApplication table.
-//    Called after window.open("about:blank") using blank-window trick so
-//    popup blocker is never triggered. Covers: incognito, different device,
-//    Vercel cold starts (in-memory Map would have been reset).
+//    Covers: incognito, different device, Vercel cold starts.
 //
 // All layers fail-open: a storage/network error never permanently blocks
 // a real candidate.
@@ -411,17 +409,13 @@ export default function ApplyPreScreen({
     trackFunnel({ sessionId: sessionIdRef.current, event: "details_a_passed", step: "details_b", jobId, source });
   }
 
-  // handleSubmit uses the "blank-window" technique:
-  //
-  // 1. window.open("about:blank") — SYNCHRONOUS in the click event.
-  //    Popup blocker sees this as a user-initiated open → always allowed.
-  //
-  // 2. fetch("/api/check-phone") — ASYNC server-side dedup check (DB-backed).
-  //    If duplicate: close the blank window, show already_applied screen.
-  //    If allowed:   redirect the blank window to the WhatsApp URL.
-  //
-  // This gives us a server-side check (cross-device, cross-session, persistent)
-  // without ever triggering the popup blocker. Fails open if server is unreachable.
+  // handleSubmit:
+  // 1. Validates form fields + runs local dedup checks (layers 1 & 2).
+  // 2. Calls /api/check-phone for server-side dedup (layer 3, DB-backed).
+  // 3. On pass: saves locks, fires tracking/webhook, shows "completed" screen.
+  //    useEffect then does window.location.href → WA redirect (never popup-blocked).
+  // 4. On duplicate: shows already_applied screen.
+  // Fails open if server is unreachable so real candidates are never blocked.
   function handleSubmit() {
     const phoneRaw   = phone.trim();
     const phoneClean = normalisePhone(phoneRaw);   // remove spaces/dashes/brackets
