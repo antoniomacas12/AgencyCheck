@@ -677,7 +677,7 @@ export default async function PlHomePage() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
               Zobacz zweryfikowane oferty →
             </a>
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Przeglądaj {housingCount} agencji z zakwaterowaniem
             </Link>
@@ -797,7 +797,7 @@ export default async function PlHomePage() {
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100 transition-colors">
               Przeglądaj wszystkie {housingCount} agencji z zakwaterowaniem →
             </Link>
@@ -919,7 +919,7 @@ export default async function PlHomePage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-none">
               🏢 Wszystkie {housingCount} agencji z zakwaterowaniem
             </Link>
@@ -1029,7 +1029,7 @@ export default async function PlHomePage() {
                 { icon: "💶", href: "/tools/real-income-calculator",        title: "Pełny kalkulator wynagrodzeń",        desc: "Wynagrodzenie netto ze wszystkimi ulgami podatkowymi 2026" },
                 { icon: "📄", href: "/tools/payslip-checker",               title: "Narzędzie do weryfikacji odcinków",    desc: "Prześlij loonstrook i sprawdź błędy" },
                 { icon: "🏢", href: "/agencies",                            title: "Wszystkie agencje w Holandii",         desc: `${totalAgencies} agencji sklasyfikowanych według ocen pracowników` },
-                { icon: "🏠", href: "/agencies-with-housing",               title: "Praca z zakwaterowaniem",              desc: `${housingCount} zweryfikowanych agencji z zakwaterowaniem` },
+                { icon: "🏠", href: "/best-agencies-with-housing-netherlands",               title: "Praca z zakwaterowaniem",              desc: `${housingCount} zweryfikowanych agencji z zakwaterowaniem` },
                 { icon: "⭐", href: "/reviews",                             title: "Opinie pracowników",                   desc: `${totalReviews}+ prawdziwych anonimowych opinii` },
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Prawa i poradnik prawny",              desc: "ABU CAO, WML, SNF — wytłumaczone prosto" },
               ].map((item) => (
@@ -1116,7 +1116,7 @@ export default async function PlHomePage() {
               <span className="text-blue-800">·</span>
               <Link href="/reviews"                      className="hover:text-white transition-colors">Opinie pracowników</Link>
               <span className="text-blue-800">·</span>
-              <Link href="/agencies-with-housing"        className="hover:text-white transition-colors">Praca z zakwaterowaniem</Link>
+              <Link href="/best-agencies-with-housing-netherlands"        className="hover:text-white transition-colors">Praca z zakwaterowaniem</Link>
               <span className="text-blue-800">·</span>
               <Link href="/tools/real-income-calculator" className="hover:text-white transition-colors">Kalkulator wynagrodzeń</Link>
               <span className="text-blue-800">·</span>

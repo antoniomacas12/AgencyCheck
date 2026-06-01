@@ -184,7 +184,7 @@ export default function HousingGuidesPage() {
         <h2 className="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">Find an Agency with Housing</h2>
         <div className="grid sm:grid-cols-2 gap-2">
           {[
-            ["/agencies-with-housing", `All ${housingCount} agencies with confirmed housing`],
+            ["/best-agencies-with-housing-netherlands", `All ${housingCount} agencies with confirmed housing`],
             ["/best-agencies-netherlands-for-foreigners", "Best agencies for foreign workers"],
             ["/best-work-agencies-netherlands", "Best work agencies overall"],
             ["/salary-guides", "Salary guides: what you keep after deductions"],

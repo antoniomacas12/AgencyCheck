@@ -320,7 +320,7 @@ export default function TempoTeamJobsPage() {
             <Link href="/agencies/tempo-team-amsterdam-uitzendbureau" className="text-brand-600 hover:underline">
               Tempo-Team agency profile →
             </Link>
-            <Link href="/agencies-with-housing" className="text-gray-500 hover:text-brand-600 hover:underline">
+            <Link href="/best-agencies-with-housing-netherlands" className="text-gray-500 hover:text-brand-600 hover:underline">
               Agencies with housing →
             </Link>
           </div>

@@ -189,7 +189,7 @@ export default function GreenhouseJobsAccommodationPage() {
           </div>
           {agencies.length > 6 && (
             <p className="text-xs text-gray-400 text-center mt-3">
-              <Link href="/agencies-with-housing" className="text-brand-600 hover:underline">
+              <Link href="/best-agencies-with-housing-netherlands" className="text-brand-600 hover:underline">
                 All agencies with housing →
               </Link>
             </p>
@@ -267,7 +267,7 @@ export default function GreenhouseJobsAccommodationPage() {
           <Link href="/salary/greenhouse-worker-netherlands" className="text-gray-500 hover:text-brand-600 hover:underline">
             💶 Greenhouse salary overview →
           </Link>
-          <Link href="/agencies-with-housing" className="text-gray-500 hover:text-brand-600 hover:underline">
+          <Link href="/best-agencies-with-housing-netherlands" className="text-gray-500 hover:text-brand-600 hover:underline">
             🏘️ All housing agencies →
           </Link>
           <Link href="/sectors/agriculture" className="text-gray-500 hover:text-brand-600 hover:underline">

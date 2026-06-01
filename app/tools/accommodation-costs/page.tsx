@@ -236,7 +236,7 @@ export default function AccommodationCostsPage() {
           shared accommodation. Always ask for the exact weekly deduction in writing before signing.
           Deductions above SNF norms are a red flag.
         </p>
-        <Link href="/agencies-with-housing" className="text-xs text-blue-700 font-semibold hover:underline">
+        <Link href="/best-agencies-with-housing-netherlands" className="text-xs text-blue-700 font-semibold hover:underline">
           Find SNF-certified agencies with housing →
         </Link>
       </div>

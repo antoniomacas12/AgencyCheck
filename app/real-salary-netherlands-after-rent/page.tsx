@@ -263,7 +263,7 @@ export default function RealSalaryPage() {
       <div className="flex flex-wrap gap-2 mb-4">
         {[
           { href: "/jobs-in-netherlands",                   label: "💼 Browse jobs" },
-          { href: "/agencies-with-housing",                 label: "🏠 Housing agencies" },
+          { href: "/best-agencies-with-housing-netherlands",                 label: "🏠 Housing agencies" },
           { href: "/best-agencies-with-housing-netherlands", label: "🏆 Best housing agencies" },
           { href: "/work-in-netherlands-for-foreigners",    label: "🌍 Full working guide" },
         ].map((link) => (

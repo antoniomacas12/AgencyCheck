@@ -245,7 +245,7 @@ export default function CityHousingPage({ params }: { params: { city: string } }
             <div className="flex gap-3 justify-center mt-4">
               <Link href={`/cities/${params.city}`}
                 className="text-xs text-brand-600 hover:underline">← Back to {city.name}</Link>
-              <Link href="/agencies-with-housing"
+              <Link href="/best-agencies-with-housing-netherlands"
                 className="text-xs text-brand-600 hover:underline">All housing agencies →</Link>
             </div>
           </div>
@@ -330,7 +330,7 @@ export default function CityHousingPage({ params }: { params: { city: string } }
             <span className="text-gray-700 font-medium">All agencies in {city.name}</span>
             <span className="text-gray-400 ml-auto">→</span>
           </Link>
-          <Link href="/agencies-with-housing"
+          <Link href="/best-agencies-with-housing-netherlands"
             className="flex items-center gap-2 card px-3 py-2.5 hover:border-brand-200 hover:bg-brand-50/30 transition-all">
             <span>🏠</span>
             <span className="text-gray-700 font-medium">All housing agencies — Netherlands</span>

@@ -153,7 +153,7 @@ export default function PlJobsWithHousingPage() {
           <h2 className="text-lg font-black text-gray-900">
             Agencje oferujące zakwaterowanie ({AGENCIES_WITH_HOUSING.length})
           </h2>
-          <Link href="/agencies-with-housing" className="text-sm text-brand-600 font-semibold hover:underline">
+          <Link href="/best-agencies-with-housing-netherlands" className="text-sm text-brand-600 font-semibold hover:underline">
             Wszystkie →
           </Link>
         </div>
@@ -202,7 +202,7 @@ export default function PlJobsWithHousingPage() {
             Opinie pracowników, zdjęcia zakwaterowania i kalkulator zarobków netto — wszystko bezpłatnie.
           </p>
         </div>
-        <Link href="/agencies-with-housing"
+        <Link href="/best-agencies-with-housing-netherlands"
           className="shrink-0 bg-green-600 hover:bg-green-500 text-white font-black text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap">
           🏠 Agencje z zakwaterowaniem →
         </Link>

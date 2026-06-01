@@ -209,7 +209,7 @@ export default function JobsInNetherlandsPage() {
         <div className="flex flex-wrap gap-2">
           {[
             { href: "/work-in-netherlands-for-foreigners", label: "🌍 Working in NL guide" },
-            { href: "/agencies-with-housing", label: "🏠 Agencies with housing" },
+            { href: "/best-agencies-with-housing-netherlands", label: "🏠 Agencies with housing" },
             { href: "/best-agencies-with-housing-netherlands", label: "🏆 Best housing agencies" },
             { href: "/real-salary-netherlands-after-rent", label: "💰 Salary after rent" },
             { href: "/compare", label: "⚖️ Compare agencies" },

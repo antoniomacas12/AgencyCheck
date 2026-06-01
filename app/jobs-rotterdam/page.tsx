@@ -336,7 +336,7 @@ export default function JobsRotterdamPage() {
             {[
               { href: "/otto-workforce-review",        label: "OTTO Workforce review →",   sub: "Housing, salary & worker experiences" },
               { href: "/otto-vs-tempo-team",            label: "OTTO vs Tempo-Team →",      sub: "Most-compared Rotterdam agencies" },
-              { href: "/agencies-with-housing",         label: "Agencies with housing →",   sub: "Find agencies providing accommodation" },
+              { href: "/best-agencies-with-housing-netherlands",         label: "Agencies with housing →",   sub: "Find agencies providing accommodation" },
               { href: "/tools/real-income-calculator",  label: "Calculate take-home →",     sub: "Net salary after tax & housing" },
             ].map(({ href, label, sub }) => (
               <Link key={href} href={href} className="bg-white border border-blue-100 rounded-xl px-3 py-2.5 hover:border-blue-300 hover:bg-blue-50/50 transition-all block">

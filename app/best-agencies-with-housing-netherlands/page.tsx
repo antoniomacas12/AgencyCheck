@@ -264,7 +264,7 @@ export default function BestAgenciesHousingPage() {
       {/* ── Related links ──────────────────────────────────────────────────── */}
       <div className="flex flex-wrap gap-2 mb-4">
         {[
-          { href: "/agencies-with-housing",              label: "🏠 Filter agencies with housing" },
+          { href: "/best-agencies-with-housing-netherlands",              label: "🏠 Filter agencies with housing" },
           { href: "/otto-workforce-jobs",                label: "🏭 Otto Workforce jobs" },
           { href: "/work-in-netherlands-for-foreigners", label: "🌍 Working in NL guide" },
           { href: "/jobs-in-netherlands",                label: "💼 All NL jobs" },

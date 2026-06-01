@@ -334,7 +334,7 @@ export default function CityJobTypePage({
               Calculate your exact income →
             </Link>
             <Link
-              href="/agencies-with-housing"
+              href="/best-agencies-with-housing-netherlands"
               className="flex-1 text-center bg-white/10 text-white font-medium px-4 py-2.5 rounded-lg hover:bg-white/20 transition-colors text-sm"
             >
               Compare agencies with housing →

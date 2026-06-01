@@ -184,7 +184,7 @@ export default function ProductionJobsAccommodationPage() {
           </div>
           {agencies.length > 6 && (
             <p className="text-xs text-gray-400 text-center mt-3">
-              <Link href="/agencies-with-housing" className="text-brand-600 hover:underline">
+              <Link href="/best-agencies-with-housing-netherlands" className="text-brand-600 hover:underline">
                 All agencies with housing →
               </Link>
             </p>
@@ -241,7 +241,7 @@ export default function ProductionJobsAccommodationPage() {
           <Link href="/salary/production-worker-netherlands" className="text-gray-500 hover:text-brand-600 hover:underline">
             💶 Production salary overview →
           </Link>
-          <Link href="/agencies-with-housing" className="text-gray-500 hover:text-brand-600 hover:underline">
+          <Link href="/best-agencies-with-housing-netherlands" className="text-gray-500 hover:text-brand-600 hover:underline">
             🏘️ All housing agencies →
           </Link>
           <Link href="/jobs/assembly-worker" className="text-gray-500 hover:text-brand-600 hover:underline">

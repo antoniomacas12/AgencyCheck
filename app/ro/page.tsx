@@ -677,7 +677,7 @@ export default async function RoHomePage() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
               Vezi oferte verificate →
             </a>
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Toate {housingCount} agenții cu cazare
             </Link>
@@ -797,7 +797,7 @@ export default async function RoHomePage() {
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100 transition-colors">
               Navighează toate {housingCount} agenții cu cazare →
             </Link>
@@ -919,7 +919,7 @@ export default async function RoHomePage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-none">
               🏢 Toate {housingCount} agenții cu cazare
             </Link>
@@ -1029,7 +1029,7 @@ export default async function RoHomePage() {
                 { icon: "💶", href: "/tools/real-income-calculator",        title: "Calculator salariu complet",         desc: "Salariu net cu toate creditele fiscale 2026 incluse" },
                 { icon: "📄", href: "/tools/payslip-checker",               title: "Instrument verificare fluturiș",      desc: "Încarcă loonstrook-ul și verifică erorile" },
                 { icon: "🏢", href: "/agencies",                            title: "Toate agențiile din Olanda",          desc: `${totalAgencies} agenții clasate după notele lucrătorilor` },
-                { icon: "🏠", href: "/agencies-with-housing",               title: "Joburi cu cazare",                    desc: `${housingCount} agenții verificate cu cazare inclusă` },
+                { icon: "🏠", href: "/best-agencies-with-housing-netherlands",               title: "Joburi cu cazare",                    desc: `${housingCount} agenții verificate cu cazare inclusă` },
                 { icon: "⭐", href: "/reviews",                             title: "Recenzii lucrători",                  desc: `${totalReviews}+ recenzii anonime reale` },
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Drepturi și ghid legal",              desc: "ABU CAO, WML, SNF — explicate simplu" },
               ].map((item) => (
@@ -1116,7 +1116,7 @@ export default async function RoHomePage() {
               <span className="text-blue-800">·</span>
               <Link href="/reviews"                      className="hover:text-white transition-colors">Recenzii lucrători</Link>
               <span className="text-blue-800">·</span>
-              <Link href="/agencies-with-housing"        className="hover:text-white transition-colors">Joburi cu cazare</Link>
+              <Link href="/best-agencies-with-housing-netherlands"        className="hover:text-white transition-colors">Joburi cu cazare</Link>
               <span className="text-blue-800">·</span>
               <Link href="/tools/real-income-calculator" className="hover:text-white transition-colors">Calculator salariu</Link>
               <span className="text-blue-800">·</span>

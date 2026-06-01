@@ -393,7 +393,7 @@ export default function WorkInComboPage({ params }: { params: { combo: string } 
             { href: `/jobs/${job.jobSlugRef}`,         label: `${job.title} jobs Netherlands` },
             { href: `/cities/${city.slug}`,             label: `All agencies in ${city.name}` },
             { href: `/salary/${job.jobSlugRef}-netherlands`, label: `${job.title} salary Netherlands` },
-            { href: `/agencies-with-housing`,            label: "Agencies with housing" },
+            { href: `/best-agencies-with-housing-netherlands`,            label: "Agencies with housing" },
             audience.slug === "foreigners"
               ? { href: `/work-in-netherlands-for-foreigners`, label: "Complete guide for foreign workers" }
               : { href: `/guides/working-netherlands-salary-after-rent`, label: "Salary after rent guide" },

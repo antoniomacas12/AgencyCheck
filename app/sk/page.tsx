@@ -557,7 +557,7 @@ export default async function SkHomePage() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
               Pozrieť overené ponuky →
             </a>
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Všetky {housingCount} agentúry s ubytovaním
             </Link>
@@ -668,7 +668,7 @@ export default async function SkHomePage() {
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100 transition-colors">
               Prehľadajte všetky {housingCount} agentúr s ubytovaním →
             </Link>
@@ -752,7 +752,7 @@ export default async function SkHomePage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-none">
               🏢 Všetky {housingCount} agentúry s ubytovaním
             </Link>
@@ -858,7 +858,7 @@ export default async function SkHomePage() {
                 { icon: "💶", href: "/tools/real-income-calculator",        title: "Plný kalkulátor mzdy",            desc: "Čistá mzda so všetkými daňovými úľavami 2026" },
                 { icon: "📄", href: "/tools/payslip-checker",               title: "Nástroj na overenie výplatnice",  desc: "Nahrajte loonstrook a skontrolujte chyby" },
                 { icon: "🏢", href: "/agencies",                            title: "Všetky agentúry v Holandsku",     desc: `${totalAgencies} agentúr zoradených podľa hodnotení pracovníkov` },
-                { icon: "🏠", href: "/agencies-with-housing",               title: "Práca s ubytovaním",              desc: `${housingCount} overených agentúr s ubytovaním` },
+                { icon: "🏠", href: "/best-agencies-with-housing-netherlands",               title: "Práca s ubytovaním",              desc: `${housingCount} overených agentúr s ubytovaním` },
                 { icon: "⭐", href: "/reviews",                             title: "Hodnotenia pracovníkov",          desc: `${totalReviews}+ skutočných anonymných hodnotení` },
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Práva a právny sprievodca",       desc: "ABU CAO, WML, SNF — vysvetlené jednoducho" },
               ].map((item) => (
@@ -945,7 +945,7 @@ export default async function SkHomePage() {
               <span className="text-blue-800">·</span>
               <Link href="/reviews" className="hover:text-white transition-colors">Hodnotenia pracovníkov</Link>
               <span className="text-blue-800">·</span>
-              <Link href="/agencies-with-housing" className="hover:text-white transition-colors">Práca s ubytovaním</Link>
+              <Link href="/best-agencies-with-housing-netherlands" className="hover:text-white transition-colors">Práca s ubytovaním</Link>
               <span className="text-blue-800">·</span>
               <Link href="/tools/real-income-calculator" className="hover:text-white transition-colors">Kalkulátor mzdy</Link>
               <span className="text-blue-800">·</span>

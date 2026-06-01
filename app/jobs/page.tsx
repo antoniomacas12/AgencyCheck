@@ -110,7 +110,7 @@ export default function JobsIndexPage() {
         <div className="flex flex-wrap gap-3 pt-2 text-xs">
           <Link href="/guides/real-salary-netherlands" className="text-brand-600 hover:underline">→ Real salary guide (all job types)</Link>
           <Link href="/guides/hidden-costs-netherlands" className="text-brand-600 hover:underline">→ Hidden costs explained</Link>
-          <Link href="/agencies-with-housing" className="text-brand-600 hover:underline">→ Agencies with housing</Link>
+          <Link href="/best-agencies-with-housing-netherlands" className="text-brand-600 hover:underline">→ Agencies with housing</Link>
           <Link href="/tools/real-income-calculator" className="text-brand-600 hover:underline">→ Calculate your take-home</Link>
         </div>
       </div>

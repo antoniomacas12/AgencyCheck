@@ -237,7 +237,7 @@ export default function RandstadJobsPage() {
           Where Randstad does provide housing, standards are generally acceptable — comparable to industry average. Deductions run <strong className="text-gray-800">€88–€113/week</strong>. Workers report fewer extreme overcrowding issues than at some smaller agencies.
         </p>
         <div className="rounded-xl bg-blue-50 border border-blue-100 px-4 py-3 text-xs text-blue-800">
-          💡 If your Randstad placement doesn&apos;t include housing, check our <Link href="/agencies-with-housing" className="underline font-medium">agencies with housing list</Link> for alternatives in the same city.
+          💡 If your Randstad placement doesn&apos;t include housing, check our <Link href="/best-agencies-with-housing-netherlands" className="underline font-medium">agencies with housing list</Link> for alternatives in the same city.
         </div>
       </section>
 

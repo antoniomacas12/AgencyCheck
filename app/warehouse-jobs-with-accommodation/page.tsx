@@ -207,7 +207,7 @@ export default function WarehouseJobsAccommodationPage() {
           </div>
           {agencies.length > 6 && (
             <p className="text-xs text-gray-400 text-center mt-3">
-              <Link href="/agencies-with-housing" className="text-brand-600 hover:underline">
+              <Link href="/best-agencies-with-housing-netherlands" className="text-brand-600 hover:underline">
                 All agencies with housing →
               </Link>
             </p>
@@ -346,7 +346,7 @@ export default function WarehouseJobsAccommodationPage() {
           {[
             { href: "/order-picker-jobs", icon: "📦", label: "Order picker jobs", sub: "Most common warehouse role with housing" },
             { href: "/reach-truck-jobs", icon: "🏗️", label: "Reach truck jobs", sub: "Higher pay; licence required" },
-            { href: "/agencies-with-housing", icon: "🏘️", label: "All agencies with housing", sub: "Full comparison of housing agencies" },
+            { href: "/best-agencies-with-housing-netherlands", icon: "🏘️", label: "All agencies with housing", sub: "Full comparison of housing agencies" },
             { href: "/salary/warehouse-worker-netherlands", icon: "💶", label: "Warehouse salary breakdown", sub: "Gross-to-net + housing deduction" },
             { href: "/otto-workforce-jobs", icon: "🏢", label: "OTTO Workforce jobs", sub: "Large agency with housing packages" },
             { href: "/cities/tilburg", icon: "📍", label: "Jobs in Tilburg", sub: "Top city for warehouse + housing" },

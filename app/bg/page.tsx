@@ -588,7 +588,7 @@ export default async function BgHomePage() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
               Виж проверени оферти →
             </a>
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Всички {housingCount} агенции с жилище
             </Link>
@@ -699,7 +699,7 @@ export default async function BgHomePage() {
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100 transition-colors">
               Разгледайте всички {housingCount} агенции с жилище →
             </Link>
@@ -783,7 +783,7 @@ export default async function BgHomePage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-none">
               🏢 Всички {housingCount} агенции с жилище
             </Link>
@@ -889,7 +889,7 @@ export default async function BgHomePage() {
                 { icon: "💶", href: "/tools/real-income-calculator",        title: "Пълен калкулатор на заплата",       desc: "Нетна заплата с всички данъчни облекчения за 2026" },
                 { icon: "📄", href: "/tools/payslip-checker",               title: "Инструмент за проверка на фиш",     desc: "Качете loonstrook и проверете грешките" },
                 { icon: "🏢", href: "/agencies",                            title: "Всички агенции в Нидерландия",      desc: `${totalAgencies} агенции класирани по оценки на работници` },
-                { icon: "🏠", href: "/agencies-with-housing",               title: "Работа с жилище",                   desc: `${housingCount} проверени агенции с включено жилище` },
+                { icon: "🏠", href: "/best-agencies-with-housing-netherlands",               title: "Работа с жилище",                   desc: `${housingCount} проверени агенции с включено жилище` },
                 { icon: "⭐", href: "/reviews",                             title: "Отзиви от работници",               desc: `${totalReviews}+ реални анонимни отзива` },
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Права и правно ръководство",        desc: "ABU CAO, WML, SNF — обяснени просто" },
               ].map((item) => (
@@ -976,7 +976,7 @@ export default async function BgHomePage() {
               <span className="text-blue-800">·</span>
               <Link href="/reviews" className="hover:text-white transition-colors">Отзиви от работници</Link>
               <span className="text-blue-800">·</span>
-              <Link href="/agencies-with-housing" className="hover:text-white transition-colors">Работа с жилище</Link>
+              <Link href="/best-agencies-with-housing-netherlands" className="hover:text-white transition-colors">Работа с жилище</Link>
               <span className="text-blue-800">·</span>
               <Link href="/tools/real-income-calculator" className="hover:text-white transition-colors">Калкулатор на заплата</Link>
               <span className="text-blue-800">·</span>

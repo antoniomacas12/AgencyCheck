@@ -359,7 +359,7 @@ export default function RealIncomeCalculatorPage() {
         <Link href="/tools/salary-calculator" className="text-xs text-brand-600 font-medium hover:underline">
           {t("calculator_page.link_salary")}
         </Link>
-        <Link href="/agencies-with-housing" className="text-xs text-brand-600 font-medium hover:underline">
+        <Link href="/best-agencies-with-housing-netherlands" className="text-xs text-brand-600 font-medium hover:underline">
           {t("calculator_page.link_housing")}
         </Link>
         <Link href="/tools" className="text-xs text-gray-400 font-medium hover:underline">

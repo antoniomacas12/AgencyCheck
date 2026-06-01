@@ -222,7 +222,7 @@ export default function WorkNetherlandsForeignersPage() {
             <li>Accommodation must meet SNF or AKF quality standards</li>
           </ul>
         </div>
-        <Link href="/agencies-with-housing" className="text-xs text-brand-600 hover:underline font-medium">
+        <Link href="/best-agencies-with-housing-netherlands" className="text-xs text-brand-600 hover:underline font-medium">
           → See all {housingCount} agencies that offer housing in the Netherlands
         </Link>
       </section>
@@ -311,7 +311,7 @@ export default function WorkNetherlandsForeignersPage() {
       <div className="flex flex-wrap gap-2 mb-6">
         {[
           { href: "/jobs-in-netherlands",                   label: "💼 Browse all jobs" },
-          { href: "/agencies-with-housing",                 label: "🏠 Housing agencies" },
+          { href: "/best-agencies-with-housing-netherlands",                 label: "🏠 Housing agencies" },
           { href: "/real-salary-netherlands-after-rent",    label: "💰 Salary calculator" },
           { href: "/compare",                               label: "⚖️ Compare agencies" },
         ].map((link) => (

@@ -352,7 +352,7 @@ export default async function JobsWithAccommodationPage() {
       <section className="mb-10">
         <div className="flex items-center justify-between gap-2 mb-3">
           <h2 className="text-base font-bold text-gray-900">Agencies offering housing</h2>
-          <Link href="/agencies-with-housing" className="text-xs text-brand-600 hover:underline font-medium shrink-0">
+          <Link href="/best-agencies-with-housing-netherlands" className="text-xs text-brand-600 hover:underline font-medium shrink-0">
             See all →
           </Link>
         </div>

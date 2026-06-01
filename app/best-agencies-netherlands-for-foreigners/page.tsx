@@ -106,7 +106,7 @@ export default function BestAgenciesForeignersPage() {
             ))}
           </div>
           {housingAgencies.length > 8 && (
-            <Link href="/agencies-with-housing" className="inline-block mt-3 text-sm text-brand-700 font-medium hover:text-brand-800">
+            <Link href="/best-agencies-with-housing-netherlands" className="inline-block mt-3 text-sm text-brand-700 font-medium hover:text-brand-800">
               → View all {housingAgencies.length} agencies with housing →
             </Link>
           )}

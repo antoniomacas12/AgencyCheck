@@ -182,7 +182,7 @@ export default function SalaryGuidesPage() {
           {[
             ["/agencies", "Browse all 151 verified agencies"],
             ["/best-work-agencies-netherlands", "Best agencies ranked by transparency"],
-            ["/agencies-with-housing", "Agencies with housing (deduction included)"],
+            ["/best-agencies-with-housing-netherlands", "Agencies with housing (deduction included)"],
             ["/housing-guides", "Housing guides and cost explainers"],
           ].map(([href, label]) => (
             <Link key={href} href={href} className="text-sm text-brand-700 hover:text-brand-800 hover:underline">

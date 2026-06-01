@@ -202,7 +202,7 @@ export default function ToolsPage() {
           </p>
           <div className="grid sm:grid-cols-2 gap-2">
             {[
-              { href: "/agencies-with-housing",              icon: "🏠", label: "Find agencies with housing" },
+              { href: "/best-agencies-with-housing-netherlands",              icon: "🏠", label: "Find agencies with housing" },
               { href: "/salary/warehouse-worker-netherlands", icon: "📈", label: "Salary data by job type" },
               { href: "/agencies",                           icon: "🔍", label: "Browse 150+ verified agencies" },
               { href: "/tools/payslip-checker#resources",    icon: "🛡️", label: "Worker rights resources" },

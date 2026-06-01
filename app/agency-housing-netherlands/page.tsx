@@ -214,7 +214,7 @@ export default function AgencyHousingNetherlandsPage() {
             ))}
           </div>
           {housingAgencies.length > 10 && (
-            <Link href="/agencies-with-housing" className="inline-block mt-3 text-sm text-brand-700 font-medium hover:text-brand-800">
+            <Link href="/best-agencies-with-housing-netherlands" className="inline-block mt-3 text-sm text-brand-700 font-medium hover:text-brand-800">
               → View all {housingAgencies.length} agencies with housing →
             </Link>
           )}
@@ -231,7 +231,7 @@ export default function AgencyHousingNetherlandsPage() {
             ["/temporary-work-netherlands-accommodation", "Temporary work with housing"],
             ["/tools/accommodation-costs", "Calculate housing cost impact on net pay"],
             ["/tools/payslip-checker", "Verify housing deductions on your payslip"],
-            ["/agencies-with-housing", "Full list: agencies with housing"],
+            ["/best-agencies-with-housing-netherlands", "Full list: agencies with housing"],
           ].map(([href, label]) => (
             <Link key={href} href={href} className="text-sm text-brand-700 hover:text-brand-800 hover:underline">
               → {label}

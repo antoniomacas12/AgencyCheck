@@ -154,7 +154,7 @@ export default function PtJobsWithHousingPage() {
           <h2 className="text-lg font-black text-gray-900">
             Agências que fornecem alojamento ({AGENCIES_WITH_HOUSING.length})
           </h2>
-          <Link href="/agencies-with-housing" className="text-sm text-brand-600 font-semibold hover:underline">
+          <Link href="/best-agencies-with-housing-netherlands" className="text-sm text-brand-600 font-semibold hover:underline">
             Ver todas →
           </Link>
         </div>
@@ -203,7 +203,7 @@ export default function PtJobsWithHousingPage() {
             Avaliações de trabalhadores, fotos de alojamento e calculadora de salário líquido — tudo gratuito.
           </p>
         </div>
-        <Link href="/agencies-with-housing"
+        <Link href="/best-agencies-with-housing-netherlands"
           className="shrink-0 bg-green-600 hover:bg-green-500 text-white font-black text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap">
           🏠 Agências com alojamento →
         </Link>

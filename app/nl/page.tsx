@@ -356,7 +356,7 @@ export default async function NlHomepage() {
             {[
               { href: "/nl/vacatures",                  icon: "🔥", label: "Actuele vacatures"         },
               { href: "/tools/real-income-calculator",  icon: "🧮", label: "Inkomenscalculator"        },
-              { href: "/agencies-with-housing",         icon: "🏠", label: "Werk met huisvesting"      },
+              { href: "/best-agencies-with-housing-netherlands",         icon: "🏠", label: "Werk met huisvesting"      },
               { href: "/agencies",                      icon: "🏢", label: "Alle bureaus"               },
               { href: "/reviews",                       icon: "⭐", label: "Werknemersreviews"          },
               { href: "/tools",                         icon: "🔧", label: "Alle werknemerstools"       },

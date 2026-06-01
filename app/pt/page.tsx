@@ -678,7 +678,7 @@ export default async function PtHomePage() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
               Ver ofertas verificadas →
             </a>
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Navega {housingCount} agências com alojamento
             </Link>
@@ -798,7 +798,7 @@ export default async function PtHomePage() {
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100 transition-colors">
               Navega todas as {housingCount} agências com alojamento →
             </Link>
@@ -920,7 +920,7 @@ export default async function PtHomePage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-sm">
               🏢 Todas as {housingCount} agências com alojamento
             </Link>
@@ -1030,7 +1030,7 @@ export default async function PtHomePage() {
                 { icon: "💶", href: "/tools/real-income-calculator",        title: "Calculadora salarial completa",            desc: "Salário líquido com todas as deduções fiscais 2026" },
                 { icon: "📄", href: "/tools/payslip-checker",               title: "Ferramenta de verificação de recibos",     desc: "Envia loonstrook e verifica erros" },
                 { icon: "🏢", href: "/agencies",                            title: "Todas as agências na Holanda",              desc: `${totalAgencies} agências classificadas por avaliações de trabalhadores` },
-                { icon: "🏠", href: "/agencies-with-housing",               title: "Trabalho com alojamento",                  desc: `${housingCount} agências verificadas com alojamento` },
+                { icon: "🏠", href: "/best-agencies-with-housing-netherlands",               title: "Trabalho com alojamento",                  desc: `${housingCount} agências verificadas com alojamento` },
                 { icon: "⭐", href: "/reviews",                             title: "Avaliações de trabalhadores",              desc: `${totalReviews}+ avaliações anónimas reais` },
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Direitos e guia jurídico",                 desc: "ABU CAO, WML, SNF — explicados claramente" },
               ].map((item) => (
@@ -1117,7 +1117,7 @@ export default async function PtHomePage() {
               <span className="text-blue-800">·</span>
               <Link href="/reviews"                      className="hover:text-white transition-colors">Avaliações de trabalhadores</Link>
               <span className="text-blue-800">·</span>
-              <Link href="/agencies-with-housing"        className="hover:text-white transition-colors">Trabalho com alojamento</Link>
+              <Link href="/best-agencies-with-housing-netherlands"        className="hover:text-white transition-colors">Trabalho com alojamento</Link>
               <span className="text-blue-800">·</span>
               <Link href="/tools/real-income-calculator" className="hover:text-white transition-colors">Calculadora salarial</Link>
               <span className="text-blue-800">·</span>

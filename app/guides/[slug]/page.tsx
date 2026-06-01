@@ -220,7 +220,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
               <Link href="/tools/payslip-checker" className="block text-sm text-brand-600 hover:underline">
                 Payslip checker →
               </Link>
-              <Link href="/agencies-with-housing" className="block text-sm text-brand-600 hover:underline">
+              <Link href="/best-agencies-with-housing-netherlands" className="block text-sm text-brand-600 hover:underline">
                 Agencies with housing →
               </Link>
               <Link href="/reviews" className="block text-sm text-brand-600 hover:underline">
@@ -265,7 +265,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
             Browse all agencies →
           </Link>
           <Link
-            href="/agencies-with-housing"
+            href="/best-agencies-with-housing-netherlands"
             className="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-bold text-sm px-5 py-3 rounded-xl hover:bg-white/10 transition-colors"
           >
             Agencies with housing →

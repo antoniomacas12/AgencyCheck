@@ -347,7 +347,7 @@ export default function OttoWorkforceJobsPage() {
           {[
             { href: "/otto-workforce-review",        label: "OTTO Workforce full review →" },
             { href: "/otto-vs-tempo-team",           label: "OTTO vs Tempo-Team comparison →" },
-            { href: "/agencies-with-housing",        label: "All agencies with housing NL →" },
+            { href: "/best-agencies-with-housing-netherlands",        label: "All agencies with housing NL →" },
             { href: "/warehouse-jobs-with-accommodation", label: "Warehouse jobs with housing →" },
             { href: "/check-agency",                 label: "How to verify an agency is legit →" },
             { href: "/tools/payslip-checker",        label: "Check your OTTO payslip →" },

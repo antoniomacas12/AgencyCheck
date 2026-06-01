@@ -135,7 +135,7 @@ export default function GuidesPage() {
         <div className="grid sm:grid-cols-2 gap-2 text-sm">
           {[
             { href: "/agencies",                           label: "All agencies ranked by workers" },
-            { href: "/agencies-with-housing",              label: "Agencies with housing included" },
+            { href: "/best-agencies-with-housing-netherlands",              label: "Agencies with housing included" },
             { href: "/reviews",                            label: "All worker reviews" },
             { href: "/tools/real-income-calculator",       label: "Real income calculator" },
             { href: "/tools/payslip-checker",              label: "Payslip checker" },

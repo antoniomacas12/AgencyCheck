@@ -155,7 +155,7 @@ export default function SalaryPage({ params }: { params: { slug: string } }) {
               Agency housing can be worth €350–700/month — significantly boosting your effective income.
             </p>
             <Link
-              href="/agencies-with-housing"
+              href="/best-agencies-with-housing-netherlands"
               className="inline-block mt-2 text-xs font-semibold text-green-700 underline hover:text-green-900"
             >
               View agencies with housing →

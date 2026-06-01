@@ -504,7 +504,7 @@ export default function RealSalaryCalculatorPage() {
         <Link href="/tools/payslip-checker" className="text-xs text-brand-600 font-medium hover:underline">
           → Check your payslip
         </Link>
-        <Link href="/agencies-with-housing" className="text-xs text-brand-600 font-medium hover:underline">
+        <Link href="/best-agencies-with-housing-netherlands" className="text-xs text-brand-600 font-medium hover:underline">
           → Find agencies with housing
         </Link>
         <Link href="/tools" className="text-xs text-gray-400 font-medium hover:underline">

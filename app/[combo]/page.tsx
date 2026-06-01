@@ -499,7 +499,7 @@ function CityJobTypeHousingPage({ jobType, city }: { jobType: SeoJobType; city: 
             <li>→ Shared accommodation (typically 2–4 people per room)</li>
             <li>→ Contract tied to employment — if you leave the job, you must vacate housing within 7–14 days</li>
             <li>→{" "}
-              <Link href="/agencies-with-housing" className="underline hover:text-blue-600">
+              <Link href="/best-agencies-with-housing-netherlands" className="underline hover:text-blue-600">
                 Compare all agencies with housing →
               </Link>
             </li>
@@ -523,7 +523,7 @@ function CityJobTypeHousingPage({ jobType, city }: { jobType: SeoJobType; city: 
           links={[
             { href: `/${jobType.prefix}-jobs-${city.slug}`,          label: `All ${jobType.label} jobs in ${city.name}`,  icon: "💼", highlight: true },
             { href: `/${jobType.prefix}-jobs-netherlands`,            label: `${jobType.label} jobs nationwide`,           icon: "🇳🇱" },
-            { href: "/agencies-with-housing",                         label: "All agencies with housing",                  icon: "🏠" },
+            { href: "/best-agencies-with-housing-netherlands",                         label: "All agencies with housing",                  icon: "🏠" },
             { href: "/jobs-with-accommodation-netherlands",           label: "Jobs with accommodation Netherlands",        icon: "🏘️" },
           ]}
         />
@@ -596,7 +596,7 @@ function NationalHousingPage() {
 
       <div className="mt-6">
         <Link
-          href="/agencies-with-housing"
+          href="/best-agencies-with-housing-netherlands"
           className="inline-flex items-center gap-2 bg-brand-600 text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-brand-700 transition-colors"
         >
           Compare all agencies with housing →

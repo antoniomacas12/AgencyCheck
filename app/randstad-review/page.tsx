@@ -242,7 +242,7 @@ export default function RandstadReviewPage() {
           </p>
           <p className="text-sm text-gray-500 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3">
             💡 If Randstad doesn&apos;t provide housing for your placement, check our{" "}
-            <Link href="/agencies-with-housing" className="text-brand-600 hover:underline">agencies with housing list</Link>{" "}
+            <Link href="/best-agencies-with-housing-netherlands" className="text-brand-600 hover:underline">agencies with housing list</Link>{" "}
             for alternatives in your area.
           </p>
         </section>

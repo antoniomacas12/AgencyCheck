@@ -1153,7 +1153,7 @@ export default async function HomePage() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-8 py-4 text-base font-black text-white shadow-lg shadow-emerald-900/40 active:scale-[0.98]">
               See verified offers →
             </a>
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Browse all {housingCount} housing agencies
             </Link>
@@ -1273,7 +1273,7 @@ export default async function HomePage() {
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/[0.3] bg-blue-500/[0.1] px-5 py-2 text-sm font-bold text-blue-300 hover:bg-blue-500/[0.2] transition-colors">
               Browse all {housingCount} agencies with housing →
             </Link>
@@ -1397,7 +1397,7 @@ export default async function HomePage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
-            <Link href="/agencies-with-housing"
+            <Link href="/best-agencies-with-housing-netherlands"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-sm">
               🏢 All {housingCount} housing agencies
             </Link>
@@ -1508,7 +1508,7 @@ export default async function HomePage() {
                 { icon: "📄", href: "/tools/payslip-checker",               title: "Payslip verification tool",     desc: "Upload your loonstrook and check for errors" },
                 { icon: "✅", href: "/check-agency",                         title: "How to check an agency",        desc: "KvK, SNF, CAO — 4-step verification guide" },
                 { icon: "🏢", href: "/agencies",                            title: "All agencies Netherlands",      desc: `${totalAgencies} agencies ranked by worker ratings` },
-                { icon: "🏠", href: "/agencies-with-housing",               title: "Jobs with accommodation",       desc: `${housingCount} verified agencies including housing` },
+                { icon: "🏠", href: "/best-agencies-with-housing-netherlands",               title: "Jobs with accommodation",       desc: `${housingCount} verified agencies including housing` },
                 { icon: "⭐", href: "/reviews",                             title: "Worker reviews",                desc: `${totalReviews}+ real anonymous reviews` },
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Rights & legal guide",          desc: "ABU CAO, WML, SNF — explained simply" },
               ].map((item) => (
@@ -1601,7 +1601,7 @@ export default async function HomePage() {
               <span className="text-blue-800">·</span>
               <Link href="/reviews"                      className="hover:text-white transition-colors">Worker reviews</Link>
               <span className="text-blue-800">·</span>
-              <Link href="/agencies-with-housing"        className="hover:text-white transition-colors">Jobs with housing</Link>
+              <Link href="/best-agencies-with-housing-netherlands"        className="hover:text-white transition-colors">Jobs with housing</Link>
               <span className="text-blue-800">·</span>
               <Link href="/tools/real-income-calculator" className="hover:text-white transition-colors">Salary calculator</Link>
               <span className="text-blue-800">·</span>

@@ -153,7 +153,7 @@ export default function RoJobsWithHousingPage() {
           <h2 className="text-lg font-black text-gray-900">
             Agenții care oferă cazare ({AGENCIES_WITH_HOUSING.length})
           </h2>
-          <Link href="/agencies-with-housing" className="text-sm text-brand-600 font-semibold hover:underline">
+          <Link href="/best-agencies-with-housing-netherlands" className="text-sm text-brand-600 font-semibold hover:underline">
             Toate →
           </Link>
         </div>
@@ -202,7 +202,7 @@ export default function RoJobsWithHousingPage() {
             Recenzii de la muncitori, poze cazare și calculator salariu net — toate gratuit.
           </p>
         </div>
-        <Link href="/agencies-with-housing"
+        <Link href="/best-agencies-with-housing-netherlands"
           className="shrink-0 bg-green-600 hover:bg-green-500 text-white font-black text-sm px-5 py-3 rounded-xl transition-colors whitespace-nowrap">
           🏠 Agenții cu cazare →
         </Link>

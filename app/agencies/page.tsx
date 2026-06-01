@@ -90,7 +90,7 @@ export default async function AgenciesPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
         {[
           { label: t("agencies_page.stat_total_agencies"),  value: sorted.length, icon: "🏢", href: null             },
-          { label: t("agencies_page.stat_with_housing"),    value: withHousing,   icon: "🏠", href: "/agencies-with-housing" },
+          { label: t("agencies_page.stat_with_housing"),    value: withHousing,   icon: "🏠", href: "/best-agencies-with-housing-netherlands" },
           { label: t("agencies_page.stat_worker_reviews"),  value: totalReviews,  icon: "⭐", href: null             },
           { label: t("agencies_page.stat_active_jobs"),     value: totalJobs,     icon: "💼", href: null             },
         ].map((stat) => (
@@ -149,7 +149,7 @@ export default async function AgenciesPage() {
       {/* Quick-filter links */}
       <div className="flex gap-2 flex-wrap mb-6">
         <Link
-          href="/agencies-with-housing"
+          href="/best-agencies-with-housing-netherlands"
           className="inline-flex items-center gap-1.5 text-xs font-medium bg-green-50 text-green-700 border border-green-200 rounded-full px-3 py-1.5 hover:bg-green-100 transition-colors"
         >
           {t("agencies_page.filter_with_housing")}

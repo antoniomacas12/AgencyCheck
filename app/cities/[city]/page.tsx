@@ -623,7 +623,7 @@ export default async function CityPage({ params }: { params: { city: string } })
             <span className="text-gray-400 ml-auto">→</span>
           </Link>
           {/* Agency with housing global page */}
-          <Link href="/agencies-with-housing"
+          <Link href="/best-agencies-with-housing-netherlands"
             className="flex items-center gap-2 card px-3 py-2.5 hover:border-brand-200 hover:bg-brand-50/30 transition-all">
             <span>🏠</span>
             <span className="text-gray-700 font-medium">All agencies with housing — Netherlands</span>
