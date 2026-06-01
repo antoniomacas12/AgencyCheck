@@ -655,6 +655,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Exclude any DB-only slug that already exists in VERIFIED_AGENCIES.
   const verifiedSlugsSet = new Set(VERIFIED_AGENCIES.map((a) => a.slug));
 
+  // Agencies that pass the indexability gate (transparencyScore above threshold).
+  // Declared here (before agencySubPages and locale pages) because it's used in both.
+  const indexableVerifiedAgencies = VERIFIED_AGENCIES.filter(
+    (agency) => !getAgencyPageIndexStatus(agency).noindex,
+  );
+
   const agencyPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.map((agency) => ({
     url:             `${BASE_URL}/agencies/${agency.slug}`,
     lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
@@ -678,9 +684,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
   // ── 3. Agency sub-pages: /reviews and /jobs per agency ────────────────────
-  // /reviews pages get the dynamic date (they change on every new review)
-  // /jobs pages keep the static agency date (jobs data does not change often)
-  const agencySubPages: MetadataRoute.Sitemap = VERIFIED_AGENCIES.flatMap((agency) => [
+  // Only include sub-pages for agencies that pass the indexability gate.
+  // Thin agencies (noindex on main page) have no reviews content, so their
+  // /reviews and /jobs sub-pages are equally thin — including them in the
+  // sitemap wastes crawl budget and triggers "Discovered - not indexed" in GSC.
+  const agencySubPages: MetadataRoute.Sitemap = indexableVerifiedAgencies.flatMap((agency) => [
     {
       url:             `${BASE_URL}/agencies/${agency.slug}/reviews`,
       lastModified:    resolveLastmod(agency.slug, agencyLastMod, AGENCY_DATE),
@@ -739,11 +747,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── 7. Salary pages — national only (12), not 1,728 city variants ────────
   // We include national salary pages only. City × job salary pages are
   // high-volume thin pages — including all 1,728 would dilute crawl budget.
-  // Top-50-city salary pages are included for major employment hubs.
+  // Reduced from top-50 to top-20 cities: 600 → 240 salary pages.
+  // Google was indexing <15% of the 600 — the other 510 wasted crawl budget.
   const TOP_CITY_SLUGS = CITIES
     .filter((c) => c.population >= 50000)
     .sort((a, b) => b.population - a.population)
-    .slice(0, 50)
+    .slice(0, 20)
     .map((c) => c.slug);
 
   const nationalSalaryPages: MetadataRoute.Sitemap = JOB_SLUGS.map((jobSlug) => ({
@@ -875,9 +884,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // thin near-duplicates of the EN page and cause "Alternative page" GSC errors.
   // Also exclude agencies that would be noindex on locale pages (transparencyScore < threshold)
   // to prevent "submitted URL has noindex tag" GSC coverage errors.
-  const indexableVerifiedAgencies = VERIFIED_AGENCIES.filter(
-    (agency) => !getAgencyPageIndexStatus(agency).noindex,
-  );
+  // indexableVerifiedAgencies is declared above (section 2) and reused here.
 
   const plAgencyPages: MetadataRoute.Sitemap = indexableVerifiedAgencies.map((agency) => ({
     url:             `${BASE_URL}${AGENCY_BASE.pl}/${agency.slug}`,
