@@ -69,6 +69,21 @@ const breadcrumbSchema = {
   ],
 };
 
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "EmployerAggregateRating",
+  itemReviewed: {
+    "@type": "Organization",
+    name:   "OTTO Workforce",
+    sameAs: "https://www.otto-workforce.com",
+  },
+  ratingValue:  "3.4",
+  bestRating:   "5",
+  worstRating:  "1",
+  ratingCount:  "47",
+  description:  "OTTO Workforce reviewed by international agency workers in the Netherlands. Covers salary accuracy, housing conditions, transport, and management.",
+};
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -174,6 +189,7 @@ export default function OttoWorkforceReviewPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
 

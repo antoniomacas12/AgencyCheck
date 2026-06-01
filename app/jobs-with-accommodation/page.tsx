@@ -107,6 +107,65 @@ function SalaryGrid() {
 
 export const dynamic = "force-dynamic";
 
+// ─── JSON-LD schemas ──────────────────────────────────────────────────────────
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What jobs in the Netherlands include housing?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Jobs in warehousing, food production, logistics, greenhouses, and manufacturing are most commonly offered with included housing in the Netherlands. Employment agencies such as Covebo, OTTO Workforce, and Adecco provide accommodation for international workers in regions like Venlo, Tilburg, Breda, and Waalwijk.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much do you keep per week after housing deduction in the Netherlands?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "At Dutch minimum wage (€14.71/hr for 40 hours = €588 gross/week), after income tax (~€130/week), agency housing (~€95–€113/week), and transport (~€15/week), most international workers keep approximately €290–€360 per week net. Positions above minimum wage (forklift operators, reach truck drivers, night shift) can net €360–€430+/week.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Which employment agencies offer accommodation in the Netherlands?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Agencies known for providing housing include Covebo, OTTO Workforce, Manpower, Adecco, Tempo-Team, Unique, and several smaller regional agencies. Housing quality and deduction amounts vary significantly — always confirm the weekly cost, room occupancy, and location before accepting a placement.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much does agency housing cost in the Netherlands?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Agency housing in the Netherlands is typically deducted directly from your salary at €80–€113/week. The legal maximum under SNF (Stichting Normering Flexwonen) standards is €113.50/week for shared rooms. Some agencies include housing at no charge for the first few weeks as an incentive. Always request a written breakdown of all deductions before signing.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I start working in the Netherlands without a BSN number?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, you can start working before you have a BSN (citizen service number), but your employer will withhold tax at the anonymous rate (up to 52%) until you register. You should apply for a BSN at your local municipality (gemeente) within your first week of arrival. EU citizens can register using their passport or national ID card.",
+      },
+    },
+  ],
+};
+
+const breadcrumbSchemaData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home",                 item: "https://agencycheck.io/" },
+    { "@type": "ListItem", position: 2, name: "Jobs",                 item: "https://agencycheck.io/jobs" },
+    { "@type": "ListItem", position: 3, name: "Jobs with housing",    item: "https://agencycheck.io/jobs-with-accommodation" },
+  ],
+};
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function JobsWithAccommodationPage() {
@@ -122,6 +181,10 @@ export default async function JobsWithAccommodationPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
+
+      {/* JSON-LD */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchemaData) }} />
 
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">

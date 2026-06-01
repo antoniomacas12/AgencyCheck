@@ -57,6 +57,21 @@ const breadcrumbSchema = {
   ],
 };
 
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "EmployerAggregateRating",
+  itemReviewed: {
+    "@type": "Organization",
+    name:   "Covebo",
+    sameAs: "https://www.covebo.nl",
+  },
+  ratingValue:  "3.6",
+  bestRating:   "5",
+  worstRating:  "1",
+  ratingCount:  "31",
+  description:  "Covebo reviewed by international agency workers in the Netherlands. Covers salary accuracy, housing conditions, transport, and management.",
+};
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -142,6 +157,7 @@ export default function CoveboReviewPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
 
       <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
 
