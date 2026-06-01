@@ -513,6 +513,15 @@ export default function ApplyPreScreen({
       });
   }
 
+  // Auto-redirect to WhatsApp as soon as completed screen is shown.
+  // window.location.href is a page navigation — Android intercepts wa.me
+  // links and opens WhatsApp directly. Never blocked by popup blockers.
+  // The button on the completed screen acts as fallback (e.g. desktop, no WA app).
+  useEffect(() => {
+    if (screen !== "completed" || !waDestUrl) return;
+    window.location.href = waDestUrl;
+  }, [screen, waDestUrl]);
+
   // Progress (1 = gate, 2 = details_a, 3 = details_b)
   const step = screen === "gate" ? 1 : screen === "details_a" ? 2 : 3;
 
