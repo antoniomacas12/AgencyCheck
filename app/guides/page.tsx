@@ -6,7 +6,7 @@ import { breadcrumbSchema } from "@/lib/schemaMarkup";
 export const metadata: Metadata = {
   title: "Worker Guides — Netherlands Agency Jobs, Salary & Rights — AgencyCheck",
   description:
-    "14 practical guides for agency workers in the Netherlands. Real salary numbers, hidden costs, housing rights, payslip breakdowns, ABU/NBBU contracts, forklift jobs, and how to prepare before you arrive. All backed by real worker data.",
+    "19 practical guides for agency workers in the Netherlands. Real salary numbers, hidden costs, housing rights, payslip breakdowns, ABU/NBBU contracts, forklift jobs, warehouse, factory, greenhouse and logistics guides. All backed by real worker data.",
   alternates: { canonical: "https://agencycheck.io/guides" },
   openGraph: {
     title: "Worker Guides — Agency Jobs Netherlands — AgencyCheck",
@@ -34,8 +34,13 @@ const TOPIC_LINKS = [
   { href: "/guides/netherlands-agency-housing-conditions-rights",      label: "Housing rights" },
   { href: "/guides/working-netherlands-without-speaking-dutch",        label: "Working without Dutch" },
   { href: "/guides/how-to-choose-best-temp-agency-netherlands",        label: "Choose the right agency" },
-  { href: "/guides/real-salary-netherlands",                           label: "Real salary all job types" },
-  { href: "/guides/hidden-costs-netherlands",                          label: "Hidden costs explained" },
+  { href: "/guides/real-salary-netherlands",                                label: "Real salary all job types" },
+  { href: "/guides/hidden-costs-netherlands",                               label: "Hidden costs explained" },
+  { href: "/guides/warehouse-jobs-accommodation-netherlands",               label: "Warehouse jobs with housing" },
+  { href: "/guides/forklift-jobs-accommodation-netherlands",                label: "Forklift jobs with housing" },
+  { href: "/guides/logistics-jobs-accommodation-netherlands",               label: "Logistics jobs with housing" },
+  { href: "/guides/factory-jobs-accommodation-netherlands",                 label: "Factory jobs with housing" },
+  { href: "/guides/greenhouse-jobs-accommodation-netherlands",              label: "Greenhouse jobs with housing" },
 ];
 
 export default function GuidesPage() {
