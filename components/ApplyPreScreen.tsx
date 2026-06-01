@@ -454,18 +454,10 @@ export default function ApplyPreScreen({
       ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck", msg)
       : `${waBase}?text=${encodeURIComponent(msg)}`;
 
-    // ── BLANK WINDOW TRICK ────────────────────────────────────────────────────
-    // Open about:blank synchronously (popup blocker treats it as user-initiated).
-    // The actual URL is set asynchronously after the server check.
-    const win = window.open("about:blank", "_blank", "noopener,noreferrer");
     setSubmitting(true);
 
     // Layer 3: server-side DB check (cross-device, cross-session, persistent)
     const finish = () => {
-      // Close the pre-opened blank window — no longer needed.
-      // We show a confirmation screen with a direct <a href> instead,
-      // which is always allowed by mobile browsers as a user gesture.
-      win?.close();
       // Save local locks
       saveDeviceLock();
       saveDedupEntry(phoneClean);
@@ -499,8 +491,7 @@ export default function ApplyPreScreen({
       .then((r) => r.json())
       .then(({ allowed }: { allowed: boolean }) => {
         if (!allowed) {
-          // Server confirmed duplicate — close blank window, show screen
-          win?.close();
+          // Server confirmed duplicate — show already_applied screen
           setScreen("already_applied");
           setSubmitting(false);
           return;
