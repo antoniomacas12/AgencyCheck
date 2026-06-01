@@ -158,7 +158,7 @@ export default async function NlHomepage() {
       {/* ════════════════════════════════════════════════════════════
           §1  HERO
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
 
           {/* Badge */}
@@ -169,29 +169,29 @@ export default async function NlHomepage() {
           </div>
 
           <div className="max-w-3xl mx-auto text-center mb-10">
-            <h1 className="text-3xl sm:text-5xl font-black text-gray-900 leading-tight mb-4">
+            <h1 className="text-3xl sm:text-5xl font-black text-white leading-tight mb-4">
               Je denkt dat je{" "}
               <span className="text-gray-400 line-through decoration-red-400">€600/week</span>{" "}
               verdient.
               <br />
               <span className="text-emerald-600">Je houdt eigenlijk €243 over.</span>
             </h1>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6">
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6">
               Bureauhuisvesting is niet gratis — het wordt ingehouden op je salaris.
               Voeg belasting, transport en verzekering toe. De meeste werknemers komen
               dat pas na aankomst te weten.{" "}
-              <strong className="text-gray-900">Zie het echte bedrag eerst.</strong>
+              <strong className="text-white">Zie het echte bedrag eerst.</strong>
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/nl/vacatures"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-500 hover:bg-amber-400 active:scale-[0.98] px-6 py-3.5 text-sm font-black text-white transition-all shadow-sm"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-500 hover:bg-amber-400 active:scale-[0.98] px-6 py-3.5 text-sm font-black text-white transition-all shadow-none"
               >
                 🔥 Bekijk actuele vacatures ({VACANCIES.length})
               </Link>
               <Link
                 href="/tools/real-income-calculator"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-[0.98] px-6 py-3.5 text-sm font-black text-white transition-all shadow-sm"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-[0.98] px-6 py-3.5 text-sm font-black text-white transition-all shadow-none"
               >
                 💶 Bereken jouw echt inkomen
               </Link>
@@ -205,7 +205,7 @@ export default async function NlHomepage() {
               { n: String(stats.total ?? "500+"),   l: "werknemersreviews"   },
               { n: String(housingCount),            l: "met huisvesting"     },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl bg-gray-50 border border-gray-100 py-4 text-center">
+              <div key={s.l} className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 py-4 text-center">
                 <p className="text-xl font-black text-emerald-600">{s.n}</p>
                 <p className="text-[11px] text-gray-500 mt-0.5 leading-tight">{s.l}</p>
               </div>
@@ -217,14 +217,14 @@ export default async function NlHomepage() {
       {/* ════════════════════════════════════════════════════════════
           §2  SALARY REALITY
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">
               Voordelen van AgencyCheck — Nederland 2026
             </p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
               Begin je werk in Nederland <em>goed voorbereid</em>
             </h2>
             <p className="text-sm text-gray-500 max-w-xl mx-auto">
@@ -232,7 +232,7 @@ export default async function NlHomepage() {
             </p>
           </div>
 
-          <div className="max-w-lg mx-auto rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm mb-10">
+          <div className="max-w-lg mx-auto rounded-2xl border border-white/15 bg-white overflow-hidden shadow-none mb-10">
             <div className="bg-gray-900 px-6 py-3">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 Werknemer WML · €14,71/u · 40u/week · huisvesting + transport
@@ -241,7 +241,7 @@ export default async function NlHomepage() {
             <div className="p-6 space-y-2.5">
               {SALARY_ROWS.map((row) => (
                 <div key={row.label} className="flex items-center justify-between gap-3">
-                  <span className={`text-sm ${row.bold ? "font-black text-gray-900" : "font-medium text-gray-600"}`}>
+                  <span className={`text-sm ${row.bold ? "font-black text-white" : "font-medium text-gray-300"}`}>
                     {row.label}
                   </span>
                   <span className={`shrink-0 text-sm font-black ${row.green ? "text-emerald-600" : "text-red-500"}`}>
@@ -250,7 +250,7 @@ export default async function NlHomepage() {
                 </div>
               ))}
             </div>
-            <div className="px-6 pb-5 border-t border-gray-100 pt-4">
+            <div className="px-6 pb-5 border-t border-white/10 pt-4">
               <div className="flex items-center justify-between">
                 <p className="text-[11px] text-gray-400">
                   Inhoudingen: belasting + huisvesting + verzekering + transport + admin.{" "}
@@ -274,8 +274,8 @@ export default async function NlHomepage() {
                 className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors"
               >
                 <span className="text-2xl mb-3 block">{item.icon}</span>
-                <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
+                <h3 className="text-sm font-black text-white mb-1">{item.label}</h3>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -286,10 +286,10 @@ export default async function NlHomepage() {
       {/* ════════════════════════════════════════════════════════════
           §3  HOW IT WORKS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Hoe het werkt</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Hoe het werkt</h2>
             <p className="text-sm text-gray-500">Onafhankelijk · Niet gelieerd aan enig bureau · Gratis</p>
           </div>
           <div className="grid sm:grid-cols-3 gap-6">
@@ -310,9 +310,9 @@ export default async function NlHomepage() {
                 desc: "Echte foto's ingezonden door werknemers die in bureauhuisvesting hebben gewoond.",
               },
             ].map((item) => (
-              <div key={item.title} className="text-center p-6 rounded-2xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-colors">
+              <div key={item.title} className="text-center p-6 rounded-2xl border border-white/10 hover:border-white/15 hover:bg-white/[0.06] transition-colors">
                 <span className="text-3xl mb-3 block">{item.icon}</span>
-                <h3 className="font-black text-gray-900 mb-2">{item.title}</h3>
+                <h3 className="font-black text-white mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -340,7 +340,7 @@ export default async function NlHomepage() {
           >
             🔥 Bekijk alle vacatures →
           </Link>
-          <p className="text-gray-600 text-[11px] mt-4">
+          <p className="text-gray-300 text-[11px] mt-4">
             🇪🇺 EU-burgerschap vereist · 🌐 Engels vereist · ⚡ Direct beschikbaar
           </p>
         </div>
@@ -349,9 +349,9 @@ export default async function NlHomepage() {
       {/* ════════════════════════════════════════════════════════════
           §5  QUICK LINKS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
-          <h2 className="text-lg font-black text-gray-900 mb-5 text-center">Snelle links voor werknemers</h2>
+          <h2 className="text-lg font-black text-white mb-5 text-center">Snelle links voor werknemers</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { href: "/nl/vacatures",                  icon: "🔥", label: "Actuele vacatures"         },
@@ -366,7 +366,7 @@ export default async function NlHomepage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 hover:bg-emerald-50 hover:border-emerald-200 px-3.5 py-3 text-sm font-semibold text-gray-700 hover:text-emerald-700 transition-colors"
+                className="flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/[0.06] hover:bg-emerald-50 hover:border-emerald-200 px-3.5 py-3 text-sm font-semibold text-gray-200 hover:text-emerald-700 transition-colors"
               >
                 <span>{item.icon}</span>
                 <span className="leading-tight">{item.label}</span>
@@ -379,20 +379,20 @@ export default async function NlHomepage() {
       {/* ════════════════════════════════════════════════════════════
           §6  ABOUT
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10 text-center">
           <div className="flex flex-wrap gap-2 justify-center mb-5">
             {["📊 Gebaseerd op echte werknemersgegevens", "🚫 Geen bureaureclame", "👷 Gerapporteerd door werknemers", "✅ Onafhankelijk platform"].map((b) => (
-              <span key={b} className="inline-flex items-center rounded-full bg-white border border-gray-200 px-3 py-1 text-xs font-bold text-gray-600 shadow-sm">{b}</span>
+              <span key={b} className="inline-flex items-center rounded-full bg-white/[0.07]/[0.06] border border-white/15 px-3 py-1 text-xs font-bold text-gray-300 shadow-none">{b}</span>
             ))}
           </div>
-          <h2 className="text-xl font-black text-gray-900 mb-3">Over AgencyCheck</h2>
-          <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          <h2 className="text-xl font-black text-white mb-3">Over AgencyCheck</h2>
+          <p className="text-sm text-gray-300 leading-relaxed mb-3">
             AgencyCheck is een onafhankelijk transparantieplatform voor werknemers. Wij helpen werknemers in Nederland
             hun rechten te begrijpen, bureaus te vergelijken en weloverwogen beslissingen te nemen voordat ze beginnen
             met werken.
           </p>
-          <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          <p className="text-sm text-gray-300 leading-relaxed mb-3">
             Onze bureaugegevens zijn afkomstig uit het officiële ledenregister van de ABU (uitzendbureau-federatie).
             Huisvestings-, transport- en salarisgegevens worden aangevuld met door werknemers gerapporteerde ervaringen.
           </p>

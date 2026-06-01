@@ -206,7 +206,7 @@ export default async function PlHomePage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-base" style={{ overflowX: "clip" }}>
 
       {/* JSON-LD structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)      }} />
@@ -272,7 +272,7 @@ export default async function PlHomePage() {
                   Znajdź ofertę — bezpłatnie →
                 </a>
                 <a href="#calculator"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
                   🧮 Oblicz moją wypłatę
                 </a>
               </div>
@@ -333,7 +333,7 @@ export default async function PlHomePage() {
 
           <div className="border-t border-white/5 pt-4">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-              <span className="text-[9px] font-black uppercase tracking-widest text-gray-600 shrink-0">Źródła danych:</span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-gray-300 shrink-0">Źródła danych:</span>
               {[
                 { label: "Prawo podatkowe NL",    cite: "belastingdienst.nl 2026",      href: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/", color: "text-blue-400" },
                 { label: "Limity zakwaterowania", cite: "SNF Normering Flexwonen 2024", href: "https://www.snf.nl/normering/",                                         color: "text-emerald-400" },
@@ -356,14 +356,14 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §3  AGENCYCHECK BENEFITS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">
               Dlaczego warto zacząć przez AgencyCheck
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">
               Zacznij pracę w Holandii{" "}
               <span className="text-emerald-500">pewnie i świadomie</span>
             </h2>
@@ -377,14 +377,14 @@ export default async function PlHomePage() {
               <div key={item.label}
                 className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
-                <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
+                <h3 className="text-sm font-black text-white mb-1">{item.label}</h3>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.detail}</p>
               </div>
             ))}
           </div>
 
           {/* Comparison bar */}
-          <div className="max-w-3xl mx-auto rounded-2xl border border-gray-100 bg-gray-50 overflow-hidden">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-white/10 bg-white/[0.06] overflow-hidden">
             <div className="bg-gray-900 px-6 py-3">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 Pracownik WML · €14,71/h · 40h/tydzień · Zakwaterowanie + transport agencji
@@ -393,15 +393,15 @@ export default async function PlHomePage() {
             <div className="p-6 space-y-3">
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">Co agencja reklamuje (brutto)</span>
-                  <span className="text-sm font-black text-gray-900">€588/tydzień</span>
+                  <span className="text-xs font-bold text-gray-300">Co agencja reklamuje (brutto)</span>
+                  <span className="text-sm font-black text-white">€588/tydzień</span>
                 </div>
-                <div className="h-3 rounded-full bg-gray-200 w-full" />
+                <div className="h-3 rounded-full bg-white/15 w-full" />
               </div>
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">Po holenderskim podatku (z ulgami heffingskorting)</span>
-                  <span className="text-sm font-black text-gray-700">€525/tydzień</span>
+                  <span className="text-xs font-bold text-gray-300">Po holenderskim podatku (z ulgami heffingskorting)</span>
+                  <span className="text-sm font-black text-gray-200">€525/tydzień</span>
                 </div>
                 <div className="h-3 rounded-full bg-amber-300" style={{ width: "89%" }} />
               </div>
@@ -431,14 +431,14 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §4  WORKER TESTIMONIALS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Prawdziwi pracownicy. Prawdziwe słowa.
             </p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
               Co pracownicy nam naprawdę powiedzieli
             </h2>
             <p className="text-xs text-gray-400 font-semibold">
@@ -455,13 +455,13 @@ export default async function PlHomePage() {
                     : "border-red-100 bg-red-50/20"
                 }`}>
                 <StarRating value={t.rating} />
-                <blockquote className="text-sm text-gray-800 leading-relaxed font-medium italic flex-1">
+                <blockquote className="text-sm text-gray-100 leading-relaxed font-medium italic flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <div className="flex items-center gap-3 pt-2 border-t border-gray-100">
+                <div className="flex items-center gap-3 pt-2 border-t border-white/10">
                   <span className="text-2xl">{t.flag}</span>
                   <div>
-                    <p className="text-xs font-black text-gray-900">{t.name}</p>
+                    <p className="text-xs font-black text-white">{t.name}</p>
                     <p className="text-[11px] text-gray-500">{t.job}</p>
                   </div>
                 </div>
@@ -471,7 +471,7 @@ export default async function PlHomePage() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <Link href="/reviews"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/10 hover:bg-white/5 transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-none">
               📋 Czytaj wszystkie {totalReviews} opinii
             </Link>
             <Link href="/submit-review"
@@ -486,7 +486,7 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §5  LEAD FORM
           ════════════════════════════════════════════════════════════ */}
-      <section id="lead-form" className="bg-white border-b border-gray-100">
+      <section id="lead-form" className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
 
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7">
@@ -494,13 +494,13 @@ export default async function PlHomePage() {
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-1.5">
                 Bezpłatne dopasowanie — bez opłat, bez zobowiązań
               </p>
-              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">
+              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
                 Znajdź zweryfikowaną agencję, która pokazuje realne potrącenia
               </h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-xl">
-                <span className="font-semibold text-gray-700">Przejrzyste potrącenia</span> ·{" "}
-                <span className="font-semibold text-gray-700">Zweryfikowane zakwaterowanie</span> ·{" "}
-                <span className="font-semibold text-gray-700">Prawdziwe opinie pracowników</span>{" "}
+                <span className="font-semibold text-gray-200">Przejrzyste potrącenia</span> ·{" "}
+                <span className="font-semibold text-gray-200">Zweryfikowane zakwaterowanie</span> ·{" "}
+                <span className="font-semibold text-gray-200">Prawdziwe opinie pracowników</span>{" "}
                 — dopasowujemy Cię tylko z agencjami, które przeszły nasze weryfikacje.
               </p>
             </div>
@@ -513,7 +513,7 @@ export default async function PlHomePage() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5 sm:p-7 shadow-sm">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-7 shadow-none">
             <HomepageLeadForm />
           </div>
 
@@ -523,14 +523,14 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §6  SALARY CALCULATOR
           ════════════════════════════════════════════════════════════ */}
-      <section id="calculator" className="bg-gray-50 border-b border-gray-100">
+      <section id="calculator" className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Kalkulator wynagrodzeń — holenderskie stawki podatkowe 2026
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">
               Ile naprawdę zostanie Ci z wypłaty?
             </h2>
             <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
@@ -547,12 +547,12 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §7  METHODOLOGY TRUST BLOCK
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
 
           <div className="text-center mb-8">
             <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400">Metodologia obliczeń</p>
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">Jak obliczamy Twoje realne wynagrodzenie</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-white">Jak obliczamy Twoje realne wynagrodzenie</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-7">
@@ -588,12 +588,12 @@ export default async function PlHomePage() {
                 ],
               },
             ].map((block) => (
-              <div key={block.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+              <div key={block.title} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
                 <div className="text-2xl mb-3">{block.icon}</div>
-                <h3 className="text-sm font-black text-gray-900 mb-3">{block.title}</h3>
+                <h3 className="text-sm font-black text-white mb-3">{block.title}</h3>
                 <ul className="space-y-1.5">
                   {block.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                    <li key={item} className="flex items-start gap-2 text-xs text-gray-300 leading-snug">
                       <span className="text-emerald-500 font-black mt-0.5 shrink-0">·</span>
                       {item}
                     </li>
@@ -607,7 +607,7 @@ export default async function PlHomePage() {
 
             <div className="rounded-2xl border border-blue-100 bg-blue-50/30 p-5">
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Kluczowe założenia</p>
-              <ul className="space-y-2 text-xs text-gray-700">
+              <ul className="space-y-2 text-xs text-gray-200">
                 {[
                   "Zatrudnienie główne w Holandii (bez stosowania umów o unikaniu podwójnego opodatkowania)",
                   "48 tygodni roboczych/rok (4 tygodnie urlopu wliczone)",
@@ -627,24 +627,24 @@ export default async function PlHomePage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+            <div className="rounded-2xl border border-white/10 overflow-hidden shadow-none">
               <div className="bg-gray-900 px-5 py-3">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                   Przykład: Pracownik WML · €14,71/h · 40h/tydz. · Realny podatek 2026
                 </p>
               </div>
-              <div className="divide-y divide-gray-100">
+              <div className="divide-y divide-white/10">
                 {SALARY_ROWS.map((row) => (
                   <div key={row.label}
-                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white"}`}>
-                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-600"}`}>{row.label}</span>
+                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white/10"}`}>
+                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-300"}`}>{row.label}</span>
                     <span className={`text-sm font-bold ${row.bold ? `text-lg font-black ${row.green ? "text-emerald-400" : "text-red-400"}` : row.green ? "text-emerald-600" : "text-red-500"}`}>
                       {row.amount}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="bg-gray-50 px-5 py-3 border-t border-gray-100">
+              <div className="bg-white/[0.06] px-5 py-3 border-t border-white/10">
                 <p className="text-[10px] text-gray-400">
                   Podatek −€63 (realny loonheffing 2026 po ulgach AHK+AK) + €95 zakwaterowanie + €25 transport + €35 ubezpieczenie + €25 adm.{" "}
                   <Link href="/methodology" className="text-blue-600 underline">Pełna metodologia</Link>
@@ -678,7 +678,7 @@ export default async function PlHomePage() {
               Zobacz zweryfikowane oferty →
             </a>
             <Link href="/agencies-with-housing"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Przeglądaj {housingCount} agencji z zakwaterowaniem
             </Link>
           </div>
@@ -695,14 +695,14 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §8b  HOW AGENCYCHECK WORKS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-200">
+      <section className="bg-[#0d1728] border-b border-white/[0.07]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
 
           <div className="text-center mb-7">
             <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5">
               Jak działa AgencyCheck — i jak zarabiamy
             </p>
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+            <h2 className="text-xl sm:text-2xl font-black text-white">
               Uczciwie o tym, jak to działa
             </h2>
           </div>
@@ -725,10 +725,10 @@ export default async function PlHomePage() {
                 body: "Agencje nie mogą płacić za wyższe miejsce w rankingu, usuwanie opinii ani wpływanie na swoje wyniki. Płacące agencje nie uzyskują przewagi w dopasowywaniu. Jedynie oceny pracowników determinują ich pozycję.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-2xl bg-white border border-gray-100 p-5">
+              <div key={item.title} className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 p-5">
                 <div className="text-2xl mb-3">{item.icon}</div>
-                <p className="text-sm font-black text-gray-900 mb-2">{item.title}</p>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.body}</p>
+                <p className="text-sm font-black text-white mb-2">{item.title}</p>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -750,12 +750,12 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §9  AGENCY OFFERS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Co oferują najlepsze agencje</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Co zawierają oferty najlepszych agencji</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">Co zawierają oferty najlepszych agencji</h2>
             <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
               Na podstawie {totalReviews}+ zweryfikowanych raportów pracowników. Wiedz, czego szukać przy wyborze agencji.
             </p>
@@ -764,17 +764,17 @@ export default async function PlHomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {AGENCY_OFFERS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-gray-100 bg-gray-50 hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-white/10 bg-white/[0.06] hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
-                <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{p.body}</p>
+                <h3 className="text-base font-black text-white mb-2">{p.title}</h3>
+                <p className="text-sm text-gray-300 leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center">
             <Link href="/reviews"
-              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
+              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/10 hover:bg-white/5 transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-none">
               📋 Czytaj prawdziwe doświadczenia pracowników →
             </Link>
           </div>
@@ -784,16 +784,16 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §10  HOUSING PROOF
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Prawdziwe zakwaterowanie — nie prospekty</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Zobacz, gdzie naprawdę będziesz mieszkać</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Zobacz, gdzie naprawdę będziesz mieszkać</h2>
             <p className="text-gray-500 text-sm max-w-md mx-auto">
               Zdjęcia i opisy przesłane przez pracowników. Żadnych stockowych zdjęć. Żadnego PR agencji.
             </p>
           </div>
-          <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-6 sm:p-8">
+          <div className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 shadow-none p-6 sm:p-8">
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
@@ -808,23 +808,23 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §11  VERIFIED AGENCY CARDS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Agencje zweryfikowane badaniem
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">
               Przejrzyste oferty — pokazany realny dochód netto
             </h2>
             <p className="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed mb-4">
               Każda karta pokazuje szacunkowy tygodniowy dochód netto po holenderskim podatku i potrąceniach.
               Żadnych zawyżonych liczb brutto.
             </p>
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 text-[10px] font-semibold border border-gray-100 bg-gray-50 rounded-xl px-4 py-2.5">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 text-[10px] font-semibold border border-white/10 bg-white/[0.06] rounded-xl px-4 py-2.5">
               <span className="text-gray-400 font-black uppercase tracking-wider">Co oznaczają odznaki:</span>
-              <span className="inline-flex items-center gap-1 text-gray-500 bg-white border border-gray-200 rounded-full px-2.5 py-1">
+              <span className="inline-flex items-center gap-1 text-gray-500 bg-white/[0.06] border border-white/15 rounded-full px-2.5 py-1">
                 <span className="text-gray-400">👤</span> Zgłoszone przez pracownika — tylko opinie pracowników
               </span>
               <span className="inline-flex items-center gap-1 text-blue-700 bg-blue-50 border border-blue-100 rounded-full px-2.5 py-1">
@@ -841,7 +841,7 @@ export default async function PlHomePage() {
               const meta = VERIFIED_JOB_META[agency.slug];
               return (
                 <div key={agency.slug}
-                  className="rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden flex flex-col group">
+                  className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 shadow-none hover:bg-white/[0.10] hover:-translate-y-0.5 transition-all overflow-hidden flex flex-col group">
 
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 px-5 py-4">
                     <div className="flex items-start justify-between gap-3 mb-3">
@@ -866,9 +866,9 @@ export default async function PlHomePage() {
 
                   <div className="px-5 py-4 flex-1 space-y-3">
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2.5 text-center">
+                      <div className="rounded-xl bg-white/[0.06]/[0.06] border border-white/10 px-3 py-2.5 text-center">
                         <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Stawka godzinowa</p>
-                        <p className="text-lg font-black text-gray-900">
+                        <p className="text-lg font-black text-white">
                           €{(meta?.hourlyRate ?? 14.71).toFixed(2)}
                         </p>
                       </div>
@@ -882,7 +882,7 @@ export default async function PlHomePage() {
                     <div className="space-y-1.5 text-xs text-gray-500">
                       <div className="flex items-center justify-between">
                         <span>🏠 Koszt zakwaterowania</span>
-                        <span className="font-bold text-gray-700">€{meta?.housingCost ?? 95}/tydz.</span>
+                        <span className="font-bold text-gray-200">€{meta?.housingCost ?? 95}/tydz.</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span>⭐ Ocena pracowników</span>
@@ -890,12 +890,12 @@ export default async function PlHomePage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span>⚡ Czas odpowiedzi</span>
-                        <span className="font-bold text-gray-700">{meta?.responseTime ?? "< 24 godziny"}</span>
+                        <span className="font-bold text-gray-200">{meta?.responseTime ?? "< 24 godziny"}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="px-5 py-4 border-t border-gray-100 bg-gray-50/50">
+                  <div className="px-5 py-4 border-t border-white/10 bg-white/5">
                     <ApplyBar
                       context={{
                         sourcePage:           "/pl",
@@ -920,10 +920,10 @@ export default async function PlHomePage() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <Link href="/agencies-with-housing"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-sm">
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-none">
               🏢 Wszystkie {housingCount} agencji z zakwaterowaniem
             </Link>
-            <Link href="/agencies" className="text-sm text-gray-500 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/agencies" className="text-sm text-gray-500 hover:text-white font-medium transition-colors">
               Wszystkie {totalAgencies} agencji →
             </Link>
           </div>
@@ -954,7 +954,7 @@ export default async function PlHomePage() {
                   limity potrąceń za zakwaterowanie SNF · premie za nadgodziny · obliczenie vakantiegeld.
                 </p>
                 <Link href="/tools/payslip-checker"
-                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 transition-colors px-7 py-3.5 text-sm font-black text-white shadow-sm shadow-amber-900/40 active:scale-[0.98]">
+                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 transition-colors px-7 py-3.5 text-sm font-black text-white shadow-none shadow-amber-900/40 active:scale-[0.98]">
                   📄 Prześlij odcinek płacowy — sprawdź teraz
                 </Link>
               </div>
@@ -987,30 +987,30 @@ export default async function PlHomePage() {
       {/* ════════════════════════════════════════════════════════════
           SEO CONTENT + CITY GRID
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
 
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Poradnik dla pracowników</p>
-              <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 leading-tight">
+              <h2 className="text-xl sm:text-2xl font-black text-white mb-5 leading-tight">
                 Wszystko, co musisz wiedzieć przed pracą w Holandii
               </h2>
-              <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-sm text-gray-300 leading-relaxed">
                 <p>
                   Holenderska płaca minimalna (<em>Wettelijk Minimumloon</em>) wynosi{" "}
-                  <strong className="text-gray-900">€14,71/godzinę w 2026 roku</strong> dla pracowników
+                  <strong className="text-white">€14,71/godzinę w 2026 roku</strong> dla pracowników
                   w wieku 21+. Przy 40 godzinach tygodniowo daje to brutto dokładnie €588/tydzień
                   (€14,71 × 40 godzin). Ale po holenderskim podatku dochodowym, zakwaterowaniu agencji, ubezpieczeniu
                   zdrowotnym i transporcie większość pracowników zachowuje między{" "}
-                  <strong className="text-gray-900">€300–€370</strong> —
+                  <strong className="text-white">€300–€370</strong> —
                   ok. 50–63% brutto, w zależności od agencji.
                 </p>
                 <p>
-                  Kluczowe zabezpieczenia prawne, które warto znać: <strong className="text-gray-900">ABU / NBBU CAO</strong>{" "}
+                  Kluczowe zabezpieczenia prawne, które warto znać: <strong className="text-white">ABU / NBBU CAO</strong>{" "}
                   reguluje stawki wynagrodzenia, premie za nadgodziny i wynagrodzenie urlopowe.
-                  <strong className="text-gray-900"> SNF</strong> (Stichting Normering Flexwonen) określa maksymalne prawne
-                  potrącenia za zakwaterowanie. <strong className="text-gray-900">Inspectie SZW</strong> egzekwuje całe prawo pracy.
+                  <strong className="text-white"> SNF</strong> (Stichting Normering Flexwonen) określa maksymalne prawne
+                  potrącenia za zakwaterowanie. <strong className="text-white">Inspectie SZW</strong> egzekwuje całe prawo pracy.
                   AgencyCheck weryfikuje agencje względem wszystkich trzech.
                 </p>
                 <p>
@@ -1034,10 +1034,10 @@ export default async function PlHomePage() {
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Prawa i poradnik prawny",              desc: "ABU CAO, WML, SNF — wytłumaczone prosto" },
               ].map((item) => (
                 <Link key={item.href} href={item.href}
-                  className="flex items-start gap-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
+                  className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.06] hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
                   <span className="text-xl mt-0.5">{item.icon}</span>
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{item.title}</p>
+                    <p className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">{item.title}</p>
                     <p className="text-xs text-gray-500 mt-0.5 leading-snug truncate">{item.desc}</p>
                   </div>
                   <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-400 transition-colors ml-auto mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
@@ -1049,12 +1049,12 @@ export default async function PlHomePage() {
           </div>
 
           {/* City grid */}
-          <div className="pt-8 border-t border-gray-100">
+          <div className="pt-8 border-t border-white/10">
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Przeglądaj oferty pracy według miasta</p>
             <div className="flex flex-wrap gap-2">
               {TOP_CITIES.slice(0, 18).map((c) => (
                 <Link key={c.slug} href={`/jobs-in-${c.slug}`}
-                  className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  className="inline-flex items-center text-xs font-medium bg-white/[0.07]/[0.06] border border-white/15 text-gray-200 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
                   💼 {c.name}
                 </Link>
               ))}
@@ -1068,11 +1068,11 @@ export default async function PlHomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">FAQ</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900">Pytania, które pracownicy naprawdę zadają</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">Pytania, które pracownicy naprawdę zadają</h2>
           </div>
           <HomepageFAQ />
           <div className="mt-8 text-center">
@@ -1107,7 +1107,7 @@ export default async function PlHomePage() {
                 Znajdź ofertę — bezpłatnie →
               </a>
               <a href="#calculator"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-200 active:scale-[0.98]">
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-200 active:scale-[0.98]">
                 🧮 Oblicz moją wypłatę
               </a>
             </div>

@@ -206,7 +206,7 @@ export default async function RoHomePage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-base" style={{ overflowX: "clip" }}>
 
       {/* JSON-LD structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)      }} />
@@ -272,7 +272,7 @@ export default async function RoHomePage() {
                   Găsește potrivire — gratuit →
                 </a>
                 <a href="#calculator"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
                   🧮 Calculează salariul meu
                 </a>
               </div>
@@ -333,7 +333,7 @@ export default async function RoHomePage() {
 
           <div className="border-t border-white/5 pt-4">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-              <span className="text-[9px] font-black uppercase tracking-widest text-gray-600 shrink-0">Surse date:</span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-gray-300 shrink-0">Surse date:</span>
               {[
                 { label: "Legislație fiscală NL",   cite: "belastingdienst.nl 2026",      href: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/", color: "text-blue-400" },
                 { label: "Limite cazare",           cite: "SNF Normering Flexwonen 2024", href: "https://www.snf.nl/normering/",                                         color: "text-emerald-400" },
@@ -356,14 +356,14 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §3  AGENCYCHECK BENEFITS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">
               De ce să începi prin AgencyCheck
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">
               Începe lucrul în Olanda{" "}
               <span className="text-emerald-500">sigur și informat</span>
             </h2>
@@ -377,14 +377,14 @@ export default async function RoHomePage() {
               <div key={item.label}
                 className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
-                <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
+                <h3 className="text-sm font-black text-white mb-1">{item.label}</h3>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.detail}</p>
               </div>
             ))}
           </div>
 
           {/* Comparison bar */}
-          <div className="max-w-3xl mx-auto rounded-2xl border border-gray-100 bg-gray-50 overflow-hidden">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-white/10 bg-white/[0.06] overflow-hidden">
             <div className="bg-gray-900 px-6 py-3">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 Lucrător WML · €14,71/h · 40h/săptămână · Cazare + transport agenție
@@ -393,15 +393,15 @@ export default async function RoHomePage() {
             <div className="p-6 space-y-3">
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">Ce promovează agenția (brut)</span>
-                  <span className="text-sm font-black text-gray-900">€588/săptămână</span>
+                  <span className="text-xs font-bold text-gray-300">Ce promovează agenția (brut)</span>
+                  <span className="text-sm font-black text-white">€588/săptămână</span>
                 </div>
-                <div className="h-3 rounded-full bg-gray-200 w-full" />
+                <div className="h-3 rounded-full bg-white/15 w-full" />
               </div>
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">După taxa olandeză (cu credite heffingskorting)</span>
-                  <span className="text-sm font-black text-gray-700">€525/săptămână</span>
+                  <span className="text-xs font-bold text-gray-300">După taxa olandeză (cu credite heffingskorting)</span>
+                  <span className="text-sm font-black text-gray-200">€525/săptămână</span>
                 </div>
                 <div className="h-3 rounded-full bg-amber-300" style={{ width: "89%" }} />
               </div>
@@ -431,14 +431,14 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §4  WORKER TESTIMONIALS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Lucrători reali. Cuvinte reale.
             </p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
               Ce ne-au spus cu adevărat lucrătorii
             </h2>
             <p className="text-xs text-gray-400 font-semibold">
@@ -455,13 +455,13 @@ export default async function RoHomePage() {
                     : "border-red-100 bg-red-50/20"
                 }`}>
                 <StarRating value={t.rating} />
-                <blockquote className="text-sm text-gray-800 leading-relaxed font-medium italic flex-1">
+                <blockquote className="text-sm text-gray-100 leading-relaxed font-medium italic flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <div className="flex items-center gap-3 pt-2 border-t border-gray-100">
+                <div className="flex items-center gap-3 pt-2 border-t border-white/10">
                   <span className="text-2xl">{t.flag}</span>
                   <div>
-                    <p className="text-xs font-black text-gray-900">{t.name}</p>
+                    <p className="text-xs font-black text-white">{t.name}</p>
                     <p className="text-[11px] text-gray-500">{t.job}</p>
                   </div>
                 </div>
@@ -471,7 +471,7 @@ export default async function RoHomePage() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <Link href="/reviews"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/10 hover:bg-white/5 transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-none">
               📋 Citește toate cele {totalReviews} recenzii
             </Link>
             <Link href="/submit-review"
@@ -486,7 +486,7 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §5  LEAD FORM
           ════════════════════════════════════════════════════════════ */}
-      <section id="lead-form" className="bg-white border-b border-gray-100">
+      <section id="lead-form" className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
 
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7">
@@ -494,13 +494,13 @@ export default async function RoHomePage() {
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-1.5">
                 Serviciu de potrivire gratuit — fără taxe, fără obligații
               </p>
-              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">
+              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
                 Găsește o agenție verificată care arată deducerile reale
               </h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-xl">
-                <span className="font-semibold text-gray-700">Deduceri transparente</span> ·{" "}
-                <span className="font-semibold text-gray-700">Cazare verificată</span> ·{" "}
-                <span className="font-semibold text-gray-700">Recenzii reale de lucrători</span>{" "}
+                <span className="font-semibold text-gray-200">Deduceri transparente</span> ·{" "}
+                <span className="font-semibold text-gray-200">Cazare verificată</span> ·{" "}
+                <span className="font-semibold text-gray-200">Recenzii reale de lucrători</span>{" "}
                 — Te potrivim doar cu agenții care trec verificările noastre.
               </p>
             </div>
@@ -513,7 +513,7 @@ export default async function RoHomePage() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5 sm:p-7 shadow-sm">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-7 shadow-none">
             <HomepageLeadForm />
           </div>
 
@@ -523,14 +523,14 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §6  SALARY CALCULATOR
           ════════════════════════════════════════════════════════════ */}
-      <section id="calculator" className="bg-gray-50 border-b border-gray-100">
+      <section id="calculator" className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Calculator salariu instant — cotele de impozit olandeze 2026
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">
               Cât vei păstra de fapt?
             </h2>
             <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
@@ -547,12 +547,12 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §7  METHODOLOGY TRUST BLOCK
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
 
           <div className="text-center mb-8">
             <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400">Metodologia de calcul</p>
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">Cum calculăm salariul tău real</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-white">Cum calculăm salariul tău real</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-7">
@@ -588,12 +588,12 @@ export default async function RoHomePage() {
                 ],
               },
             ].map((block) => (
-              <div key={block.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+              <div key={block.title} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
                 <div className="text-2xl mb-3">{block.icon}</div>
-                <h3 className="text-sm font-black text-gray-900 mb-3">{block.title}</h3>
+                <h3 className="text-sm font-black text-white mb-3">{block.title}</h3>
                 <ul className="space-y-1.5">
                   {block.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                    <li key={item} className="flex items-start gap-2 text-xs text-gray-300 leading-snug">
                       <span className="text-emerald-500 font-black mt-0.5 shrink-0">·</span>
                       {item}
                     </li>
@@ -607,7 +607,7 @@ export default async function RoHomePage() {
 
             <div className="rounded-2xl border border-blue-100 bg-blue-50/30 p-5">
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Ipoteze cheie</p>
-              <ul className="space-y-2 text-xs text-gray-700">
+              <ul className="space-y-2 text-xs text-gray-200">
                 {[
                   "Angajare principală în Olanda (fără aplicarea convențiilor de dublă impunere)",
                   "48 săptămâni de lucru/an (4 săptămâni de concediu incluse)",
@@ -627,24 +627,24 @@ export default async function RoHomePage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+            <div className="rounded-2xl border border-white/10 overflow-hidden shadow-none">
               <div className="bg-gray-900 px-5 py-3">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                   Exemplu: Lucrător WML · €14,71/h · 40h/săpt. · Taxă reală 2026
                 </p>
               </div>
-              <div className="divide-y divide-gray-100">
+              <div className="divide-y divide-white/10">
                 {SALARY_ROWS.map((row) => (
                   <div key={row.label}
-                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white"}`}>
-                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-600"}`}>{row.label}</span>
+                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white/10"}`}>
+                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-300"}`}>{row.label}</span>
                     <span className={`text-sm font-bold ${row.bold ? `text-lg font-black ${row.green ? "text-emerald-400" : "text-red-400"}` : row.green ? "text-emerald-600" : "text-red-500"}`}>
                       {row.amount}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="bg-gray-50 px-5 py-3 border-t border-gray-100">
+              <div className="bg-white/[0.06] px-5 py-3 border-t border-white/10">
                 <p className="text-[10px] text-gray-400">
                   Taxă −€63 (loonheffing real 2026 după creditele AHK+AK) + €95 cazare + €25 transport + €35 asigurare + €25 adm.{" "}
                   <Link href="/methodology" className="text-blue-600 underline">Metodologie completă</Link>
@@ -678,7 +678,7 @@ export default async function RoHomePage() {
               Vezi oferte verificate →
             </a>
             <Link href="/agencies-with-housing"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Toate {housingCount} agenții cu cazare
             </Link>
           </div>
@@ -695,14 +695,14 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §8b  HOW AGENCYCHECK WORKS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-200">
+      <section className="bg-[#0d1728] border-b border-white/[0.07]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
 
           <div className="text-center mb-7">
             <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5">
               Cum funcționează AgencyCheck — și cum câștigăm bani
             </p>
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+            <h2 className="text-xl sm:text-2xl font-black text-white">
               Sinceri despre cum funcționează
             </h2>
           </div>
@@ -725,10 +725,10 @@ export default async function RoHomePage() {
                 body: "Agențiile nu pot plăti pentru un loc mai bun în clasament, pentru a elimina recenzii sau pentru a-și influența scorurile. Agențiile plătitoare nu obțin niciun avantaj de plasare. Doar notele lucrătorilor le determină poziția.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-2xl bg-white border border-gray-100 p-5">
+              <div key={item.title} className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 p-5">
                 <div className="text-2xl mb-3">{item.icon}</div>
-                <p className="text-sm font-black text-gray-900 mb-2">{item.title}</p>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.body}</p>
+                <p className="text-sm font-black text-white mb-2">{item.title}</p>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -750,12 +750,12 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §9  AGENCY OFFERS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Ce oferă cele mai bune agenții</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Ce includ ofertele celor mai bune agenții</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">Ce includ ofertele celor mai bune agenții</h2>
             <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
               Bazat pe {totalReviews}+ rapoarte verificate de lucrători. Știi ce să cauți când alegi o agenție.
             </p>
@@ -764,17 +764,17 @@ export default async function RoHomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {AGENCY_OFFERS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-gray-100 bg-gray-50 hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-white/10 bg-white/[0.06] hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
-                <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{p.body}</p>
+                <h3 className="text-base font-black text-white mb-2">{p.title}</h3>
+                <p className="text-sm text-gray-300 leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center">
             <Link href="/reviews"
-              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
+              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/10 hover:bg-white/5 transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-none">
               📋 Citește experiențele reale ale lucrătorilor →
             </Link>
           </div>
@@ -784,16 +784,16 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §10  HOUSING PROOF
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Cazare reală — nu broșuri</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Vezi unde vei locui de fapt</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Vezi unde vei locui de fapt</h2>
             <p className="text-gray-500 text-sm max-w-md mx-auto">
               Poze și descrieri trimise de lucrători. Nicio imagine de stoc. Niciun PR de agenție.
             </p>
           </div>
-          <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-6 sm:p-8">
+          <div className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 shadow-none p-6 sm:p-8">
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
@@ -808,23 +808,23 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §11  VERIFIED AGENCY CARDS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
 
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">
               Agenții verificate prin cercetare
             </p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">
               Oferte transparente — venitul net real afișat
             </h2>
             <p className="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed mb-4">
               Fiecare card arată venitul net săptămânal estimat după taxa olandeză și deduceri.
               Fără cifre brute umflate.
             </p>
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 text-[10px] font-semibold border border-gray-100 bg-gray-50 rounded-xl px-4 py-2.5">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 text-[10px] font-semibold border border-white/10 bg-white/[0.06] rounded-xl px-4 py-2.5">
               <span className="text-gray-400 font-black uppercase tracking-wider">Ce înseamnă insignele:</span>
-              <span className="inline-flex items-center gap-1 text-gray-500 bg-white border border-gray-200 rounded-full px-2.5 py-1">
+              <span className="inline-flex items-center gap-1 text-gray-500 bg-white/[0.06] border border-white/15 rounded-full px-2.5 py-1">
                 <span className="text-gray-400">👤</span> Raportat de lucrător — recenzii doar de la lucrători
               </span>
               <span className="inline-flex items-center gap-1 text-blue-700 bg-blue-50 border border-blue-100 rounded-full px-2.5 py-1">
@@ -841,7 +841,7 @@ export default async function RoHomePage() {
               const meta = VERIFIED_JOB_META[agency.slug];
               return (
                 <div key={agency.slug}
-                  className="rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden flex flex-col group">
+                  className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 shadow-none hover:bg-white/[0.10] hover:-translate-y-0.5 transition-all overflow-hidden flex flex-col group">
 
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 px-5 py-4">
                     <div className="flex items-start justify-between gap-3 mb-3">
@@ -866,9 +866,9 @@ export default async function RoHomePage() {
 
                   <div className="px-5 py-4 flex-1 space-y-3">
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2.5 text-center">
+                      <div className="rounded-xl bg-white/[0.06]/[0.06] border border-white/10 px-3 py-2.5 text-center">
                         <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Tarif orar</p>
-                        <p className="text-lg font-black text-gray-900">
+                        <p className="text-lg font-black text-white">
                           €{(meta?.hourlyRate ?? 14.71).toFixed(2)}
                         </p>
                       </div>
@@ -882,7 +882,7 @@ export default async function RoHomePage() {
                     <div className="space-y-1.5 text-xs text-gray-500">
                       <div className="flex items-center justify-between">
                         <span>🏠 Cost cazare</span>
-                        <span className="font-bold text-gray-700">€{meta?.housingCost ?? 95}/săpt.</span>
+                        <span className="font-bold text-gray-200">€{meta?.housingCost ?? 95}/săpt.</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span>⭐ Nota lucrătorilor</span>
@@ -890,12 +890,12 @@ export default async function RoHomePage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span>⚡ Timp răspuns</span>
-                        <span className="font-bold text-gray-700">{meta?.responseTime ?? "< 24 ore"}</span>
+                        <span className="font-bold text-gray-200">{meta?.responseTime ?? "< 24 ore"}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="px-5 py-4 border-t border-gray-100 bg-gray-50/50">
+                  <div className="px-5 py-4 border-t border-white/10 bg-white/5">
                     <ApplyBar
                       context={{
                         sourcePage:           "/ro",
@@ -920,10 +920,10 @@ export default async function RoHomePage() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <Link href="/agencies-with-housing"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-sm">
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-none">
               🏢 Toate {housingCount} agenții cu cazare
             </Link>
-            <Link href="/agencies" className="text-sm text-gray-500 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/agencies" className="text-sm text-gray-500 hover:text-white font-medium transition-colors">
               Toate {totalAgencies} agențiile →
             </Link>
           </div>
@@ -954,7 +954,7 @@ export default async function RoHomePage() {
                   limite deducere cazare SNF · prime ore suplimentare · calcul vakantiegeld.
                 </p>
                 <Link href="/tools/payslip-checker"
-                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 transition-colors px-7 py-3.5 text-sm font-black text-white shadow-sm shadow-amber-900/40 active:scale-[0.98]">
+                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 transition-colors px-7 py-3.5 text-sm font-black text-white shadow-none shadow-amber-900/40 active:scale-[0.98]">
                   📄 Încarcă Fluturașul — Verifică Acum
                 </Link>
               </div>
@@ -987,30 +987,30 @@ export default async function RoHomePage() {
       {/* ════════════════════════════════════════════════════════════
           SEO CONTENT + CITY GRID
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
 
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Ghid pentru lucrători</p>
-              <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 leading-tight">
+              <h2 className="text-xl sm:text-2xl font-black text-white mb-5 leading-tight">
                 Tot ce trebuie să știi înainte de a lucra în Olanda
               </h2>
-              <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-sm text-gray-300 leading-relaxed">
                 <p>
                   Salariul minim olandez (<em>Wettelijk Minimumloon</em>) este{" "}
-                  <strong className="text-gray-900">€14,71/oră în 2026</strong> pentru lucrătorii
+                  <strong className="text-white">€14,71/oră în 2026</strong> pentru lucrătorii
                   de 21+. La 40 de ore pe săptămână aceasta dă un brut de exact €588/săptămână
                   (€14,71 × 40 ore). Dar după impozitul pe venit olandez, cazarea agenției, asigurarea
                   de sănătate și transport, majoritatea lucrătorilor păstrează între{" "}
-                  <strong className="text-gray-900">€300–€370</strong> —
+                  <strong className="text-white">€300–€370</strong> —
                   aproximativ 50–63% din brut, în funcție de agenție.
                 </p>
                 <p>
-                  Protecțiile legale cheie de știut: <strong className="text-gray-900">ABU / NBBU CAO</strong>{" "}
+                  Protecțiile legale cheie de știut: <strong className="text-white">ABU / NBBU CAO</strong>{" "}
                   reglementează scalele salariale, primele de ore suplimentare și concediul plătit.
-                  <strong className="text-gray-900"> SNF</strong> (Stichting Normering Flexwonen) stabilește deducerile
-                  maxime legale pentru cazare. <strong className="text-gray-900">Inspectie SZW</strong> aplică toată legea muncii.
+                  <strong className="text-white"> SNF</strong> (Stichting Normering Flexwonen) stabilește deducerile
+                  maxime legale pentru cazare. <strong className="text-white">Inspectie SZW</strong> aplică toată legea muncii.
                   AgencyCheck verifică agențiile față de toate trei.
                 </p>
                 <p>
@@ -1034,10 +1034,10 @@ export default async function RoHomePage() {
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Drepturi și ghid legal",              desc: "ABU CAO, WML, SNF — explicate simplu" },
               ].map((item) => (
                 <Link key={item.href} href={item.href}
-                  className="flex items-start gap-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
+                  className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.06] hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
                   <span className="text-xl mt-0.5">{item.icon}</span>
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{item.title}</p>
+                    <p className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">{item.title}</p>
                     <p className="text-xs text-gray-500 mt-0.5 leading-snug truncate">{item.desc}</p>
                   </div>
                   <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-400 transition-colors ml-auto mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
@@ -1049,12 +1049,12 @@ export default async function RoHomePage() {
           </div>
 
           {/* City grid */}
-          <div className="pt-8 border-t border-gray-100">
+          <div className="pt-8 border-t border-white/10">
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Navighează joburi după oraș</p>
             <div className="flex flex-wrap gap-2">
               {TOP_CITIES.slice(0, 18).map((c) => (
                 <Link key={c.slug} href={`/jobs-in-${c.slug}`}
-                  className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  className="inline-flex items-center text-xs font-medium bg-white/[0.07]/[0.06] border border-white/15 text-gray-200 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
                   💼 {c.name}
                 </Link>
               ))}
@@ -1068,11 +1068,11 @@ export default async function RoHomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">FAQ</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900">Întrebările pe care lucrătorii le pun de fapt</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">Întrebările pe care lucrătorii le pun de fapt</h2>
           </div>
           <HomepageFAQ />
           <div className="mt-8 text-center">
@@ -1107,7 +1107,7 @@ export default async function RoHomePage() {
                 Găsește potrivire — gratuit →
               </a>
               <a href="#calculator"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-200 active:scale-[0.98]">
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-200 active:scale-[0.98]">
                 🧮 Calculează salariul meu
               </a>
             </div>

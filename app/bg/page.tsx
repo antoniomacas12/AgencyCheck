@@ -166,7 +166,7 @@ export default async function BgHomePage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-base" style={{ overflowX: "clip" }}>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema)   }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema)  }} />
@@ -244,7 +244,7 @@ export default async function BgHomePage() {
                   Намери оферта — безплатно →
                 </a>
                 <a href="#calculator"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/6 hover:bg-white/12 active:scale-[0.98] transition-all px-8 py-4 text-base font-semibold text-gray-200">
                   🧮 Изчисли моята заплата
                 </a>
               </div>
@@ -283,7 +283,7 @@ export default async function BgHomePage() {
           </div>
           <div className="border-t border-white/5 pt-4">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-              <span className="text-[9px] font-black uppercase tracking-widest text-gray-600 shrink-0">Източници на данни:</span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-gray-300 shrink-0">Източници на данни:</span>
               {[
                 { label: "Данъчно право НЛ",    cite: "belastingdienst.nl 2026",       href: "https://www.belastingdienst.nl/", color: "text-blue-400" },
                 { label: "Лимити за жилище",     cite: "SNF Normering Flexwonen 2024",  href: "https://www.snf.nl/",             color: "text-emerald-400" },
@@ -305,11 +305,11 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §3  AGENCYCHECK BENEFITS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Защо да започнете чрез AgencyCheck</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">
               Започнете работа в Нидерландия{" "}
               <span className="text-emerald-500">уверено и информирано</span>
             </h2>
@@ -322,14 +322,14 @@ export default async function BgHomePage() {
             {AGENCYCHECK_BENEFITS.map((item) => (
               <div key={item.label} className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 hover:border-emerald-200 hover:bg-emerald-50/60 transition-colors">
                 <span className="text-2xl mb-3 block">{item.icon}</span>
-                <h3 className="text-sm font-black text-gray-900 mb-1">{item.label}</h3>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
+                <h3 className="text-sm font-black text-white mb-1">{item.label}</h3>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.detail}</p>
               </div>
             ))}
           </div>
 
           {/* Salary comparison bar */}
-          <div className="max-w-3xl mx-auto rounded-2xl border border-gray-100 bg-gray-50 overflow-hidden">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-white/10 bg-white/[0.06] overflow-hidden">
             <div className="bg-gray-900 px-6 py-3">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 Работник WML · €14,71/ч · 40ч/седм. · Жилище + транспорт от агенцията
@@ -338,15 +338,15 @@ export default async function BgHomePage() {
             <div className="p-6 space-y-3">
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">Какво рекламира агенцията (брутно)</span>
-                  <span className="text-sm font-black text-gray-900">€588/седмица</span>
+                  <span className="text-xs font-bold text-gray-300">Какво рекламира агенцията (брутно)</span>
+                  <span className="text-sm font-black text-white">€588/седмица</span>
                 </div>
-                <div className="h-3 rounded-full bg-gray-200 w-full" />
+                <div className="h-3 rounded-full bg-white/15 w-full" />
               </div>
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold text-gray-600">След нидерландски данъци (с heffingskorting облекчения)</span>
-                  <span className="text-sm font-black text-gray-700">€525/седмица</span>
+                  <span className="text-xs font-bold text-gray-300">След нидерландски данъци (с heffingskorting облекчения)</span>
+                  <span className="text-sm font-black text-gray-200">€525/седмица</span>
                 </div>
                 <div className="h-3 rounded-full bg-amber-300" style={{ width: "89%" }} />
               </div>
@@ -375,11 +375,11 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §4  WORKER TESTIMONIALS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Реални работници. Реални думи.</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Какво реално ни казаха работниците</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Какво реално ни казаха работниците</h2>
             <p className="text-xs text-gray-400 font-semibold">Не маркетингови материали · Не PR на агенции · Реални доклади от реални работници</p>
           </div>
           <div className="grid sm:grid-cols-3 gap-5 mb-8">
@@ -387,13 +387,13 @@ export default async function BgHomePage() {
               <div key={tw.name}
                 className={`rounded-2xl border p-6 flex flex-col gap-4 ${tw.rating >= 4 ? "border-emerald-100 bg-emerald-50/30" : "border-red-100 bg-red-50/20"}`}>
                 <StarRating value={tw.rating} />
-                <blockquote className="text-sm text-gray-800 leading-relaxed font-medium italic flex-1">
+                <blockquote className="text-sm text-gray-100 leading-relaxed font-medium italic flex-1">
                   &ldquo;{tw.quote}&rdquo;
                 </blockquote>
-                <div className="flex items-center gap-3 pt-2 border-t border-gray-100">
+                <div className="flex items-center gap-3 pt-2 border-t border-white/10">
                   <span className="text-2xl">{tw.flag}</span>
                   <div>
-                    <p className="text-xs font-black text-gray-900">{tw.name}</p>
+                    <p className="text-xs font-black text-white">{tw.name}</p>
                     <p className="text-[11px] text-gray-500">{tw.job}</p>
                   </div>
                 </div>
@@ -402,7 +402,7 @@ export default async function BgHomePage() {
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <Link href="/reviews"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/10 hover:bg-white/5 transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-none">
               📋 Прочети всички {totalReviews} отзива
             </Link>
             <Link href="/submit-review" className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors">
@@ -415,16 +415,16 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §5  LEAD FORM
           ════════════════════════════════════════════════════════════ */}
-      <section id="lead-form" className="bg-white border-b border-gray-100">
+      <section id="lead-form" className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7">
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-1.5">Безплатно свързване — без такси, без ангажименти</p>
-              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">Намерете проверена агенция, която показва реалните удръжки</h2>
+              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">Намерете проверена агенция, която показва реалните удръжки</h2>
               <p className="mt-2 text-sm text-gray-500 leading-relaxed max-w-xl">
-                <span className="font-semibold text-gray-700">Прозрачни удръжки</span> ·{" "}
-                <span className="font-semibold text-gray-700">Проверено жилище</span> ·{" "}
-                <span className="font-semibold text-gray-700">Реални отзиви от работници</span>{" "}
+                <span className="font-semibold text-gray-200">Прозрачни удръжки</span> ·{" "}
+                <span className="font-semibold text-gray-200">Проверено жилище</span> ·{" "}
+                <span className="font-semibold text-gray-200">Реални отзиви от работници</span>{" "}
                 — свързваме ви само с агенции, преминали нашата проверка.
               </p>
             </div>
@@ -436,7 +436,7 @@ export default async function BgHomePage() {
               ))}
             </div>
           </div>
-          <div className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5 sm:p-7 shadow-sm">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-7 shadow-none">
             <HomepageLeadForm />
           </div>
         </div>
@@ -445,11 +445,11 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §6  SALARY CALCULATOR
           ════════════════════════════════════════════════════════════ */}
-      <section id="calculator" className="bg-gray-50 border-b border-gray-100">
+      <section id="calculator" className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Незабавен калкулатор на заплата — данъчни ставки 2026</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Колко реално ще ви остане от заплатата?</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Колко реално ще ви остане от заплатата?</h2>
             <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               Настройте според вашата оферта. Реални нидерландски данъци с всички облекчения heffingskorting.
               Всяка удръжка изчислена в реално време.
@@ -462,11 +462,11 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §7  METHODOLOGY TRUST BLOCK
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center mb-8">
             <p className="mb-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400">Методология на изчисленията</p>
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">Как изчисляваме реалната ви заплата</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-white">Как изчисляваме реалната ви заплата</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-7">
@@ -502,12 +502,12 @@ export default async function BgHomePage() {
                 ],
               },
             ].map((block) => (
-              <div key={block.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+              <div key={block.title} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
                 <div className="text-2xl mb-3">{block.icon}</div>
-                <h3 className="text-sm font-black text-gray-900 mb-3">{block.title}</h3>
+                <h3 className="text-sm font-black text-white mb-3">{block.title}</h3>
                 <ul className="space-y-1.5">
                   {block.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                    <li key={item} className="flex items-start gap-2 text-xs text-gray-300 leading-snug">
                       <span className="text-emerald-500 font-black mt-0.5 shrink-0">·</span>
                       {item}
                     </li>
@@ -520,7 +520,7 @@ export default async function BgHomePage() {
           <div className="grid lg:grid-cols-2 gap-6 items-start">
             <div className="rounded-2xl border border-blue-100 bg-blue-50/30 p-5">
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Ключови предположения</p>
-              <ul className="space-y-2 text-xs text-gray-700">
+              <ul className="space-y-2 text-xs text-gray-200">
                 {[
                   "Основна заетост в Нидерландия (без прилагане на споразумения за избягване на двойно данъчно облагане)",
                   "48 работни седмици/год. (4 седмици отпуск включени)",
@@ -540,24 +540,24 @@ export default async function BgHomePage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+            <div className="rounded-2xl border border-white/10 overflow-hidden shadow-none">
               <div className="bg-gray-900 px-5 py-3">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                   Пример: Работник WML · €14,71/ч · 40ч/седм. · Реален данък 2026
                 </p>
               </div>
-              <div className="divide-y divide-gray-100">
+              <div className="divide-y divide-white/10">
                 {SALARY_ROWS.map((row) => (
                   <div key={row.label}
-                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white"}`}>
-                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-600"}`}>{row.label}</span>
+                    className={`flex items-center justify-between px-5 py-3 ${row.bold ? "bg-gray-900" : "bg-white/10"}`}>
+                    <span className={`text-sm ${row.bold ? "font-black text-white" : "text-gray-300"}`}>{row.label}</span>
                     <span className={`text-sm font-bold ${row.bold ? `text-lg font-black ${row.green ? "text-emerald-400" : "text-red-400"}` : row.green ? "text-emerald-600" : "text-red-500"}`}>
                       {row.amount}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="bg-gray-50 px-5 py-3 border-t border-gray-100">
+              <div className="bg-white/[0.06] px-5 py-3 border-t border-white/10">
                 <p className="text-[10px] text-gray-400">
                   Данък −€63 (реален loonheffing 2026 след облекченията AHK+AK) + €95 жилище + €25 транспорт + €35 застраховка + €25 адм.{" "}
                   <Link href="/methodology" className="text-blue-600 underline">Пълна методология</Link>
@@ -589,7 +589,7 @@ export default async function BgHomePage() {
               Виж проверени оферти →
             </a>
             <Link href="/agencies-with-housing"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-300 active:scale-[0.98]">
               Всички {housingCount} агенции с жилище
             </Link>
           </div>
@@ -606,13 +606,13 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §8b  HOW AGENCYCHECK WORKS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-200">
+      <section className="bg-[#0d1728] border-b border-white/[0.07]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
           <div className="text-center mb-7">
             <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5">
               Как работи AgencyCheck — и как печелим
             </p>
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+            <h2 className="text-xl sm:text-2xl font-black text-white">
               Честно за това как работи
             </h2>
           </div>
@@ -634,10 +634,10 @@ export default async function BgHomePage() {
                 body: "Агенциите не могат да плащат за по-добро място в класацията, за премахване на отзиви или за влияние върху резултатите си. Плащащите агенции не получават никакво предимство при свързването. Само оценките на работниците определят позицията им.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-2xl bg-white border border-gray-100 p-5">
+              <div key={item.title} className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 p-5">
                 <div className="text-2xl mb-3">{item.icon}</div>
-                <p className="text-sm font-black text-gray-900 mb-2">{item.title}</p>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.body}</p>
+                <p className="text-sm font-black text-white mb-2">{item.title}</p>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -657,11 +657,11 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §9  AGENCY OFFERS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-emerald-600">Какво предлагат най-добрите агенции</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-4">Какво включват офертите на най-добрите агенции</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">Какво включват офертите на най-добрите агенции</h2>
             <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
               Въз основа на {totalReviews}+ проверени доклада от работници. Знайте какво да търсите при избор на агенция.
             </p>
@@ -669,16 +669,16 @@ export default async function BgHomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {AGENCY_OFFERS.map((p, i) => (
               <div key={p.title}
-                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-gray-100 bg-gray-50 hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
+                className={`rounded-2xl border p-6 ${i === 0 ? "lg:col-span-1 border-emerald-100 bg-emerald-50/40" : "border-white/10 bg-white/[0.06] hover:border-emerald-100 hover:bg-emerald-50/20 transition-colors"}`}>
                 <div className="text-3xl mb-3">{p.icon}</div>
-                <h3 className="text-base font-black text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{p.body}</p>
+                <h3 className="text-base font-black text-white mb-2">{p.title}</h3>
+                <p className="text-sm text-gray-300 leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
           <div className="text-center">
             <Link href="/reviews"
-              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors px-7 py-3.5 text-sm font-bold text-gray-700 shadow-sm">
+              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.07]/10 hover:bg-white/5 transition-colors px-7 py-3.5 text-sm font-bold text-gray-200 shadow-none">
               📋 Прочети реалните преживявания на работниците →
             </Link>
           </div>
@@ -688,14 +688,14 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §10  HOUSING PROOF
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Реално жилище — не рекламни материали</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Вижте къде реално ще живеете</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Вижте къде реално ще живеете</h2>
             <p className="text-gray-500 text-sm max-w-md mx-auto">Снимки и описания, изпратени от работници. Никакви стокови снимки. Никакъв PR от агенции.</p>
           </div>
-          <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-6 sm:p-8">
+          <div className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 shadow-none p-6 sm:p-8">
             <WorkerHousingStrip />
           </div>
           <div className="mt-6 text-center">
@@ -710,11 +710,11 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           §11  VERIFIED AGENCY CARDS
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-18">
           <div className="text-center mb-9">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">Проверени агенции</p>
-            <h2 className="text-2xl sm:text-4xl font-black text-gray-900 mb-3">Прозрачни оферти — показан реален нетен доход</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Прозрачни оферти — показан реален нетен доход</h2>
             <p className="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed">
               Всяка карта показва прогнозния седмичен нетен доход след нидерландски данъци и удръжки.
             </p>
@@ -725,7 +725,7 @@ export default async function BgHomePage() {
               const meta = VERIFIED_JOB_META[agency.slug];
               return (
                 <div key={agency.slug}
-                  className="rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden flex flex-col group">
+                  className="rounded-2xl bg-white/[0.06]/[0.06] border border-white/10 shadow-none hover:bg-white/[0.10] hover:-translate-y-0.5 transition-all overflow-hidden flex flex-col group">
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 px-5 py-4">
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <div className="min-w-0">
@@ -741,9 +741,9 @@ export default async function BgHomePage() {
                   </div>
                   <div className="px-5 py-4 flex-1 space-y-3">
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2.5 text-center">
+                      <div className="rounded-xl bg-white/[0.06]/[0.06] border border-white/10 px-3 py-2.5 text-center">
                         <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Часова ставка</p>
-                        <p className="text-lg font-black text-gray-900">€{(meta?.hourlyRate ?? 14.71).toFixed(2)}</p>
+                        <p className="text-lg font-black text-white">€{(meta?.hourlyRate ?? 14.71).toFixed(2)}</p>
                       </div>
                       <div className="rounded-xl bg-emerald-50 border border-emerald-100 px-3 py-2.5 text-center">
                         <p className="text-[10px] font-bold text-emerald-600 uppercase mb-1">Прогн. нето/седм.</p>
@@ -753,7 +753,7 @@ export default async function BgHomePage() {
                     <div className="space-y-1.5 text-xs text-gray-500">
                       <div className="flex items-center justify-between">
                         <span>🏠 Цена жилище</span>
-                        <span className="font-bold text-gray-700">€{meta?.housingCost ?? 95}/седм.</span>
+                        <span className="font-bold text-gray-200">€{meta?.housingCost ?? 95}/седм.</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span>⭐ Оценка от работници</span>
@@ -761,11 +761,11 @@ export default async function BgHomePage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span>⚡ Време за отговор</span>
-                        <span className="font-bold text-gray-700">{meta?.responseTime ?? "< 24 часа"}</span>
+                        <span className="font-bold text-gray-200">{meta?.responseTime ?? "< 24 часа"}</span>
                       </div>
                     </div>
                   </div>
-                  <div className="px-5 py-4 border-t border-gray-100 bg-gray-50/50">
+                  <div className="px-5 py-4 border-t border-white/10 bg-white/5">
                     <ApplyBar
                       context={{ sourcePage: "/bg", sourceType: "agency_page", sourceLabel: `BG Homepage — ${agency.slug}`, defaultAccommodation: true }}
                       ctaText="Изпрати запитване" buttonOnly
@@ -784,10 +784,10 @@ export default async function BgHomePage() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <Link href="/agencies-with-housing"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-sm">
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-8 py-4 text-sm font-black text-white shadow-none">
               🏢 Всички {housingCount} агенции с жилище
             </Link>
-            <Link href="/agencies" className="text-sm text-gray-500 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/agencies" className="text-sm text-gray-500 hover:text-white font-medium transition-colors">
               Всички {totalAgencies} агенции →
             </Link>
           </div>
@@ -817,7 +817,7 @@ export default async function BgHomePage() {
                   лимити за удръжки за жилище SNF · надбавки за извънреден труд · изчисляване на vakantiegeld.
                 </p>
                 <Link href="/tools/payslip-checker"
-                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 transition-colors px-7 py-3.5 text-sm font-black text-white shadow-sm shadow-amber-900/40 active:scale-[0.98]">
+                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 transition-colors px-7 py-3.5 text-sm font-black text-white shadow-none shadow-amber-900/40 active:scale-[0.98]">
                   📄 Качи фиш за заплата — провери сега
                 </Link>
               </div>
@@ -849,29 +849,29 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           SEO CONTENT + CITY GRID
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-white border-b border-gray-100">
+      <section className="bg-[#0a111e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-3">Ръководство за работници</p>
-              <h2 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 leading-tight">
+              <h2 className="text-xl sm:text-2xl font-black text-white mb-5 leading-tight">
                 Всичко, което трябва да знаете преди работа в Нидерландия
               </h2>
-              <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-sm text-gray-300 leading-relaxed">
                 <p>
                   Нидерландската минимална заплата (<em>Wettelijk Minimumloon</em>) е{" "}
-                  <strong className="text-gray-900">€14,71/час през 2026 г.</strong> за работници
+                  <strong className="text-white">€14,71/час през 2026 г.</strong> за работници
                   на 21+ години. При 40 часа седмично брутото е точно €588/седмица
                   (€14,71 × 40 часа). Но след нидерландски данък върху доходите, жилище от агенцията, здравна
                   застраховка и транспорт, повечето работници задържат между{" "}
-                  <strong className="text-gray-900">€300–€370</strong> —
+                  <strong className="text-white">€300–€370</strong> —
                   около 50–63% от брутото, в зависимост от агенцията.
                 </p>
                 <p>
-                  Ключови правни защити, които трябва да познавате: <strong className="text-gray-900">ABU / NBBU CAO</strong>{" "}
+                  Ключови правни защити, които трябва да познавате: <strong className="text-white">ABU / NBBU CAO</strong>{" "}
                   регулира заплатите, надбавките за извънреден труд и платения отпуск.
-                  <strong className="text-gray-900"> SNF</strong> (Stichting Normering Flexwonen) определя максималните законни
-                  удръжки за жилище. <strong className="text-gray-900">Inspectie SZW</strong> прилага цялото трудово законодателство.
+                  <strong className="text-white"> SNF</strong> (Stichting Normering Flexwonen) определя максималните законни
+                  удръжки за жилище. <strong className="text-white">Inspectie SZW</strong> прилага цялото трудово законодателство.
                   AgencyCheck проверява агенциите спрямо всички три.
                 </p>
                 <p>
@@ -894,10 +894,10 @@ export default async function BgHomePage() {
                 { icon: "📋", href: "/work-in-netherlands-for-foreigners",  title: "Права и правно ръководство",        desc: "ABU CAO, WML, SNF — обяснени просто" },
               ].map((item) => (
                 <Link key={item.href} href={item.href}
-                  className="flex items-start gap-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
+                  className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.06] hover:bg-blue-50 hover:border-blue-100 transition-colors p-4 group">
                   <span className="text-xl mt-0.5">{item.icon}</span>
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{item.title}</p>
+                    <p className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">{item.title}</p>
                     <p className="text-xs text-gray-500 mt-0.5 leading-snug truncate">{item.desc}</p>
                   </div>
                   <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-400 transition-colors ml-auto mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
@@ -909,12 +909,12 @@ export default async function BgHomePage() {
           </div>
 
           {/* City grid */}
-          <div className="pt-8 border-t border-gray-100">
+          <div className="pt-8 border-t border-white/10">
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Разгледайте работни оферти по град</p>
             <div className="flex flex-wrap gap-2">
               {TOP_CITIES.slice(0, 18).map((c) => (
                 <Link key={c.slug} href={`/jobs-in-${c.slug}`}
-                  className="inline-flex items-center text-xs font-medium bg-white border border-gray-200 text-gray-700 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
+                  className="inline-flex items-center text-xs font-medium bg-white/[0.07]/[0.06] border border-white/15 text-gray-200 rounded-full px-3 py-1.5 hover:border-blue-300 hover:text-blue-700 transition-colors">
                   💼 {c.name}
                 </Link>
               ))}
@@ -930,11 +930,11 @@ export default async function BgHomePage() {
       {/* ════════════════════════════════════════════════════════════
           FAQ
           ════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 border-b border-gray-100">
+      <section className="bg-[#0d1728] border-b border-white/[0.05]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center mb-10">
             <p className="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600">ЧЗВ</p>
-            <h2 className="text-2xl sm:text-3xl font-black text-gray-900">Въпроси, които работниците реално задават</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">Въпроси, които работниците реално задават</h2>
           </div>
           <HomepageFAQ />
           <div className="mt-8 text-center">
@@ -967,7 +967,7 @@ export default async function BgHomePage() {
                 Намери оферта — безплатно →
               </a>
               <a href="#calculator"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-200 active:scale-[0.98]">
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.07]/8 hover:bg-white/15 transition-colors px-8 py-4 text-base font-bold text-gray-200 active:scale-[0.98]">
                 🧮 Изчисли моята заплата
               </a>
             </div>
