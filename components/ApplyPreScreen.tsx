@@ -24,6 +24,84 @@ type Group  = "alone" | "partner" | "group";
 // Using string rather than a locked-down union so the input is flexible.
 type EUCountry = string;
 
+// ─── EU country validation ────────────────────────────────────────────────────
+// Covers all 27 EU member states + EEA (NO/IS/LI) + Switzerland + common
+// spelling variants and native-language names. Diacritics are stripped before
+// comparison so e.g. "România" and "Österreich" are matched correctly.
+const EU_COUNTRIES = new Set([
+  // Austria
+  "austria", "osterreich",
+  // Belgium
+  "belgium", "belgique", "belgie",
+  // Bulgaria
+  "bulgaria",
+  // Croatia
+  "croatia", "hrvatska",
+  // Cyprus
+  "cyprus", "kibris",
+  // Czech Republic
+  "czech republic", "czechia", "czech", "ceska republika", "cesko",
+  // Denmark
+  "denmark", "danmark",
+  // Estonia
+  "estonia", "eesti",
+  // Finland
+  "finland", "suomi",
+  // France
+  "france",
+  // Germany
+  "germany", "deutschland",
+  // Greece
+  "greece", "hellas", "ellada",
+  // Hungary
+  "hungary", "magyarorszag",
+  // Ireland
+  "ireland", "eire",
+  // Italy
+  "italy", "italia",
+  // Latvia
+  "latvia", "latvija",
+  // Lithuania
+  "lithuania", "lietuva",
+  // Luxembourg
+  "luxembourg",
+  // Malta
+  "malta",
+  // Netherlands
+  "netherlands", "the netherlands", "holland", "nederland",
+  // Poland
+  "poland", "polska",
+  // Portugal
+  "portugal",
+  // Romania
+  "romania", "rumania", "romainia",
+  // Slovakia
+  "slovakia", "slovak republic", "slovensko",
+  // Slovenia
+  "slovenia", "slovenija",
+  // Spain
+  "spain", "espana",
+  // Sweden
+  "sweden", "sverige",
+  // EEA + Switzerland (valid for NL work)
+  "norway", "norge",
+  "iceland", "island",
+  "liechtenstein",
+  "switzerland", "schweiz", "suisse",
+]);
+
+function isEuCountry(input: string): boolean {
+  const normalized = input
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")  // strip diacritics (România → romania)
+    .replace(/[^a-z\s]/g, "")         // strip non-letters
+    .replace(/\s+/g, " ")
+    .trim();
+  return EU_COUNTRIES.has(normalized);
+}
+
 // ─── URL builders ──────────────────────────────────────────────────────────────
 function buildRedirectUrl(
   jobId?:     string,
@@ -83,7 +161,7 @@ function buildCandidateMsg(
     `Hi, I want to apply for: ${jobTitle}${srcTag}`,
     ``,
     `Candidate details:`,
-    `- EU citizenship: ${citizenship.trim()} (EU)`,
+    `- EU citizenship: ${citizenship.trim()}`,
     `- BSN: ${bsnLabel[bsn]}`,
     `- Driving licence: ${driving === "yes" ? "Yes" : "No"}`,
     `- Housing needed: ${housing === "yes" ? "Yes" : "No"}`,
@@ -390,6 +468,12 @@ export default function ApplyPreScreen({
   function handleEuContinue() {
     if (citizenship === null || citizenship.trim().length < 2) {
       setErrors(true);
+      return;
+    }
+    // Block non-EU nationalities — validate against known EU/EEA country list
+    if (!isEuCountry(citizenship)) {
+      setScreen("disqualified");
+      trackFunnel({ sessionId: sessionIdRef.current, event: "disqualified", step: "gate", jobId, source });
       return;
     }
     setErrors(false);
