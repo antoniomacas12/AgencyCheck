@@ -83,6 +83,8 @@ const EU_COUNTRIES = new Set([
   "spain", "espana",
   // Sweden
   "sweden", "sverige",
+  // Ukraine — Temporary Protection Directive (valid for NL work since 2022)
+  "ukraine", "ukrainian",
   // EEA + Switzerland (valid for NL work)
   "norway", "norge",
   "iceland", "island",
