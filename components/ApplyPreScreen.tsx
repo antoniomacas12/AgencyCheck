@@ -161,7 +161,7 @@ function buildCandidateMsg(
     `Hi, I want to apply for: ${jobTitle}${srcTag}`,
     ``,
     `Candidate details:`,
-    `- EU citizenship: ${citizenship.trim()}`,
+    `- EU citizenship: ${citizenship.trim()} (EU)`,
     `- BSN: ${bsnLabel[bsn]}`,
     `- Driving licence: ${driving === "yes" ? "Yes" : "No"}`,
     `- Housing needed: ${housing === "yes" ? "Yes" : "No"}`,
