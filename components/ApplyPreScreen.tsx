@@ -1130,7 +1130,7 @@ export default function ApplyPreScreen({
               </p>
             )}
 
-            {/* handleSubmit opens about:blank synchronously then does async server check.
+            {/* handleSubmit runs server dedup check then shows the completed screen.
                 The button is disabled while the check is in-flight (submitting=true). */}
             <button
               onClick={handleSubmit}

@@ -2,7 +2,7 @@
  * POST /api/check-phone
  *
  * Read-only server-side duplicate check before the WhatsApp window opens.
- * Called from ApplyPreScreen immediately after window.open("about:blank").
+ * Called from ApplyPreScreen before showing the completed screen and WA redirect.
  * Returns { allowed: boolean }.
  *
  * Allows: phone not seen in last 24 h.

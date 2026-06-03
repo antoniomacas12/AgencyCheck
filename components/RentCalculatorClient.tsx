@@ -1174,7 +1174,7 @@ function InternalLinks() {
       <p className="text-[11px] font-black text-gray-400 uppercase tracking-wider mb-3">Related tools &amp; resources</p>
       <div className="grid grid-cols-1 gap-2">
         {[
-          { href: "/agencies-with-housing",          emoji: "🏠", label: "Browse agencies with accommodation included" },
+          { href: "/best-agencies-with-housing-netherlands",          emoji: "🏠", label: "Browse agencies with accommodation included" },
           { href: "/tools/salary-calculator",        emoji: "💶", label: "Weekly salary calculator — real income after deductions" },
           { href: "/tools/real-salary-calculator",   emoji: "📊", label: "Full salary calculator with Dutch income tax 2026" },
           { href: "/tools/payslip-checker",          emoji: "🧾", label: "Payslip checker — verify your deductions are correct" },

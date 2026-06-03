@@ -1116,7 +1116,7 @@ function InternalLinks() {
           { href: "/tools/salary-calculator",       emoji: "💶", label: "Weekly Salary Calculator — real income after deductions" },
           { href: "/tools/real-salary-calculator",  emoji: "📊", label: "Full Dutch salary calculator with loonheffing 2026" },
           { href: "/tools/payslip-checker",         emoji: "🧾", label: "Payslip checker — verify your deductions are correct" },
-          { href: "/agencies-with-housing",         emoji: "🏠", label: "Browse agencies with accommodation included" },
+          { href: "/best-agencies-with-housing-netherlands",         emoji: "🏠", label: "Browse agencies with accommodation included" },
           { href: "/agencies",                      emoji: "🔍", label: "Compare 150+ verified Dutch employment agencies" },
         ].map(link => (
           <Link

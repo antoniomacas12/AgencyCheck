@@ -101,7 +101,7 @@ export default function WorkerHousingStrip() {
             <span className="font-semibold text-gray-700">Real conditions. Real prices.</span>
           </p>
         </div>
-        <Link href="/agencies-with-housing"
+        <Link href="/best-agencies-with-housing-netherlands"
           className="hidden sm:block text-xs text-brand-600 font-semibold hover:underline shrink-0 mb-1">
           All housing agencies →
         </Link>

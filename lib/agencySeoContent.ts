@@ -413,7 +413,7 @@ Real weekly income works out to: €345/week at WML day shifts. After SNF housin
       "Housing information not always proactively disclosed",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
       { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
     ],
@@ -478,7 +478,7 @@ In practice, workers keep: €340–€355/week at WML day shifts. After third-p
       "Premium shift payslip accuracy requires worker verification",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
       { href: "/guides/real-salary-netherlands", label: "What workers really earn in the Netherlands" },
     ],
@@ -613,7 +613,7 @@ What actually lands in the bank: €390–€520/week depending on skill level a
     ],
     internalLinks: [
       { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/tools/real-income-calculator", label: "Calculate your real weekly take-home" },
     ],
   },
@@ -1069,7 +1069,7 @@ Realistic take-home: €340–€355/week at WML. After housing at €90–€11
     internalLinks: [
       { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
       { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -1511,7 +1511,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "Greenhouse environment not suitable for all workers (heat, humidity)",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
       { href: "/tools/salary-calculator", label: "Dutch salary calculator 2026" },
     ],
@@ -1809,7 +1809,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "Limited third-party reviews for independent verification of current conditions",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/tools/shift-tracker", label: "Track your shifts and verify payslip accuracy" },
     ],
   },
@@ -2254,7 +2254,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
     ],
     internalLinks: [
       { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -2630,7 +2630,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
     ],
     internalLinks: [
       { href: "/tools/payslip-checker", label: "Payslip checker: verify every line of your pay" },
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -2875,7 +2875,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "No housing support for students relocating to Amsterdam for an internship placement",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/agencies", label: "Compare agencies: reviews, housing, pay" },
     ],
   },
@@ -2916,7 +2916,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "Night shift concentration in 24-hour logistics sites requires comfort with irregular hours",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/guides/real-salary-netherlands", label: "Salary benchmarks for Dutch labour market 2026" },
     ],
   },
@@ -3121,7 +3121,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "No support for non-digital or traditional marketing roles",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/agencies", label: "Browse all verified agencies on AgencyCheck" },
     ],
   },
@@ -3572,7 +3572,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "Limited public information on specific programme costs — typically negotiated at employer level",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
     ],
   },
@@ -3849,7 +3849,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
     ],
     internalLinks: [
       { href: "/tools/payslip-checker", label: "Check your payslip for errors" },
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -3957,7 +3957,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
     ],
     internalLinks: [
       { href: "/guides/hidden-costs-netherlands", label: "What agencies deduct — and what is legal" },
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -4313,7 +4313,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
     ],
     internalLinks: [
       { href: "/guides/real-salary-netherlands", label: "Real salary guide: every job type in the Netherlands" },
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
     ],
   },
 
@@ -4383,7 +4383,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "Extra due diligence required compared to certified, publicly visible agencies",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/tools/real-salary-calculator", label: "Real salary calculator for Netherlands workers" },
     ],
   },
@@ -4419,7 +4419,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "Premium pay must be verified on payslips — Horeca sector has inconsistent application history",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "Agencies that provide housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "Agencies that provide housing in the Netherlands" },
       { href: "/tools/real-income-calculator", label: "Net pay calculator with shift premiums" },
     ],
   },
@@ -4527,7 +4527,7 @@ Real weekly income works out to: €340–€355/week at WML day shifts, approxi
       "Workers frequently cycled through seasonal assignments without reaching Phase B protections",
     ],
     internalLinks: [
-      { href: "/agencies-with-housing", label: "All agencies with SNF-certified housing in the Netherlands" },
+      { href: "/best-agencies-with-housing-netherlands", label: "All agencies with SNF-certified housing in the Netherlands" },
       { href: "/guides/snf-housing-rights", label: "SNF housing standards and your rights as a flex worker" },
     ],
   },
