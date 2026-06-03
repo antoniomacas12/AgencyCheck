@@ -994,8 +994,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // ── New SEO pages (best-agencies/[jobtype] + nl/salaris/[slug]) ───────────────
+  const bestAgenciesJobTypePages: MetadataRoute.Sitemap = [
+    "warehouse-worker",
+    "order-picker",
+    "forklift-driver",
+    "production-worker",
+    "reach-truck-driver",
+    "greenhouse-worker",
+    "truck-driver",
+    "machine-operator",
+    "assembly-worker",
+    "delivery-driver",
+    "logistics-operator",
+  ].map((jobtype) => ({
+    url:             `${BASE_URL}/best-agencies/${jobtype}`,
+    lastModified:    STATIC_DATE,
+    changeFrequency: "monthly" as const,
+    priority:        0.85,
+  }));
+
+  const dutchSalaryPages: MetadataRoute.Sitemap = Object.keys(JOB_SALARY_DATA).map((jobSlug) => ({
+    url:             `${BASE_URL}/nl/salaris/${jobSlug}-nederland`,
+    lastModified:    STATIC_DATE,
+    changeFrequency: "monthly" as const,
+    priority:        0.85,
+  }));
+
   return [
     ...corePages,
+    ...bestAgenciesJobTypePages,
+    ...dutchSalaryPages,
     ...agencyPages,
     ...dbAgencyPages,
     ...agencySubPages,
