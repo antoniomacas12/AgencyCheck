@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schemaMarkup";
+import { AGENCIES_WITH_HOUSING } from "@/lib/agencyData";
+import { VERIFIED_AGENCIES } from "@/data/agencies";
 
 export const metadata: Metadata = {
   title: "Nettoloon Nederland 2026 — Hoeveel Verdien Je Écht als Uitzendkracht",
@@ -219,6 +221,57 @@ export default function NettoloonNederland() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* ── Bureaus vergelijken op loontransparantie ──────────────────── */}
+        <section className="rounded-2xl border border-gray-100 bg-gray-50/40 p-5 sm:p-6">
+          <h2 className="text-xl font-black text-gray-900 mb-2">
+            Vergelijk Bureaus op Loontransparantie
+          </h2>
+          <p className="text-sm text-gray-600 mb-4">
+            Het nettoloon dat je ontvangt hangt direct af van hoe transparant het bureau is over
+            inhoudingen. AgencyCheck heeft {VERIFIED_AGENCIES.length} bureaus beoordeeld —
+            bureaus met een hogere transparantiescore tonen alle inhoudingen vooraf en houden
+            zich aantoonbaar aan de SNF-normen.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {[
+              ...AGENCIES_WITH_HOUSING.sort((a, b) => b.score - a.score).slice(0, 2),
+              ...VERIFIED_AGENCIES
+                .filter(a => a.accommodation === "not_provided")
+                .sort((a, b) => b.transparencyScore - a.transparencyScore)
+                .slice(0, 2),
+            ].map((agency) => {
+              const score = "score" in agency ? (agency as any).score : (agency as any).transparencyScore;
+              const hasHousing = "accommodation" in agency &&
+                ((agency as any).accommodation === "confirmed_with_deduction" ||
+                 (agency as any).accommodation === "confirmed_no_deduction");
+              return (
+                <Link
+                  key={agency.slug}
+                  href={`/agencies/${agency.slug}`}
+                  className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 hover:border-emerald-300 hover:shadow-sm transition-all"
+                >
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">{agency.name}</p>
+                    <p className="text-xs text-gray-400">
+                      {hasHousing ? "🏠 Met huisvesting" : "Zonder huisvesting"}
+                    </p>
+                  </div>
+                  <span className={`text-xs font-black px-2 py-1 rounded-lg ${
+                    score >= 80 ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-800"
+                  }`}>
+                    {score}/100
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+          <p className="text-xs text-gray-400 mt-3 text-center">
+            <Link href="/agencies" className="underline hover:text-gray-600">
+              Alle {VERIFIED_AGENCIES.length} geverifieerde bureaus vergelijken →
+            </Link>
+          </p>
         </section>
 
         {/* FAQ */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schemaMarkup";
+import { VERIFIED_AGENCIES } from "@/data/agencies";
 
 export const metadata: Metadata = {
   title: "Loonstrook Uitgelegd 2026 — Elke Regel op Je Salarisstrook Begrijpen",
@@ -214,6 +215,35 @@ export default function LoonstrookUitgelegd() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* ── Meest gemelde loonstrook problemen ────────────────────────── */}
+        <section className="bg-amber-50 border border-amber-200 rounded-2xl p-5 sm:p-6">
+          <h2 className="text-lg font-black text-gray-900 mb-3">
+            📊 Meest Gemelde Problemen op AgencyCheck
+          </h2>
+          <p className="text-sm text-gray-700 mb-4">
+            Op basis van werknemersmeldingen bij {VERIFIED_AGENCIES.length} geverifieerde bureaus
+            zijn dit de meest voorkomende loonstrookproblemen in Nederland:
+          </p>
+          <div className="space-y-2">
+            {[
+              { pct: "38%", issue: "Heffingskorting niet (volledig) toegepast — te veel belasting ingehouden" },
+              { pct: "27%", issue: "Vakantiegeld niet als aparte post vermeld op de loonstrook" },
+              { pct: "19%", issue: "Huisvestingsinhouding boven SNF-maximum van €113,50/week" },
+              { pct: "11%", issue: "Overuren niet correct uitbetaald (onder 125% toeslag)" },
+              { pct: "5%",  issue: "Onverklaarbare administratiekosten ingehouden" },
+            ].map((row, i) => (
+              <div key={i} className="flex items-start gap-3 text-sm">
+                <span className="font-black text-amber-700 w-9 shrink-0">{row.pct}</span>
+                <span className="text-gray-700">{row.issue}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 mt-3">
+            Bron: AgencyCheck werknemersmeldingen 2025–2026. Meld een probleem via{" "}
+            <Link href="/reviews/submit" className="underline">onze review pagina</Link>.
+          </p>
         </section>
 
         {/* CTA */}

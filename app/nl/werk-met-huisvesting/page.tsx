@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schemaMarkup";
+import { AGENCIES_WITH_HOUSING, type AgencyCardData } from "@/lib/agencyData";
 
 export const metadata: Metadata = {
   title: "Werk met Huisvesting Nederland 2026 — Uitzendbureaus met Woning Inbegrepen",
@@ -205,6 +206,78 @@ export default function WerkMetHuisvestingPage() {
           >
             Bekijk uitzendbureaus met huisvesting →
           </Link>
+        </section>
+
+        {/* ── Geverifieerde bureaus met huisvesting ──────────────────────── */}
+        <section>
+          <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+            <h2 className="text-2xl font-black text-gray-900">
+              Geverifieerde Bureaus met SNF-huisvesting
+            </h2>
+            <span className="text-xs bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-full font-bold">
+              {AGENCIES_WITH_HOUSING.length} bureaus
+            </span>
+          </div>
+          <p className="text-sm text-gray-500 mb-5">
+            Onafhankelijk geverifieerd door AgencyCheck op SNF-certificering en loonopenbaarheid.
+            Transparantiescore: 0–100 (boven 75 = betrouwbaar).
+          </p>
+          <div className="space-y-2">
+            {AGENCIES_WITH_HOUSING
+              .sort((a, b) => b.score - a.score)
+              .slice(0, 10)
+              .map((agency) => (
+                <div
+                  key={agency.slug}
+                  className="flex items-center justify-between gap-3 rounded-xl border border-gray-100 px-4 py-3 hover:border-emerald-200 hover:bg-emerald-50/20 transition-all"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex flex-col items-center shrink-0 w-10">
+                      <span className={`text-xs font-black ${agency.score >= 80 ? "text-emerald-700" : agency.score >= 65 ? "text-amber-600" : "text-red-600"}`}>
+                        {agency.score}
+                      </span>
+                      <div className="w-8 h-1 rounded-full bg-gray-100 overflow-hidden mt-0.5">
+                        <div
+                          className={`h-full rounded-full ${agency.score >= 80 ? "bg-emerald-500" : agency.score >= 65 ? "bg-amber-400" : "bg-red-400"}`}
+                          style={{ width: `${agency.score}%` }}
+                        />
+                      </div>
+                    </div>
+                    <div className="min-w-0">
+                      <Link
+                        href={`/agencies/${agency.slug}`}
+                        className="text-sm font-bold text-gray-900 hover:text-emerald-700 transition-colors"
+                      >
+                        {agency.name}
+                      </Link>
+                      <p className="text-xs text-gray-400 truncate">
+                        {agency.cities?.slice(0, 3).map((c) => c.charAt(0).toUpperCase() + c.slice(1)).join(", ")}
+                        {(agency.cities?.length ?? 0) > 3 && ` +${(agency.cities?.length ?? 0) - 3}`}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full font-semibold hidden sm:inline">
+                      🏠 SNF
+                    </span>
+                    <Link
+                      href={`/agencies/${agency.slug}`}
+                      className="text-xs font-bold text-brand-600 hover:underline"
+                    >
+                      Reviews →
+                    </Link>
+                  </div>
+                </div>
+              ))}
+          </div>
+          <div className="mt-4 text-center">
+            <Link
+              href="/best-agencies-with-housing-netherlands"
+              className="text-sm font-bold text-emerald-700 hover:underline"
+            >
+              Alle {AGENCIES_WITH_HOUSING.length} bureaus met SNF-huisvesting →
+            </Link>
+          </div>
         </section>
 
         {/* FAQ */}

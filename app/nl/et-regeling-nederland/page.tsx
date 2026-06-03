@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schemaMarkup";
+import { AGENCIES_WITH_HOUSING, type AgencyCardData } from "@/lib/agencyData";
 
 export const metadata: Metadata = {
   title: "ET-regeling Nederland 2026 — Belastingvrije Vergoeding voor Uitzendkrachten",
@@ -231,6 +232,46 @@ export default function EtRegelingNederlandPage() {
           </div>
           <p className="text-xs text-gray-400 mt-2">
             Indicatieve bedragen. Het werkelijke ET-bedrag hangt af van de situatie en het bureau.
+          </p>
+        </section>
+
+        {/* ── Bureaus en ET-regeling ─────────────────────────────────────── */}
+        <section className="rounded-2xl border border-gray-100 bg-gray-50/40 p-5 sm:p-6">
+          <h2 className="text-xl font-black text-gray-900 mb-2">
+            Vraag ET-toeslag aan bij Je Bureau
+          </h2>
+          <p className="text-sm text-gray-600 mb-4">
+            Transparante bureaus met een hoge AgencyCheck-score passen de ET-regeling
+            doorgaans automatisch toe. Bureaus met een lagere score vragen het minder
+            proactief aan — vraag het expliciet vóór je tekent. Gebruik onze bureau-reviews
+            om te zien wat andere werknemers melden over ET-toepassing.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {AGENCIES_WITH_HOUSING
+              .sort((a, b) => b.score - a.score)
+              .slice(0, 4)
+              .map((agency) => (
+                <Link
+                  key={agency.slug}
+                  href={`/agencies/${agency.slug}`}
+                  className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 hover:border-emerald-300 hover:shadow-sm transition-all group"
+                >
+                  <div>
+                    <p className="text-sm font-bold text-gray-900 group-hover:text-emerald-700">{agency.name}</p>
+                    <p className="text-xs text-gray-400">{agency.city}</p>
+                  </div>
+                  <span className={`text-xs font-black px-2 py-1 rounded-lg ${
+                    agency.score >= 80 ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-800"
+                  }`}>
+                    {agency.score}/100
+                  </span>
+                </Link>
+              ))}
+          </div>
+          <p className="text-xs text-gray-400 mt-3 text-center">
+            <Link href="/agencies" className="underline hover:text-gray-600">
+              Alle geverifieerde bureaus — inclusief ET-ervaringen →
+            </Link>
           </p>
         </section>
 

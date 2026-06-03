@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schemaMarkup";
+import { AGENCIES_WITH_HOUSING, type AgencyCardData } from "@/lib/agencyData";
 
 export const metadata: Metadata = {
   title: "BSN-nummer Nederland 2026 — Aanvragen als EU-uitzendkracht",
@@ -197,6 +198,46 @@ export default function BsnNummerNederland() {
             tot 52% inhouding in plaats van ~10–15%. Dit leidt tot een aanzienlijk lagere eerste uitbetaling.
             Na doorgave van je BSN wordt het correcte tarief toegepast en wordt de overpayment verrekend in
             de jaarlijkse aangifte. Zorg dus dat je zo snel mogelijk je BSN aanvraagt.
+          </p>
+        </section>
+
+        {/* ── Bureaus die BSN-registratie regelen ──────────────────────── */}
+        <section className="rounded-2xl border border-blue-100 bg-blue-50/30 p-5">
+          <h2 className="text-lg font-black text-gray-900 mb-2">
+            Welk Bureau Regelt BSN-registratie voor Jou?
+          </h2>
+          <p className="text-sm text-gray-600 mb-4">
+            Betrouwbare bureaus regelen de RNI-afspraak binnen 3–5 werkdagen na aankomst.
+            Bureaus met een hogere transparantiescore op AgencyCheck bieden doorgaans
+            betere onboardingondersteuning — inclusief BSN, zorgverzekering en DigiD.
+          </p>
+          <div className="space-y-2">
+            {AGENCIES_WITH_HOUSING
+              .sort((a, b) => b.score - a.score)
+              .slice(0, 5)
+              .map((agency) => (
+                <div key={agency.slug} className="flex items-center justify-between rounded-lg bg-white border border-blue-100 px-3 py-2.5">
+                  <Link
+                    href={`/agencies/${agency.slug}`}
+                    className="text-sm font-semibold text-gray-900 hover:text-blue-700 hover:underline"
+                  >
+                    {agency.name}
+                  </Link>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-gray-500 hidden sm:inline">
+                      {agency.city}
+                    </span>
+                    <span className={`text-xs font-black px-2 py-0.5 rounded-full ${
+                      agency.score >= 80 ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-800"
+                    }`}>
+                      {agency.score}/100
+                    </span>
+                  </div>
+                </div>
+              ))}
+          </div>
+          <p className="text-xs text-gray-400 mt-3">
+            <Link href="/agencies" className="underline">Alle geverifieerde bureaus →</Link>
           </p>
         </section>
 

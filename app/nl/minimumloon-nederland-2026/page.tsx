@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { VERIFIED_AGENCIES } from "@/data/agencies";
 
 export const metadata: Metadata = {
   title: "Minimumloon Nederland 2026 — Uurloon, Weekbedrag & Aftrekposten",
@@ -368,6 +369,77 @@ export default function MinimumloonNederland2026Page() {
             >
               Bekijk vacatures bij geverifieerde uitzendbureaus →
             </Link>
+          </section>
+
+          {/* ── Bureaus op transparantie ───────────────────────────────────── */}
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Welke Uitzendbureaus Betalen Transparant?
+            </h2>
+            <p className="text-gray-600 text-sm mb-5">
+              AgencyCheck heeft {VERIFIED_AGENCIES.length} uitzendbureaus onafhankelijk beoordeeld
+              op loonopenbaarheid, SNF-certificering en naleving van de WML. Bureaus met een score
+              boven 75 publiceren hun inhoudingen vooraf en staan onder ABU/NBBU toezicht.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-100 text-left">
+                    <th className="px-4 py-3 font-semibold text-gray-700">Bureau</th>
+                    <th className="px-4 py-3 font-semibold text-gray-700 text-center">Transparantiescore</th>
+                    <th className="px-4 py-3 font-semibold text-gray-700 hidden sm:table-cell">Huisvesting</th>
+                    <th className="px-4 py-3 font-semibold text-gray-700 hidden sm:table-cell">Stad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {VERIFIED_AGENCIES
+                    .sort((a, b) => b.transparencyScore - a.transparencyScore)
+                    .slice(0, 8)
+                    .map((agency, i) => (
+                      <tr key={agency.slug} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                        <td className="px-4 py-3">
+                          <Link
+                            href={`/agencies/${agency.slug}`}
+                            className="font-medium text-gray-900 hover:text-emerald-700 hover:underline"
+                          >
+                            {agency.name}
+                          </Link>
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          <span className={`text-xs font-black px-2.5 py-1 rounded-full ${
+                            agency.transparencyScore >= 80
+                              ? "bg-emerald-100 text-emerald-800"
+                              : agency.transparencyScore >= 65
+                              ? "bg-amber-100 text-amber-800"
+                              : "bg-red-100 text-red-800"
+                          }`}>
+                            {agency.transparencyScore}/100
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 hidden sm:table-cell text-gray-600 text-xs">
+                          {agency.accommodation === "confirmed_with_deduction" || agency.accommodation === "confirmed_no_deduction"
+                            ? "✅ SNF-gecertificeerd"
+                            : agency.accommodation === "not_provided"
+                            ? "Geen huisvesting"
+                            : "Onbekend"}
+                        </td>
+                        <td className="px-4 py-3 hidden sm:table-cell text-gray-500 text-xs">
+                          {agency.city ?? "—"}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-400 mt-2">
+              Bron: AgencyCheck verificatie-onderzoek 2026 — gebaseerd op openbare data,
+              werknemersmeldingen en officiële registraties. Scores worden periodiek bijgewerkt.
+            </p>
+            <div className="mt-3 text-center">
+              <Link href="/agencies" className="text-sm font-bold text-emerald-700 hover:underline">
+                Alle {VERIFIED_AGENCIES.length} geverifieerde bureaus bekijken →
+              </Link>
+            </div>
           </section>
 
           {/* FAQ */}
