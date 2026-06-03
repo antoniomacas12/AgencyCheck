@@ -1037,9 +1037,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority:        0.8,
     })),
-    // ── Dutch landing + job pages (/nl) ───────────────────────────────────────
-    { url: `${BASE_URL}/nl`,          lastModified: TODAY, changeFrequency: "weekly"   as const, priority: 0.9 },
-    { url: `${BASE_URL}/nl/vacatures`, lastModified: TODAY, changeFrequency: "daily"   as const, priority: 0.9 },
+    // ── Dutch landing + info pages (/nl) ─────────────────────────────────────
+    { url: `${BASE_URL}/nl`,                            lastModified: TODAY, changeFrequency: "weekly"  as const, priority: 0.9  },
+    { url: `${BASE_URL}/nl/minimumloon-nederland-2026`, lastModified: TODAY, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${BASE_URL}/nl/nettoloon-nederland`,        lastModified: TODAY, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${BASE_URL}/nl/werk-met-huisvesting`,       lastModified: TODAY, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${BASE_URL}/nl/loonstrook-uitgelegd`,       lastModified: TODAY, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${BASE_URL}/nl/bsn-nummer-nederland`,       lastModified: TODAY, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${BASE_URL}/nl/et-regeling-nederland`,      lastModified: TODAY, changeFrequency: "monthly" as const, priority: 0.85 },
+    { url: `${BASE_URL}/nl/uitzendbureaus-nederland`,   lastModified: TODAY, changeFrequency: "weekly"  as const, priority: 0.85 },
+    { url: `${BASE_URL}/nl/vacatures`,                  lastModified: TODAY, changeFrequency: "daily"   as const, priority: 0.9  },
     ...VACANCIES.map((v) => ({
       url:             `${BASE_URL}/nl/vacatures/${v.slug}`,
       lastModified:    TODAY,
