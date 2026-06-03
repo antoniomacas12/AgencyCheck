@@ -163,7 +163,7 @@ function buildCandidateMsg(
     `Hi, I want to apply for: ${jobTitle}${srcTag}`,
     ``,
     `Candidate details:`,
-    `- EU citizenship: ${citizenship.trim()} (EU)`,
+    `- EU citizenship: ${citizenship.trim()} ${/^(ukraine|ukrainian)$/i.test(citizenship.trim()) ? "(TPD)" : "(EU)"}`,
     `- BSN: ${bsnLabel[bsn]}`,
     `- Driving licence: ${driving === "yes" ? "Yes" : "No"}`,
     `- Housing needed: ${housing === "yes" ? "Yes" : "No"}`,
@@ -1170,6 +1170,14 @@ export default function ApplyPreScreen({
             >
               {t("apply_screen.btn_back")}
             </button>
+
+            {/* GDPR notice */}
+            <p className="text-center text-gray-600 text-[11px] mt-2 leading-snug">
+              By applying, your details are shared with a recruiter partner.{" "}
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-400">
+                Privacy Policy
+              </a>
+            </p>
           </>
         )}
 
