@@ -82,20 +82,20 @@ function SalaryGrid() {
   return (
     <div className="grid sm:grid-cols-3 gap-3">
       {items.map(({ slug, j, keepWkly }) => (
-        <div key={slug} className="card p-0 overflow-hidden text-center">
-          <div className="bg-green-600 px-3 py-3">
-            <p className="text-[9px] font-black uppercase tracking-widest text-green-200 mb-0.5">You keep</p>
+        <div key={slug} className="rounded-xl border border-white/[0.07] bg-white/[0.04] overflow-hidden text-center">
+          <div className="bg-emerald-600/80 px-3 py-3">
+            <p className="text-[9px] font-black uppercase tracking-widest text-emerald-200 mb-0.5">You keep</p>
             <p className="text-2xl font-black text-white">
               €{keepWkly}
-              <span className="text-xs font-normal text-green-200">/wk</span>
+              <span className="text-xs font-normal text-emerald-200">/wk</span>
             </p>
-            <p className="text-[9px] text-green-300 mt-0.5">after all costs</p>
+            <p className="text-[9px] text-emerald-300 mt-0.5">after all costs</p>
           </div>
           <div className="px-3 py-2.5">
             <p className="text-sm mb-1">{j.icon}</p>
-            <p className="text-xs font-semibold text-gray-700 mb-1">{j.title}</p>
+            <p className="text-xs font-semibold text-gray-200 mb-1">{j.title}</p>
             <p className="text-[10px] text-gray-400">gross €{j.avg}/hr − €140 housing − tax</p>
-            <Link href={`/jobs/${slug}`} className="block mt-2 text-[10px] text-brand-600 hover:underline font-semibold">
+            <Link href={`/jobs/${slug}`} className="block mt-2 text-[10px] text-emerald-400 hover:underline font-semibold">
               See {j.title.toLowerCase()} jobs →
             </Link>
           </div>
@@ -180,6 +180,7 @@ export default async function JobsWithAccommodationPage() {
   };
 
   return (
+    <div className="min-h-screen bg-[#0B1F14] text-white">
     <div className="max-w-4xl mx-auto px-4 py-8">
 
       {/* JSON-LD */}
@@ -188,37 +189,35 @@ export default async function JobsWithAccommodationPage() {
 
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">
-        <Link href="/" className="hover:text-brand-600">Home</Link>
+        <Link href="/" className="hover:text-emerald-400">Home</Link>
         <span>›</span>
-        <Link href="/jobs" className="hover:text-brand-600">Jobs</Link>
+        <Link href="/jobs" className="hover:text-emerald-400">Jobs</Link>
         <span>›</span>
-        <span className="text-gray-800 font-medium">Jobs with housing</span>
+        <span className="text-gray-300 font-medium">Jobs with housing</span>
       </nav>
 
-      {/* ══ SLIM HEADER ════════════════════════════════════════════════════════ */}
+      {/* SLIM HEADER */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-2xl">🏠</span>
           {housingListings.length > 0 && (
-            <span className="text-xs bg-green-100 text-green-800 border border-green-200 rounded-full px-2.5 py-1 font-bold">
+            <span className="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full px-2.5 py-1 font-bold">
               {housingListings.length} active listings
             </span>
           )}
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight mb-1">
+        <h1 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-1">
           Jobs with housing in the Netherlands
         </h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-400">
           Real weekly take-home pay shown after housing, tax &amp; costs.
         </p>
       </div>
 
-      {/* ══ SECTION 1: JOBS WITH HOUSING (ABOVE THE FOLD) ══════════════════════
-          This is the primary content — users see real jobs first.
-      ════════════════════════════════════════════════════════════════════════ */}
+      {/* SECTION 1: JOBS WITH HOUSING */}
       <section className="mb-8">
         <div className="flex items-center justify-between gap-2 mb-3">
-          <h2 className="text-base font-bold text-gray-900">
+          <h2 className="text-base font-bold text-white">
             Available jobs with housing
           </h2>
           <span className="text-[11px] text-gray-400 shrink-0">
@@ -229,9 +228,9 @@ export default async function JobsWithAccommodationPage() {
         {housingListings.length > 0 ? (
           <JobsWithHousingList listings={housingListings} />
         ) : (
-          <div className="rounded-xl border border-gray-200 bg-gray-50 px-6 py-10 text-center">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] px-6 py-10 text-center">
             <p className="text-3xl mb-3">📭</p>
-            <p className="text-sm font-semibold text-gray-700 mb-1">No active listings right now</p>
+            <p className="text-sm font-semibold text-gray-200 mb-1">No active listings right now</p>
             <p className="text-xs text-gray-400">
               We update listings regularly — register below and we&apos;ll notify you when new housing jobs appear.
             </p>
@@ -244,12 +243,12 @@ export default async function JobsWithAccommodationPage() {
           Confirmed housing first, then "available on request" listings.
       ════════════════════════════════════════════════════════════════════════ */}
 
-      {/* ── Confirmed housing ── */}
+      {/* Confirmed housing */}
       {vacanciesConfirmed.length > 0 && (
         <section className="mb-6">
           <div className="flex items-center gap-2 mb-3">
-            <h2 className="text-base font-bold text-gray-900">Direct jobs — housing included</h2>
-            <span className="text-[11px] bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-full px-2 py-0.5 font-bold">
+            <h2 className="text-base font-bold text-white">Direct jobs — housing included</h2>
+            <span className="text-[11px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full px-2 py-0.5 font-bold">
               {vacanciesConfirmed.length} jobs
             </span>
           </div>
@@ -258,16 +257,16 @@ export default async function JobsWithAccommodationPage() {
               <Link
                 key={v.slug}
                 href={`/apply/${v.slug}`}
-                className="card p-0 overflow-hidden flex flex-col hover:shadow-md hover:border-emerald-200 hover:-translate-y-0.5 transition-all"
+                className="rounded-xl border border-white/[0.07] bg-white/[0.04] overflow-hidden flex flex-col hover:border-emerald-500/30 hover:-translate-y-0.5 transition-all"
               >
-                <div className="bg-emerald-600 px-3.5 pt-3 pb-2.5">
+                <div className="bg-emerald-600/80 px-3.5 pt-3 pb-2.5">
                   <p className="text-[9px] font-black uppercase tracking-widest text-emerald-100 mb-0.5">Housing included</p>
                   <p className="text-sm font-black text-white leading-tight">{v.t}</p>
                 </div>
                 <div className="px-3.5 py-2.5 flex-1">
-                  <p className="text-xs text-gray-500 mb-1.5">📍 {v.l}</p>
+                  <p className="text-xs text-gray-400 mb-1.5">📍 {v.l}</p>
                   {v.sm > 0 && (
-                    <p className="text-sm font-bold text-gray-800">{v.s}</p>
+                    <p className="text-sm font-bold text-white">{v.s}</p>
                   )}
                   <div className="flex flex-wrap gap-1 mt-2">
                     {v.b.map((b) => (
@@ -278,7 +277,7 @@ export default async function JobsWithAccommodationPage() {
                   </div>
                 </div>
                 <div className="px-3.5 pb-3">
-                  <span className="block w-full text-center py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition">
+                  <span className="block w-full text-center py-1.5 rounded-lg bg-emerald-500 text-black text-xs font-bold hover:bg-emerald-400 transition">
                     Apply on WhatsApp →
                   </span>
                 </div>
@@ -288,39 +287,39 @@ export default async function JobsWithAccommodationPage() {
         </section>
       )}
 
-      {/* ── Housing available (ask when applying) ── */}
+      {/* Housing available */}
       {vacanciesAvailable.length > 0 && (
         <section className="mb-8">
           <div className="flex items-center gap-2 mb-1">
-            <h2 className="text-base font-bold text-gray-900">Jobs where housing may be available</h2>
-            <span className="text-[11px] bg-sky-100 text-sky-800 border border-sky-200 rounded-full px-2 py-0.5 font-bold">
+            <h2 className="text-base font-bold text-white">Jobs where housing may be available</h2>
+            <span className="text-[11px] bg-sky-500/20 text-sky-300 border border-sky-500/30 rounded-full px-2 py-0.5 font-bold">
               {vacanciesAvailable.length} jobs
             </span>
           </div>
           <p className="text-xs text-gray-400 mb-3">
             Most of these roles offer agency housing — confirm availability when you apply.
           </p>
-          <div className="rounded-xl border border-gray-100 divide-y divide-gray-100 overflow-hidden">
+          <div className="rounded-xl border border-white/[0.07] divide-y divide-white/[0.07] overflow-hidden">
             {vacanciesAvailable.map((v) => (
               <Link
                 key={v.slug}
                 href={`/apply/${v.slug}`}
-                className="flex items-center justify-between gap-3 px-4 py-3 bg-white hover:bg-sky-50/50 transition-colors group"
+                className="flex items-center justify-between gap-3 px-4 py-3 bg-white/[0.02] hover:bg-sky-500/10 transition-colors group"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-800 truncate group-hover:text-sky-700 transition-colors">
+                  <p className="text-sm font-semibold text-white truncate group-hover:text-sky-300 transition-colors">
                     {v.t}
                   </p>
                   <p className="text-xs text-gray-400 mt-0.5">
                     📍 {v.l}
-                    {v.sm > 0 && <span className="ml-2 text-emerald-600 font-medium">{v.s}</span>}
+                    {v.sm > 0 && <span className="ml-2 text-emerald-400 font-medium">{v.s}</span>}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-[10px] font-bold border rounded px-1.5 py-0.5 text-sky-600 bg-sky-50 border-sky-200 hidden sm:block">
+                  <span className="text-[10px] font-bold border rounded px-1.5 py-0.5 text-sky-300 bg-sky-500/10 border-sky-500/30 hidden sm:block">
                     🏠 Housing available
                   </span>
-                  <svg className="w-4 h-4 text-gray-300 group-hover:text-sky-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-gray-500 group-hover:text-sky-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
@@ -348,43 +347,42 @@ export default async function JobsWithAccommodationPage() {
         />
       </div>
 
-      {/* ══ SECTION 3: AGENCIES WITH HOUSING ═══════════════════════════════════ */}
+      {/* SECTION 3: AGENCIES WITH HOUSING */}
       <section className="mb-10">
         <div className="flex items-center justify-between gap-2 mb-3">
-          <h2 className="text-base font-bold text-gray-900">Agencies offering housing</h2>
-          <Link href="/best-agencies-with-housing-netherlands" className="text-xs text-brand-600 hover:underline font-medium shrink-0">
+          <h2 className="text-base font-bold text-white">Agencies offering housing</h2>
+          <Link href="/best-agencies-with-housing-netherlands" className="text-xs text-emerald-400 hover:underline font-medium shrink-0">
             See all →
           </Link>
         </div>
 
-        {/* Agencies that have active housing job listings */}
         {agenciesWithJobs.length > 0 && (
           <div className="grid sm:grid-cols-2 gap-3 mb-4">
             {agenciesWithJobs.map((agency) => {
               const jobCount = housingListings.filter((l) => l.agencySlug === agency.slug).length;
               return (
-                <div key={agency.id} className="card p-4 flex flex-col gap-2.5">
+                <div key={agency.id} className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-4 flex flex-col gap-2.5">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold text-gray-900 truncate">{agency.name}</p>
-                      <span className="inline-block text-[10px] font-semibold text-green-700 mt-0.5">
+                      <p className="text-sm font-bold text-white truncate">{agency.name}</p>
+                      <span className="inline-block text-[10px] font-semibold text-emerald-400 mt-0.5">
                         {accommodationLabel(agency.accommodation)}
                       </span>
                     </div>
-                    <span className="shrink-0 text-xs font-bold bg-brand-50 text-brand-700 border border-brand-100 rounded-full px-2.5 py-1 whitespace-nowrap">
+                    <span className="shrink-0 text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full px-2.5 py-1 whitespace-nowrap">
                       {jobCount} job{jobCount !== 1 ? "s" : ""}
                     </span>
                   </div>
 
                   {agency.description && (
-                    <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
+                    <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">
                       {agency.description}
                     </p>
                   )}
 
                   <Link
                     href={`/agencies/${agency.slug}`}
-                    className="text-xs font-semibold text-brand-600 hover:text-brand-800 hover:underline self-start"
+                    className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 hover:underline self-start"
                   >
                     View jobs →
                   </Link>
@@ -394,10 +392,9 @@ export default async function JobsWithAccommodationPage() {
           </div>
         )}
 
-        {/* Agencies with confirmed housing but no current listings */}
         {agenciesWithoutJobs.length > 0 && (
           <div>
-            <p className="text-[11px] text-gray-400 font-medium mb-2 uppercase tracking-wider">
+            <p className="text-[11px] text-gray-500 font-medium mb-2 uppercase tracking-wider">
               Also confirmed housing — no active listings right now
             </p>
             <div className="grid sm:grid-cols-3 gap-2">
@@ -405,10 +402,10 @@ export default async function JobsWithAccommodationPage() {
                 <Link
                   key={agency.id}
                   href={`/agencies/${agency.slug}`}
-                  className="card px-3 py-2.5 flex items-center justify-between hover:border-green-200 hover:bg-green-50/30 transition-all"
+                  className="rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 flex items-center justify-between hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
                 >
-                  <span className="text-xs font-medium text-gray-700 truncate">{agency.name}</span>
-                  <span className="text-[10px] text-green-600 shrink-0 ml-2">🏠 →</span>
+                  <span className="text-xs font-medium text-gray-300 truncate">{agency.name}</span>
+                  <span className="text-[10px] text-emerald-400 shrink-0 ml-2">🏠 →</span>
                 </Link>
               ))}
             </div>
@@ -416,60 +413,55 @@ export default async function JobsWithAccommodationPage() {
         )}
       </section>
 
-      {/* ══ SECTION 4: REALITY / SALARY INFO (educational — below the fold) ════
-          This is secondary content. Users who got here already understand
-          the job market. This helps them evaluate offers.
-      ════════════════════════════════════════════════════════════════════════ */}
+      {/* SECTION 4: REALITY / SALARY INFO */}
       <section className="mb-8">
-        <h2 className="text-base font-bold text-gray-900 mb-3">
+        <h2 className="text-base font-bold text-white mb-3">
           What you actually keep — real numbers
         </h2>
 
-        {/* Reality box */}
-        <div className="rounded-xl overflow-hidden border-2 border-red-200 mb-6">
-          <div className="bg-red-900 text-white px-4 py-3 flex items-center gap-2">
+        <div className="rounded-xl overflow-hidden border border-red-700/30 mb-6">
+          <div className="bg-red-900/40 px-4 py-3 flex items-center gap-2">
             <span className="text-lg shrink-0">⚠️</span>
-            <p className="text-sm font-black">{t("jobs_accommodation.reality_title")}</p>
+            <p className="text-sm font-black text-white">{t("jobs_accommodation.reality_title")}</p>
           </div>
-          <div className="bg-white px-4 py-4">
+          <div className="bg-white/[0.04] px-4 py-4">
             <div className="grid grid-cols-3 gap-3 text-center mb-3">
-              <div className="bg-gray-50 rounded-lg p-3">
-                <p className="text-xs text-gray-500 mb-1">{t("jobs_accommodation.reality_gross_label")}</p>
-                <p className="text-xl font-black text-gray-700">€600</p>
+              <div className="bg-white/[0.04] rounded-lg p-3">
+                <p className="text-xs text-gray-400 mb-1">{t("jobs_accommodation.reality_gross_label")}</p>
+                <p className="text-xl font-black text-gray-100">€600</p>
                 <p className="text-[10px] text-gray-400">{t("jobs_accommodation.reality_gross_hours")}</p>
               </div>
-              <div className="bg-red-50 rounded-lg p-3">
-                <p className="text-xs text-red-500 mb-1">{t("jobs_accommodation.reality_costs_label")}</p>
-                <p className="text-xl font-black text-red-600">−€357</p>
-                <p className="text-[10px] text-red-400">{t("jobs_accommodation.reality_costs_note")}</p>
+              <div className="bg-red-900/20 rounded-lg p-3">
+                <p className="text-xs text-red-400 mb-1">{t("jobs_accommodation.reality_costs_label")}</p>
+                <p className="text-xl font-black text-red-400">−€357</p>
+                <p className="text-[10px] text-red-400/70">{t("jobs_accommodation.reality_costs_note")}</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-3 border-2 border-green-200">
-                <p className="text-xs text-green-700 mb-1 font-bold">{t("jobs_accommodation.reality_keep_label")}</p>
-                <p className="text-xl font-black text-green-700">€243</p>
-                <p className="text-[10px] text-green-600">{t("jobs_accommodation.reality_keep_note")}</p>
+              <div className="bg-emerald-900/20 rounded-lg p-3 border border-emerald-700/30">
+                <p className="text-xs text-emerald-400 mb-1 font-bold">{t("jobs_accommodation.reality_keep_label")}</p>
+                <p className="text-xl font-black text-emerald-400">€243</p>
+                <p className="text-[10px] text-emerald-400/70">{t("jobs_accommodation.reality_keep_note")}</p>
               </div>
             </div>
-            <p className="text-xs text-gray-500 leading-relaxed">
+            <p className="text-xs text-gray-400 leading-relaxed">
               * {t("jobs_accommodation.reality_footnote")}
             </p>
           </div>
-          <div className="bg-gray-50 border-t border-gray-100 px-4 py-2 flex items-center justify-between gap-3">
-            <p className="text-xs text-gray-500">{t("jobs_accommodation.reality_enter_rate")}</p>
+          <div className="bg-white/[0.03] border-t border-white/[0.07] px-4 py-2 flex items-center justify-between gap-3">
+            <p className="text-xs text-gray-400">{t("jobs_accommodation.reality_enter_rate")}</p>
             <Link href="/tools/real-income-calculator"
-              className="text-xs font-bold text-brand-600 hover:text-brand-800 whitespace-nowrap">
+              className="text-xs font-bold text-emerald-400 hover:text-emerald-300 whitespace-nowrap">
               {t("jobs_accommodation.reality_calc_link")}
             </Link>
           </div>
         </div>
 
-        {/* Salary grid by job type */}
-        <h3 className="text-sm font-bold text-gray-700 mb-3">Weekly take-home by job type</h3>
+        <h3 className="text-sm font-bold text-gray-300 mb-3">Weekly take-home by job type</h3>
         <SalaryGrid />
       </section>
 
-      {/* ══ SECTION 5: CITIES ═══════════════════════════════════════════════════ */}
+      {/* SECTION 5: CITIES */}
       <section className="mb-8">
-        <h3 className="text-sm font-bold text-gray-700 mb-3">Jobs with housing by city</h3>
+        <h3 className="text-sm font-bold text-gray-300 mb-3">Jobs with housing by city</h3>
         <div className="grid sm:grid-cols-3 gap-2">
           {HOUSING_CITIES.map((c) => {
             const count = housingListings.filter(
@@ -479,11 +471,11 @@ export default async function JobsWithAccommodationPage() {
               <Link
                 key={c.slug}
                 href={`/cities/${c.slug}`}
-                className="card px-3 py-2.5 flex items-center justify-between hover:border-brand-200 hover:bg-brand-50/30 transition-all"
+                className="rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 flex items-center justify-between hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
               >
-                <span className="text-xs font-medium text-gray-800">{c.name}</span>
+                <span className="text-xs font-medium text-gray-200">{c.name}</span>
                 {count > 0 && (
-                  <span className="text-[10px] text-green-700 font-medium">{count} listing{count !== 1 ? "s" : ""}</span>
+                  <span className="text-[10px] text-emerald-400 font-medium">{count} listing{count !== 1 ? "s" : ""}</span>
                 )}
               </Link>
             );
@@ -491,13 +483,13 @@ export default async function JobsWithAccommodationPage() {
         </div>
       </section>
 
-      {/* ══ SECTION 6: CHECKLIST ════════════════════════════════════════════════ */}
+      {/* SECTION 6: CHECKLIST */}
       <section className="mb-8">
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-          <h2 className="font-bold text-amber-900 text-sm mb-2">
+        <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
+          <h2 className="font-bold text-amber-300 text-sm mb-2">
             {t("jobs_accommodation.checklist_title")}
           </h2>
-          <ul className="text-xs text-amber-800 space-y-1.5 leading-relaxed">
+          <ul className="text-xs text-amber-200/80 space-y-1.5 leading-relaxed">
             <li>{t("jobs_accommodation.checklist_1")}</li>
             <li>{t("jobs_accommodation.checklist_2")}</li>
             <li>{t("jobs_accommodation.checklist_3", { wml: WML_HOURLY_2026 })}</li>
@@ -509,14 +501,15 @@ export default async function JobsWithAccommodationPage() {
 
       {/* Trust + footer */}
       <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
-        <span className="text-[9px] font-bold uppercase tracking-widest bg-gray-100 text-gray-500 rounded-full px-2.5 py-1">{t("jobs_accommodation.trust_1")}</span>
-        <span className="text-[9px] font-bold uppercase tracking-widest bg-gray-100 text-gray-500 rounded-full px-2.5 py-1">{t("jobs_accommodation.trust_2")}</span>
-        <span className="text-[9px] font-bold uppercase tracking-widest bg-gray-100 text-gray-500 rounded-full px-2.5 py-1">{t("jobs_accommodation.trust_3")}</span>
+        <span className="text-[9px] font-bold uppercase tracking-widest bg-white/[0.06] text-gray-400 rounded-full px-2.5 py-1">{t("jobs_accommodation.trust_1")}</span>
+        <span className="text-[9px] font-bold uppercase tracking-widest bg-white/[0.06] text-gray-400 rounded-full px-2.5 py-1">{t("jobs_accommodation.trust_2")}</span>
+        <span className="text-[9px] font-bold uppercase tracking-widest bg-white/[0.06] text-gray-400 rounded-full px-2.5 py-1">{t("jobs_accommodation.trust_3")}</span>
       </div>
-      <p className="text-[10px] text-gray-400 text-center">
+      <p className="text-[10px] text-gray-500 text-center">
         {t("jobs_accommodation.footer_note")}
       </p>
 
+    </div>
     </div>
   );
 }
