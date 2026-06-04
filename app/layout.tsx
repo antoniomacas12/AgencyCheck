@@ -84,7 +84,7 @@ export default function RootLayout({
     // Default lang="en". LayoutClientShell patches this to the correct locale
     // for /pl/*, /ro/*, etc. routes via useEffect after hydration.
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
-      <body className={`${inter.className} bg-white flex flex-col min-h-screen overflow-x-hidden${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
+      <body className={`${inter.className} bg-[#0B1F14] flex flex-col min-h-screen overflow-x-hidden${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
         <LayoutClientShell footer={<Footer />}>
           {children}
         </LayoutClientShell>
