@@ -76,6 +76,7 @@ export default async function AgenciesPage() {
   });
 
   return (
+    <div className="min-h-screen bg-[#0B1F14] text-white">
     <div className="max-w-6xl mx-auto px-4 py-8">
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
@@ -95,43 +96,43 @@ export default async function AgenciesPage() {
           { label: t("agencies_page.stat_active_jobs"),     value: totalJobs,     icon: "💼", href: null             },
         ].map((stat) => (
           stat.href ? (
-            <Link key={stat.label} href={stat.href} className="card p-3 text-center hover:border-brand-100 hover:shadow-md transition-all">
+            <Link key={stat.label} href={stat.href} className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 text-center hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all">
               <span className="text-2xl">{stat.icon}</span>
-              <p className="text-xl font-bold text-gray-900 mt-1">{stat.value}</p>
-              <p className="text-xs text-gray-500">{stat.label}</p>
+              <p className="text-xl font-bold text-white mt-1">{stat.value}</p>
+              <p className="text-xs text-gray-400">{stat.label}</p>
             </Link>
           ) : (
-            <div key={stat.label} className="card p-3 text-center">
+            <div key={stat.label} className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 text-center">
               <span className="text-2xl">{stat.icon}</span>
-              <p className="text-xl font-bold text-gray-900 mt-1">{stat.value}</p>
-              <p className="text-xs text-gray-500">{stat.label}</p>
+              <p className="text-xl font-bold text-white mt-1">{stat.value}</p>
+              <p className="text-xs text-gray-400">{stat.label}</p>
             </div>
           )
         ))}
       </div>
 
-      {/* ── Review CTA banner ── */}
-      <div className="bg-brand-50 border border-brand-100 rounded-xl px-4 py-3 mb-7 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
+      {/* Review CTA banner */}
+      <div className="bg-emerald-900/20 border border-emerald-700/30 rounded-xl px-4 py-3 mb-7 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
         <div>
-          <p className="text-sm font-semibold text-brand-800">
+          <p className="text-sm font-semibold text-emerald-200">
             ✍️ {t("agencies_page.cta_no_reviews", { count: sorted.filter((a) => (a.reviewCount ?? 0) === 0).length })}
           </p>
-          <p className="text-xs text-brand-600 mt-0.5">
+          <p className="text-xs text-emerald-300/80 mt-0.5">
             {t("agencies_page.cta_no_reviews_sub")}
           </p>
         </div>
         <Link href="/share-experience"
-          className="shrink-0 text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg transition-colors">
+          className="shrink-0 text-xs font-semibold bg-emerald-500 hover:bg-emerald-400 text-black px-4 py-2 rounded-lg transition-colors">
           {t("agencies_page.cta_share")}
         </Link>
       </div>
 
       {/* ── Top agencies with most jobs ──────────────────────────────────────── */}
       <section className="mb-8">
-        <h2 className="text-base font-bold text-gray-900 mb-1">
+        <h2 className="text-base font-bold text-white mb-1">
           {t("agencies_page.top_agencies_title")}
         </h2>
-        <p className="text-xs text-gray-500 mb-4">
+        <p className="text-xs text-gray-400 mb-4">
           {t("agencies_page.top_agencies_sub")}
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -150,19 +151,19 @@ export default async function AgenciesPage() {
       <div className="flex gap-2 flex-wrap mb-6">
         <Link
           href="/best-agencies-with-housing-netherlands"
-          className="inline-flex items-center gap-1.5 text-xs font-medium bg-green-50 text-green-700 border border-green-200 rounded-full px-3 py-1.5 hover:bg-green-100 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full px-3 py-1.5 hover:bg-emerald-500/30 transition-colors"
         >
           {t("agencies_page.filter_with_housing")}
         </Link>
         <Link
           href="/compare"
-          className="inline-flex items-center gap-1.5 text-xs font-medium bg-brand-50 text-brand-700 border border-brand-200 rounded-full px-3 py-1.5 hover:bg-brand-100 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-full px-3 py-1.5 hover:bg-blue-500/30 transition-colors"
         >
           {t("agencies_page.filter_compare")}
         </Link>
         <Link
           href="/search"
-          className="inline-flex items-center gap-1.5 text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-200 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-medium bg-white/[0.06] text-gray-300 border border-white/[0.10] rounded-full px-3 py-1.5 hover:bg-white/[0.10] transition-colors"
         >
           {t("agencies_page.filter_search")}
         </Link>
@@ -171,10 +172,10 @@ export default async function AgenciesPage() {
       {/* ── Newly discovered agencies (reported by workers) ──────────────────── */}
       {workerReported.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-base font-bold text-gray-900 mb-1">
+          <h2 className="text-base font-bold text-white mb-1">
             Recently reported by workers
           </h2>
-          <p className="text-xs text-gray-500 mb-3">
+          <p className="text-xs text-gray-400 mb-3">
             These agencies were mentioned in worker reviews and automatically added.
             Official data has not yet been verified.
           </p>
@@ -183,10 +184,10 @@ export default async function AgenciesPage() {
               <Link
                 key={a.slug}
                 href={`/agencies/${a.slug}`}
-                className="card p-3 hover:shadow-md hover:border-brand-100 transition-all"
+                className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
               >
-                <p className="text-sm font-semibold text-gray-900 truncate">{a.name}</p>
-                <p className="text-xs text-gray-500 mt-0.5">
+                <p className="text-sm font-semibold text-white truncate">{a.name}</p>
+                <p className="text-xs text-gray-400 mt-0.5">
                   📍 {a.city !== "unknown" ? a.city : "Netherlands"}
                 </p>
                 {a.mentionCount > 0 && (
@@ -194,7 +195,7 @@ export default async function AgenciesPage() {
                     Mentioned in {a.mentionCount} review{a.mentionCount !== 1 ? "s" : ""}
                   </p>
                 )}
-                <span className="text-[10px] mt-1 inline-block bg-amber-50 text-amber-700 border border-amber-100 px-1.5 py-0.5 rounded-full font-medium">
+                <span className="text-[10px] mt-1 inline-block bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded-full font-medium">
                   Unverified
                 </span>
               </Link>
@@ -204,12 +205,13 @@ export default async function AgenciesPage() {
       )}
 
       {/* ── All agencies — searchable ─────────────────────────────────────────── */}
-      <h2 className="text-base font-bold text-gray-900 mb-4">{t("agencies_page.all_agencies_title")}</h2>
+      <h2 className="text-base font-bold text-white mb-4">{t("agencies_page.all_agencies_title")}</h2>
       <AgencyListClient agencies={sorted} jobCounts={jobCounts} locale={locale} />
 
-      <p className="mt-8 text-xs text-gray-400 text-center">
+      <p className="mt-8 text-xs text-gray-500 text-center">
         {t("agencies_page.footer_note")}
       </p>
+    </div>
     </div>
   );
 }

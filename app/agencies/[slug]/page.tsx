@@ -121,36 +121,36 @@ function JobCard({ job, t }: { job: JobListing; t: (key: string) => string }) {
   const keepMax     = salaryValid ? Math.round(job.salaryMax * 40 * 0.78) - housingDed : null;
   return (
     <Link href={`/jobs/${job.slug}`}
-      className="card p-0 hover:shadow-md hover:border-green-200 transition-all hover:-translate-y-0.5 flex flex-col overflow-hidden">
+      className="rounded-xl border border-white/[0.07] bg-white/[0.04] hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all hover:-translate-y-0.5 flex flex-col overflow-hidden">
       {keepMin !== null && keepMax !== null ? (
-        <div className="bg-green-600 px-3.5 pt-2.5 pb-2">
-          <p className="text-[8px] font-black uppercase tracking-widest text-green-200 mb-0.5">
+        <div className="bg-emerald-600/80 px-3.5 pt-2.5 pb-2">
+          <p className="text-[8px] font-black uppercase tracking-widest text-emerald-200 mb-0.5">
             {t("agency_detail.job_card_keep")}
           </p>
           <p className="text-xl font-black text-white leading-none">
             €{keepMin}–€{keepMax}
-            <span className="text-xs font-normal text-green-200">/week</span>
+            <span className="text-xs font-normal text-emerald-200">/week</span>
           </p>
         </div>
       ) : (
-        <div className="bg-gray-100 px-3.5 pt-2.5 pb-2">
-          <p className="text-xs font-medium text-gray-500">{t("agency_detail.job_card_no_estimate")}</p>
+        <div className="bg-white/[0.04] px-3.5 pt-2.5 pb-2">
+          <p className="text-xs font-medium text-gray-400">{t("agency_detail.job_card_no_estimate")}</p>
         </div>
       )}
       <div className="px-3.5 py-2.5 flex flex-col gap-1.5">
         <div className="flex items-center gap-2 min-w-0">
           <span className="text-base shrink-0">{job.icon}</span>
-          <p className="text-sm font-semibold text-gray-900 truncate">{job.title}</p>
+          <p className="text-sm font-semibold text-white truncate">{job.title}</p>
         </div>
-        <div className="flex flex-wrap items-center gap-1.5 text-xs text-gray-500">
+        <div className="flex flex-wrap items-center gap-1.5 text-xs text-gray-400">
           <span>📍 {job.city}</span>
-          {job.housing === "YES" && <span className="bg-gray-100 text-gray-500 rounded-full px-2 py-0.5">{t("agency_detail.job_card_housing")}</span>}
-          {job.transport === "YES" && <span className="bg-blue-50 text-blue-700 rounded-full px-2 py-0.5">{t("agency_detail.job_card_transport")}</span>}
+          {job.housing === "YES" && <span className="bg-white/[0.06] text-gray-300 rounded-full px-2 py-0.5">{t("agency_detail.job_card_housing")}</span>}
+          {job.transport === "YES" && <span className="bg-blue-500/20 text-blue-300 rounded-full px-2 py-0.5">{t("agency_detail.job_card_transport")}</span>}
         </div>
         {salaryValid && (
           <p className="text-[10px] text-gray-400">gross €{job.salaryMin.toFixed(2)}–€{Math.max(job.salaryMax, job.salaryMin).toFixed(2)}/hr</p>
         )}
-        <span className="text-xs text-brand-600 font-medium">{t("agency_detail.job_card_view")}</span>
+        <span className="text-xs text-emerald-400 font-medium">{t("agency_detail.job_card_view")}</span>
       </div>
     </Link>
   );
@@ -168,10 +168,10 @@ function accommodationLabel(acc: string, t: (key: string) => string): { text: st
 
 function ConfidenceBadge({ level, t }: { level: string; t: (key: string) => string }) {
   const cfg: Record<string, { key: string; cls: string }> = {
-    high:     { key: "agency_detail.confidence_high",      cls: "bg-green-50 text-green-700"   },
-    medium:   { key: "agency_detail.confidence_medium",    cls: "bg-amber-50 text-amber-700"   },
-    low:      { key: "agency_detail.confidence_low",       cls: "bg-orange-50 text-orange-700" },
-    very_low: { key: "agency_detail.confidence_very_low",  cls: "bg-red-50 text-red-700"       },
+    high:     { key: "agency_detail.confidence_high",      cls: "bg-emerald-500/20 text-emerald-300"  },
+    medium:   { key: "agency_detail.confidence_medium",    cls: "bg-amber-500/20 text-amber-300"     },
+    low:      { key: "agency_detail.confidence_low",       cls: "bg-orange-500/20 text-orange-300"   },
+    very_low: { key: "agency_detail.confidence_very_low",  cls: "bg-red-500/20 text-red-300"         },
   };
   const item = cfg[level] ?? cfg.low;
   return <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${item.cls}`}>{t(item.key)}</span>;
@@ -189,22 +189,22 @@ function ReviewSummary({ reviews, t }: { reviews: ReturnType<typeof getReviewsBy
     return (
       <div className="flex items-center gap-2">
         <span className="text-xs text-gray-500 w-24 shrink-0">{label}</span>
-        <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+        <div className="flex-1 h-1.5 bg-white/[0.07] rounded-full overflow-hidden">
           <div className={`h-full rounded-full ${color}`} style={{ width: `${pct}%` }} />
         </div>
-        <span className="text-xs font-semibold text-gray-700 w-6 text-right">{val.toFixed(1)}</span>
+        <span className="text-xs font-semibold text-gray-300 w-6 text-right">{val.toFixed(1)}</span>
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-50 rounded-xl p-4 mb-4">
+    <div className="bg-white/[0.04] rounded-xl p-4 mb-4">
       <div className="flex items-center gap-4">
         <div className="text-center shrink-0">
-          <p className="text-3xl font-black text-gray-900 leading-none">{overall.toFixed(1)}</p>
+          <p className="text-3xl font-black text-white leading-none">{overall.toFixed(1)}</p>
           <div className="flex gap-0.5 justify-center mt-1">
             {[1,2,3,4,5].map((s) => (
-              <svg key={s} className={`w-3 h-3 ${s <= Math.round(overall) ? "text-amber-400" : "text-gray-200"}`}
+              <svg key={s} className={`w-3 h-3 ${s <= Math.round(overall) ? "text-amber-400" : "text-white/20"}`}
                 fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
@@ -230,7 +230,7 @@ function DbStars({ rating }: { rating: number }) {
   return (
     <span className="text-lg leading-none">
       <span className="text-yellow-400">{"★".repeat(Math.round(rating))}</span>
-      <span className="text-gray-200">{"★".repeat(5 - Math.round(rating))}</span>
+      <span className="text-white/20">{"★".repeat(5 - Math.round(rating))}</span>
     </span>
   );
 }
@@ -241,10 +241,10 @@ function DbRatingBar({ label, value }: { label: string; value: number }) {
   return (
     <div className="flex items-center gap-2">
       <span className="text-xs text-gray-500 w-28 shrink-0">{label}</span>
-      <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+      <div className="flex-1 h-1.5 bg-white/[0.07] rounded-full overflow-hidden">
         <div className={`h-full rounded-full ${color}`} style={{ width: `${pct}%` }} />
       </div>
-      <span className="text-xs font-semibold text-gray-700 w-6 text-right">{value.toFixed(1)}</span>
+      <span className="text-xs font-semibold text-gray-300 w-6 text-right">{value.toFixed(1)}</span>
     </div>
   );
 }
@@ -341,34 +341,35 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
   }));
 
   return (
+    <div className="min-h-screen bg-[#0B1F14] text-white">
     <div className="max-w-3xl mx-auto px-4 py-8 pb-24 sm:pb-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
 
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">
-        <Link href="/" className="hover:text-brand-600">Home</Link>
+        <Link href="/" className="hover:text-emerald-400">Home</Link>
         <span>›</span>
-        <Link href="/agencies" className="hover:text-brand-600">Agencies</Link>
+        <Link href="/agencies" className="hover:text-emerald-400">Agencies</Link>
         <span>›</span>
-        <span className="text-gray-600 truncate max-w-[180px]">{agency.name}</span>
+        <span className="text-gray-300 truncate max-w-[180px]">{agency.name}</span>
       </nav>
 
       {/* Header */}
-      <div className="card p-5 mb-5">
+      <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-5 mb-5">
         <div className="flex flex-wrap items-center gap-2 mb-2">
           {isUnverified && (
-            <span className="text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full">
               Unverified — reported by workers
             </span>
           )}
           {totalMentions > 0 && (
-            <span className="text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-100 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-semibold bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2 py-0.5 rounded-full">
               Mentioned in {totalMentions} review{totalMentions !== 1 ? "s" : ""}
             </span>
           )}
         </div>
-        <h1 className="text-xl font-bold text-gray-900 leading-tight">
+        <h1 className="text-xl font-bold text-white leading-tight">
           {agency.name} — Worker Reviews Netherlands
           <span className="block text-xs font-normal text-gray-400 mt-0.5">
             Salary · Housing · Worker Experiences
@@ -378,10 +379,10 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
 
         {/* Rating summary if we have direct reviews */}
         {avgRatings && avgRatings.count > 0 && (
-          <div className="mt-4 bg-gray-50 rounded-xl p-4">
+          <div className="mt-4 bg-white/[0.04] rounded-xl p-4">
             <div className="flex items-center gap-4">
               <div className="text-center shrink-0">
-                <p className="text-3xl font-black text-gray-900 leading-none">{avgRatings.overall}</p>
+                <p className="text-3xl font-black text-white leading-none">{avgRatings.overall}</p>
                 <DbStars rating={avgRatings.overall} />
                 <p className="text-[10px] text-gray-400 mt-1">{avgRatings.count} review{avgRatings.count !== 1 ? "s" : ""}</p>
               </div>
@@ -403,13 +404,13 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
 
       {/* Topic signals */}
       {topicSignals.length > 0 && (
-        <div className="card p-4 mb-5">
-          <h2 className="text-sm font-bold text-gray-800 mb-3">What workers mention most</h2>
+        <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-4 mb-5">
+          <h2 className="text-sm font-bold text-white mb-3">What workers mention most</h2>
           <div className="flex flex-wrap gap-2">
             {topicSignals.map((s) => (
               <span
                 key={s.topic}
-                className="text-xs bg-gray-50 border border-gray-200 text-gray-700 px-2.5 py-1 rounded-full"
+                className="text-xs bg-white/[0.06] border border-white/[0.10] text-gray-300 px-2.5 py-1 rounded-full"
               >
                 {s.label}
                 <span className="ml-1.5 text-gray-400">·{s.count}</span>
@@ -422,7 +423,7 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
       {/* Direct reviews */}
       {reviewCards.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-base font-bold text-gray-900 mb-4">
+          <h2 className="text-base font-bold text-white mb-4">
             Reviews submitted for {agency.name}
           </h2>
           <div className="space-y-4">
@@ -436,7 +437,7 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
       {/* Reviews that mention this agency */}
       {agency.mentionedInReviews.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-base font-bold text-gray-900 mb-1">
+          <h2 className="text-base font-bold text-white mb-1">
             Reviews mentioning {agency.name}
           </h2>
           <p className="text-xs text-gray-500 mb-4">
@@ -446,12 +447,12 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
             {agency.mentionedInReviews.slice(0, 10).map((m, i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl border border-gray-200 shadow-sm px-5 py-4"
+                className="rounded-xl border border-white/[0.07] bg-white/[0.04] px-5 py-4"
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div className="flex items-center gap-2 flex-wrap">
                     <DbStars rating={m.review.overallRating} />
-                    <span className="text-sm font-bold text-gray-900">{m.review.overallRating}/5</span>
+                    <span className="text-sm font-bold text-white">{m.review.overallRating}/5</span>
                     <span className="text-xs text-gray-400">
                       {new Date(m.review.createdAt).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}
                     </span>
@@ -464,7 +465,7 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
                   </Link>
                 </div>
                 {m.review.comment && (
-                  <p className="text-sm text-gray-700 leading-relaxed line-clamp-3">
+                  <p className="text-sm text-gray-300 leading-relaxed line-clamp-3">
                     {m.review.comment}
                   </p>
                 )}
@@ -480,13 +481,13 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
       {/* Related agencies */}
       {agency.relatedAgencies.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-sm font-bold text-gray-800 mb-3">Agencies mentioned in the same reviews</h2>
+          <h2 className="text-sm font-bold text-white mb-3">Agencies mentioned in the same reviews</h2>
           <div className="flex flex-wrap gap-2">
             {agency.relatedAgencies.map((a) => (
               <Link
                 key={a.slug}
                 href={`/agencies/${a.slug}`}
-                className="text-xs bg-gray-50 border border-gray-200 text-gray-700 px-3 py-1 rounded-full hover:bg-brand-50 hover:text-brand-700 hover:border-brand-200 transition-colors"
+                className="text-xs bg-white/[0.06] border border-white/[0.10] text-gray-300 px-3 py-1 rounded-full hover:bg-emerald-500/20 hover:text-emerald-300 hover:border-emerald-500/30 transition-colors"
               >
                 {a.name}
                 {a.count > 1 && <span className="ml-1 text-gray-400">·{a.count}</span>}
@@ -499,7 +500,7 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
       {/* Cities mentioned by workers — each links to agency+city SEO page */}
       {cityMentions.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-sm font-bold text-gray-800 mb-1">Cities mentioned by workers</h2>
+          <h2 className="text-sm font-bold text-white mb-1">Cities mentioned by workers</h2>
           <p className="text-xs text-gray-500 mb-3">
             Workers who left comments mentioned working in these cities for {agency.name}.
           </p>
@@ -508,9 +509,7 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
               <Link
                 key={cm.cityNormalized}
                 href={`/agencies/${agency.slug}/${cm.cityNormalized.replace(/\s+/g, "-")}`}
-                className="inline-flex items-center gap-1.5 text-xs bg-blue-50 border border-blue-100
-                  text-blue-800 px-3 py-1 rounded-full hover:bg-blue-100 hover:border-blue-200
-                  hover:text-blue-900 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs bg-blue-500/20 border border-blue-500/30 text-blue-300 px-3 py-1 rounded-full hover:bg-blue-500/30 transition-colors"
               >
                 📍 {cm.cityDisplay}
                 {cm.mentionCount > 1 && (
@@ -524,25 +523,25 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
 
       {/* Empty state */}
       {reviewCards.length === 0 && agency.mentionedInReviews.length === 0 && (
-        <div className="card px-6 py-10 text-center mb-8">
+        <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] px-6 py-10 text-center mb-8">
           <p className="text-2xl mb-3">📋</p>
-          <p className="text-sm font-semibold text-gray-700 mb-1">No reviews yet for {agency.name}</p>
+          <p className="text-sm font-semibold text-gray-200 mb-1">No reviews yet for {agency.name}</p>
           <p className="text-xs text-gray-500">This agency was detected in worker reviews. Be the first to share your experience.</p>
         </div>
       )}
 
       {/* CTA */}
-      <div className="bg-brand-50 border border-brand-100 rounded-xl p-5 text-center mb-6">
-        <p className="text-sm font-bold text-brand-800 mb-1">
+      <div className="bg-emerald-900/20 border border-emerald-700/30 rounded-xl p-5 text-center mb-6">
+        <p className="text-sm font-bold text-emerald-200 mb-1">
           Worked with {agency.name}?
         </p>
-        <p className="text-xs text-brand-600 mb-3">
+        <p className="text-xs text-emerald-300/80 mb-3">
           Share your experience with housing, salary, and management.
           Your review helps other workers make informed decisions.
         </p>
         <Link
           href={`/share-experience?agency=${encodeURIComponent(agency.name)}`}
-          className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
+          className="inline-block bg-emerald-500 hover:bg-emerald-400 text-black text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
         >
           Submit your experience →
         </Link>
@@ -550,10 +549,11 @@ function DbAgencyPage({ agency, cityMentions }: { agency: DbAgencyFull; cityMent
 
       {/* Back link */}
       <div className="text-center">
-        <Link href="/agencies" className="text-xs text-gray-400 hover:text-gray-600">
+        <Link href="/agencies" className="text-xs text-gray-400 hover:text-emerald-400">
           ← Back to all agencies
         </Link>
       </div>
+    </div>
     </div>
   );
 }
@@ -654,6 +654,7 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
     }));
 
   return (
+    <div className="min-h-screen bg-[#0B1F14] text-white">
     <div className="max-w-3xl mx-auto px-4 py-8 pb-24 sm:pb-8">
 
       {/* ── JSON-LD structured data ── */}
@@ -663,22 +664,22 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
 
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">
-        <Link href="/" className="hover:text-brand-600">{t("agency_detail.breadcrumb_home")}</Link>
+        <Link href="/" className="hover:text-emerald-400">{t("agency_detail.breadcrumb_home")}</Link>
         <span>›</span>
-        <Link href="/agencies" className="hover:text-brand-600">{t("agency_detail.breadcrumb_agencies")}</Link>
+        <Link href="/agencies" className="hover:text-emerald-400">{t("agency_detail.breadcrumb_agencies")}</Link>
         {agency.city && agency.city !== "unknown" && (
-          <><span>›</span><Link href={`/cities/${agency.city.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-brand-600">{agency.city}</Link></>
+          <><span>›</span><Link href={`/cities/${agency.city.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-emerald-400">{agency.city}</Link></>
         )}
         <span>›</span>
-        <span className="text-gray-600 truncate max-w-[180px]">{agency.name}</span>
+        <span className="text-gray-300 truncate max-w-[180px]">{agency.name}</span>
       </nav>
 
       {/* Header card */}
-      <div className="card p-5 mb-5">
+      <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-5 mb-5">
         <div className="flex items-start gap-4">
           <ScoreBadge score={agency.score} reviewCount={agency.reviewCount} size="lg" showLabel showBar />
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-xl font-bold text-white leading-tight">
               {agency.name} Netherlands Review
               <span className="block text-xs font-normal text-gray-400 mt-0.5 tracking-wide">
                 Salary · Housing · Jobs · Worker Experiences
@@ -696,7 +697,7 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
             <div className="mt-3 flex flex-wrap gap-2">
               <HousingBadge housing={agency.housing} />
               {sectorMeta && (
-                <Link href={`/sectors/${sectorMeta.slug}`} className="housing-badge bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors">
+                <Link href={`/sectors/${sectorMeta.slug}`} className="housing-badge bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-colors">
                   {sectorMeta.icon} {sectorMeta.label}
                 </Link>
               )}
@@ -705,13 +706,13 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
                   🔍 {transparencyTier.label} ({agency.transparencyScore}/100)
                 </span>
               )}
-              {!isAboveWML && <span className="housing-badge bg-red-100 text-red-700 font-semibold">{t("agency_detail.badge_below_wml")}</span>}
+              {!isAboveWML && <span className="housing-badge bg-red-500/20 text-red-300 font-semibold">{t("agency_detail.badge_below_wml")}</span>}
             </div>
             {agency.jobFocus.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {agency.jobFocus.map((jf) => (
                   <Link key={jf} href={`/jobs/${jf}`}
-                    className="text-[10px] bg-gray-50 text-gray-600 border border-gray-200 rounded-full px-2 py-0.5 hover:bg-gray-100 transition-colors">
+                    className="text-[10px] bg-white/[0.06] text-gray-300 border border-white/[0.10] rounded-full px-2 py-0.5 hover:bg-white/[0.10] transition-colors">
                     {jf.replace(/-/g, " ")}
                   </Link>
                 ))}
@@ -720,14 +721,14 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
           </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
-          {homepage    && <a href={homepage}    target="_blank" rel="noopener noreferrer" className="text-xs text-brand-600 border border-brand-200 rounded-full px-3 py-2 hover:bg-brand-50 transition-colors">{t("agency_detail.official_website")}</a>}
-          {jobsPage    && <a href={jobsPage}    target="_blank" rel="noopener noreferrer" className="text-xs text-brand-600 border border-brand-200 rounded-full px-3 py-2 hover:bg-brand-50 transition-colors">{t("agency_detail.job_listings_link")}</a>}
+          {homepage    && <a href={homepage}    target="_blank" rel="noopener noreferrer" className="text-xs text-emerald-400 border border-emerald-500/30 rounded-full px-3 py-2 hover:bg-emerald-500/20 transition-colors">{t("agency_detail.official_website")}</a>}
+          {jobsPage    && <a href={jobsPage}    target="_blank" rel="noopener noreferrer" className="text-xs text-emerald-400 border border-emerald-500/30 rounded-full px-3 py-2 hover:bg-emerald-500/20 transition-colors">{t("agency_detail.job_listings_link")}</a>}
           {housingPage && <a href={housingPage} target="_blank" rel="noopener noreferrer" className="text-xs text-green-700 border border-green-200 rounded-full px-3 py-2 hover:bg-green-50 transition-colors">{t("agency_detail.housing_info_link")}</a>}
-          {contactPage && <a href={contactPage} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-2 hover:bg-gray-50 transition-colors">{t("agency_detail.contact_link")}</a>}
+          {contactPage && <a href={contactPage} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 border border-white/[0.10] rounded-full px-3 py-2 hover:bg-white/[0.06] transition-colors">{t("agency_detail.contact_link")}</a>}
         </div>
-        <div className="mt-4 pt-4 border-t border-gray-100 flex flex-wrap items-center gap-4">
-          <Link href={`/agencies/${agency.slug}/reviews`} className="text-xs text-brand-600 font-semibold hover:underline">{t("agency_detail.all_reviews_salary_link")}</Link>
-          <Link href={`/compare?agencies=${agency.slug}`} className="text-xs text-gray-500 hover:text-brand-600 hover:underline">{t("agency_detail.compare_link")}</Link>
+        <div className="mt-4 pt-4 border-t border-white/[0.07] flex flex-wrap items-center gap-4">
+          <Link href={`/agencies/${agency.slug}/reviews`} className="text-xs text-emerald-400 font-semibold hover:underline">{t("agency_detail.all_reviews_salary_link")}</Link>
+          <Link href={`/compare?agencies=${agency.slug}`} className="text-xs text-gray-400 hover:text-emerald-400 hover:underline">{t("agency_detail.compare_link")}</Link>
         </div>
       </div>
 
@@ -754,14 +755,14 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
             </span>
           </div>
 
-          <div className="divide-y divide-gray-100 bg-white">
+          <div className="divide-y divide-white/[0.07] bg-white/[0.02]">
 
             {/* Housing cost */}
             <div className="flex items-start justify-between px-4 py-3.5 gap-4">
               <div className="flex items-start gap-3">
                 <span className="text-xl mt-0.5">🏠</span>
                 <div>
-                  <p className="text-sm font-bold text-gray-900">{t("agency_detail.housing_cost_label")}</p>
+                  <p className="text-sm font-bold text-white">{t("agency_detail.housing_cost_label")}</p>
                   <p className="text-xs text-gray-500 mt-0.5">{t("agency_detail.housing_cost_sub")}</p>
                 </div>
               </div>
@@ -782,14 +783,14 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
               <div className="flex items-start gap-3">
                 <span className="text-xl mt-0.5">👥</span>
                 <div>
-                  <p className="text-sm font-bold text-gray-900">{t("agency_detail.people_per_room_label")}</p>
+                  <p className="text-sm font-bold text-white">{t("agency_detail.people_per_room_label")}</p>
                   <p className="text-xs text-gray-500 mt-0.5">{t("agency_detail.people_per_room_sub")}</p>
                 </div>
               </div>
               <div className="text-right shrink-0">
                 {agency.housing === "YES" ? (
                   <>
-                    <p className="text-base font-black text-gray-800">{t("agency_detail.people_per_room_count")}</p>
+                    <p className="text-base font-black text-white">{t("agency_detail.people_per_room_count")}</p>
                     <p className="text-[10px] text-gray-400">{t("agency_detail.people_per_room_typical")}</p>
                   </>
                 ) : (
@@ -803,7 +804,7 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
               <div className="flex items-start gap-3">
                 <span className="text-xl mt-0.5">🚌</span>
                 <div>
-                  <p className="text-sm font-bold text-gray-900">{t("agency_detail.transport_cost_label")}</p>
+                  <p className="text-sm font-bold text-white">{t("agency_detail.transport_cost_label")}</p>
                   <p className="text-xs text-gray-500 mt-0.5">{t("agency_detail.transport_cost_sub")}</p>
                 </div>
               </div>
@@ -815,7 +816,7 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
                   </>
                 ) : (
                   <>
-                    <p className="text-base font-black text-gray-800">{t("agency_detail.transport_ask")}</p>
+                    <p className="text-base font-black text-gray-200">{t("agency_detail.transport_ask")}</p>
                     <p className="text-[10px] text-gray-400">{t("agency_detail.transport_unconfirmed")}</p>
                   </>
                 )}
@@ -1313,6 +1314,7 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
           inlineLabel="Looking to work here?"
         />
       )}
+    </div>
     </div>
   );
 }
