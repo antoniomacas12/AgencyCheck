@@ -651,9 +651,9 @@ export default function BestAgenciesJobTypePage({
 
   // Score badge colour
   function scoreBadge(score: number): { bg: string; text: string; label: string } {
-    if (score >= 80) return { bg: "bg-green-100", text: "text-emerald-200", label: "High" };
-    if (score >= 65) return { bg: "bg-amber-100", text: "text-amber-800", label: "Medium" };
-    return { bg: "bg-red-100", text: "text-red-800", label: "Low" };
+    if (score >= 80) return { bg: "bg-emerald-500/20", text: "text-emerald-300", label: "High" };
+    if (score >= 65) return { bg: "bg-amber-500/20", text: "text-amber-300", label: "Medium" };
+    return { bg: "bg-red-500/20", text: "text-red-300", label: "Low" };
   }
 
   function accommodationLabel(acc: string): string {

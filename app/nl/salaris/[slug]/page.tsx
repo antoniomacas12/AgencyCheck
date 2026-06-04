@@ -233,9 +233,9 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
   };
 
   function scoreBadge(score: number): { bg: string; text: string } {
-    if (score >= 80) return { bg: "bg-green-100", text: "text-green-800" };
-    if (score >= 65) return { bg: "bg-amber-100", text: "text-amber-200" };
-    return { bg: "bg-red-100", text: "text-red-800" };
+    if (score >= 80) return { bg: "bg-emerald-500/20", text: "text-emerald-300" };
+    if (score >= 65) return { bg: "bg-amber-500/20", text: "text-amber-300" };
+    return { bg: "bg-red-500/20", text: "text-red-300" };
   }
 
   function accommodationLabel(acc: string): string {
@@ -284,7 +284,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
 
       {/* Salary table */}
       <section className="mb-8">
-        <div className="card p-5">
+        <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-5">
           <h2 className="text-base font-bold text-white mb-4">
             Salaris {dutchTitle} — Overzicht Nederland 2026
           </h2>
@@ -310,7 +310,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                 <tr className="bg-white/[0.03] text-xs text-gray-400 uppercase tracking-wide">
                   <th className="text-left py-2 px-3 font-semibold">Periode</th>
                   <th className="text-right py-2 px-3 font-semibold">Min</th>
-                  <th className="text-right py-2 px-3 font-semibold text-brand-700">Gem</th>
+                  <th className="text-right py-2 px-3 font-semibold text-emerald-400">Gem</th>
                   <th className="text-right py-2 px-3 font-semibold">Max</th>
                 </tr>
               </thead>
@@ -318,19 +318,19 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                 <tr className="border-t border-white/[0.07]">
                   <td className="py-2 px-3 text-gray-100">Per uur</td>
                   <td className="py-2 px-3 text-right text-gray-300">€{job.min.toFixed(2)}</td>
-                  <td className="py-2 px-3 text-right font-semibold text-brand-700">€{job.avg.toFixed(2)}</td>
+                  <td className="py-2 px-3 text-right font-semibold text-emerald-400">€{job.avg.toFixed(2)}</td>
                   <td className="py-2 px-3 text-right text-gray-300">€{job.max.toFixed(2)}</td>
                 </tr>
                 <tr className="border-t border-white/[0.07] bg-white/[0.03]">
                   <td className="py-2 px-3 text-gray-100">Per week (40u)</td>
                   <td className="py-2 px-3 text-right text-gray-300">€{weeklyMin}</td>
-                  <td className="py-2 px-3 text-right font-semibold text-brand-700">€{weeklyAvg}</td>
+                  <td className="py-2 px-3 text-right font-semibold text-emerald-400">€{weeklyAvg}</td>
                   <td className="py-2 px-3 text-right text-gray-300">€{weeklyMax}</td>
                 </tr>
                 <tr className="border-t border-white/[0.07]">
                   <td className="py-2 px-3 text-gray-100">Per maand (160u)</td>
                   <td className="py-2 px-3 text-right text-gray-300">€{(job.min * 160).toFixed(0)}</td>
-                  <td className="py-2 px-3 text-right font-semibold text-brand-700">€{monthlyAvg}</td>
+                  <td className="py-2 px-3 text-right font-semibold text-emerald-400">€{monthlyAvg}</td>
                   <td className="py-2 px-3 text-right text-gray-300">€{(job.max * 160).toFixed(0)}</td>
                 </tr>
               </tbody>
@@ -344,7 +344,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
 
       {/* Net calculation */}
       <section className="mb-8">
-        <div className="card p-5">
+        <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-5">
           <h2 className="text-base font-bold text-white mb-4">
             Netto Berekening — {dutchTitle} bij Gemiddeld Loon
           </h2>
@@ -375,9 +375,9 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
               <span className="text-sm text-gray-300">Zorgverzekering + administratiekosten</span>
               <span className="text-sm font-medium text-red-400">−€{overige}</span>
             </div>
-            <div className="flex justify-between items-center py-2 px-3 bg-green-100 rounded border border-green-200 mt-1">
+            <div className="flex justify-between items-center py-2 px-3 bg-emerald-500/20 rounded border border-emerald-500/30 mt-1">
               <span className="text-sm font-bold text-white">Nettoloon per week (schatting)</span>
-              <span className="text-base font-extrabold text-green-800">€{netWeekly.toFixed(0)}</span>
+              <span className="text-base font-extrabold text-emerald-300">€{netWeekly.toFixed(0)}</span>
             </div>
           </div>
           <p className="mt-3 text-[11px] text-gray-400">
@@ -412,7 +412,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
         </div>
 
         {matchingAgencies.length === 0 ? (
-          <div className="card p-8 text-center text-gray-400">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-8 text-center text-gray-400">
             <p className="text-sm">Geen bureaus gevonden voor dit functietype.</p>
             <Link href="/agencies" className="text-xs text-emerald-400 mt-2 inline-block hover:underline">
               Bekijk alle uitzendbureaus →
@@ -425,9 +425,9 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
               const topCities = agency.supportedCities.slice(0, 4);
               const extraCities = agency.supportedCities.length - 4;
               return (
-                <div key={agency.slug} className="card p-4 hover:shadow-sm transition-shadow">
+                <div key={agency.slug} className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-4 hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-7 h-7 rounded-full bg-brand-50 flex items-center justify-center text-brand-700 font-bold text-xs">
+                    <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-300 font-bold text-xs">
                       {idx + 1}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -452,12 +452,12 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                       {topCities.length > 0 && (
                         <div className="flex flex-wrap gap-1 mb-2">
                           {topCities.map((c) => (
-                            <span key={c} className="inline-block bg-gray-100 text-gray-300 text-[11px] px-2 py-0.5 rounded">
+                            <span key={c} className="inline-block bg-white/[0.07] text-gray-400 text-[11px] px-2 py-0.5 rounded">
                               {c}
                             </span>
                           ))}
                           {extraCities > 0 && (
-                            <span className="inline-block bg-gray-100 text-gray-400 text-[11px] px-2 py-0.5 rounded">
+                            <span className="inline-block bg-white/[0.07] text-gray-500 text-[11px] px-2 py-0.5 rounded">
                               +{extraCities}
                             </span>
                           )}
@@ -485,7 +485,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
         </h2>
         <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="card p-4">
+            <div key={i} className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-4">
               <h3 className="font-semibold text-white text-sm mb-2">{faq.q}</h3>
               <p className="text-sm text-gray-300 leading-relaxed">{faq.a}</p>
             </div>
@@ -501,42 +501,42 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           <Link
             href="/nl/minimumloon-nederland-2026"
-            className="card p-3 text-sm hover:border-brand-200 transition-colors"
+            className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 text-sm hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
           >
             <p className="font-semibold text-gray-200 text-xs">Minimumloon 2026</p>
             <p className="text-[11px] text-gray-400 mt-0.5">WML uurloon en weekbedrag</p>
           </Link>
           <Link
             href="/nl/nettoloon-nederland"
-            className="card p-3 text-sm hover:border-brand-200 transition-colors"
+            className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 text-sm hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
           >
             <p className="font-semibold text-gray-200 text-xs">Nettoloon Nederland</p>
             <p className="text-[11px] text-gray-400 mt-0.5">Wat houd je netto over?</p>
           </Link>
           <Link
             href={`/salary/${jobSlug}-netherlands`}
-            className="card p-3 text-sm hover:border-brand-200 transition-colors"
+            className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 text-sm hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
           >
             <p className="font-semibold text-gray-200 text-xs">{job.title} Salary (EN)</p>
             <p className="text-[11px] text-gray-400 mt-0.5">English salary data</p>
           </Link>
           <Link
             href="/best-agencies-with-housing-netherlands"
-            className="card p-3 text-sm hover:border-brand-200 transition-colors"
+            className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 text-sm hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
           >
             <p className="font-semibold text-gray-200 text-xs">Bureaus met Huisvesting</p>
             <p className="text-[11px] text-gray-400 mt-0.5">SNF-gecertificeerde opties</p>
           </Link>
           <Link
             href={`/best-agencies/${jobSlug}`}
-            className="card p-3 text-sm hover:border-brand-200 transition-colors"
+            className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 text-sm hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
           >
             <p className="font-semibold text-gray-200 text-xs">Beste {job.title} Bureaus</p>
             <p className="text-[11px] text-gray-400 mt-0.5">Gerangschikt op score</p>
           </Link>
           <Link
             href="/nl"
-            className="card p-3 text-sm hover:border-brand-200 transition-colors"
+            className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 text-sm hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
           >
             <p className="font-semibold text-gray-200 text-xs">Uitzendbureaus NL</p>
             <p className="text-[11px] text-gray-400 mt-0.5">150+ bureaus vergelijken</p>
@@ -559,7 +559,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                 <Link
                   key={slug}
                   href={`/nl/salaris/${slug}-nederland`}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium bg-gray-100 text-gray-100 border border-white/[0.10] rounded-full px-3 py-1.5 hover:bg-emerald-500/20 hover:border-emerald-500/40 hover:text-emerald-300 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium bg-white/[0.06] text-gray-300 border border-white/[0.10] rounded-full px-3 py-1.5 hover:bg-emerald-500/20 hover:border-emerald-500/40 hover:text-emerald-300 transition-colors"
                 >
                   {j.icon} {nlTitle}
                 </Link>
