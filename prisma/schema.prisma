@@ -464,12 +464,15 @@ model PreQualification {
 // Added to schema so prisma db push does not drop the table.
 
 model RecruiterConfig {
-  id        String   @id
-  name      String
-  waUrl     String
-  enabled   Boolean  @default(true)
-  sortOrder Int      @default(0)
-  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  id           String    @id
+  name         String
+  waUrl        String
+  enabled      Boolean   @default(true)
+  sortOrder    Int       @default(0)
+  createdAt    DateTime  @default(now()) @db.Timestamptz(6)
+  // Pause/deactivation fields — added for GDPR/recruiter opt-out support
+  pausedAt     DateTime? @db.Timestamptz(6)
+  pausedReason String?
 
   @@map("recruiter_config")
 }

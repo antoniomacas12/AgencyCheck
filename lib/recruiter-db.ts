@@ -74,12 +74,14 @@ export async function ensureDbReady(): Promise<void> {
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 export interface RecruiterRow {
-  id:        string;
-  name:      string;
-  waUrl:     string;
-  enabled:   boolean;
-  sortOrder: number;
-  createdAt: Date;
+  id:           string;
+  name:         string;
+  waUrl:        string;
+  enabled:      boolean;
+  sortOrder:    number;
+  createdAt:    Date;
+  pausedAt:     Date | null;
+  pausedReason: string | null;
 }
 
 export interface ClickRow {
@@ -97,8 +99,15 @@ export interface ClickRow {
 /** All recruiters ordered by sortOrder (enabled and disabled). */
 export async function getAllRecruiters(): Promise<RecruiterRow[]> {
   await ensureDbReady();
+  // Add pausedAt/pausedReason columns if they don't exist yet (safe migration)
+  await prisma.$executeRawUnsafe(`
+    ALTER TABLE recruiter_config
+    ADD COLUMN IF NOT EXISTS "pausedAt"     TIMESTAMPTZ,
+    ADD COLUMN IF NOT EXISTS "pausedReason" TEXT
+  `).catch(() => {/* ignore if already exists */});
   return prisma.$queryRaw<RecruiterRow[]>`
-    SELECT "id", "name", "waUrl", "enabled", "sortOrder", "createdAt"
+    SELECT "id", "name", "waUrl", "enabled", "sortOrder", "createdAt",
+           "pausedAt", "pausedReason"
     FROM recruiter_config
     ORDER BY "sortOrder" ASC
   `;

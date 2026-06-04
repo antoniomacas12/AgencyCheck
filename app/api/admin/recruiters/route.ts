@@ -29,13 +29,15 @@ export async function GET(_req: NextRequest) {
 
     return NextResponse.json({
       recruiters: recruiters.map((r) => ({
-        id:        r.id,
-        name:      r.name,
-        waUrl:     r.waUrl,
-        enabled:   r.enabled,
-        sortOrder: r.sortOrder,
-        clicks:    statsMap[r.name]?.total     ?? 0,
-        lastClick: statsMap[r.name]?.lastClick ?? null,
+        id:           r.id,
+        name:         r.name,
+        waUrl:        r.waUrl,
+        enabled:      r.enabled,
+        sortOrder:    r.sortOrder,
+        clicks:       statsMap[r.name]?.total     ?? 0,
+        lastClick:    statsMap[r.name]?.lastClick ?? null,
+        pausedAt:     r.pausedAt     ?? null,
+        pausedReason: r.pausedReason ?? null,
       })),
     });
   } catch (err) {
