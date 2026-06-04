@@ -234,7 +234,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
 
   function scoreBadge(score: number): { bg: string; text: string } {
     if (score >= 80) return { bg: "bg-green-100", text: "text-green-800" };
-    if (score >= 65) return { bg: "bg-amber-100", text: "text-amber-800" };
+    if (score >= 65) return { bg: "bg-amber-100", text: "text-amber-200" };
     return { bg: "bg-red-100", text: "text-red-800" };
   }
 
@@ -246,7 +246,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#0B1F14] text-white"><div className="max-w-3xl mx-auto px-4 py-8 pb-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -258,11 +258,11 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
 
       {/* Breadcrumb */}
       <nav className="text-xs text-gray-400 mb-5 flex items-center gap-1.5">
-        <Link href="/" className="hover:text-brand-600">Home</Link>
+        <Link href="/" className="hover:text-emerald-400">Home</Link>
         <span>›</span>
-        <Link href="/nl" className="hover:text-brand-600">Nederland</Link>
+        <Link href="/nl" className="hover:text-emerald-400">Nederland</Link>
         <span>›</span>
-        <span className="text-gray-600">Salaris {dutchTitle}</span>
+        <span className="text-gray-300">Salaris {dutchTitle}</span>
       </nav>
 
       {/* Hero */}
@@ -270,13 +270,13 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
         <div className="flex items-center gap-3 mb-3">
           <span className="text-4xl">{job.icon}</span>
           <div>
-            <h1 className="text-3xl font-extrabold text-gray-900 leading-tight">
+            <h1 className="text-3xl font-extrabold text-white leading-tight">
               Salaris {dutchTitle} Nederland 2026
             </h1>
-            <p className="text-sm text-gray-500 mt-0.5">Bruto en Netto — Bijgewerkt 2026</p>
+            <p className="text-sm text-gray-400 mt-0.5">Bruto en Netto — Bijgewerkt 2026</p>
           </div>
         </div>
-        <p className="text-gray-600 leading-relaxed max-w-2xl">
+        <p className="text-gray-300 leading-relaxed max-w-2xl">
           {job.description} Bekijk het gemiddelde bruto uurloon, de netto berekening na inhoudingen,
           en de beste uitzendbureaus voor jouw functie in Nederland.
         </p>
@@ -285,21 +285,21 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
       {/* Salary table */}
       <section className="mb-8">
         <div className="card p-5">
-          <h2 className="text-base font-bold text-gray-900 mb-4">
+          <h2 className="text-base font-bold text-white mb-4">
             Salaris {dutchTitle} — Overzicht Nederland 2026
           </h2>
           <div className="grid grid-cols-3 gap-4 text-center mb-5">
             <div>
-              <p className="text-2xl font-extrabold text-green-600">€{job.min.toFixed(2)}</p>
-              <p className="text-xs text-gray-500 mt-1">Min / uur</p>
+              <p className="text-2xl font-extrabold text-emerald-400">€{job.min.toFixed(2)}</p>
+              <p className="text-xs text-gray-400 mt-1">Min / uur</p>
             </div>
-            <div className="border-x border-gray-100">
-              <p className="text-3xl font-extrabold text-brand-600">€{job.avg.toFixed(2)}</p>
-              <p className="text-xs text-gray-500 mt-1">Gem / uur</p>
+            <div className="border-x border-white/[0.07]">
+              <p className="text-3xl font-extrabold text-emerald-400">€{job.avg.toFixed(2)}</p>
+              <p className="text-xs text-gray-400 mt-1">Gem / uur</p>
             </div>
             <div>
-              <p className="text-2xl font-extrabold text-gray-700">€{job.max.toFixed(2)}</p>
-              <p className="text-xs text-gray-500 mt-1">Max / uur</p>
+              <p className="text-2xl font-extrabold text-gray-100">€{job.max.toFixed(2)}</p>
+              <p className="text-xs text-gray-400 mt-1">Max / uur</p>
             </div>
           </div>
 
@@ -307,7 +307,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse">
               <thead>
-                <tr className="bg-gray-50 text-xs text-gray-500 uppercase tracking-wide">
+                <tr className="bg-white/[0.03] text-xs text-gray-400 uppercase tracking-wide">
                   <th className="text-left py-2 px-3 font-semibold">Periode</th>
                   <th className="text-right py-2 px-3 font-semibold">Min</th>
                   <th className="text-right py-2 px-3 font-semibold text-brand-700">Gem</th>
@@ -315,23 +315,23 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-gray-100">
-                  <td className="py-2 px-3 text-gray-700">Per uur</td>
-                  <td className="py-2 px-3 text-right text-gray-600">€{job.min.toFixed(2)}</td>
+                <tr className="border-t border-white/[0.07]">
+                  <td className="py-2 px-3 text-gray-100">Per uur</td>
+                  <td className="py-2 px-3 text-right text-gray-300">€{job.min.toFixed(2)}</td>
                   <td className="py-2 px-3 text-right font-semibold text-brand-700">€{job.avg.toFixed(2)}</td>
-                  <td className="py-2 px-3 text-right text-gray-600">€{job.max.toFixed(2)}</td>
+                  <td className="py-2 px-3 text-right text-gray-300">€{job.max.toFixed(2)}</td>
                 </tr>
-                <tr className="border-t border-gray-100 bg-gray-50">
-                  <td className="py-2 px-3 text-gray-700">Per week (40u)</td>
-                  <td className="py-2 px-3 text-right text-gray-600">€{weeklyMin}</td>
+                <tr className="border-t border-white/[0.07] bg-white/[0.03]">
+                  <td className="py-2 px-3 text-gray-100">Per week (40u)</td>
+                  <td className="py-2 px-3 text-right text-gray-300">€{weeklyMin}</td>
                   <td className="py-2 px-3 text-right font-semibold text-brand-700">€{weeklyAvg}</td>
-                  <td className="py-2 px-3 text-right text-gray-600">€{weeklyMax}</td>
+                  <td className="py-2 px-3 text-right text-gray-300">€{weeklyMax}</td>
                 </tr>
-                <tr className="border-t border-gray-100">
-                  <td className="py-2 px-3 text-gray-700">Per maand (160u)</td>
-                  <td className="py-2 px-3 text-right text-gray-600">€{(job.min * 160).toFixed(0)}</td>
+                <tr className="border-t border-white/[0.07]">
+                  <td className="py-2 px-3 text-gray-100">Per maand (160u)</td>
+                  <td className="py-2 px-3 text-right text-gray-300">€{(job.min * 160).toFixed(0)}</td>
                   <td className="py-2 px-3 text-right font-semibold text-brand-700">€{monthlyAvg}</td>
-                  <td className="py-2 px-3 text-right text-gray-600">€{(job.max * 160).toFixed(0)}</td>
+                  <td className="py-2 px-3 text-right text-gray-300">€{(job.max * 160).toFixed(0)}</td>
                 </tr>
               </tbody>
             </table>
@@ -345,38 +345,38 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
       {/* Net calculation */}
       <section className="mb-8">
         <div className="card p-5">
-          <h2 className="text-base font-bold text-gray-900 mb-4">
+          <h2 className="text-base font-bold text-white mb-4">
             Netto Berekening — {dutchTitle} bij Gemiddeld Loon
           </h2>
-          <p className="text-xs text-gray-500 mb-4">
+          <p className="text-xs text-gray-400 mb-4">
             Op basis van het gemiddelde bruto uurloon van €{job.avg.toFixed(2)} en een 40-urige werkweek.
             Met standaard uitzendbureau-inhoudingen (huisvesting, vervoer, verzekering).
           </p>
           <div className="space-y-2">
-            <div className="flex justify-between items-center py-2 px-3 bg-green-50 rounded">
-              <span className="text-sm font-medium text-gray-700">
+            <div className="flex justify-between items-center py-2 px-3 bg-emerald-900/20 rounded">
+              <span className="text-sm font-medium text-gray-100">
                 Bruto weekloon (€{job.avg.toFixed(2)} × 40u)
               </span>
-              <span className="text-sm font-bold text-green-700">+€{grossWeekly.toFixed(0)}</span>
+              <span className="text-sm font-bold text-emerald-300">+€{grossWeekly.toFixed(0)}</span>
             </div>
-            <div className="flex justify-between items-center py-2 px-3 bg-red-50 rounded">
-              <span className="text-sm text-gray-600">Loonheffing (~10% na heffingskorting)</span>
-              <span className="text-sm font-medium text-red-600">−€{loonheffing.toFixed(0)}</span>
+            <div className="flex justify-between items-center py-2 px-3 bg-red-900/20 rounded">
+              <span className="text-sm text-gray-300">Loonheffing (~10% na heffingskorting)</span>
+              <span className="text-sm font-medium text-red-400">−€{loonheffing.toFixed(0)}</span>
             </div>
-            <div className="flex justify-between items-center py-2 px-3 bg-red-50 rounded">
-              <span className="text-sm text-gray-600">Huisvesting uitzendbureau (SNF-norm)</span>
-              <span className="text-sm font-medium text-red-600">−€{huisvesting}</span>
+            <div className="flex justify-between items-center py-2 px-3 bg-red-900/20 rounded">
+              <span className="text-sm text-gray-300">Huisvesting uitzendbureau (SNF-norm)</span>
+              <span className="text-sm font-medium text-red-400">−€{huisvesting}</span>
             </div>
-            <div className="flex justify-between items-center py-2 px-3 bg-red-50 rounded">
-              <span className="text-sm text-gray-600">Vervoer (busservice uitzendbureau)</span>
-              <span className="text-sm font-medium text-red-600">−€{vervoer}</span>
+            <div className="flex justify-between items-center py-2 px-3 bg-red-900/20 rounded">
+              <span className="text-sm text-gray-300">Vervoer (busservice uitzendbureau)</span>
+              <span className="text-sm font-medium text-red-400">−€{vervoer}</span>
             </div>
-            <div className="flex justify-between items-center py-2 px-3 bg-red-50 rounded">
-              <span className="text-sm text-gray-600">Zorgverzekering + administratiekosten</span>
-              <span className="text-sm font-medium text-red-600">−€{overige}</span>
+            <div className="flex justify-between items-center py-2 px-3 bg-red-900/20 rounded">
+              <span className="text-sm text-gray-300">Zorgverzekering + administratiekosten</span>
+              <span className="text-sm font-medium text-red-400">−€{overige}</span>
             </div>
             <div className="flex justify-between items-center py-2 px-3 bg-green-100 rounded border border-green-200 mt-1">
-              <span className="text-sm font-bold text-gray-900">Nettoloon per week (schatting)</span>
+              <span className="text-sm font-bold text-white">Nettoloon per week (schatting)</span>
               <span className="text-base font-extrabold text-green-800">€{netWeekly.toFixed(0)}</span>
             </div>
           </div>
@@ -388,13 +388,13 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
           <div className="mt-3 flex gap-3 flex-wrap">
             <Link
               href="/nl/nettoloon-nederland"
-              className="text-xs font-semibold text-brand-600 hover:underline"
+              className="text-xs font-semibold text-emerald-400 hover:underline"
             >
               Uitgebreide nettoloon uitleg →
             </Link>
             <Link
               href="/nl/minimumloon-nederland-2026"
-              className="text-xs text-gray-500 hover:text-brand-600 hover:underline"
+              className="text-xs text-gray-400 hover:text-emerald-400 hover:underline"
             >
               Minimumloon 2026 →
             </Link>
@@ -405,7 +405,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
       {/* Top agencies for this job type */}
       <section className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-900">
+          <h2 className="text-xl font-bold text-white">
             Uitzendbureaus voor {dutchTitle}s in Nederland
           </h2>
           <span className="text-xs text-gray-400">{matchingAgencies.length} bureaus</span>
@@ -414,7 +414,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
         {matchingAgencies.length === 0 ? (
           <div className="card p-8 text-center text-gray-400">
             <p className="text-sm">Geen bureaus gevonden voor dit functietype.</p>
-            <Link href="/agencies" className="text-xs text-brand-600 mt-2 inline-block hover:underline">
+            <Link href="/agencies" className="text-xs text-emerald-400 mt-2 inline-block hover:underline">
               Bekijk alle uitzendbureaus →
             </Link>
           </div>
@@ -434,7 +434,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                       <div className="flex items-center gap-2 flex-wrap mb-1">
                         <Link
                           href={`/agencies/${agency.slug}`}
-                          className="font-semibold text-gray-900 hover:text-brand-600 transition-colors"
+                          className="font-semibold text-white hover:text-emerald-400 transition-colors"
                         >
                           {agency.name}
                         </Link>
@@ -445,19 +445,19 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                         </span>
                       </div>
                       {agency.accommodation !== "not_provided" && agency.accommodation !== "unknown" && (
-                        <p className="text-xs text-green-700 mb-1">
+                        <p className="text-xs text-emerald-300 mb-1">
                           🏠 {accommodationLabel(agency.accommodation)}
                         </p>
                       )}
                       {topCities.length > 0 && (
                         <div className="flex flex-wrap gap-1 mb-2">
                           {topCities.map((c) => (
-                            <span key={c} className="inline-block bg-gray-100 text-gray-600 text-[11px] px-2 py-0.5 rounded">
+                            <span key={c} className="inline-block bg-gray-100 text-gray-300 text-[11px] px-2 py-0.5 rounded">
                               {c}
                             </span>
                           ))}
                           {extraCities > 0 && (
-                            <span className="inline-block bg-gray-100 text-gray-500 text-[11px] px-2 py-0.5 rounded">
+                            <span className="inline-block bg-gray-100 text-gray-400 text-[11px] px-2 py-0.5 rounded">
                               +{extraCities}
                             </span>
                           )}
@@ -465,7 +465,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                       )}
                       <Link
                         href={`/agencies/${agency.slug}`}
-                        className="text-xs text-brand-600 hover:underline font-medium"
+                        className="text-xs text-emerald-400 hover:underline font-medium"
                       >
                         Bekijk bureau →
                       </Link>
@@ -480,14 +480,14 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
 
       {/* Dutch FAQs */}
       <section className="mb-8">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
+        <h2 className="text-xl font-bold text-white mb-4">
           Veelgestelde Vragen — {dutchTitle} Salaris Nederland
         </h2>
         <div className="space-y-4">
           {faqs.map((faq, i) => (
             <div key={i} className="card p-4">
-              <h3 className="font-semibold text-gray-900 text-sm mb-2">{faq.q}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{faq.a}</p>
+              <h3 className="font-semibold text-white text-sm mb-2">{faq.q}</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">{faq.a}</p>
             </div>
           ))}
         </div>
@@ -495,7 +495,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
 
       {/* Internal links */}
       <section className="mb-8">
-        <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3">
           Gerelateerde paginas
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -503,42 +503,42 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
             href="/nl/minimumloon-nederland-2026"
             className="card p-3 text-sm hover:border-brand-200 transition-colors"
           >
-            <p className="font-semibold text-gray-800 text-xs">Minimumloon 2026</p>
+            <p className="font-semibold text-gray-200 text-xs">Minimumloon 2026</p>
             <p className="text-[11px] text-gray-400 mt-0.5">WML uurloon en weekbedrag</p>
           </Link>
           <Link
             href="/nl/nettoloon-nederland"
             className="card p-3 text-sm hover:border-brand-200 transition-colors"
           >
-            <p className="font-semibold text-gray-800 text-xs">Nettoloon Nederland</p>
+            <p className="font-semibold text-gray-200 text-xs">Nettoloon Nederland</p>
             <p className="text-[11px] text-gray-400 mt-0.5">Wat houd je netto over?</p>
           </Link>
           <Link
             href={`/salary/${jobSlug}-netherlands`}
             className="card p-3 text-sm hover:border-brand-200 transition-colors"
           >
-            <p className="font-semibold text-gray-800 text-xs">{job.title} Salary (EN)</p>
+            <p className="font-semibold text-gray-200 text-xs">{job.title} Salary (EN)</p>
             <p className="text-[11px] text-gray-400 mt-0.5">English salary data</p>
           </Link>
           <Link
             href="/best-agencies-with-housing-netherlands"
             className="card p-3 text-sm hover:border-brand-200 transition-colors"
           >
-            <p className="font-semibold text-gray-800 text-xs">Bureaus met Huisvesting</p>
+            <p className="font-semibold text-gray-200 text-xs">Bureaus met Huisvesting</p>
             <p className="text-[11px] text-gray-400 mt-0.5">SNF-gecertificeerde opties</p>
           </Link>
           <Link
             href={`/best-agencies/${jobSlug}`}
             className="card p-3 text-sm hover:border-brand-200 transition-colors"
           >
-            <p className="font-semibold text-gray-800 text-xs">Beste {job.title} Bureaus</p>
+            <p className="font-semibold text-gray-200 text-xs">Beste {job.title} Bureaus</p>
             <p className="text-[11px] text-gray-400 mt-0.5">Gerangschikt op score</p>
           </Link>
           <Link
             href="/nl"
             className="card p-3 text-sm hover:border-brand-200 transition-colors"
           >
-            <p className="font-semibold text-gray-800 text-xs">Uitzendbureaus NL</p>
+            <p className="font-semibold text-gray-200 text-xs">Uitzendbureaus NL</p>
             <p className="text-[11px] text-gray-400 mt-0.5">150+ bureaus vergelijken</p>
           </Link>
         </div>
@@ -546,7 +546,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
 
       {/* Related salary pages */}
       <section className="mb-6">
-        <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3">
           Andere functies — salaris
         </h2>
         <div className="flex flex-wrap gap-2">
@@ -559,7 +559,7 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
                 <Link
                   key={slug}
                   href={`/nl/salaris/${slug}-nederland`}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-brand-50 hover:border-brand-200 hover:text-brand-700 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium bg-gray-100 text-gray-100 border border-white/[0.10] rounded-full px-3 py-1.5 hover:bg-emerald-500/20 hover:border-emerald-500/40 hover:text-emerald-300 transition-colors"
                 >
                   {j.icon} {nlTitle}
                 </Link>
@@ -568,10 +568,11 @@ export default function DutchSalaryPage({ params }: { params: { slug: string } }
         </div>
       </section>
 
-      <p className="text-xs text-gray-400 text-center mt-4">
+      <p className="text-xs text-gray-500 text-center mt-4">
         Salarisgegevens zijn indicatief en gebaseerd op beschikbare data. AgencyCheck verifieert geen individuele salariscijfers.
         Minimumloon 2026: €14,71/uur (40-urige werkweek). Bijgewerkt: juni 2026.
       </p>
+    </div>
     </div>
   );
 }

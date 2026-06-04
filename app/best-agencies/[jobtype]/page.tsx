@@ -651,7 +651,7 @@ export default function BestAgenciesJobTypePage({
 
   // Score badge colour
   function scoreBadge(score: number): { bg: string; text: string; label: string } {
-    if (score >= 80) return { bg: "bg-green-100", text: "text-green-800", label: "High" };
+    if (score >= 80) return { bg: "bg-green-100", text: "text-emerald-200", label: "High" };
     if (score >= 65) return { bg: "bg-amber-100", text: "text-amber-800", label: "Medium" };
     return { bg: "bg-red-100", text: "text-red-800", label: "Low" };
   }
@@ -683,27 +683,27 @@ export default function BestAgenciesJobTypePage({
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#0B1F14] text-white"><div className="max-w-3xl mx-auto px-4 py-8 pb-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       {/* Breadcrumb */}
-      <nav className="text-xs text-gray-400 mb-5 flex items-center gap-1.5">
-        <Link href="/" className="hover:text-brand-600">Home</Link>
+      <nav className="text-xs text-gray-500 mb-5 flex items-center gap-1.5">
+        <Link href="/" className="hover:text-emerald-400">Home</Link>
         <span>›</span>
-        <Link href="/agencies" className="hover:text-brand-600">Agencies</Link>
+        <Link href="/agencies" className="hover:text-emerald-400">Agencies</Link>
         <span>›</span>
-        <span className="text-gray-600">Best {cfg.title} Agencies</span>
+        <span className="text-gray-300">Best {cfg.title} Agencies</span>
       </nav>
 
       {/* Hero */}
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-gray-900 leading-tight mb-3">
+        <h1 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-3">
           Best {cfg.title} Agencies in the Netherlands — Ranked by Workers (2026)
         </h1>
-        <p className="text-gray-600 leading-relaxed max-w-2xl">
+        <p className="text-gray-300 leading-relaxed max-w-2xl text-sm sm:text-base">
           {cfg.metaDescription} We rank agencies by their AgencyCheck transparency score —
           a 0–100 rating based on housing certification, CAO compliance, and verified public information.
         </p>
@@ -712,41 +712,41 @@ export default function BestAgenciesJobTypePage({
       {/* Salary Section */}
       {salaryData && (
         <section className="mb-8">
-          <div className="card p-5">
-            <h2 className="text-base font-bold text-gray-900 mb-4">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-5">
+            <h2 className="text-sm font-black uppercase tracking-widest text-emerald-400 mb-4">
               {salaryData.icon} {cfg.title} Salary in the Netherlands (2026)
             </h2>
             <div className="grid grid-cols-3 gap-4 text-center mb-4">
               <div>
-                <p className="text-2xl font-extrabold text-green-600">€{salaryData.min.toFixed(2)}</p>
+                <p className="text-2xl font-extrabold text-emerald-400">€{salaryData.min.toFixed(2)}</p>
                 <p className="text-xs text-gray-500 mt-1">Min / hr</p>
               </div>
-              <div className="border-x border-gray-100">
-                <p className="text-3xl font-extrabold text-brand-600">€{salaryData.avg.toFixed(2)}</p>
+              <div className="border-x border-white/[0.07]">
+                <p className="text-3xl font-extrabold text-emerald-400">€{salaryData.avg.toFixed(2)}</p>
                 <p className="text-xs text-gray-500 mt-1">Avg / hr</p>
               </div>
               <div>
-                <p className="text-2xl font-extrabold text-gray-700">€{salaryData.max.toFixed(2)}</p>
+                <p className="text-2xl font-extrabold text-gray-100">€{salaryData.max.toFixed(2)}</p>
                 <p className="text-xs text-gray-500 mt-1">Max / hr</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3 text-center text-xs text-gray-500 pt-4 border-t border-gray-100">
+            <div className="grid grid-cols-2 gap-3 text-center text-xs text-gray-500 pt-4 border-t border-white/[0.07]">
               <div>
-                <p className="font-semibold text-gray-800 text-sm">€{weeklyAvg}</p>
+                <p className="font-semibold text-gray-200 text-sm">€{weeklyAvg}</p>
                 <p>Weekly gross (40 hrs)</p>
               </div>
               <div>
-                <p className="font-semibold text-gray-800 text-sm">€{monthlyAvg}</p>
+                <p className="font-semibold text-gray-200 text-sm">€{monthlyAvg}</p>
                 <p>Monthly gross (160 hrs)</p>
               </div>
             </div>
-            <p className="mt-3 text-[11px] text-gray-400">
+            <p className="mt-3 text-[11px] text-gray-500">
               Gross figures. Net take-home after Dutch loonheffing is typically 60–70%. Holiday allowance (vakantiegeld, 8%) paid separately.
             </p>
             <div className="mt-3">
               <Link
                 href={`/salary/${params.jobtype}-netherlands`}
-                className="text-xs font-semibold text-brand-600 hover:underline"
+                className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 hover:underline"
               >
                 Full salary breakdown for {cfg.title} →
               </Link>
@@ -758,16 +758,16 @@ export default function BestAgenciesJobTypePage({
       {/* Top agencies section */}
       <section className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-900">
+          <h2 className="text-xl font-black text-white">
             Top {cfg.title} Agencies — Ranked by Transparency Score
           </h2>
-          <span className="text-xs text-gray-400">{matchingAgencies.length} agencies</span>
+          <span className="text-xs text-gray-500">{matchingAgencies.length} agencies</span>
         </div>
 
         {matchingAgencies.length === 0 ? (
-          <div className="card p-8 text-center text-gray-400">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-8 text-center text-gray-500">
             <p className="text-sm">No agencies found for this job type yet.</p>
-            <Link href="/agencies" className="text-xs text-brand-600 mt-2 inline-block hover:underline">
+            <Link href="/agencies" className="text-xs text-emerald-400 mt-2 inline-block hover:underline">
               Browse all agencies →
             </Link>
           </div>
@@ -778,16 +778,16 @@ export default function BestAgenciesJobTypePage({
               const topCities = agency.supportedCities.slice(0, 4);
               const extraCities = agency.supportedCities.length - 4;
               return (
-                <div key={agency.slug} className="card p-4 hover:shadow-sm transition-shadow">
+                <div key={agency.slug} className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-4 hover:shadow-sm transition-shadow">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center text-brand-700 font-bold text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-300 font-bold text-sm">
                       {idx + 1}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap mb-1">
                         <Link
                           href={`/agencies/${agency.slug}`}
-                          className="font-semibold text-gray-900 hover:text-brand-600 transition-colors"
+                          className="font-semibold text-white hover:text-emerald-400 transition-colors"
                         >
                           {agency.name}
                         </Link>
@@ -812,13 +812,13 @@ export default function BestAgenciesJobTypePage({
                           {topCities.map((c) => (
                             <span
                               key={c}
-                              className="inline-block bg-gray-100 text-gray-600 text-[11px] px-2 py-0.5 rounded"
+                              className="inline-block bg-white/[0.07] text-gray-400 text-[11px] px-2 py-0.5 rounded"
                             >
                               {c}
                             </span>
                           ))}
                           {extraCities > 0 && (
-                            <span className="inline-block bg-gray-100 text-gray-500 text-[11px] px-2 py-0.5 rounded">
+                            <span className="inline-block bg-white/[0.07] text-gray-400 text-[11px] px-2 py-0.5 rounded">
                               +{extraCities} more
                             </span>
                           )}
@@ -828,13 +828,13 @@ export default function BestAgenciesJobTypePage({
                       <div className="flex gap-3">
                         <Link
                           href={`/agencies/${agency.slug}`}
-                          className="text-xs text-brand-600 hover:underline font-medium"
+                          className="text-xs text-emerald-400 hover:text-emerald-300 hover:underline font-medium"
                         >
                           View profile →
                         </Link>
                         <Link
                           href={`/agencies/${agency.slug}/reviews`}
-                          className="text-xs text-gray-500 hover:text-brand-600 hover:underline"
+                          className="text-xs text-gray-500 hover:text-emerald-400 hover:text-emerald-300 hover:underline"
                         >
                           Reviews →
                         </Link>
@@ -851,16 +851,16 @@ export default function BestAgenciesJobTypePage({
       {/* Housing agencies section */}
       {housingAgencies.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl font-black text-white mb-4">
             {cfg.title} Agencies with Housing in the Netherlands
           </h2>
-          <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-4 flex items-start gap-3">
+          <div className="bg-emerald-900/30 border border-emerald-700/40 rounded-xl p-4 mb-4 flex items-start gap-3">
             <span className="text-2xl shrink-0">🏠</span>
             <div>
-              <p className="font-semibold text-green-800 text-sm">
+              <p className="font-semibold text-emerald-200 text-sm">
                 {housingAgencies.length} {cfg.title} {housingAgencies.length === 1 ? "agency offers" : "agencies offer"} accommodation
               </p>
-              <p className="text-xs text-green-700 mt-1">
+              <p className="text-xs text-emerald-300 mt-1">
                 Agency housing is worth €350–700/month — check SNF certification status before accepting.
               </p>
             </div>
@@ -872,10 +872,10 @@ export default function BestAgenciesJobTypePage({
                 <Link
                   key={agency.slug}
                   href={`/agencies/${agency.slug}`}
-                  className="card p-3 hover:border-brand-200 hover:shadow-sm transition-all"
+                  className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-3 hover:border-brand-200 hover:shadow-sm transition-all"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="font-semibold text-sm text-gray-900">{agency.name}</p>
+                    <p className="font-semibold text-sm text-white">{agency.name}</p>
                     <span className={`shrink-0 text-[11px] font-semibold px-1.5 py-0.5 rounded ${badge.bg} ${badge.text}`}>
                       {agency.transparencyScore}
                     </span>
@@ -883,7 +883,7 @@ export default function BestAgenciesJobTypePage({
                   <p className="text-xs text-gray-500 mt-1">
                     🏠 {accommodationLabel(agency.accommodation)}
                   </p>
-                  {agency.city && <p className="text-xs text-gray-400 mt-0.5">📍 {agency.city}</p>}
+                  {agency.city && <p className="text-xs text-gray-500 mt-0.5">📍 {agency.city}</p>}
                 </Link>
               );
             })}
@@ -891,7 +891,7 @@ export default function BestAgenciesJobTypePage({
           <div className="mt-3">
             <Link
               href="/best-agencies-with-housing-netherlands"
-              className="text-xs font-semibold text-brand-600 hover:underline"
+              className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 hover:underline"
             >
               View all agencies with housing in the Netherlands →
             </Link>
@@ -901,14 +901,14 @@ export default function BestAgenciesJobTypePage({
 
       {/* What to look for section */}
       <section className="mb-8">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
+        <h2 className="text-xl font-black text-white mb-4">
           What to Look for in a {cfg.title} Agency
         </h2>
         <div className="space-y-4">
           {cfg.tips.map((tip, i) => (
-            <div key={i} className="card p-4">
-              <h3 className="font-semibold text-gray-900 text-sm mb-1">{tip.heading}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{tip.body}</p>
+            <div key={i} className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-4">
+              <h3 className="font-semibold text-white text-sm mb-1">{tip.heading}</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">{tip.body}</p>
             </div>
           ))}
         </div>
@@ -916,14 +916,14 @@ export default function BestAgenciesJobTypePage({
 
       {/* FAQ section */}
       <section className="mb-8">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
+        <h2 className="text-xl font-black text-white mb-4">
           Frequently Asked Questions — {cfg.title} Jobs in the Netherlands
         </h2>
         <div className="space-y-4">
           {cfg.faqs.map((faq, i) => (
-            <div key={i} className="card p-4">
-              <h3 className="font-semibold text-gray-900 text-sm mb-2">{faq.q}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{faq.a}</p>
+            <div key={i} className="rounded-xl border border-white/[0.07] bg-white/[0.04] p-4">
+              <h3 className="font-semibold text-white text-sm mb-2">{faq.q}</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">{faq.a}</p>
             </div>
           ))}
         </div>
@@ -942,7 +942,7 @@ export default function BestAgenciesJobTypePage({
               <Link
                 key={slug}
                 href={`/salary/${slug}-netherlands`}
-                className="inline-flex items-center gap-1.5 text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-brand-50 hover:border-brand-200 hover:text-brand-700 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-medium bg-white/[0.07] text-gray-300 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-brand-50 hover:border-brand-200 hover:text-brand-700 transition-colors"
               >
                 {job.icon} {job.title} salary
               </Link>
@@ -951,10 +951,11 @@ export default function BestAgenciesJobTypePage({
       </section>
 
       {/* Methodology note */}
-      <p className="text-xs text-gray-400 text-center mt-4">
+      <p className="text-xs text-gray-500 text-center mt-4">
         Agencies ranked by AgencyCheck transparency score (0–100). Score based on: housing certification, CAO membership,
         public information quality, and worker review signals. Last updated: 2026.
       </p>
+    </div>
     </div>
   );
 }
