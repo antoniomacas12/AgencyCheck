@@ -479,7 +479,16 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §1b  AVOID BAD AGENCIES — social proof trust strip
+          §1b  FEATURED PARTNER VACANCIES — right after hero
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#0B1F14] border-b border-white/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+          <FeaturedPartnerVacancies />
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §1c  AVOID BAD AGENCIES — social proof trust strip
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-[#0f1a2e] border-b border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
@@ -631,15 +640,6 @@ export default async function HomePage() {
             </div>
 
           </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════
-          §1c  FEATURED PARTNER VACANCIES
-          ════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0B1F14] border-b border-white/[0.06]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
-          <FeaturedPartnerVacancies />
         </div>
       </section>
 

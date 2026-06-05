@@ -5,10 +5,10 @@
  * These are NOT scraped — they come from agency partners and receive
  * priority placement on AgencyCheck.
  *
- * Application WA number: +31 6 49210631 (WRX Personeelsdiensten)
+ * Applications go through AgencyCheck (owner number: +31 6 13754893)
  */
 
-export const WRX_WA_NUMBER = "31649210631";
+export const WRX_WA_NUMBER = "31613754893";
 
 export interface PartnerVacancy {
   slug:          string;
