@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import nDynamic from "next/dynamic";
 import JobsUrgencyBar from "@/components/JobsUrgencyBar";
+import FeaturedPartnerVacancies from "@/components/FeaturedPartnerVacancies";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import AgencyCard from "@/components/AgencyCard";
 import WorkerReviewCard from "@/components/WorkerReviewCard";
@@ -630,6 +631,15 @@ export default async function HomePage() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §1c  FEATURED PARTNER VACANCIES
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#0B1F14] border-b border-white/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+          <FeaturedPartnerVacancies />
         </div>
       </section>
 

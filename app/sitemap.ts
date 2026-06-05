@@ -6,6 +6,7 @@ import { JOB_LISTINGS } from "@/lib/jobData";
 import { GUIDES } from "@/lib/guideData";
 import { allWorkInCombos } from "@/lib/workInSeoData";
 import { VACANCIES } from "@/lib/vacanciesData";
+import { PARTNER_VACANCIES } from "@/lib/partnerVacancies";
 import { getWorkerReportedAgencySlugs, getAllAgencyCityPairsForSitemap } from "@/lib/agencyDb";
 import { toCitySlug } from "@/lib/cityNormalization";
 import {
@@ -1081,6 +1082,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified:    TODAY,
       changeFrequency: "monthly" as const,
       priority:        0.8,
+    })),
+    // ── Partner vacancies (WRX + future partners) ─────────────────────────
+    ...PARTNER_VACANCIES.map((v) => ({
+      url:             `${BASE_URL}/partner-vacancies/${v.slug}`,
+      lastModified:    TODAY,
+      changeFrequency: "weekly" as const,
+      priority:        0.9,
     })),
   ];
 }
