@@ -5,10 +5,10 @@
  * These are NOT scraped — they come from agency partners and receive
  * priority placement on AgencyCheck.
  *
- * Applications go through AgencyCheck (owner number: +31 6 13754893)
+ * Applications go directly to AgencyCheck owner: +31 6 49210631
  */
 
-export const WRX_WA_NUMBER = "31613754893";
+export const WRX_WA_NUMBER = "31649210631";
 
 export interface PartnerVacancy {
   slug:          string;
