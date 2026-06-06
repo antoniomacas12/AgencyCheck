@@ -15,6 +15,7 @@
  */
 
 import { useState, useEffect, useRef } from "react";
+import { trackCandidateFormSubmit } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 type Step   = 0 | 1 | 2; // 0 = mandatory pre-qualification gate
@@ -393,6 +394,11 @@ export default function HomepageLeadForm() {
         console.log("[HomepageLeadForm] apply submit success, id =", data.id, "→ showing qualify step");
         setLeadId(data.id ?? null);
         setStatus("success");
+        trackCandidateFormSubmit({
+          job_type: jobType,
+          country,
+          contact_method: isPhone ? "phone" : "email",
+        });
       } else {
         const d = await res.json().catch(() => ({}));
         const msg = d.error === "temporary_issue"

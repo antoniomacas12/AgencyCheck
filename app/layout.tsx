@@ -91,8 +91,8 @@ export default function RootLayout({
         </LayoutClientShell>
         <Analytics />
 
-        {/* Google Analytics 4 */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
+        {/* Google Analytics 4 — only in production */}
+        {process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}

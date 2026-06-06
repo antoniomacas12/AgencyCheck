@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { getPartnerVacancyBySlug, WRX_WA_NUMBER } from "@/lib/partnerVacancies";
+import { trackWhatsappClick } from "@/lib/analytics";
 
 type Step = "form" | "success";
 
@@ -119,6 +120,11 @@ export default function PartnerApplyPage() {
 
   function handleSubmit() {
     if (!validate()) return;
+    trackWhatsappClick({
+      vacancy_title: vacancy?.title,
+      vacancy_slug: vacancy?.slug,
+      source: "apply_form",
+    });
     const msg = buildWhatsAppMessage(form, vacancy!.title, vacancy!.location);
     const url = `https://wa.me/${WRX_WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");

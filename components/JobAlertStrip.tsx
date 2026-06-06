@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackWhatsappClick } from "@/lib/analytics";
 
 const WA_BASE = "https://wa.me/31613754893";
 
@@ -51,6 +52,7 @@ export default function JobAlertStrip() {
       .map((o) => o.label.replace(/^\S+\s/, ""))
       .join(", ");
     const msg = `Hi, please add me to your job alerts list.\nMy experience: ${expLabels}\n✅ EU citizen: Yes\n✅ BSN: Yes`;
+    trackWhatsappClick({ source: "job_alert_strip" });
     // Synchronous open — must not be after an await
     window.open(`${WA_BASE}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
     setStep("closed");

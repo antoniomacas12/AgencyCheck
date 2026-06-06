@@ -3,6 +3,7 @@
 import { useState } from "react";
 import StarRatingInput from "./StarRatingInput";
 import type { ReviewType } from "@/components/WorkerReviewCard";
+import { trackReviewSubmit } from "@/lib/analytics";
 
 interface ReviewFormProps {
   agencySlug: string;
@@ -221,6 +222,11 @@ export default function ReviewForm({ agencySlug, agencyName, onSuccess }: Review
       if (!res.ok) throw new Error(data.error ?? "Something went wrong");
 
       setForm(INITIAL);
+      trackReviewSubmit({
+        agency_slug: agencySlug,
+        review_type: form.reviewType,
+        overall_rating: displayOverall,
+      });
       onSuccess();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to submit review");

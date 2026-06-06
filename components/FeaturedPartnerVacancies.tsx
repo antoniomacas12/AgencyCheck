@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { PARTNER_VACANCIES, WRX_WA_NUMBER } from "@/lib/partnerVacancies";
+import { trackWhatsappClick, trackApplyJobClick } from "@/lib/analytics";
 
 const WA_ICON = (
   <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -106,6 +109,7 @@ export default function FeaturedPartnerVacancies() {
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsappClick({ vacancy_title: v.title, vacancy_slug: v.slug, source: "featured_card" })}
                   className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe5d] text-black font-black text-sm py-3.5 rounded-xl transition-colors"
                 >
                   {WA_ICON}
@@ -113,6 +117,7 @@ export default function FeaturedPartnerVacancies() {
                 </a>
                 <Link
                   href={`/partner-vacancies/${v.slug}`}
+                  onClick={() => trackApplyJobClick({ vacancy_title: v.title, vacancy_slug: v.slug, source: "featured_card" })}
                   className="text-center text-[11px] text-gray-500 hover:text-gray-300 transition-colors"
                 >
                   View full details →
