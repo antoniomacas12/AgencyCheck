@@ -56,16 +56,26 @@ export async function ensureDbReady(): Promise<void> {
   `;
 
   // 3. Seed / upsert recruiters
+  //
+  // enabled logic:
+  //   - New row            → use seed value (default true)
+  //   - Existing row       → keep admin's toggle, UNLESS seed says enabled:false
+  //                          (force-inactive for permanently retired recruiters)
   for (const r of RECRUITER_SEEDS) {
+    const seedEnabled = r.enabled ?? true;
     await prisma.$executeRaw`
       INSERT INTO recruiter_config ("id", "name", "waUrl", "enabled", "sortOrder")
-      VALUES (${r.id}, ${r.name}, ${r.waUrl}, true, ${r.sortOrder})
+      VALUES (${r.id}, ${r.name}, ${r.waUrl}, ${seedEnabled}, ${r.sortOrder})
       ON CONFLICT ("id") DO UPDATE
         SET "name"      = EXCLUDED."name",
             "waUrl"     = EXCLUDED."waUrl",
-            "sortOrder" = EXCLUDED."sortOrder"
+            "sortOrder" = EXCLUDED."sortOrder",
+            "enabled"   = CASE
+                            WHEN EXCLUDED."enabled" = false THEN false
+                            ELSE recruiter_config."enabled"
+                          END
     `;
-    console.log(`[recruiter-db] upserted recruiter id=${r.id} name="${r.name}"`);
+    console.log(`[recruiter-db] upserted recruiter id=${r.id} name="${r.name}" seedEnabled=${seedEnabled}`);
   }
 
   dbReady = true;

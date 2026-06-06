@@ -183,7 +183,7 @@ export default function ReferralsAdminPage() {
                           ? "bg-emerald-400/10 text-emerald-400"
                           : "bg-gray-500/10 text-gray-500"
                       }`}>
-                        {r.enabled ? "active" : "paused"}
+                        {r.enabled ? "Active" : "Inactive"}
                       </span>
                     </div>
                     <p className="text-gray-500 text-[11px] font-mono">{r.waUrl}</p>
