@@ -117,12 +117,13 @@ function buildRedirectUrl(
 }
 
 // ─── WhatsApp message builder ─────────────────────────────────────────────────
-// Lean message — EU, BSN, location, phone. Recruiter asks the rest on WhatsApp.
+// Lean message — EU, BSN, driving, housing, location, phone. Recruiter asks the rest on WhatsApp.
 function buildCandidateMsg(
   jobTitle:    string,
   source:      string | undefined,
   citizenship: EUCountry,
   bsn:         BSN,
+  driving:     "yes" | "no" | null,
   housing:     "yes" | "no" | null,
   location:    string,
   phone:       string,
@@ -139,6 +140,7 @@ function buildCandidateMsg(
     `Candidate details:`,
     `- EU citizenship: ${citizenship.trim()} ${/^(ukraine|ukrainian)$/i.test(citizenship.trim()) ? "(TPD)" : "(EU)"}`,
     `- BSN: ${bsnLabel[bsn]}`,
+    driving !== null ? `- Driving licence: ${driving === "yes" ? "Yes" : "No"}` : null,
     housing !== null ? `- Housing needed: ${housing === "yes" ? "Yes" : "No"}` : null,
     `- Current location: ${location}`,
     `- Phone: ${phone}`,
@@ -375,6 +377,7 @@ export default function ApplyPreScreen({
   // ── Form state ────────────────────────────────────────────────────────────
   const [citizenship, setCitizenship] = useState<EUCountry | null>(null);
   const [bsn,         setBsn]         = useState<BSN | null>(null);
+  const [driving,     setDriving]     = useState<"yes" | "no" | null>(null);
   const [housing,     setHousing]     = useState<"yes" | "no" | null>(null);
   const [location,    setLocation]    = useState("");
   const [phone,       setPhone]       = useState("");
@@ -406,6 +409,7 @@ export default function ApplyPreScreen({
     setErrors(false);
     setCitizenship(null);
     setBsn(null);
+    setDriving(null);
     setHousing(null);
     setLocation("");
     setPhone("");
@@ -469,7 +473,7 @@ export default function ApplyPreScreen({
     // Build the WhatsApp message and destination URL now (needed in both branches)
     const msg = buildCandidateMsg(
       jobTitle, source,
-      citizenship!, bsn!, housing,
+      citizenship!, bsn!, driving, housing,
       location.trim(), phoneClean,
     );
     const dest = referralMode
@@ -502,7 +506,7 @@ export default function ApplyPreScreen({
           source:   source ?? null,
           phone:    phoneClean,
           location: location.trim(),
-          bsn, housing,
+          bsn, driving, housing,
           waMessage: msg,
         }),
       }).catch(() => { /* non-blocking */ });
@@ -819,6 +823,14 @@ export default function ApplyPreScreen({
               </div>
             </Question>
 
+            {/* Driving licence — optional but important context for client */}
+            <Question label={t("apply_screen.question_driving")}>
+              <div className="grid grid-cols-2 gap-2">
+                <Opt label={t("apply_screen.bsn_yes")} selected={driving === "yes"} onClick={() => setDriving("yes")} />
+                <Opt label={t("apply_screen.bsn_no")}  selected={driving === "no"}  onClick={() => setDriving("no")} />
+              </div>
+            </Question>
+
             {/* Housing needed? — quick 2-tap, helps route to correct vacancy */}
             <Question label={t("apply_screen.question_housing")}>
               <div className="grid grid-cols-2 gap-2">
@@ -909,7 +921,7 @@ export default function ApplyPreScreen({
             </button>
 
             <button
-              onClick={() => { setErrors(false); setCitizenship(null); setBsn(null); setHousing(null); setLocation(""); setPhone(""); setScreen("gate"); }}
+              onClick={() => { setErrors(false); setCitizenship(null); setBsn(null); setDriving(null); setHousing(null); setLocation(""); setPhone(""); setScreen("gate"); }}
               className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}
