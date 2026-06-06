@@ -14,11 +14,8 @@ interface Props {
   children:      (openFn: () => void) => React.ReactNode;
 }
 
-type Screen = "gate" | "details_a" | "details_b" | "disqualified" | "geo_blocked" | "already_applied" | "bsn_blocked" | "completed";
+type Screen = "gate" | "details" | "disqualified" | "geo_blocked" | "already_applied" | "bsn_blocked" | "completed";
 type BSN    = "yes" | "no" | "not_yet";
-type Avail  = "immediately" | "week1" | "week2" | "later";
-type Eng    = "basic" | "good" | "fluent";
-type Group  = "alone" | "partner" | "group";
 
 // Citizenship is stored as a free-text string (e.g. "Poland", "Romania").
 // Using string rather than a locked-down union so the input is flexible.
@@ -120,60 +117,33 @@ function buildRedirectUrl(
 }
 
 // ─── WhatsApp message builder ─────────────────────────────────────────────────
-// Builds the full pre-filled candidate message that appears in WhatsApp.
+// Lean message — EU, BSN, location, phone. Recruiter asks the rest on WhatsApp.
 function buildCandidateMsg(
   jobTitle:    string,
   source:      string | undefined,
   citizenship: EUCountry,
   bsn:         BSN,
-  driving:     "yes" | "no",
-  housing:     "yes" | "no",
-  avail:       Avail,
+  housing:     "yes" | "no" | null,
   location:    string,
   phone:       string,
-  english:     Eng,
-  group:       Group,
-  cv:          "yes" | "no",
 ): string {
   const bsnLabel: Record<BSN, string> = {
     yes:     "Yes",
     no:      "No",
     not_yet: "Not yet (willing to arrange)",
   };
-  const availLabel: Record<Avail, string> = {
-    immediately: "Immediately",
-    week1:       "Within 1 week",
-    week2:       "Within 2 weeks",
-    later:       "Later",
-  };
-  const engLabel: Record<Eng, string> = {
-    basic:  "Basic",
-    good:   "Good",
-    fluent: "Fluent",
-  };
-  const groupLabel: Record<Group, string> = {
-    alone:   "Alone",
-    partner: "With partner",
-    group:   "With friend/group",
-  };
-
   const srcTag = source ? ` [AgencyCheck · ${source}]` : " [AgencyCheck]";
-
-  return [
+  const lines = [
     `Hi, I want to apply for: ${jobTitle}${srcTag}`,
     ``,
     `Candidate details:`,
     `- EU citizenship: ${citizenship.trim()} ${/^(ukraine|ukrainian)$/i.test(citizenship.trim()) ? "(TPD)" : "(EU)"}`,
     `- BSN: ${bsnLabel[bsn]}`,
-    `- Driving licence: ${driving === "yes" ? "Yes" : "No"}`,
-    `- Housing needed: ${housing === "yes" ? "Yes" : "No"}`,
+    housing !== null ? `- Housing needed: ${housing === "yes" ? "Yes" : "No"}` : null,
     `- Current location: ${location}`,
     `- Phone: ${phone}`,
-    `- Available from: ${availLabel[avail]}`,
-    `- English level: ${engLabel[english]}`,
-    `- Applying: ${groupLabel[group]}`,
-    `- CV ready: ${cv === "yes" ? "Yes" : "No"}`,
-  ].join("\n");
+  ].filter(Boolean);
+  return lines.join("\n");
 }
 
 // ─── Duplicate-application guard ─────────────────────────────────────────────
@@ -272,8 +242,8 @@ function makeUUID(): string {
 
 // ─── Funnel tracking ──────────────────────────────────────────────────────────
 // Fire-and-forget — never blocks the apply flow.
-// Events: "open" | "gate_passed" | "details_a_passed" | "completed" | "abandoned" | "disqualified"
-// Steps:  "gate" | "details_a" | "details_b" | "geo_blocked" | "already_applied" | "complete"
+// Events: "open" | "gate_passed" | "completed" | "abandoned" | "disqualified"
+// Steps:  "gate" | "details" | "geo_blocked" | "already_applied" | "complete"
 async function trackFunnel(payload: {
   sessionId: string;
   event:     string;
@@ -405,15 +375,9 @@ export default function ApplyPreScreen({
   // ── Form state ────────────────────────────────────────────────────────────
   const [citizenship, setCitizenship] = useState<EUCountry | null>(null);
   const [bsn,         setBsn]         = useState<BSN | null>(null);
-  const [driving,     setDriving]     = useState<"yes" | "no" | null>(null);
   const [housing,     setHousing]     = useState<"yes" | "no" | null>(null);
-  const [avail,       setAvail]       = useState<Avail | null>(null);
   const [location,    setLocation]    = useState("");
   const [phone,       setPhone]       = useState("");
-  const [english,     setEnglish]     = useState<Eng | null>(null);
-  const [group,       setGroup]       = useState<Group | null>(null);
-  const [cv,          setCv]          = useState<"yes" | "no" | null>(null);
-  // CV state — no longer blocks; included in WA message for recruiter awareness
 
   // ── Handlers ─────────────────────────────────────────────────────────────
   function handleOpen() {
@@ -442,14 +406,9 @@ export default function ApplyPreScreen({
     setErrors(false);
     setCitizenship(null);
     setBsn(null);
-    setDriving(null);
     setHousing(null);
-    setAvail(null);
     setLocation("");
     setPhone("");
-    setEnglish(null);
-    setGroup(null);
-    setCv(null);
     // Track: modal opened
     trackFunnel({ sessionId: sid, event: "open", step: "gate", jobId, source });
   }
@@ -474,20 +433,8 @@ export default function ApplyPreScreen({
       return;
     }
     setErrors(false);
-    setScreen("details_a");
-    trackFunnel({ sessionId: sessionIdRef.current, event: "gate_passed", step: "details_a", jobId, source });
-  }
-
-  function handleDetailsA() {
-    if (!bsn || !driving || !housing || !avail) {
-      setErrors(true);
-      return;
-    }
-    // All BSN answers (yes / no / not_yet) continue to details_b.
-    // Recruiter sees the BSN status in the WhatsApp message and decides.
-    setErrors(false);
-    setScreen("details_b");
-    trackFunnel({ sessionId: sessionIdRef.current, event: "details_a_passed", step: "details_b", jobId, source });
+    setScreen("details");
+    trackFunnel({ sessionId: sessionIdRef.current, event: "gate_passed", step: "details", jobId, source });
   }
 
   // handleSubmit:
@@ -502,7 +449,7 @@ export default function ApplyPreScreen({
     const phoneClean = normalisePhone(phoneRaw);   // remove spaces/dashes/brackets
     const phoneValid = phoneClean.length >= 7 && /^[+\d]+$/.test(phoneClean);
 
-    if (!english || !group || !cv || location.trim().length < 2 || !phoneValid) {
+    if (!bsn || location.trim().length < 2 || !phoneValid) {
       setErrors(true);
       return;
     }
@@ -522,8 +469,8 @@ export default function ApplyPreScreen({
     // Build the WhatsApp message and destination URL now (needed in both branches)
     const msg = buildCandidateMsg(
       jobTitle, source,
-      citizenship!, bsn!, driving!, housing!, avail!,
-      location.trim(), phoneClean, english!, group!, cv!,
+      citizenship!, bsn!, housing,
+      location.trim(), phoneClean,
     );
     const dest = referralMode
       ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck", msg)
@@ -543,16 +490,19 @@ export default function ApplyPreScreen({
       // Fire-and-forget logging (non-blocking)
       trackFunnel({ sessionId: sessionIdRef.current, event: "completed", step: "complete", jobId, source });
       savePreQual({ isEuCitizen: true, hasBsn: bsn === "yes" || bsn === "not_yet", jobId, jobTitle, source });
-      // Fire-and-forget recruiter webhook (proxied server-side, token never in browser)
+      // Fire-and-forget recruiter webhook.
+      // keepalive: true ensures the request completes even when the page
+      // navigates away immediately after (window.location.href → WhatsApp).
       fetch("/api/apply-webhook", {
-        method:  "POST",
-        headers: { "Content-Type": "application/json" },
+        method:    "POST",
+        keepalive: true,
+        headers:   { "Content-Type": "application/json" },
         body: JSON.stringify({
           jobId, jobTitle,
           source:   source ?? null,
           phone:    phoneClean,
           location: location.trim(),
-          bsn, driving, housing, avail, english, group, cv,
+          bsn, housing,
           waMessage: msg,
         }),
       }).catch(() => { /* non-blocking */ });
@@ -588,17 +538,13 @@ export default function ApplyPreScreen({
     window.location.href = waDestUrl;
   }, [screen, waDestUrl]);
 
-  // Progress (1 = gate, 2 = details_a, 3 = details_b)
-  const step = screen === "gate" ? 1 : screen === "details_a" ? 2 : 3;
+  // Progress (1 = gate, 2 = details)
+  const step = screen === "gate" ? 1 : 2;
 
-  // ── Readiness guards — buttons are only enabled when ALL fields on that screen are filled ──
-  const detailsAReady  = !!bsn && !!driving && !!housing && !!avail;
-  const phoneNorm      = normalisePhone(phone.trim()); // consistent with server-side normalisation
-  const phoneValid     = phoneNorm.length >= 7 && /^[+\d]+$/.test(phoneNorm);
-  // CV never blocks — recruiters handle CV-less candidates directly on WhatsApp.
-  // cv status is included in the WA message so the recruiter is informed.
-  const cvOk           = cv !== null;
-  const detailsBReady  = location.trim().length >= 2 && phoneValid && !!english && !!group && cvOk;
+  // ── Readiness guard — submit only when required fields are filled ──
+  const phoneNorm    = normalisePhone(phone.trim());
+  const phoneValid   = phoneNorm.length >= 7 && /^[+\d]+$/.test(phoneNorm);
+  const detailsReady = !!bsn && location.trim().length >= 2 && phoneValid;
 
 
   // ── Portal modal — rendered at document.body level ──────────────────────────
@@ -663,7 +609,7 @@ export default function ApplyPreScreen({
             <div className="mt-2.5 h-1 w-full rounded-full bg-white/10 overflow-hidden">
               <div
                 className="h-full bg-emerald-400 rounded-full transition-all duration-300"
-                style={{ width: `${(step / 3) * 100}%` }}
+                style={{ width: `${(step / 2) * 100}%` }}
               />
             </div>
           </div>
@@ -861,38 +807,68 @@ export default function ApplyPreScreen({
           </div>
         )}
 
-        {/* ── SCREEN: details_a — BSN, driving, housing, availability ─────── */}
-        {screen === "details_a" && (
+        {/* ── SCREEN: details — BSN, housing, location, phone ────────────── */}
+        {screen === "details" && (
           <>
+            {/* BSN — most important qualifier for client */}
             <Question label={t("apply_screen.question_bsn")} error={errors && !bsn}>
               <div className="grid grid-cols-3 gap-2">
                 <Opt label={t("apply_screen.bsn_yes")}     selected={bsn === "yes"}     onClick={() => setBsn("yes")} />
-                <Opt label={t("apply_screen.bsn_no")}      selected={bsn === "no"}      onClick={() => setBsn("no")} />
                 <Opt label={t("apply_screen.bsn_not_yet")} selected={bsn === "not_yet"} onClick={() => setBsn("not_yet")} />
+                <Opt label={t("apply_screen.bsn_no")}      selected={bsn === "no"}      onClick={() => setBsn("no")} />
               </div>
             </Question>
 
-            <Question label={t("apply_screen.question_driving")} error={errors && !driving}>
-              <div className="grid grid-cols-2 gap-2">
-                <Opt label={t("apply_screen.bsn_yes")} selected={driving === "yes"} onClick={() => setDriving("yes")} />
-                <Opt label={t("apply_screen.bsn_no")}  selected={driving === "no"}  onClick={() => setDriving("no")} />
-              </div>
-            </Question>
-
-            <Question label={t("apply_screen.question_housing")} error={errors && !housing}>
+            {/* Housing needed? — quick 2-tap, helps route to correct vacancy */}
+            <Question label={t("apply_screen.question_housing")}>
               <div className="grid grid-cols-2 gap-2">
                 <Opt label={t("apply_screen.bsn_yes")} selected={housing === "yes"} onClick={() => setHousing("yes")} />
                 <Opt label={t("apply_screen.bsn_no")}  selected={housing === "no"}  onClick={() => setHousing("no")} />
               </div>
             </Question>
 
-            <Question label={t("apply_screen.question_avail")} error={errors && !avail}>
-              <div className="grid grid-cols-2 gap-2">
-                <Opt label={t("apply_screen.avail_immediately")} selected={avail === "immediately"} onClick={() => setAvail("immediately")} />
-                <Opt label={t("apply_screen.avail_week1")}       selected={avail === "week1"}       onClick={() => setAvail("week1")} />
-                <Opt label={t("apply_screen.avail_week2")}       selected={avail === "week2"}       onClick={() => setAvail("week2")} />
-                <Opt label={t("apply_screen.avail_later")}       selected={avail === "later"}       onClick={() => setAvail("later")} />
-              </div>
+            {/* City/region */}
+            <Question
+              label={t("apply_screen.question_location")}
+              error={errors && location.trim().length < 2}
+            >
+              <input
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder={t("apply_screen.location_placeholder")}
+                autoComplete="off"
+                className="
+                  block w-full bg-white/5 border border-white/10 rounded-xl
+                  px-4 py-3 text-white text-base placeholder-gray-600
+                  focus:outline-none focus:border-emerald-400/50
+                  transition-colors min-w-0
+                "
+              />
+            </Question>
+
+            {/* Phone */}
+            <Question
+              label={t("apply_screen.question_phone")}
+              error={errors && !phoneValid}
+            >
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder={t("apply_screen.phone_placeholder")}
+                autoComplete="tel"
+                inputMode="tel"
+                className="
+                  block w-full bg-white/5 border border-white/10 rounded-xl
+                  px-4 py-3 text-white text-base placeholder-gray-600
+                  focus:outline-none focus:border-emerald-400/50
+                  transition-colors min-w-0
+                "
+              />
+              <p className="text-gray-600 text-[11px] mt-1">
+                {t("apply_screen.phone_hint")}
+              </p>
             </Question>
 
             {errors && (
@@ -902,26 +878,50 @@ export default function ApplyPreScreen({
             )}
 
             <button
-              onClick={handleDetailsA}
-              disabled={!detailsAReady}
+              onClick={handleSubmit}
+              disabled={!detailsReady || submitting}
               className={`
-                w-full flex items-center justify-center gap-2
-                text-[15px] font-black
+                w-full flex items-center justify-center gap-2.5
+                text-[16px] font-black
                 py-4 rounded-2xl
                 transition-all duration-150 mb-3
-                ${detailsAReady
+                ${detailsReady && !submitting
                   ? "bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white shadow-lg shadow-green-900/30 cursor-pointer"
                   : "bg-white/10 text-gray-500 cursor-not-allowed"}
               `}
             >
-              {detailsAReady ? t("apply_screen.btn_continue") : "Answer all questions to continue"}
+              {submitting ? (
+                <>
+                  <svg className="w-4 h-4 animate-spin shrink-0" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+                  </svg>
+                  Checking…
+                </>
+              ) : detailsReady ? (
+                <>
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                  {t("apply_screen.btn_apply_wa")}
+                </>
+              ) : "Fill in all fields to apply"}
             </button>
+
             <button
-              onClick={() => { setErrors(false); setCitizenship(null); setScreen("gate"); }}
+              onClick={() => { setErrors(false); setCitizenship(null); setBsn(null); setHousing(null); setLocation(""); setPhone(""); setScreen("gate"); }}
               className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}
             </button>
+
+            {/* GDPR notice */}
+            <p className="text-center text-gray-600 text-[11px] mt-2 leading-snug">
+              By applying, your details are shared with a recruiter partner.{" "}
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-400">
+                Privacy Policy
+              </a>
+            </p>
           </>
         )}
 
@@ -986,148 +986,6 @@ export default function ApplyPreScreen({
           </div>
         )}
 
-        {/* ── SCREEN: details_b — location, english, group, CV ────────────── */}
-        {screen === "details_b" && (
-          <>
-            <Question
-              label={t("apply_screen.question_location")}
-              error={errors && location.trim().length < 2}
-            >
-              <input
-                type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder={t("apply_screen.location_placeholder")}
-                autoComplete="off"
-                className="
-                  block w-full bg-white/5 border border-white/10 rounded-xl
-                  px-4 py-3 text-white text-base placeholder-gray-600
-                  focus:outline-none focus:border-emerald-400/50
-                  transition-colors min-w-0
-                "
-              />
-            </Question>
-
-            <Question
-              label={t("apply_screen.question_phone")}
-              error={errors && !(phone.trim().length >= 7 && /^[+\d\s\-()]+$/.test(phone.trim()))}
-            >
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder={t("apply_screen.phone_placeholder")}
-                autoComplete="tel"
-                inputMode="tel"
-                className="
-                  block w-full bg-white/5 border border-white/10 rounded-xl
-                  px-4 py-3 text-white text-base placeholder-gray-600
-                  focus:outline-none focus:border-emerald-400/50
-                  transition-colors min-w-0
-                "
-              />
-              <p className="text-gray-600 text-[11px] mt-1">
-                {t("apply_screen.phone_hint")}
-              </p>
-            </Question>
-
-            <Question label={t("apply_screen.question_english")} error={errors && !english}>
-              <div className="grid grid-cols-3 gap-2">
-                <Opt label={t("apply_screen.eng_basic")}  selected={english === "basic"}  onClick={() => setEnglish("basic")} />
-                <Opt label={t("apply_screen.eng_good")}   selected={english === "good"}   onClick={() => setEnglish("good")} />
-                <Opt label={t("apply_screen.eng_fluent")} selected={english === "fluent"} onClick={() => setEnglish("fluent")} />
-              </div>
-            </Question>
-
-            <Question label={t("apply_screen.question_group")} error={errors && !group}>
-              <div className="grid grid-cols-3 gap-2">
-                <Opt label={t("apply_screen.group_alone")}   selected={group === "alone"}   onClick={() => setGroup("alone")} />
-                <Opt label={t("apply_screen.group_partner")} selected={group === "partner"} onClick={() => setGroup("partner")} />
-                <Opt label={t("apply_screen.group_friend")}  selected={group === "group"}   onClick={() => setGroup("group")} />
-              </div>
-            </Question>
-
-            <Question label={t("apply_screen.question_cv")} error={errors && !cvOk}>
-              <div className="grid grid-cols-2 gap-2">
-                <Opt
-                  label={t("apply_screen.bsn_yes")}
-                  selected={cv === "yes"}
-                  onClick={() => { setCv("yes"); }}
-                />
-                <Opt
-                  label={t("apply_screen.bsn_no")}
-                  selected={cv === "no"}
-                  onClick={() => { setCv("no"); }}
-                />
-              </div>
-
-              {/* ── Advisory note — shown when user selects "No CV" ── */}
-              {cv === "no" && (
-                <div className="mt-3 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] px-3.5 py-2.5 flex items-start gap-2">
-                  <span className="text-amber-400 text-[14px] shrink-0 mt-0.5">💬</span>
-                  <p className="text-amber-300 text-[12px] leading-relaxed">
-                    No problem — mention this to the recruiter on WhatsApp. They can guide you on what to prepare.
-                  </p>
-                </div>
-              )}
-            </Question>
-
-            {errors && (
-              <p className="text-red-400 text-[11px] mb-3">
-                {t("apply_screen.error_all_required")}
-              </p>
-            )}
-
-            {/* handleSubmit runs server dedup check then shows the completed screen.
-                The button is disabled while the check is in-flight (submitting=true). */}
-            <button
-              onClick={handleSubmit}
-              disabled={!detailsBReady || submitting}
-              className={`
-                w-full flex items-center justify-center gap-2.5
-                text-[16px] font-black
-                py-4 rounded-2xl
-                transition-all duration-150 mb-3
-                ${detailsBReady && !submitting
-                  ? "bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white shadow-lg shadow-green-900/30 cursor-pointer"
-                  : "bg-white/10 text-gray-500 cursor-not-allowed"}
-              `}
-            >
-              {submitting ? (
-                // Loading state while server dedup check is in-flight (~200–400ms)
-                <>
-                  <svg className="w-4 h-4 animate-spin shrink-0" viewBox="0 0 24 24" fill="none">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
-                  </svg>
-                  Checking…
-                </>
-              ) : detailsBReady ? (
-                <>
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                  </svg>
-                  {t("apply_screen.btn_apply_wa")}
-                </>
-              ) : "Fill in all fields to apply"}
-            </button>
-
-            <button
-              onClick={() => { setErrors(false); setCv(null); setScreen("details_a"); }}
-              className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
-            >
-              {t("apply_screen.btn_back")}
-            </button>
-
-            {/* GDPR notice */}
-            <p className="text-center text-gray-600 text-[11px] mt-2 leading-snug">
-              By applying, your details are shared with a recruiter partner.{" "}
-              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-400">
-                Privacy Policy
-              </a>
-            </p>
-          </>
-        )}
 
         </div>{/* /inner wrapper */}
       </div>
