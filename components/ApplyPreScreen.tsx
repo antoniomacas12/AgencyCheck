@@ -548,7 +548,7 @@ export default function ApplyPreScreen({
   // ── Readiness guard — submit only when required fields are filled ──
   const phoneNorm    = normalisePhone(phone.trim());
   const phoneValid   = phoneNorm.length >= 7 && /^[+\d]+$/.test(phoneNorm);
-  const detailsReady = !!bsn && location.trim().length >= 2 && phoneValid;
+  const detailsReady = !!bsn && !!housing && location.trim().length >= 2 && phoneValid;
 
 
   // ── Portal modal — rendered at document.body level ──────────────────────────
@@ -831,8 +831,8 @@ export default function ApplyPreScreen({
               </div>
             </Question>
 
-            {/* Housing needed? — quick 2-tap, helps route to correct vacancy */}
-            <Question label={t("apply_screen.question_housing")}>
+            {/* Housing needed? — required, routes candidate to correct vacancy type */}
+            <Question label={t("apply_screen.question_housing")} error={errors && !housing}>
               <div className="grid grid-cols-2 gap-2">
                 <Opt label={t("apply_screen.bsn_yes")} selected={housing === "yes"} onClick={() => setHousing("yes")} />
                 <Opt label={t("apply_screen.bsn_no")}  selected={housing === "no"}  onClick={() => setHousing("no")} />
