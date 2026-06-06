@@ -348,7 +348,7 @@ export default async function HomePage() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-[18px] sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-tight tracking-tight text-white mb-3 sm:mb-5 w-full break-words">
+              <h1 className="text-[26px] sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-tight tracking-tight text-white mb-3 sm:mb-5 w-full break-words">
                 Already in the{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
                   Netherlands?

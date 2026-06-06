@@ -567,7 +567,7 @@ export default function HomepageLeadForm() {
               value={jobType}
               onChange={(e) => setJobType(e.target.value)}
               required
-              className="w-full text-sm border border-gray-200 rounded-xl px-3 py-3 bg-white text-gray-800 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+              className="w-full text-[16px] border border-gray-200 rounded-xl px-3 py-3 bg-white text-gray-800 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
             >
               <option value="" disabled>Select type…</option>
               {JOB_TYPES.map((j) => (
@@ -585,7 +585,7 @@ export default function HomepageLeadForm() {
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               required
-              className="w-full text-sm border border-gray-200 rounded-xl px-3 py-3 bg-white text-gray-800 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+              className="w-full text-[16px] border border-gray-200 rounded-xl px-3 py-3 bg-white text-gray-800 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
             >
               <option value="" disabled>Select country…</option>
               {COUNTRIES.map((c) => (
@@ -652,7 +652,7 @@ export default function HomepageLeadForm() {
             placeholder="+48 123 456 789 or you@email.com"
             required
             autoFocus
-            className="w-full text-sm border border-gray-200 rounded-xl px-3 py-3 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+            className="w-full text-[16px] border border-gray-200 rounded-xl px-3 py-3 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
           />
           <p className="text-[10px] text-gray-400 mt-1 ml-0.5">
             Used only to send you agency contact info. Not shared publicly.
@@ -669,7 +669,7 @@ export default function HomepageLeadForm() {
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             min={new Date().toISOString().split("T")[0]}
-            className="w-full text-sm border border-gray-200 rounded-xl px-3 py-3 bg-white text-gray-800 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+            className="w-full text-[16px] border border-gray-200 rounded-xl px-3 py-3 bg-white text-gray-800 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
           />
         </div>
       </div>

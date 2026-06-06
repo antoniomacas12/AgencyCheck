@@ -95,7 +95,7 @@ export default function QAInlineForm({ agencySlug, agencyName }: Props) {
           onChange={(e) => setText(e.target.value)}
           placeholder="What do you want to know? E.g. Is housing shared? How much is really deducted per week?"
           rows={3}
-          className="w-full text-sm border border-gray-200 rounded-xl p-3 resize-none focus:outline-none focus:border-gray-400 placeholder-gray-300 leading-relaxed"
+          className="w-full text-[16px] border border-gray-200 rounded-xl p-3 resize-none focus:outline-none focus:border-gray-400 placeholder-gray-300 leading-relaxed"
           onKeyDown={(e) => {
             if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) handleSubmit();
           }}

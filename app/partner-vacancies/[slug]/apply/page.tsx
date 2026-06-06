@@ -177,7 +177,7 @@ export default function PartnerApplyPage() {
         <select
           value={form[field]}
           onChange={(e) => update(field, e.target.value)}
-          className={`w-full bg-white/[0.05] border rounded-xl px-3 py-2.5 text-sm text-white outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all ${
+          className={`w-full bg-white/[0.05] border rounded-xl px-3 py-3 text-[16px] text-white outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all ${
             errors[field] ? "border-red-500/50" : "border-white/[0.10]"
           }`}
         >
@@ -192,7 +192,7 @@ export default function PartnerApplyPage() {
           value={form[field]}
           onChange={(e) => update(field, e.target.value)}
           placeholder={placeholder}
-          className={`w-full bg-white/[0.05] border rounded-xl px-3 py-2.5 text-sm text-white placeholder:text-gray-500 outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all ${
+          className={`w-full bg-white/[0.05] border rounded-xl px-3 py-3 text-[16px] text-white placeholder:text-gray-500 outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all ${
             errors[field] ? "border-red-500/50" : "border-white/[0.10]"
           }`}
         />

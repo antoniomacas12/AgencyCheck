@@ -44,15 +44,15 @@ export default function FeaturedPartnerVacancies() {
             >
               {/* Top bar */}
               <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-white/[0.06]">
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full px-2 py-0.5">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <span className="text-[10px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full px-2 py-0.5 shrink-0">
                     🔥 Priority
                   </span>
-                  <span className="text-[10px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full px-2 py-0.5">
+                  <span className="text-[10px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full px-2 py-0.5 shrink-0">
                     ✓ Verified
                   </span>
                 </div>
-                <span className="text-[10px] text-gray-500">{v.partner}</span>
+                <span className="text-[10px] text-gray-500 truncate max-w-[100px] sm:max-w-none">{v.partner}</span>
               </div>
 
               {/* Content */}
@@ -106,7 +106,7 @@ export default function FeaturedPartnerVacancies() {
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe5d] text-black font-black text-sm py-3 rounded-xl transition-colors"
+                  className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe5d] text-black font-black text-sm py-3.5 rounded-xl transition-colors"
                 >
                   {WA_ICON}
                   Apply on WhatsApp

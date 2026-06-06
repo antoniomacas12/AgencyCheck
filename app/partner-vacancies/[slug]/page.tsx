@@ -345,7 +345,7 @@ export default function PartnerVacancyPage({ params }: { params: { slug: string 
           </p>
           <Link
             href={applyLink}
-            className="inline-flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-base px-8 py-4 rounded-xl transition-colors mb-3"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-base px-8 py-4 rounded-xl transition-colors mb-3"
           >
             Apply Now →
           </Link>
