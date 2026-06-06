@@ -15,8 +15,9 @@ export const dynamic = "force-dynamic";
 
 const ALLOWED_SOURCE_TYPES = new Set([
   "jobs_with_housing", "job_page", "agency_page", "general_apply",
-  "rent_calculator",   // tool lead capture — /tools/rent-calculator
-  "reachtruck_apply",  // dedicated job ad — /apply/reachtruck
+  "rent_calculator",       // tool lead capture — /tools/rent-calculator
+  "reachtruck_apply",      // dedicated job ad — /apply/reachtruck
+  "candidate_homepage",    // homepage candidate form — /
 ]);
 const ALLOWED_WORK_TYPES = new Set([
   "logistics", "production", "greenhouse", "driving", "cleaning", "construction", "any",

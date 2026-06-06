@@ -28,11 +28,13 @@ import { WA_LINK } from "@/lib/whatsapp";
 import { VACANCIES } from "@/lib/vacanciesData";
 import GateLink from "@/components/GateLink";
 
-const HomepageCalculator     = nDynamic(() => import("@/components/HomepageCalculator"),     { ssr: false });
-const HomepageLeadForm       = nDynamic(() => import("@/components/HomepageLeadForm"),        { ssr: false });
-const HomepageStickyBar      = nDynamic(() => import("@/components/HomepageStickyBar"),       { ssr: false });
-const HeroReviewInline       = nDynamic(() => import("@/components/HeroReviewInline"),        { ssr: false });
-const HomepageJobsCard       = nDynamic(() => import("@/components/HomepageJobsCard"),        { ssr: false });
+const HomepageCalculator          = nDynamic(() => import("@/components/HomepageCalculator"),          { ssr: false });
+const HomepageLeadForm            = nDynamic(() => import("@/components/HomepageLeadForm"),             { ssr: false });
+const HomepageStickyBar           = nDynamic(() => import("@/components/HomepageStickyBar"),            { ssr: false });
+const HeroReviewInline            = nDynamic(() => import("@/components/HeroReviewInline"),             { ssr: false });
+const HomepageJobsCard            = nDynamic(() => import("@/components/HomepageJobsCard"),             { ssr: false });
+const CandidateLeadForm           = nDynamic(() => import("@/components/CandidateLeadForm"),            { ssr: false });
+import JobsWithAccommodationSection from "@/components/JobsWithAccommodationSection";
 
 export const metadata: Metadata = {
   title: "AgencyCheck – Real Salary, Housing & Job Transparency in the Netherlands",
@@ -349,26 +351,28 @@ export default async function HomePage() {
 
               {/* Headline */}
               <h1 className="text-[26px] sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-tight tracking-tight text-white mb-3 sm:mb-5 w-full break-words">
-                Already in the{" "}
+                Find verified jobs in the{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                  Netherlands?
+                  Netherlands
                 </span>
                 <br />
-                <span className="text-gray-200">Start working next week.</span>
+                <span className="text-gray-200">with accommodation.</span>
               </h1>
 
               {/* Subtext */}
               <p className="text-sm sm:text-xl text-gray-400 leading-relaxed mb-4 sm:mb-5 max-w-xl mx-auto lg:mx-0">
-                Get matched with real jobs in the Netherlands in just a few steps.{" "}
-                <span className="text-gray-200 font-medium">Accommodation available.</span>
+                Real jobs.{" "}
+                <span className="text-gray-200 font-medium">Real salaries.</span>{" "}
+                Real worker experiences.
               </p>
 
               {/* Trust pills */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-5">
                 {[
-                  "No experience needed",
-                  "Accommodation available",
-                  "English is enough",
+                  "300+ candidates placed",
+                  "Verified partners",
+                  "Jobs with accommodation",
+                  "Free to apply",
                 ].map((label) => (
                   <span
                     key={label}
@@ -384,21 +388,21 @@ export default async function HomePage() {
 
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center lg:justify-start mb-3">
-                <a
-                  href="#lead-form"
+                <Link
+                  href="/partner-vacancies"
                   className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-black text-white"
                   style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.35), 0 8px 36px rgba(52,211,153,0.25)" }}
                 >
-                  Get matched with a job
+                  Browse Jobs
                   <svg className="w-4 h-4 transition-transform duration-150 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                </a>
+                </Link>
                 <a
-                  href="#calculator"
+                  href="#candidate-form"
                   className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/[0.14] bg-white/[0.05] hover:bg-white/[0.10] active:scale-[0.97] transition-all duration-150 w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-gray-200"
                 >
-                  Calculate salary
+                  Get Matched
                 </a>
               </div>
 
@@ -486,6 +490,11 @@ export default async function HomePage() {
           <FeaturedPartnerVacancies />
         </div>
       </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §1b2  JOBS WITH ACCOMMODATION — 4 job category cards
+          ════════════════════════════════════════════════════════════ */}
+      <JobsWithAccommodationSection />
 
       {/* ════════════════════════════════════════════════════════════
           §1c  AVOID BAD AGENCIES — social proof trust strip
@@ -1574,6 +1583,31 @@ export default async function HomePage() {
               📖 Full guide: Working in the Netherlands →
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          CANDIDATE LEAD FORM — get matched before footer
+          ════════════════════════════════════════════════════════════ */}
+      <section id="candidate-form" className="bg-[#0B1F14] border-b border-white/[0.06]">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px] font-semibold tracking-widest uppercase text-emerald-300">Free matching service</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
+              Get matched with the right job
+            </h2>
+            <p className="text-gray-400 text-sm sm:text-base max-w-lg mx-auto">
+              Fill in your details and our recruiter will contact you on WhatsApp within 24 hours with job options that fit your profile.
+            </p>
+          </div>
+
+          <CandidateLeadForm />
+
         </div>
       </section>
 
