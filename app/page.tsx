@@ -491,9 +491,82 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §1b2  JOBS WITH ACCOMMODATION — 4 job category cards
+          §1b2  JOBS WITH ACCOMMODATION
           ════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#0B1F14] border-b border-white/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-3">
+          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-1">
+            For workers arriving from abroad
+          </p>
+          <h2 className="text-xl sm:text-2xl font-black text-white leading-tight mb-3">
+            Jobs with accommodation in the Netherlands
+          </h2>
+          <p className="text-sm text-gray-400 max-w-2xl leading-relaxed">
+            Hundreds of verified vacancies in warehousing, logistics, production, and horticulture
+            include SNF-certified housing as part of the contract — arranged before you travel,
+            deducted transparently from your payslip. No upfront rent, no deposit, no apartment
+            search on arrival. Salaries start at €14.71/hour (Dutch statutory minimum wage 2026),
+            with most specialist roles reaching €16–€17/hour including overtime premiums.
+          </p>
+        </div>
+      </section>
       <JobsWithAccommodationSection />
+
+      {/* ════════════════════════════════════════════════════════════
+          §1b3  WAREHOUSE JOBS OVERVIEW
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#0f1a2e] border-b border-white/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-blue-400 mb-1">
+                Entry level · No experience required
+              </p>
+              <h2 className="text-xl sm:text-2xl font-black text-white leading-tight mb-3">
+                Warehouse jobs in the Netherlands
+              </h2>
+              <p className="text-sm text-gray-400 leading-relaxed mb-3">
+                Warehouse work is the fastest and most accessible route into the Dutch labour market
+                for EU citizens. Order picking, packing, loading and sorting roles require no formal
+                qualification — most agencies provide on-site training within your first week. The
+                Netherlands is one of Europe's largest logistics hubs, with major distribution
+                centres concentrated in Tilburg, Venlo, Breda, Waalwijk, and Eindhoven.
+              </p>
+              <p className="text-sm text-gray-400 leading-relaxed mb-5">
+                Starting rate is the Dutch minimum wage (€14.71/hour in 2026). Night and weekend
+                shift premiums under the ABU/NBBU CAO add 25–35% on top of your base rate. Full-time
+                40-hour contracts are standard, with overtime available during peak seasons. Most
+                agencies bundle accommodation and transport with the job — so your housing, bus, and
+                start date are all arranged before you leave home.
+              </p>
+              <Link
+                href="/warehouse-jobs-with-accommodation"
+                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors px-5 py-2.5 text-sm font-bold text-white"
+              >
+                Browse warehouse jobs with housing →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {([
+                { icon: "📦", label: "Order picker",      pay: "€14.71/hr",       note: "No experience needed" },
+                { icon: "🚜", label: "Forklift operator",  pay: "€15.00–€16.50/hr", note: "Certificate required" },
+                { icon: "🏭", label: "Production worker",  pay: "€14.71–€15.50/hr", note: "Food, tech, assembly" },
+                { icon: "🌿", label: "Greenhouse worker",  pay: "€14.71/hr",        note: "Seasonal & year-round" },
+              ] as const).map((job) => (
+                <div key={job.label} className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
+                  <span className="text-2xl block mb-2">{job.icon}</span>
+                  <p className="text-sm font-bold text-white mb-1">{job.label}</p>
+                  <p className="text-xs font-black text-emerald-400">{job.pay}</p>
+                  <p className="text-[11px] text-gray-500 mt-1">{job.note}</p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* ════════════════════════════════════════════════════════════
           §1c  AVOID BAD AGENCIES — social proof trust strip
@@ -553,6 +626,65 @@ export default async function HomePage() {
                   </p>
                   {/* Tag */}
                   <p className="text-[11px] text-gray-500 font-medium">{r.tag}</p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §1b4  REACH TRUCK JOBS OVERVIEW
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#0B1F14] border-b border-white/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+          <div className="flex flex-col sm:flex-row items-start gap-8">
+
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-1">
+                Certified · Higher pay
+              </p>
+              <h2 className="text-xl sm:text-2xl font-black text-white leading-tight mb-3">
+                Reach truck jobs Netherlands
+              </h2>
+              <p className="text-sm text-gray-400 leading-relaxed mb-3">
+                Certified reach truck (VNA) operators earn 10–15% above general warehouse rates —
+                typically €16.00–€17.00/hour gross. The reach truck licence is a legal requirement
+                that must be confirmed by your employer before you start. Many EU-issued forklift
+                and VNA certificates are accepted in the Netherlands, but always verify yours
+                is recognised before you travel.
+              </p>
+              <p className="text-sm text-gray-400 leading-relaxed mb-5">
+                Demand is highest in the Netherlands' main logistics corridors: Rotterdam (Europe's
+                largest port), Venlo (German cross-dock hub), Tilburg, and Eindhoven. Most reach
+                truck vacancies are full-time 40-hour contracts with day and evening shift options.
+                Because these roles pay above minimum wage, the accommodation deduction represents a
+                smaller portion of your take-home — making them one of the better packages available
+                to international workers.
+              </p>
+              <Link
+                href="/reach-truck-jobs"
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors px-5 py-2.5 text-sm font-bold text-emerald-300"
+              >
+                Reach truck jobs — full guide →
+              </Link>
+            </div>
+
+            <div className="shrink-0 w-full sm:w-52 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-5">
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4">
+                Typical package
+              </p>
+              {([
+                { label: "Hourly rate",  value: "€16.00–€17.00" },
+                { label: "Gross/week",   value: "≈€640–€680"    },
+                { label: "Housing cost", value: "€95–€113/wk"   },
+                { label: "Net/week",     value: "≈€390–€430"    },
+                { label: "Start time",   value: "1–2 weeks"     },
+              ] as const).map(({ label, value }) => (
+                <div key={label} className="flex items-center justify-between py-2.5 border-b border-white/[0.06] last:border-b-0">
+                  <span className="text-xs text-gray-400">{label}</span>
+                  <span className="text-xs font-bold text-white">{value}</span>
                 </div>
               ))}
             </div>
@@ -1423,6 +1555,63 @@ export default async function HomePage() {
               All {totalAgencies} agencies →
             </Link>
           </div>
+
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §11b  AGENCIES WITH HOUSING — overview
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#0f1a2e] border-b border-white/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+
+          <p className="text-[10px] font-black uppercase tracking-widest text-blue-400 mb-1">
+            SNF-certified accommodation
+          </p>
+          <h2 className="text-xl sm:text-2xl font-black text-white leading-tight mb-3">
+            Agencies with housing in the Netherlands
+          </h2>
+          <p className="text-sm text-gray-400 leading-relaxed mb-5 max-w-2xl">
+            Of {totalAgencies}+ employment agencies profiled on AgencyCheck, {housingCount} are confirmed to
+            include accommodation as part of their work package. The single most important signal is
+            SNF certification — the independent Dutch body (<em>Stichting Normering Flexwonen</em>)
+            that audits shared worker housing for room size, fire safety, and hygiene standards. SNF
+            registration puts a legal cap on what agencies can charge: a maximum of €113.50/week in
+            2026. If an agency cannot provide an SNF number, ask why before signing anything.
+          </p>
+
+          <div className="grid sm:grid-cols-3 gap-4 mb-6">
+            {([
+              {
+                icon: "✅",
+                title: "Verify the SNF number",
+                body:  "Any SNF-certified accommodation has a registration number you can check at snf.nl. This takes 60 seconds and confirms the housing meets Dutch legal standards.",
+              },
+              {
+                icon: "📄",
+                title: "Get all deductions in writing",
+                body:  "Housing, transport, health insurance — every deduction must be itemised in your signed contract before your start date. This is a legal requirement under the ABU/NBBU CAO.",
+              },
+              {
+                icon: "🚌",
+                title: "Check transport is included",
+                body:  "Good agencies include a bus from accommodation to the worksite. When transport is charged separately it adds €20–€30/week — always confirm the total cost before committing.",
+              },
+            ] as const).map(({ icon, title, body }) => (
+              <div key={title} className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
+                <span className="text-2xl block mb-2">{icon}</span>
+                <p className="text-sm font-bold text-white mb-1">{title}</p>
+                <p className="text-xs text-gray-400 leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </div>
+
+          <Link
+            href="/agencies-with-housing"
+            className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 transition-colors px-5 py-2.5 text-sm font-bold text-white"
+          >
+            Compare {housingCount} agencies with housing →
+          </Link>
 
         </div>
       </section>
