@@ -117,7 +117,7 @@ function buildRedirectUrl(
 }
 
 // ─── WhatsApp message builder ─────────────────────────────────────────────────
-// Lean message — EU, BSN, driving, housing, location, phone. Recruiter asks the rest on WhatsApp.
+// Lean message — EU, BSN, driving, housing, location. Phone visible to recruiter from WA sender.
 function buildCandidateMsg(
   jobTitle:    string,
   source:      string | undefined,
@@ -126,7 +126,6 @@ function buildCandidateMsg(
   driving:     "yes" | "no" | null,
   housing:     "yes" | "no" | null,
   location:    string,
-  phone:       string,
 ): string {
   const bsnLabel: Record<BSN, string> = {
     yes:     "Yes",
@@ -143,7 +142,6 @@ function buildCandidateMsg(
     driving !== null ? `- Driving licence: ${driving === "yes" ? "Yes" : "No"}` : null,
     housing !== null ? `- Housing needed: ${housing === "yes" ? "Yes" : "No"}` : null,
     `- Current location: ${location}`,
-    `- Phone: ${phone}`,
   ].filter(Boolean);
   return lines.join("\n");
 }
@@ -380,7 +378,6 @@ export default function ApplyPreScreen({
   const [driving,     setDriving]     = useState<"yes" | "no" | null>(null);
   const [housing,     setHousing]     = useState<"yes" | "no" | null>(null);
   const [location,    setLocation]    = useState("");
-  const [phone,       setPhone]       = useState("");
 
   // ── Handlers ─────────────────────────────────────────────────────────────
   function handleOpen() {
@@ -412,7 +409,6 @@ export default function ApplyPreScreen({
     setDriving(null);
     setHousing(null);
     setLocation("");
-    setPhone("");
     // Track: modal opened
     trackFunnel({ sessionId: sid, event: "open", step: "gate", jobId, source });
   }
@@ -442,95 +438,46 @@ export default function ApplyPreScreen({
   }
 
   // handleSubmit:
-  // 1. Validates form fields + runs local dedup checks (layers 1 & 2).
-  // 2. Calls /api/check-phone for server-side dedup (layer 3, DB-backed).
-  // 3. On pass: saves locks, fires tracking/webhook, shows "completed" screen.
-  //    useEffect then does window.location.href → WA redirect (never popup-blocked).
-  // 4. On duplicate: shows already_applied screen.
-  // Fails open if server is unreachable so real candidates are never blocked.
+  // Phone is not collected — recruiter sees the sender's number directly in WhatsApp.
+  // Dedup uses device lock only (layer 1). Layers 2+3 were phone-based and are removed.
   function handleSubmit() {
-    const phoneRaw   = phone.trim();
-    const phoneClean = normalisePhone(phoneRaw);   // remove spaces/dashes/brackets
-    const phoneValid = phoneClean.length >= 7 && /^[+\d]+$/.test(phoneClean);
-
-    if (!bsn || location.trim().length < 2 || !phoneValid) {
+    if (!bsn || !housing || location.trim().length < 2) {
       setErrors(true);
       return;
     }
 
-    // Layer 1: device lock (fastest — no network round-trip)
+    // Device lock — prevents double-submit from the same device within 24 h
     if (deviceAlreadyApplied()) {
       setScreen("already_applied");
       return;
     }
 
-    // Layer 2: local phone lock (same device, cleared cache)
-    if (checkDuplicate(phoneClean)) {
-      setScreen("already_applied");
-      return;
-    }
-
-    // Build the WhatsApp message and destination URL now (needed in both branches)
     const msg = buildCandidateMsg(
       jobTitle, source,
       citizenship!, bsn!, driving, housing,
-      location.trim(), phoneClean,
+      location.trim(),
     );
     const dest = referralMode
       ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck", msg)
       : `${waBase}?text=${encodeURIComponent(msg)}`;
 
-    setSubmitting(true);
-
-    // Layer 3: server-side DB check (cross-device, cross-session, persistent)
-    const finish = () => {
-      // Save local locks
-      saveDeviceLock();
-      saveDedupEntry(phoneClean);
-      // Show confirmation screen (stores dest for the WhatsApp button)
-      setWaDestUrl(dest);
-      setScreen("completed");
-      setSubmitting(false);
-      // Fire-and-forget logging (non-blocking)
-      trackFunnel({ sessionId: sessionIdRef.current, event: "completed", step: "complete", jobId, source });
-      savePreQual({ isEuCitizen: true, hasBsn: bsn === "yes" || bsn === "not_yet", jobId, jobTitle, source });
-      // Fire-and-forget recruiter webhook.
-      // keepalive: true ensures the request completes even when the page
-      // navigates away immediately after (window.location.href → WhatsApp).
-      fetch("/api/apply-webhook", {
-        method:    "POST",
-        keepalive: true,
-        headers:   { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jobId, jobTitle,
-          source:   source ?? null,
-          phone:    phoneClean,
-          location: location.trim(),
-          bsn, driving, housing,
-          waMessage: msg,
-        }),
-      }).catch(() => { /* non-blocking */ });
-    };
-
-    fetch("/api/check-phone", {
-      method:  "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone: phoneClean }),
-    })
-      .then((r) => r.json())
-      .then(({ allowed }: { allowed: boolean }) => {
-        if (!allowed) {
-          // Server confirmed duplicate — show already_applied screen
-          setScreen("already_applied");
-          setSubmitting(false);
-          return;
-        }
-        finish();
-      })
-      .catch(() => {
-        // Fail-open: server unreachable → proceed so real candidates aren't blocked
-        finish();
-      });
+    saveDeviceLock();
+    setWaDestUrl(dest);
+    setScreen("completed");
+    trackFunnel({ sessionId: sessionIdRef.current, event: "completed", step: "complete", jobId, source });
+    savePreQual({ isEuCitizen: true, hasBsn: bsn === "yes" || bsn === "not_yet", jobId, jobTitle, source });
+    fetch("/api/apply-webhook", {
+      method:    "POST",
+      keepalive: true,
+      headers:   { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jobId, jobTitle,
+        source:   source ?? null,
+        location: location.trim(),
+        bsn, driving, housing,
+        waMessage: msg,
+      }),
+    }).catch(() => { /* non-blocking */ });
   }
 
   // Auto-redirect to WhatsApp as soon as completed screen is shown.
@@ -546,9 +493,7 @@ export default function ApplyPreScreen({
   const step = screen === "gate" ? 1 : 2;
 
   // ── Readiness guard — submit only when required fields are filled ──
-  const phoneNorm    = normalisePhone(phone.trim());
-  const phoneValid   = phoneNorm.length >= 7 && /^[+\d]+$/.test(phoneNorm);
-  const detailsReady = !!bsn && !!housing && location.trim().length >= 2 && phoneValid;
+  const detailsReady = !!bsn && !!housing && location.trim().length >= 2;
 
 
   // ── Portal modal — rendered at document.body level ──────────────────────────
@@ -859,29 +804,6 @@ export default function ApplyPreScreen({
               />
             </Question>
 
-            {/* Phone */}
-            <Question
-              label={t("apply_screen.question_phone")}
-              error={errors && !phoneValid}
-            >
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder={t("apply_screen.phone_placeholder")}
-                autoComplete="tel"
-                inputMode="tel"
-                className="
-                  block w-full bg-white/5 border border-white/10 rounded-xl
-                  px-4 py-3 text-white text-base placeholder-gray-600
-                  focus:outline-none focus:border-emerald-400/50
-                  transition-colors min-w-0
-                "
-              />
-              <p className="text-gray-600 text-[11px] mt-1">
-                {t("apply_screen.phone_hint")}
-              </p>
-            </Question>
 
             {errors && (
               <p className="text-red-400 text-[11px] mb-3">
@@ -921,7 +843,7 @@ export default function ApplyPreScreen({
             </button>
 
             <button
-              onClick={() => { setErrors(false); setCitizenship(null); setBsn(null); setDriving(null); setHousing(null); setLocation(""); setPhone(""); setScreen("gate"); }}
+              onClick={() => { setErrors(false); setCitizenship(null); setBsn(null); setDriving(null); setHousing(null); setLocation(""); setScreen("gate"); }}
               className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}
