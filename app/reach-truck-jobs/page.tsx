@@ -7,6 +7,65 @@ import { JOB_SALARY_DATA, CITIES, CITIES_BY_POPULATION } from "@/lib/seoData";
 import { JOB_LISTINGS } from "@/lib/jobData";
 import { WML_HOURLY_2026 } from "@/lib/dutchTax";
 
+// ─── JSON-LD structured data ──────────────────────────────────────────────────
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What licence do I need for reach truck jobs in the Netherlands?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need a valid reach truck (VNA or narrow-aisle) licence. A standard counterbalance forklift licence does not automatically cover reach truck operation. Many Dutch agencies accept licences issued in Poland, Romania, and other EU countries, but you may need to pass a brief practical test at the warehouse. Some agencies offer paid in-house licence training lasting 1–3 days.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "How much do reach truck drivers earn in the Netherlands?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reach truck drivers in the Netherlands earn between €13.50 and €17.00 per hour gross, with an average of approximately €15.25/hr. At 40 hours per week, gross monthly pay is approximately €2,635. After Dutch income tax, agency housing (~€95/week), transport, and health insurance, net monthly take-home is typically €1,400–€1,700. Night and weekend shifts attract premiums of 20–35% on top of base pay.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Do reach truck jobs in the Netherlands include accommodation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most reach truck placements in Tilburg, Waalwijk, and Venlo include agency housing because the warehouses are far from city centres with poor public transport. Housing is SNF-certified, shared accommodation costing €88–€113/week, deducted from gross pay. Transport by agency bus to the warehouse is usually included.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Which cities have the most reach truck driver jobs in the Netherlands?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The highest concentration of reach truck jobs is in the Dutch logistics corridor: Tilburg, Waalwijk, Venlo, Eindhoven, and Helmond. These cities host major high-bay distribution centres for retailers, e-commerce platforms, and food manufacturers. The Venlo area near the German border is particularly active for cross-border logistics requiring reach truck operators.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "How do I apply for reach truck jobs in the Netherlands from abroad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fastest way is through a Dutch staffing agency that works with EU workers — you apply via WhatsApp or their online form, do a phone/video screening, and receive a contract before you travel. The agency organises housing and transport. Make sure you hold a valid reach truck licence, a BSN number (or plan to get one on arrival), and EU citizenship or work authorisation.",
+      },
+    },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://agencycheck.io/" },
+    { "@type": "ListItem", "position": 2, "name": "Jobs", "item": "https://agencycheck.io/jobs" },
+    { "@type": "ListItem", "position": 3, "name": "Reach Truck Jobs", "item": "https://agencycheck.io/reach-truck-jobs" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "Reach Truck Driver Jobs in the Netherlands — AgencyCheck",
   description:
@@ -47,6 +106,11 @@ const topCities = CITIES_BY_POPULATION
 
 export default function ReachTruckJobsPage() {
   return (
+    <>
+      {/* JSON-LD */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
     <div className="max-w-4xl mx-auto px-4 py-8">
 
       {/* Breadcrumb */}
@@ -402,6 +466,7 @@ export default function ReachTruckJobsPage() {
             { href: "/jobs/forklift-driver", icon: "🚜", label: "Forklift driver jobs", sub: "Counterbalance & reach" },
             { href: "/warehouse-jobs-with-accommodation", icon: "🏠", label: "Warehouse jobs with housing", sub: "Agency accommodation included" },
             { href: "/salary/reach-truck-driver-netherlands", icon: "💶", label: "Reach truck salary", sub: "Full gross-to-net breakdown" },
+            { href: "/agencies-with-housing", icon: "🏢", label: "Agencies with housing", sub: "Find agencies that include accommodation" },
             { href: "/cities/tilburg", icon: "📍", label: "Jobs in Tilburg", sub: "Top logistics city for RT work" },
             { href: "/otto-workforce-jobs", icon: "🏢", label: "OTTO Workforce jobs", sub: "Major agency for warehouse roles" },
           ].map(({ href, icon, label, sub }) => (
@@ -420,6 +485,47 @@ export default function ReachTruckJobsPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="mb-8">
+        <h2 className="text-sm font-bold text-gray-700 mb-3">❓ Frequently asked questions</h2>
+        <div className="space-y-2">
+          {[
+            {
+              q: "What licence do I need for reach truck jobs in the Netherlands?",
+              a: "You need a valid reach truck (also called a VNA or high-reach) certificate. Some employers accept foreign certificates — always confirm before you travel. If you don't have one, a few agencies offer on-site training courses.",
+            },
+            {
+              q: "How much do reach truck drivers earn in the Netherlands?",
+              a: `The 2026 starting rate for reach truck drivers is typically €${WML_HOURLY_2026}–€17.00/hour gross, depending on the employer, shift pattern, and CAO. Night shifts add a 25–35% premium. After housing deductions a driver in Phase A typically keeps €380–€450/week net.`,
+            },
+            {
+              q: "Do reach truck jobs in the Netherlands include accommodation?",
+              a: "Many do — especially jobs sourced through staffing agencies (uitzendbureau) that have SNF-certified housing. Housing is deducted from your gross pay at the legally capped rate (max €113.50/week in 2026). Always get the weekly deduction amount in writing before signing.",
+            },
+            {
+              q: "Which cities have the most reach truck driver jobs?",
+              a: "The largest concentrations are in Rotterdam (port logistics), Tilburg (distribution hubs), Venlo (cross-border warehousing), Eindhoven, and the Tiel / Gelderland area. Amsterdam has fewer warehouse roles but more airport logistics.",
+            },
+            {
+              q: "How do I apply for reach truck jobs from abroad?",
+              a: "You need an EU/EEA passport or valid work permit, a BSN (Dutch tax number — arranged by the agency on arrival), and your reach truck certificate. Most agencies accept applications in English, Polish, or Romanian. AgencyCheck lets you apply and get matched with verified partners before you travel.",
+            },
+          ].map(({ q, a }) => (
+            <details
+              key={q}
+              className="card p-0 overflow-hidden group open:shadow-sm"
+            >
+              <summary className="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer list-none select-none text-xs font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
+                {q}
+                <span className="shrink-0 text-brand-500 group-open:rotate-180 transition-transform text-base">▾</span>
+              </summary>
+              <p className="px-4 pb-4 pt-1 text-xs text-gray-600 leading-relaxed border-t border-gray-100">{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
     </div>
+    </>
   );
 }

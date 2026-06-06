@@ -1611,6 +1611,66 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
+          SEO HUB — internal link grid
+          ════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#0B1F14] border-b border-white/[0.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+          <h2 className="text-base sm:text-lg font-black text-white mb-1">Explore jobs &amp; agencies</h2>
+          <p className="text-[13px] text-gray-400 mb-6">Everything you need to find verified work in the Netherlands — with housing, real salaries, and no surprises.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              {
+                href: "/jobs-with-accommodation",
+                icon: "🏠",
+                label: "Jobs with accommodation",
+                sub: "Real weekly take-home after housing, tax &amp; transport",
+                badge: "Most popular",
+              },
+              {
+                href: "/agencies-with-housing",
+                icon: "🏢",
+                label: "Agencies with housing",
+                sub: "Compare staffing agencies that include SNF-certified rooms",
+                badge: null,
+              },
+              {
+                href: "/reach-truck-jobs",
+                icon: "🚛",
+                label: "Reach truck jobs Netherlands",
+                sub: "€16–€17/hr · forklift cert required · housing often included",
+                badge: null,
+              },
+              {
+                href: "/warehouse-jobs-with-accommodation",
+                icon: "📦",
+                label: "Warehouse jobs with accommodation",
+                sub: "Order picking, packing &amp; production — entry level welcome",
+                badge: null,
+              },
+            ].map(({ href, icon, label, sub, badge }) => (
+              <Link
+                key={href}
+                href={href}
+                className="group flex items-start gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.07] hover:border-emerald-500/30 transition-all px-5 py-4"
+              >
+                <span className="text-2xl shrink-0 mt-0.5">{icon}</span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                    <p className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">{label}</p>
+                    {badge && (
+                      <span className="text-[10px] font-semibold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5">{badge}</span>
+                    )}
+                  </div>
+                  <p className="text-[12px] text-gray-400 leading-snug" dangerouslySetInnerHTML={{ __html: sub }} />
+                </div>
+                <span className="text-gray-600 group-hover:text-emerald-400 transition-colors shrink-0 mt-1">→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════
           FINAL CTA
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-gradient-to-b from-blue-900 via-blue-950 to-gray-950 text-white">

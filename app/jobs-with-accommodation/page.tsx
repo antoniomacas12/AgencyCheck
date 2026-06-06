@@ -499,6 +499,75 @@ export default async function JobsWithAccommodationPage() {
         </div>
       </section>
 
+      {/* Internal links */}
+      <section className="mb-8">
+        <h3 className="text-sm font-bold text-gray-300 mb-3">🔗 Related pages</h3>
+        <div className="grid sm:grid-cols-2 gap-2">
+          {[
+            { href: "/agencies-with-housing",           icon: "🏢", label: "Agencies with housing",           sub: "Compare agencies that include accommodation" },
+            { href: "/reach-truck-jobs",                icon: "🚛", label: "Reach truck jobs",                sub: "Certified drivers wanted — housing often included" },
+            { href: "/warehouse-jobs-with-accommodation", icon: "📦", label: "Warehouse jobs with housing",   sub: "Order picking, packing, production" },
+            { href: "/best-agencies-with-housing-netherlands", icon: "⭐", label: "Best agencies with housing", sub: "Ranked by transparency & housing quality" },
+          ].map(({ href, icon, label, sub }) => (
+            <Link
+              key={href}
+              href={href}
+              className="rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-2.5 flex items-center gap-3 hover:border-emerald-500/30 hover:bg-white/[0.07] transition-all"
+            >
+              <span className="text-xl shrink-0">{icon}</span>
+              <div>
+                <p className="text-xs font-semibold text-emerald-400">{label} →</p>
+                <p className="text-[10px] text-gray-400">{sub}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="mb-8">
+        <h2 className="text-base font-bold text-white mb-3">❓ Frequently asked questions</h2>
+        <div className="space-y-2">
+          {[
+            {
+              q: "What jobs in the Netherlands include housing?",
+              a: "Jobs in warehousing, food production, logistics, greenhouses, and manufacturing are most commonly offered with included housing. Employment agencies such as Covebo, OTTO Workforce, and Adecco provide accommodation for international workers in regions like Venlo, Tilburg, Breda, and Waalwijk.",
+            },
+            {
+              q: "How much do you keep per week after housing deduction?",
+              a: `At Dutch minimum wage (€${WML_HOURLY_2026}/hr, 40h/week = ≈€588 gross), after income tax (~€130/week), agency housing (~€95–€113/week), and transport (~€15/week), most workers keep approximately €290–€360/week net. Positions above minimum wage (forklift, reach truck, night shift) can net €360–€430+/week.`,
+            },
+            {
+              q: "Which employment agencies offer accommodation in the Netherlands?",
+              a: "Agencies known for providing housing include Covebo, OTTO Workforce, Manpower, Adecco, Tempo-Team, Unique, and several smaller regional agencies. Housing quality and deduction amounts vary — always confirm the weekly cost, room occupancy, and location before accepting a placement.",
+            },
+            {
+              q: "Is agency accommodation legal and safe?",
+              a: "Yes, if it is SNF-certified (Stichting Normering Flexwonen). SNF-certified housing meets minimum standards for room size, safety, and hygiene. The maximum lawful deduction is €113.50/week (2026). Always ask for the SNF registration number before signing a contract.",
+            },
+            {
+              q: "How much does agency housing cost in the Netherlands?",
+              a: "Agency housing is typically deducted from your salary at €80–€113/week. The legal maximum under SNF standards is €113.50/week for shared rooms. Some agencies include housing at no charge for the first few weeks. Always request a written breakdown of all deductions before signing.",
+            },
+            {
+              q: "Can I start working in the Netherlands without a BSN number?",
+              a: "Yes — but your employer will withhold tax at the anonymous rate (up to 52%) until you register. Apply for a BSN at your local gemeente within your first week. EU citizens can register using their passport or national ID card.",
+            },
+          ].map(({ q, a }) => (
+            <details
+              key={q}
+              className="rounded-xl border border-white/[0.07] bg-white/[0.04] overflow-hidden group"
+            >
+              <summary className="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer list-none select-none text-xs font-semibold text-gray-200 hover:bg-white/[0.04] transition-colors">
+                {q}
+                <span className="shrink-0 text-emerald-400 group-open:rotate-180 transition-transform text-base">▾</span>
+              </summary>
+              <p className="px-4 pb-4 pt-1 text-xs text-gray-400 leading-relaxed border-t border-white/[0.06]">{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       {/* Trust + footer */}
       <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
         <span className="text-[9px] font-bold uppercase tracking-widest bg-white/[0.06] text-gray-400 rounded-full px-2.5 py-1">{t("jobs_accommodation.trust_1")}</span>
