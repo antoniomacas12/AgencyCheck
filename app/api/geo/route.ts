@@ -18,10 +18,17 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 const EU_COUNTRIES = new Set([
+  // EU-27
   "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE",
   "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT",
   "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO",
   "SE", "SI", "SK",
+  // EEA (non-EU but same work-rights as EU)
+  "NO", "IS", "LI",
+  // Switzerland — bilateral agreements with EU
+  "CH",
+  // Ukraine — eligible under EU Temporary Protection Directive (2022+)
+  "UA",
 ]);
 
 export async function GET(req: NextRequest) {
