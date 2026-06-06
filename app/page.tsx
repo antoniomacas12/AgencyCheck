@@ -350,17 +350,16 @@ export default async function HomePage() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-[26px] sm:text-5xl lg:text-[58px] xl:text-[64px] font-black leading-tight tracking-tight text-white mb-3 sm:mb-5 w-full break-words">
+              <h1 className="text-[22px] sm:text-[32px] lg:text-[40px] xl:text-[44px] font-extrabold leading-[1.2] tracking-tight text-white mb-3 sm:mb-4 w-full break-words">
                 Find verified jobs in the{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
                   Netherlands
-                </span>
-                <br />
-                <span className="text-gray-200">with accommodation.</span>
+                </span>{" "}
+                <span className="text-gray-200 font-bold">with accommodation.</span>
               </h1>
 
               {/* Subtext */}
-              <p className="text-sm sm:text-xl text-gray-400 leading-relaxed mb-4 sm:mb-5 max-w-xl mx-auto lg:mx-0">
+              <p className="text-[13px] sm:text-[16px] text-gray-400 leading-relaxed mb-4 sm:mb-5 max-w-xl mx-auto lg:mx-0">
                 Real jobs.{" "}
                 <span className="text-gray-200 font-medium">Real salaries.</span>{" "}
                 Real worker experiences.
