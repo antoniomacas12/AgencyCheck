@@ -85,6 +85,8 @@ export default function ReachtruckDriverTielPage() {
         {/* Primary CTA */}
         <GateLink
           source="reachtruck-tiel-hero"
+          waBase="https://wa.me/31649210631"
+          referralMode={false}
           className="inline-flex items-center gap-3 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all px-7 py-4 text-[16px] font-black text-white"
           style={{ boxShadow: "0 0 0 1px rgba(37,211,102,0.30), 0 8px 28px rgba(37,211,102,0.20)" }}
         >
@@ -154,6 +156,8 @@ export default function ReachtruckDriverTielPage() {
           <p className="text-gray-400 text-sm mb-6">Send us a WhatsApp message — our recruiter responds the same day.</p>
           <GateLink
             source="reachtruck-tiel-final"
+            waBase="https://wa.me/31649210631"
+            referralMode={false}
             className="inline-flex items-center gap-3 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5a] active:scale-[0.97] transition-all px-8 py-4 text-[15px] font-black text-white"
           >
             <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
