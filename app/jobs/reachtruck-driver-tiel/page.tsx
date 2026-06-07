@@ -79,7 +79,7 @@ export default function ReachtruckDriverTielPage() {
         </div>
 
         <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6">
-          We are placing reachtruck operators in Tiel, Gelderland. The position is through a verified Dutch employment agency with <strong className="text-white">SNF-certified housing included</strong>. ABU CAO contract, transparent deductions, bus transport organised.
+          We are placing reachtruck operators in Tiel, Gelderland. The position is through a verified Dutch employment agency. <strong className="text-white">Housing available from €70/wk</strong> — own accommodation preferred. ET regeling applicable, travel reimbursed.
         </p>
 
         {/* Primary CTA */}

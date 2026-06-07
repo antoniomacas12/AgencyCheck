@@ -93,7 +93,7 @@ export default function ForkliftWarehouseWorkerTielPage() {
         </div>
 
         <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6">
-          Two openings at a verified distribution centre in Tiel. Forklift operators and warehouse workers both welcome. <strong className="text-white">SNF-certified housing included.</strong> ABU CAO contract, all deductions transparent.
+          Two openings at a verified distribution centre in Tiel. Forklift operators and warehouse workers both welcome. <strong className="text-white">Own accommodation required — housing not provided.</strong> Direct employer contact through WRX Personeelsdiensten.
         </p>
 
         <GateLink
