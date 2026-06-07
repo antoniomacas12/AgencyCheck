@@ -23,6 +23,10 @@ interface Props {
   jobTitle?: string;
   source?: string;
   jobId?: string;
+  /** Override WA number. Default: main AgencyCheck number (round-robin). */
+  waBase?: string;
+  /** false = go direct to waBase, skip recruiter rotation. Default: true. */
+  referralMode?: boolean;
 }
 
 export default function GateLink({
@@ -32,14 +36,16 @@ export default function GateLink({
   jobTitle = "Work in the Netherlands",
   source,
   jobId = "general",
+  waBase = `https://wa.me/${WA_NUMBER}`,
+  referralMode = true,
 }: Props) {
   return (
     <ApplyPreScreen
-      waBase={`https://wa.me/${WA_NUMBER}`}
+      waBase={waBase}
       jobTitle={jobTitle}
       source={source}
       jobId={jobId}
-      referralMode
+      referralMode={referralMode}
     >
       {(openFn) => (
         <button onClick={openFn} className={className} style={style} type="button">

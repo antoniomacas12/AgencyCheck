@@ -130,6 +130,7 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
                 jobTitle={job.title}
                 source="homepage-card-wrx"
                 jobId={job.slug}
+                referralMode={false}
               >
                 {(openFn) => (
                   <button
