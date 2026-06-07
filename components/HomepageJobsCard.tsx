@@ -35,7 +35,7 @@ const TIEL_JOBS = [
     title:    "Forklift / Reachtruck Warehouse Worker",
     location: "Tiel · Gelderland",
     salary:   "Based on qualifications",
-    note:     "Immediate openings · Forklift certificate valued",
+    note:     "Immediate openings · Own accommodation required",
     certs:    ["Reachtruck Cert", "Forklift Cert"],
     icon:     "🚜",
   },
