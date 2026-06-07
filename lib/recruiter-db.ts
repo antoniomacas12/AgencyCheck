@@ -78,6 +78,24 @@ export async function ensureDbReady(): Promise<void> {
     console.log(`[recruiter-db] upserted recruiter id=${r.id} name="${r.name}" seedEnabled=${seedEnabled}`);
   }
 
+  // 4. Rename migrations — keep referral_clicks in sync when a recruiter's
+  //    display name changes. Each entry is { oldName, newName }.
+  //    Safe to re-run: UPDATE WHERE "recruiter" = oldName is a no-op once done.
+  const NAME_RENAMES: { oldName: string; newName: string }[] = [
+    { oldName: "Nuno",        newName: "Nuno Barroso" },
+    { oldName: "Nuno's wife", newName: "Raquel Teixeira" },
+  ];
+  for (const { oldName, newName } of NAME_RENAMES) {
+    const result = await prisma.$executeRaw`
+      UPDATE referral_clicks
+      SET "recruiter" = ${newName}
+      WHERE "recruiter" = ${oldName}
+    `;
+    if (result > 0) {
+      console.log(`[recruiter-db] renamed clicks: "${oldName}" → "${newName}" (${result} rows)`);
+    }
+  }
+
   dbReady = true;
   console.log("[recruiter-db] ensureDbReady: done");
 }
