@@ -55,6 +55,9 @@ export async function POST(req: NextRequest) {
     }
 
     // ── Forward to recruiter webhook ─────────────────────────────────────────
+    // phone is not collected by the apply form (recruiter sees it via WhatsApp).
+    // Recruiter OS requires the field to be present — send a recognisable
+    // placeholder so the OS accepts the payload without failing validation.
     const res = await fetch(WEBHOOK_URL, {
       method:  "POST",
       headers: {
@@ -63,6 +66,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         ...body,
+        phone: body.phone || "via_whatsapp",
         sentAt: new Date().toISOString(),
       }),
     });

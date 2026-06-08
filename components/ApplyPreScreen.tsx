@@ -475,8 +475,9 @@ export default function ApplyPreScreen({
     setScreen("completed");
     trackFunnel({ sessionId: sessionIdRef.current, event: "completed", step: "complete", jobId, source });
     savePreQual({ isEuCitizen: true, hasBsn: bsn === "yes" || bsn === "not_yet", jobId, jobTitle, source });
-    // Single redirect — fires here, no useEffect needed
-    window.location.href = dest;
+    // Fire webhook BEFORE redirecting — keepalive:true keeps the request alive
+    // even after the page navigates away. Order matters: fetch must be initiated
+    // before window.location.href to guarantee the browser registers the request.
     fetch("/api/apply-webhook", {
       method:    "POST",
       keepalive: true,
@@ -492,6 +493,8 @@ export default function ApplyPreScreen({
         waMessage: msg,
       }),
     }).catch(() => { /* non-blocking */ });
+    // Redirect to WhatsApp after fetch is registered with the browser
+    window.location.href = dest;
   }
 
   // Progress (1 = gate, 2 = details)
