@@ -25,7 +25,7 @@ export const RECRUITER_SEEDS: RecruiterSeed[] = [
   {
     id:        "carolina",
     name:      "Carolina",
-    waUrl:     "https://wa.me/31653827805",
+    waUrl:     "https://wa.me/31685166776",
     sortOrder: 1,
   },
   // Raquel — kept for historical records only, never receives new candidates
