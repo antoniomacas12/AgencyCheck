@@ -18,7 +18,9 @@ const MAX_CUSTOM_MSG_LEN = 2000;
 
 function sanitise(value: string | null, maxLen: number): string | undefined {
   if (!value) return undefined;
-  const cleaned = value.replace(/[\x00-\x1F\x7F]/g, "").trim();
+  // Strip control characters EXCEPT \n (\x0A) so multi-line WA messages keep
+  // their formatting. \r (\x0D) is also kept so \r\n line-endings are preserved.
+  const cleaned = value.replace(/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F]/g, "").trim();
   return cleaned.length > 0 ? cleaned.slice(0, maxLen) : undefined;
 }
 

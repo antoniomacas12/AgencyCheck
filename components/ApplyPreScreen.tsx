@@ -484,10 +484,11 @@ export default function ApplyPreScreen({
       headers:   { "Content-Type": "application/json" },
       body: JSON.stringify({
         jobId, jobTitle,
-        source:     source ?? null,
-        location:   location.trim(),
+        source:       source ?? null,
+        location:     location.trim(),
         bsn, driving, housing,
-        eu_citizen: citizenship
+        availability: availability ?? null,
+        eu_citizen:   citizenship
           ? `${citizenship.trim()} (${/^(ukraine|ukrainian)$/i.test(citizenship.trim()) ? "TPD" : "EU"})`
           : null,
         waMessage: msg,
