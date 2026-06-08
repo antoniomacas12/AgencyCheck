@@ -770,7 +770,7 @@
     "add_review": "Add review"
   },
   "apply_screen": {
-    "step_label": "Step {step} of 3 · Application",
+    "step_label": "Step {step} of 2 · Application",
     "question_eu": "Select your EU country of citizenship",
     "eu_note": "EU citizenship required for most positions",
     "question_bsn": "Do you have a BSN number?",

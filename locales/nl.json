@@ -770,7 +770,7 @@
     "add_review": "Review toevoegen"
   },
   "apply_screen": {
-    "step_label": "Stap {step} van 3 · Sollicitatie",
+    "step_label": "Stap {step} van 2 · Sollicitatie",
     "question_eu": "Selecteer uw EU-land van staatsburgerschap",
     "eu_note": "EU-burgerschap vereist voor de meeste functies",
     "question_bsn": "Heb je een BSN-nummer?",

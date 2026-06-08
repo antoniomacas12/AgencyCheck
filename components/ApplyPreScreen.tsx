@@ -15,7 +15,8 @@ interface Props {
 }
 
 type Screen = "gate" | "details" | "disqualified" | "geo_blocked" | "already_applied" | "bsn_blocked" | "completed";
-type BSN    = "yes" | "no" | "not_yet";
+type BSN          = "yes" | "no" | "not_yet";
+type Availability = "immediately" | "week1" | "week2" | "later";
 
 // Citizenship is stored as a free-text string (e.g. "Poland", "Romania").
 // Using string rather than a locked-down union so the input is flexible.
@@ -119,18 +120,25 @@ function buildRedirectUrl(
 // ─── WhatsApp message builder ─────────────────────────────────────────────────
 // Lean message — EU, BSN, driving, housing, location. Phone visible to recruiter from WA sender.
 function buildCandidateMsg(
-  jobTitle:    string,
-  source:      string | undefined,
-  citizenship: EUCountry,
-  bsn:         BSN,
-  driving:     "yes" | "no" | null,
-  housing:     "yes" | "no" | null,
-  location:    string,
+  jobTitle:      string,
+  source:        string | undefined,
+  citizenship:   EUCountry,
+  bsn:           BSN,
+  driving:       "yes" | "no" | null,
+  housing:       "yes" | "no" | null,
+  location:      string,
+  availability:  Availability | null,
 ): string {
   const bsnLabel: Record<BSN, string> = {
     yes:     "Yes",
     no:      "No",
     not_yet: "Not yet (willing to arrange)",
+  };
+  const availLabel: Record<Availability, string> = {
+    immediately: "Immediately",
+    week1:       "Within 1 week",
+    week2:       "Within 2 weeks",
+    later:       "Later",
   };
   const srcTag = source ? ` [AgencyCheck · ${source}]` : " [AgencyCheck]";
   const lines = [
@@ -141,6 +149,7 @@ function buildCandidateMsg(
     `- BSN: ${bsnLabel[bsn]}`,
     driving !== null ? `- Driving licence: ${driving === "yes" ? "Yes" : "No"}` : null,
     housing !== null ? `- Housing needed: ${housing === "yes" ? "Yes" : "No"}` : null,
+    availability !== null ? `- Available from: ${availLabel[availability]}` : null,
     `- Current location: ${location}`,
   ].filter(Boolean);
   return lines.join("\n");
@@ -373,11 +382,12 @@ export default function ApplyPreScreen({
   const t = useT("en");
 
   // ── Form state ────────────────────────────────────────────────────────────
-  const [citizenship, setCitizenship] = useState<EUCountry | null>(null);
-  const [bsn,         setBsn]         = useState<BSN | null>(null);
-  const [driving,     setDriving]     = useState<"yes" | "no" | null>(null);
-  const [housing,     setHousing]     = useState<"yes" | "no" | null>(null);
-  const [location,    setLocation]    = useState("");
+  const [citizenship,   setCitizenship]   = useState<EUCountry | null>(null);
+  const [bsn,           setBsn]           = useState<BSN | null>(null);
+  const [driving,       setDriving]       = useState<"yes" | "no" | null>(null);
+  const [housing,       setHousing]       = useState<"yes" | "no" | null>(null);
+  const [availability,  setAvailability]  = useState<Availability | null>(null);
+  const [location,      setLocation]      = useState("");
 
   // ── Handlers ─────────────────────────────────────────────────────────────
   function handleOpen() {
@@ -408,6 +418,7 @@ export default function ApplyPreScreen({
     setBsn(null);
     setDriving(null);
     setHousing(null);
+    setAvailability(null);
     setLocation("");
     // Track: modal opened
     trackFunnel({ sessionId: sid, event: "open", step: "gate", jobId, source });
@@ -441,7 +452,7 @@ export default function ApplyPreScreen({
   // Phone is not collected — recruiter sees the sender's number directly in WhatsApp.
   // Dedup uses device lock only (layer 1). Layers 2+3 were phone-based and are removed.
   function handleSubmit() {
-    if (!bsn || !housing || location.trim().length < 2) {
+    if (!bsn || !housing || !availability || location.trim().length < 2) {
       setErrors(true);
       return;
     }
@@ -455,7 +466,7 @@ export default function ApplyPreScreen({
     const msg = buildCandidateMsg(
       jobTitle, source,
       citizenship!, bsn!, driving, housing,
-      location.trim(),
+      location.trim(), availability,
     );
     const dest = referralMode
       ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck", msg)
@@ -493,7 +504,7 @@ export default function ApplyPreScreen({
   const step = screen === "gate" ? 1 : 2;
 
   // ── Readiness guard — submit only when required fields are filled ──
-  const detailsReady = !!bsn && !!housing && location.trim().length >= 2;
+  const detailsReady = !!bsn && !!housing && !!availability && location.trim().length >= 2;
 
 
   // ── Portal modal — rendered at document.body level ──────────────────────────
@@ -784,6 +795,16 @@ export default function ApplyPreScreen({
               </div>
             </Question>
 
+            {/* When to start — required */}
+            <Question label={t("apply_screen.question_avail")} error={errors && !availability}>
+              <div className="grid grid-cols-2 gap-2">
+                <Opt label={t("apply_screen.avail_immediately")} selected={availability === "immediately"} onClick={() => setAvailability("immediately")} />
+                <Opt label={t("apply_screen.avail_week1")}       selected={availability === "week1"}       onClick={() => setAvailability("week1")} />
+                <Opt label={t("apply_screen.avail_week2")}       selected={availability === "week2"}       onClick={() => setAvailability("week2")} />
+                <Opt label={t("apply_screen.avail_later")}       selected={availability === "later"}       onClick={() => setAvailability("later")} />
+              </div>
+            </Question>
+
             {/* City/region */}
             <Question
               label={t("apply_screen.question_location")}
@@ -843,7 +864,7 @@ export default function ApplyPreScreen({
             </button>
 
             <button
-              onClick={() => { setErrors(false); setCitizenship(null); setBsn(null); setDriving(null); setHousing(null); setLocation(""); setScreen("gate"); }}
+              onClick={() => { setErrors(false); setCitizenship(null); setBsn(null); setDriving(null); setHousing(null); setAvailability(null); setLocation(""); setScreen("gate"); }}
               className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}
