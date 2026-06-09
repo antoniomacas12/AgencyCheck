@@ -147,6 +147,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency:  "weekly",
       priority:         0.8,
     },
+    // ── Tiel direct-hire job pages ───────────────────────────────────────────
+    {
+      url:              `${BASE_URL}/jobs/reachtruck-driver-tiel`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.9,
+    },
+    {
+      url:              `${BASE_URL}/jobs/forklift-warehouse-worker-tiel`,
+      lastModified:     TODAY,
+      changeFrequency:  "weekly",
+      priority:         0.9,
+    },
     // ── Active job application pages ─────────────────────────────────────────
     {
       url:              `${BASE_URL}/apply`,
