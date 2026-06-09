@@ -159,30 +159,36 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "agencySlug or agencyName is required" }, { status: 400 });
     }
 
-    // ── Required ratings ───────────────────────────────────────────────────────
-    const salaryRating          = int(fd.get("salaryRating"));
-    const managementRating      = int(fd.get("managementRating"));
-    const contractClarityRating = int(fd.get("contractClarityRating"));
+    // ── Ratings (all optional — DB defaults to 3 if omitted) ─────────────────
+    const salaryRawIn          = int(fd.get("salaryRating"));
+    const managementRawIn      = int(fd.get("managementRating"));
+    const contractRawIn        = int(fd.get("contractClarityRating"));
+    const salaryRating          = salaryRawIn     !== null && validRating(salaryRawIn)     ? salaryRawIn     : null;
+    const managementRating      = managementRawIn !== null && validRating(managementRawIn) ? managementRawIn : null;
+    const contractClarityRating = contractRawIn   !== null && validRating(contractRawIn)   ? contractRawIn   : null;
 
-    if (!validRating(salaryRating))          return NextResponse.json({ error: "salaryRating must be 1–5" },          { status: 400 });
-    if (!validRating(managementRating))      return NextResponse.json({ error: "managementRating must be 1–5" },      { status: 400 });
-    if (!validRating(contractClarityRating)) return NextResponse.json({ error: "contractClarityRating must be 1–5" }, { status: 400 });
-
-    // ── Optional ratings ───────────────────────────────────────────────────────
     const hrRaw  = int(fd.get("housingRating"));
     const trRaw  = int(fd.get("transportRating"));
     const sarRaw = int(fd.get("salaryAccuracyRating"));
-    const housingRating       = hrRaw  !== null && validRating(hrRaw)  ? hrRaw  : null;
-    const transportRating     = trRaw  !== null && validRating(trRaw)  ? trRaw  : null;
+    const housingRating        = hrRaw  !== null && validRating(hrRaw)  ? hrRaw  : null;
+    const transportRating      = trRaw  !== null && validRating(trRaw)  ? trRaw  : null;
     const salaryAccuracyRating = sarRaw !== null && validRating(sarRaw) ? sarRaw : null;
 
-    // ── Overall rating (computed if not provided) ──────────────────────────────
+    // ── Overall rating (computed from provided sub-ratings, or DB default) ────
     const rawOverall = int(fd.get("overallRating"));
     const computed = (() => {
-      const vals = [salaryRating!, managementRating!, contractClarityRating!, ...(housingRating != null ? [housingRating] : [])];
+      const vals = [
+        ...(salaryRating          != null ? [salaryRating]          : []),
+        ...(managementRating      != null ? [managementRating]      : []),
+        ...(contractClarityRating != null ? [contractClarityRating] : []),
+        ...(housingRating         != null ? [housingRating]         : []),
+      ];
+      if (vals.length === 0) return null;
       return Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
     })();
-    const overallRating = rawOverall !== null && validRating(rawOverall) ? rawOverall : computed;
+    const overallRating = rawOverall !== null && validRating(rawOverall)
+      ? rawOverall
+      : (computed ?? null);
 
     // ── Text & enum-equivalent string fields ───────────────────────────────────
     const title            = str(fd.get("title"),            120);
@@ -212,11 +218,12 @@ export async function POST(req: NextRequest) {
         jobTitle,
         city,
         title,
-        overallRating,
-        salaryRating,
-        housingRating,
-        managementRating,
-        contractClarityRating,
+        // null → undefined so Prisma uses DB @default(3) for non-nullable fields
+        overallRating:         overallRating         ?? undefined,
+        salaryRating:          salaryRating          ?? undefined,
+        housingRating:         housingRating         ?? undefined,
+        managementRating:      managementRating      ?? undefined,
+        contractClarityRating: contractClarityRating ?? undefined,
         transportRating,
         salaryAccuracyRating,
         accommodationProvided,
