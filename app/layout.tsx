@@ -45,10 +45,18 @@ export const metadata: Metadata = {
     shortcut:         "/favicon.ico",
   },
   openGraph: {
-    type: "website",
-    siteName: "AgencyCheck",
-    locale: "en_NL",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AgencyCheck — The Truth Mark" }],
+    type:        "website",
+    siteName:    "AgencyCheck",
+    locale:      "en_NL",
+    title:       "AgencyCheck — Real jobs. Honest agencies.",
+    description: "Warehouse, logistics & production work in the Netherlands. Accommodation available.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AgencyCheck — Real jobs. Honest agencies." }],
+  },
+  twitter: {
+    card:        "summary_large_image",
+    title:       "AgencyCheck — Real jobs. Honest agencies.",
+    description: "Warehouse, logistics & production work in the Netherlands. Accommodation available.",
+    images:      ["/og-image.png"],
   },
   robots: {
     index:  true,
