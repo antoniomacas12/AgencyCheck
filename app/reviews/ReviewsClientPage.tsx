@@ -74,62 +74,13 @@ function StarSelector({
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Standalone review form (agency is selected inline)
+// Standalone review form — 2 fields: agency name + review text
 // ─────────────────────────────────────────────────────────────────────────────
-
-const JOB_TYPE_OPTIONS = [
-  "Order Picker", "Warehouse Worker", "Production Worker", "Assembly Worker",
-  "Forklift Driver", "Reach Truck Driver", "Machine Operator", "Packing Operator",
-  "Greenhouse Worker", "Driver", "Cleaner", "Other",
-];
-
-const PHOTO_TYPES = new Set(["image/jpeg", "image/jpg", "image/png", "image/webp"]);
-const MAX_PHOTO_SIZE = 8 * 1024 * 1024; // 8 MB
-const MAX_PHOTOS = 6;
 
 interface AgencySuggestion {
   id: string;
   name: string;
   slug: string;
-}
-
-interface FormState {
-  agencySearch: string;   // text typed in combobox
-  agencySlug: string;     // slug of confirmed-existing agency, or "" if new
-  agencyIsNew: boolean;   // true = user confirmed "add as new agency"
-  city: string;
-  jobType: string;
-  rating: number;
-  housingIncluded: "yes" | "no" | "unknown";
-  housingCost: string;
-  peoplePerRoom: string;
-  transportCost: string;
-  wouldRecommend: "yes" | "no" | "neutral";
-  comment: string;
-}
-
-const INITIAL_FORM: FormState = {
-  agencySearch: "",
-  agencySlug: "",
-  agencyIsNew: false,
-  city: "",
-  jobType: "",
-  rating: 0,
-  housingIncluded: "unknown",
-  housingCost: "",
-  peoplePerRoom: "",
-  transportCost: "",
-  wouldRecommend: "neutral",
-  comment: "",
-};
-
-// Read a File as a data-URL (for preview thumbnails)
-function readAsDataURL(file: File): Promise<string> {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = (e) => resolve((e.target?.result as string) ?? "");
-    reader.readAsDataURL(file);
-  });
 }
 
 function ReviewSubmitForm({
@@ -139,101 +90,58 @@ function ReviewSubmitForm({
   t: (key: string, vars?: Record<string, string | number>) => string;
   onSubmitSuccess?: (data: { agencySlug: string; review: WorkerReview }) => void;
 }) {
-  const [form, setForm] = useState<FormState>(INITIAL_FORM);
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [agencySearch,   setAgencySearch]   = useState("");
+  const [agencySlug,     setAgencySlug]     = useState("");
+  const [agencyIsNew,    setAgencyIsNew]    = useState(false);
+  const [comment,        setComment]        = useState("");
+  const [submitted,      setSubmitted]      = useState(false);
+  const [loading,        setLoading]        = useState(false);
+  const [submitError,    setSubmitError]    = useState<string | null>(null);
+  const [suggestions,    setSuggestions]    = useState<AgencySuggestion[]>([]);
+  const [suggestOpen,    setSuggestOpen]    = useState(false);
+  const [suggestLoading, setSuggestLoading] = useState(false);
 
-  // ── Agency combobox state ──────────────────────────────────────────────────
-  const [suggestions,     setSuggestions]     = useState<AgencySuggestion[]>([]);
-  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
-  const [suggestLoading,  setSuggestLoading]  = useState(false);
-  const comboboxRef  = useRef<HTMLDivElement>(null);
-  const debounceRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const comboboxRef = useRef<HTMLDivElement>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // ── Photo upload state ─────────────────────────────────────────────────────
-  const [photoFiles,    setPhotoFiles]    = useState<File[]>([]);
-  const [photoPreviews, setPhotoPreviews] = useState<string[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Close suggestions on outside click
+  // Close dropdown on outside click
   useEffect(() => {
     function onOutside(e: MouseEvent) {
       if (comboboxRef.current && !comboboxRef.current.contains(e.target as Node)) {
-        setSuggestionsOpen(false);
+        setSuggestOpen(false);
       }
     }
     document.addEventListener("mousedown", onOutside);
     return () => document.removeEventListener("mousedown", onOutside);
   }, []);
 
-  // ── Validation ────────────────────────────────────────────────────────────
-  const agencyOk = form.agencySlug.length > 0 || (form.agencyIsNew && form.agencySearch.trim().length > 0);
-  const isValid  = agencyOk && form.rating > 0 && form.comment.trim().length > 10;
-
-  function set<K extends keyof FormState>(key: K, value: FormState[K]) {
-    setForm((prev) => ({ ...prev, [key]: value }));
-  }
-
-  // ── Agency combobox helpers ────────────────────────────────────────────────
+  const agencyOk = agencySlug.length > 0 || (agencyIsNew && agencySearch.trim().length > 0);
+  const isValid  = agencyOk && comment.trim().length >= 10;
 
   const fetchSuggestions = useCallback((query: string) => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    if (query.trim().length < 1) {
-      setSuggestions([]);
-      setSuggestionsOpen(false);
-      return;
-    }
+    if (query.trim().length < 1) { setSuggestions([]); setSuggestOpen(false); return; }
     debounceRef.current = setTimeout(async () => {
       setSuggestLoading(true);
       try {
         const res = await fetch(`/api/agencies/search?q=${encodeURIComponent(query.trim())}`);
-        if (res.ok) {
-          const data = await res.json();
-          setSuggestions(data.agencies ?? []);
-          setSuggestionsOpen(true);
-        }
-      } catch { /* ignore network errors */ }
-      finally { setSuggestLoading(false); }
+        if (res.ok) { const data = await res.json(); setSuggestions(data.agencies ?? []); setSuggestOpen(true); }
+      } catch { /* ignore */ } finally { setSuggestLoading(false); }
     }, 280);
   }, []);
 
   function handleAgencyInput(value: string) {
-    setForm((prev) => ({ ...prev, agencySearch: value, agencySlug: "", agencyIsNew: false }));
+    setAgencySearch(value); setAgencySlug(""); setAgencyIsNew(false);
     fetchSuggestions(value);
   }
 
-  function selectExistingAgency(ag: AgencySuggestion) {
-    setForm((prev) => ({ ...prev, agencySearch: ag.name, agencySlug: ag.slug, agencyIsNew: false }));
-    setSuggestionsOpen(false);
+  function selectExisting(ag: AgencySuggestion) {
+    setAgencySearch(ag.name); setAgencySlug(ag.slug); setAgencyIsNew(false); setSuggestOpen(false);
   }
 
-  function selectNewAgency() {
-    setForm((prev) => ({ ...prev, agencyIsNew: true, agencySlug: "" }));
-    setSuggestionsOpen(false);
+  function selectNew() {
+    setAgencyIsNew(true); setAgencySlug(""); setSuggestOpen(false);
   }
-
-  // ── Photo helpers ──────────────────────────────────────────────────────────
-
-  async function handlePhotoSelect(e: React.ChangeEvent<HTMLInputElement>) {
-    const newFiles = Array.from(e.target.files ?? []).filter(
-      (f) => PHOTO_TYPES.has(f.type.toLowerCase()) && f.size <= MAX_PHOTO_SIZE
-    );
-    const combined = [...photoFiles, ...newFiles].slice(0, MAX_PHOTOS);
-    setPhotoFiles(combined);
-    const previews = await Promise.all(combined.map(readAsDataURL));
-    setPhotoPreviews(previews);
-    if (fileInputRef.current) fileInputRef.current.value = "";
-  }
-
-  function removePhoto(index: number) {
-    const nextFiles    = photoFiles.filter((_, i) => i !== index);
-    const nextPreviews = photoPreviews.filter((_, i) => i !== index);
-    setPhotoFiles(nextFiles);
-    setPhotoPreviews(nextPreviews);
-  }
-
-  // ── Submit ─────────────────────────────────────────────────────────────────
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -241,56 +149,31 @@ function ReviewSubmitForm({
     setLoading(true);
     setSubmitError(null);
     try {
-      const ACCOM_MAP:     Record<string, string> = { yes: "YES",  no: "NO",  unknown: "UNKNOWN" };
-      const RECOMMEND_MAP: Record<string, string> = { yes: "YES",  no: "NO",  neutral: "UNSURE"  };
-
       const fd = new FormData();
-
-      // Agency: either existing slug or free-text name (API will create it)
-      if (form.agencyIsNew) {
-        fd.set("agencyName", form.agencySearch.trim());
-      } else {
-        fd.set("agencySlug", form.agencySlug);
-      }
-
-      fd.set("salaryRating",          String(form.rating));
-      fd.set("managementRating",      String(form.rating));
-      fd.set("contractClarityRating", String(form.rating));
-      fd.set("overallRating",         String(form.rating));
-      fd.set("accommodationProvided", ACCOM_MAP[form.housingIncluded]  ?? "UNKNOWN");
-      fd.set("wouldRecommend",        RECOMMEND_MAP[form.wouldRecommend] ?? "UNSURE");
-      if (form.city.trim())    fd.set("city",    form.city.trim());
-      if (form.jobType.trim()) fd.set("jobType", form.jobType.trim());
-      if (form.comment.trim()) fd.set("comment", form.comment.trim());
-      if (form.housingIncluded === "yes") {
-        if (form.housingCost.trim())   fd.set("weeklyRent",    form.housingCost.trim());
-        if (form.peoplePerRoom.trim()) fd.set("peopleInHouse", form.peoplePerRoom.trim());
-      }
-
-      // Append photos
-      for (const file of photoFiles) {
-        fd.append("photos", file);
-      }
+      if (agencyIsNew) { fd.set("agencyName", agencySearch.trim()); }
+      else             { fd.set("agencySlug", agencySlug); }
+      fd.set("reviewType", "ANONYMOUS");
+      fd.set("comment",    comment.trim());
 
       const res  = await fetch("/api/reviews", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
 
-      const resolvedSlug: string = (data.agencySlug as string) || form.agencySlug || "unknown";
+      const resolvedSlug: string = (data.agencySlug as string) || agencySlug || "unknown";
       setSubmitted(true);
       onSubmitSuccess?.({
         agencySlug: resolvedSlug,
         review: {
           id:                    (data.reviewId as string) ?? `pending-${Date.now()}`,
           reviewType:            "ANONYMOUS",
-          overallRating:         form.rating,
-          salaryRating:          form.rating,
-          managementRating:      form.rating,
-          contractClarityRating: form.rating,
+          overallRating:         3,
+          salaryRating:          3,
+          managementRating:      3,
+          contractClarityRating: 3,
           housingRating:         null,
-          comment:               form.comment.trim() || null,
-          city:                  form.city.trim() || null,
-          jobTitle:              form.jobType || null,
+          comment:               comment.trim() || null,
+          city:                  null,
+          jobTitle:              null,
           createdAt:             new Date().toISOString(),
           verificationStatus:    "WORKER_REPORTED",
           issueTags:             [],
@@ -303,7 +186,7 @@ function ReviewSubmitForm({
     }
   }
 
-  // ── Success screen ─────────────────────────────────────────────────────────
+  // ── Success ────────────────────────────────────────────────────────────────
 
   if (submitted) {
     return (
@@ -314,16 +197,9 @@ function ReviewSubmitForm({
           </svg>
         </div>
         <p className="text-base font-bold text-white mb-1">{t("reviews_page.form_success_title")}</p>
-        <p className="text-base text-gray-200 leading-relaxed">
-          {t("reviews_page.form_success_sub")}
-        </p>
+        <p className="text-base text-gray-200 leading-relaxed">{t("reviews_page.form_success_sub")}</p>
         <button
-          onClick={() => {
-            setForm(INITIAL_FORM);
-            setPhotoFiles([]);
-            setPhotoPreviews([]);
-            setSubmitted(false);
-          }}
+          onClick={() => { setAgencySearch(""); setAgencySlug(""); setAgencyIsNew(false); setComment(""); setSubmitted(false); }}
           className="mt-4 text-sm text-emerald-400 border border-emerald-500/20 rounded-full px-4 py-1.5 hover:bg-emerald-500/[0.1] transition-colors"
         >
           {t("reviews_page.form_submit_another")}
@@ -332,75 +208,56 @@ function ReviewSubmitForm({
     );
   }
 
-  // ── Form ───────────────────────────────────────────────────────────────────
+  // ── Form ────────────────────────────────────────────────────────────────────
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-4">
 
-      {/* Submit error */}
       {submitError && (
         <div className="px-4 py-3 bg-red-500/[0.12] border border-red-500/25 rounded-xl text-sm text-red-400">
           {submitError}
         </div>
       )}
 
-      {/* ── Agency combobox ─────────────────────────────────────────────────── */}
+      {/* Agency combobox */}
       <div ref={comboboxRef} className="relative">
         <label className="block text-base font-bold text-gray-200 mb-1.5">
           {t("reviews_page.form_agency_label")} <span className="text-red-400">*</span>
         </label>
         <div className={`flex items-center rounded-xl border overflow-hidden transition-all ${
-          form.agencySlug
-            ? "border-emerald-400/60 ring-2 ring-emerald-500/20"
-            : form.agencyIsNew
-            ? "border-amber-400/60 ring-2 ring-amber-500/20"
-            : "border-white/[0.1]"
+          agencySlug   ? "border-emerald-400/60 ring-2 ring-emerald-500/20"
+          : agencyIsNew ? "border-amber-400/60 ring-2 ring-amber-500/20"
+          : "border-white/[0.1]"
         }`}>
           <input
             type="text"
-            value={form.agencySearch}
+            value={agencySearch}
             onChange={(e) => handleAgencyInput(e.target.value)}
-            onFocus={() => { if (suggestions.length > 0) setSuggestionsOpen(true); }}
+            onFocus={() => { if (suggestions.length > 0) setSuggestOpen(true); }}
             placeholder="Type agency name…"
             autoComplete="off"
             className="flex-1 px-3.5 py-2.5 text-base text-white bg-[#1a2235] placeholder:text-gray-600 focus:outline-none"
             style={{ colorScheme: "dark", caretColor: "#ffffff" }}
           />
           <span className="pr-3 shrink-0">
-            {suggestLoading
-              ? <span className="text-gray-400 text-xs animate-pulse">…</span>
-              : form.agencySlug
-              ? <span className="text-green-500 text-sm">✓</span>
-              : form.agencyIsNew
-              ? <span className="text-amber-500 text-sm">✦</span>
+            {suggestLoading ? <span className="text-gray-400 text-xs animate-pulse">…</span>
+              : agencySlug  ? <span className="text-green-500 text-sm">✓</span>
+              : agencyIsNew ? <span className="text-amber-500 text-sm">✦</span>
               : null}
           </span>
         </div>
-
-        {/* Status line below input */}
-        {form.agencySlug && (
-          <p className="text-sm text-emerald-400 mt-1 flex items-center gap-1">
-            ✓ Found in database
-          </p>
+        {agencySlug  && <p className="text-sm text-emerald-400 mt-1">✓ Found in database</p>}
+        {agencyIsNew && agencySearch.trim().length > 0 && (
+          <p className="text-sm text-amber-400 mt-1">✦ Will be added as a new agency — thank you!</p>
         )}
-        {form.agencyIsNew && form.agencySearch.trim().length > 0 && (
-          <p className="text-sm text-amber-400 mt-1 flex items-center gap-1">
-            ✦ Will be added as a new agency — thank you!
-          </p>
-        )}
-
-        {/* Suggestions dropdown */}
-        {suggestionsOpen && (
+        {suggestOpen && (
           <div className="absolute z-50 top-full left-0 right-0 mt-1 border border-white/[0.1] rounded-xl shadow-2xl overflow-hidden" style={{ background: "#0f1623" }}>
             {suggestions.length > 0 && (
               <ul>
                 {suggestions.map((ag) => (
                   <li key={ag.id}>
-                    <button
-                      type="button"
-                      onMouseDown={() => selectExistingAgency(ag)}
-                      className="w-full text-left px-4 py-2.5 text-base text-gray-200 hover:bg-white/[0.07] transition-colors flex items-center gap-2.5"
-                    >
+                    <button type="button" onMouseDown={() => selectExisting(ag)}
+                      className="w-full text-left px-4 py-2.5 text-base text-gray-200 hover:bg-white/[0.07] transition-colors flex items-center gap-2.5">
                       <span className="shrink-0">🏢</span>
                       <span className="font-medium">{ag.name}</span>
                     </button>
@@ -408,293 +265,45 @@ function ReviewSubmitForm({
                 ))}
               </ul>
             )}
-
-            {form.agencySearch.trim().length > 0 && (
+            {agencySearch.trim().length > 0 && (
               <>
                 {suggestions.length > 0 && <div className="border-t border-white/[0.07]" />}
-                <button
-                  type="button"
-                  onMouseDown={selectNewAgency}
-                  className="w-full text-left px-4 py-2.5 text-base hover:bg-amber-500/[0.08] transition-colors flex items-center gap-2.5 text-amber-400"
-                >
+                <button type="button" onMouseDown={selectNew}
+                  className="w-full text-left px-4 py-2.5 text-base hover:bg-amber-500/[0.08] transition-colors flex items-center gap-2.5 text-amber-400">
                   <span className="shrink-0">➕</span>
-                  <span>Add &ldquo;{form.agencySearch.trim()}&rdquo; as new agency</span>
+                  <span>Add &ldquo;{agencySearch.trim()}&rdquo; as new agency</span>
                 </button>
               </>
             )}
-
-            {suggestions.length === 0 && !suggestLoading && form.agencySearch.trim().length > 0 && (
-              <p className="px-4 py-2 text-sm text-gray-500">No matches found — you can add it as a new agency above.</p>
+            {suggestions.length === 0 && !suggestLoading && agencySearch.trim().length > 0 && (
+              <p className="px-4 py-2 text-sm text-gray-500">No matches — you can add it as a new agency above.</p>
             )}
           </div>
         )}
       </div>
 
-      {/* ── City + Job type ──────────────────────────────────────────────────── */}
-      <div className="grid sm:grid-cols-2 gap-3">
-        <div>
-          <label className="block text-base font-medium text-gray-200 mb-1">
-            {t("reviews_page.form_city")}
-          </label>
-          <input
-            type="text"
-            value={form.city}
-            onChange={(e) => set("city", e.target.value)}
-            placeholder={t("reviews_page.form_city_placeholder")}
-            maxLength={80}
-            className="w-full px-3 py-2 text-base text-white bg-[#1a2235] border border-white/[0.1] rounded-xl
-              placeholder:text-gray-600
-              focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
-            style={{ colorScheme: "dark", caretColor: "#ffffff" }}
+      {/* Review textarea */}
+      <div className="rounded-xl border border-white/[0.09] bg-white/[0.04] overflow-hidden focus-within:border-blue-400/50 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
+        <div className="px-4 pt-4 pb-1">
+          <p className="text-sm font-semibold text-gray-200 leading-none mb-1">Your review <span className="text-red-400">*</span></p>
+          <p className="text-[11px] text-gray-500 mb-3">Pay, housing, management, conditions — whatever you want to share.</p>
+          <textarea
+            rows={5}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="Describe your experience…"
+            maxLength={2000}
+            className="w-full bg-transparent border-0 outline-none resize-none text-sm text-white placeholder:text-gray-600 leading-relaxed focus:ring-0"
+            style={{ boxShadow: "none" }}
           />
         </div>
-        <div>
-          <label className="block text-base font-medium text-gray-200 mb-1">
-            {t("reviews_page.form_job_type")}
-          </label>
-          <select
-            value={form.jobType}
-            onChange={(e) => set("jobType", e.target.value)}
-            className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
-              text-white focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
-            style={{ colorScheme: "dark" }}
-          >
-            <option value="" style={{ background: "#0f1623" }}>{t("reviews_page.form_job_select")}</option>
-            {JOB_TYPE_OPTIONS.map((jt) => (
-              <option key={jt} value={jt} style={{ background: "#0f1623" }}>{jt}</option>
-            ))}
-          </select>
+        <div className="flex items-center justify-between px-4 py-2.5 border-t border-white/[0.06] bg-white/[0.02]">
+          <span className="text-[11px] text-gray-600">Min. 10 characters</span>
+          <span className="text-[11px] text-gray-600 tabular-nums">{comment.length} / 2000</span>
         </div>
       </div>
 
-      {/* ── Overall rating ───────────────────────────────────────────────────── */}
-      <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-4">
-        <StarSelector
-          value={form.rating}
-          onChange={(v) => set("rating", v)}
-          label={t("reviews_page.form_rating_label")}
-        />
-        {form.rating > 0 && (
-          <p className="text-sm text-gray-400 mt-1.5">
-            {form.rating === 1 && t("reviews_page.rating_1")}
-            {form.rating === 2 && t("reviews_page.rating_2")}
-            {form.rating === 3 && t("reviews_page.rating_3")}
-            {form.rating === 4 && t("reviews_page.rating_4")}
-            {form.rating === 5 && t("reviews_page.rating_5")}
-          </p>
-        )}
-      </div>
-
-      {/* ── Housing ─────────────────────────────────────────────────────────── */}
-      <div>
-        <p className="text-base font-bold text-gray-200 mb-2">{t("reviews_page.form_housing_label")}</p>
-        <div className="flex gap-2 flex-wrap">
-          {(["yes", "no", "unknown"] as const).map((v) => (
-            <button
-              key={v}
-              type="button"
-              onClick={() => set("housingIncluded", v)}
-              className={`text-sm font-semibold rounded-full px-3.5 py-1.5 border transition-all ${
-                form.housingIncluded === v
-                  ? "bg-white/[0.15] text-white border-white/25"
-                  : "bg-white/[0.04] text-gray-500 border-white/[0.1] hover:border-white/20 hover:text-gray-300"
-              }`}
-            >
-              {v === "yes" ? t("reviews_page.form_housing_yes") : v === "no" ? t("reviews_page.form_housing_no") : t("reviews_page.form_housing_unknown")}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Housing cost + people per room (only if housing = yes) */}
-      {form.housingIncluded === "yes" && (
-        <div className="grid sm:grid-cols-2 gap-3 bg-blue-500/[0.06] border border-blue-400/[0.15] rounded-xl p-3">
-          <div>
-            <label className="block text-base font-medium text-gray-200 mb-1">
-              {t("reviews_page.form_housing_cost")}
-            </label>
-            <input
-              type="number"
-              value={form.housingCost}
-              onChange={(e) => set("housingCost", e.target.value)}
-              placeholder="e.g. 140"
-              min={0}
-              max={500}
-              className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
-                text-white placeholder:text-gray-600
-                focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
-              style={{ colorScheme: "dark" }}
-            />
-          </div>
-          <div>
-            <label className="block text-base font-medium text-gray-200 mb-1">
-              {t("reviews_page.form_people_per_room")}
-            </label>
-            <input
-              type="number"
-              value={form.peoplePerRoom}
-              onChange={(e) => set("peoplePerRoom", e.target.value)}
-              placeholder="e.g. 2"
-              min={1}
-              max={10}
-              className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
-                text-white placeholder:text-gray-600
-                focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
-              style={{ colorScheme: "dark" }}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* ── Transport cost ───────────────────────────────────────────────────── */}
-      <div>
-        <label className="block text-base font-medium text-gray-200 mb-1">
-          {t("reviews_page.form_transport_cost")}{" "}
-          <span className="text-gray-500 font-normal">{t("reviews_page.form_transport_note")}</span>
-        </label>
-        <input
-          type="number"
-          value={form.transportCost}
-          onChange={(e) => set("transportCost", e.target.value)}
-          placeholder="e.g. 28 — or 0 if included free"
-          min={0}
-          max={200}
-          className="w-full px-3 py-2 text-base border border-white/[0.1] rounded-xl bg-white/[0.05]
-            text-white placeholder:text-gray-600
-            focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50"
-          style={{ colorScheme: "dark" }}
-        />
-      </div>
-
-      {/* ── Would recommend ──────────────────────────────────────────────────── */}
-      <div>
-        <p className="text-base font-bold text-gray-200 mb-2">{t("reviews_page.form_recommend_label")}</p>
-        <div className="flex gap-2 flex-wrap">
-          {(["yes", "no", "neutral"] as const).map((v) => (
-            <button
-              key={v}
-              type="button"
-              onClick={() => set("wouldRecommend", v)}
-              className={`text-sm font-semibold rounded-full px-3.5 py-1.5 border transition-all ${
-                form.wouldRecommend === v
-                  ? v === "yes"
-                    ? "bg-emerald-500/[0.2] text-emerald-300 border-emerald-500/30"
-                    : v === "no"
-                    ? "bg-red-500/[0.15] text-red-400 border-red-500/25"
-                    : "bg-white/[0.15] text-white border-white/25"
-                  : "bg-white/[0.04] text-gray-500 border-white/[0.1] hover:border-white/20 hover:text-gray-300"
-              }`}
-            >
-              {v === "yes" ? t("reviews_page.form_recommend_yes") : v === "no" ? t("reviews_page.form_recommend_no") : t("reviews_page.form_recommend_neutral")}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Comment ──────────────────────────────────────────────────────────── */}
-      <div>
-        <label className="block text-base font-bold text-gray-200 mb-1.5">
-          {t("reviews_page.form_comment_label")} <span className="text-red-400">*</span>
-        </label>
-        <textarea
-          value={form.comment}
-          onChange={(e) => set("comment", e.target.value)}
-          placeholder={t("reviews_page.form_comment_placeholder")}
-          rows={5}
-          maxLength={2000}
-          className="w-full px-3.5 py-3 text-base text-white bg-[#1a2235] border border-white/[0.1] rounded-xl resize-none
-            focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/50
-            leading-relaxed placeholder:text-gray-500"
-          style={{ colorScheme: "dark", caretColor: "#ffffff" }}
-        />
-        <div className="flex items-center justify-between mt-1.5">
-          <p className="text-sm text-gray-400">
-            Minimum 10 characters. No personal names or private details.
-          </p>
-          <p className="text-sm text-gray-400">{form.comment.length}/2000</p>
-        </div>
-      </div>
-
-      {/* ── Photo upload ─────────────────────────────────────────────────────── */}
-      <div>
-        <p className="text-base font-bold text-gray-200 mb-2">
-          Photos{" "}
-          <span className="font-normal text-gray-500">(optional, max {MAX_PHOTOS})</span>
-        </p>
-
-        {/* Preview grid — shown once photos are chosen */}
-        {photoFiles.length > 0 && (
-          <div className="grid grid-cols-3 gap-2 mb-2">
-            {photoPreviews.map((src, i) => (
-              <div
-                key={i}
-                className="relative aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-100"
-              >
-                {src && (
-                  <img
-                    src={src}
-                    alt={`Upload ${i + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-                <button
-                  type="button"
-                  onClick={() => removePhoto(i)}
-                  aria-label="Remove photo"
-                  className="absolute top-1 right-1 w-5 h-5 rounded-full bg-gray-900/70 text-white
-                    text-[10px] flex items-center justify-center hover:bg-red-600 transition-colors"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-
-            {/* Add-more slot */}
-            {photoFiles.length < MAX_PHOTOS && (
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                aria-label="Add photo"
-                className="aspect-square rounded-xl border-2 border-dashed border-gray-300
-                  flex items-center justify-center text-gray-400 text-2xl
-                  hover:border-gray-400 hover:text-gray-600 transition-colors bg-gray-50"
-              >
-                +
-              </button>
-            )}
-          </div>
-        )}
-
-        {/* Upload trigger — shown when no photos yet */}
-        {photoFiles.length === 0 && (
-          <button
-            type="button"
-            onClick={() => fileInputRef.current?.click()}
-            className="w-full border-2 border-dashed border-white/[0.1] rounded-xl py-3.5
-              text-sm text-gray-500 hover:border-blue-400/40 hover:text-blue-400
-              transition-colors flex items-center justify-center gap-2"
-          >
-            <span>📷</span>
-            <span>Add photos (JPG / PNG / WebP, max 8 MB each)</span>
-          </button>
-        )}
-
-        {/* Hidden file input */}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/jpeg,image/jpg,image/png,image/webp"
-          multiple
-          className="hidden"
-          onChange={handlePhotoSelect}
-        />
-
-        <p className="text-sm text-gray-500 mt-1.5">
-          Photos help verify your experience. No faces or personal information.
-        </p>
-      </div>
-
-      {/* ── Submit ───────────────────────────────────────────────────────────── */}
+      {/* Submit */}
       <button
         type="submit"
         disabled={!isValid || loading}
@@ -706,24 +315,8 @@ function ReviewSubmitForm({
         {loading ? t("reviews_page.form_submitting") : t("reviews_page.form_submit")}
       </button>
 
-      {!isValid && (
-        <p className="text-sm text-gray-300 text-center">
-          {t("reviews_page.form_invalid_note")}
-        </p>
-      )}
-
-      {/* ── Legal disclaimer ─────────────────────────────────────────────────── */}
-      <p className="text-sm text-gray-500 leading-relaxed border-t border-white/[0.07] pt-3">
-        By submitting you confirm this review is based on your own personal experience and is
-        truthful to the best of your knowledge. Deliberately false statements that damage an
-        agency&apos;s reputation may constitute defamation under Dutch law. Do not include
-        personal data of other individuals. See our{" "}
-        <a href="/terms" className="underline hover:text-gray-300 transition-colors">Terms of Use</a>{" "}
-        for our content moderation policy.
-      </p>
-
-      <p className="text-sm text-gray-500 text-center leading-relaxed">
-        {t("reviews_page.form_anon_note")}
+      <p className="text-[11px] text-gray-500 text-center">
+        🔒 Anonymous — your identity is never shared
       </p>
     </form>
   );
