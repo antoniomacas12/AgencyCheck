@@ -145,7 +145,11 @@ function buildCandidateMsg(
     `Hi, I want to apply for: ${jobTitle}${srcTag}`,
     ``,
     `Candidate details:`,
-    `- EU citizenship: ${citizenship.trim()} ${/^(ukraine|ukrainian)$/i.test(citizenship.trim()) ? "(TPD)" : "(EU)"}`,
+    `- Citizenship: ${
+      citizenship.trim().startsWith("Non-EU")
+        ? citizenship.trim()
+        : `${citizenship.trim()} ${/^(ukraine|ukrainian)$/i.test(citizenship.trim()) ? "(TPD)" : "(EU)"}`
+    }`,
     `- BSN: ${bsnLabel[bsn]}`,
     driving !== null ? `- Driving licence: ${driving === "yes" ? "Yes" : "No"}` : null,
     housing !== null ? `- Housing needed: ${housing === "yes" ? "Yes" : "No"}` : null,
@@ -382,6 +386,8 @@ export default function ApplyPreScreen({
 
   // ── Form state ────────────────────────────────────────────────────────────
   const [citizenship,   setCitizenship]   = useState<EUCountry | null>(null);
+  const [euAnswer,      setEuAnswer]      = useState<"yes" | "no" | null>(null);
+  const [nonEuPapers,   setNonEuPapers]   = useState<"yes" | "no" | null>(null);
   const [bsn,           setBsn]           = useState<BSN | null>(null);
   const [driving,       setDriving]       = useState<"yes" | "no" | null>(null);
   const [housing,       setHousing]       = useState<"yes" | "no" | null>(null);
@@ -414,6 +420,8 @@ export default function ApplyPreScreen({
     setScreen("gate");
     setErrors(false);
     setCitizenship(null);
+    setEuAnswer(null);
+    setNonEuPapers(null);
     setBsn(null);
     setDriving(null);
     setHousing(null);
@@ -432,14 +440,24 @@ export default function ApplyPreScreen({
   }
 
   function handleEuContinue() {
-    if (citizenship === null || citizenship.trim().length < 2) {
+    if (euAnswer === "yes") {
+      if (citizenship === null || citizenship.trim().length < 2) { setErrors(true); return; }
+      if (!isEuCountry(citizenship)) {
+        setScreen("disqualified");
+        trackFunnel({ sessionId: sessionIdRef.current, event: "disqualified", step: "gate", jobId, source });
+        return;
+      }
+    } else if (euAnswer === "no") {
+      if (nonEuPapers === null) { setErrors(true); return; }
+      if (nonEuPapers === "no") {
+        setScreen("disqualified");
+        trackFunnel({ sessionId: sessionIdRef.current, event: "disqualified", step: "gate", jobId, source });
+        return;
+      }
+      // non-EU with valid work permit — allowed
+      setCitizenship("Non-EU (NL work permit)");
+    } else {
       setErrors(true);
-      return;
-    }
-    // Block non-EU nationalities — validate against known EU/EEA country list
-    if (!isEuCountry(citizenship)) {
-      setScreen("disqualified");
-      trackFunnel({ sessionId: sessionIdRef.current, event: "disqualified", step: "gate", jobId, source });
       return;
     }
     setErrors(false);
@@ -489,7 +507,9 @@ export default function ApplyPreScreen({
         bsn, driving, housing,
         availability: availability ?? null,
         eu_citizen:   citizenship
-          ? `${citizenship.trim()} (${/^(ukraine|ukrainian)$/i.test(citizenship.trim()) ? "TPD" : "EU"})`
+          ? citizenship.trim().startsWith("Non-EU")
+            ? citizenship.trim()
+            : `${citizenship.trim()} (${/^(ukraine|ukrainian)$/i.test(citizenship.trim()) ? "TPD" : "EU"})`
           : null,
         waMessage: msg,
       }),
@@ -580,11 +600,11 @@ export default function ApplyPreScreen({
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
-                  onClick={() => { setCitizenship("" as EUCountry); setErrors(false); }}
+                  onClick={() => { setEuAnswer("yes"); setCitizenship("" as EUCountry); setNonEuPapers(null); setErrors(false); }}
                   className={`
                     py-3.5 rounded-xl border text-[14px] font-bold
                     transition-all duration-150
-                    ${citizenship !== null
+                    ${euAnswer === "yes"
                       ? "border-emerald-400 bg-emerald-400/15 text-emerald-300"
                       : "border-white/10 bg-white/5 text-gray-400 hover:border-emerald-400/50 hover:bg-emerald-400/10 hover:text-emerald-300"}
                   `}
@@ -593,13 +613,14 @@ export default function ApplyPreScreen({
                 </button>
                 <button
                   type="button"
-                  onClick={() => setScreen("disqualified")}
-                  className="
-                    py-3.5 rounded-xl border border-white/10 bg-white/5
-                    text-gray-400 text-[14px] font-bold
-                    hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-300
+                  onClick={() => { setEuAnswer("no"); setCitizenship(null); setNonEuPapers(null); setErrors(false); }}
+                  className={`
+                    py-3.5 rounded-xl border text-[14px] font-bold
                     transition-all duration-150
-                  "
+                    ${euAnswer === "no"
+                      ? "border-red-400/60 bg-red-400/10 text-red-300"
+                      : "border-white/10 bg-white/5 text-gray-400 hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-300"}
+                  `}
                 >
                   ❌ No
                 </button>
@@ -607,14 +628,14 @@ export default function ApplyPreScreen({
             </Question>
 
             {/* Country input — shown only after clicking Yes */}
-            {citizenship !== null && (
+            {euAnswer === "yes" && (
               <Question
                 label="Which EU country are you from?"
-                error={errors && citizenship.trim().length < 2}
+                error={errors && (citizenship ?? "").trim().length < 2}
               >
                 <input
                   type="text"
-                  value={citizenship}
+                  value={citizenship ?? ""}
                   onChange={(e) => setCitizenship(e.target.value as EUCountry)}
                   placeholder="e.g. Poland, Romania, Bulgaria..."
                   autoComplete="off"
@@ -622,7 +643,7 @@ export default function ApplyPreScreen({
                     block w-full bg-white/5 border rounded-xl
                     px-4 py-3 text-white text-base placeholder-gray-600
                     focus:outline-none transition-colors min-w-0
-                    ${citizenship.trim().length >= 2
+                    ${(citizenship ?? "").trim().length >= 2
                       ? "border-emerald-400/50"
                       : errors
                         ? "border-red-400/50"
@@ -632,27 +653,77 @@ export default function ApplyPreScreen({
               </Question>
             )}
 
-            <button
-              type="button"
-              onClick={handleEuContinue}
-              disabled={citizenship === null || citizenship.trim().length < 2}
-              className={`
-                w-full py-3.5 rounded-xl text-[14px] font-bold
-                transition-all duration-150 mb-3
-                ${citizenship !== null && citizenship.trim().length >= 2
-                  ? "bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white shadow-lg shadow-green-900/30 cursor-pointer"
-                  : "border border-white/10 bg-white/5 text-gray-500 cursor-not-allowed"}
-              `}
-            >
-              {citizenship !== null && citizenship.trim().length >= 2
-                ? `Continue as EU citizen (${citizenship.trim()}) →`
-                : citizenship !== null
-                  ? "Enter your country to continue"
-                  : "Confirm EU citizenship to continue"}
-            </button>
+            {/* Work permit question — shown only after clicking No */}
+            {euAnswer === "no" && (
+              <Question label="Do you have a valid work permit to work in the Netherlands?">
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setNonEuPapers("yes")}
+                    className={`
+                      py-3.5 rounded-xl border text-[14px] font-bold
+                      transition-all duration-150
+                      ${nonEuPapers === "yes"
+                        ? "border-emerald-400 bg-emerald-400/15 text-emerald-300"
+                        : "border-white/10 bg-white/5 text-gray-400 hover:border-emerald-400/50 hover:bg-emerald-400/10 hover:text-emerald-300"}
+                    `}
+                  >
+                    ✅ Yes, I do
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setNonEuPapers("no")}
+                    className={`
+                      py-3.5 rounded-xl border text-[14px] font-bold
+                      transition-all duration-150
+                      ${nonEuPapers === "no"
+                        ? "border-red-400/60 bg-red-400/10 text-red-300"
+                        : "border-white/10 bg-white/5 text-gray-400 hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-300"}
+                    `}
+                  >
+                    ❌ No
+                  </button>
+                </div>
+              </Question>
+            )}
+
+            {/* Continue button */}
+            {(() => {
+              const ready =
+                (euAnswer === "yes" && (citizenship ?? "").trim().length >= 2) ||
+                (euAnswer === "no" && nonEuPapers !== null);
+              const label =
+                euAnswer === "yes" && (citizenship ?? "").trim().length >= 2
+                  ? `Continue as EU citizen (${(citizenship ?? "").trim()}) →`
+                  : euAnswer === "yes"
+                    ? "Enter your country to continue"
+                    : euAnswer === "no" && nonEuPapers === "yes"
+                      ? "Continue with work permit →"
+                      : euAnswer === "no" && nonEuPapers === "no"
+                        ? "Continue →"
+                        : euAnswer === "no"
+                          ? "Answer the question above to continue"
+                          : "Confirm your status to continue";
+              return (
+                <button
+                  type="button"
+                  onClick={handleEuContinue}
+                  disabled={!ready}
+                  className={`
+                    w-full py-3.5 rounded-xl text-[14px] font-bold
+                    transition-all duration-150 mb-3
+                    ${ready
+                      ? "bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white shadow-lg shadow-green-900/30 cursor-pointer"
+                      : "border border-white/10 bg-white/5 text-gray-500 cursor-not-allowed"}
+                  `}
+                >
+                  {label}
+                </button>
+              );
+            })()}
 
             <p className="text-center text-gray-600 text-[11px] mt-1">
-              EU citizenship required for all positions
+              EU citizenship or valid NL work permit required
             </p>
           </>
         )}
@@ -862,7 +933,7 @@ export default function ApplyPreScreen({
             </button>
 
             <button
-              onClick={() => { setErrors(false); setCitizenship(null); setBsn(null); setDriving(null); setHousing(null); setAvailability(null); setLocation(""); setScreen("gate"); }}
+              onClick={() => { setErrors(false); setCitizenship(null); setEuAnswer(null); setNonEuPapers(null); setBsn(null); setDriving(null); setHousing(null); setAvailability(null); setLocation(""); setScreen("gate"); }}
               className="w-full py-3.5 text-gray-600 text-[13px] hover:text-gray-400 transition"
             >
               {t("apply_screen.btn_back")}
