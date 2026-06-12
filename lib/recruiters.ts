@@ -17,9 +17,9 @@ export interface RecruiterSeed {
 
 export const RECRUITER_SEEDS: RecruiterSeed[] = [
   {
-    id:        "nuno",
-    name:      "Nuno Barroso",
-    waUrl:     "https://wa.me/31613754893",
+    id:        "antonio",
+    name:      "Antonio",
+    waUrl:     "https://wa.me/31649210631",
     sortOrder: 0,
   },
   {
@@ -28,12 +28,20 @@ export const RECRUITER_SEEDS: RecruiterSeed[] = [
     waUrl:     "https://wa.me/31685166776",
     sortOrder: 1,
   },
-  // Raquel — kept for historical records only, never receives new candidates
+  // Nuno — disabled, kept for historical records only
+  {
+    id:        "nuno",
+    name:      "Nuno Barroso",
+    waUrl:     "https://wa.me/31649210631",
+    sortOrder: 99,
+    enabled:   false,
+  },
+  // Raquel — disabled, kept for historical records only
   {
     id:        "nuno-wife",
     name:      "Raquel Teixeira",
     waUrl:     "https://wa.me/351911099945",
-    sortOrder: 2,
+    sortOrder: 99,
     enabled:   false,
   },
 ];

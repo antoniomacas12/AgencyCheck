@@ -15,7 +15,7 @@ import {
   CAT_JOB_DESCRIPTIONS,
 } from "@/lib/vacanciesData";
 
-const WA_BASE = "https://wa.me/31613754893";
+const WA_BASE = "https://wa.me/31649210631";
 
 // ─── Static generation ────────────────────────────────────────────────────────
 // Only slugs returned here are pre-rendered. Any other slug returns 404

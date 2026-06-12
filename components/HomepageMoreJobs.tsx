@@ -11,7 +11,7 @@
 import ApplyPreScreen from "@/components/ApplyPreScreen";
 import Link from "next/link";
 
-const WA_BASE = "https://wa.me/31613754893";
+const WA_BASE = "https://wa.me/31649210631";
 
 const MORE_JOBS = [
   {

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-const WA_BASE   = "https://wa.me/31613754893";
+const WA_BASE   = "https://wa.me/31649210631";
 const JOB_TITLE = "Lucrător Depozit (Olanda)";
 
 const JOB_SCHEMA = jobPostingSchema({

@@ -14,7 +14,7 @@ import {
   type Badge,
 } from "@/lib/vacanciesData";
 
-const WA_BASE = "https://wa.me/31613754893";
+const WA_BASE = "https://wa.me/31649210631";
 const BASE    = "https://agencycheck.io";
 
 // ─── Static generation ────────────────────────────────────────────────────────

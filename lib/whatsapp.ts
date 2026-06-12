@@ -5,7 +5,7 @@
  * To change number / message, update here only.
  */
 
-export const WA_NUMBER  = "31613754893";
+export const WA_NUMBER  = "31649210631";
 export const WA_MESSAGE = "Hi, I want to apply for a job in the Netherlands.";
 
 /** Full WhatsApp deep-link with pre-filled message */
