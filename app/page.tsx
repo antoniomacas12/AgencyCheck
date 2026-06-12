@@ -388,7 +388,7 @@ export default async function HomePage() {
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center lg:justify-start mb-3">
                 <Link
-                  href="/partner-vacancies"
+                  href="/jobs"
                   className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-black text-white"
                   style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.35), 0 8px 36px rgba(52,211,153,0.25)" }}
                 >
