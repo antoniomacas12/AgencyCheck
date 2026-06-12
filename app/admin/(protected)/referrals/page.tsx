@@ -35,6 +35,23 @@ interface ReferralData {
   recent:      RecentClick[];
 }
 
+// ─── Redaction ─────────────────────────────────────────────────────────────────
+// Former recruiters whose names/numbers are blurred in the UI for privacy.
+const REDACTED_IDS   = new Set(["nuno", "nuno-wife"]);
+const REDACTED_NAMES = new Set(["Nuno Barroso", "Raquel Teixeira"]);
+
+function Blurred({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      className="select-none pointer-events-none"
+      style={{ filter: "blur(5px)", userSelect: "none" }}
+      aria-hidden="true"
+    >
+      {children}
+    </span>
+  );
+}
+
 // ─── Helpers ───────────────────────────────────────────────────────────────────
 function fmt(iso: string) {
   return new Date(iso).toLocaleString("en-GB", {
@@ -177,7 +194,9 @@ export default function ReferralsAdminPage() {
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
-                      <p className="text-white font-bold text-[16px]">{r.name}</p>
+                      <p className="text-white font-bold text-[16px]">
+                        {REDACTED_IDS.has(r.id) ? <Blurred>{r.name}</Blurred> : r.name}
+                      </p>
                       <span className={`text-[10px] font-bold rounded-full px-2 py-0.5 ${
                         r.enabled
                           ? "bg-emerald-400/10 text-emerald-400"
@@ -186,7 +205,9 @@ export default function ReferralsAdminPage() {
                         {r.enabled ? "Active" : "Inactive"}
                       </span>
                     </div>
-                    <p className="text-gray-500 text-[11px] font-mono">{r.waUrl}</p>
+                    <p className="text-gray-500 text-[11px] font-mono">
+                      {REDACTED_IDS.has(r.id) ? <Blurred>{r.waUrl}</Blurred> : r.waUrl}
+                    </p>
                   </div>
 
                   {/* Click count */}
@@ -228,7 +249,9 @@ export default function ReferralsAdminPage() {
               return (
                 <div key={r.id} className="mb-2 last:mb-0">
                   <div className="flex justify-between text-[12px] mb-1">
-                    <span className="text-gray-400">{r.name}</span>
+                    <span className="text-gray-400">
+                      {REDACTED_IDS.has(r.id) ? <Blurred>{r.name}</Blurred> : r.name}
+                    </span>
                     <span className="text-gray-500">{r.clicks} ({pct}%)</span>
                   </div>
                   <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
@@ -265,7 +288,9 @@ export default function ReferralsAdminPage() {
                         <p className="text-white font-medium leading-snug">{v.jobTitle ?? "—"}</p>
                         {v.jobId && <p className="text-gray-600 text-[10px] font-mono mt-0.5">{v.jobId}</p>}
                       </td>
-                      <td className="px-4 py-3 text-gray-400 hidden sm:table-cell">{v.recruiter}</td>
+                      <td className="px-4 py-3 text-gray-400 hidden sm:table-cell">
+                        {REDACTED_NAMES.has(v.recruiter) ? <Blurred>{v.recruiter}</Blurred> : v.recruiter}
+                      </td>
                       <td className="px-4 py-3 text-right text-emerald-400 font-bold">{v.clicks}</td>
                     </tr>
                   ))}
@@ -297,7 +322,9 @@ export default function ReferralsAdminPage() {
                       {click.jobTitle ?? "General application"}
                     </p>
                     <div className="flex flex-wrap gap-x-3 mt-0.5 text-[11px]">
-                      <span className="text-emerald-400 font-semibold">→ {click.recruiter}</span>
+                      <span className="text-emerald-400 font-semibold">
+                        → {REDACTED_NAMES.has(click.recruiter) ? <Blurred>{click.recruiter}</Blurred> : click.recruiter}
+                      </span>
                       <span className="text-gray-600">src: {click.source}</span>
                     </div>
                   </div>
