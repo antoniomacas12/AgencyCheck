@@ -109,10 +109,12 @@ function avgSalary(jobs: JobListing[]): number {
 }
 
 function buildCityJsonLd(cityName: string, jobs: JobListing[]) {
+  const today        = new Date().toISOString().split("T")[0];
+  const validThrough = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
   const postings = jobs.slice(0, 10).map((j) => ({
     "@type": "JobPosting",
     title: j.title,
-    description: j.description || `${j.title} position via ${j.agencyName} in ${cityName}.`,
+    description: j.description || `${j.title} position via ${j.agencyName} in ${cityName}, Netherlands. EU work authorisation required.`,
     hiringOrganization: { "@type": "Organization", name: j.agencyName },
     jobLocation: {
       "@type": "Place",
@@ -123,7 +125,8 @@ function buildCityJsonLd(cityName: string, jobs: JobListing[]) {
       currency: "EUR",
       value: { "@type": "QuantitativeValue", minValue: j.salaryMin, maxValue: j.salaryMax, unitText: "HOUR" },
     },
-    datePosted: new Date().toISOString().split("T")[0],
+    datePosted: today,
+    validThrough,
     employmentType: "TEMPORARY",
     ...(j.housing === "YES" && { jobBenefits: "Housing provided" }),
   }));
@@ -163,10 +166,12 @@ function getCitiesWithJobs(jobs: JobListing[]): { city: string; count: number }[
 
 function buildJobTypeJsonLd(job: ReturnType<typeof getJobBySlug>, jobs: JobListing[]) {
   if (!job) return null;
+  const today        = new Date().toISOString().split("T")[0];
+  const validThrough = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
   const postings = jobs.slice(0, 10).map((j) => ({
     "@type": "JobPosting",
     title: j.title,
-    description: j.description || `${j.title} position via ${j.agencyName} in ${j.city}.`,
+    description: j.description || `${j.title} position via ${j.agencyName} in ${j.city}, Netherlands. EU work authorisation required.`,
     hiringOrganization: { "@type": "Organization", name: j.agencyName },
     jobLocation: {
       "@type": "Place",
@@ -177,7 +182,8 @@ function buildJobTypeJsonLd(job: ReturnType<typeof getJobBySlug>, jobs: JobListi
       currency: "EUR",
       value: { "@type": "QuantitativeValue", minValue: j.salaryMin, maxValue: j.salaryMax, unitText: "HOUR" },
     },
-    datePosted: new Date().toISOString().split("T")[0],
+    datePosted: today,
+    validThrough,
     employmentType: "TEMPORARY",
   }));
   return { "@context": "https://schema.org", "@graph": postings };

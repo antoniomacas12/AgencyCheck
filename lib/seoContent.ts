@@ -265,12 +265,16 @@ export function buildJobPostingSchema(job: {
   agencyName: string;
   salaryMin: number;
   salaryMax: number;
+  description?: string;
 }) {
   if (!job.salaryMin || job.salaryMin < 14.71) return null;
+  const today       = new Date();
+  const validThrough = new Date(today.getTime() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
   return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
     "title": job.title,
+    "description": job.description || `${job.title} position via ${job.agencyName} in ${job.city}, Netherlands. Legal contract, EU work authorisation required.`,
     "jobLocation": {
       "@type": "Place",
       "address": {
@@ -294,6 +298,7 @@ export function buildJobPostingSchema(job: {
       },
     },
     "employmentType": "TEMPORARY",
-    "datePosted": new Date().toISOString().split("T")[0],
+    "datePosted": today.toISOString().split("T")[0],
+    "validThrough": validThrough,
   };
 }

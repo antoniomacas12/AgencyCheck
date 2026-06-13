@@ -123,10 +123,12 @@ function buildJsonLd(
   jobs: JobListing[]
 ) {
   if (!job) return null;
+  const today        = new Date().toISOString().split("T")[0];
+  const validThrough = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
   const postings = jobs.slice(0, 10).map((j) => ({
     "@type": "JobPosting",
     title: j.title,
-    description: j.description || `${j.title} in ${cityName} via ${j.agencyName}.`,
+    description: j.description || `${j.title} in ${cityName} via ${j.agencyName}, Netherlands. EU work authorisation required.`,
     hiringOrganization: { "@type": "Organization", name: j.agencyName },
     jobLocation: {
       "@type": "Place",
@@ -146,7 +148,8 @@ function buildJsonLd(
         unitText: "HOUR",
       },
     },
-    datePosted: new Date().toISOString().split("T")[0],
+    datePosted: today,
+    validThrough,
     employmentType: "TEMPORARY",
     ...(j.housing === "YES" && { jobBenefits: "Housing provided by agency" }),
     ...(j.transport === "YES" && { jobBenefits: "Transport provided" }),
