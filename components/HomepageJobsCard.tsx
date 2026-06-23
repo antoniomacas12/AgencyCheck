@@ -3,16 +3,14 @@
 /**
  * HomepageJobsCard
  *
- * Shows the two urgent WRX partner vacancies from Tiel as the primary
- * "now hiring" card in the hero section. Applications go directly to WRX
- * (not through round-robin recruiter system).
+ * Hero right-column card — shows the 4minutes × Johma partnership vacancies.
+ * Applications go through the apply pre-screen (referralMode).
  */
 
 import Link from "next/link";
 import ApplyPreScreen from "@/components/ApplyPreScreen";
 
-// WRX Personeelsdiensten — partner vacancy applications go here directly
-const WRX_WA_BASE = "https://wa.me/31649210631";
+const WA_BASE = "https://wa.me/31649210631";
 
 const WA_ICON = (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 shrink-0" aria-hidden="true">
@@ -20,45 +18,63 @@ const WA_ICON = (
   </svg>
 );
 
-const TIEL_JOBS = [
+const JOHMA_JOBS = [
   {
-    slug:     "reachtruck-driver-tiel",
-    title:    "Reachtruck Driver / Warehouse Worker",
-    location: "Tiel · Gelderland",
-    salary:   "€16.24/hr gross",
-    note:     "Negotiable on experience · ET regeling applicable",
-    certs:    ["Reachtruck Certificate", "Dutch A1/A2"],
-    icon:     "🏗️",
+    slug:    "johma-logistics-operator",
+    title:   "Logistics Operator",
+    salary:  "€17.04/hr gross",
+    note:    "Most popular · Immediate start · Housing included",
+    tags:    ["🏠 Housing incl.", "📦 Logistics"],
+    icon:    "📦",
+    href:    "/apply/johma-logistics-operator",
   },
   {
-    slug:     "forklift-reachtruck-tiel",
-    title:    "Forklift / Reachtruck Warehouse Worker",
-    location: "Tiel · Gelderland",
-    salary:   "Based on qualifications",
-    note:     "Immediate openings · Own accommodation required",
-    certs:    ["Reachtruck Cert", "Forklift Cert"],
-    icon:     "🚜",
+    slug:    "johma-line-operator",
+    title:   "Line Operator",
+    salary:  "€16.01/hr gross",
+    note:    "Technical production role · 2-shift schedule",
+    tags:    ["🏠 Housing incl.", "🏭 Production"],
+    icon:    "🏭",
+    href:    "/apply/johma-line-operator",
+  },
+  {
+    slug:    "johma-food-mixing-operator",
+    title:   "Food Mixing Operator",
+    salary:  "€16.01/hr gross",
+    note:    "Food production · Recipe preparation",
+    tags:    ["🏠 Housing incl.", "🍖 Food"],
+    icon:    "🍖",
+    href:    "/apply/johma-food-mixing-operator",
+  },
+  {
+    slug:    "johma-operator-kitchen",
+    title:   "Operator Kitchen",
+    salary:  "€16.01/hr gross",
+    note:    "Kitchen production · Hygiene-focused environment",
+    tags:    ["🏠 Housing incl.", "👨‍🍳 Kitchen"],
+    icon:    "👨‍🍳",
+    href:    "/apply/johma-operator-kitchen",
   },
 ] as const;
 
 export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
   return (
     <div
-      className="relative rounded-2xl border border-amber-500/25 bg-[#100f08] overflow-hidden"
+      className="relative rounded-2xl border border-emerald-500/25 bg-[#071a0e] overflow-hidden"
       style={{
         boxShadow:
-          "0 12px 56px rgba(0,0,0,0.72), 0 2px 16px rgba(0,0,0,0.50), inset 0 1px 0 rgba(251,191,36,0.08)",
+          "0 12px 56px rgba(0,0,0,0.72), 0 2px 16px rgba(0,0,0,0.50), inset 0 1px 0 rgba(52,211,153,0.08)",
       }}
     >
-      {/* Amber glow top-right */}
+      {/* Emerald glow top-right */}
       <div
-        className="pointer-events-none absolute -top-8 -right-8 w-48 h-48 rounded-full bg-amber-500/[0.10] blur-3xl"
+        className="pointer-events-none absolute -top-8 -right-8 w-48 h-48 rounded-full bg-emerald-500/[0.12] blur-3xl"
         style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
         aria-hidden="true"
       />
-      {/* Emerald glow bottom-left */}
+      {/* Subtle glow bottom-left */}
       <div
-        className="pointer-events-none absolute bottom-0 left-0 w-32 h-32 rounded-full bg-emerald-500/[0.07] blur-2xl"
+        className="pointer-events-none absolute bottom-0 left-0 w-32 h-32 rounded-full bg-emerald-400/[0.07] blur-2xl"
         style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
         aria-hidden="true"
       />
@@ -75,12 +91,12 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
               <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
                 ✓ Verified
               </span>
-              <span className="inline-flex items-center gap-1 text-[10px] font-black bg-amber-500/15 text-amber-400 border border-amber-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
-                🏅 Partner
+              <span className="inline-flex items-center gap-1 text-[10px] font-black bg-blue-500/15 text-blue-400 border border-blue-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                🏠 Housing incl.
               </span>
             </div>
             <p className="text-[11px] text-gray-400 font-semibold">
-              WRX Personeelsdiensten · Tiel, Netherlands
+              4minutes × Johma · Losser, Netherlands
             </p>
           </div>
           <span className="text-[10px] text-gray-500 shrink-0 mt-1 whitespace-nowrap">
@@ -88,55 +104,38 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
           </span>
         </div>
 
-        {/* ── Job cards ──────────────────────────────────────────── */}
-        <div className="space-y-3 mb-4">
-          {TIEL_JOBS.map((job) => (
+        {/* ── Job cards — compact 4-row list ─────────────────────── */}
+        <div className="space-y-2 mb-4">
+          {JOHMA_JOBS.map((job) => (
             <div
               key={job.slug}
-              className="rounded-xl border border-amber-500/15 bg-amber-500/[0.04] px-4 py-4"
+              className="rounded-xl border border-emerald-500/15 bg-emerald-500/[0.04] px-3.5 py-3"
             >
-              {/* Job title + salary */}
-              <div className="flex items-start justify-between gap-3 mb-1">
-                <div className="min-w-0 flex items-center gap-1.5">
-                  <span className="text-[15px] shrink-0">{job.icon}</span>
-                  <p className="text-white font-bold text-[13px] leading-snug">
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <span className="text-[13px] shrink-0">{job.icon}</span>
+                  <p className="text-white font-bold text-[12px] leading-snug truncate">
                     {job.title}
                   </p>
                 </div>
-                <span className="text-emerald-400 text-[12px] font-black whitespace-nowrap shrink-0">
+                <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
                   {job.salary}
                 </span>
               </div>
+              <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
 
-              {/* Location + note */}
-              <p className="text-gray-500 text-[11px] mb-1.5">📍 {job.location}</p>
-              <p className="text-gray-600 text-[10px] mb-3">{job.note}</p>
-
-              {/* Certificate tags */}
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                {job.certs.map((c) => (
-                  <span
-                    key={c}
-                    className="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full px-2 py-0.5"
-                  >
-                    🏅 {c}
-                  </span>
-                ))}
-              </div>
-
-              {/* Apply button — full width, prominent */}
               <ApplyPreScreen
-                waBase={WRX_WA_BASE}
-                jobTitle={job.title}
-                source="homepage-card-wrx"
+                waBase={WA_BASE}
+                jobTitle={`${job.title} — Johma`}
+                source="homepage-card-johma"
                 jobId={job.slug}
-                referralMode={false}
+                referralMode
               >
                 {(openFn) => (
                   <button
                     onClick={openFn}
-                    className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[13px] px-4 py-3.5 rounded-xl transition-all duration-150"
-                    style={{ boxShadow: "0 4px 18px rgba(37,211,102,0.25)" }}
+                    className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
+                    style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}
                   >
                     {WA_ICON}
                     Apply on WhatsApp
@@ -150,8 +149,8 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
         {/* ── Footer ─────────────────────────────────────────────── */}
         <div className="border-t border-white/[0.07] pt-4">
           <Link
-            href="/partner-vacancies"
-            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-amber-500/20 bg-amber-500/[0.05] hover:bg-amber-500/[0.12] text-amber-300 font-black text-[12px] transition-all duration-150"
+            href="/apply/johma-logistics-operator"
+            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.05] hover:bg-emerald-500/[0.12] text-emerald-300 font-black text-[12px] transition-all duration-150"
           >
             View all {totalJobs} vacancies →
           </Link>
