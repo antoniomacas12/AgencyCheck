@@ -6,7 +6,7 @@ import ApplyPreScreen from "@/components/ApplyPreScreen";
 /**
  * FeaturedJobJohma — Recruitment Partnership Section
  *
- * AgencyCheck × 4 Minutes × Johma — Losser, NL
+ * AgencyCheck × 4minutes × Johma — Losser, NL
  * 6 sections: Partner Banner · Job Cards · Why Johma ·
  *             Housing Transparency · About Partnership · Apply CTA
  */
@@ -58,10 +58,10 @@ const JOBS = [
 
 // ─── Benefit cards ─────────────────────────────────────────────────────────────
 const BENEFITS = [
-  { icon: "🏠", title: "Accommodation Arranged",  body: "Single rooms from €136.74/week. Couples can share from €103.94/week per person. Handled entirely by 4 Minutes before you arrive." },
-  { icon: "🚐", title: "Transport to Johma",       body: "4 Minutes organises your route. Scooter, bicycle or car also available. Travel allowance €0.23/km paid on top." },
+  { icon: "🏠", title: "Accommodation Arranged",  body: "Single rooms from €136.74/week. Couples can share from €103.94/week per person. Handled entirely by 4minutes before you arrive." },
+  { icon: "🚐", title: "Transport to Johma",       body: "4minutes organises your route. Scooter, bicycle or car also available. Travel allowance €0.23/km paid on top." },
   { icon: "🔄", title: "3-Shift System",           body: "Morning, afternoon and night shifts. Allowances up to +35% from 18:00 — your payslip grows with every night worked." },
-  { icon: "📋", title: "Long-Term Stability",      body: "Not a temp placement. Johma offers long-term contracts with a real path to a permanent contract via 4 Minutes." },
+  { icon: "📋", title: "Long-Term Stability",      body: "Not a temp placement. Johma offers long-term contracts with a real path to a permanent contract via 4minutes." },
   { icon: "🎁", title: "3% Year-End Bonus",        body: "Paid every December. The longer you stay, the more you earn. A real incentive to commit." },
   { icon: "🥗", title: "Weekly Salad Package",     body: "Fresh Johma salads to take home every week — a small but genuine sign of a company that values its workers." },
 ] as const;
@@ -96,7 +96,7 @@ export default function FeaturedJobJohma() {
             {/* Partner wordmarks */}
             <div className="flex items-center gap-3 mb-5">
               <div className="inline-flex items-center bg-white/[0.06] border border-white/[0.09] rounded-xl px-3 py-2">
-                <span className="text-white font-black text-[13px] tracking-tight">4 Minutes</span>
+                <span className="text-white font-black text-[13px] tracking-tight">4minutes</span>
               </div>
               <span className="text-gray-600 text-sm font-light">×</span>
               <div className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/[0.09] rounded-xl px-3 py-2">
@@ -122,7 +122,7 @@ export default function FeaturedJobJohma() {
               "✓ Couples Welcome",
               "✓ Long-Term Contracts",
               "✓ Immediate Start",
-              "✓ Recruitment Partner: 4 Minutes",
+              "✓ Recruitment Partner: 4minutes",
             ].map((badge) => (
               <span
                 key={badge}
@@ -229,7 +229,7 @@ export default function FeaturedJobJohma() {
                 <p className="text-gray-400 text-[13px] leading-relaxed max-w-md">
                   AgencyCheck believes every worker deserves to see housing costs upfront.
                   No surprises, no hidden fees. The prices below are real — verified directly
-                  with our recruitment partner 4 Minutes.
+                  with our recruitment partner 4minutes.
                 </p>
               </div>
             </div>
@@ -292,7 +292,7 @@ export default function FeaturedJobJohma() {
             <div className="inline-flex items-center gap-2.5 bg-purple-400/10 border border-purple-400/20 rounded-xl px-4 py-2.5">
               <span className="text-purple-300 text-base">🔒</span>
               <span className="text-purple-200 text-[12px] font-semibold leading-snug">
-                Accommodation information verified by recruitment partner 4 Minutes.
+                Accommodation information verified by recruitment partner 4minutes.
               </span>
             </div>
           </div>
@@ -312,10 +312,10 @@ export default function FeaturedJobJohma() {
           <div className="grid sm:grid-cols-2 gap-6">
             <div>
               <p className="text-white font-semibold text-sm mb-2">
-                AgencyCheck × 4 Minutes
+                AgencyCheck × 4minutes
               </p>
               <p className="text-gray-400 text-[13px] leading-relaxed">
-                AgencyCheck works directly with 4 Minutes — a specialist recruiter placing
+                AgencyCheck works directly with 4minutes — a specialist recruiter placing
                 workers in food production and logistics roles across the Netherlands.
                 This partnership gives candidates a single, transparent route into
                 Johma&apos;s active vacancies without navigating multiple agency websites.
@@ -328,7 +328,7 @@ export default function FeaturedJobJohma() {
               <ol className="space-y-2">
                 {[
                   "Apply once through AgencyCheck",
-                  "4 Minutes reviews your profile within 24 hours",
+                  "4minutes reviews your profile within 24 hours",
                   "You are matched to the most suitable Johma role",
                   "Housing, transport and start date confirmed together",
                 ].map((step, i) => (
@@ -347,7 +347,7 @@ export default function FeaturedJobJohma() {
           <div className="mt-5 pt-4 border-t border-white/[0.07] flex flex-wrap gap-x-5 gap-y-2">
             {[
               { icon: "🔒", text: "Your data is never sold" },
-              { icon: "⚡", text: "24h response from 4 Minutes" },
+              { icon: "⚡", text: "24h response from 4minutes" },
               { icon: "🇳🇱", text: "Dutch legal employment contracts" },
               { icon: "✅", text: "EU work authorisation required" },
             ].map(({ icon, text }) => (
@@ -371,7 +371,7 @@ export default function FeaturedJobJohma() {
           </h3>
           <p className="text-gray-400 text-sm leading-relaxed max-w-md mx-auto mb-6">
             You don&apos;t need to apply separately for each vacancy. Send one application —
-            4 Minutes reviews your profile and places you in the most suitable Johma role
+            4minutes reviews your profile and places you in the most suitable Johma role
             based on your availability, experience and housing preference.
           </p>
 
@@ -388,7 +388,7 @@ export default function FeaturedJobJohma() {
               ))}
             </div>
             <span className="text-gray-500 text-[12px]">
-              96 candidates applied this week · 4 Minutes responds within 24h
+              96 candidates applied this week · 4minutes responds within 24h
             </span>
           </div>
 

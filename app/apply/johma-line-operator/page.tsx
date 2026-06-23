@@ -1,6 +1,6 @@
 // /apply/johma-line-operator
 // Line Operator at Johma — Losser, NL
-// Via recruitment partner: 4 Minutes
+// Via recruitment partner: 4minutes
 
 import type { Metadata } from "next";
 import StickyApplyBar     from "@/components/StickyApplyBar";
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title:
     "Line Operator at Johma — €16.01/hr + Housing | Losser, NL | AgencyCheck",
   description:
-    "Line Operator vacancy at Johma in Losser, NL. €16.01/hr base + 35% night allowance (€21.61/hr). Housing from €136.74/week. Long-term contract via 4 Minutes. Apply in 60 seconds via WhatsApp.",
+    "Line Operator vacancy at Johma in Losser, NL. €16.01/hr base + 35% night allowance (€21.61/hr). Housing from €136.74/week. Long-term contract via 4minutes. Apply in 60 seconds via WhatsApp.",
   alternates: {
     canonical: "https://agencycheck.io/apply/johma-line-operator",
     languages: {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title:       "Line Operator at Johma — €16.01/hr | Losser, NL",
     description:
-      "€16.01/hr base, 3-shift system, nights up to €21.61/hr. Housing from €136.74/week. Production line role at Johma, Losser. Via 4 Minutes — response within 24h.",
+      "€16.01/hr base, 3-shift system, nights up to €21.61/hr. Housing from €136.74/week. Production line role at Johma, Losser. Via 4minutes — response within 24h.",
   },
 };
 
@@ -41,7 +41,7 @@ const SOURCE    = "johma-line";
 const JOB_SCHEMA = jobPostingSchema({
   title:       "Line Operator",
   description:
-    "Line Operator at Johma food company in Losser, Netherlands. Responsible for monitoring and maintaining production lines, quality control, solving minor issues and supporting machine operation for Johma salad production. 3-shift system. Base salary €16.01/hr with up to 35% night shift allowance (€21.61/hr). Housing available from €136.74/week. Long-term contract, possibility of permanent employment. Via recruitment partner 4 Minutes. EU work authorisation required.",
+    "Line Operator at Johma food company in Losser, Netherlands. Responsible for monitoring and maintaining production lines, quality control, solving minor issues and supporting machine operation for Johma salad production. 3-shift system. Base salary €16.01/hr with up to 35% night shift allowance (€21.61/hr). Housing available from €136.74/week. Long-term contract, possibility of permanent employment. Via recruitment partner 4minutes. EU work authorisation required.",
   datePosted:     "2026-06-01",
   validThrough:   "2026-10-01",
   employmentType: "FULL_TIME",
@@ -58,24 +58,24 @@ const JOB_SCHEMA = jobPostingSchema({
 
 const FAQ_SCHEMA = faqPageSchema([
   { question: "Do I need production or line operator experience?", answer: "Experience in production, manufacturing or factory environments is helpful but not required. Johma trains you on the line. What matters is a technical mindset, attention to quality, and reliability. Problem-solving ability is a real plus in this role." },
-  { question: "Is accommodation available?",                       answer: "Yes. 4 Minutes arranges housing near the Johma facility in Losser. Single rooms from €136.74/week including shared kitchen, bathroom and weekly cleaning of common areas. Max 4 bedrooms per house. €300 refundable deposit required." },
+  { question: "Is accommodation available?",                       answer: "Yes. 4minutes arranges housing near the Johma facility in Losser. Single rooms from €136.74/week including shared kitchen, bathroom and weekly cleaning of common areas. Max 4 bedrooms per house. €300 refundable deposit required." },
   { question: "Can couples apply together?",                       answer: "Yes. Couples can share a room at €103.94/week per person — better value than a single room. Mention this when you apply via WhatsApp and housing will be confirmed for both of you." },
-  { question: "Do I need to speak Dutch?",                         answer: "No. Basic English is sufficient. 4 Minutes communicates with you in English throughout the whole process and Johma is an international workplace with many EU workers." },
+  { question: "Do I need to speak Dutch?",                         answer: "No. Basic English is sufficient. 4minutes communicates with you in English throughout the whole process and Johma is an international workplace with many EU workers." },
   { question: "What are the shift hours?",                         answer: "3-shift system: morning 06:00–14:00, afternoon 14:00–22:00, night 22:00–06:00. Allowances start from 18:00. Your rotation schedule is confirmed when you start." },
   { question: "What salary can I earn?",                           answer: "Base salary is €16.01/hr gross. Evening allowance (18:00–00:00): +33% = €21.29/hr. Night allowance (00:00–06:00): +35% = €21.61/hr. Plus a 3% year-end bonus and €0.23/km travel allowance." },
-  { question: "Is transportation available?",                      answer: "Yes. 4 Minutes arranges transport to and from Johma. You can also use a scooter, bicycle or car through 4 Minutes, with a €0.23/km travel allowance paid on top." },
-  { question: "How quickly can I start?",                          answer: "Typically within 1–2 weeks if your documents are ready. Send a WhatsApp message — 4 Minutes replies within 24 hours and handles housing, transport, paperwork and your start date all at once." },
+  { question: "Is transportation available?",                      answer: "Yes. 4minutes arranges transport to and from Johma. You can also use a scooter, bicycle or car through 4minutes, with a €0.23/km travel allowance paid on top." },
+  { question: "How quickly can I start?",                          answer: "Typically within 1–2 weeks if your documents are ready. Send a WhatsApp message — 4minutes replies within 24 hours and handles housing, transport, paperwork and your start date all at once." },
 ]);
 
 const FAQ_ITEMS = [
   { q: "Do I need line operator experience?",    a: "Not required. A technical mindset and attention to quality are what count. Johma trains you on the production line." },
-  { q: "Is accommodation available?",            a: "Yes. 4 Minutes arranges housing in Losser. Single rooms from €136.74/week (shared kitchen, bathroom, weekly cleaning). €300 refundable deposit. Max 4 bedrooms per house." },
+  { q: "Is accommodation available?",            a: "Yes. 4minutes arranges housing in Losser. Single rooms from €136.74/week (shared kitchen, bathroom, weekly cleaning). €300 refundable deposit. Max 4 bedrooms per house." },
   { q: "Can couples apply together?",            a: "Yes. Couples share a room at €103.94/week per person. Mention it in your WhatsApp message and housing is arranged for both." },
-  { q: "Do I need to speak Dutch?",              a: "No. Basic English is enough. 4 Minutes and Johma both communicate in English." },
+  { q: "Do I need to speak Dutch?",              a: "No. Basic English is enough. 4minutes and Johma both communicate in English." },
   { q: "What are the shift hours?",              a: "Morning 06:00–14:00 · Afternoon 14:00–22:00 · Night 22:00–06:00. Allowances apply from 18:00." },
   { q: "What salary can I earn?",                a: "€16.01/hr base. Evening +33% = €21.29/hr. Night +35% = €21.61/hr. Plus 3% year-end bonus + €0.23/km travel allowance." },
-  { q: "Is transportation available?",           a: "Yes. Transport to Johma via 4 Minutes. Scooter, bike or car also available. €0.23/km allowance paid on top." },
-  { q: "How quickly can I start?",               a: "Within 1–2 weeks if documents are ready. WhatsApp → 4 Minutes replies within 24 hours and coordinates everything." },
+  { q: "Is transportation available?",           a: "Yes. Transport to Johma via 4minutes. Scooter, bike or car also available. €0.23/km allowance paid on top." },
+  { q: "How quickly can I start?",               a: "Within 1–2 weeks if documents are ready. WhatsApp → 4minutes replies within 24 hours and coordinates everything." },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -115,7 +115,7 @@ export default function JohmaLineOperatorPage() {
         </p>
         <p className="text-gray-400 text-sm mb-5">
           Via recruitment partner:{" "}
-          <span className="text-gray-200 font-semibold">4 Minutes</span>
+          <span className="text-gray-200 font-semibold">4minutes</span>
           {" · "}Full-time · Long-term
         </p>
 
@@ -216,7 +216,7 @@ export default function JohmaLineOperatorPage() {
         {/* ── HOUSING CARD ────────────────────────────────────── */}
         <div className="rounded-2xl border border-purple-400/25 bg-purple-400/[0.05] px-5 py-5 mb-6">
           <p className="text-[10px] font-black uppercase tracking-widest text-purple-300 mb-4">
-            🏠 Housing — Arranged by 4 Minutes
+            🏠 Housing — Arranged by 4minutes
           </p>
 
           <div className="grid grid-cols-2 gap-3 mb-4">
@@ -258,10 +258,10 @@ export default function JohmaLineOperatorPage() {
             {[
               { icon: "💶", title: "Salary above minimum wage",    body: "€16.01/hr base — well above the Dutch minimum. Night shifts bring you to €21.61/hr. The more shifts you work, the more you earn." },
               { icon: "⚙️", title: "Hands-on technical role",      body: "As a Line Operator, you're running the production line — not just following tasks. This is a role where your technical attention and problem-solving directly impact results." },
-              { icon: "📋", title: "Genuine long-term opportunity", body: "Not a temp-to-forget placement. Johma offers stable, long-term work with a real path to a permanent contract through 4 Minutes based on performance." },
+              { icon: "📋", title: "Genuine long-term opportunity", body: "Not a temp-to-forget placement. Johma offers stable, long-term work with a real path to a permanent contract through 4minutes based on performance." },
               { icon: "🥗", title: "Weekly Johma salad package",   body: "Every week, a Johma salad package to take home. A small perk that shows the company values the people on its production lines." },
               { icon: "🎁", title: "3% year-end bonus",            body: "December bonus of 3% of your total annual gross. Work hard, stay longer, get paid for it." },
-              { icon: "🚐", title: "Transport & mobility sorted",  body: "4 Minutes organises your route to Johma. Scooter, bicycle or car also available through them, plus a €0.23/km travel allowance." },
+              { icon: "🚐", title: "Transport & mobility sorted",  body: "4minutes organises your route to Johma. Scooter, bicycle or car also available through them, plus a €0.23/km travel allowance." },
             ].map(({ icon, title, body }) => (
               <div key={title} className="flex items-start gap-3 rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3">
                 <span className="text-xl shrink-0 mt-0.5">{icon}</span>
@@ -404,10 +404,10 @@ export default function JohmaLineOperatorPage() {
         {/* ── ABOUT 4 MINUTES ──────────────────────────────────── */}
         <div className="rounded-2xl border border-white/[0.09] bg-white/[0.03] px-5 py-5 mb-6">
           <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
-            About 4 Minutes — Your Recruitment Partner
+            About 4minutes — Your Recruitment Partner
           </p>
           <p className="text-gray-300 text-sm leading-relaxed mb-4">
-            4 Minutes is a specialist recruiter placing workers in food production, logistics and
+            4minutes is a specialist recruiter placing workers in food production, logistics and
             warehouse roles across the Netherlands. From first WhatsApp message to first shift,
             they handle housing, transport, paperwork and onboarding so you can focus on the job.
           </p>
@@ -416,7 +416,7 @@ export default function JohmaLineOperatorPage() {
               "Response within 24 hours of your WhatsApp message",
               "Housing arranged before you arrive in Losser",
               "Transport to Johma organised from day one",
-              "Scooter, bicycle or car available through 4 Minutes",
+              "Scooter, bicycle or car available through 4minutes",
               "Full document guidance — nothing gets missed",
               "No hidden fees — transparent from the very first conversation",
             ].map((item) => (
@@ -437,7 +437,7 @@ export default function JohmaLineOperatorPage() {
             One message. Housing sorted. Job confirmed.
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed mb-5 max-w-xs mx-auto">
-            Send a WhatsApp message and 4 Minutes gets back to you within 24 hours.
+            Send a WhatsApp message and 4minutes gets back to you within 24 hours.
             Housing, transport, shift schedule and start date — all confirmed together.
           </p>
           <div className="hidden sm:block">

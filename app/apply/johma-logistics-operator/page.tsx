@@ -1,6 +1,6 @@
 // /apply/johma-logistics-operator
 // Logistics Operator at Johma — Losser, NL
-// Via recruitment partner: 4 Minutes
+// Via recruitment partner: 4minutes
 // Dark theme, green accents. Premium job page. Apply via WhatsApp.
 
 import type { Metadata } from "next";
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Logistics Operator at Johma — €17.04/hr | Losser, NL",
     description:
-      "€17.04/hr base, 3-shift system, up to €23/hr on nights. Housing from €136.74/week. Long-term position at Johma in Losser. Via 4 Minutes — apply via WhatsApp.",
+      "€17.04/hr base, 3-shift system, up to €23/hr on nights. Housing from €136.74/week. Long-term position at Johma in Losser. Via 4minutes — apply via WhatsApp.",
   },
 };
 
@@ -40,7 +40,7 @@ const SOURCE    = "johma";
 
 const JOB_SCHEMA = jobPostingSchema({
   title:          "Logistics Operator",
-  description:    "Logistics operator at Johma food company in Losser, Netherlands. 3-shift system (morning, afternoon, night). Base salary €17.04/hr with up to 35% night shift allowance. Single room housing available from €136.74/week. Long-term contract, possibility of permanent employment. Via recruitment partner 4 Minutes. EU work authorisation required.",
+  description:    "Logistics operator at Johma food company in Losser, Netherlands. 3-shift system (morning, afternoon, night). Base salary €17.04/hr with up to 35% night shift allowance. Single room housing available from €136.74/week. Long-term contract, possibility of permanent employment. Via recruitment partner 4minutes. EU work authorisation required.",
   datePosted:     "2026-06-01",
   validThrough:   "2026-10-01",
   employmentType: "FULL_TIME",
@@ -56,23 +56,23 @@ const JOB_SCHEMA = jobPostingSchema({
 });
 
 const FAQ_SCHEMA = faqPageSchema([
-  { question: "Do I need to speak Dutch?",     answer: "No. Basic English is sufficient for daily work at Johma. Many colleagues come from EU countries and the recruitment process is handled in English by 4 Minutes." },
+  { question: "Do I need to speak Dutch?",     answer: "No. Basic English is sufficient for daily work at Johma. Many colleagues come from EU countries and the recruitment process is handled in English by 4minutes." },
   { question: "Is accommodation available?",   answer: "Yes. Single rooms are available at €136.74/week. Couples can share a room at €103.94/week per person. A refundable deposit of €300 is required." },
   { question: "Can couples apply together?",   answer: "Yes, couples are welcome. You can share a room and both work at Johma. Each person applies individually — mention it in your WhatsApp message so we can arrange shared accommodation." },
-  { question: "Is transport available?",       answer: "Yes. 4 Minutes offers transportation options to and from the Johma site in Losser. A travel allowance of €0.23/km is also paid." },
-  { question: "How quickly can I start?",      answer: "If your documents are ready, you can start within 1–2 weeks. 4 Minutes moves fast — once you apply via WhatsApp, expect a response within 24 hours." },
+  { question: "Is transport available?",       answer: "Yes. 4minutes offers transportation options to and from the Johma site in Losser. A travel allowance of €0.23/km is also paid." },
+  { question: "How quickly can I start?",      answer: "If your documents are ready, you can start within 1–2 weeks. 4minutes moves fast — once you apply via WhatsApp, expect a response within 24 hours." },
   { question: "What shift will I work?",       answer: "Johma operates a 3-shift system: morning (06:00–14:00), afternoon (14:00–22:00), and night (22:00–06:00). Shift patterns are discussed at the start. Night shifts pay up to €23/hr (35% allowance)." },
 ]);
 
 const FAQ_ITEMS = [
-  { q: "Do I need to speak Dutch?",     a: "No. Basic English is sufficient for daily work at Johma. Many colleagues are from EU countries and 4 Minutes handles the recruitment in English." },
+  { q: "Do I need to speak Dutch?",     a: "No. Basic English is sufficient for daily work at Johma. Many colleagues are from EU countries and 4minutes handles the recruitment in English." },
   { q: "Is accommodation available?",   a: "Yes. Single rooms are available at €136.74/week with weekly cleaning included. Couples can share a room at €103.94/week per person. A €300 refundable deposit is required." },
   { q: "Can couples apply together?",   a: "Yes — couples are welcome. You can share a room and both work at Johma. Mention this when you apply via WhatsApp and we'll arrange the right accommodation." },
-  { q: "Is transport to the factory available?", a: "Yes. 4 Minutes offers transport options to and from Johma in Losser. A travel allowance of €0.23/km is also paid on top of your hourly rate." },
-  { q: "How quickly can I start?",      a: "If your documents are ready, you can typically start within 1–2 weeks. 4 Minutes responds within 24 hours of your WhatsApp message." },
+  { q: "Is transport to the factory available?", a: "Yes. 4minutes offers transport options to and from Johma in Losser. A travel allowance of €0.23/km is also paid on top of your hourly rate." },
+  { q: "How quickly can I start?",      a: "If your documents are ready, you can typically start within 1–2 weeks. 4minutes responds within 24 hours of your WhatsApp message." },
   { q: "What shift will I be assigned?", a: "Johma runs a 3-shift system: morning (06:00–14:00), afternoon (14:00–22:00), and night (22:00–06:00). Shift assignment is agreed at the start. Night shifts carry a 35% premium — up to €23/hr." },
   { q: "Is this a long-term position?", a: "Yes. This is a long-term position with the possibility of a permanent contract after a qualifying period. Johma is a stable, established food company in the Netherlands." },
-  { q: "What documents do I need?",    a: "A valid EU passport or proof of right to work in the Netherlands is required. BSN number is needed before your first payslip. 4 Minutes will guide you through the full checklist when you apply." },
+  { q: "What documents do I need?",    a: "A valid EU passport or proof of right to work in the Netherlands is required. BSN number is needed before your first payslip. 4minutes will guide you through the full checklist when you apply." },
   { q: "What does the 3% end-of-year bonus mean?", a: "Each year, in December, you receive a bonus of 3% of your total annual gross earnings. If you earn €25,000 gross in the year, you receive €750 on top." },
 ];
 
@@ -109,7 +109,7 @@ export default function JohmaLogisticsOperatorPage() {
           Johma · Losser, Netherlands
         </p>
         <p className="text-gray-400 text-sm mb-5">
-          Via recruitment partner: <span className="text-gray-200 font-semibold">4 Minutes</span> · Full-time · Long-term
+          Via recruitment partner: <span className="text-gray-200 font-semibold">4minutes</span> · Full-time · Long-term
         </p>
 
         <div className="mb-8 flex items-center justify-between flex-wrap gap-3">
@@ -197,7 +197,7 @@ export default function JohmaLogisticsOperatorPage() {
         {/* ── HOUSING CARD ───────────────────────────────────────── */}
         <div className="rounded-2xl border border-purple-400/25 bg-purple-400/[0.05] px-5 py-5 mb-6">
           <p className="text-[10px] font-black uppercase tracking-widest text-purple-300 mb-4">
-            🏠 Housing — Available Through 4 Minutes
+            🏠 Housing — Available Through 4minutes
           </p>
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div className="rounded-xl bg-white/[0.05] border border-white/[0.08] px-4 py-3 text-center">
@@ -354,7 +354,7 @@ export default function JohmaLogisticsOperatorPage() {
           </p>
           <p className="text-gray-400 text-sm leading-relaxed mt-2">
             As a long-standing employer in the region, Johma values quality and consistency — which
-            is why they work with trusted recruitment partners like 4 Minutes to find the right
+            is why they work with trusted recruitment partners like 4minutes to find the right
             candidates.
           </p>
         </div>
@@ -362,10 +362,10 @@ export default function JohmaLogisticsOperatorPage() {
         {/* ── ABOUT 4 MINUTES ────────────────────────────────────── */}
         <div className="rounded-2xl border border-white/[0.09] bg-white/[0.03] px-5 py-5 mb-6">
           <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
-            About 4 Minutes — Your Recruitment Partner
+            About 4minutes — Your Recruitment Partner
           </p>
           <p className="text-gray-300 text-sm leading-relaxed mb-3">
-            4 Minutes is a specialist recruitment agency focused on placing workers in logistics,
+            4minutes is a specialist recruitment agency focused on placing workers in logistics,
             production, and warehouse roles across the Netherlands. They handle your onboarding
             end-to-end — from your first WhatsApp message to your first day at Johma.
           </p>
@@ -394,7 +394,7 @@ export default function JohmaLogisticsOperatorPage() {
             One message. That&apos;s all it takes.
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed mb-5 max-w-xs mx-auto">
-            Tap the button below, send your message, and 4 Minutes will be in touch within 24 hours
+            Tap the button below, send your message, and 4minutes will be in touch within 24 hours
             to discuss next steps — housing, transport, and start date included.
           </p>
           <div className="hidden sm:block">

@@ -483,18 +483,18 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §1b  MORE VACANCIES — right after hero
+          §1b  FEATURED PARTNERSHIP — Johma × 4minutes
+          ════════════════════════════════════════════════════════════ */}
+      <FeaturedJobJohma />
+
+      {/* ════════════════════════════════════════════════════════════
+          §1b1b  MORE VACANCIES
           ════════════════════════════════════════════════════════════ */}
       <section className="bg-[#0B1F14] border-b border-white/[0.06]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
           <HomepageMoreJobs />
         </div>
       </section>
-
-      {/* ════════════════════════════════════════════════════════════
-          §1b1b  FEATURED VACANCY — Johma Logistics Operator
-          ════════════════════════════════════════════════════════════ */}
-      <FeaturedJobJohma />
 
       {/* ════════════════════════════════════════════════════════════
           §1b2  JOBS WITH ACCOMMODATION
