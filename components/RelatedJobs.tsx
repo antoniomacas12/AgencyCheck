@@ -50,6 +50,42 @@ export const ALL_JOBS: JobEntry[] = [
     href: "/apply/warehouse",
     applicants: 41,
   },
+  {
+    id: "johma-logistics-operator",
+    title: "Logistics Operator — Johma",
+    location: "Losser, NL",
+    tag: "€17.04/hr + housing",
+    tagColor: "text-amber-400 border-amber-400/30",
+    href: "/apply/johma-logistics-operator",
+    applicants: 31,
+  },
+  {
+    id: "johma-operator-kitchen",
+    title: "Operator Kitchen — Johma",
+    location: "Losser, NL",
+    tag: "€16.01/hr + housing",
+    tagColor: "text-emerald-400 border-emerald-400/30",
+    href: "/apply/johma-operator-kitchen",
+    applicants: 24,
+  },
+  {
+    id: "johma-food-mixing-operator",
+    title: "Food Mixing Operator — Johma",
+    location: "Losser, NL",
+    tag: "€16.01/hr + housing",
+    tagColor: "text-blue-400 border-blue-400/30",
+    href: "/apply/johma-food-mixing-operator",
+    applicants: 19,
+  },
+  {
+    id: "johma-line-operator",
+    title: "Line Operator — Johma",
+    location: "Losser, NL",
+    tag: "€16.01/hr + housing",
+    tagColor: "text-violet-400 border-violet-400/30",
+    href: "/apply/johma-line-operator",
+    applicants: 22,
+  },
 ];
 
 interface Props {

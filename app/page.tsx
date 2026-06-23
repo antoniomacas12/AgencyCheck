@@ -35,6 +35,7 @@ const HeroReviewInline            = nDynamic(() => import("@/components/HeroRevi
 const HomepageJobsCard            = nDynamic(() => import("@/components/HomepageJobsCard"),             { ssr: false });
 const CandidateLeadForm           = nDynamic(() => import("@/components/CandidateLeadForm"),            { ssr: false });
 import JobsWithAccommodationSection from "@/components/JobsWithAccommodationSection";
+import FeaturedJobJohma             from "@/components/FeaturedJobJohma";
 
 export const metadata: Metadata = {
   title: "AgencyCheck – Real Salary, Housing & Job Transparency in the Netherlands",
@@ -489,6 +490,11 @@ export default async function HomePage() {
           <HomepageMoreJobs />
         </div>
       </section>
+
+      {/* ════════════════════════════════════════════════════════════
+          §1b1b  FEATURED VACANCY — Johma Logistics Operator
+          ════════════════════════════════════════════════════════════ */}
+      <FeaturedJobJohma />
 
       {/* ════════════════════════════════════════════════════════════
           §1b2  JOBS WITH ACCOMMODATION
