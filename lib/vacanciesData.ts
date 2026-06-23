@@ -131,6 +131,52 @@ export const CAT_JOB_DESCRIPTIONS: Record<Category, { intro: string; duties: str
 };
 
 export const VACANCIES: Vacancy[] = [
+  // ── Johma Partnership — 4minutes, Losser NL ───────────────────────────────
+  {
+    slug:     "johma-logistics-operator",
+    t:        "Logistics Operator — Johma",
+    c:        "warehouse",
+    s:        "€17.04/h gross",
+    sm:       682,
+    sx:       0,
+    l:        "Losser, NL",
+    b:        ["acc"],
+    featured: true,
+  },
+  {
+    slug:     "johma-line-operator",
+    t:        "Line Operator — Johma",
+    c:        "production",
+    s:        "€16.01/h gross",
+    sm:       640,
+    sx:       0,
+    l:        "Losser, NL",
+    b:        ["acc"],
+    featured: true,
+  },
+  {
+    slug:     "johma-food-mixing-operator",
+    t:        "Food Mixing Operator — Johma",
+    c:        "food",
+    s:        "€16.01/h gross",
+    sm:       640,
+    sx:       0,
+    l:        "Losser, NL",
+    b:        ["acc"],
+    featured: true,
+  },
+  {
+    slug:     "johma-operator-kitchen",
+    t:        "Operator Kitchen — Johma",
+    c:        "food",
+    s:        "€16.01/h gross",
+    sm:       640,
+    sx:       0,
+    l:        "Losser, NL",
+    b:        ["acc"],
+    featured: true,
+  },
+
   // ── Direct Offers — sent directly by recruiter ────────────────────────────
   {
     slug:     "pharmacy-warehouse-worker-sevenum",
@@ -353,6 +399,7 @@ const CITY_META: Record<string, AddressMeta> = {
   "IJmuiden":              { streetAddress: "IJmuiden",               addressLocality: "IJmuiden",               addressRegion: "Noord-Holland", postalCode: "1971" },
   "Tiel":                  { streetAddress: "Tiel",                   addressLocality: "Tiel",                   addressRegion: "Gelderland",     postalCode: "4001" },
   "Kootwijkerbroek":       { streetAddress: "Kootwijkerbroek",        addressLocality: "Kootwijkerbroek",        addressRegion: "Gelderland",     postalCode: "3774" },
+  "Losser":                { streetAddress: "Losser",                 addressLocality: "Losser",                 addressRegion: "Overijssel",     postalCode: "7581" },
   // ── Generic NL fallback ───────────────────────────────────────────────────────
   "Netherlands":           { streetAddress: "Amsterdam",              addressLocality: "Amsterdam",              addressRegion: "Noord-Holland", postalCode: "1011" },
 };
