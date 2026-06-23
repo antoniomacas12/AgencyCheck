@@ -20,7 +20,9 @@
     "data:pipeline": "python3 scripts/dedupe-pipeline.py && python3 scripts/generate-seed-data.py",
     "data:generate": "python3 scripts/generate-seed-data.py",
     "data:inspect": "python3 -c \"import json,pathlib; d=json.loads(pathlib.Path('scripts/data/00_summary.json').read_text()); [print(f'{k}: {v}') for k,v in d.items()]\"",
-    "data:full": "npm run data:pipeline && npx prisma db push && npm run db:seed"
+    "data:full": "npm run data:pipeline && npx prisma db push && npm run db:seed",
+    "add-vacancy": "ts-node --compiler-options {\"module\":\"CommonJS\"} scripts/add-vacancy.ts",
+    "add-vacancy:write": "ts-node --compiler-options {\"module\":\"CommonJS\"} scripts/add-vacancy.ts --write"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

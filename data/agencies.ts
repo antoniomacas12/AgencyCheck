@@ -2765,6 +2765,25 @@ export const VERIFIED_AGENCIES: VerifiedAgency[] = [
     description:        `International Flex Job is a Dutch employment agency placing workers in logistics and production roles. The agency provides housing with a deduction of approximately €120 per week. Workers also pay €36 for insurance and €25 for transport, leaving around €340 net per week. Worker review describes the accommodation as being in a remote location with a rat infestation. The agency has received significantly lower ratings compared to alternatives such as Covebo.`,
     sourceType:         "WORKER_REVIEW",
   },
+  // ── 4minutes — AgencyCheck Verified Partner ───────────────────────────────
+  {
+    id:                 152,
+    name:               `4minutes`,
+    slug:               `4minutes`,
+    website:            `https://www.4minutes.nl`,
+    phone:              `+31 6 49 21 06 31`,
+    email:              null,
+    address:            `Losser, Overijssel`,
+    city:               `Losser`,
+    agencyType:         "food-production" as AgencySector,
+    jobFocus:           ["logistics-operator", "line-operator", "food-mixing-operator", "kitchen-operator", "production-worker"],
+    supportedCities:    ["losser"],
+    accommodation:      "confirmed_with_deduction" as const,
+    transparencyScore:  88,
+    confidenceLevel:    "high" as const,
+    description:        `4minutes is a Dutch recruitment agency and verified AgencyCheck partner, placing workers in food production and logistics roles at Johma in Losser, Overijssel. The agency arranges accommodation directly: single rooms from €136.74/week, couples rooms from €103.94/week per person, with a fully refundable deposit of €300. Base salary starts at €16.01/hr with night shift allowances up to +35% (max €21.61/hr). Workers receive a 3% year-end bonus in December, a weekly Johma salad package, and a 3-shift schedule (morning, afternoon, night). Contracts are long-term with a clear path to permanent employment. Transport arranged by scooter, bicycle or car with €0.23/km travel allowance.`,
+    sourceType:         "PARTNER_VERIFIED",
+  },
 ];
 
 // ─── Utilities ───────────────────────────────────────────────────────────────
