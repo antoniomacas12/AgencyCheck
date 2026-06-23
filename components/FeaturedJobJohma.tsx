@@ -214,63 +214,66 @@ export default function FeaturedJobJohma() {
         {/* ════════════════════════════════════════════════════
             SECTION 4 — HOUSING TRANSPARENCY
         ════════════════════════════════════════════════════ */}
-        <div className="rounded-2xl border border-purple-400/20 bg-purple-400/[0.04] overflow-hidden">
+        <div className="rounded-2xl border border-[#22C55E]/20 bg-[#071a0e] overflow-hidden">
 
           {/* Header */}
-          <div className="px-5 sm:px-8 pt-6 pb-4 border-b border-white/[0.07]">
-            <div className="flex items-start justify-between gap-4 flex-wrap">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-purple-300 mb-2">
-                  🏠 Housing Transparency
-                </p>
-                <h3 className="text-white font-extrabold text-[18px] leading-snug mb-1">
-                  Know exactly what you&apos;ll pay — before you apply.
-                </h3>
-                <p className="text-gray-400 text-[13px] leading-relaxed max-w-md">
-                  AgencyCheck believes every worker deserves to see housing costs upfront.
-                  No surprises, no hidden fees. The prices below are real — verified directly
-                  with our recruitment partner 4minutes.
-                </p>
-              </div>
-            </div>
+          <div className="px-5 sm:px-8 pt-6 pb-5 border-b border-white/[0.07]">
+            <p className="text-[10px] font-black uppercase tracking-widest text-[#22C55E] mb-3">
+              🏠 Housing Transparency
+            </p>
+            <h3 className="text-white font-extrabold text-[20px] sm:text-[24px] leading-snug mb-2">
+              Know exactly what you&apos;ll pay — before you apply.
+            </h3>
+            <p className="text-gray-400 text-[13px] sm:text-[14px] leading-relaxed max-w-lg">
+              AgencyCheck believes every worker deserves to see housing costs upfront.
+              No surprises, no hidden fees. The prices below are real — verified directly
+              with our recruitment partner 4minutes.
+            </p>
           </div>
 
-          {/* Price cards */}
-          <div className="px-5 sm:px-8 py-5 border-b border-white/[0.07]">
-            <div className="grid grid-cols-3 gap-3">
-              <div className="rounded-xl bg-white/[0.06] border border-white/[0.08] px-4 py-4 text-center">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">
-                  Single Room
+          {/* Price cards — stacked on mobile, 3-col on sm+ */}
+          <div className="px-5 sm:px-8 py-6 border-b border-white/[0.07]">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+              {/* Single Room */}
+              <div className="rounded-2xl border border-[#22C55E]/30 bg-[#22C55E]/[0.07] px-5 py-5">
+                <p className="text-[11px] font-black uppercase tracking-widest text-[#22C55E] mb-3">
+                  🛏 Single Room
                 </p>
-                <p className="text-white font-extrabold text-[24px] sm:text-[28px] leading-none mb-0.5">
+                <p className="text-white font-extrabold text-[32px] sm:text-[28px] leading-none mb-1">
                   €136.74
                 </p>
-                <p className="text-gray-500 text-[11px]">per week</p>
+                <p className="text-gray-400 text-[13px]">per week</p>
               </div>
-              <div className="rounded-xl bg-white/[0.06] border border-white/[0.08] px-4 py-4 text-center">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">
-                  Couples Room
+
+              {/* Couples Room */}
+              <div className="rounded-2xl border border-blue-400/30 bg-blue-400/[0.07] px-5 py-5">
+                <p className="text-[11px] font-black uppercase tracking-widest text-blue-300 mb-3">
+                  💑 Couples Room
                 </p>
-                <p className="text-white font-extrabold text-[24px] sm:text-[28px] leading-none mb-0.5">
+                <p className="text-white font-extrabold text-[32px] sm:text-[28px] leading-none mb-1">
                   €103.94
                 </p>
-                <p className="text-gray-500 text-[11px]">per person / week</p>
+                <p className="text-gray-400 text-[13px]">per person / week</p>
               </div>
-              <div className="rounded-xl bg-white/[0.06] border border-white/[0.08] px-4 py-4 text-center">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">
-                  Deposit
+
+              {/* Deposit */}
+              <div className="rounded-2xl border border-amber-400/30 bg-amber-400/[0.07] px-5 py-5">
+                <p className="text-[11px] font-black uppercase tracking-widest text-amber-300 mb-3">
+                  🔑 Deposit
                 </p>
-                <p className="text-white font-extrabold text-[24px] sm:text-[28px] leading-none mb-0.5">
+                <p className="text-white font-extrabold text-[32px] sm:text-[28px] leading-none mb-1">
                   €300
                 </p>
-                <p className="text-emerald-300 text-[11px] font-semibold">Fully refundable</p>
+                <p className="text-[#22C55E] text-[13px] font-bold">✓ Fully refundable</p>
               </div>
+
             </div>
           </div>
 
           {/* Housing detail list */}
-          <div className="px-5 sm:px-8 py-4 border-b border-white/[0.07]">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+          <div className="px-5 sm:px-8 py-5 border-b border-white/[0.07]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
               {[
                 "Single rooms for individuals",
                 "Couples can share — save €32.80/week per person",
@@ -279,8 +282,8 @@ export default function FeaturedJobJohma() {
                 "Weekly cleaning of common areas",
                 "Deducted from payslip — no upfront rent search",
               ].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-[12px] text-gray-400">
-                  <span className="text-purple-300 shrink-0 font-bold">✓</span>
+                <div key={item} className="flex items-start gap-2.5 text-[13px] text-gray-300">
+                  <span className="text-[#22C55E] shrink-0 font-bold mt-0.5">✓</span>
                   {item}
                 </div>
               ))}
@@ -289,9 +292,9 @@ export default function FeaturedJobJohma() {
 
           {/* Trust badge */}
           <div className="px-5 sm:px-8 py-4">
-            <div className="inline-flex items-center gap-2.5 bg-purple-400/10 border border-purple-400/20 rounded-xl px-4 py-2.5">
-              <span className="text-purple-300 text-base">🔒</span>
-              <span className="text-purple-200 text-[12px] font-semibold leading-snug">
+            <div className="flex items-center gap-2.5 bg-white/[0.04] border border-white/[0.10] rounded-xl px-4 py-3">
+              <span className="text-[#22C55E] text-base shrink-0">🔒</span>
+              <span className="text-gray-300 text-[12px] font-semibold leading-snug">
                 Accommodation information verified by recruitment partner 4minutes.
               </span>
             </div>
