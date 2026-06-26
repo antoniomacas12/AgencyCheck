@@ -14,6 +14,7 @@ import path from "path";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 import { extractAgencies, generateAgencySlug } from "@/lib/agencyExtractor";
+import { sanitizeReview } from "@/lib/reviewSanitizer";
 
 export const dynamic = "force-dynamic";
 
@@ -207,6 +208,30 @@ export async function POST(req: NextRequest) {
     const weeklyRent    = flt(fd.get("weeklyRent"));
     const peopleInHouse = int(fd.get("peopleInHouse"));
 
+    // ── Sanitize comment + title for legal safety (before saving) ────────────
+    // Replaces defamatory/legally-risky language with factual worker-reported
+    // framing. Never removes negative content — only re-frames direct accusations.
+    const commentSanitized = comment ? sanitizeReview(comment) : null;
+    const titleSanitized   = title   ? sanitizeReview(title)   : null;
+
+    const safeComment = commentSanitized?.text ?? comment;
+    const safeTitle   = titleSanitized?.text   ?? title;
+
+    if (commentSanitized?.wasModified) {
+      console.log(
+        `[POST /api/reviews] comment sanitized — ` +
+        `${commentSanitized.changes} replacement(s): ` +
+        commentSanitized.log.join(" | "),
+      );
+    }
+    if (titleSanitized?.wasModified) {
+      console.log(
+        `[POST /api/reviews] title sanitized — ` +
+        `${titleSanitized.changes} replacement(s): ` +
+        titleSanitized.log.join(" | "),
+      );
+    }
+
     // ── Create review in database ──────────────────────────────────────────────
     const review = await db.review.create({
       data: {
@@ -217,7 +242,7 @@ export async function POST(req: NextRequest) {
         jobType,
         jobTitle,
         city,
-        title,
+        title:   safeTitle,
         // null → undefined so Prisma uses DB @default(3) for non-nullable fields
         overallRating:         overallRating         ?? undefined,
         salaryRating:          salaryRating          ?? undefined,
@@ -231,7 +256,7 @@ export async function POST(req: NextRequest) {
         weeklyRent,
         peopleInHouse,
         wouldRecommend,
-        comment,
+        comment: safeComment,
         issueTags:         JSON.stringify([]),
         verificationStatus: "WORKER_REPORTED",
         sourceType:         "WORKER_REPORTED",
