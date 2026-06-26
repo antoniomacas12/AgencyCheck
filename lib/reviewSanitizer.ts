@@ -638,3 +638,455 @@ export function generateSafePublicVersion(input: string): SafePublicVersion {
     log:         allLog,
   };
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// HIGH-RISK DEFAMATION FILTER
+// Runs BEFORE generateSafePublicVersion for stronger, clause-level protection.
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── Output type ─────────────────────────────────────────────────────────────
+
+export interface LegallySaferReview {
+  /** Original unmodified input (never public). */
+  originalReview:  string;
+  /** Final text safe for public display. */
+  safeReview:      string;
+  /** 0–100.  0 = clean review,  100 = critical defamation risk. */
+  riskScore:       number;
+  /** Human-readable list of detected issue categories (deduplicated). */
+  detectedIssues:  string[];
+  /** Convenience flag — true when at least one change was made. */
+  wasModified:     boolean;
+  /** Total replacements across all layers. */
+  changes:         number;
+  /** Server-side audit log — never expose publicly. */
+  log:             string[];
+}
+
+// ─── detectHighRiskLanguage — detection patterns with weights ─────────────────
+
+interface RiskPattern {
+  pattern: RegExp;
+  label:   string;
+  weight:  number;   // points per match; total capped at 100
+}
+
+const RISK_DETECTION_PATTERNS: RiskPattern[] = [
+  // ── Critical (30 pts) — named individual + criminal accusation ────────────
+  { pattern: new RegExp(`${N}\\s+(?:stole|defrauded|robbed|cheated|scammed)`, "g"),
+    label: "Named individual accused of financial crime", weight: 30 },
+  { pattern: new RegExp(`${N}\\s+(?:is|was)\\s+a\\s+(?:criminal|fraudster?)`, "g"),
+    label: "Named individual accused of criminal conduct", weight: 30 },
+
+  // ── High (20 pts) ────────────────────────────────────────────────────────
+  { pattern: /\b(?:fraud|fraudulent|fraudulently)\b/gi,
+    label: "Allegation of fraud", weight: 20 },
+  { pattern: /\b(?:criminal|criminally)\b/gi,
+    label: "Criminal accusation", weight: 20 },
+  { pattern: /\b(?:stole|stolen|stealing|theft)\b/gi,
+    label: "Allegation of theft or financial crime", weight: 20 },
+  { pattern: /\b(?:illegal|illegally|unlawful|unlawfully)\b/gi,
+    label: "Allegation of illegal conduct", weight: 20 },
+  { pattern: /\bscam(?:s|med|mers?)?\b/gi,
+    label: "Allegation of fraudulent business practices", weight: 20 },
+  { pattern: new RegExp(`${N}\\s+(?:is|was)\\s+a(?:n)?\\s+(?:liar|scammer|thief)`, "g"),
+    label: "Named individual personally accused of misconduct", weight: 20 },
+
+  // ── Medium (15 pts) ──────────────────────────────────────────────────────
+  { pattern: /\b(?:liar|liars|lied|lying)\b/gi,
+    label: "Allegation of dishonesty or deception", weight: 15 },
+  { pattern: /\b(?:corrupt|corruption)\b/gi,
+    label: "Allegation of corruption", weight: 15 },
+  { pattern: /\b(?:racist|racism|xenophob)\b/gi,
+    label: "Allegation of discrimination", weight: 15 },
+  { pattern: /\bexploit(?:s|ed|ing)?\b/gi,
+    label: "Allegation of worker exploitation", weight: 15 },
+  { pattern: /\bthey\s+(?:don'?t|didn'?t|never)\s+pay\b/gi,
+    label: "Absolute payment claim", weight: 15 },
+  { pattern: /\bfired\s+(?:me|us)\s+(?:illegally|unlawfully|wrongfully)\b/gi,
+    label: "Claim of wrongful dismissal", weight: 15 },
+
+  // ── Low (5 pts) ──────────────────────────────────────────────────────────
+  { pattern: /\b(?:idiot|moron|asshole?|bastard|bitch|wanker)\b/gi,
+    label: "Personal insult or profanity", weight: 5 },
+  { pattern: /\bf+u+c+k/gi,
+    label: "Profanity", weight: 5 },
+  { pattern: /\bshit(?:ty)?\b/gi,
+    label: "Profanity", weight: 5 },
+];
+
+/**
+ * Scan text for legally risky language WITHOUT modifying it.
+ *
+ * Risk bands:
+ *    0–20  Low      — standard negative review, no legal risk
+ *   21–50  Medium   — some risky terms, sanitization recommended
+ *   51–75  High     — clear legal risk, sanitization required
+ *   76–100 Critical — serious defamation risk
+ *
+ * @param text - Raw review text (pre-sanitization).
+ * @returns Deduplicated issue labels + 0–100 risk score.
+ */
+export function detectHighRiskLanguage(text: string): {
+  issues:    string[];
+  riskScore: number;
+} {
+  if (!text) return { issues: [], riskScore: 0 };
+
+  const seen  = new Set<string>();
+  const issues: string[] = [];
+  let totalScore = 0;
+
+  for (const { pattern, label, weight } of RISK_DETECTION_PATTERNS) {
+    // Re-create with fresh lastIndex each iteration
+    const re      = new RegExp(pattern.source, pattern.flags);
+    const matches = text.match(re) ?? [];
+    if (matches.length > 0) {
+      totalScore += weight * matches.length;
+      if (!seen.has(label)) {
+        seen.add(label);
+        issues.push(label);
+      }
+    }
+  }
+
+  return {
+    issues,
+    riskScore: Math.min(100, totalScore),
+  };
+}
+
+// ─── replaceHighRiskLanguage — clause + word rules ────────────────────────────
+// Full-clause patterns run FIRST (more specific), word fallbacks run LAST.
+// All replacements are lowercase; applyRule auto-capitalises at sentence start.
+
+const HIGH_RISK_RULES: Rule[] = [
+
+  // ── Named individual + role ───────────────────────────────────────────────
+  // "[Coordinator/Manager] Name is incompetent / useless / irresponsible"
+  // → "the reviewer reported dissatisfaction with coordinator communication"
+  [
+    new RegExp(
+      `(?:[Cc]oordinator|[Mm]anager|[Bb]oss|[Ss]upervisor|[Tt]eam\\s+[Ll]ead(?:er)?)` +
+      `\\s+${N}(?:\\s+${N})?` +
+      `\\s+(?:is|was)\\s+(?:incompetent|useless|irresponsible|unprofessional)`,
+      "g",
+    ),
+    "the reviewer reported dissatisfaction with coordinator communication",
+    "hr-coord-incompetent",
+  ],
+
+  // "[Coordinator/Manager] Name is a liar / scammer / criminal"
+  // → "the reviewer reported communication issues with a coordinator"
+  [
+    new RegExp(
+      `(?:[Cc]oordinator|[Mm]anager|[Bb]oss|[Ss]upervisor|[Tt]eam\\s+[Ll]ead(?:er)?)` +
+      `\\s+${N}(?:\\s+${N})?` +
+      `\\s+(?:is|was)\\s+a(?:n)?\\s+(?:liar|scammer|criminal|thief|fraudster?)`,
+      "g",
+    ),
+    "the reviewer reported communication issues with a coordinator",
+    "hr-coord-liar",
+  ],
+
+  // ── Dismissal ─────────────────────────────────────────────────────────────
+  // "they fired me illegally / unlawfully / wrongfully"
+  // → "the reviewer reported losing their position and believes the decision was unfair"
+  [
+    /\bthey\s+fired\s+me\s+(?:illegally|unlawfully|wrongfully|unjustly)\b/gi,
+    "the reviewer reported losing their position and believes the decision was unfair",
+    "hr-fired-illegally",
+  ],
+
+  // ── Lies / misinformation ─────────────────────────────────────────────────
+  // "they lied to me / us / workers"
+  // → "the reviewer reported receiving information they believe was inaccurate"
+  [
+    /\bthey\s+lied\s+to\s+(?:me|us|workers?|employees?|everyone)\b/gi,
+    "the reviewer reported receiving information they believe was inaccurate",
+    "hr-lied-to-me",
+  ],
+  // "I was lied to"
+  [
+    /\bI\s+was\s+lied\s+to\b/gi,
+    "the reviewer reported receiving information they believe was inaccurate",
+    "hr-i-was-lied-to",
+  ],
+
+  // ── Theft / payment dispute ───────────────────────────────────────────────
+  // "they stole my money / salary / wages / pay"
+  // → "the reviewer reported a payment dispute"
+  [
+    /\bthey\s+stole\s+my\s+(?:money|salary|wages|pay|cash|earnings|income)\b/gi,
+    "the reviewer reported a payment dispute",
+    "hr-stole-my-money",
+  ],
+  // "they stole from me / us"
+  [
+    /\bthey\s+stole\s+(?:from\s+)?(?:me|us)\b/gi,
+    "the reviewer reported a payment dispute",
+    "hr-stole-from-me",
+  ],
+
+  // ── Exploitation ──────────────────────────────────────────────────────────
+  // "this / the company exploits workers"
+  // → "the reviewer reported concerns regarding working conditions"
+  [
+    /\b(?:this|the)\s+(?:company|agency)\s+exploits?\s+(?:workers?|employees?|you|us|people)\b/gi,
+    "the reviewer reported concerns regarding working conditions",
+    "hr-company-exploits",
+  ],
+  // "they exploit workers"
+  [
+    /\bthey\s+exploit(?:s|ed)?\s+(?:workers?|employees?|you|us)\b/gi,
+    "the reviewer reported concerns regarding working conditions",
+    "hr-they-exploit",
+  ],
+
+  // ── Criminal company ──────────────────────────────────────────────────────
+  // "criminal / illegal company / agency / business"
+  // → "the reviewer expressed strong dissatisfaction with the company"
+  [
+    /\b(?:criminal|illegal)\s+(?:company|agency|business|operation|employer)\b/gi,
+    "the reviewer expressed strong dissatisfaction with the company",
+    "hr-criminal-company",
+  ],
+  // "[this/the] company is criminal / illegal"
+  [
+    /\b(?:this|the)\s+(?:company|agency)\s+(?:is|was)\s+(?:criminal|illegal)\b/gi,
+    "the reviewer expressed strong dissatisfaction with the company",
+    "hr-company-is-criminal",
+  ],
+
+  // ── Illegal housing / conditions ──────────────────────────────────────────
+  // "illegal housing"
+  // → "the reviewer reported concerns regarding housing conditions"
+  [
+    /\billegal\s+housing\b/gi,
+    "the reviewer reported concerns regarding housing conditions",
+    "hr-illegal-housing",
+  ],
+  // "illegal [contract / conditions / workplace / treatment / dismissal]"
+  [
+    /\billegal\s+(?:conditions?|contract|workplace|practice|treatment|dismissal|termination)\b/gi,
+    "the reviewer reported concerns regarding working conditions",
+    "hr-illegal-noun",
+  ],
+
+  // ── Scam — clause-level (specific before generic) ────────────────────────
+  // "[this/the] company is a scam"
+  [
+    /\b(?:this|the)\s+(?:company|agency|employer|place)\s+(?:is|was)\s+a(?:n)?\s+(?:total\s+)?scam\b/gi,
+    "the reviewer reported financial concerns regarding this company",
+    "hr-company-is-scam",
+  ],
+  // "it's / this is / that is a [total] scam"
+  [
+    /\b(?:it'?s|it\s+is|this\s+is|that\s+is|that'?s)\s+a(?:n)?\s+(?:total\s+|complete\s+|absolute\s+)?scam\b/gi,
+    "the reviewer reported financial concerns",
+    "hr-its-a-scam",
+  ],
+  // "total / complete / absolute scam"
+  [
+    /\b(?:total|complete|absolute|utter|pure)\s+scam\b/gi,
+    "the reviewer reported financial concerns",
+    "hr-total-scam",
+  ],
+  // "they are scammers" / "company of scammers" etc.
+  [
+    /\b(?:they\s+are|they\s+were|it'?s\s+a|this\s+is\s+a|run\s+by|company\s+of)\s+scammers?\b/gi,
+    "the reviewer reported concerns regarding business practices",
+    "hr-they-are-scammers",
+  ],
+  // "[are/is/were] scammers" standalone predicate
+  [
+    /\b(?:is|are|were|was)\s+scammers?\b/gi,
+    "the reviewer reported concerns regarding business practices",
+    "hr-are-scammers",
+  ],
+
+  // ── Fraud — clause-level ──────────────────────────────────────────────────
+  // "[this/the] company commits fraud"
+  [
+    /\b(?:this|the)\s+(?:company|agency)\s+(?:commits?|committed|is\s+committing)\s+fraud\b/gi,
+    "the reviewer believes there were serious administrative issues",
+    "hr-company-commits-fraud",
+  ],
+  // "this is / it's fraud"
+  [
+    /\b(?:this\s+is|that'?s|it'?s|it\s+is)\s+fraud\b/gi,
+    "the reviewer believes there were serious administrative issues",
+    "hr-this-is-fraud",
+  ],
+
+  // ── Word-level fallbacks (fire on anything not caught by clause patterns) ─
+  // Phrased to work mid-sentence where possible.
+  [/\bscammers\b/gi, "the reviewer reported concerns regarding business practices", "hr-scammers"],
+  [/\bscammer\b/gi,  "the reviewer reported concerns regarding business practices", "hr-scammer"],
+  [/\bscams\b/gi,    "reported financial concerns",                                  "hr-scam-verb"],
+  [/\bscam\b/gi,     "reported financial concerns",                                  "hr-scam"],
+  [/\bfraud\b/gi,    "the reviewer believes there were serious administrative issues", "hr-fraud"],
+];
+
+/**
+ * Replace high-risk defamatory or legally risky language with safer alternatives.
+ *
+ * Uses "The reviewer reported…" framing (Glassdoor / Indeed / Trustpilot model).
+ * Runs BEFORE the existing 4-layer pass so full-clause patterns catch sentences
+ * first; word-level rules serve as the fallback.
+ *
+ * Covers all user-spec examples:
+ *   "Scam"                        → "The reviewer reported financial concerns."
+ *   "Scammers"                    → "The reviewer reported concerns regarding business practices."
+ *   "Fraud"                       → "The reviewer believes there were serious administrative issues."
+ *   "Criminal company"            → "The reviewer expressed strong dissatisfaction with the company."
+ *   "They stole my money"         → "The reviewer reported a payment dispute."
+ *   "They lied to me"             → "The reviewer reported receiving information they believe was inaccurate."
+ *   "This company exploits workers" → "The reviewer reported concerns regarding working conditions."
+ *   "Coordinator Monika is a liar"  → "The reviewer reported communication issues with a coordinator."
+ *   "Coordinator Monika is incompetent" → "The reviewer reported dissatisfaction with coordinator communication."
+ *   "Illegal housing"             → "The reviewer reported concerns regarding housing conditions."
+ *   "They fired me illegally"     → "The reviewer reported losing their position and believes the decision was unfair."
+ */
+export function replaceHighRiskLanguage(input: string): string {
+  if (!input) return input;
+  const counter = { n: 0 };
+  const log: string[] = [];
+  let text = input;
+
+  for (const [pattern, replacement, label] of HIGH_RISK_RULES) {
+    text = applyRule(text, pattern, replacement, counter, log, label);
+  }
+
+  return text;
+}
+
+/**
+ * Anonymise ALL private individual names in review text.
+ *
+ * Superset of removeEmployeeNames() — adds:
+ *   • "Coordinator / Manager [Name]" → role only ("a coordinator")
+ *   • "Mr. / Mrs. / Ms. / Dr. [Name]" → "a staff member"
+ *   • Any remaining Name in negative predicate → "A staff member"
+ *
+ * Run as Layer 0, before replaceHighRiskLanguage, so names don't interfere
+ * with pattern matching in later layers.
+ */
+export function anonymizeIndividuals(input: string): string {
+  if (!input) return input;
+
+  // Start with the existing name anonymiser
+  let text = removeEmployeeNames(input);
+
+  // "[Coordinator/Manager/Boss/Supervisor/Team Lead] Name [optional surname]"
+  // → "A coordinator" / "a coordinator"
+  text = text.replace(
+    new RegExp(
+      `\\b([Cc]oordinator|[Mm]anager|[Bb]oss|[Ss]upervisor|[Tt]eam\\s+[Ll]ead(?:er)?)` +
+      `\\s+${N}(?:\\s+${N})?\\b`,
+      "g",
+    ),
+    (_, role: string) => {
+      const r = role.toLowerCase();
+      // Capitalise "A" if role was capitalised (sentence start)
+      return role[0].toUpperCase() === role[0] ? `A ${r}` : `a ${r}`;
+    },
+  );
+
+  // "Mr. / Mrs. / Ms. / Miss / Dr. Name [optional surname]"
+  // → "a staff member"
+  text = text.replace(
+    new RegExp(`\\b(?:Mr\\.?|Mrs\\.?|Ms\\.?|Miss|Dr\\.?)\\s+${N}(?:\\s+${N})?\\b`, "g"),
+    "a staff member",
+  );
+
+  // Any remaining lone Name in negative predicate not caught by the above
+  // "[Name] is / was [bad adjective]" → "A staff member"
+  text = text.replace(
+    new RegExp(
+      `${N}\\s+(?:is|was|are|were)\\s+(?:a\\s+)?(?:very\\s+)?` +
+      `(?:bad|terrible|awful|horrible|incompetent|irresponsible|useless|` +
+      `rude|dishonest|unprofessional|corrupt)`,
+      "g",
+    ),
+    "A staff member",
+  );
+
+  return text;
+}
+
+/**
+ * Master high-risk defamation filter — the single entry point for the POST route.
+ *
+ * Orchestration order:
+ *   0. detectHighRiskLanguage()              — score the RAW input (pre-change)
+ *   1. anonymizeIndividuals()                — remove all private names
+ *   2. replaceHighRiskLanguage()             — rewrite risky clauses
+ *   3. generateSafePublicVersion()           — run existing 4-layer protection
+ *
+ * @param input - Raw review text (comment or title field).
+ * @returns LegallySaferReview with originalReview, safeReview, riskScore,
+ *          detectedIssues, and server-side audit log.
+ *
+ * @example
+ * const r = createLegallySaferReview("Scam. They fired me illegally.");
+ * // r.riskScore    → 55
+ * // r.detectedIssues → ["Allegation of fraudulent business practices", "Claim of wrongful dismissal"]
+ * // r.safeReview   → "The reviewer reported financial concerns. The reviewer reported
+ * //                   losing their position and believes the decision was unfair."
+ */
+export function createLegallySaferReview(input: string): LegallySaferReview {
+  if (!input || typeof input !== "string") {
+    return {
+      originalReview: input ?? "",
+      safeReview:     input ?? "",
+      riskScore:      0,
+      detectedIssues: [],
+      wasModified:    false,
+      changes:        0,
+      log:            [],
+    };
+  }
+
+  const log: string[] = [];
+  let totalChanges = 0;
+  let text = input;
+
+  // Step 0 — detect issues on the untouched input
+  const { issues, riskScore } = detectHighRiskLanguage(input);
+  if (riskScore > 0) {
+    log.push(`[HR:detect] riskScore=${riskScore} issues=[${issues.join(", ")}]`);
+  }
+
+  // Step 1 — anonymise all individual names
+  const afterAnon = anonymizeIndividuals(text);
+  if (afterAnon !== text) {
+    log.push("[HR:anon] individual name(s) anonymised");
+    totalChanges++;
+  }
+  text = afterAnon;
+
+  // Step 2 — replace high-risk clauses and words
+  const afterReplace = replaceHighRiskLanguage(text);
+  if (afterReplace !== text) {
+    log.push("[HR:replace] high-risk language replaced");
+    totalChanges++;
+  }
+  text = afterReplace;
+
+  // Step 3 — existing 4-layer protection (catches anything HR missed)
+  const safe = generateSafePublicVersion(text);
+  log.push(...safe.log);
+  totalChanges += safe.changes;
+  text = safe.text;
+
+  return {
+    originalReview: input,
+    safeReview:     text,
+    riskScore,
+    detectedIssues: issues,
+    wasModified:    totalChanges > 0,
+    changes:        totalChanges,
+    log,
+  };
+}

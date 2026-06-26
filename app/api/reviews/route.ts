@@ -14,7 +14,7 @@ import path from "path";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 import { extractAgencies, generateAgencySlug } from "@/lib/agencyExtractor";
-import { generateSafePublicVersion } from "@/lib/reviewSanitizer";
+import { createLegallySaferReview } from "@/lib/reviewSanitizer";
 
 export const dynamic = "force-dynamic";
 
@@ -208,29 +208,33 @@ export async function POST(req: NextRequest) {
     const weeklyRent    = flt(fd.get("weeklyRent"));
     const peopleInHouse = int(fd.get("peopleInHouse"));
 
-    // ── Legal Risk Protection Layer (4 passes before save) ───────────────────
-    // 1. removeEmployeeNames      — anonymise staff names
-    // 2. removePersonalAttacks    — remove profanity / insults
-    // 3. convertAccusations       — convert fact claims to reported experiences
-    // 4. sanitizeReview           — remove defamatory / legally risky terms
-    const commentResult = comment ? generateSafePublicVersion(comment) : null;
-    const titleResult   = title   ? generateSafePublicVersion(title)   : null;
+    // ── High-Risk Defamation Filter + Legal Risk Protection Layer ────────────
+    // createLegallySaferReview runs 4 passes in order:
+    //   0. detectHighRiskLanguage  — score raw input (riskScore 0–100)
+    //   1. anonymizeIndividuals    — remove private names
+    //   2. replaceHighRiskLanguage — rewrite risky clauses (Glassdoor model)
+    //   3. generateSafePublicVersion → removeEmployeeNames, removePersonalAttacks,
+    //                                  convertAccusations, sanitizeReview
+    const commentResult = comment ? createLegallySaferReview(comment) : null;
+    const titleResult   = title   ? createLegallySaferReview(title)   : null;
 
-    const safeComment = commentResult?.text ?? comment;
-    const safeTitle   = titleResult?.text   ?? title;
+    const safeComment = commentResult?.safeReview ?? comment;
+    const safeTitle   = titleResult?.safeReview   ?? title;
 
-    if (commentResult?.wasModified) {
+    if (commentResult?.wasModified || (commentResult?.riskScore ?? 0) > 0) {
       console.log(
         `[POST /api/reviews] comment protected — ` +
-        `${commentResult.changes} change(s): ` +
-        commentResult.log.join(" | "),
+        `riskScore=${commentResult?.riskScore ?? 0} ` +
+        `${commentResult?.changes ?? 0} change(s): ` +
+        (commentResult?.log ?? []).join(" | "),
       );
     }
-    if (titleResult?.wasModified) {
+    if (titleResult?.wasModified || (titleResult?.riskScore ?? 0) > 0) {
       console.log(
         `[POST /api/reviews] title protected — ` +
-        `${titleResult.changes} change(s): ` +
-        titleResult.log.join(" | "),
+        `riskScore=${titleResult?.riskScore ?? 0} ` +
+        `${titleResult?.changes ?? 0} change(s): ` +
+        (titleResult?.log ?? []).join(" | "),
       );
     }
 
