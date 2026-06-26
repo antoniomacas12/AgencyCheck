@@ -70,7 +70,10 @@ export async function ensureDbReady(): Promise<void> {
         SET "name"      = EXCLUDED."name",
             "waUrl"     = EXCLUDED."waUrl",
             "sortOrder" = EXCLUDED."sortOrder",
-            "enabled"   = EXCLUDED."enabled"
+            "enabled"   = CASE
+              WHEN EXCLUDED."enabled" = false THEN false
+              ELSE recruiter_config."enabled"
+            END
     `;
     console.log(`[recruiter-db] upserted recruiter id=${r.id} name="${r.name}" seedEnabled=${seedEnabled}`);
   }
