@@ -369,7 +369,7 @@ export default async function HomePage() {
               {/* Trust pills */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-5">
                 {[
-                  "300+ candidates placed",
+                  "EU candidates only",
                   "Verified partners",
                   "Jobs with accommodation",
                   "Free to apply",
