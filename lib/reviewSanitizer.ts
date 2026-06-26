@@ -789,6 +789,19 @@ const HIGH_RISK_RULES: Rule[] = [
     "hr-coord-liar",
   ],
 
+  // Fallbacks: "a / the coordinator is a liar" — when name was already removed
+  [
+    /\b(?:a|the)\s+(?:coordinator|manager|boss|supervisor|team\s+lead(?:er)?)\s+(?:is|was)\s+a(?:n)?\s+(?:liar|scammer|criminal|thief|fraudster?)\b/gi,
+    "the reviewer reported communication issues with a coordinator",
+    "hr-role-is-liar",
+  ],
+  // "a / the coordinator is incompetent" — name already removed
+  [
+    /\b(?:a|the)\s+(?:coordinator|manager|boss|supervisor|team\s+lead(?:er)?)\s+(?:is|was)\s+(?:incompetent|useless|irresponsible|unprofessional)\b/gi,
+    "the reviewer reported dissatisfaction with coordinator communication",
+    "hr-role-is-incompetent",
+  ],
+
   // ── Dismissal ─────────────────────────────────────────────────────────────
   // "they fired me illegally / unlawfully / wrongfully"
   // → "the reviewer reported losing their position and believes the decision was unfair"
@@ -1058,21 +1071,22 @@ export function createLegallySaferReview(input: string): LegallySaferReview {
     log.push(`[HR:detect] riskScore=${riskScore} issues=[${issues.join(", ")}]`);
   }
 
-  // Step 1 — anonymise all individual names
-  const afterAnon = anonymizeIndividuals(text);
-  if (afterAnon !== text) {
-    log.push("[HR:anon] individual name(s) anonymised");
-    totalChanges++;
-  }
-  text = afterAnon;
-
-  // Step 2 — replace high-risk clauses and words
+  // Step 1 — replace high-risk clauses FIRST (needs names still present so
+  //           "Coordinator Monika is a liar" can be caught as a full clause)
   const afterReplace = replaceHighRiskLanguage(text);
   if (afterReplace !== text) {
     log.push("[HR:replace] high-risk language replaced");
     totalChanges++;
   }
   text = afterReplace;
+
+  // Step 2 — anonymise any remaining individual names not caught by step 1
+  const afterAnon = anonymizeIndividuals(text);
+  if (afterAnon !== text) {
+    log.push("[HR:anon] individual name(s) anonymised");
+    totalChanges++;
+  }
+  text = afterAnon;
 
   // Step 3 — existing 4-layer protection (catches anything HR missed)
   const safe = generateSafePublicVersion(text);
