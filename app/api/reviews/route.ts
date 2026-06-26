@@ -14,7 +14,7 @@ import path from "path";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 import { extractAgencies, generateAgencySlug } from "@/lib/agencyExtractor";
-import { sanitizeReview } from "@/lib/reviewSanitizer";
+import { generateSafePublicVersion } from "@/lib/reviewSanitizer";
 
 export const dynamic = "force-dynamic";
 
@@ -208,27 +208,29 @@ export async function POST(req: NextRequest) {
     const weeklyRent    = flt(fd.get("weeklyRent"));
     const peopleInHouse = int(fd.get("peopleInHouse"));
 
-    // ── Sanitize comment + title for legal safety (before saving) ────────────
-    // Replaces defamatory/legally-risky language with factual worker-reported
-    // framing. Never removes negative content — only re-frames direct accusations.
-    const commentSanitized = comment ? sanitizeReview(comment) : null;
-    const titleSanitized   = title   ? sanitizeReview(title)   : null;
+    // ── Legal Risk Protection Layer (4 passes before save) ───────────────────
+    // 1. removeEmployeeNames      — anonymise staff names
+    // 2. removePersonalAttacks    — remove profanity / insults
+    // 3. convertAccusations       — convert fact claims to reported experiences
+    // 4. sanitizeReview           — remove defamatory / legally risky terms
+    const commentResult = comment ? generateSafePublicVersion(comment) : null;
+    const titleResult   = title   ? generateSafePublicVersion(title)   : null;
 
-    const safeComment = commentSanitized?.text ?? comment;
-    const safeTitle   = titleSanitized?.text   ?? title;
+    const safeComment = commentResult?.text ?? comment;
+    const safeTitle   = titleResult?.text   ?? title;
 
-    if (commentSanitized?.wasModified) {
+    if (commentResult?.wasModified) {
       console.log(
-        `[POST /api/reviews] comment sanitized — ` +
-        `${commentSanitized.changes} replacement(s): ` +
-        commentSanitized.log.join(" | "),
+        `[POST /api/reviews] comment protected — ` +
+        `${commentResult.changes} change(s): ` +
+        commentResult.log.join(" | "),
       );
     }
-    if (titleSanitized?.wasModified) {
+    if (titleResult?.wasModified) {
       console.log(
-        `[POST /api/reviews] title sanitized — ` +
-        `${titleSanitized.changes} replacement(s): ` +
-        titleSanitized.log.join(" | "),
+        `[POST /api/reviews] title protected — ` +
+        `${titleResult.changes} change(s): ` +
+        titleResult.log.join(" | "),
       );
     }
 

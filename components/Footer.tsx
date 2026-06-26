@@ -7,6 +7,7 @@ import { useT, type Locale } from "@/lib/i18n";
 import { LEGAL } from "@/lib/legalConfig";
 import { WA_LINK } from "@/lib/whatsapp";
 import GateLink from "@/components/GateLink";
+import { FOOTER_DISCLAIMER } from "@/lib/reviewSanitizer";
 
 const TOP_CITIES = [
   { name: "Amsterdam",  slug: "amsterdam"  },
@@ -272,6 +273,13 @@ export default function Footer() {
               {t("footer.calculate_salary")}
             </Link>
           </div>
+        </div>
+
+        {/* Platform-wide review disclaimer */}
+        <div className="border-t border-gray-100 pt-4 mb-4">
+          <p className="text-[10px] text-gray-400 leading-relaxed">
+            {FOOTER_DISCLAIMER}
+          </p>
         </div>
 
         {/* Legal entity strip — required by Dutch law (Wet elektronische handel) */}

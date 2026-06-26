@@ -8,6 +8,7 @@
 import { useState } from "react";
 import { ReviewComments, type ReviewCommentData } from "./ReviewComments";
 import TranslateButton from "@/components/TranslateButton";
+import { REVIEW_DISCLAIMER } from "@/lib/reviewSanitizer";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -287,6 +288,11 @@ export function PublishedReviewCard({ review }: { review: PublishedReview }) {
           </div>
         </div>
       )}
+
+      {/* Per-review legal disclaimer */}
+      <p className="text-[10px] text-gray-400 leading-relaxed border-t border-gray-100 pt-2 mt-1">
+        {REVIEW_DISCLAIMER}
+      </p>
 
       {/* ── Comments section ── */}
       <ReviewComments

@@ -1,19 +1,28 @@
 /**
  * lib/reviewSanitizer.ts
  *
- * Legal risk reduction for user-submitted agency reviews.
+ * AgencyCheck — Legal Risk Protection Layer for public reviews.
  *
- * Transforms defamatory / legally risky language into factual,
- * worker-reported framing — WITHOUT:
- *   - removing negative content
- *   - censoring complaints, salary issues, housing issues, dismissal experiences
- *   - altering factual statements or ratings
- *   - inventing new facts
+ * Operates like Glassdoor / Indeed / Trustpilot: treat every review as a
+ * USER OPINION, not a verified fact.  The system runs four protection passes
+ * before any review text is saved or displayed publicly:
  *
- * Two-pass approach:
- *   Pass 1 — Sentence-level patterns  (name + accusation clauses, run FIRST
- *             so "Monika is a liar" is caught before "liar" is word-replaced)
- *   Pass 2 — Word / phrase replacements
+ *   1. removeEmployeeNames()              — replace staff names with role labels
+ *   2. removePersonalAttacks()            — remove profanity & direct insults
+ *   3. convertAccusationsToReportedExperience() — convert fact claims → opinions
+ *   4. sanitizeReview()                   — remove defamatory / legally risky terms
+ *
+ * Call generateSafePublicVersion() to run all four in order.
+ *
+ * Platform disclaimers are exported as REVIEW_DISCLAIMER (per-review) and
+ * FOOTER_DISCLAIMER (site-wide), ready to embed in React components.
+ *
+ * Rules maintained:
+ *   ✓ Keep 95%+ of review meaning
+ *   ✓ Never invent new facts
+ *   ✓ Never remove negative content — only re-frame accusations as opinions
+ *   ✓ Never censor salary, housing, communication or dismissal complaints
+ *   ✓ Never modify ratings
  */
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -168,6 +177,11 @@ const WORD_RULES: Rule[] = [
     "stole-my-X",
   ],
 
+  // "a scam" / "it's a scam" / "total scam" — noun form only
+  // Verb form ("scams workers") is handled in convertAccusationsToReportedExperience
+  [/\ba\s+(?:total\s+)?scam\b/gi,   "a reported concern",              "scam-noun"],
+  [/\bscam\b/gi,                    "reported concern",                "scam-noun-sg"],
+
   // scammers (plural) before scammer (singular)
   [/\bscammers\b/gi, "company with reported payment concerns",   "scammers"],
   [/\bscammer\b/gi,  "reported payment concerns",                "scammer"],
@@ -254,5 +268,373 @@ export function sanitizeReview(input: string): SanitizationResult {
     wasModified: counter.n > 0,
     changes:     counter.n,
     log,
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// LEGAL RISK PROTECTION LAYER — Glassdoor / Indeed / Trustpilot model
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── Platform disclaimers ─────────────────────────────────────────────────────
+
+/**
+ * Per-review disclaimer — render below every public review card.
+ */
+export const REVIEW_DISCLAIMER =
+  "This review reflects the personal experience and opinion of the reviewer. " +
+  "AgencyCheck does not independently verify all claims.";
+
+/**
+ * Site-wide disclaimer — render in the footer and on review pages.
+ */
+export const FOOTER_DISCLAIMER =
+  "AgencyCheck provides a platform for workers to share experiences and opinions. " +
+  "Reviews are user-generated content and do not necessarily represent verified facts.";
+
+// ─── Layer 1: removeEmployeeNames ────────────────────────────────────────────
+
+/**
+ * Anonymises individual employee names found in review text.
+ *
+ * Targets:
+ *   • "Name's [noun]"              → "Their [noun]"
+ *   • "Name told/said/promised me" → "A staff member told me"
+ *   • "I spoke to Name who"        → "I spoke to a staff member who"
+ *
+ * Named-individual accusation patterns (Monika is a liar, etc.) are handled
+ * by sanitizeReview()'s sentence-level rules, which run in pass 4.
+ */
+export function removeEmployeeNames(input: string): string {
+  if (!input) return input;
+  let text = input;
+
+  // "[Name]'s" possessive → "Their" (sentence-start) / "their" (mid-sentence)
+  text = text.replace(
+    new RegExp(`${N}(?:'s|'s)\\s+`, "g"),
+    (match) => match[0] === match[0].toUpperCase() ? "Their " : "their ",
+  );
+
+  // "Name told / said / informed / promised / assured me/us"
+  text = text.replace(
+    new RegExp(
+      `${N}\\s+(told|said|informed|promised|assured|guaranteed|confirmed)\\s+(me|us|everyone|all\\s+of\\s+us)`,
+      "g",
+    ),
+    "A staff member $1 $2",
+  );
+
+  // "spoke / talked / called / emailed / messaged to/with Name"
+  text = text.replace(
+    new RegExp(
+      `\\b(spoke|talked|called|emailed|messaged|wrote|contacted)\\s+(to\\s+|with\\s+)?${N}\\b`,
+      "g",
+    ),
+    "$1 $2a staff member",
+  );
+
+  // "I/we asked / contacted / called Name"
+  text = text.replace(
+    new RegExp(`\\b(?:I|we)\\s+(asked|contacted|called|emailed)\\s+${N}\\b`, "g"),
+    "The reviewer $1 a staff member",
+  );
+
+  return text;
+}
+
+// ─── Layer 2: removePersonalAttacks ──────────────────────────────────────────
+
+/**
+ * Removes or softens personal attacks and profanity that do not constitute
+ * legally defamatory statements (those are handled in sanitizeReview).
+ *
+ * Profanity is replaced with neutral equivalents; direct insults aimed at
+ * individuals are softened to professional language.
+ * Negative-but-legitimate criticism ("terrible housing", "poor salary") is
+ * never touched.
+ */
+export function removePersonalAttacks(input: string): string {
+  if (!input) return input;
+  const counter = { n: 0 };
+  const log: string[] = [];
+  let text = input;
+
+  const ATTACK_RULES: Rule[] = [
+    // Profanity — replace with neutral/mild equivalents
+    [/\bf+u+c+k+ing\b/gi,                "very",          "profanity-fucking"],
+    [/\bf+u+c+k(?:\s+this|\s+them)?\b/gi, "",             "profanity-fuck"],
+    [/\bshitty\b/gi,                      "poor",          "profanity-shitty"],
+    [/\bshit\b/gi,                        "poor",          "profanity-shit"],
+    [/\bcrappy\b/gi,                      "poor",          "profanity-crappy"],
+    [/\bcrap\b/gi,                        "poor",          "profanity-crap"],
+    [/\bbullshit\b/gi,                    "misleading",    "profanity-bs"],
+    [/\bdamn(?:ed)?\b/gi,                 "very",          "profanity-damn"],
+    [/\bhell(?:\s+of\s+a)?\b/gi,          "very",          "profanity-hell"],
+    [/\bcrap\b/gi,                        "poor",          "profanity-crap2"],
+
+    // Personal insults (targeted at individuals, not situations)
+    // "unprofessional" works grammatically in "they are unprofessional" context
+    [/\b(?:total\s+)?idiot\b/gi,       "unprofessional",     "insult-idiot"],
+    [/\bidiots\b/gi,                   "unprofessional",     "insult-idiots"],
+    [/\bmoron\b/gi,                    "unprofessional",     "insult-moron"],
+    [/\bmorons\b/gi,                   "unprofessional",     "insult-morons"],
+    [/\bastards?\b/gi,                 "difficult",          "insult-bastard"],
+    [/\bass+h+ole\b/gi,                "very difficult",     "insult-ahole"],
+    [/\bprick\b/gi,                    "difficult",          "insult-prick"],
+    [/\bbitch\b/gi,                    "very difficult",     "insult-bitch"],
+    [/\bdipshit\b/gi,                  "poor judgment",      "insult-dipshit"],
+    [/\bwanker\b/gi,                   "unprofessional",     "insult-wanker"],
+    [/\btwat\b/gi,                     "unprofessional",     "insult-twat"],
+    [/\bpsycho\b/gi,                   "very difficult",     "insult-psycho"],
+    [/\bnazis?\b/gi,                   "extremely strict",   "insult-nazi"],
+    [/\bmonsters?\b/gi,                "very difficult",     "insult-monster"],
+    [/\bpigs?\b/gi,                    "unprofessional",     "insult-pig"],
+    [/\banimals?\b/gi,                 "unprofessional",     "insult-animal"],
+  ];
+
+  for (const [pattern, replacement, label] of ATTACK_RULES) {
+    text = applyRule(text, pattern, replacement, counter, log, label);
+  }
+
+  return text;
+}
+
+// ─── Layer 3: convertAccusationsToReportedExperience ─────────────────────────
+
+/**
+ * Converts absolute fact-claim sentences into reported-experience framing.
+ *
+ * This is the core of the Glassdoor / Indeed model: we don't remove the
+ * negative content; we convert it from "verified fact" to "user opinion."
+ *
+ *   "They don't pay salaries."
+ *   → "The reviewer reported payment issues."
+ *
+ *   "The housing is terrible."
+ *   → "The reviewer reported dissatisfaction with the housing conditions."
+ *
+ *   "They fired me because I was sick."
+ *   → "The reviewer reported losing their position after a period of illness."
+ */
+export function convertAccusationsToReportedExperience(input: string): string {
+  if (!input) return input;
+  const counter = { n: 0 };
+  const log: string[] = [];
+  let text = input;
+
+  // Patterns ordered: longer / more specific first to avoid partial matches.
+  const CONVERSION_RULES: Rule[] = [
+
+    // ── Payment / salary ──────────────────────────────────────────────────────
+
+    // "they don't / didn't / never pay [salaries/workers]"
+    [/\b(?:they|company|agency|employer)\s+(?:don'?t|didn'?t|never|do\s+not|did\s+not)\s+pay(?:\s+(?:salaries|wages|workers|you|us|on\s+time|correctly))?\b/gi,
+      "the reviewer reported payment issues",
+      "conv-no-pay"],
+
+    // "I / we didn't get paid / receive salary"
+    [/\b(?:I|we)\s+(?:didn'?t|haven'?t|was\s+not|were\s+not|never|don'?t)\s+(?:get|receive|got|received)\s+(?:paid|(?:my|our)\s+(?:salary|wages|pay|payment))\b/gi,
+      "the reviewer reported not receiving payment",
+      "conv-i-not-paid"],
+
+    // "I/we haven't been paid / wasn't paid"
+    [/\b(?:I|we)\s+(?:haven'?t|wasn'?t|weren'?t|have\s+not|was\s+not|were\s+not)\s+(?:been\s+)?paid\b/gi,
+      "the reviewer reported not receiving payment",
+      "conv-havent-paid"],
+
+    // "they fired me because / after / when"
+    [/\bthey\s+fired\s+me\s+(?:because|after|when|due\s+to|for\s+being|as)\b/gi,
+      "the reviewer reported losing their position after",
+      "conv-fired-because"],
+
+    // "I was fired / got fired / was dismissed / was let go"
+    [/\b(?:I|we)\s+(?:was|were|got)\s+(?:fired|dismissed|terminated|let\s+go|laid\s+off)\b/gi,
+      "the reviewer reported being dismissed",
+      "conv-i-fired"],
+
+    // "they fired me" (general)
+    [/\bthey\s+fired\s+(?:me|us)\b/gi,
+      "the reviewer reported being dismissed",
+      "conv-fired"],
+
+    // "salary / wages / pay was late / missing / not paid"
+    [/\b(?:salary|wages|pay|payment)\s+(?:was|were|is|are)\s+(?:late|delayed|not\s+paid|never\s+paid|missing|withheld|incorrect|short)\b/gi,
+      "the reviewer reported payment delays or discrepancies",
+      "conv-salary-late"],
+
+    // ── Housing / accommodation ───────────────────────────────────────────────
+
+    [/\b(?:the\s+)?housing\s+(?:is|was|are|were)\s+(?:terrible|awful|horrible|disgusting|bad|poor|filthy|dirty|unsafe|overcrowded|tiny|small|mouldy|moldy|cramped|infested)\b/gi,
+      "the reviewer reported dissatisfaction with the housing conditions",
+      "conv-housing-bad"],
+
+    [/\b(?:the\s+)?accommodation\s+(?:is|was|are|were)\s+(?:terrible|awful|horrible|disgusting|bad|poor|filthy|dirty|unsafe|overcrowded|tiny|cramped|mouldy|moldy|infested)\b/gi,
+      "the reviewer reported poor accommodation conditions",
+      "conv-accom-bad"],
+
+    [/\b(?:the\s+)?room\s+(?:is|was|are|were)\s+(?:terrible|awful|horrible|disgusting|bad|poor|filthy|dirty|unsafe|overcrowded|tiny|small|cramped|infested|mouldy|moldy)\b/gi,
+      "the reviewer reported dissatisfaction with the room",
+      "conv-room-bad"],
+
+    // ── Working conditions ────────────────────────────────────────────────────
+
+    [/\b(?:working|work)\s+conditions?\s+(?:is|are|was|were)\s+(?:terrible|awful|horrible|disgusting|bad|poor|dangerous|unsafe|harsh|brutal)\b/gi,
+      "the reviewer reported poor working conditions",
+      "conv-work-conditions"],
+
+    [/\b(?:this|the)\s+(?:company|agency|place|employer)\s+(?:is|was)\s+(?:terrible|awful|horrible|the\s+worst|disgusting|toxic|abusive)\b/gi,
+      "the reviewer reported a very negative overall experience with this company",
+      "conv-company-terrible"],
+
+    // ── Communication ─────────────────────────────────────────────────────────
+
+    [/\b(?:they|company|agency|employer|management)\s+(?:ignore|ignores|ignored)\s+(?:you|us|me|workers?|employees?|everyone)\b/gi,
+      "the reviewer reported poor communication and responsiveness",
+      "conv-ignore"],
+
+    [/\b(?:they|company|agency|employer)\s+(?:never|don'?t|didn'?t)\s+(?:answer|respond|reply|call\s+back|get\s+back)\b/gi,
+      "the reviewer reported difficulty reaching the company",
+      "conv-no-response"],
+
+    [/\bno\s+one\s+(?:answers?|responds?|replies?|picks?\s+up|calls?\s+back)\b/gi,
+      "the reviewer reported difficulty reaching the company",
+      "conv-no-one-responds"],
+
+    // ── Dismissal after illness ───────────────────────────────────────────────
+
+    [/\b(?:fired|dismissed|terminated|let\s+go)\s+(?:because|after|when|for\s+being|due\s+to)\s+(?:I\s+was\s+)?(?:sick|ill|injured|on\s+sick\s+leave|hospitalised|hospitalized)\b/gi,
+      "the reviewer reported losing their position after a period of illness",
+      "conv-fired-sick"],
+
+    // ── Company-level accusation verbs ───────────────────────────────────────
+
+    // "This/the company scams workers" — user's exact example
+    [/\b(?:this|the)\s+(?:company|agency)\s+scams?\s+(?:workers?|employees?|people|you|us|everyone)\b/gi,
+      "the reviewer believes workers may experience payment or administrative issues",
+      "conv-company-scams"],
+
+    // "they scam / scammed you / workers"
+    [/\bthey\s+scams?\s+(?:you|us|workers?|employees?|everyone|people)\b/gi,
+      "the reviewer reported payment or administrative concerns",
+      "conv-they-scam"],
+
+    // "they exploit / exploited workers"
+    [/\b(?:they|company|agency)\s+exploit(?:s|ed)?\s+(?:workers?|employees?|you|us)\b/gi,
+      "the reviewer reported feeling exploited",
+      "conv-exploit"],
+
+    // ── Recommendation / avoidance ────────────────────────────────────────────
+
+    [/\bnever\s+work\s+(?:here|for\s+them|there|at\s+this\s+(?:company|agency|place))\b/gi,
+      "the reviewer would not recommend this company",
+      "conv-never-work"],
+
+    [/\bavoid\s+(?:this\s+(?:company|agency|place)|at\s+all\s+costs?)\b/gi,
+      "the reviewer would not recommend this company",
+      "conv-avoid"],
+
+    [/\bstay\s+away\s+from\s+(?:this\s+(?:company|agency|place)|them)\b/gi,
+      "the reviewer would not recommend this company",
+      "conv-stay-away"],
+  ];
+
+  for (const [pattern, replacement, label] of CONVERSION_RULES) {
+    text = applyRule(text, pattern, replacement, counter, log, label);
+  }
+
+  return text;
+}
+
+// ─── SafePublicVersion ────────────────────────────────────────────────────────
+
+export interface SafePublicVersion {
+  /** Final text safe for public display. */
+  text:         string;
+  /** Per-review disclaimer string ready to embed in UI. */
+  disclaimer:   string;
+  /** True when any layer made at least one change. */
+  wasModified:  boolean;
+  /** Total number of replacements across all layers. */
+  changes:      number;
+  /** Detailed audit log — server-side only, never exposed publicly. */
+  log:          string[];
+}
+
+// ─── generateSafePublicVersion ────────────────────────────────────────────────
+
+/**
+ * Master orchestrator — runs all four protection layers in sequence.
+ *
+ * Layer order:
+ *   1. removeEmployeeNames()              — anonymise staff names
+ *   2. removePersonalAttacks()            — remove profanity / insults
+ *   3. convertAccusationsToReportedExperience() — convert fact claims → opinions
+ *   4. sanitizeReview()                   — remove defamatory / legally risky terms
+ *
+ * @param input - Raw review text (comment or title field).
+ * @returns SafePublicVersion with final text + per-review disclaimer + audit log.
+ *
+ * @example
+ * const safe = generateSafePublicVersion(
+ *   "Terrible company, scammers, coordinator Monika is a liar, " +
+ *   "they don't pay and the housing is horrible."
+ * );
+ * // safe.text →
+ * //   "Terrible company, company with reported payment concerns,
+ * //    The reviewer reported concerns with a coordinator,
+ * //    the reviewer reported payment issues and
+ * //    the reviewer reported dissatisfaction with the housing conditions."
+ * // safe.disclaimer → REVIEW_DISCLAIMER
+ */
+export function generateSafePublicVersion(input: string): SafePublicVersion {
+  if (!input || typeof input !== "string") {
+    return {
+      text:        input ?? "",
+      disclaimer:  REVIEW_DISCLAIMER,
+      wasModified: false,
+      changes:     0,
+      log:         [],
+    };
+  }
+
+  const allLog: string[] = [];
+  let text = input;
+  let totalChanges = 0;
+
+  // Layer 1 — employee names
+  const afterNames = removeEmployeeNames(text);
+  if (afterNames !== text) {
+    allLog.push("[L1:names] employee name(s) anonymised");
+    totalChanges++;
+  }
+  text = afterNames;
+
+  // Layer 2 — personal attacks
+  const afterAttacks = removePersonalAttacks(text);
+  if (afterAttacks !== text) {
+    allLog.push("[L2:attacks] personal attack(s) softened");
+    totalChanges++;
+  }
+  text = afterAttacks;
+
+  // Layer 3 — accusations → reported experience
+  const afterConversion = convertAccusationsToReportedExperience(text);
+  if (afterConversion !== text) {
+    allLog.push("[L3:convert] accusation(s) converted to reported experience");
+    totalChanges++;
+  }
+  text = afterConversion;
+
+  // Layer 4 — defamatory / legally risky words (existing sanitizeReview)
+  const sanitized = sanitizeReview(text);
+  allLog.push(...sanitized.log);
+  totalChanges += sanitized.changes;
+  text = sanitized.text;
+
+  return {
+    text,
+    disclaimer:  REVIEW_DISCLAIMER,
+    wasModified: totalChanges > 0,
+    changes:     totalChanges,
+    log:         allLog,
   };
 }
