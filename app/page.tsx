@@ -36,6 +36,7 @@ const HomepageJobsCard            = nDynamic(() => import("@/components/Homepage
 const CandidateLeadForm           = nDynamic(() => import("@/components/CandidateLeadForm"),            { ssr: false });
 import JobsWithAccommodationSection from "@/components/JobsWithAccommodationSection";
 import FeaturedJobJohma             from "@/components/FeaturedJobJohma";
+import FeaturedJobDeliBarn          from "@/components/FeaturedJobDeliBarn";
 
 export const metadata: Metadata = {
   title: "AgencyCheck – Real Salary, Housing & Job Transparency in the Netherlands",
@@ -486,6 +487,11 @@ export default async function HomePage() {
           §1b  FEATURED PARTNERSHIP — Johma × 4minutes
           ════════════════════════════════════════════════════════════ */}
       <FeaturedJobJohma />
+
+      {/* ════════════════════════════════════════════════════════════
+          §1b2  FEATURED PARTNERSHIP — DeliBarn × 4minutes
+          ════════════════════════════════════════════════════════════ */}
+      <FeaturedJobDeliBarn />
 
       {/* ════════════════════════════════════════════════════════════
           §1b1b  MORE VACANCIES

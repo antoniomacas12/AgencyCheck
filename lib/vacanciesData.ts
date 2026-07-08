@@ -177,6 +177,19 @@ export const VACANCIES: Vacancy[] = [
     featured: true,
   },
 
+  // ── DeliBarn Partnership — 4minutes, Borculo NL ───────────────────────────
+  {
+    slug:     "delibarn-operator",
+    t:        "Operator (Day Shift) — DeliBarn",
+    c:        "food",
+    s:        "€16.01/h gross",
+    sm:       640,
+    sx:       0,
+    l:        "Borculo, NL",
+    b:        ["acc_ask", "eng"],
+    featured: true,
+  },
+
   // ── Direct Offers — sent directly by recruiter ────────────────────────────
   {
     slug:     "pharmacy-warehouse-worker-sevenum",
@@ -400,6 +413,7 @@ const CITY_META: Record<string, AddressMeta> = {
   "Tiel":                  { streetAddress: "Tiel",                   addressLocality: "Tiel",                   addressRegion: "Gelderland",     postalCode: "4001" },
   "Kootwijkerbroek":       { streetAddress: "Kootwijkerbroek",        addressLocality: "Kootwijkerbroek",        addressRegion: "Gelderland",     postalCode: "3774" },
   "Losser":                { streetAddress: "Losser",                 addressLocality: "Losser",                 addressRegion: "Overijssel",     postalCode: "7581" },
+  "Borculo":               { streetAddress: "Borculo",                addressLocality: "Borculo",                addressRegion: "Gelderland",     postalCode: "7271" },
   // ── Generic NL fallback ───────────────────────────────────────────────────────
   "Netherlands":           { streetAddress: "Amsterdam",              addressLocality: "Amsterdam",              addressRegion: "Noord-Holland", postalCode: "1011" },
 };
