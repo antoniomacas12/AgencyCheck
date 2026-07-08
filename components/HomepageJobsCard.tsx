@@ -57,6 +57,16 @@ const JOHMA_JOBS = [
   },
 ] as const;
 
+const DELIBARN_JOB = {
+  slug:   "delibarn-operator",
+  title:  "Operator (Day Shift)",
+  salary: "€16.01/hr gross",
+  note:   "Day shift only · Housing in Goor · Long-term",
+  tags:   ["☀️ Day shift", "🏠 Housing avail.", "🥩 Food prod."],
+  icon:   "🥩",
+  href:   "/apply/delibarn-operator",
+} as const;
+
 export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
   return (
     <div
@@ -147,12 +157,72 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
         </div>
 
         {/* ── Footer ─────────────────────────────────────────────── */}
-        <div className="border-t border-white/[0.07] pt-4">
+        <div className="border-t border-white/[0.07] pt-4 mb-4">
           <Link
             href="/apply/johma-logistics-operator"
             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.05] hover:bg-emerald-500/[0.12] text-emerald-300 font-black text-[12px] transition-all duration-150"
           >
             View all {totalJobs} vacancies →
+          </Link>
+        </div>
+
+        {/* ── DeliBarn section ────────────────────────────────────── */}
+        <div className="border-t border-white/[0.07] pt-4">
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                <span className="inline-flex items-center gap-1 text-[10px] font-black bg-amber-500/15 text-amber-400 border border-amber-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                  ☀️ Day shift
+                </span>
+                <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                  ✓ Verified
+                </span>
+              </div>
+              <p className="text-[11px] text-gray-400 font-semibold">
+                4minutes × DeliBarn · Borculo, Netherlands
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-amber-500/15 bg-amber-500/[0.04] px-3.5 py-3 mb-3">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="text-[13px] shrink-0">{DELIBARN_JOB.icon}</span>
+                <p className="text-white font-bold text-[12px] leading-snug truncate">
+                  {DELIBARN_JOB.title}
+                </p>
+              </div>
+              <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
+                {DELIBARN_JOB.salary}
+              </span>
+            </div>
+            <p className="text-gray-600 text-[10px] mb-2">{DELIBARN_JOB.note}</p>
+
+            <ApplyPreScreen
+              waBase={WA_BASE}
+              jobTitle="Operator (Day Shift) — DeliBarn"
+              source="homepage-card-delibarn"
+              jobId={DELIBARN_JOB.slug}
+              referralMode
+            >
+              {(openFn) => (
+                <button
+                  onClick={openFn}
+                  className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
+                  style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}
+                >
+                  {WA_ICON}
+                  Apply on WhatsApp
+                </button>
+              )}
+            </ApplyPreScreen>
+          </div>
+
+          <Link
+            href="/apply/delibarn-operator"
+            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-amber-500/20 bg-amber-500/[0.04] hover:bg-amber-500/[0.10] text-amber-300 font-black text-[12px] transition-all duration-150"
+          >
+            View DeliBarn job details →
           </Link>
         </div>
 

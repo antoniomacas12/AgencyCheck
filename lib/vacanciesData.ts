@@ -190,19 +190,6 @@ export const VACANCIES: Vacancy[] = [
     featured: true,
   },
 
-  // ── Direct Offers — sent directly by recruiter ────────────────────────────
-  {
-    slug:     "pharmacy-warehouse-worker-sevenum",
-    t:        "Pharmacy Warehouse Worker",
-    c:        "warehouse",
-    s:        "€14.75/h gross",
-    sm:       590,
-    sx:       0,
-    l:        "Sevenum",
-    b:        ["vog"],
-    featured: true,
-  },
-
   // ── Technical & Construction ──────────────────────────────────────────────
   { slug: "electrician-bodegraven",              t: "Electrician",                                        c: "technical",   s: "€550–€650/wk",   sm: 550,  sx: 650,  l: "Bodegraven",                        b: [] },
   { slug: "construction-welder-mig-mag",         t: "Construction Welder (MIG/MAG)",                      c: "technical",   s: "€650/wk",        sm: 650,  sx: 650,  l: "Rotterdam area",                    b: [] },
