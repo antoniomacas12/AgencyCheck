@@ -33,8 +33,9 @@ const BOT_FILTER_PATHS: RegExp[] = [
   /^\/guides(\/|$)/i,
   /^\/jobs-rotterdam$/i,
   /^\/assembly-jobs-zwolle$/i,
-  /^\/production-jobs-netherlands$/i,
+  /^\/production-jobs-/i,           // all /production-jobs-* URLs
   /^\/salary(\/|$)/i,
+  /^\/pl\/agencje-pracy-holandia$/i, // 72 bot hits (analytics 2026-07)
 ];
 
 /**
@@ -93,6 +94,16 @@ function matchesBotFilter(pathname: string): boolean {
   return BOT_FILTER_PATHS.some((re) => re.test(pathname));
 }
 
+/**
+ * Returns true for GNU/Linux desktop UAs (excludes Android/Mobile/CrOS).
+ * 100% of bot traffic on /compare/* shows Linux + Desktop profile.
+ * Real audience (EU workers seeking jobs) is Windows/Mac/Android — never Linux desktop.
+ * Only applied to /compare/* as an extra gate after isSuspiciousBot.
+ */
+function isLinuxDesktopUA(ua: string): boolean {
+  return /\bLinux\b/i.test(ua) && !/Android|Mobile|Tablet|CrOS/i.test(ua);
+}
+
 function isSuspiciousBot(ua: string | null): boolean {
   // No User-Agent → definitely not a real browser
   if (!ua || ua.trim() === "") return true;
@@ -131,11 +142,25 @@ export function middleware(request: NextRequest) {
 
   // ── Layer 2: Bot UA filter ────────────────────────────────────────────────
   // Block known HTTP scrapers and headless browsers on the protected routes.
-  // This layer is complementary to BotID (which targets JS-executing bots).
   // Googlebot and other verified crawlers are explicitly allowed (see above).
   if (matchesBotFilter(pathname)) {
     const ua = request.headers.get("user-agent");
     if (isSuspiciousBot(ua)) {
+      return new NextResponse("Forbidden", {
+        status: 403,
+        headers: { "Content-Type": "text/plain" },
+      });
+    }
+    // Secondary gate for /compare/* only:
+    // GNU/Linux + non-Android desktop = server scraper (100% of bot traffic profile).
+    // Real audience is EU workers on Windows/Mac/Android — never Linux desktop.
+    // Verified crawlers already cleared above (ALLOWED_CRAWLERS check in isSuspiciousBot).
+    if (
+      ua &&
+      /^\/compare(\/|$)/i.test(pathname) &&
+      isLinuxDesktopUA(ua) &&
+      !ALLOWED_CRAWLERS.test(ua)
+    ) {
       return new NextResponse("Forbidden", {
         status: 403,
         headers: { "Content-Type": "text/plain" },
