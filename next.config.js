@@ -1,6 +1,15 @@
 // @ts-check
 const { withSentryConfig } = require("@sentry/nextjs");
 
+// ── Vercel BotID proxy paths ──────────────────────────────────────────────────
+// These two UUIDs are the stable Vercel BotID endpoint identifiers.
+// `withBotId()` from 'botid/next/config' would add these automatically, but it
+// ships as ESM-only which conflicts with this CommonJS config file.  Adding the
+// rewrites manually produces the identical result.
+//   UUID1 = tenant ID  UUID2 = application ID (fixed for all Vercel projects)
+const BOTID_PFX =
+  "/149e9513-01fa-4fb0-aad4-566afd725d1b/2d206a39-8ed7-437e-a3be-862e0f06eea3";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enforce consistent non-trailing-slash URLs.
@@ -36,6 +45,37 @@ const nextConfig = {
     // Uploaded review photos are served as plain <img> tags (no Next/Image),
     // so no localPatterns config needed here.
   },
+  // ── BotID: proxy challenge script + API through our own domain ───────────────
+  // Ad-blockers and CSP rules can intercept third-party BotID requests.
+  // Proxying through our own domain (via Vercel's edge) prevents this and keeps
+  // bot detection effective even for privacy-conscious browsers.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // The challenge JS bundle served to browsers
+        {
+          source: `${BOTID_PFX}/a-4-a/c.js`,
+          destination: "https://api.vercel.com/bot-protection/v1/challenge",
+        },
+        // All other BotID API traffic (token validation, signals)
+        {
+          source: `${BOTID_PFX}/:path*`,
+          destination: "https://api.vercel.com/bot-protection/v1/proxy/:path*",
+        },
+      ],
+    };
+  },
+
+  // ── BotID: prevent the proxy paths from being iframed ────────────────────────
+  async headers() {
+    return [
+      {
+        source: `${BOTID_PFX}/:path*`,
+        headers: [{ key: "X-Frame-Options", value: "SAMEORIGIN" }],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // NOTE: www → non-www redirect is handled at Vercel domain level only.

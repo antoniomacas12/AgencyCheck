@@ -1,18 +1,106 @@
 /**
- * middleware.ts — Language detection for AgencyCheck
+ * middleware.ts — Language detection + Bot traffic filtering for AgencyCheck
  *
- * Two jobs:
- * 1. Detect locale from Accept-Language header → set ac_locale cookie
- * 2. Set x-ac-locale response header based on URL path prefix
- *    → root app/layout.tsx reads this to set <html lang="...">
- *    → Navbar reads it to show the correct language in the switcher
+ * Layer 1 — Locale detection (original):
+ *   Detect locale from Accept-Language header → set ac_locale cookie
+ *   Set x-ac-locale response header based on URL path prefix
+ *   → root app/layout.tsx reads this to set <html lang="...">
+ *   → Navbar reads it to show the correct language in the switcher
+ *   Supported locales: en (default), pl, ro
+ *   English has no URL prefix (/), Polish is /pl/*, Romanian is /ro/*
  *
- * Supported locales: en (default), pl, ro
- * English has no URL prefix (/), Polish is /pl/*, Romanian is /ro/*
+ * Layer 2 — Bot traffic filter (added for BotID integration):
+ *   Blocks HTTP scrapers and non-JS bots hitting specific high-traffic routes
+ *   with fake visits (/compare/, /guides/, /salary/*, etc.).
+ *   Complements Vercel BotID (which handles JS-executing bots) and the
+ *   existing Vercel Firewall rules (rate limiting / geo rules — unchanged).
+ *
+ *   Bot detection strategy:
+ *   ✅ Verified search bots (Googlebot, Bingbot, etc.) — always allowed
+ *   ❌ Known scraper / data-mining UAs — blocked with 403
+ *   ❌ Headless browser signatures — blocked with 403
+ *   ❌ No User-Agent header at all on protected routes — blocked with 403
  */
 
 import { NextRequest, NextResponse } from "next/server";
 import { detectLocaleFromHeader, type Locale } from "@/lib/i18n";
+
+// ── Bot filter config ──────────────────────────────────────────────────────────
+
+/** Routes targeted by fake visits / scrapers.  Keep in sync with layout.tsx BOT_PROTECTED_ROUTES. */
+const BOT_FILTER_PATHS: RegExp[] = [
+  /^\/compare(\/|$)/i,
+  /^\/guides(\/|$)/i,
+  /^\/jobs-rotterdam$/i,
+  /^\/assembly-jobs-zwolle$/i,
+  /^\/production-jobs-netherlands$/i,
+  /^\/salary(\/|$)/i,
+];
+
+/**
+ * Verified search-engine crawlers that must NEVER be blocked.
+ * BotID handles these automatically — this list is for the UA-filter layer.
+ */
+const ALLOWED_CRAWLERS =
+  /Googlebot|Google-InspectionTool|AdsBot-Google|Bingbot|bingbot|Slurp|YahooSeeker|DuckDuckBot|Baiduspider|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Pinterest|Exabot|ia_archiver/i;
+
+/**
+ * Known bad actors: scraper libraries, headless browsers, data aggregators,
+ * and commercial SEO crawlers that are known to generate fake traffic.
+ *
+ * NOTE: Googlebot and other verified crawlers are whitelisted above and checked
+ * FIRST — they will never be caught by this list.
+ */
+const BLOCKED_UA_PATTERNS: RegExp[] = [
+  // HTTP libraries (no browser at all)
+  /Python-urllib/i,
+  /python-requests/i,
+  /aiohttp/i,
+  /Go-http-client/i,
+  /curl\//i,
+  /Wget\//i,
+  /libwww-perl/i,
+  /Java\//i,
+  /okhttp/i,
+  /node-fetch/i,
+  /axios/i,
+  // Headless browsers
+  /HeadlessChrome/i,
+  /PhantomJS/i,
+  /Nightmare/i,
+  // Scraping frameworks
+  /Scrapy/i,
+  /scrapy/i,
+  /BeautifulSoup/i,
+  // Commercial SEO crawlers (common source of fake "visits" in analytics)
+  /SemrushBot/i,
+  /AhrefsBot/i,
+  /MJ12bot/i,
+  /DotBot/i,
+  /BLEXBot/i,
+  /DataForSeoBot/i,
+  /PetalBot/i,
+  /Bytespider/i,
+  /GPTBot/i,
+  /ClaudeBot/i,
+  /CCBot/i,
+  /anthropic-ai/i,
+  /cohere-ai/i,
+  /PerplexityBot/i,
+];
+
+function matchesBotFilter(pathname: string): boolean {
+  return BOT_FILTER_PATHS.some((re) => re.test(pathname));
+}
+
+function isSuspiciousBot(ua: string | null): boolean {
+  // No User-Agent → definitely not a real browser
+  if (!ua || ua.trim() === "") return true;
+  // Verified search crawlers are always allowed
+  if (ALLOWED_CRAWLERS.test(ua)) return false;
+  // Check known bad actors
+  return BLOCKED_UA_PATTERNS.some((re) => re.test(ua));
+}
 
 const LOCALE_COOKIE  = "ac_locale";
 const LOCALE_HEADER  = "x-ac-locale";
@@ -40,6 +128,21 @@ export function middleware(request: NextRequest) {
   ) {
     return NextResponse.next();
   }
+
+  // ── Layer 2: Bot UA filter ────────────────────────────────────────────────
+  // Block known HTTP scrapers and headless browsers on the protected routes.
+  // This layer is complementary to BotID (which targets JS-executing bots).
+  // Googlebot and other verified crawlers are explicitly allowed (see above).
+  if (matchesBotFilter(pathname)) {
+    const ua = request.headers.get("user-agent");
+    if (isSuspiciousBot(ua)) {
+      return new NextResponse("Forbidden", {
+        status: 403,
+        headers: { "Content-Type": "text/plain" },
+      });
+    }
+  }
+  // ── End bot filter ────────────────────────────────────────────────────────
 
   // Mark admin routes so root layout can suppress the public navigation
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");

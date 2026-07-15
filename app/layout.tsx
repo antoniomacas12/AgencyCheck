@@ -6,6 +6,25 @@ import "./globals.css";
 import Footer            from "@/components/Footer";
 import LayoutClientShell from "@/components/LayoutClientShell";
 import { BLUR_PLACEHOLDER_IMAGES } from "@/lib/siteConfig";
+import { BotIdClient } from "botid/client";
+
+// ── BotID — protected page routes ────────────────────────────────────────────
+// These routes are known targets for bot traffic / fake visits.
+// BotIdClient injects a silent JavaScript challenge on every page load.
+// When a browser (or JS-executing bot) navigates to these paths, the challenge
+// result is attached to the request so server-side checkBotId() can verify it.
+//
+// NOTE: Basic mode (free) catches bots that fail the cryptographic challenge.
+// Simple HTTP scrapers (curl, Python requests) that don't execute JS are best
+// handled by the middleware UA filter below + Vercel Firewall rules.
+const BOT_PROTECTED_ROUTES = [
+  { path: "/compare/*",                      method: "GET" },
+  { path: "/guides/*",                       method: "GET" },
+  { path: "/jobs-rotterdam",                 method: "GET" },
+  { path: "/assembly-jobs-zwolle",           method: "GET" },
+  { path: "/production-jobs-netherlands",    method: "GET" },
+  { path: "/salary/*",                       method: "GET" },
+] as const;
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -93,6 +112,11 @@ export default function RootLayout({
     // Default lang="en". LayoutClientShell patches this to the correct locale
     // for /pl/*, /ro/*, etc. routes via useEffect after hydration.
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
+      {/* BotID client-side challenge script — runs silently on every page load.
+          Protects the routes in BOT_PROTECTED_ROUTES from JS-executing bots. */}
+      <head>
+        <BotIdClient protect={BOT_PROTECTED_ROUTES} />
+      </head>
       <body className={`${inter.className} bg-[#0B1F14] flex flex-col min-h-screen overflow-x-hidden${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
         <LayoutClientShell footer={<Footer />}>
           {children}
