@@ -112,12 +112,11 @@ export default function RootLayout({
     // Default lang="en". LayoutClientShell patches this to the correct locale
     // for /pl/*, /ro/*, etc. routes via useEffect after hydration.
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
-      {/* BotID client-side challenge script — runs silently on every page load.
-          Protects the routes in BOT_PROTECTED_ROUTES from JS-executing bots. */}
-      <head>
-        <BotIdClient protect={BOT_PROTECTED_ROUTES} />
-      </head>
       <body className={`${inter.className} bg-[#0B1F14] flex flex-col min-h-screen overflow-x-hidden${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
+        {/* BotID client-side challenge — runs silently on every page load.
+            Must be in <body>, NOT in <head>: Next.js App Router owns <head>
+            and inserting a manual <head> tag causes hydration crashes.     */}
+        <BotIdClient protect={BOT_PROTECTED_ROUTES} />
         <LayoutClientShell footer={<Footer />}>
           {children}
         </LayoutClientShell>

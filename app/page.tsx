@@ -33,6 +33,7 @@ const HomepageLeadForm            = nDynamic(() => import("@/components/Homepage
 const HomepageStickyBar           = nDynamic(() => import("@/components/HomepageStickyBar"),            { ssr: false });
 const HeroReviewInline            = nDynamic(() => import("@/components/HeroReviewInline"),             { ssr: false });
 const HomepageJobsCard            = nDynamic(() => import("@/components/HomepageJobsCard"),             { ssr: false });
+const DeliBarnHeroStrip           = nDynamic(() => import("@/components/DeliBarnHeroStrip"),            { ssr: false });
 const CandidateLeadForm           = nDynamic(() => import("@/components/CandidateLeadForm"),            { ssr: false });
 import JobsWithAccommodationSection from "@/components/JobsWithAccommodationSection";
 import FeaturedJobJohma             from "@/components/FeaturedJobJohma";
@@ -433,6 +434,11 @@ export default async function HomePage() {
               {/* Job alert strip */}
               <div className="w-full overflow-hidden">
                 <JobAlertStrip />
+              </div>
+
+              {/* DeliBarn featured job — below job alerts */}
+              <div className="w-full overflow-hidden">
+                <DeliBarnHeroStrip />
               </div>
 
               {/* Data authority strip */}
