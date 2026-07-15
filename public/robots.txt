@@ -9,4 +9,40 @@ Disallow: /_next/
 # Block search result pages with query params (avoid duplicate content)
 Disallow: /search?
 
+# Block high-traffic bot targets — compare pages generate no SEO value
+# (thin content, duplicate structure) and attract heavy scraper traffic.
+# Legitimate search engines don't need to index these.
+Disallow: /compare/
+
+# Block known AI/LLM scrapers that ignore standard bot rules
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
 Sitemap: https://agencycheck.io/sitemap.xml
