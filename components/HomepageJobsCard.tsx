@@ -20,6 +20,15 @@ const WA_ICON = (
 
 const JOHMA_JOBS = [
   {
+    slug:    "johma-reach-truck-driver",
+    title:   "Reach Truck Driver",
+    salary:  "€17.55/hr gross",
+    note:    "⚡ URGENT · Certificate required · Housing included",
+    tags:    ["🔄 3 shifts", "🏠 Housing incl."],
+    icon:    "🚛",
+    href:    "/apply/johma-reach-truck-driver",
+  },
+  {
     slug:    "johma-logistics-operator",
     title:   "Logistics Operator",
     salary:  "€17.04/hr gross",
