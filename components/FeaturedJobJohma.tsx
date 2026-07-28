@@ -107,17 +107,18 @@ export default function FeaturedJobJohma() {
 
             {/* Headline */}
             <h2 className="text-white font-extrabold text-[26px] sm:text-[32px] leading-tight mb-2">
-              4 Open Positions at Johma
+              Reach Truck Driver — Urgent Hiring at Johma
             </h2>
             <p className="text-gray-400 text-sm sm:text-base leading-relaxed max-w-xl">
-              Long-term jobs in the Netherlands with accommodation available.
-              Apply once — our team matches you with the most suitable position.
+              Experienced Reach Truck drivers wanted now — Losser, NL. €17.55/hr + shift allowances.
+              Plus 4 more open positions — apply once, we match you to the right role.
             </p>
           </div>
 
           {/* Trust badges */}
           <div className="px-5 sm:px-8 py-4 flex flex-wrap gap-2">
             {[
+              "⚡ Urgent: Reach Truck Driver",
               "✓ Accommodation Available",
               "✓ Couples Welcome",
               "✓ Long-Term Contracts",
@@ -145,9 +146,89 @@ export default function FeaturedJobJohma() {
             <span className="h-px flex-1 bg-white/[0.06]" />
             <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-[#22C55E]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse" />
-              4 roles open
+              5 roles open
             </span>
           </div>
+
+          {/* ── URGENT card — Reach Truck Driver ─────────────────────── */}
+          <div className="mb-4 rounded-2xl border border-red-500/30 bg-red-500/[0.05] overflow-hidden">
+            {/* Urgent bar */}
+            <div className="bg-red-500/10 border-b border-red-500/20 px-5 py-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse shrink-0" />
+              <span className="text-red-300 text-[10px] font-black uppercase tracking-widest">
+                ⚡ URGENT HIRING — Experienced Reach Truck Drivers Wanted Now
+              </span>
+            </div>
+            <div className="px-5 py-4">
+              {/* Title + salary */}
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <div className="min-w-0">
+                  <p className="text-white font-extrabold text-[18px] leading-snug">
+                    Reach Truck Driver
+                  </p>
+                  <p className="text-gray-500 text-[12px] leading-snug">
+                    Johma · Losser, NL · via 4minutes · Full-time
+                  </p>
+                </div>
+                <div className="text-right shrink-0">
+                  <p className="text-[#22C55E] font-black text-[22px] leading-none">€17.55</p>
+                  <p className="text-gray-500 text-[10px]">/hr gross</p>
+                </div>
+              </div>
+
+              {/* Info badges */}
+              <div className="flex flex-wrap gap-1.5 mb-3">
+                {[
+                  "☀️ +33% evening",
+                  "🌙 +35% night",
+                  "🏠 Accommodation",
+                  "🔄 3-shift system",
+                ].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[10px] font-semibold text-gray-400 border border-white/[0.08] bg-white/[0.03] rounded-full px-2.5 py-1"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Certificate requirement warning */}
+              <div className="flex items-start gap-2.5 rounded-xl bg-amber-400/[0.08] border border-amber-400/25 px-4 py-2.5 mb-4">
+                <span className="text-amber-300 text-sm shrink-0 mt-0.5">⚠️</span>
+                <p className="text-amber-200 text-[12px] font-semibold leading-snug">
+                  Reach Truck experience + valid Dutch-recognised certificate required
+                </p>
+              </div>
+
+              {/* CTA */}
+              <div className="flex flex-col sm:flex-row gap-2">
+                <ApplyPreScreen
+                  waBase={WA_BASE}
+                  jobTitle="Reach Truck Driver at Johma (Losser, NL)"
+                  jobId="johma-reach-truck-driver"
+                  source="johma-homepage-urgent"
+                  referralMode
+                >
+                  {(open) => (
+                    <button
+                      onClick={open}
+                      className="flex-1 inline-flex items-center justify-center gap-2 bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors"
+                    >
+                      Apply Now →
+                    </button>
+                  )}
+                </ApplyPreScreen>
+                <Link
+                  href="/apply/johma-reach-truck-driver"
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.10] text-gray-300 font-semibold text-sm px-5 py-3 rounded-xl transition-colors"
+                >
+                  View Details
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/* ── End urgent card ───────────────────────────────────────── */}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {JOBS.map((job) => (

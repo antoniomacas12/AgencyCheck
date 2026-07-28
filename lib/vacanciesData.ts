@@ -133,6 +133,17 @@ export const CAT_JOB_DESCRIPTIONS: Record<Category, { intro: string; duties: str
 export const VACANCIES: Vacancy[] = [
   // ── Johma Partnership — 4minutes, Losser NL ───────────────────────────────
   {
+    slug:     "johma-reach-truck-driver",
+    t:        "Reach Truck Driver — Johma",
+    c:        "warehouse",
+    s:        "€17.55/h gross",
+    sm:       702,
+    sx:       0,
+    l:        "Losser, NL",
+    b:        ["acc"],
+    featured: true,
+  },
+  {
     slug:     "johma-logistics-operator",
     t:        "Logistics Operator — Johma",
     c:        "warehouse",
