@@ -26,14 +26,21 @@ function sanitise(value: string | null, maxLen: number): string | undefined {
 
 // ─── GET /api/referral-redirect ───────────────────────────────────────────────
 // Opened via window.open() as a new tab — MUST be a GET.
-// Query params: jobId, jobTitle, source
+// Query params: jobId, jobTitle, source, customMsg
+// Special mode: resolve=1 → returns JSON { waUrl, recruiter } for client prefetch
+//               (no click saved — click is saved later via POST /api/referral-click)
 //
-// Flow:
+// Flow (normal):
 //   1.  Reject bots / crawlers → 204 No Content
 //   2.  Sanitise params
 //   3.  Pick recruiter (round-robin: fewest clicks, tie → lowest sortOrder)
 //   4.  Save click record  ← non-fatal: failure logs but never blocks redirect
 //   5.  302 redirect → recruiter WhatsApp with [src:AgencyCheck] in message
+//
+// Flow (resolve=1 prefetch):
+//   1.  Bot check
+//   2.  Pick recruiter (NO click save — avoids phantom clicks on modal open)
+//   3.  Return JSON { waUrl, recruiter } → ApplyPreScreen builds WA URL client-side
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   const ts    = new Date().toISOString();
@@ -96,7 +103,16 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     });
   }
 
-  // ── 4. Save click record (non-fatal) ──────────────────────────────────────
+  // ── 4. resolve=1 — prefetch mode (no click saved) ────────────────────────
+  // ApplyPreScreen fires this when the modal opens so the recruiter URL is
+  // ready by the time the user submits. Click is tracked later via
+  // POST /api/referral-click, avoiding phantom clicks from modal abandons.
+  if (req.nextUrl.searchParams.get("resolve") === "1") {
+    console.log(`[${route}] resolve mode — returning JSON, no click saved — recruiter="${assigned.name}"`);
+    return NextResponse.json({ waUrl: assigned.waUrl, recruiter: assigned.name });
+  }
+
+  // ── 5. Save click record (non-fatal) ──────────────────────────────────────
   try {
     const clickId = await saveClick({
       recruiter:   assigned.name,
@@ -119,7 +135,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     });
   }
 
-  // ── 5. Redirect to recruiter WhatsApp ─────────────────────────────────────
+  // ── 6. Redirect to recruiter WhatsApp ─────────────────────────────────────
   // customMsg carries the full pre-qualification answers from ApplyPreScreen.
   // Falls back to a plain message if not provided (backward-compatible —
   // all existing apply buttons without the pre-qual form still work).
@@ -133,6 +149,5 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const waUrl = `${assigned.waUrl}?text=${encodeURIComponent(waMsg)}`;
 
   console.log(`[${route}] redirect executed — recruiter="${assigned.name}" waUrl=${waUrl}`);
-
   return NextResponse.redirect(waUrl, 302);
 }

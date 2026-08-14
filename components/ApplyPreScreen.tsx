@@ -240,6 +240,9 @@ export default function ApplyPreScreen({
   const [mounted, setMounted] = useState(false);
   // Per-attempt session ID for funnel tracking — regenerated on every open()
   const sessionIdRef = useRef<string>("");
+  // Pre-resolved recruiter info (populated on modal open via prefetch).
+  // Holds { waUrl, recruiter } so the click can be saved accurately on submit.
+  const preResolvedRef = useRef<{ waUrl: string; recruiter: string } | null>(null);
   // Geo gate — null = unknown (fail-open), false = non-EU blocked
   const [isEU,    setIsEU]    = useState<boolean | null>(null);
 
@@ -304,6 +307,24 @@ export default function ApplyPreScreen({
       trackFunnel({ sessionId: sid, event: "disqualified", step: "geo_blocked", jobId, source });
       return;
     }
+    // Prefetch recruiter lookup while user reads the form — so submit is instant.
+    // resolve=1 picks the recruiter but does NOT save a click (avoiding phantom
+    // clicks from users who open the modal but abandon). The click is saved via
+    // POST /api/referral-click only when the user actually submits.
+    // If this fails, handleEuContinue falls back to the full redirect route.
+    if (referralMode) {
+      preResolvedRef.current = null;
+      const rp = new URLSearchParams({ resolve: "1" });
+      if (jobId)  rp.set("jobId",  jobId);
+      if (source) rp.set("source", source);
+      fetch(`/api/referral-redirect?${rp.toString()}`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d: { waUrl: string; recruiter: string } | null) => {
+          if (d?.waUrl && d?.recruiter) preResolvedRef.current = d;
+        })
+        .catch(() => { /* silent fail */ });
+    }
+
     setOpen(true);
     setScreen("gate");
     setErrors(false);
@@ -354,15 +375,38 @@ export default function ApplyPreScreen({
 
     setErrors(false);
 
-    const msg  = buildCandidateMsg(jobTitle, source, finalCitizenship);
+    const msg      = buildCandidateMsg(jobTitle, source, finalCitizenship);
+    const resolved = preResolvedRef.current;
+
+    // If recruiter was pre-resolved on modal open, build WA link client-side
+    // (no server round-trip → instant redirect). Otherwise fall back to the
+    // full redirect route which picks recruiter + saves click server-side.
     const dest = referralMode
-      ? buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck", msg)
+      ? resolved
+        ? `${resolved.waUrl}?text=${encodeURIComponent(msg)}`
+        : buildRedirectUrl(jobId, jobTitle, source ?? "agencycheck", msg)
       : `${waBase}?text=${encodeURIComponent(msg)}`;
 
     saveDeviceLock();
     setScreen("completed");
     trackFunnel({ sessionId: sessionIdRef.current, event: "completed", step: "complete", jobId, source });
     savePreQual({ isEuCitizen: euAnswer === "yes", hasBsn: false, jobId, jobTitle, source });
+
+    // If we used the pre-resolved URL, save the click now (on actual submit,
+    // not on modal open) so recruiter load-balancing stays accurate.
+    if (referralMode && resolved) {
+      fetch("/api/referral-click", {
+        method:    "POST",
+        keepalive: true,
+        headers:   { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recruiter:   resolved.recruiter,
+          recruiterWa: resolved.waUrl,
+          jobId,
+          jobTitle,
+        }),
+      }).catch(() => { /* non-blocking */ });
+    }
 
     // Fire webhook BEFORE redirecting — keepalive:true keeps the request alive
     // even after the page navigates away.

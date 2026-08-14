@@ -25,7 +25,7 @@ const JOHMA_JOBS = [
     salary:  "€17.55/hr gross",
     note:    "⚡ URGENT · Certificate required · Housing included",
     tags:    ["🔄 3 shifts", "🏠 Housing incl."],
-    icon:    "🚛",
+    icon:    "🏗️",
     href:    "/apply/johma-reach-truck-driver",
   },
   {

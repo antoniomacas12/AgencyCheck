@@ -1,60 +1,62 @@
+/**
+ * POST /api/referral-click
+ *
+ * Saves a recruiter click record after the candidate navigates directly to
+ * WhatsApp via the client-side pre-resolved URL (ApplyPreScreen resolve=1 path).
+ *
+ * In the fast-redirect flow:
+ *   1. Modal opens → GET /api/referral-redirect?resolve=1 → picks recruiter, returns JSON
+ *   2. User submits → browser navigates to recruiter WA URL directly (no round-trip)
+ *   3. This endpoint is called with keepalive to persist the click for load-balancing
+ *
+ * Body: { recruiter: string, recruiterWa: string, jobId?: string, jobTitle?: string }
+ */
+
 import { NextRequest, NextResponse } from "next/server";
-import { isBotRequest }             from "@/lib/bot-detection";
-import {
-  ensureDbReady,
-  saveClick,
-  getClickAnalytics,
-} from "@/lib/recruiter-db";
+import * as Sentry                   from "@sentry/nextjs";
+import { isBotRequest }              from "@/lib/bot-detection";
+import { ensureDbReady, saveClick }  from "@/lib/recruiter-db";
 
 export const dynamic = "force-dynamic";
 
-// ─── POST /api/referral-click ─────────────────────────────────────────────────
-// Legacy endpoint — kept for backwards compatibility.
-// New flow uses GET /api/referral-redirect which saves clicks server-side.
-// Body: { recruiter, recruiterWa, jobId?, jobTitle? }
+const MAX_STR = 200;
 
-export async function POST(req: NextRequest) {
+function safe(v: unknown): string | undefined {
+  if (typeof v !== "string" || !v.trim()) return undefined;
+  return v.trim().slice(0, MAX_STR);
+}
+
+export async function POST(req: NextRequest): Promise<NextResponse> {
+  const route = "POST /api/referral-click";
+
+  // Silently drop bots
   if (isBotRequest(req)) {
     return new NextResponse(null, { status: 204 });
   }
 
   try {
-    await ensureDbReady();
-
-    const body = await req.json();
-    const { recruiter, recruiterWa, jobId, jobTitle } = body as {
-      recruiter:   string;
-      recruiterWa: string;
-      jobId?:      string;
-      jobTitle?:   string;
-    };
+    const body        = await req.json();
+    const recruiter   = safe(body.recruiter);
+    const recruiterWa = safe(body.recruiterWa);
+    const jobId       = safe(body.jobId);
+    const jobTitle    = safe(body.jobTitle);
 
     if (!recruiter || !recruiterWa) {
       return NextResponse.json(
-        { error: "recruiter and recruiterWa are required" },
+        { ok: false, error: "recruiter and recruiterWa are required" },
         { status: 400 },
       );
     }
 
-    const id = await saveClick({ recruiter, recruiterWa, jobId, jobTitle });
-
-    return NextResponse.json({ ok: true, id });
-  } catch (err) {
-    console.error("[referral-click] POST error:", err);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
-  }
-}
-
-// ─── GET /api/referral-click ──────────────────────────────────────────────────
-// Returns analytics for the admin referrals dashboard.
-
-export async function GET(_req: NextRequest) {
-  try {
     await ensureDbReady();
-    const data = await getClickAnalytics();
-    return NextResponse.json(data);
+    const clickId = await saveClick({ recruiter, recruiterWa, jobId, jobTitle });
+    console.log(`[${route}] click saved — clickId=${clickId} recruiter="${recruiter}"`);
+
+    return NextResponse.json({ ok: true, clickId });
   } catch (err) {
-    console.error("[referral-click] GET error:", err);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    // Never propagate errors — caller is fire-and-forget with keepalive
+    console.error(`[${route}] error:`, err);
+    Sentry.captureException(err, { tags: { route } });
+    return NextResponse.json({ ok: false }, { status: 200 });
   }
 }
