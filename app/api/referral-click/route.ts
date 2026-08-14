@@ -1,13 +1,11 @@
 /**
- * POST /api/referral-click
+ * GET  /api/referral-click  → click analytics for the admin referrals page
+ * POST /api/referral-click  → save one click after ApplyPreScreen fast-redirect
  *
- * Saves a recruiter click record after the candidate navigates directly to
- * WhatsApp via the client-side pre-resolved URL (ApplyPreScreen resolve=1 path).
- *
- * In the fast-redirect flow:
+ * POST flow (ApplyPreScreen resolve=1 path):
  *   1. Modal opens → GET /api/referral-redirect?resolve=1 → picks recruiter, returns JSON
  *   2. User submits → browser navigates to recruiter WA URL directly (no round-trip)
- *   3. This endpoint is called with keepalive to persist the click for load-balancing
+ *   3. POST /api/referral-click is called with keepalive to persist the click
  *
  * Body: { recruiter: string, recruiterWa: string, jobId?: string, jobTitle?: string }
  */
@@ -15,9 +13,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as Sentry                   from "@sentry/nextjs";
 import { isBotRequest }              from "@/lib/bot-detection";
-import { ensureDbReady, saveClick }  from "@/lib/recruiter-db";
+import {
+  ensureDbReady,
+  saveClick,
+  getClickAnalytics,
+}                                    from "@/lib/recruiter-db";
 
 export const dynamic = "force-dynamic";
+
+// ─── GET — click analytics (powers admin /referrals page) ────────────────────
+export async function GET(_req: NextRequest): Promise<NextResponse> {
+  try {
+    const data = await getClickAnalytics();
+    return NextResponse.json(data);
+  } catch (err) {
+    console.error("[GET /api/referral-click] error:", err);
+    Sentry.captureException(err, { tags: { route: "GET /api/referral-click" } });
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
+}
+
+// ─── POST — save one click (fire-and-forget from ApplyPreScreen) ─────────────
 
 const MAX_STR = 200;
 
