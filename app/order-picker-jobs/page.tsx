@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AgencyCard from "@/components/AgencyCard";
 import SectionHeader from "@/components/SectionHeader";
+import JobListCard from "@/components/JobListCard";
 import { ALL_AGENCIES } from "@/lib/agencyEnriched";
 import { JOB_SALARY_DATA, CITIES, CITIES_BY_POPULATION } from "@/lib/seoData";
 import { JOB_LISTINGS } from "@/lib/jobData";
@@ -159,35 +160,7 @@ export default function OrderPickerJobsPage() {
           />
           <div className="grid sm:grid-cols-2 gap-3">
             {listings.slice(0, 8).map((l) => (
-              <Link
-                key={l.slug}
-                href={`/jobs/${l.slug}`}
-                className="card p-3.5 hover:shadow-md hover:border-brand-100 transition-all flex items-start gap-3"
-              >
-                <span className="text-2xl shrink-0">{l.icon}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="text-sm font-bold text-gray-900">{l.title}</p>
-                    <span className="text-xs font-bold text-brand-700 shrink-0">
-                      €{l.salaryMin.toFixed(2)}–€{l.salaryMax.toFixed(2)}/hr
-                    </span>
-                  </div>
-                  <p className="text-xs text-brand-600 mt-0.5">{l.agencyName}</p>
-                  <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                    <span className="text-[10px] text-gray-400">📍 {l.city}</span>
-                    {l.housing === "YES" && (
-                      <span className="text-[10px] bg-green-50 text-green-700 border border-green-100 rounded-full px-1.5 py-0.5">
-                        🏠 Housing incl.
-                      </span>
-                    )}
-                    {l.transport === "YES" && (
-                      <span className="text-[10px] bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-1.5 py-0.5">
-                        🚌 Transport incl.
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </Link>
+              <JobListCard key={l.slug} job={l} />
             ))}
           </div>
         </section>

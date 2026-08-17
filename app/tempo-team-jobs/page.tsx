@@ -131,27 +131,27 @@ export default function TempoTeamJobsPage() {
           }
         />
 
-        <div className="divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
+        <div className="divide-y divide-gray-100 border border-gray-200 rounded-xl overflow-hidden">
           {displayJobs.map((job) => (
             <a
               key={job.id}
               href={job.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 px-4 py-3 bg-white hover:bg-brand-50 transition-colors"
+              className="flex items-start gap-3 px-4 py-4 bg-white hover:bg-brand-50 transition-colors"
             >
               {/* Icon */}
               <span className="text-xl shrink-0 mt-0.5">💼</span>
 
               {/* Main content */}
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 leading-snug">
+                <p className="text-[15px] font-semibold text-gray-900 leading-snug">
                   {job.title}
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mt-1">
-                  <span className="text-xs text-gray-500">📍 {job.location}</span>
+                  <span className="text-sm text-gray-600">📍 {job.location}</span>
                   {job.hours && (
-                    <span className="text-xs text-gray-400">· {job.hours}</span>
+                    <span className="text-sm text-gray-500">· {job.hours}</span>
                   )}
                 </div>
               </div>
@@ -163,9 +163,9 @@ export default function TempoTeamJobsPage() {
                     {job.salary}
                   </p>
                 ) : (
-                  <p className="text-xs text-gray-400">salary n/a</p>
+                  <p className="text-sm text-gray-400">salary n/a</p>
                 )}
-                <p className="text-[10px] text-brand-500 mt-0.5">View on Tempo-Team ↗</p>
+                <p className="text-xs text-brand-500 mt-1 font-medium">View on Tempo-Team ↗</p>
               </div>
             </a>
           ))}
@@ -186,7 +186,7 @@ export default function TempoTeamJobsPage() {
 
       {/* ── Salary breakdown ─────────────────────────────────────────── */}
       <section className="mb-8" id="salary">
-        <h2 className="text-base font-bold text-gray-900 mb-3">What Do Workers Earn at Tempo-Team?</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-3">What Do Workers Earn at Tempo-Team?</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-4">
           Tempo-Team pays at WML or slightly above for most logistics and production placements. In 2026, base is <strong className="text-gray-800">€14.71–€15.50/hr</strong> for most entry-level roles. Experienced workers in catering supervision, forklift operation, or specialised production often earn €16–€18/hr. After deductions, most workers take home <strong className="text-gray-800">€330–€400/week net</strong>.
         </p>
@@ -221,7 +221,7 @@ export default function TempoTeamJobsPage() {
 
       {/* ── Housing ──────────────────────────────────────────────────── */}
       <section className="mb-8" id="housing">
-        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — Standard Industry Terms</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Accommodation — Standard Industry Terms</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-3">
           Tempo-Team provides housing for most international logistics and production placements. Deductions run <strong className="text-gray-800">€85–€113/week</strong>. Workers generally report housing standards as comparable to industry average — better than some smaller operators, roughly similar to Randstad. The most common locations are in smaller towns near the work sites rather than in city centres.
         </p>
@@ -235,7 +235,7 @@ export default function TempoTeamJobsPage() {
 
       {/* ── Pros and Cons ────────────────────────────────────────────── */}
       <section className="mb-8" id="pros-cons">
-        <h2 className="text-base font-bold text-gray-900 mb-4">Tempo-Team Netherlands — Honest Pros and Cons</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-4">Tempo-Team Netherlands — Honest Pros and Cons</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           {([
             {
@@ -279,7 +279,7 @@ export default function TempoTeamJobsPage() {
 
       {/* ── Who is this good for ─────────────────────────────────────── */}
       <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
-        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Apply to Tempo-Team Netherlands?</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Who Should Apply to Tempo-Team Netherlands?</h2>
         <div className="space-y-2.5">
           {[
             { icon: "✅", text: "Workers targeting Almere, Lelystad, or The Hague — Tempo-Team's coverage in these cities exceeds OTTO and Randstad." },

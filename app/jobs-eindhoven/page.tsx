@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JOB_LISTINGS } from "@/lib/jobData";
 import { getTopAgenciesForCity } from "@/lib/agencyEnriched";
+import JobListCard from "@/components/JobListCard";
 
 export const metadata: Metadata = {
   title: "Jobs Eindhoven Netherlands — Production & Warehouse 2026 | AgencyCheck",
@@ -236,29 +237,7 @@ export default function JobsEindhovenPage() {
         {displayJobs.length > 0 ? (
           <div className="space-y-2">
             {displayJobs.map((job) => (
-              <Link key={job.slug} href={`/jobs/${job.slug}`} className="block group">
-                <div className="card p-3 hover:shadow-md hover:border-brand-100 transition-all duration-200 group-hover:-translate-y-0.5">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl shrink-0">{job.icon}</span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <p className="font-semibold text-sm text-gray-900 group-hover:text-brand-600 leading-snug truncate">
-                          {job.title}
-                        </p>
-                        <span className="text-xs font-semibold text-green-700 bg-green-50 border border-green-100 rounded-full px-2 py-0.5 shrink-0">
-                          €{job.salaryMin.toFixed(2)}/hr
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-gray-500">{job.agencyName}</span>
-                        {job.housing === "YES" && (
-                          <span className="text-xs bg-green-50 text-green-700 px-1.5 py-0.5 rounded-full">🏠</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+              <JobListCard key={job.slug} job={job} />
             ))}
           </div>
         ) : (

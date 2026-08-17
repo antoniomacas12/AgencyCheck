@@ -131,33 +131,33 @@ export default function RandstadJobsPage() {
           }
         />
 
-        <div className="divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
+        <div className="divide-y divide-gray-100 border border-gray-200 rounded-xl overflow-hidden">
           {displayJobs.map((job) => (
             <a
               key={job.id}
               href={job.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 px-4 py-3 bg-white hover:bg-brand-50 transition-colors"
+              className="flex items-start gap-3 px-4 py-4 bg-white hover:bg-brand-50 transition-colors"
             >
               {/* Icon placeholder */}
               <span className="text-xl shrink-0 mt-0.5">💼</span>
 
               {/* Main content */}
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 leading-snug">
+                <p className="text-[15px] font-semibold text-gray-900 leading-snug">
                   {job.title}
                 </p>
                 <div className="flex flex-wrap items-center gap-2 mt-1">
-                  <span className="text-xs text-gray-500">📍 {job.location}</span>
+                  <span className="text-sm text-gray-600">📍 {job.location}</span>
                   {job.company && (
-                    <span className="text-xs text-gray-400">· {job.company}</span>
+                    <span className="text-sm text-gray-500">· {job.company}</span>
                   )}
                   {job.hours && (
-                    <span className="text-xs text-gray-400">· {job.hours}</span>
+                    <span className="text-sm text-gray-500">· {job.hours}</span>
                   )}
                   {job.education && (
-                    <span className="text-[10px] bg-gray-100 text-gray-600 rounded px-1.5 py-0.5">
+                    <span className="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-0.5">
                       {job.education}
                     </span>
                   )}
@@ -171,9 +171,9 @@ export default function RandstadJobsPage() {
                     {job.salary}
                   </p>
                 ) : (
-                  <p className="text-xs text-gray-400">salary n/a</p>
+                  <p className="text-sm text-gray-400">salary n/a</p>
                 )}
-                <p className="text-[10px] text-brand-500 mt-0.5">View on Randstad ↗</p>
+                <p className="text-xs text-brand-500 mt-1 font-medium">View on Randstad ↗</p>
               </div>
             </a>
           ))}
@@ -194,7 +194,7 @@ export default function RandstadJobsPage() {
 
       {/* ── Salary breakdown ─────────────────────────────────────────── */}
       <section className="mb-8" id="salary">
-        <h2 className="text-base font-bold text-gray-900 mb-3">What Do Workers Actually Earn at Randstad?</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-3">What Do Workers Actually Earn at Randstad?</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-4">
           For warehouse and production roles — the most common international worker placements — Randstad pays at WML or a little above: <strong className="text-gray-800">€14.71–€16.00/hr</strong> in 2026. Skilled roles (forklift, logistics coordination, driving) pay €16–€22/hr. After deductions, most warehouse workers take home <strong className="text-gray-800">€320–€390/week</strong>.
         </p>
@@ -229,7 +229,7 @@ export default function RandstadJobsPage() {
 
       {/* ── Housing ──────────────────────────────────────────────────── */}
       <section className="mb-8" id="housing">
-        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — Available but Not Universal</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Accommodation — Available but Not Universal</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-3">
           Unlike OTTO or Covebo which include housing as standard for international placements, <strong className="text-gray-800">Randstad accommodation availability depends on the specific contract and location</strong>. Some placements include housing; many don&apos;t. Always confirm before accepting any offer.
         </p>
@@ -243,7 +243,7 @@ export default function RandstadJobsPage() {
 
       {/* ── Pros and Cons ────────────────────────────────────────────── */}
       <section className="mb-8" id="pros-cons">
-        <h2 className="text-base font-bold text-gray-900 mb-4">Randstad Netherlands — Honest Pros and Cons</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-4">Randstad Netherlands — Honest Pros and Cons</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           {([
             {
@@ -287,7 +287,7 @@ export default function RandstadJobsPage() {
 
       {/* ── Who is this good for ─────────────────────────────────────── */}
       <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
-        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Apply to Randstad Netherlands?</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Who Should Apply to Randstad Netherlands?</h2>
         <div className="space-y-2.5">
           {[
             { icon: "✅", text: "Workers with skills or qualifications — forklift licences, VCA, driving certifications, or office/IT experience. Randstad has above-WML roles that smaller agencies don't." },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JOB_LISTINGS } from "@/lib/jobData";
+import JobListCard from "@/components/JobListCard";
 
 export const metadata: Metadata = {
   title: "Otto Workforce Jobs Netherlands — Housing Included | AgencyCheck",
@@ -81,13 +82,13 @@ export default function OttoWorkforceJobsPage() {
           Otto Workforce Jobs in the Netherlands
         </h1>
 
-        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+        <p className="text-gray-700 text-sm leading-relaxed max-w-2xl mb-3">
           OTTO Workforce is one of the most active employment agencies in the Netherlands for international EU workers, specialising in warehouse, logistics, production, and forklift placements. What separates OTTO from many competitors is their <strong className="text-gray-800">complete relocation package</strong> — housing arranged near the work site, agency bus transport from that housing, and multilingual staff in Polish, Romanian, Bulgarian, and English. For a worker arriving from another country with no Dutch network, this removes most of the practical friction that makes starting a new job abroad stressful.
         </p>
-        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl mb-3">
+        <p className="text-gray-700 text-sm leading-relaxed max-w-2xl mb-3">
           OTTO operates across a wide geographic footprint: logistics zones around <strong className="text-gray-800">Tilburg, Venlo, Breda, Roosendaal, and Rotterdam</strong> are their strongest markets, though they also have active placements in Eindhoven, Oss, and the broader Brabant and Limburg regions. Job types are dominated by order picker, warehouse worker, forklift operator, and reach-truck driver roles at major distribution centres and food production sites.
         </p>
-        <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
+        <p className="text-gray-700 text-sm leading-relaxed max-w-2xl">
           Workers who have used OTTO consistently note that pay arrives on time and matches the contract, which is the baseline expectation but not always the reality at smaller operators. The main area of variability is housing quality — the best OTTO houses are SNF-certified and comfortable; others are older and more crowded. Ask specifically about the housing location and certification before accepting any offer.
         </p>
       </div>
@@ -131,8 +132,8 @@ export default function OttoWorkforceJobsPage() {
 
       {/* ── Salary breakdown ──────────────────────────────────────────────── */}
       <section className="mb-8" id="salary">
-        <h2 className="text-base font-bold text-gray-900 mb-3">What Do You Actually Earn at OTTO Workforce?</h2>
-        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+        <h2 className="text-lg font-bold text-gray-900 mb-3">What Do You Actually Earn at OTTO Workforce?</h2>
+        <p className="text-gray-700 text-sm leading-relaxed mb-4">
           OTTO pays at WML or slightly above for most logistics and warehouse roles. In 2026, that means <strong className="text-gray-800">€14.71–€16.00/hr</strong> depending on job type and client site. For a standard 40-hour week, gross pay is €588–€640. After Dutch income tax, housing deduction, transport, health insurance, and admin fees, workers typically keep <strong className="text-gray-800">€340–€400/week net</strong>.
         </p>
         <div className="rounded-xl border border-gray-200 overflow-hidden mb-4">
@@ -166,11 +167,11 @@ export default function OttoWorkforceJobsPage() {
 
       {/* ── Housing at OTTO ───────────────────────────────────────────────── */}
       <section className="mb-8" id="housing">
-        <h2 className="text-base font-bold text-gray-900 mb-3">Accommodation — What OTTO Workers Actually Experience</h2>
-        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Accommodation — What OTTO Workers Actually Experience</h2>
+        <p className="text-gray-700 text-sm leading-relaxed mb-3">
           OTTO housing is provided near most placement locations and deducted at <strong className="text-gray-800">€88–€110/week</strong>. Properties are predominantly in smaller towns and industrial areas close to the work sites — <strong className="text-gray-800">Tilburg, Venlo, Oss, Roosendaal</strong> being among the most common. Most OTTO housing is SNF or AKF certified, which means minimum Dutch quality standards for communal facilities, bedroom size, and fire safety.
         </p>
-        <p className="text-gray-600 text-sm leading-relaxed mb-3">
+        <p className="text-gray-700 text-sm leading-relaxed mb-3">
           In practice, housing quality ranges from genuinely acceptable 2-person rooms in well-maintained houses, to older shared properties where 4–5 people share a room. Workers from Tilburg and Venlo placements tend to report better experiences than those from more remote sites. The key is to ask directly before accepting: <em>how many people per room, is it SNF-certified, how far from the work site?</em>
         </p>
         <div className="rounded-xl bg-amber-50 border border-amber-100 px-4 py-3 text-xs text-amber-800">
@@ -180,7 +181,7 @@ export default function OttoWorkforceJobsPage() {
 
       {/* ── Pros and Cons ─────────────────────────────────────────────────── */}
       <section className="mb-8" id="pros-cons">
-        <h2 className="text-base font-bold text-gray-900 mb-4">OTTO Workforce — Honest Pros and Cons</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-4">OTTO Workforce — Honest Pros and Cons</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           {([
             {
@@ -224,7 +225,7 @@ export default function OttoWorkforceJobsPage() {
 
       {/* ── Who is this good for ──────────────────────────────────────────── */}
       <section className="mb-8 rounded-xl bg-gray-50 border border-gray-200 p-5">
-        <h2 className="text-base font-bold text-gray-900 mb-3">Who Should Apply to OTTO Workforce?</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Who Should Apply to OTTO Workforce?</h2>
         <div className="space-y-2.5">
           {[
             { icon: "✅", text: "Workers arriving in the Netherlands for the first time — the housing and transport package removes most of the practical barriers to starting." },
@@ -255,7 +256,7 @@ export default function OttoWorkforceJobsPage() {
       {/* ── Cities ─────────────────────────────────────────────────────────── */}
       {topCities.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-base font-bold text-gray-900 mb-3">📍 Locations hiring via Otto Workforce</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">📍 Locations hiring via Otto Workforce</h2>
           <div className="flex flex-wrap gap-2">
             {topCities.map(({ city, count }) => (
               <span
@@ -274,7 +275,7 @@ export default function OttoWorkforceJobsPage() {
 
       {/* ── Job listings ───────────────────────────────────────────────────── */}
       <section className="mb-8">
-        <h2 className="text-base font-bold text-gray-900 mb-4">
+        <h2 className="text-lg font-bold text-gray-900 mb-4">
           Active Otto Workforce vacancies
           {totalJobs > 0 && (
             <span className="ml-2 text-sm font-normal text-gray-500">({totalJobs} jobs)</span>
@@ -284,33 +285,7 @@ export default function OttoWorkforceJobsPage() {
         {displayJobs.length > 0 ? (
           <div className="space-y-3">
             {displayJobs.map((job) => (
-              <Link key={job.slug} href={`/jobs/${job.slug}`} className="block group">
-                <div className="card p-4 hover:shadow-md hover:border-brand-100 transition-all duration-200 group-hover:-translate-y-0.5">
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl shrink-0">{job.icon}</span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-semibold text-sm text-gray-900 group-hover:text-brand-600 leading-snug">
-                          {job.title}
-                        </h3>
-                        <span className="text-xs font-semibold text-green-700 bg-green-50 border border-green-100 rounded-full px-2 py-0.5 shrink-0">
-                          €{job.salaryMin.toFixed(2)}{job.salaryMax > job.salaryMin ? `–${job.salaryMax.toFixed(2)}` : ""}/hr
-                        </span>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-0.5">📍 {job.city}</p>
-                      <div className="flex gap-2 mt-2">
-                        {job.housing === "YES" && (
-                          <span className="text-xs bg-green-50 text-green-700 px-1.5 py-0.5 rounded-full font-medium">🏠 Housing</span>
-                        )}
-                        {job.transport === "YES" && (
-                          <span className="text-xs bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded-full font-medium">🚌 Transport</span>
-                        )}
-                        <span className="text-xs text-gray-400 ml-auto">View job →</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+              <JobListCard key={job.slug} job={job} />
             ))}
           </div>
         ) : (
