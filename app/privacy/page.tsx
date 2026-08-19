@@ -51,11 +51,18 @@ export default function PrivacyPage() {
 
             <div className="border-l-2 border-gray-200 pl-4">
               <p className="font-semibold text-gray-800 mb-1">a) Browsing data (automatic)</p>
-              <p>
+              <p className="mb-2">
                 Our hosting provider (Vercel) records standard server logs including IP address,
                 browser type, and pages visited. This data is used solely for security and
                 performance monitoring and is not combined with other data to identify individuals.
                 Vercel&apos;s privacy practices: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">vercel.com/legal/privacy-policy</a>.
+              </p>
+              <p className="text-xs text-gray-500">
+                <strong>Geo eligibility check:</strong> When you tap the WhatsApp apply button,
+                your IP address is checked in real time against an EU/EEA country list to verify
+                eligibility. The IP address is not stored by AgencyCheck — the check is ephemeral.
+                Legal basis: legitimate interests (Art.&nbsp;6(1)(f)) — preventing placement
+                of candidates who are not eligible to work in the Netherlands.
               </p>
             </div>
 
@@ -128,6 +135,44 @@ export default function PrivacyPage() {
               </p>
             </div>
 
+            <div id="whatsapp-apply" className="border-l-2 border-green-300 pl-4">
+              <p className="font-semibold text-gray-800 mb-1">g) WhatsApp apply flow</p>
+              <p className="mb-2">
+                When you tap the &ldquo;Apply via WhatsApp&rdquo; button on a job listing, the following
+                processing takes place:
+              </p>
+              <ol className="list-decimal list-inside space-y-2 text-gray-600 mb-2 text-xs">
+                <li>
+                  <strong>Pre-qualification gate:</strong> AgencyCheck asks for your EU/EEA
+                  citizenship status and the name of your country of origin. This answer — together
+                  with the job title and a source identifier — is forwarded to our internal
+                  application routing system (<em>Recruiter OS</em>, operated by the same data
+                  controller) and stored in our database. Legal basis: Art.&nbsp;6(1)(b) GDPR
+                  (pre-contractual steps at your request).
+                </li>
+                <li>
+                  <strong>Recruiter assignment:</strong> Recruiter OS assigns an available
+                  recruiter coordinator and opens WhatsApp with a pre-filled message on your
+                  device. <strong>AgencyCheck does not collect your phone number.</strong> Your
+                  WhatsApp identity and number become visible to the recruiter coordinator only
+                  when you send the first WhatsApp message — that communication is between you
+                  and the recruiter directly and is governed by WhatsApp&apos;s own privacy policy.
+                </li>
+                <li>
+                  <strong>Device deduplication:</strong> A timestamp is saved in your browser&apos;s
+                  localStorage (key: <code className="text-xs bg-gray-100 px-1 rounded">ac_device_applied</code>)
+                  for 24&nbsp;hours to prevent duplicate applications from the same device.
+                  This data remains on your device and is never transmitted to our servers.
+                </li>
+              </ol>
+              <p className="text-xs text-gray-500">
+                Recruiter OS is an internal routing system operated under the same data controller
+                as AgencyCheck ({LEGAL.legalName}). It is not a third-party processor.
+                Data shared with the assigned recruiter coordinator (your EU citizenship status
+                and job interest) is shared for the purpose of assessing your job application.
+              </p>
+            </div>
+
           </div>
         </section>
 
@@ -168,10 +213,28 @@ export default function PrivacyPage() {
                   <td className="px-3 py-2 text-gray-600">1 year</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-2 font-mono text-gray-700">Session storage</td>
+                  <td className="px-3 py-2 font-mono text-gray-700">ac_device_applied</td>
+                  <td className="px-3 py-2 text-gray-600">localStorage</td>
+                  <td className="px-3 py-2 text-gray-600">Prevents duplicate WhatsApp job applications from the same device within 24&nbsp;hours. Stores a timestamp only. Never transmitted to our servers.</td>
+                  <td className="px-3 py-2 text-gray-600">24 hours</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-gray-700">ac_admin_session</td>
+                  <td className="px-3 py-2 text-gray-600">httpOnly cookie</td>
+                  <td className="px-3 py-2 text-gray-600">Administrator authentication. Set only when an administrator logs in to /admin. Not accessible to regular visitors.</td>
+                  <td className="px-3 py-2 text-gray-600">8 hours</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-gray-700">Session storage (UI)</td>
                   <td className="px-3 py-2 text-gray-600">Browser storage</td>
-                  <td className="px-3 py-2 text-gray-600">Remembers dismissed popups within one browser session</td>
+                  <td className="px-3 py-2 text-gray-600">Remembers dismissed notices and banners within one browser session. Data stays in your browser and is never transmitted.</td>
                   <td className="px-3 py-2 text-gray-600">Session only</td>
+                </tr>
+                <tr>
+                  <td className="px-3 py-2 font-mono text-gray-700">Tool data (localStorage)</td>
+                  <td className="px-3 py-2 text-gray-600">localStorage</td>
+                  <td className="px-3 py-2 text-gray-600">Interactive tools (wage calculator, experience submission tracker, shift tracker) save your inputs locally so they persist across visits. All data stays on your device and is never transmitted to our servers.</td>
+                  <td className="px-3 py-2 text-gray-600">Until you clear browser data</td>
                 </tr>
               </tbody>
             </table>
@@ -287,14 +350,32 @@ export default function PrivacyPage() {
 
         {/* 9 — International transfers */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">9. International transfers</h2>
-          <p>
+          <h2 className="text-base font-bold text-gray-900 mb-3">9. International transfers and data recipients</h2>
+          <p className="mb-3">
             Our platform is hosted on Vercel infrastructure. Vercel operates data centres in
             the EU and complies with the EU Standard Contractual Clauses (SCCs) for any
             data transferred outside the EEA. See{" "}
             <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">
               Vercel&apos;s data transfer documentation
             </a>.
+          </p>
+          <p className="mb-3">
+            Our database (Neon / PostgreSQL) runs in the EU region (AWS eu-west-1, Ireland).
+            Error monitoring (Sentry) and transactional email (Resend) are operated by US-based
+            companies; both comply with EU SCCs.
+          </p>
+          <p className="mb-3">
+            <strong>Recruiter OS</strong> is an internal application routing system operated
+            within the EU by the same data controller. WhatsApp apply pre-qualification data
+            (EU citizenship status, job title, source) is routed through this system to assign
+            a recruiter coordinator. It is not a third-party and no SCCs are required.
+          </p>
+          <p>
+            <strong>Recruitment agency coordinators</strong> (the individuals who contact you
+            after a WhatsApp apply) receive only your EU citizenship status and job interest
+            — not your phone number, which they see only if you initiate the WhatsApp message.
+            These coordinators are the data recipients for the purpose of assessing your
+            job application (Art.&nbsp;6(1)(b)).
           </p>
         </section>
 

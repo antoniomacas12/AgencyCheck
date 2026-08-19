@@ -191,6 +191,13 @@ export default function TransparencyPage() {
                 purpose: "Detecting duplicate review submissions from the same source within 24 hours.",
                 stored: "72 hours, then deleted.",
               },
+              {
+                category: "IP address — geo eligibility check (WhatsApp apply only)",
+                legalBasis: "Legitimate interest (Art. 6(1)(f)) — prevent placement of ineligible candidates",
+                data: "IP address checked against EU/EEA country list at the moment the WhatsApp apply button is tapped. The IP address is not stored by AgencyCheck.",
+                purpose: "Verifying that the candidate is connecting from an EU/EEA country before opening the WhatsApp apply flow. Non-EU IP addresses are shown an eligibility notice. The check fails open — network errors never block a candidate.",
+                stored: "Not stored. The check is real-time and ephemeral.",
+              },
             ].map((item) => (
               <div key={item.category} className="rounded-xl border border-gray-200 overflow-hidden">
                 <div className="flex flex-wrap items-center gap-2 bg-gray-50 px-5 py-3 border-b border-gray-200">
@@ -239,7 +246,7 @@ export default function TransparencyPage() {
                   { type: "Server logs (raw)",            ret: "14 days",      trigger: "Automatic rotation" },
                   { type: "Hashed IP (spam detection)",   ret: "72 hours",     trigger: "Automatic" },
                   { type: "Vercel Analytics",             ret: "90 days",      trigger: "Vercel platform policy — rolling window" },
-                  { type: "Admin session tokens",         ret: "24 hours",     trigger: "Automatic expiry" },
+                  { type: "Admin session tokens",         ret: "8 hours",      trigger: "Automatic expiry" },
                   { type: "Agency profile data",          ret: "Until corrected or agency ceases trading", trigger: "Correction request from agency or KvK deregistration confirmed" },
                 ].map((r) => (
                   <tr key={r.type}>
@@ -296,6 +303,14 @@ export default function TransparencyPage() {
                 dpa: "https://sentry.io/legal/dpa/",
                 privacy: "https://sentry.io/privacy/",
               },
+              {
+                name: "Recruiter OS (internal application routing system)",
+                role: "Job application routing to recruiter coordinators",
+                location: "EU (operated by the same data controller — Antonio Macas h.o.d.n. AgencyCheck)",
+                data: "When a candidate applies via the WhatsApp apply feature, the following data is routed through Recruiter OS: EU citizenship status, job title, source identifier, and a timestamp. The candidate's WhatsApp phone number is not collected by AgencyCheck — it is visible to the recruiter coordinator only via WhatsApp after the candidate initiates contact.",
+                dpa: "",
+                privacy: "",
+              },
             ].map((p) => (
               <div key={p.name} className="rounded-xl border border-gray-200 p-5">
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
@@ -303,10 +318,12 @@ export default function TransparencyPage() {
                     <p className="text-sm font-bold text-gray-900">{p.name}</p>
                     <p className="text-xs text-gray-500">{p.role} · {p.location}</p>
                   </div>
-                  <div className="flex gap-2 text-[10px]">
-                    <a href={p.dpa} target="_blank" rel="noopener noreferrer" className="text-blue-600 border border-blue-100 bg-blue-50 rounded-full px-2 py-0.5 font-bold hover:underline">DPA ↗</a>
-                    <a href={p.privacy} target="_blank" rel="noopener noreferrer" className="text-gray-600 border border-gray-200 bg-gray-50 rounded-full px-2 py-0.5 font-bold hover:underline">Privacy ↗</a>
-                  </div>
+                  {(p.dpa || p.privacy) && (
+                    <div className="flex gap-2 text-[10px]">
+                      {p.dpa && <a href={p.dpa} target="_blank" rel="noopener noreferrer" className="text-blue-600 border border-blue-100 bg-blue-50 rounded-full px-2 py-0.5 font-bold hover:underline">DPA ↗</a>}
+                      {p.privacy && <a href={p.privacy} target="_blank" rel="noopener noreferrer" className="text-gray-600 border border-gray-200 bg-gray-50 rounded-full px-2 py-0.5 font-bold hover:underline">Privacy ↗</a>}
+                    </div>
+                  )}
                 </div>
                 <p className="text-xs text-gray-600 leading-relaxed">{p.data}</p>
               </div>

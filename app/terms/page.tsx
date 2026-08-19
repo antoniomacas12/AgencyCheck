@@ -41,9 +41,35 @@ export default function TermsPage() {
           </p>
         </section>
 
-        {/* 2 — No advice */}
+        {/* 2 — Intermediary / referral role */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">2. No employment or legal advice</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">2. Job matching and referral — intermediary role</h2>
+          <p className="mb-2">
+            In addition to publishing agency information, AgencyCheck operates as a platform
+            connecting job-seeking candidates with registered recruitment and staffing agencies.
+            <strong> AgencyCheck is not an employer, not a recruitment agency, and is not party
+            to any employment or staffing contract</strong> between a candidate and a recruiter.
+            We do not make placement decisions and do not guarantee employment.
+          </p>
+          <p className="mb-2">
+            <strong>Applying via WhatsApp:</strong> When you use the WhatsApp apply feature,
+            AgencyCheck collects your EU/EEA citizenship status and job interest and assigns
+            an available recruiter coordinator. WhatsApp then opens on your device and you
+            communicate directly with the recruiter. From that point, all communication is
+            between you and the recruiter and is subject to the recruiter&apos;s own terms.
+            AgencyCheck is not responsible for the content of recruiter communications or
+            for any employment offer, refusal, or contract made after the initial connection.
+          </p>
+          <p>
+            For details on how your data is used during the apply flow, see our{" "}
+            <a href="/privacy#whatsapp-apply" className="text-brand-600 underline">Privacy Policy — WhatsApp apply section</a>.
+          </p>
+        </section>
+
+        {/* 3 — No advice */}
+        <section>
+          <h2 className="text-base font-bold text-gray-900 mb-3">3. No employment or legal advice</h2>
+
           <p>
             Nothing on AgencyCheck constitutes employment, legal, or financial advice. Transparency
             scores, reviews, and reports are informational tools to help workers do their own research.
@@ -54,7 +80,7 @@ export default function TermsPage() {
 
         {/* 3 — User-submitted content */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">3. User-submitted content</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">4. User-submitted content</h2>
           <p className="mb-3">
             Workers may submit anonymous reviews, salary reports, and issue reports. By submitting
             content to AgencyCheck, you confirm that:
@@ -101,7 +127,7 @@ export default function TermsPage() {
 
         {/* 4 — Agency data accuracy */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">4. Agency data accuracy</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">5. Agency data accuracy</h2>
           <p className="mb-3">
             Agency profiles on AgencyCheck are compiled from publicly available sources and
             worker-submitted reports. We make reasonable efforts to verify factual information
@@ -129,7 +155,7 @@ export default function TermsPage() {
 
         {/* 5 — No affiliation */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">5. No affiliation with agencies</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">6. No affiliation with agencies</h2>
           <p>
             AgencyCheck is independent and not affiliated with any employment agency, recruiter,
             or staffing organisation. We do not accept payment to add, remove, or alter agency
@@ -140,7 +166,7 @@ export default function TermsPage() {
 
         {/* 6 — Limitation of liability */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">6. Limitation of liability</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">7. Limitation of liability</h2>
           <p className="mb-3">
             AgencyCheck is provided &quot;as is&quot; without warranty of any kind, express or implied.
             We do not guarantee the accuracy, completeness, or fitness for purpose of any
@@ -156,7 +182,7 @@ export default function TermsPage() {
 
         {/* 7 — Acceptable use */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">7. Acceptable use</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">8. Acceptable use</h2>
           <p className="mb-2">You agree not to:</p>
           <ul className="list-disc list-inside space-y-1 text-gray-600">
             <li>Scrape the platform in a way that degrades performance for other users</li>
@@ -170,7 +196,7 @@ export default function TermsPage() {
 
         {/* 8 — Content moderation */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">8. Content moderation policy</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">9. Content moderation policy</h2>
 
           <div className="space-y-4">
             <div className="border-l-2 border-gray-200 pl-4">
@@ -245,7 +271,7 @@ export default function TermsPage() {
         {/* 9 — DSA / Illegal content */}
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">
-            9. Reporting illegal content (DSA)
+            10. Reporting illegal content (DSA)
           </h2>
           <p className="mb-3">
             Under the EU Digital Services Act (DSA, Regulation (EU) 2022/2065), users and third
@@ -276,7 +302,7 @@ export default function TermsPage() {
 
         {/* 10 — Governing law */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">10. Governing law</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">11. Governing law</h2>
           <p>
             These terms are governed by the laws of the Netherlands. Any disputes shall be subject
             to the exclusive jurisdiction of the Rechtbank Rotterdam, Netherlands, unless mandatory
@@ -286,7 +312,7 @@ export default function TermsPage() {
 
         {/* 11 — Changes */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">11. Changes to these terms</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">12. Changes to these terms</h2>
           <p>
             We may update these terms from time to time. Material changes will be noted at the
             top of this page with a new &quot;last updated&quot; date. Continued use of the platform
@@ -296,7 +322,7 @@ export default function TermsPage() {
 
         {/* 12 — Contact */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">12. Contact</h2>
+          <h2 className="text-base font-bold text-gray-900 mb-3">13. Contact</h2>
           <p>
             For questions about these terms or content moderation decisions:{" "}
             <a href={`mailto:${LEGAL.emailLegal}`} className="text-brand-600 underline">

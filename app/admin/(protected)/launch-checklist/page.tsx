@@ -137,11 +137,11 @@ const SECTIONS: Section[] = [
     color: "bg-cyan-50 border-cyan-200",
     dotColor: "bg-cyan-500",
     items: [
-      { id: "h1", label: "Set NEXT_PUBLIC_GA_ID in .env and redeploy", note: "Without this GA4 is silently disabled — verify the env var is set on host" },
-      { id: "h2", label: "Load homepage — confirm GA4 fires in browser Network tab", note: "Look for request to google-analytics.com or googletagmanager.com" },
-      { id: "h3", label: "Click main CTA — verify event captured in GA4 DebugView", note: "Enable GA4 DebugView in Google Analytics console" },
-      { id: "h4", label: "Submit lead form — verify conversion event tracked", note: "Conversion should appear in GA4 within 30 seconds" },
-      { id: "h5", label: "Confirm no duplicate events fire", note: "Reload page, check only one pageview — not two or three" },
+      { id: "h1", label: "Open Vercel Analytics dashboard — confirm page views appear", note: "Dashboard at vercel.com/[project]/analytics — data may take a few minutes after first deploy" },
+      { id: "h2", label: "Load homepage — confirm NO gtag or google-analytics requests in Network tab", note: "GA4 was removed. DevTools → Network → filter 'google' — must be empty" },
+      { id: "h3", label: "Click main CTA — verify apply_job_click event in Vercel Analytics Events", note: "Events tab in Vercel Analytics shows custom events tracked via track()" },
+      { id: "h4", label: "Submit lead form — verify candidate_form_submit event appears", note: "trackCandidateFormSubmit() fires on successful /api/leads response" },
+      { id: "h5", label: "Confirm no advertising or third-party tracking scripts in page source", note: "View source — must not contain gtag, fbq, _ga, or similar tracking identifiers" },
     ],
   },
   {

@@ -156,8 +156,6 @@ function QualifyScreen({
   const [loading, setLoading] = useState(false);
   const [showErr, setShowErr] = useState(false);
 
-  console.log("[QualifyScreen] mounted, leadId =", leadId);
-
   // Q1 and Q3 are required before submitting
   const canSubmit = !!answers.locationStatus && !!answers.availabilityUI && !loading;
 
@@ -186,7 +184,6 @@ function QualifyScreen({
       q2_bsn:         answers.q2_bsn        || undefined,
       q4_experience:  answers.q4_experience  || undefined,
     };
-    console.log("[QualifyScreen] finish application clicked, payload:", payload);
     try {
       if (leadId) {
         const res = await fetch(`/api/leads/${leadId}/qualify`, {
@@ -194,8 +191,7 @@ function QualifyScreen({
           headers: { "Content-Type": "application/json" },
           body:    JSON.stringify(payload),
         });
-        const result = await res.json().catch(() => ({}));
-        console.log("[QualifyScreen] qualify save success, response:", res.status, result);
+        await res.json().catch(() => ({}));
       }
     } catch (err) {
       console.error("[QualifyScreen] qualify fetch error:", err);
@@ -365,8 +361,6 @@ export default function HomepageLeadForm() {
     setShowGdprErr(false);
     setStatus("loading");
     setErrorMsg("");
-    console.log("[HomepageLeadForm] apply submit started");
-
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
@@ -391,7 +385,6 @@ export default function HomepageLeadForm() {
 
       if (res.ok) {
         const data = await res.json().catch(() => ({}));
-        console.log("[HomepageLeadForm] apply submit success, id =", data.id, "→ showing qualify step");
         setLeadId(data.id ?? null);
         setStatus("success");
         trackCandidateFormSubmit({
@@ -710,6 +703,8 @@ export default function HomepageLeadForm() {
           I agree that AgencyCheck may use my application details to help find suitable job opportunities and may share relevant information with selected recruitment/staffing partners for this purpose.
           I have read and accept the{" "}
           <a href="/privacy" className="underline text-blue-600 hover:text-blue-800" target="_blank" rel="noopener">Privacy Policy</a>.
+          {" "}You can withdraw consent at any time by emailing{" "}
+          <a href="mailto:hello@agencycheck.io" className="underline text-blue-600 hover:text-blue-800">hello@agencycheck.io</a>.
           {showGdprErr && !gdprOk && (
             <span className="block text-red-500 font-semibold mt-0.5">Please confirm to continue.</span>
           )}

@@ -2,7 +2,7 @@
 
 /**
  * Drop-in replacement for <Link> on vacancy apply CTAs.
- * Fires an apply_job_click GA4 event before navigation.
+ * Tracks apply_job_click via Vercel Analytics before navigation.
  */
 
 import Link from "next/link";
