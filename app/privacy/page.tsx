@@ -13,6 +13,7 @@ const LAST_UPDATED = "August 2026";
 
 export default function PrivacyPage() {
   return (
+    <div className="min-h-screen bg-white">
     <div className="max-w-2xl mx-auto px-4 py-12">
 
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
@@ -409,6 +410,7 @@ export default function PrivacyPage() {
         <Link href="/contact"     className="hover:text-brand-600">Contact</Link>
       </div>
 
+    </div>
     </div>
   );
 }
