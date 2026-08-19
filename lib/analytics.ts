@@ -1,17 +1,15 @@
 /**
- * Analytics helpers — thin wrappers around GA4 gtag().
+ * Analytics helpers — thin wrappers around Vercel Analytics track().
  *
- * - Safe: no-op if GA script is blocked, not loaded, or this runs server-side.
+ * - Safe: no-op if this runs server-side or track is unavailable.
  * - Typed: each event has typed params so callers can't send junk keys.
  * - Tree-shakeable: only the events you import end up in the bundle.
+ *
+ * GA4 / Google Analytics has been removed. All custom conversion events
+ * now use Vercel Analytics custom events (privacy-friendly, cookieless).
  */
 
-// Extend Window so TypeScript knows gtag may exist
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
+import { track as vercelTrack } from "@vercel/analytics";
 
 /** Internal fire-and-forget wrapper. Never throws. */
 function fireEvent(
@@ -19,8 +17,11 @@ function fireEvent(
   params?: Record<string, string | number | boolean | undefined>
 ) {
   if (typeof window === "undefined") return; // SSR guard
-  if (typeof window.gtag !== "function") return; // GA blocked or not loaded
-  window.gtag("event", eventName, params);
+  try {
+    vercelTrack(eventName, params as Record<string, string>);
+  } catch {
+    // Silently swallow — analytics must never break the application
+  }
 }
 
 // ─── Public event trackers ────────────────────────────────────────────────────

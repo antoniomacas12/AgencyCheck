@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://agencycheck.io/transparency" },
 };
 
-const LAST_UPDATED = "May 2026";
+const LAST_UPDATED = "August 2026";
 
 export default function TransparencyPage() {
   const crumbSchema = breadcrumbSchema([
@@ -21,7 +21,7 @@ export default function TransparencyPage() {
     name:        "Legal Transparency — AgencyCheck",
     description: "Legal entity, GDPR data controller, data retention, and agency right of reply for AgencyCheck.",
     url:         "/transparency",
-    dateModified: "2026-05-01",
+    dateModified: "2026-08-19",
   });
 
   return (
@@ -165,10 +165,10 @@ export default function TransparencyPage() {
               },
               {
                 category: "Lead / job application forms",
-                legalBasis: "Contract performance (Art. 6(1)(b)) + Consent (Art. 6(1)(a))",
-                data: "Name, email, phone number, preferred city, housing preference, job type interest.",
-                purpose: "Matching workers with suitable agencies. Submitting this form is explicit consent to contact by AgencyCheck for this purpose.",
-                stored: "90 days if no match. Deleted after successful placement unless worker requests longer retention.",
+                legalBasis: "Art. 6(1)(b) pre-contractual + Art. 6(1)(a) consent (form-dependent)",
+                data: "Name, phone number, and optionally: email, nationality, current country, experience level, housing preference, job type interest.",
+                purpose: "Matching workers with suitable recruitment/staffing partners. Legal basis depends on the form: forms with a consent checkbox use Art. 6(1)(a); forms where submission initiates a pre-contractual employment arrangement use Art. 6(1)(b).",
+                stored: "Up to 12 months from submission; deleted on request at any time; manual review at retention date.",
               },
               {
                 category: "Analytics (Vercel Analytics)",
@@ -235,7 +235,7 @@ export default function TransparencyPage() {
               <tbody className="divide-y divide-gray-100">
                 {[
                   { type: "Worker reviews",               ret: "Indefinite",   trigger: "User request or factual error confirmed" },
-                  { type: "Lead / application data",      ret: "90 days",      trigger: "Automatic after 90 days if no match; immediate on request" },
+                  { type: "Lead / application data",      ret: "12 months",    trigger: "Manual review at retention date; immediate on request" },
                   { type: "Server logs (raw)",            ret: "14 days",      trigger: "Automatic rotation" },
                   { type: "Hashed IP (spam detection)",   ret: "72 hours",     trigger: "Automatic" },
                   { type: "Vercel Analytics",             ret: "90 days",      trigger: "Vercel platform policy — rolling window" },
@@ -287,6 +287,14 @@ export default function TransparencyPage() {
                 data: "Email address and content of transactional messages (lead confirmation, admin notifications).",
                 dpa: "https://resend.com/privacy",
                 privacy: "https://resend.com/privacy",
+              },
+              {
+                name: "Sentry.io (Functional Software, Inc.)",
+                role: "Application error monitoring",
+                location: "USA (SCCs apply)",
+                data: "Technical error data: stack traces, request metadata, contextual debugging information. Candidate names, phone numbers, and email addresses are explicitly excluded from error payloads.",
+                dpa: "https://sentry.io/legal/dpa/",
+                privacy: "https://sentry.io/privacy/",
               },
             ].map((p) => (
               <div key={p.name} className="rounded-xl border border-gray-200 p-5">

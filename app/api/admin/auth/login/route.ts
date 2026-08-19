@@ -1,3 +1,14 @@
+/**
+ * POST /api/admin/auth/login
+ *
+ * Rate limiting recommendation (Phase 15):
+ *   Vercel Firewall (vercel.com → Project → Firewall → Custom Rules) can be used
+ *   to rate-limit this endpoint without adding npm dependencies.
+ *   Suggested rule: Block any IP making > 10 requests to /api/admin/auth/login
+ *   within a 60-second window.
+ *   adminAuth.ts already adds a 300 ms artificial delay on failed attempts.
+ */
+
 import { NextRequest, NextResponse } from "next/server";
 import { adminLogin } from "@/lib/adminAuth";
 

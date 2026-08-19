@@ -707,7 +707,7 @@ export default function HomepageLeadForm() {
           className="mt-0.5 w-4 h-4 accent-blue-600 flex-shrink-0"
         />
         <span className="text-[11px] text-gray-600 leading-relaxed">
-          I agree to my contact details being shared with up to 3 registered Dutch labour agencies so they can send me job information.
+          I agree that AgencyCheck may use my application details to help find suitable job opportunities and may share relevant information with selected recruitment/staffing partners for this purpose.
           I have read and accept the{" "}
           <a href="/privacy" className="underline text-blue-600 hover:text-blue-800" target="_blank" rel="noopener">Privacy Policy</a>.
           {showGdprErr && !gdprOk && (

@@ -300,7 +300,9 @@ export default function PartnerApplyPage() {
 
           {/* GDPR */}
           <p className="text-center text-[11px] text-gray-600 pt-2 leading-snug">
-            By applying, your details are shared with a recruiter partner.{" "}
+            By applying, your answers will be shared with{" "}
+            <span className="text-gray-400 font-semibold">{vacancy.partner}</span>{" "}
+            for job placement purposes.{" "}
             <Link href="/privacy" className="text-emerald-400 hover:underline">Privacy Policy</Link>
           </p>
         </div>

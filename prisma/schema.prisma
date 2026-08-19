@@ -371,7 +371,21 @@ model Lead {
   payoutAmount    Float?
   paidAt          DateTime?
 
-  sends LeadSend[]
+  // ── GDPR accountability fields ─────────────────────────────────────────────
+  // Added Phase 18 — August 2026. All nullable; no backfill of historical records.
+  // gdprLawfulBasis: "consent_art6a" | "precontract_art6b" | null (null = pre-Phase-18 lead)
+  gdprLawfulBasis          String?
+  // gdprConsentAt: populated for consent_art6a leads; null for pre-contractual / historical
+  gdprConsentAt            DateTime?
+  // gdprRestricted: true when an Art. 18 restriction request has been received and acknowledged
+  gdprRestricted           Boolean   @default(false)
+  gdprRestrictedAt         DateTime?
+  gdprRestrictedReason     String?
+  // gdprErasureRequestedAt: set when an Art. 17 erasure request is received
+  gdprErasureRequestedAt   DateTime?
+
+  sends         LeadSend[]
+  sharingEvents LeadSharingEvent[]
 
   @@index([status])
   @@index([createdAt])
@@ -598,6 +612,42 @@ model AgencyCityMention {
   @@index([agencyId])
   @@index([mentionCount])
   @@map("agency_city_mentions")
+}
+
+// ─── Lead Sharing Events — GDPR Art. 5(2) accountability: every partner share ─
+// Phase 19 — August 2026. Additive model — does not modify any existing table.
+// Records every time candidate data is forwarded to a recruitment/staffing partner.
+// This provides the GDPR accountability trail required by Art. 5(2) and supports
+// Art. 15 (right of access) responses: "your data was shared with X on date Y".
+
+model LeadSharingEvent {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  leadId String
+
+  // Partner the data was shared with
+  partnerName  String
+  partnerEmail String?
+  partnerSlug  String?
+
+  // GDPR accountability
+  // lawfulBasis: "consent_art6a" | "precontract_art6b" | "legitimate_interest"
+  lawfulBasis   String
+  purposeNote   String? // e.g. "Job placement matching — warehouse roles Netherlands"
+  sharedByAdmin String  @default("admin")
+
+  // JSON array of field names included in the share
+  // e.g. ["fullName","phone","nationality","experienceLevel"]
+  dataFields String @default("[]")
+
+  // Optional link to the existing LeadSend record for cross-reference
+  leadSendId String?
+
+  @@index([leadId])
+  @@index([createdAt])
+  @@map("lead_sharing_events")
 }
 
 // ─── Apply Funnel Events — step-by-step tracking of the apply modal ──────────

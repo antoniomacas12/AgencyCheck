@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import Script from "next/script";
 import "./globals.css";
 import Footer            from "@/components/Footer";
 import LayoutClientShell from "@/components/LayoutClientShell";
@@ -98,24 +97,6 @@ export default function RootLayout({
           {children}
         </LayoutClientShell>
         <Analytics />
-
-        {/* Google Analytics 4 — only in production */}
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-3WP6HM9FTL"
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-3WP6HM9FTL', { page_path: window.location.pathname });
-              `}
-            </Script>
-          </>
-        )}
       </body>
     </html>
   );

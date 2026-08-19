@@ -5,6 +5,7 @@ import {
   setRecruiterEnabled,
   ensureDbReady,
 } from "@/lib/recruiter-db";
+import { verifyAdminRequest, unauthorizedJson } from "@/lib/adminAuth";
 
 export const dynamic = "force-dynamic";
 
@@ -12,6 +13,7 @@ export const dynamic = "force-dynamic";
 // Returns all recruiters with click counts and last-click timestamp.
 
 export async function GET(_req: NextRequest) {
+  if (!(await verifyAdminRequest())) return unauthorizedJson();
   try {
     // ensureDbReady() is called inside getAllRecruiters, but we call it explicitly
     // here so tables + seeds exist even if no apply has ever been made.
@@ -50,6 +52,7 @@ export async function GET(_req: NextRequest) {
 // Body: { id: string, enabled: boolean }
 
 export async function PATCH(req: NextRequest) {
+  if (!(await verifyAdminRequest())) return unauthorizedJson();
   try {
     const body = await req.json();
     const { id, enabled } = body as { id: string; enabled: boolean };

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://agencycheck.io/terms" },
 };
 
-const LAST_UPDATED = "April 2026";
+const LAST_UPDATED = "August 2026";
 
 export default function TermsPage() {
   return (
@@ -279,7 +279,7 @@ export default function TermsPage() {
           <h2 className="text-base font-bold text-gray-900 mb-3">10. Governing law</h2>
           <p>
             These terms are governed by the laws of the Netherlands. Any disputes shall be subject
-            to the exclusive jurisdiction of the courts of Amsterdam, Netherlands, unless mandatory
+            to the exclusive jurisdiction of the Rechtbank Rotterdam, Netherlands, unless mandatory
             consumer protection law in your country of residence provides otherwise.
           </p>
         </section>

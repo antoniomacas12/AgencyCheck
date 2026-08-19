@@ -67,3 +67,41 @@ export const LEGAL = {
  */
 export const isLegalConfigComplete = (): boolean =>
   LEGAL.kvkNumber.length > 0;
+
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * WHEN SWITCHING TO A CROATIAN OBRT — locations requiring update:
+ * ─────────────────────────────────────────────────────────────────────────────
+ *
+ * 1. THIS FILE (lib/legalConfig.ts):
+ *    - legalName:  e.g. "Antonio Macas obrt AgencyCheck"
+ *    - kvkNumber:  replace with Croatian OIB (osobni identifikacijski broj), 11 digits
+ *    - vatNumber:  Croatian PDV number (format: HR + OIB), if VAT-registered
+ *    - address:    Croatian registered address (street, city, postcode, country: "Croatia")
+ *    - emailGeneral / emailPrivacy / emailLegal / emailAgencies: update if changed
+ *
+ * 2. app/transparency/page.tsx — line ~99:
+ *    HARDCODED string: { label: "Legal form", value: "Eenmanszaak (sole trader)" }
+ *    → Change to: "Obrt (sole trader)" and remove KvK reference in same block
+ *    → The "Verify at kvk.nl" link also needs updating to Croatian register (sud.hr or obrt.hr)
+ *
+ * 3. app/transparency/page.tsx — GDPR supervisory authority references:
+ *    Dutch authority (Autoriteit Persoonsgegevens) referenced in Sections 7, 8, and dispute section.
+ *    If data controller moves to Croatia, lead supervisory authority becomes AZOP
+ *    (Agencija za zaštitu osobnih podataka — azop.hr). Update all AP references.
+ *
+ * 4. app/privacy/page.tsx — Section 7:
+ *    "lodge a complaint with the Dutch data protection authority" → update to AZOP
+ *
+ * 5. app/terms/page.tsx — Section 10 (governing law):
+ *    "laws of the Netherlands" + "Rechtbank Rotterdam" → update to Croatian law + competent court
+ *
+ * 6. app/transparency/page.tsx — dispute section:
+ *    "Rechtbank Rotterdam" → update to Croatian court
+ *
+ * 7. app/transparency/page.tsx — "Wet elektronische handel" reference:
+ *    → Replace with Croatian equivalent (Zakon o elektroničkoj trgovini) or EU E-Commerce Directive directly
+ *
+ * DO NOT update any of the above until you have the confirmed Croatian obrt registration details.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */

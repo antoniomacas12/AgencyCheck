@@ -17,9 +17,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-const WEBHOOK_URL   = "https://recruiter.agencycheck.io/api/wapp-apply";
-const WEBHOOK_TOKEN = "1face9fd6cfc8e9e9fa69d0d47f299ae2102aceb4f553cbf";
+// WEBHOOK_URL / WEBHOOK_TOKEN: loaded exclusively from environment variables.
+// Required Vercel env vars: RECRUITER_OS_WEBHOOK_URL, RECRUITER_OS_WEBHOOK_TOKEN
+// (Settings → Environment Variables → Production + Preview).
+// If RECRUITER_OS_WEBHOOK_TOKEN is unset, webhook calls will be rejected by
+// Recruiter OS with 401 (no hardcoded fallback — fail safe, not fail silent).
+const WEBHOOK_URL   = process.env.RECRUITER_OS_WEBHOOK_URL   ?? "https://recruiter.agencycheck.io/api/wapp-apply";
+const WEBHOOK_TOKEN = process.env.RECRUITER_OS_WEBHOOK_TOKEN ?? "";
 const DEDUP_TTL_MS  = 86_400_000; // 24 hours
+
+if (!process.env.RECRUITER_OS_WEBHOOK_TOKEN) {
+  console.error("[apply-webhook] ❌ RECRUITER_OS_WEBHOOK_TOKEN is not set — webhook requests will fail authentication");
+}
 
 function normalisePhone(raw: string): string {
   return raw.replace(/[\s\-()]/g, "").toLowerCase();

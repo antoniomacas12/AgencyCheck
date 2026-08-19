@@ -4,10 +4,11 @@
  * Uses HMAC-SHA256 signed session tokens stored in an HTTP-only cookie.
  * Runs in Node.js (Server Components, Route Handlers, Server Actions).
  *
- * Environment variables (set in .env.local or production env):
- *   ADMIN_EMAIL            admin login email (default: admin@agencycheck.io)
- *   ADMIN_PASSWORD         admin login password (default: CHANGE_THIS_NOW)
+ * Required environment variables (Vercel → Settings → Environment Variables):
+ *   ADMIN_EMAIL            Admin login email
+ *   ADMIN_PASSWORD         Admin login password
  *   ADMIN_SESSION_SECRET   32+ char random string for HMAC signing
+ *                          Generate: openssl rand -hex 32
  */
 
 import crypto from "crypto";
@@ -15,10 +16,35 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
+//
+// All credentials are loaded exclusively from environment variables.
+// There are no hardcoded fallback values.
+//
+// Failure behaviour when env vars are missing:
+//   ADMIN_EMAIL / ADMIN_PASSWORD missing → login always fails (empty string
+//     can never match a non-empty submitted value due to length-check in
+//     adminLogin's constant-time comparison).
+//   ADMIN_SESSION_SECRET missing → a per-process random secret is used;
+//     existing sessions are invalidated on every cold start, but no known
+//     value is ever used.
 
-const ADMIN_EMAIL    = process.env.ADMIN_EMAIL    ?? "hello@agencycheck.io";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "bogomoljka101";
-const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET ?? "dev-secret-please-change-in-production-32chars";
+const ADMIN_EMAIL    = process.env.ADMIN_EMAIL    ?? "";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "";
+const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET
+  ?? crypto.randomBytes(32).toString("hex");
+
+// Log errors (not warnings) for any missing required variable so that
+// misconfiguration is immediately visible in Vercel function logs.
+if (!process.env.ADMIN_EMAIL) {
+  console.error("[adminAuth] ❌ ADMIN_EMAIL env var is not set — admin login will not succeed");
+}
+if (!process.env.ADMIN_PASSWORD) {
+  console.error("[adminAuth] ❌ ADMIN_PASSWORD env var is not set — admin login will not succeed");
+}
+if (!process.env.ADMIN_SESSION_SECRET) {
+  console.error("[adminAuth] ❌ ADMIN_SESSION_SECRET env var is not set — sessions will not persist across restarts");
+}
+
 const COOKIE_NAME    = "ac_admin_session";
 const SESSION_TTL    = 60 * 60 * 8; // 8 hours in seconds
 const SESSION_MS     = SESSION_TTL * 1000;

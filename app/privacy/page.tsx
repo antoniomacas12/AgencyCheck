@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://agencycheck.io/privacy" },
 };
 
-const LAST_UPDATED = "April 2026";
+const LAST_UPDATED = "August 2026";
 
 export default function PrivacyPage() {
   return (
@@ -92,10 +92,14 @@ export default function PrivacyPage() {
               <p>
                 If you submit a job interest form (&ldquo;Find me a job&rdquo;), we collect the information you
                 provide (e.g. job type preference, availability, contact details if given).
-                This data is used to match you with relevant employment agencies and is
-                forwarded to those agencies for follow-up. <strong>We are not an employment agency
-                and do not make placement decisions.</strong> Forwarding your data to an agency
-                constitutes processing under GDPR — you consent to this by submitting the form.
+                This data is used to match you with relevant recruitment/staffing partners and
+                forwarded to them for follow-up. <strong>We are not an employment agency
+                and do not make placement decisions.</strong> The lawful basis depends on which
+                form you use: forms that include a consent checkbox use Art. 6(1)(a) GDPR
+                (consent); forms where you are requesting job-finding assistance without a
+                checkbox use Art. 6(1)(b) GDPR (processing necessary to take steps at your
+                request prior to entering a contract). The applicable basis is disclosed at the
+                point of data collection on each form.
                 You can request deletion at any time by emailing{" "}
                 <a href={`mailto:${LEGAL.emailPrivacy}`} className="text-brand-600 underline">{LEGAL.emailPrivacy}</a>.
               </p>
@@ -108,6 +112,19 @@ export default function PrivacyPage() {
                 and message content for the purpose of responding to you. We do not add you to
                 any mailing list without your explicit consent. Contact records are deleted after
                 12 months unless ongoing correspondence requires longer retention.
+              </p>
+            </div>
+
+            <div className="border-l-2 border-gray-200 pl-4">
+              <p className="font-semibold text-gray-800 mb-1">f) Error monitoring (technical)</p>
+              <p>
+                We use <strong>Sentry</strong> (Functional Software, Inc. d/b/a Sentry) for
+                application error monitoring. When a server-side error occurs, Sentry captures
+                technical diagnostic information — stack traces, request metadata, and
+                contextual debugging data. Candidate names, phone numbers, and email addresses
+                are explicitly excluded from error reports. Sentry is used solely to maintain
+                the reliability and security of the platform. Sentry&apos;s privacy policy:{" "}
+                <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">sentry.io/privacy</a>.
               </p>
             </div>
 
@@ -204,7 +221,7 @@ export default function PrivacyPage() {
                 {[
                   { type: "Worker reviews & salary reports", period: "5 years from submission (or until deletion request)", reason: "Legitimate interest in maintaining a useful historical record for workers" },
                   { type: "Review photos", period: "5 years from submission (or until deletion request)", reason: "Same as review; photos are part of the review record" },
-                  { type: "Job interest / lead form data", period: "12 months from submission", reason: "Sufficient time for agency follow-up; deleted automatically after this period" },
+                  { type: "Job interest / lead form data", period: "Up to 12 months from submission", reason: "Sufficient time for agency follow-up; deleted on request at any time; manual review at retention date" },
                   { type: "Contact form emails", period: "12 months from last correspondence", reason: "Proportionate to the purpose of responding to enquiries" },
                   { type: "Server logs (Vercel)", period: "30 days (Vercel default)", reason: "Security and performance monitoring; see Vercel privacy policy" },
                   { type: "Anonymised analytics (Vercel Analytics)", period: "Indefinite — no personal data retained", reason: "Aggregated statistics only; not personal data under GDPR" },
@@ -248,6 +265,12 @@ export default function PrivacyPage() {
             <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">
               Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl)
             </a>.
+          </p>
+          <p className="mt-3 text-sm text-gray-500">
+            <strong className="text-gray-700">Internal accountability records:</strong> When you exercise a right
+            to restriction or erasure, we maintain an internal record of that action for GDPR accountability
+            purposes (Art. 5(2) — accountability principle). These records are not shared with third parties
+            and are retained for up to 3 years solely to demonstrate compliance.
           </p>
         </section>
 

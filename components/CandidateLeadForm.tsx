@@ -269,8 +269,15 @@ export default function CandidateLeadForm() {
         )}
       </button>
 
-      <p className="text-center text-gray-600 text-[11px]">
-        Free · No spam · Recruiter contacts you within 24h
+      <p className="text-center text-gray-500 text-[11px] leading-relaxed">
+        Free · No agency fees charged to candidates
+      </p>
+      <p className="text-center text-gray-600 text-[11px] leading-relaxed mt-1">
+        AgencyCheck uses your application details to help match you with suitable job opportunities.
+        Relevant information may be shared with selected recruitment/staffing partners who may contact you about suitable roles.{" "}
+        <a href="/privacy" className="underline hover:text-gray-400">Privacy Policy</a>
+        {" · "}
+        <a href="/privacy#rights" className="underline hover:text-gray-400">Your rights</a>
       </p>
 
     </form>

@@ -106,6 +106,23 @@ export async function POST(req: NextRequest) {
   const notes = str(body.notes, 1000) ?? undefined;
   const tags: string[] = housingPreference ? [housingPreference] : [];
 
+  // ── GDPR accountability (Phase 18) ────────────────────────────────────────
+  // Determine lawful basis from sourceType. Only sourceTypes with confirmed
+  // consent checkboxes receive "consent_art6a"; others use "precontract_art6b"
+  // (Art. 6(1)(b) — steps at the data subject's request prior to a contract).
+  // Historical leads (pre-Phase-18) will have null — no backfill.
+  const GDPR_BASIS_MAP: Record<string, string> = {
+    "general_apply":      "consent_art6a",
+    "candidate_homepage": "precontract_art6b",
+    "job_page":           "precontract_art6b",
+    "agency_page":        "precontract_art6b",
+    "jobs_with_housing":  "precontract_art6b",
+    "reachtruck_apply":   "precontract_art6b",
+    "rent_calculator":    "precontract_art6b",
+  };
+  const gdprLawfulBasis = GDPR_BASIS_MAP[sourceType] ?? null;
+  const gdprConsentAt   = gdprLawfulBasis === "consent_art6a" ? new Date() : null;
+
   // ─── Prisma → Supabase ────────────────────────────────────────────────────
   try {
     const lead = await prisma.lead.create({
@@ -131,6 +148,12 @@ export async function POST(req: NextRequest) {
         status: "new",
         tags:             JSON.stringify(tags),
         assignedAgencies: JSON.stringify([]),
+        // GDPR accountability (Phase 18)
+        // @ts-expect-error — these columns exist in schema.prisma but the Prisma
+        // client types are stale. Run `npx prisma generate` after applying
+        // prisma/gdpr_phase18_accountability.sql to resolve this.
+        gdprLawfulBasis,
+        gdprConsentAt,
       },
     });
 
@@ -139,11 +162,12 @@ export async function POST(req: NextRequest) {
   } catch (err: unknown) {
     // Log to Vercel function logs and send to Sentry for alerting.
     // Do NOT silently swallow this — the lead is NOT saved.
-    console.error(`❌ [POST /api/leads] Database write failed for "${fullName}" <${phone ?? email}>:`, err);
+    // PII (name, phone, email) intentionally omitted from logs and error reports.
+    console.error(`❌ [POST /api/leads] Database write failed — sourceType="${sourceType}" sourcePage="${sourcePage}":`, err);
 
     Sentry.captureException(err, {
       tags:  { route: "POST /api/leads" },
-      extra: { fullName, sourceType, sourcePage },
+      extra: { sourceType, sourcePage },
     });
 
     return NextResponse.json(

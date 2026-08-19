@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { verifyAdminRequest, unauthorizedJson } from "@/lib/adminAuth";
 
 export const dynamic = "force-dynamic";
 
@@ -7,7 +8,8 @@ export const dynamic = "force-dynamic";
 // We define "reached a step" as: the session has at least one event WITH that step
 // (not "advanced past it") — so "gate" = opened modal, "details_a" = passed step 1, etc.
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  if (!(await verifyAdminRequest())) return unauthorizedJson();
   try {
     // ── Funnel counts: unique sessions per event type ─────────────────────────
     const funnelRaw = await prisma.$queryRaw<{ event: string; cnt: bigint }[]>`
