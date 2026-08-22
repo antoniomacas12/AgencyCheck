@@ -17,7 +17,7 @@ export default function TermsPage() {
     <div className="max-w-2xl mx-auto px-4 py-12">
 
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Terms of Use</h1>
-      <p className="text-xs text-gray-400 mb-8">Last updated: {LAST_UPDATED}</p>
+      <p className="text-xs text-gray-500 mb-8">Last updated: {LAST_UPDATED}</p>
 
       <div className="bg-brand-50 border border-brand-100 rounded-xl p-4 mb-8 text-sm text-brand-900">
         By using AgencyCheck you agree to these terms. Please read them carefully. If you do not
@@ -336,7 +336,7 @@ export default function TermsPage() {
 
       </div>
 
-      <div className="mt-10 pt-8 border-t border-gray-100 flex flex-wrap gap-4 text-xs text-gray-400">
+      <div className="mt-10 pt-8 border-t border-gray-100 flex flex-wrap gap-4 text-xs text-gray-500">
         <Link href="/privacy"      className="hover:text-brand-600">Privacy policy</Link>
         <Link href="/methodology"  className="hover:text-brand-600">Methodology</Link>
         <Link href="/about"        className="hover:text-brand-600">About AgencyCheck</Link>

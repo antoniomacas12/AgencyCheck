@@ -17,7 +17,7 @@ export default function PrivacyPage() {
     <div className="max-w-2xl mx-auto px-4 py-12">
 
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
-      <p className="text-xs text-gray-400 mb-8">Last updated: {LAST_UPDATED}</p>
+      <p className="text-xs text-gray-500 mb-8">Last updated: {LAST_UPDATED}</p>
 
       <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-8 text-sm text-green-900">
         <strong>Short version:</strong> AgencyCheck does not sell your data, does not require
@@ -403,7 +403,7 @@ export default function PrivacyPage() {
 
       </div>
 
-      <div className="mt-10 pt-8 border-t border-gray-100 flex flex-wrap gap-4 text-xs text-gray-400">
+      <div className="mt-10 pt-8 border-t border-gray-100 flex flex-wrap gap-4 text-xs text-gray-500">
         <Link href="/terms"       className="hover:text-brand-600">Terms of use</Link>
         <Link href="/methodology" className="hover:text-brand-600">Methodology</Link>
         <Link href="/about"       className="hover:text-brand-600">About AgencyCheck</Link>

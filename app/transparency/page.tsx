@@ -32,7 +32,7 @@ export default function TransparencyPage() {
       {/* ── Header ─────────────────────────────────────────────────────────── */}
       <div className="border-b border-gray-200 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-          <nav className="text-xs text-gray-400 mb-4 flex items-center gap-1.5">
+          <nav className="text-xs text-gray-500 mb-4 flex items-center gap-1.5">
             <Link href="/" className="hover:text-gray-600">Home</Link>
             <span>/</span>
             <span className="text-gray-600">Transparency</span>
@@ -60,7 +60,7 @@ export default function TransparencyPage() {
 
         {/* ── Jump nav ─────────────────────────────────────────────────────── */}
         <nav className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-          <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+          <p className="text-xs font-black uppercase tracking-widest text-gray-500 mb-2">On this page</p>
           <div className="flex flex-wrap gap-2 text-xs">
             {[
               ["#operator",      "Operator identity"],
@@ -81,7 +81,7 @@ export default function TransparencyPage() {
 
         {/* ── 1. Operator identity ─────────────────────────────────────────── */}
         <section id="operator">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Section 1</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 1</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Operator identity</h2>
           <p className="text-sm text-gray-600 leading-relaxed mb-5">
             Under Dutch law (Wet elektronische handel, implementing EU E-Commerce Directive 2000/31/EC),
@@ -90,7 +90,7 @@ export default function TransparencyPage() {
 
           <div className="rounded-2xl border border-gray-200 overflow-hidden">
             <div className="bg-gray-900 px-5 py-3">
-              <p className="text-xs font-bold text-gray-300">Legal entity details</p>
+              <p className="text-xs font-bold text-gray-500">Legal entity details</p>
             </div>
             <div className="divide-y divide-gray-100">
               {[
@@ -123,7 +123,7 @@ export default function TransparencyPage() {
 
         {/* ── 2. GDPR data controller ──────────────────────────────────────── */}
         <section id="gdpr">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Section 2</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 2</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">GDPR — data controller identification</h2>
           <p className="text-sm text-gray-600 leading-relaxed mb-5">
             Under GDPR Art. 4(7), the data controller is the entity that determines the purposes and means
@@ -151,7 +151,7 @@ export default function TransparencyPage() {
 
         {/* ── 3. Data we collect ───────────────────────────────────────────── */}
         <section id="data-we-collect">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Section 3</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 3</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Data we collect and why</h2>
 
           <div className="space-y-4">
@@ -227,7 +227,7 @@ export default function TransparencyPage() {
 
         {/* ── 4. Data retention ────────────────────────────────────────────── */}
         <section id="retention">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Section 4</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 4</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Data retention schedule</h2>
 
           <div className="overflow-x-auto rounded-xl border border-gray-200">
@@ -262,7 +262,7 @@ export default function TransparencyPage() {
 
         {/* ── 5. Third-party processors ────────────────────────────────────── */}
         <section id="third-parties">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Section 5</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 5</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Third-party data processors</h2>
           <p className="text-sm text-gray-600 leading-relaxed mb-5">
             AgencyCheck uses the following third-party processors under GDPR Art. 28 data processing agreements.
@@ -333,7 +333,7 @@ export default function TransparencyPage() {
 
         {/* ── 6. Agency right of reply ─────────────────────────────────────── */}
         <section id="right-of-reply">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Section 6</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 6</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Agency right of reply</h2>
           <p className="text-sm text-gray-600 leading-relaxed mb-5">
             AgencyCheck publishes factual data about agencies. We recognise that data can become outdated
@@ -405,12 +405,12 @@ export default function TransparencyPage() {
 
         {/* ── 7. Dispute process ───────────────────────────────────────────── */}
         <section id="disputes">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Section 7</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 7</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Dispute resolution process</h2>
 
           <div className="rounded-2xl border border-gray-200 overflow-hidden">
             <div className="bg-gray-900 px-5 py-3">
-              <p className="text-xs font-bold text-gray-300">Standard dispute timeline</p>
+              <p className="text-xs font-bold text-gray-500">Standard dispute timeline</p>
             </div>
             <div className="divide-y divide-gray-100">
               {[
@@ -444,7 +444,7 @@ export default function TransparencyPage() {
 
         {/* ── 8. Your rights ───────────────────────────────────────────────── */}
         <section id="your-rights">
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Section 8</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 8</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Your rights under GDPR</h2>
           <p className="text-sm text-gray-600 leading-relaxed mb-5">
             As a data subject under GDPR, you have the following rights. To exercise any of them,
@@ -465,7 +465,7 @@ export default function TransparencyPage() {
             ].map((item) => (
               <div key={item.art} className="rounded-xl border border-gray-100 p-4">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[10px] font-black text-gray-400 bg-gray-100 rounded px-1.5 py-0.5">{item.art}</span>
+                  <span className="text-[10px] font-black text-gray-500 bg-gray-100 rounded px-1.5 py-0.5">{item.art}</span>
                   <p className="text-sm font-bold text-gray-900">{item.right}</p>
                 </div>
                 <p className="text-xs text-gray-600 leading-relaxed">{item.detail}</p>
@@ -484,7 +484,7 @@ export default function TransparencyPage() {
 
         {/* ── Cookies ──────────────────────────────────────────────────────── */}
         <section>
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Cookies</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Cookies</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Cookie policy</h2>
           <div className="rounded-xl border border-gray-200 p-5 text-sm text-gray-700 space-y-3">
             <p>
@@ -505,7 +505,7 @@ export default function TransparencyPage() {
 
         {/* ── Bottom nav ───────────────────────────────────────────────────── */}
         <section className="border-t border-gray-100 pt-8">
-          <p className="text-xs font-bold text-gray-400 mb-3 uppercase tracking-widest">Related pages</p>
+          <p className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-widest">Related pages</p>
           <div className="flex flex-wrap gap-2">
             {[
               { href: "/about",        label: "About AgencyCheck" },
@@ -521,7 +521,7 @@ export default function TransparencyPage() {
               </Link>
             ))}
           </div>
-          <p className="text-xs text-gray-400 mt-6">
+          <p className="text-xs text-gray-500 mt-6">
             {LEGAL.legalName} · {LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city} ·{" "}
             <a href={`mailto:${LEGAL.emailLegal}`} className="hover:text-gray-600">{LEGAL.emailLegal}</a>
           </p>
