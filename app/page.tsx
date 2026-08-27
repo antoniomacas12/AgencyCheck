@@ -36,7 +36,7 @@ const HomepageJobsCard            = nDynamic(() => import("@/components/Homepage
 const DeliBarnHeroStrip           = nDynamic(() => import("@/components/DeliBarnHeroStrip"),            { ssr: false });
 const CandidateLeadForm           = nDynamic(() => import("@/components/CandidateLeadForm"),            { ssr: false });
 import JobsWithAccommodationSection from "@/components/JobsWithAccommodationSection";
-import FeaturedJobJohma             from "@/components/FeaturedJobJohma";
+import FeaturedJobVerifiedPartner   from "@/components/FeaturedJobVerifiedPartner";
 import FeaturedJobDeliBarn          from "@/components/FeaturedJobDeliBarn";
 
 export const metadata: Metadata = {
@@ -490,9 +490,9 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          §1b  FEATURED PARTNERSHIP — Johma × 4minutes
+          §1b  FEATURED VACANCIES — Verified Partner
           ════════════════════════════════════════════════════════════ */}
-      <FeaturedJobJohma />
+      <FeaturedJobVerifiedPartner />
 
       {/* ════════════════════════════════════════════════════════════
           §1b2  FEATURED PARTNERSHIP — DeliBarn × 4minutes

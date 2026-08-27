@@ -201,6 +201,30 @@ export const VACANCIES: Vacancy[] = [
     featured: true,
   },
 
+  // ── Verified Partner — General Vacancies ─────────────────────────────────
+  {
+    slug:     "warehouse-worker-verified-partner",
+    t:        "Warehouse Worker (m/f) – Netherlands",
+    c:        "warehouse",
+    s:        "€14.99/h gross",
+    sm:       600,
+    sx:       0,
+    l:        "Netherlands",
+    b:        ["acc"],
+    featured: true,
+  },
+  {
+    slug:     "food-production-worker-verified-partner",
+    t:        "Food Production Worker (m/f) – Netherlands",
+    c:        "food",
+    s:        "€14.99/h gross",
+    sm:       600,
+    sx:       0,
+    l:        "Netherlands",
+    b:        ["acc"],
+    featured: true,
+  },
+
   // ── Technical & Construction ──────────────────────────────────────────────
   { slug: "electrician-bodegraven",              t: "Electrician",                                        c: "technical",   s: "€550–€650/wk",   sm: 550,  sx: 650,  l: "Bodegraven",                        b: [] },
   { slug: "construction-welder-mig-mag",         t: "Construction Welder (MIG/MAG)",                      c: "technical",   s: "€650/wk",        sm: 650,  sx: 650,  l: "Rotterdam area",                    b: [] },
