@@ -46,23 +46,24 @@ const JOHMA_JOBS = [
     icon:    "🏭",
     href:    "/apply/johma-line-operator",
   },
+] as const;
+
+const VP_JOBS = [
   {
-    slug:    "johma-food-mixing-operator",
-    title:   "Food Mixing Operator",
-    salary:  "€16.01/hr gross",
-    note:    "Food production · Recipe preparation",
-    tags:    ["🏠 Housing incl.", "🍖 Food"],
-    icon:    "🍖",
-    href:    "/apply/johma-food-mixing-operator",
+    slug:   "warehouse-worker-verified-partner",
+    title:  "Warehouse Worker (m/f)",
+    salary: "€14.99/hr gross",
+    note:   "Order picking, packing & sorting · Housing €149/wk",
+    icon:   "📦",
+    href:   "/apply/warehouse-worker-verified-partner",
   },
   {
-    slug:    "johma-operator-kitchen",
-    title:   "Operator Kitchen",
-    salary:  "€16.01/hr gross",
-    note:    "Kitchen production · Hygiene-focused environment",
-    tags:    ["🏠 Housing incl.", "👨‍🍳 Kitchen"],
-    icon:    "👨‍🍳",
-    href:    "/apply/johma-operator-kitchen",
+    slug:   "food-production-worker-verified-partner",
+    title:  "Food Production Worker (m/f)",
+    salary: "€14.99/hr gross",
+    note:   "Production lines · ~5°C environment · Housing €147/wk",
+    icon:   "🏭",
+    href:   "/apply/food-production-worker-verified-partner",
   },
 ] as const;
 
@@ -163,6 +164,40 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
               </ApplyPreScreen>
             </div>
           ))}
+        </div>
+
+        {/* ── Verified Partner jobs ──────────────────────────────── */}
+        <div className="border-t border-white/[0.07] pt-4 mb-4">
+          <p className="text-[11px] text-gray-400 font-semibold mb-2">
+            Verified Partner · Netherlands
+          </p>
+          <div className="space-y-2">
+            {VP_JOBS.map((job) => (
+              <div
+                key={job.slug}
+                className="rounded-xl border border-white/[0.10] bg-white/[0.03] px-3.5 py-3"
+              >
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-[13px] shrink-0">{job.icon}</span>
+                    <p className="text-white font-bold text-[12px] leading-snug truncate">
+                      {job.title}
+                    </p>
+                  </div>
+                  <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
+                    {job.salary}
+                  </span>
+                </div>
+                <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
+                <Link
+                  href={job.href}
+                  className="flex items-center justify-center gap-1.5 w-full bg-white/[0.07] hover:bg-white/[0.12] border border-white/[0.10] text-gray-200 font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
+                >
+                  View & Apply →
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ── Footer ─────────────────────────────────────────────── */}
