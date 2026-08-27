@@ -456,6 +456,30 @@ export default async function HomePage() {
                 ))}
               </div>
 
+              {/* ── How it works ─────────────────────────────────────── */}
+              <div className="mt-6 w-full rounded-2xl border border-white/[0.08] bg-white/[0.03] px-5 py-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
+                  How it works
+                </p>
+                <div className="space-y-3">
+                  {[
+                    { n: "1", title: "Answer 2 questions", body: "EU citizenship + job preference — takes under 30 seconds." },
+                    { n: "2", title: "WhatsApp opens instantly", body: "You connect directly with a recruiter coordinator. No forms, no waiting room." },
+                    { n: "3", title: "Recruiter responds fast", body: "Accommodation, start date and contract details confirmed together." },
+                  ].map((step) => (
+                    <div key={step.n} className="flex items-start gap-3">
+                      <span className="shrink-0 w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-[10px] font-black text-emerald-400 mt-0.5">
+                        {step.n}
+                      </span>
+                      <div>
+                        <p className="text-white font-semibold text-[12px] leading-snug">{step.title}</p>
+                        <p className="text-gray-500 text-[11px] leading-relaxed">{step.body}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
 
             {/* ── Right: money card ──────────────────────────────────── */}
