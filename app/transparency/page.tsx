@@ -238,7 +238,7 @@ export default function TransparencyPage() {
                 {[
                   { type: "Worker reviews & salary reports",           ret: "5 years from submission",  trigger: "User request or factual error confirmed" },
                   { type: "Lead / application data (unplaced)",        ret: "12 months from submission", trigger: "Manual review at retention date; immediate on request" },
-                  { type: "Lead / application data (placed — personal)", ret: "Anonymised after 12 months", trigger: "Personal data replaced with [anonymised]; financial records retained per Croatian accounting law (period pending legal verification)" },
+                  { type: "Lead / application data (placed — personal)", ret: "Anonymised after 12 months", trigger: "Phone, email and recruitment data anonymised; accounting/business records retained 11 years minimum (Croatian Accounting Act, Art. 10) — only data legally required for those records is kept." },
                   { type: "Server logs (raw)",                         ret: "30 days",      trigger: "Automatic rotation (Vercel default)" },
                   { type: "Hashed IP (spam detection)",                ret: "72 hours",     trigger: "Automatic" },
                   { type: "Vercel Analytics",                          ret: "90-day rolling window", trigger: "Vercel platform policy; aggregated data is not personal data" },

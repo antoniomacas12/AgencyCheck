@@ -55,7 +55,7 @@
 | Recipients | Selected recruitment/staffing agencies (via email forwarding by admin) |
 | Processors | Vercel (hosting), Supabase (database), Resend (email delivery) |
 | International transfers | Vercel (USA — SCCs); Resend (USA — SCCs); Supabase (EU region) |
-| Retention | Up to 12 months from submission; deleted on request at any time. Placed candidates: personal data anonymised at 12 months; financial records per Croatian accounting law (period pending legal verification). |
+| Retention | Up to 12 months from submission; deleted on request at any time. Placed candidates: personal data (phone, email, name) anonymised at 12 months. Accounting/business records retained 11 years minimum (Croatian Accounting Act, Art. 10, verified August 2026) — only data actually required for those records is kept. CV, phone and email are NOT retained for accounting purposes. |
 | Notes | sourceType stored: "candidate_homepage_consent". Consent version tracked in gdprConsentVersion and gdprPrivacyPolicyVersion fields. |
 
 ---

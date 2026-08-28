@@ -55,20 +55,20 @@ export const LEGAL = {
   },
 
   /**
-   * ACCOUNTING RETENTION — Croatian legal requirement.
+   * ACCOUNTING RETENTION — Croatian Accounting Act (Zakon o računovodstvu), Art. 10.
    *
-   * Zakon o računovodstvu (Croatian Accounting Act, NN 78/15 and amendments)
-   * specifies retention periods for accounting records.
+   * Accounting documents used as the basis for entries in the journal/general ledger
+   * and subsidiary ledgers must be retained for a minimum of 11 years.
+   * The retention period begins at the end of the business year to which the records relate.
    *
-   * DEPLOYMENT BLOCKER: confirm the exact period with a Croatian accountant or lawyer
-   * before relying on this constant in automated deletion logic.
+   * Verified: August 2026.
    *
-   * Placeholder: null — automated deletion of financial records is BLOCKED
-   * until this is set to a verified number.
-   *
-   * When confirmed, set to the number of years (e.g. 11) and remove this comment.
+   * IMPORTANT: Only accounting/business documentation that must legally be retained
+   * is kept for 11 years. Candidate phone numbers, emails, CVs and other recruitment
+   * personal data are NOT retained for 11 years merely because the candidate generated
+   * revenue. Personal data is anonymised after 12 months per candidateDataRetentionMonths.
    */
-  accountingRetentionYears: null as number | null,
+  accountingRetentionYears: 11,
 
   /**
    * CANDIDATE PERSONAL DATA RETENTION — GDPR Art. 5(1)(e) storage limitation.
