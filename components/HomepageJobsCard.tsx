@@ -67,6 +67,25 @@ const VP_JOBS = [
   },
 ] as const;
 
+const HOTEL_JOBS = [
+  {
+    slug:   "cook-chef-de-partie-netherlands",
+    title:  "Cook / Chef de Partie",
+    salary: "€17.99–€19.00/hr gross",
+    note:   "Hotels & resorts · Accommodation ~€300/mo · EU citizens",
+    icon:   "👨‍🍳",
+    href:   "/apply/cook-chef-de-partie-netherlands",
+  },
+  {
+    slug:   "hotel-housekeeper-netherlands",
+    title:  "Hotel Housekeeper",
+    salary: "€17.99/hr gross",
+    note:   "4–5★ hotels · Accommodation ~€400/mo · EU citizens",
+    icon:   "🏨",
+    href:   "/apply/hotel-housekeeper-netherlands",
+  },
+] as const;
+
 const DELIBARN_JOB = {
   slug:   "delibarn-operator",
   title:  "Operator (Day Shift)",
@@ -268,6 +287,48 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
           >
             View DeliBarn job details →
           </Link>
+        </div>
+
+        {/* ── Hospitality / Hotels section ────────────────────────── */}
+        <div className="border-t border-white/[0.07] pt-4">
+          <div className="flex flex-wrap items-center gap-1.5 mb-2">
+            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-sky-500/15 text-sky-400 border border-sky-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+              🏨 Hotels
+            </span>
+            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+              🏠 Housing incl.
+            </span>
+          </div>
+          <p className="text-[11px] text-gray-400 font-semibold mb-2">
+            Hospitality · Hotels &amp; Resorts · Netherlands
+          </p>
+          <div className="space-y-2">
+            {HOTEL_JOBS.map((job) => (
+              <div
+                key={job.slug}
+                className="rounded-xl border border-white/[0.10] bg-white/[0.03] px-3.5 py-3"
+              >
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-[13px] shrink-0">{job.icon}</span>
+                    <p className="text-white font-bold text-[12px] leading-snug truncate">
+                      {job.title}
+                    </p>
+                  </div>
+                  <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
+                    {job.salary}
+                  </span>
+                </div>
+                <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
+                <Link
+                  href={job.href}
+                  className="flex items-center justify-center gap-1.5 w-full bg-white/[0.07] hover:bg-white/[0.12] border border-white/[0.10] text-gray-200 font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
+                >
+                  View &amp; Apply →
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>

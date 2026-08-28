@@ -325,6 +325,30 @@ export const VACANCIES: Vacancy[] = [
   { slug: "cookie-factory-workers-harderwijk",   t: "Cookie Factory Worker",                              c: "food",        s: "€16.47/h gross", sm: 658,  sx: 0,    l: "Harderwijk",                        b: ["acc_ask"] },
   { slug: "production-employee-seafood-tholen",  t: "Production Employee (Seafood)",                      c: "food",        s: "€15.00/h gross", sm: 600,  sx: 0,    l: "Tholen",                            b: ["acc_ask"] },
   { slug: "seafood-filleting-yerseke",           t: "Seafood Filleting Employee (filleting knife exp.)",   c: "food",        s: "€15.50/h gross", sm: 620,  sx: 0,    l: "Yerseke",                           b: ["acc_ask"] },
+  // ── Hospitality — Hotel & Resort (Option A partner) ─────────────────────
+  {
+    slug:     "cook-chef-de-partie-netherlands",
+    t:        "Cook / Chef de Partie – Netherlands",
+    c:        "hospitality",
+    s:        "€17.99–€19.00/h gross",
+    sm:       719,
+    sx:       760,
+    l:        "Netherlands",
+    b:        ["acc", "eng"],
+    featured: true,
+  },
+  {
+    slug:     "hotel-housekeeper-netherlands",
+    t:        "Hotel Housekeeper – Netherlands",
+    c:        "hospitality",
+    s:        "€17.99/h gross",
+    sm:       719,
+    sx:       0,
+    l:        "Netherlands",
+    b:        ["acc", "eng"],
+    featured: true,
+  },
+
   // ── Hospitality ───────────────────────────────────────────────────────────
   { slug: "housekeeper-netherlands",             t: "Housekeeper (1–2 yrs exp.)",                         c: "hospitality", s: "€17.65/h gross", sm: 706,  sx: 0,    l: "Amsterdam / Utrecht / Coast / Tilburg", b: [] },
   { slug: "cook-netherlands",                    t: "Cook (with experience)",                              c: "hospitality", s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
