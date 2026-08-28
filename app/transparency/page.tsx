@@ -6,7 +6,7 @@ import { breadcrumbSchema, webPageSchema } from "@/lib/schemaMarkup";
 export const metadata: Metadata = {
   title: "Legal Transparency — Operator, GDPR, Data Policy | AgencyCheck",
   description:
-    "Full legal transparency for AgencyCheck: operator identity, KvK registration, GDPR data controller, data retention policy, agency right of reply, third-party processors, and dispute process.",
+    "Full legal transparency for AgencyCheck: operator identity (Croatian Obrt), GDPR data controller, data retention policy, agency right of reply, third-party processors, and dispute process.",
   alternates: { canonical: "https://agencycheck.io/transparency" },
 };
 
@@ -39,7 +39,7 @@ export default function TransparencyPage() {
           </nav>
           <h1 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">Legal transparency</h1>
           <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
-            Dutch law and GDPR require us to identify who operates this site, how we handle data,
+            EU law and GDPR require us to identify who operates this site, how we handle data,
             and what rights you have. This page answers all of those questions in plain language.
           </p>
           <div className="flex flex-wrap gap-2 mt-4">
@@ -47,10 +47,10 @@ export default function TransparencyPage() {
               Last updated: {LAST_UPDATED}
             </span>
             <span className="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-100 rounded-full px-3 py-1">
-              GDPR (EU) 2016/679 compliant
+              GDPR (EU) 2016/679
             </span>
             <span className="text-[10px] font-bold text-gray-600 bg-white border border-gray-200 rounded-full px-3 py-1">
-              Wet elektronische handel compliant
+              EU E-Commerce Directive 2000/31/EC
             </span>
           </div>
         </div>
@@ -84,7 +84,7 @@ export default function TransparencyPage() {
           <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">Section 1</p>
           <h2 className="text-xl font-black text-gray-900 mb-4">Operator identity</h2>
           <p className="text-sm text-gray-600 leading-relaxed mb-5">
-            Under Dutch law (Wet elektronische handel, implementing EU E-Commerce Directive 2000/31/EC),
+            Under the EU E-Commerce Directive (2000/31/EC) and Croatian implementation,
             every commercial website must clearly identify its operator. This is that identification.
           </p>
 
@@ -96,25 +96,19 @@ export default function TransparencyPage() {
               {[
                 { label: "Brand name",            value: LEGAL.brandName },
                 { label: "Legal / trading name",  value: LEGAL.legalName },
-                { label: "Legal form",            value: "Eenmanszaak (sole trader)" },
+                { label: "Legal form",            value: LEGAL.legalForm },
                 { label: "Registered address",    value: `${LEGAL.address.street}, ${LEGAL.address.postcode} ${LEGAL.address.city}, ${LEGAL.address.country}` },
-                {
-                  label: "KvK number",
-                  value: LEGAL.kvkNumber || "Registration in progress — number pending. Address and legal name above are confirmed.",
-                  special: !LEGAL.kvkNumber ? "amber" : "none",
-                },
-                { label: "BTW / VAT number",      value: "Not VAT-registered (KOR exemption applies at current revenue level)" },
+                { label: "OIB",                   value: LEGAL.oib + " (Osobni identifikacijski broj — Croatian tax/business ID)" },
+                { label: "MBO",                   value: LEGAL.mbo + " (Matični broj obrta)" },
+                { label: "Obrtnica number",       value: LEGAL.obrtnicaNumber },
+                { label: "Registration",          value: LEGAL.registrationRegister + " — registered " + LEGAL.registrationDate },
+                { label: "NKD activity code",     value: LEGAL.nkdCode + " — " + LEGAL.nkdDescription },
                 { label: "Website",               value: LEGAL.siteUrl },
                 { label: "General contact",       value: LEGAL.emailGeneral },
               ].map((row) => (
                 <div key={row.label} className="flex gap-4 px-5 py-3.5">
                   <p className="shrink-0 w-40 text-xs font-bold text-gray-500">{row.label}</p>
-                  <p className={`text-sm ${row.special === "amber" ? "text-amber-700 font-semibold" : "text-gray-800"}`}>
-                    {row.value}
-                    {row.label === "KvK number" && LEGAL.kvkNumber && (
-                      <> — <a href={`https://www.kvk.nl/zoeken/?query=${LEGAL.kvkNumber}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Verify at kvk.nl ↗</a></>
-                    )}
-                  </p>
+                  <p className="text-sm text-gray-800">{row.value}</p>
                 </div>
               ))}
             </div>
@@ -134,7 +128,8 @@ export default function TransparencyPage() {
           <div className="rounded-xl border border-blue-200 bg-blue-50 p-5 mb-5">
             <p className="text-sm font-bold text-blue-900 mb-1">Data Controller</p>
             <p className="text-sm text-blue-800">{LEGAL.legalName}</p>
-            <p className="text-sm text-blue-800">{LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}</p>
+            <p className="text-sm text-blue-800">{LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}, {LEGAL.address.country}</p>
+            <p className="text-sm text-blue-800">OIB: {LEGAL.oib}</p>
             <p className="text-sm text-blue-800 mt-1">
               Privacy contact:{" "}
               <a href={`mailto:${LEGAL.emailPrivacy}`} className="font-bold underline">{LEGAL.emailPrivacy}</a>
@@ -142,7 +137,7 @@ export default function TransparencyPage() {
           </div>
 
           <p className="text-sm text-gray-600 leading-relaxed">
-            AgencyCheck does not have a Data Protection Officer (DPO) — Dutch law only requires one
+            AgencyCheck does not have a Data Protection Officer (DPO) — EU law only requires one
             for organisations that process special categories of data at scale. We do not process
             health data, criminal records, or other special-category data. All privacy queries go to
             the data controller contact above.
@@ -161,7 +156,7 @@ export default function TransparencyPage() {
                 legalBasis: "Legitimate interest (Art. 6(1)(f))",
                 data: "Star ratings (1–5), optional written comment, agency name, timestamp. No name, email, or identity is collected with reviews.",
                 purpose: "Publishing worker-submitted reviews to enable other workers to make informed decisions about agencies.",
-                stored: "Indefinitely — reviews are the core product. Workers can request removal via email.",
+                stored: "5 years from submission, or until deletion request.",
               },
               {
                 category: "Lead / job application forms",
@@ -182,7 +177,7 @@ export default function TransparencyPage() {
                 legalBasis: "Legitimate interest — security",
                 data: "IP address, request path, timestamp, status code. Standard web server logs.",
                 purpose: "Detecting and blocking abuse, rate limiting, security monitoring.",
-                stored: "14 days, then deleted.",
+                stored: "30 days (Vercel default), then deleted.",
               },
               {
                 category: "Hashed IP (review spam prevention)",
@@ -241,13 +236,16 @@ export default function TransparencyPage() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {[
-                  { type: "Worker reviews",               ret: "Indefinite",   trigger: "User request or factual error confirmed" },
-                  { type: "Lead / application data",      ret: "12 months",    trigger: "Manual review at retention date; immediate on request" },
-                  { type: "Server logs (raw)",            ret: "14 days",      trigger: "Automatic rotation" },
-                  { type: "Hashed IP (spam detection)",   ret: "72 hours",     trigger: "Automatic" },
-                  { type: "Vercel Analytics",             ret: "90 days",      trigger: "Vercel platform policy — rolling window" },
-                  { type: "Admin session tokens",         ret: "8 hours",      trigger: "Automatic expiry" },
-                  { type: "Agency profile data",          ret: "Until corrected or agency ceases trading", trigger: "Correction request from agency or KvK deregistration confirmed" },
+                  { type: "Worker reviews & salary reports",           ret: "5 years from submission",  trigger: "User request or factual error confirmed" },
+                  { type: "Lead / application data (unplaced)",        ret: "12 months from submission", trigger: "Manual review at retention date; immediate on request" },
+                  { type: "Lead / application data (placed — personal)", ret: "Anonymised after 12 months", trigger: "Personal data replaced with [anonymised]; financial records retained per Croatian accounting law (period pending legal verification)" },
+                  { type: "Server logs (raw)",                         ret: "30 days",      trigger: "Automatic rotation (Vercel default)" },
+                  { type: "Hashed IP (spam detection)",                ret: "72 hours",     trigger: "Automatic" },
+                  { type: "Vercel Analytics",                          ret: "90-day rolling window", trigger: "Vercel platform policy; aggregated data is not personal data" },
+                  { type: "Admin session tokens",                      ret: "8 hours",      trigger: "Automatic expiry" },
+                  { type: "Agency profile data",                       ret: "Until corrected or agency ceases trading", trigger: "Correction request from agency or deregistration confirmed" },
+                  { type: "Candidate reliability notes",               ret: "Maximum 12 months", trigger: "Automatic unless note is required for active legal/security matter" },
+                  { type: "Restriction / blocked attempt logs",        ret: "12 months",    trigger: "Automatic rotation; no IP addresses stored (data minimisation)" },
                 ].map((r) => (
                   <tr key={r.type}>
                     <td className="px-4 py-3 font-medium text-gray-800">{r.type}</td>
@@ -280,12 +278,12 @@ export default function TransparencyPage() {
                 privacy: "https://vercel.com/legal/privacy-policy",
               },
               {
-                name: "Neon / PostgreSQL (via Vercel)",
+                name: "Supabase (PostgreSQL)",
                 role: "Database",
-                location: "EU region (AWS eu-west-1)",
+                location: "EU region",
                 data: "Worker reviews (anonymised), lead data, agency DB records.",
-                dpa: "https://neon.tech/privacy-policy",
-                privacy: "https://neon.tech/privacy-policy",
+                dpa: "https://supabase.com/privacy",
+                privacy: "https://supabase.com/privacy",
               },
               {
                 name: "Resend / email delivery",
@@ -306,7 +304,7 @@ export default function TransparencyPage() {
               {
                 name: "Recruiter OS (internal application routing system)",
                 role: "Job application routing to recruiter coordinators",
-                location: "EU (operated by the same data controller — Antonio Macas h.o.d.n. AgencyCheck)",
+                location: `EU (operated by the same data controller — ${LEGAL.legalName})`,
                 data: "When a candidate applies via the WhatsApp apply feature, the following data is routed through Recruiter OS: EU citizenship status, job title, source identifier, and a timestamp. The candidate's WhatsApp phone number is not collected by AgencyCheck — it is visible to the recruiter coordinator only via WhatsApp after the candidate initiates contact.",
                 dpa: "",
                 privacy: "",
@@ -419,7 +417,7 @@ export default function TransparencyPage() {
                 { day: "Days 3–5", step: "Primary source check",     detail: "We verify the disputed data point against: KvK register, ABU/NBBU member list, SNA certificate registry, or other named primary source." },
                 { day: "Day 5",    step: "Decision communicated",    detail: "We inform the requester of our decision: update accepted, update rejected with reason, or investigation ongoing if more time required." },
                 { day: "Day 5+",   step: "Update published",         detail: "If accepted: profile updated within the same working day as the decision. Correction note added to profile showing date of update." },
-                { day: "Escalation", step: "Unresolved disputes",   detail: `If you believe our decision is incorrect, you may escalate in writing to ${LEGAL.emailLegal}. We will review with fresh eyes. If still unresolved, the matter may be referred to the Autoriteit Persoonsgegevens (AP) for GDPR matters, or to a Dutch court for other disputes.` },
+                { day: "Escalation", step: "Unresolved disputes",   detail: `If you believe our decision is incorrect, you may escalate in writing to ${LEGAL.emailLegal}. We will review with fresh eyes. If still unresolved, GDPR matters may be referred to AZOP (Agencija za zaštitu osobnih podataka — azop.hr); other disputes are subject to Croatian law and the jurisdiction of the competent court in the Republic of Croatia.` },
               ].map((item) => (
                 <div key={item.step} className="flex gap-4 px-5 py-3.5">
                   <p className="shrink-0 w-20 text-xs font-black text-gray-500">{item.day}</p>
@@ -433,11 +431,13 @@ export default function TransparencyPage() {
           </div>
 
           <div className="mt-4 rounded-xl border border-gray-200 p-4 text-xs text-gray-600">
-            <strong className="text-gray-900">Governing law:</strong> This platform and all disputes arising
-            from it are governed by Dutch law. The competent court is the Rechtbank Rotterdam.
-            For GDPR complaints, the supervisory authority is the{" "}
-            <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
-              Autoriteit Persoonsgegevens (AP) ↗
+            <strong className="text-gray-900">Governing law:</strong> These Terms and any disputes arising from use of
+            this platform are governed by the laws of the Republic of Croatia. Any disputes shall be subject to the
+            jurisdiction of the competent court in the Republic of Croatia, unless mandatory consumer protection law
+            in your country of residence provides otherwise.
+            For GDPR complaints, the supervisory authority is{" "}
+            <a href="https://azop.hr" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+              Agencija za zaštitu osobnih podataka (AZOP) — azop.hr ↗
             </a>.
           </div>
         </section>
@@ -461,7 +461,7 @@ export default function TransparencyPage() {
               { art: "Art. 20", right: "Data portability",        detail: "Receive your data in a structured, machine-readable format." },
               { art: "Art. 21", right: "Right to object",         detail: "Object to processing based on legitimate interest. We will stop unless we have compelling grounds." },
               { art: "Art. 7",  right: "Withdraw consent",        detail: "Where processing is based on consent, you may withdraw it at any time. Withdrawal does not affect past processing." },
-              { art: "Art. 77", right: "Lodge a complaint",       detail: "You may complain to the Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl)." },
+              { art: "Art. 77", right: "Lodge a complaint",       detail: "You may complain to the Agencija za zaštitu osobnih podataka (AZOP) — azop.hr" },
             ].map((item) => (
               <div key={item.art} className="rounded-xl border border-gray-100 p-4">
                 <div className="flex items-center gap-2 mb-1.5">
@@ -498,7 +498,7 @@ export default function TransparencyPage() {
             <p>
               The only cookies we may set are session cookies for the admin panel (first-party, essential,
               not accessible to JavaScript, httpOnly). These are not subject to cookie consent requirements
-              under Dutch law (Telecommunicatiewet art. 11.7a).
+              under the EU ePrivacy Directive (essential cookies exemption).
             </p>
           </div>
         </section>
@@ -522,7 +522,8 @@ export default function TransparencyPage() {
             ))}
           </div>
           <p className="text-xs text-gray-500 mt-6">
-            {LEGAL.legalName} · {LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city} ·{" "}
+            {LEGAL.legalName} · {LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}, {LEGAL.address.country} ·{" "}
+            OIB: {LEGAL.oib} ·{" "}
             <a href={`mailto:${LEGAL.emailLegal}`} className="hover:text-gray-600">{LEGAL.emailLegal}</a>
           </p>
         </section>

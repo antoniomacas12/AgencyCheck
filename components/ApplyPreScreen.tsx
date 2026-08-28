@@ -581,6 +581,11 @@ export default function ApplyPreScreen({
               </Question>
             )}
 
+            <p className="text-center text-gray-600 text-[11px] mt-1 leading-relaxed">
+              By continuing, your contact details become visible to the recruitment partner via WhatsApp, and your pre-qualification answers are processed for job placement purposes.{" "}
+              <a href="/privacy" className="underline hover:text-gray-400" target="_blank" rel="noopener">Privacy Policy</a>
+            </p>
+
             {/* Continue / Apply button */}
             {(() => {
               const ready =
@@ -624,10 +629,6 @@ export default function ApplyPreScreen({
 
             <p className="text-center text-gray-600 text-[11px] mt-1">
               EU citizenship or valid NL work permit required.
-            </p>
-            <p className="text-center text-gray-600 text-[11px] mt-1 leading-relaxed">
-              By continuing, your contact details become visible to the recruitment partner via WhatsApp, and your pre-qualification answers are processed for job placement purposes.{" "}
-              <a href="/privacy" className="underline hover:text-gray-400" target="_blank" rel="noopener">Privacy Policy</a>
             </p>
           </>
         )}

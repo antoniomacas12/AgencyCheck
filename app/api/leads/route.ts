@@ -11,13 +11,19 @@ import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
+// GDPR consent versioning — bump CONSENT_VERSION whenever consent checkbox wording changes
+// Bump PRIVACY_POLICY_VERSION whenever the privacy page content changes significantly
+const CONSENT_VERSION        = "2026-08-v1";
+const PRIVACY_POLICY_VERSION = "2026-08";
+
 // ─── Allowed values ────────────────────────────────────────────────────────────
 
 const ALLOWED_SOURCE_TYPES = new Set([
   "jobs_with_housing", "job_page", "agency_page", "general_apply",
-  "rent_calculator",       // tool lead capture — /tools/rent-calculator
-  "reachtruck_apply",      // dedicated job ad — /apply/reachtruck
-  "candidate_homepage",    // homepage candidate form — /
+  "rent_calculator",                // tool lead capture — /tools/rent-calculator
+  "reachtruck_apply",               // dedicated job ad — /apply/reachtruck
+  "candidate_homepage",             // homepage candidate form — / (pre-consent version)
+  "candidate_homepage_consent",     // homepage candidate form — / (with explicit consent checkbox)
 ]);
 const ALLOWED_WORK_TYPES = new Set([
   "logistics", "production", "greenhouse", "driving", "cleaning", "construction", "any",
@@ -112,13 +118,14 @@ export async function POST(req: NextRequest) {
   // (Art. 6(1)(b) — steps at the data subject's request prior to a contract).
   // Historical leads (pre-Phase-18) will have null — no backfill.
   const GDPR_BASIS_MAP: Record<string, string> = {
-    "general_apply":      "consent_art6a",
-    "candidate_homepage": "precontract_art6b",
-    "job_page":           "precontract_art6b",
-    "agency_page":        "precontract_art6b",
-    "jobs_with_housing":  "precontract_art6b",
-    "reachtruck_apply":   "precontract_art6b",
-    "rent_calculator":    "precontract_art6b",
+    "general_apply":               "consent_art6a",
+    "candidate_homepage":          "precontract_art6b",
+    "candidate_homepage_consent":  "consent_art6a",
+    "job_page":                    "precontract_art6b",
+    "agency_page":                 "precontract_art6b",
+    "jobs_with_housing":           "precontract_art6b",
+    "reachtruck_apply":            "precontract_art6b",
+    "rent_calculator":             "precontract_art6b",
   };
   const gdprLawfulBasis = GDPR_BASIS_MAP[sourceType] ?? null;
   const gdprConsentAt   = gdprLawfulBasis === "consent_art6a" ? new Date() : null;
@@ -148,12 +155,11 @@ export async function POST(req: NextRequest) {
         status: "new",
         tags:             JSON.stringify(tags),
         assignedAgencies: JSON.stringify([]),
-        // GDPR accountability (Phase 18)
-        // @ts-expect-error — these columns exist in schema.prisma but the Prisma
-        // client types are stale. Run `npx prisma generate` after applying
-        // prisma/gdpr_phase18_accountability.sql to resolve this.
+        // GDPR accountability (Phase 18 + 19)
         gdprLawfulBasis,
         gdprConsentAt,
+        gdprConsentVersion:       gdprLawfulBasis === "consent_art6a" ? CONSENT_VERSION : null,
+        gdprPrivacyPolicyVersion: gdprLawfulBasis === "consent_art6a" ? PRIVACY_POLICY_VERSION : null,
       },
     });
 

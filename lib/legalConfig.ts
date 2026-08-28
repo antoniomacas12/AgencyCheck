@@ -1,107 +1,82 @@
 /**
- * ─────────────────────────────────────────────────────────────────────────────
- * LEGAL ENTITY CONFIGURATION — fill in before going live
- * ─────────────────────────────────────────────────────────────────────────────
+ * legalConfig.ts — Single source of truth for AgencyCheck legal identity.
  *
- * Dutch law (Wet elektronische handel / EU E-Commerce Directive) requires
- * every commercial website to clearly display who operates it.
- * Under GDPR Art. 13/14 you must identify the data controller.
+ * AgencyCheck is operated by a Croatian sole proprietorship (obrt).
+ * All legal pages read from this file. Update here; pages update automatically.
  *
- * HOW TO FILL THIS IN:
- *   1. Register your business at kvk.nl if you haven't already.
- *   2. Replace each TODO value below with your real details.
- *   3. If you are a sole trader (eenmanszaak), company name = your trading name.
- *   4. VAT (BTW) number is only required if you are VAT-registered.
- *      Individual workers / small operators often qualify for the KOR exemption.
- *   5. Redeploy after updating — changes go live in Footer + Privacy + Terms.
- *
- * ─────────────────────────────────────────────────────────────────────────────
+ * IMPORTANT: Do not hardcode legal entity details in page components.
  */
 
 export const LEGAL = {
-  /** Trading / brand name displayed on the website */
-  brandName: "AgencyCheck",
+  brandName:   "AgencyCheck",
+  legalName:   "AgencyCheck, obrt za poslovne usluge, vl. Antonio Maćaš",
+  ownerName:   "Antonio Maćaš",
+  legalForm:   "Obrt (Croatian sole proprietorship)",
 
-  /**
-   * Full legal entity name — sole trader (eenmanszaak).
-   * Required by Dutch law (Wet elektronische handel) on Footer, Privacy, and Terms pages.
-   */
-  legalName: "Antonio Macas h.o.d.n. AgencyCheck",
+  // Croatian business registration
+  oib:                 "59683153877",       // Osobni identifikacijski broj
+  mbo:                 "99352117",           // Matični broj obrta
+  obrtnicaNumber:      "14010402288",        // Obrtnica number
+  registrationDate:    "19 August 2026",
+  registrationRegister: "Obrtni registar Republike Hrvatske",
+  nkdCode:             "78.10.0",
+  nkdDescription:      "Djelatnosti agencija za zapošljavanje",
 
-  /**
-   * KvK (Kamer van Koophandel) registration number — 8 digits.
-   * TODO: Replace with your number once registration is confirmed at kvk.nl.
-   */
-  kvkNumber: "",               // ← ADD when KvK registration is confirmed
-
-  /**
-   * BTW (VAT) identification number. Format: NL000000000B01
-   * Leave empty string if you are exempt (KOR / not VAT-registered).
-   * At current revenue levels KOR exemption likely applies — leave empty until advised otherwise.
-   */
-  vatNumber: "",               // leave empty if KOR-exempt
-
-  /**
-   * Registered business address — required by Dutch law on commercial websites.
-   */
   address: {
-    street:  "Nicolaas Beetsstraat 50B",
-    city:    "Schiedam",
-    postcode: "3117 ST",
-    country: "Netherlands",
+    street:   "Vijenac Salomona Henricha Gutmanna 5A",
+    city:     "Belišće",
+    postcode: "31551",
+    country:  "Croatia",
   },
 
-  /** Primary contact email (shown on About / Contact pages) */
+  // Contact (single inbox for now — create privacy@agencycheck.io alias when ready)
   emailGeneral:  "hello@agencycheck.io",
   emailPrivacy:  "hello@agencycheck.io",
   emailLegal:    "hello@agencycheck.io",
   emailAgencies: "hello@agencycheck.io",
 
-  /** Website URL */
   siteUrl: "https://agencycheck.io",
+
+  // Croatian GDPR supervisory authority
+  supervisoryAuthority: {
+    name:    "Agencija za zaštitu osobnih podataka (AZOP)",
+    website: "https://azop.hr",
+    // Verified 28 Aug 2026 — "Zahtjev za utvrđivanje povrede prava" is the correct complaint form
+    complaintUrl: "https://azop.hr/zahtjev-za-utvrdivanje-povrede-prava/",
+  },
+
+  // Ministry of Labour registration — PENDING, do not display until confirmed
+  // Once confirmation arrives, fill this object and set pending: false
+  ministryRegistration: {
+    pending: true,
+    authorityName:       "" as string,
+    registrationNumber:  "" as string,
+    registrationDate:    "" as string,
+  },
+
+  /**
+   * ACCOUNTING RETENTION — Croatian legal requirement.
+   *
+   * Zakon o računovodstvu (Croatian Accounting Act, NN 78/15 and amendments)
+   * specifies retention periods for accounting records.
+   *
+   * DEPLOYMENT BLOCKER: confirm the exact period with a Croatian accountant or lawyer
+   * before relying on this constant in automated deletion logic.
+   *
+   * Placeholder: null — automated deletion of financial records is BLOCKED
+   * until this is set to a verified number.
+   *
+   * When confirmed, set to the number of years (e.g. 11) and remove this comment.
+   */
+  accountingRetentionYears: null as number | null,
+
+  /**
+   * CANDIDATE PERSONAL DATA RETENTION — GDPR Art. 5(1)(e) storage limitation.
+   * Unplaced leads: 12 months from submission.
+   * Placed leads: personal data anonymised after 12 months; financial records
+   * retained for accountingRetentionYears (when confirmed).
+   */
+  candidateDataRetentionMonths: 12,
 } as const;
 
-/**
- * Returns true when KvK number has been filled in.
- * Address and legal name are already set — only KvK is still pending.
- */
-export const isLegalConfigComplete = (): boolean =>
-  LEGAL.kvkNumber.length > 0;
-
-/**
- * ─────────────────────────────────────────────────────────────────────────────
- * WHEN SWITCHING TO A CROATIAN OBRT — locations requiring update:
- * ─────────────────────────────────────────────────────────────────────────────
- *
- * 1. THIS FILE (lib/legalConfig.ts):
- *    - legalName:  e.g. "Antonio Macas obrt AgencyCheck"
- *    - kvkNumber:  replace with Croatian OIB (osobni identifikacijski broj), 11 digits
- *    - vatNumber:  Croatian PDV number (format: HR + OIB), if VAT-registered
- *    - address:    Croatian registered address (street, city, postcode, country: "Croatia")
- *    - emailGeneral / emailPrivacy / emailLegal / emailAgencies: update if changed
- *
- * 2. app/transparency/page.tsx — line ~99:
- *    HARDCODED string: { label: "Legal form", value: "Eenmanszaak (sole trader)" }
- *    → Change to: "Obrt (sole trader)" and remove KvK reference in same block
- *    → The "Verify at kvk.nl" link also needs updating to Croatian register (sud.hr or obrt.hr)
- *
- * 3. app/transparency/page.tsx — GDPR supervisory authority references:
- *    Dutch authority (Autoriteit Persoonsgegevens) referenced in Sections 7, 8, and dispute section.
- *    If data controller moves to Croatia, lead supervisory authority becomes AZOP
- *    (Agencija za zaštitu osobnih podataka — azop.hr). Update all AP references.
- *
- * 4. app/privacy/page.tsx — Section 7:
- *    "lodge a complaint with the Dutch data protection authority" → update to AZOP
- *
- * 5. app/terms/page.tsx — Section 10 (governing law):
- *    "laws of the Netherlands" + "Rechtbank Rotterdam" → update to Croatian law + competent court
- *
- * 6. app/transparency/page.tsx — dispute section:
- *    "Rechtbank Rotterdam" → update to Croatian court
- *
- * 7. app/transparency/page.tsx — "Wet elektronische handel" reference:
- *    → Replace with Croatian equivalent (Zakon o elektroničkoj trgovini) or EU E-Commerce Directive directly
- *
- * DO NOT update any of the above until you have the confirmed Croatian obrt registration details.
- * ─────────────────────────────────────────────────────────────────────────────
- */
+export type LegalConfig = typeof LEGAL;

@@ -66,6 +66,17 @@ export async function GET(req: NextRequest) {
       include: { sends: { orderBy: { createdAt: "desc" }, take: 1 } },
     });
 
+    // Audit log — GDPR Art. 5(2) accountability for bulk PII export
+    await prisma.adminExportLog.create({
+      data: {
+        exportType: "leads",
+        filters:    JSON.stringify({ status, sourceType, q: q ?? null }),
+        rowCount:   leads.length,
+        actorId:    "admin",
+        ipAddress:  req.headers.get("x-forwarded-for") ?? null,
+      },
+    }).catch(() => { /* do not fail export if log write fails */ });
+
     const HEADER = row([
       "ID", "Submitted", "Status",
       "Full Name", "Phone", "Email", "WhatsApp Same",

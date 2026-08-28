@@ -31,11 +31,9 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">1. Who we are (data controller)</h2>
           <p className="mb-2">
-            AgencyCheck is operated by {LEGAL.legalName}
-            {LEGAL.kvkNumber ? `, KvK ${LEGAL.kvkNumber}` : ""}.
-            {LEGAL.address.street
-              ? ` Registered address: ${LEGAL.address.street}, ${LEGAL.address.postcode} ${LEGAL.address.city}, ${LEGAL.address.country}.`
-              : ""}
+            AgencyCheck is operated by {LEGAL.legalName}.
+            OIB: {LEGAL.oib}.
+            Registered address: {LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}, {LEGAL.address.country}.
           </p>
           <p>
             We are the data controller for all personal data processed through{" "}
@@ -285,10 +283,13 @@ export default function PrivacyPage() {
                 {[
                   { type: "Worker reviews & salary reports", period: "5 years from submission (or until deletion request)", reason: "Legitimate interest in maintaining a useful historical record for workers" },
                   { type: "Review photos", period: "5 years from submission (or until deletion request)", reason: "Same as review; photos are part of the review record" },
-                  { type: "Job interest / lead form data", period: "Up to 12 months from submission", reason: "Sufficient time for agency follow-up; deleted on request at any time; manual review at retention date" },
+                  { type: "Job interest / lead form data (unplaced)", period: "Up to 12 months from submission", reason: "Sufficient time for agency follow-up; deleted on request at any time; manual review at retention date" },
+                  { type: "Job interest / lead form data (placed — personal data)", period: "Anonymised after 12 months", reason: "Financial/accounting records retained separately per Croatian accounting law (period pending legal verification)" },
                   { type: "Contact form emails", period: "12 months from last correspondence", reason: "Proportionate to the purpose of responding to enquiries" },
                   { type: "Server logs (Vercel)", period: "30 days (Vercel default)", reason: "Security and performance monitoring; see Vercel privacy policy" },
-                  { type: "Anonymised analytics (Vercel Analytics)", period: "Indefinite — no personal data retained", reason: "Aggregated statistics only; not personal data under GDPR" },
+                  { type: "Vercel Analytics", period: "90-day rolling window", reason: "Vercel Analytics retains data per its own platform policy. Aggregated analytics data contains no personal data." },
+                  { type: "Candidate reliability notes", period: "Maximum 12 months", reason: "Unless required for active legal/security matter" },
+                  { type: "Restriction / blocked attempt logs", period: "12 months", reason: "No IP addresses stored in these records (data minimisation)" },
                 ].map((r) => (
                   <tr key={r.type}>
                     <td className="px-3 py-2 font-medium text-gray-700">{r.type}</td>
@@ -324,17 +325,46 @@ export default function PrivacyPage() {
           <p className="mt-3">
             To exercise any of these rights, email{" "}
             <a href={`mailto:${LEGAL.emailPrivacy}`} className="text-brand-600 underline">{LEGAL.emailPrivacy}</a>.
-            We will respond within 30 days. You also have the right to lodge a complaint with the Dutch
+            We will respond within 30 days. You also have the right to lodge a complaint with the Croatian
             data protection authority:{" "}
-            <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">
-              Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl)
-            </a>.
+            <a href={LEGAL.supervisoryAuthority.website} target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">
+              Agencija za zaštitu osobnih podataka (AZOP)
+            </a>{" "}
+            (complaint form:{" "}
+            <a href={LEGAL.supervisoryAuthority.complaintUrl} target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">
+              azop.hr/zahtjev-za-utvrdivanje-povrede-prava
+            </a>).
           </p>
           <p className="mt-3 text-sm text-gray-500">
             <strong className="text-gray-700">Internal accountability records:</strong> When you exercise a right
             to restriction or erasure, we maintain an internal record of that action for GDPR accountability
             purposes (Art. 5(2) — accountability principle). These records are not shared with third parties
             and are retained for up to 3 years solely to demonstrate compliance.
+          </p>
+        </section>
+
+        {/* 7a — Candidate reliability notes */}
+        <section>
+          <h2 className="text-base font-bold text-gray-900 mb-3">7a. Candidate reliability notes</h2>
+          <p>
+            AgencyCheck administrators may create internal reliability notes on candidate interactions
+            for recruitment quality purposes. These records contain no special-category data. They are
+            retained for a maximum of 12 months unless required for an active legal matter. You may
+            request access, correction, or deletion of any such records by contacting{" "}
+            <a href={`mailto:${LEGAL.emailPrivacy}`} className="text-brand-600 underline">{LEGAL.emailPrivacy}</a>.
+          </p>
+        </section>
+
+        {/* 7b — Candidate restrictions */}
+        <section>
+          <h2 className="text-base font-bold text-gray-900 mb-3">7b. Candidate restrictions</h2>
+          <p>
+            Where AgencyCheck identifies abuse or misuse, we maintain an internal record of the phone
+            number and reason for restriction. We retain these records for up to 12 months. We do not
+            store IP addresses or browser identifiers in these restriction records (data minimisation).
+            You may contact{" "}
+            <a href={`mailto:${LEGAL.emailPrivacy}`} className="text-brand-600 underline">{LEGAL.emailPrivacy}</a>{" "}
+            if you believe a restriction record about you is inaccurate.
           </p>
         </section>
 
@@ -345,7 +375,7 @@ export default function PrivacyPage() {
             We use industry-standard security measures including encryption in transit (HTTPS),
             access controls, and hosting on Vercel&apos;s infrastructure. No system is completely
             secure. In the event of a data breach affecting personal data, we will notify
-            affected users and the Autoriteit Persoonsgegevens as required by GDPR Art. 33–34.
+            affected users and the Agencija za zaštitu osobnih podataka (AZOP) as required by GDPR Art. 33–34.
           </p>
         </section>
 
@@ -361,7 +391,7 @@ export default function PrivacyPage() {
             </a>.
           </p>
           <p className="mb-3">
-            Our database (Neon / PostgreSQL) runs in the EU region (AWS eu-west-1, Ireland).
+            Our database (Supabase / PostgreSQL) runs in the EU region.
             Error monitoring (Sentry) and transactional email (Resend) are operated by US-based
             companies; both comply with EU SCCs.
           </p>

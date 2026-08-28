@@ -118,7 +118,7 @@ export async function POST(
       const agency = agenciesToSend[i];
       const result = results[i];
 
-      await prisma.leadSend.create({
+      const sendRecord = await prisma.leadSend.create({
         data: {
           leadId:       params.id,
           agencySlug:   agency.slug,
@@ -129,6 +129,30 @@ export async function POST(
           errorMsg:     result.error ?? null,
           emailSubject: result.emailSubject,
           emailBody:    result.emailBody,
+        },
+      });
+
+      // GDPR Art. 5(2) — accountability trail for candidate data sharing
+      // Determine which personal fields were actually populated and sent
+      const sharedFields = (
+        ["fullName","phone","email","nationality","currentCountry","alreadyInNL",
+         "preferredWorkType","preferredRegion","accommodationNeeded","driversLicense",
+         "canWorkWeekends","experienceLevel","availableFrom","notes","internalNotes"] as const
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ).filter(f => (lead as any)[f] != null && (lead as any)[f] !== "" && (lead as any)[f] !== false);
+
+      await prisma.leadSharingEvent.create({
+        data: {
+          leadId:       lead.id,
+          leadSendId:   sendRecord.id,
+          partnerName:  agency.name,
+          partnerEmail: agency.email ?? null,
+          partnerSlug:  agency.slug ?? null,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          lawfulBasis:  (lead as any).gdprLawfulBasis ?? "precontract_art6b",
+          purposeNote:  "Candidate application forwarded to recruitment partner via admin.",
+          sharedByAdmin: "admin",
+          dataFields:   JSON.stringify(sharedFields),
         },
       });
     }

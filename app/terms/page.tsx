@@ -30,9 +30,8 @@ export default function TermsPage() {
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">1. About the platform</h2>
           <p className="mb-2">
-            AgencyCheck is operated by {LEGAL.legalName}
-            {LEGAL.kvkNumber ? `, KvK ${LEGAL.kvkNumber}` : ""}, an informational platform
-            providing transparency data about employment agencies in the Netherlands. Content
+            AgencyCheck is operated by {LEGAL.legalName} (OIB: {LEGAL.oib}), an informational platform
+            providing transparency data about employment agencies. Content
             includes agency research profiles, worker-submitted reviews, salary reports, and
             issue reports. All content is for informational purposes only.
           </p>
@@ -296,8 +295,9 @@ export default function TermsPage() {
           <p className="text-xs text-gray-500">
             AgencyCheck is a micro/small enterprise as defined by DSA Art. 33. This reporting
             mechanism does not limit your right to report content directly to national authorities
-            or the Digital Services Coordinator (in the Netherlands: Autoriteit Consument en
-            Markt / ACM).
+            or the relevant Digital Services Coordinator.{/* TODO: verify Croatian DSC authority and update before launch */}
+            {" "}The competent Digital Services Coordinator for Croatia is [PENDING VERIFICATION — Croatian DSC authority to be confirmed].
+            This note will be updated once the competent authority has been officially designated.
           </p>
         </section>
 
@@ -305,9 +305,10 @@ export default function TermsPage() {
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">11. Governing law</h2>
           <p>
-            These terms are governed by the laws of the Netherlands. Any disputes shall be subject
-            to the exclusive jurisdiction of the Rechtbank Rotterdam, Netherlands, unless mandatory
-            consumer protection law in your country of residence provides otherwise.
+            These Terms and any disputes arising from use of this platform are governed by the laws
+            of the Republic of Croatia. Any disputes shall be subject to the jurisdiction of the
+            competent court in the Republic of Croatia, unless mandatory consumer protection law
+            in your country of residence provides otherwise.
           </p>
         </section>
 

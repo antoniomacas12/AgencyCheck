@@ -383,6 +383,8 @@ model Lead {
   gdprRestrictedReason     String?
   // gdprErasureRequestedAt: set when an Art. 17 erasure request is received
   gdprErasureRequestedAt   DateTime?
+  gdprConsentVersion       String?   // consent wording version e.g. "2026-08-v1"
+  gdprPrivacyPolicyVersion String?   // privacy policy version e.g. "2026-08"
 
   sends         LeadSend[]
   sharingEvents LeadSharingEvent[]
@@ -561,8 +563,6 @@ model RestrictionBlockedAttempt {
   attemptedJobId    String?
   attemptedJobTitle String?
   source            String   @default("AgencyCheck")
-  ipAddress         String?
-  userAgent         String?
   createdAt         DateTime @default(now()) @db.Timestamptz(6)
 
   @@index([restrictionId], name: "rba_restriction_idx")
@@ -648,6 +648,17 @@ model LeadSharingEvent {
   @@index([leadId])
   @@index([createdAt])
   @@map("lead_sharing_events")
+}
+
+model AdminExportLog {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  exportType  String   @default("leads")   // "leads" | "reviews" etc.
+  filters     String   @default("{}")      // JSON of active filter params
+  rowCount    Int
+  actorId     String   @default("admin")   // admin identifier
+  ipAddress   String?                      // request IP — for audit only, not stored long-term
+  @@map("admin_export_logs")
 }
 
 // ─── Apply Funnel Events — step-by-step tracking of the apply modal ──────────

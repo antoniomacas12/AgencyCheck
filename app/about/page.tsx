@@ -383,12 +383,9 @@ export default function AboutPage() {
               </p>
             </div>
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">KvK registration</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Croatian business registration</p>
               <p className="text-gray-800">
-                {LEGAL.kvkNumber
-                  ? <><span className="font-mono font-bold">{LEGAL.kvkNumber}</span> — <a href={`https://www.kvk.nl/zoeken/?query=${LEGAL.kvkNumber}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Verify at kvk.nl ↗</a></>
-                  : <span className="text-amber-700 font-semibold">Registration in progress — number pending</span>
-                }
+                OIB: <span className="font-mono font-bold">{LEGAL.oib}</span> · MBO: {LEGAL.mbo} · {LEGAL.registrationRegister}
               </p>
             </div>
             <div>

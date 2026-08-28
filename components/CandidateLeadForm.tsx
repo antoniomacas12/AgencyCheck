@@ -27,6 +27,8 @@ export default function CandidateLeadForm() {
   const [hasForklift,      setHasForklift]       = useState(false);
   const [ownAccommodation, setOwnAccommodation] = useState<boolean | null>(null);
   const [ownTransport,     setOwnTransport]      = useState<boolean | null>(null);
+  const [gdprOk,           setGdprOk]           = useState(false);
+  const [gdprError,        setGdprError]        = useState(false);
   const [status,           setStatus]           = useState<Status>("idle");
   const [errorMsg,         setErrorMsg]         = useState("");
 
@@ -35,6 +37,10 @@ export default function CandidateLeadForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!isValid) return;
+    if (!gdprOk) {
+      setGdprError(true);
+      return;
+    }
     setStatus("loading");
     setErrorMsg("");
 
@@ -56,7 +62,7 @@ export default function CandidateLeadForm() {
           accommodationNeeded: ownAccommodation === false ? true : ownAccommodation === true ? false : undefined,
           driversLicense:     ownTransport === true ? true : ownTransport === false ? false : undefined,
           notes:              noteParts.length > 0 ? noteParts.join("; ") : undefined,
-          sourceType:         "candidate_homepage",
+          sourceType:         "candidate_homepage_consent",
           sourcePage:         "/",
           sourceLabel:        "Homepage candidate form",
         }),
@@ -252,6 +258,34 @@ export default function CandidateLeadForm() {
         </p>
       )}
 
+      {/* GDPR consent checkpoint — required before submit */}
+      <div className="space-y-2">
+        <label className="flex items-start gap-3 cursor-pointer group">
+          <input
+            type="checkbox"
+            checked={gdprOk}
+            onChange={(e) => { setGdprOk(e.target.checked); if (e.target.checked) setGdprError(false); }}
+            className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-white/10 accent-emerald-500"
+          />
+          <span className="text-[12px] text-gray-400 leading-relaxed">
+            I agree that AgencyCheck may use my application details to help match me with suitable job
+            opportunities and may share relevant information with selected recruitment/staffing partners
+            for this purpose. I have read the{" "}
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline text-emerald-400 hover:text-emerald-300">
+              Privacy Policy
+            </a>
+            . I can withdraw my consent at any time by contacting{" "}
+            <a href="mailto:hello@agencycheck.io" className="underline text-emerald-400 hover:text-emerald-300">
+              hello@agencycheck.io
+            </a>
+            .
+          </span>
+        </label>
+        {gdprError && (
+          <p className="text-red-400 text-[11px] pl-7">Please tick the box to continue.</p>
+        )}
+      </div>
+
       {/* Submit */}
       <button
         type="submit"
@@ -271,13 +305,6 @@ export default function CandidateLeadForm() {
 
       <p className="text-center text-gray-500 text-[11px] leading-relaxed">
         Free · No agency fees charged to candidates
-      </p>
-      <p className="text-center text-gray-600 text-[11px] leading-relaxed mt-1">
-        AgencyCheck uses your application details to help match you with suitable job opportunities.
-        Relevant information may be shared with selected recruitment/staffing partners who may contact you about suitable roles.{" "}
-        <a href="/privacy" className="underline hover:text-gray-400">Privacy Policy</a>
-        {" · "}
-        <a href="/privacy#rights" className="underline hover:text-gray-400">Your rights</a>
       </p>
 
     </form>
