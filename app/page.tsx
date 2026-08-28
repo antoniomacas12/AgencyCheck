@@ -480,6 +480,32 @@ export default async function HomePage() {
                 </div>
               </div>
 
+              {/* ── Hospitality quick-links ───────────────────────────── */}
+              <div className="mt-4 w-full rounded-2xl border border-sky-500/20 bg-sky-500/[0.04] px-4 py-3">
+                <p className="text-[10px] font-black uppercase tracking-widest text-sky-500/70 mb-2.5">
+                  🏨 New · Hospitality Jobs — Netherlands
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {[
+                    { href: "/apply/cook-chef-de-partie-netherlands",  icon: "👨‍🍳", title: "Cook / Chef de Partie", salary: "€17.99–€19.00/h", note: "Hotels & resorts · Housing ~€300/mo" },
+                    { href: "/apply/hotel-housekeeper-netherlands",     icon: "🏨",  title: "Hotel Housekeeper",     salary: "€17.99/h",          note: "4–5★ hotels · Housing ~€400/mo" },
+                  ].map((j) => (
+                    <Link
+                      key={j.href}
+                      href={j.href}
+                      className="flex items-start gap-2.5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.07] px-3 py-2.5 transition-colors"
+                    >
+                      <span className="text-[18px] shrink-0 mt-0.5">{j.icon}</span>
+                      <div className="min-w-0">
+                        <p className="text-white font-bold text-[12px] leading-snug truncate">{j.title}</p>
+                        <p className="text-emerald-400 text-[11px] font-black">{j.salary} gross</p>
+                        <p className="text-gray-600 text-[10px] leading-tight mt-0.5">{j.note}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
             </div>
 
             {/* ── Right: money card ──────────────────────────────────── */}
