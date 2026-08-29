@@ -293,36 +293,53 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
         <div className="border-t border-white/[0.07] pt-4">
           <div className="flex flex-wrap items-center gap-1.5 mb-2">
             <span className="inline-flex items-center gap-1 text-[10px] font-black bg-sky-500/15 text-sky-400 border border-sky-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
-              🏨 Hotels
+              🏨 New · Hotels
             </span>
             <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
               🏠 Housing incl.
             </span>
           </div>
-          <p className="text-[11px] text-gray-400 font-semibold mb-2">
+          <p className="text-[11px] text-gray-400 font-semibold mb-3">
             Hospitality · Hotels &amp; Resorts · Netherlands
           </p>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {HOTEL_JOBS.map((job) => (
               <div
                 key={job.slug}
-                className="rounded-xl border border-white/[0.10] bg-white/[0.03] px-3.5 py-3"
+                className="rounded-2xl border border-sky-500/20 bg-sky-500/[0.04] px-4 py-4"
               >
-                <div className="flex items-center justify-between gap-2 mb-1">
-                  <div className="flex items-center gap-1.5 min-w-0">
-                    <span className="text-[13px] shrink-0">{job.icon}</span>
-                    <p className="text-white font-bold text-[12px] leading-snug truncate">
+                {/* Title row */}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl shrink-0">{job.icon}</span>
+                  <div className="min-w-0">
+                    <p className="text-white font-extrabold text-[15px] leading-snug">
                       {job.title}
                     </p>
+                    <p className="text-sky-400 font-black text-[13px] mt-0.5">
+                      {job.salary}
+                    </p>
                   </div>
-                  <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
-                    {job.salary}
-                  </span>
                 </div>
-                <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
+                {/* Key details row */}
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {job.slug === "cook-chef-de-partie-netherlands" ? (
+                    <>
+                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏨 Hotels &amp; resorts</span>
+                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏠 ~€300/mo housing</span>
+                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🇪🇺 EU citizens</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">⭐ 4–5★ hotels</span>
+                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏠 ~€400/mo housing</span>
+                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🇪🇺 EU citizens</span>
+                    </>
+                  )}
+                </div>
                 <Link
                   href={job.href}
-                  className="flex items-center justify-center gap-1.5 w-full bg-white/[0.07] hover:bg-white/[0.12] border border-white/[0.10] text-gray-200 font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
+                  className="flex items-center justify-center gap-2 w-full bg-sky-500/[0.15] hover:bg-sky-500/[0.28] active:scale-[0.97] border border-sky-500/30 text-sky-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
+                  style={{ boxShadow: "0 2px 12px rgba(14,165,233,0.12)" }}
                 >
                   View &amp; Apply →
                 </Link>
