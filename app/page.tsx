@@ -488,25 +488,48 @@ export default async function HomePage() {
               </div>
 
               {/* ── Hospitality quick-links ───────────────────────────── */}
-              <div className="mt-4 w-full rounded-2xl border border-sky-500/20 bg-sky-500/[0.04] px-4 py-3">
-                <p className="text-[10px] font-black uppercase tracking-widest text-sky-500/70 mb-2.5">
+              <div className="mt-4 w-full rounded-2xl border border-sky-500/20 bg-sky-500/[0.04] px-4 py-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-sky-500/70 mb-3">
                   🏨 New · Hospitality Jobs — Netherlands
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="flex flex-col gap-3">
                   {[
-                    { href: "/apply/cook-chef-de-partie-netherlands",  icon: "👨‍🍳", title: "Cook / Chef de Partie", salary: "€17.99–€19.00/h", note: "Hotels & resorts · Housing ~€300/mo" },
-                    { href: "/apply/hotel-housekeeper-netherlands",     icon: "🏨",  title: "Hotel Housekeeper",     salary: "€17.99/h",          note: "4–5★ hotels · Housing ~€400/mo" },
+                    {
+                      href:   "/apply/cook-chef-de-partie-netherlands",
+                      icon:   "👨‍🍳",
+                      title:  "Cook / Chef de Partie",
+                      salary: "€17.99–€19.00/h gross",
+                      tags:   ["🏨 Hotels & resorts", "🏠 Housing ~€300/mo", "🇪🇺 EU citizens"],
+                    },
+                    {
+                      href:   "/apply/hotel-housekeeper-netherlands",
+                      icon:   "🏨",
+                      title:  "Hotel Housekeeper",
+                      salary: "€17.99/h gross",
+                      tags:   ["⭐ 4–5★ hotels", "🏠 Housing ~€400/mo", "🇪🇺 EU citizens"],
+                    },
                   ].map((j) => (
                     <Link
                       key={j.href}
                       href={j.href}
-                      className="flex items-start gap-2.5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.07] px-3 py-2.5 transition-colors"
+                      className="group flex flex-col rounded-2xl border border-white/[0.10] bg-white/[0.03] hover:bg-white/[0.07] px-4 py-4 transition-colors"
                     >
-                      <span className="text-[18px] shrink-0 mt-0.5">{j.icon}</span>
-                      <div className="min-w-0">
-                        <p className="text-white font-bold text-[12px] leading-snug truncate">{j.title}</p>
-                        <p className="text-emerald-400 text-[11px] font-black">{j.salary} gross</p>
-                        <p className="text-gray-600 text-[10px] leading-tight mt-0.5">{j.note}</p>
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-4xl shrink-0">{j.icon}</span>
+                        <div className="min-w-0">
+                          <p className="text-white font-extrabold text-base leading-snug">{j.title}</p>
+                          <p className="text-sky-400 font-black text-sm mt-0.5">{j.salary}</p>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {j.tags.map((tag) => (
+                          <span key={tag} className="text-[11px] font-semibold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center justify-center gap-2 w-full bg-sky-500/[0.15] group-hover:bg-sky-500/[0.28] border border-sky-500/30 text-sky-200 font-black text-sm px-4 py-3 rounded-xl transition-all duration-150">
+                        View &amp; Apply →
                       </div>
                     </Link>
                   ))}
