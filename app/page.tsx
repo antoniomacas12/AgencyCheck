@@ -35,6 +35,8 @@ const HeroReviewInline            = nDynamic(() => import("@/components/HeroRevi
 const HomepageJobsCard            = nDynamic(() => import("@/components/HomepageJobsCard"),             { ssr: false });
 const DeliBarnHeroStrip           = nDynamic(() => import("@/components/DeliBarnHeroStrip"),            { ssr: false });
 const CandidateLeadForm           = nDynamic(() => import("@/components/CandidateLeadForm"),            { ssr: false });
+// LiveActivityFeed is pure client-side — no SSR value, load lazily
+const LiveActivityFeed            = nDynamic(() => import("@/components/LiveActivityFeed"),             { ssr: false });
 import JobsWithAccommodationSection from "@/components/JobsWithAccommodationSection";
 import FeaturedJobVerifiedPartner   from "@/components/FeaturedJobVerifiedPartner";
 import FeaturedJobDeliBarn          from "@/components/FeaturedJobDeliBarn";
@@ -391,7 +393,7 @@ export default async function HomePage() {
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center lg:justify-start mb-3">
                 <Link
-                  href="/jobs"
+                  href="/apply"
                   className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:scale-[0.97] transition-all duration-150 w-full sm:w-auto px-5 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-black text-white"
                   style={{ boxShadow: "0 0 0 1px rgba(52,211,153,0.35), 0 8px 36px rgba(52,211,153,0.25)" }}
                 >
@@ -456,8 +458,13 @@ export default async function HomePage() {
                 ))}
               </div>
 
+              {/* ── Live activity ticker ─────────────────────────────── */}
+              <div className="mt-4 w-full overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.02] px-3 py-2.5">
+                <LiveActivityFeed variant="ticker" maxItems={6} />
+              </div>
+
               {/* ── How it works ─────────────────────────────────────── */}
-              <div className="mt-6 w-full rounded-2xl border border-white/[0.08] bg-white/[0.03] px-5 py-4">
+              <div className="mt-4 w-full rounded-2xl border border-white/[0.08] bg-white/[0.03] px-5 py-4">
                 <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3">
                   How it works
                 </p>

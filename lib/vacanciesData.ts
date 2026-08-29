@@ -119,14 +119,14 @@ export const CAT_JOB_DESCRIPTIONS: Record<Category, { intro: string; duties: str
     extra: "Physical resilience in cold or wet environments is essential for most food roles. No prior Dutch language is needed. Some roles require a clean criminal record (VOG) due to food safety compliance requirements.",
   },
   hospitality: {
-    intro: "This hospitality role is based in the Netherlands or on a Greek island (Rhodes, Crete, or Kos). You will work in a hotel, resort, or catering environment with a legal employment contract. For Greek island roles, accommodation is included in the package.",
+    intro: "This hospitality role is based in the Netherlands. You will work in a hotel, resort, or catering environment with a legal employment contract. Accommodation is included or available as part of the employment package.",
     duties: [
       "Deliver professional service to international guests in a busy hospitality setting",
       "Follow house standards for hygiene, presentation, and guest interaction",
       "Communicate clearly with colleagues and supervisors in English",
       "Handle shift duties as assigned — service, prep, housekeeping, or kitchen support",
     ],
-    extra: "For island roles in Greece, accommodation and meals are typically included. For Dutch roles, experience in a similar position is expected. English is the primary working language; knowledge of other languages is a bonus.",
+    extra: "Experience in a similar hospitality position is expected. Accommodation is typically included in the package. English is the primary working language; knowledge of other languages is a bonus.",
   },
 };
 
