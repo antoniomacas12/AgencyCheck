@@ -521,29 +521,54 @@ export default function ApplyPreScreen({
               </div>
             </Question>
 
-            {/* Country input — shown only after clicking Yes */}
+            {/* Country quick-select — shown only after clicking Yes */}
             {euAnswer === "yes" && (
               <Question
                 label="Which EU country are you from?"
                 error={errors && (citizenship ?? "").trim().length < 2}
               >
-                <input
-                  type="text"
-                  value={citizenship ?? ""}
-                  onChange={(e) => setCitizenship(e.target.value as EUCountry)}
-                  placeholder="e.g. Poland, Romania, Bulgaria..."
-                  autoComplete="off"
-                  className={`
-                    block w-full bg-white/5 border rounded-xl
-                    px-4 py-3 text-white text-base placeholder-gray-600
-                    focus:outline-none transition-colors min-w-0
-                    ${(citizenship ?? "").trim().length >= 2
-                      ? "border-emerald-400/50"
-                      : errors
-                        ? "border-red-400/50"
-                        : "border-white/10 focus:border-emerald-400/50"}
-                  `}
-                />
+                {/* Common country quick-picks */}
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {["Romania", "Poland", "Bulgaria", "Croatia", "Hungary", "Czech Republic", "Slovakia", "Lithuania", "Latvia", "Estonia", "Slovenia", "Other EU"].map((c) => (
+                    <button
+                      key={c}
+                      type="button"
+                      onClick={() => {
+                        if (c === "Other EU") {
+                          setCitizenship("" as EUCountry);
+                        } else {
+                          setCitizenship(c as EUCountry);
+                        }
+                        setErrors(false);
+                      }}
+                      className={`
+                        px-3 py-1.5 rounded-full border text-[13px] font-semibold transition-all duration-100
+                        ${citizenship === c
+                          ? "border-emerald-400 bg-emerald-400/15 text-emerald-300"
+                          : "border-white/10 bg-white/5 text-gray-400 hover:border-emerald-400/40 hover:text-emerald-300"}
+                      `}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+                {/* Text input only shown when "Other EU" selected */}
+                {citizenship === "" && (
+                  <input
+                    type="text"
+                    value={citizenship ?? ""}
+                    onChange={(e) => setCitizenship(e.target.value as EUCountry)}
+                    placeholder="Type your EU country..."
+                    autoFocus
+                    autoComplete="off"
+                    className={`
+                      block w-full bg-white/5 border rounded-xl
+                      px-4 py-3 text-white text-base placeholder-gray-600
+                      focus:outline-none transition-colors min-w-0
+                      ${errors ? "border-red-400/50" : "border-white/10 focus:border-emerald-400/50"}
+                    `}
+                  />
+                )}
               </Question>
             )}
 
@@ -595,7 +620,7 @@ export default function ApplyPreScreen({
                 euAnswer === "yes" && (citizenship ?? "").trim().length >= 2
                   ? `Apply via WhatsApp (${(citizenship ?? "").trim()}) →`
                   : euAnswer === "yes"
-                    ? "Enter your country to continue"
+                    ? "Apply via WhatsApp →"
                     : euAnswer === "no" && nonEuPapers === "yes"
                       ? "Apply via WhatsApp →"
                       : euAnswer === "no" && nonEuPapers === "no"
