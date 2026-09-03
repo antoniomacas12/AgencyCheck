@@ -27,6 +27,7 @@ const CAT_T_KEY: Record<Category, string> = {
   automotive:  "vacatures.cat_automotive",
   food:        "vacatures.cat_food",
   hospitality: "vacatures.cat_hospitality",
+  cleaning:    "vacatures.cat_cleaning",
 };
 
 const BADGE_T_KEY: Record<Badge, string> = {

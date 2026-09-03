@@ -33,6 +33,7 @@ const NL_CAT: Record<Category, string> = {
   automotive:  "Automotive",
   food:        "Voedselproductie",
   hospitality: "Horeca & Hotel",
+  cleaning:    "Schoonmaak & Facilitair",
 };
 
 const NL_BADGE: Record<Badge, { label: string; color: string }> = {

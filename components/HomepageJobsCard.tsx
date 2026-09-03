@@ -67,6 +67,25 @@ const VP_JOBS = [
   },
 ] as const;
 
+const INTEGRALIS_JOBS = [
+  {
+    slug:   "production-worker-lupack-raalte",
+    title:  "Production Worker – Lupack",
+    salary: "€15.24–€17.37/hr gross",
+    note:   "Zwanenberg Food Group · Raalte · 2-shift · Accommodation avail.",
+    icon:   "🏭",
+    href:   "/apply/production-worker-lupack-raalte",
+  },
+  {
+    slug:   "window-cleaner-enschede",
+    title:  "Window Cleaner",
+    salary: "€16.08–€18.44/hr gross",
+    note:   "Enschede · Full-time or part-time · Experience required",
+    icon:   "🧹",
+    href:   "/apply/window-cleaner-enschede",
+  },
+] as const;
+
 const HOTEL_JOBS = [
   {
     slug:   "cook-chef-de-partie-netherlands",
@@ -340,6 +359,51 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
                   href={job.href}
                   className="flex items-center justify-center gap-2 w-full bg-sky-500/[0.15] hover:bg-sky-500/[0.28] active:scale-[0.97] border border-sky-500/30 text-sky-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
                   style={{ boxShadow: "0 2px 12px rgba(14,165,233,0.12)" }}
+                >
+                  View &amp; Apply →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Integralis Partner section ───────────────────────── */}
+        <div className="border-t border-white/[0.07] pt-4">
+          <div className="flex flex-wrap items-center gap-1.5 mb-2">
+            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-orange-500/15 text-orange-400 border border-orange-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+              🤝 Integralis Partner
+            </span>
+            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+              ✓ Verified
+            </span>
+          </div>
+          <p className="text-[11px] text-gray-400 font-semibold mb-3">
+            Integralis · Netherlands
+          </p>
+          <div className="space-y-3">
+            {INTEGRALIS_JOBS.map((job) => (
+              <div
+                key={job.slug}
+                className="rounded-2xl border border-orange-500/20 bg-orange-500/[0.04] px-4 py-4"
+              >
+                {/* Title row */}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl shrink-0">{job.icon}</span>
+                  <div className="min-w-0">
+                    <p className="text-white font-extrabold text-[15px] leading-snug">
+                      {job.title}
+                    </p>
+                    <p className="text-orange-400 font-black text-[13px] mt-0.5">
+                      {job.salary}
+                    </p>
+                  </div>
+                </div>
+                {/* Note */}
+                <p className="text-gray-500 text-[11px] mb-3">{job.note}</p>
+                <Link
+                  href={job.href}
+                  className="flex items-center justify-center gap-2 w-full bg-orange-500/[0.15] hover:bg-orange-500/[0.28] active:scale-[0.97] border border-orange-500/30 text-orange-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
+                  style={{ boxShadow: "0 2px 12px rgba(249,115,22,0.10)" }}
                 >
                   View &amp; Apply →
                 </Link>

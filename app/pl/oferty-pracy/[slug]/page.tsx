@@ -33,6 +33,7 @@ const PL_CAT: Record<Category, string> = {
   automotive:  "Motoryzacja",
   food:        "Produkcja spożywcza",
   hospitality: "Gastronomia i hotelarstwo",
+  cleaning:    "Sprzątanie i obsługa",
 };
 
 const PL_BADGE: Record<Badge, { label: string; color: string }> = {

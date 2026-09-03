@@ -11,7 +11,8 @@ export type Category =
   | "driving"
   | "automotive"
   | "food"
-  | "hospitality";
+  | "hospitality"
+  | "cleaning";
 
 export interface Vacancy {
   slug:      string;    // unique URL slug, e.g. "electrician-bodegraven"
@@ -33,6 +34,7 @@ export const CAT_LABELS: Record<Category, string> = {
   automotive:  "Automotive",
   food:        "Food Production",
   hospitality: "Hospitality",
+  cleaning:    "Cleaning & Facilities",
 };
 
 export const CAT_ICONS: Record<Category, string> = {
@@ -43,6 +45,7 @@ export const CAT_ICONS: Record<Category, string> = {
   automotive:  "🚗",
   food:        "🍖",
   hospitality: "🏨",
+  cleaning:    "🧹",
 };
 
 export const BADGE_META: Record<Badge, { label: string; color: string }> = {
@@ -127,6 +130,16 @@ export const CAT_JOB_DESCRIPTIONS: Record<Category, { intro: string; duties: str
       "Handle shift duties as assigned — service, prep, housekeeping, or kitchen support",
     ],
     extra: "Experience in a similar hospitality position is expected. Accommodation is typically included in the package. English is the primary working language; knowledge of other languages is a bonus.",
+  },
+  cleaning: {
+    intro: "This cleaning or facilities role is based in the Netherlands. You will work at commercial, residential, or public locations, delivering professional cleaning services with a legal Dutch employment contract from day one.",
+    duties: [
+      "Clean and maintain assigned locations according to quality and hygiene standards",
+      "Operate professional cleaning equipment safely and correctly",
+      "Follow client-specific instructions and checklists for each location",
+      "Report any damage, safety hazards, or quality issues to the supervisor",
+    ],
+    extra: "Prior cleaning experience is typically required. Physical fitness and reliability are essential. Most cleaning roles require no Dutch language skills — English or basic communication is sufficient.",
   },
 };
 
@@ -349,6 +362,30 @@ export const VACANCIES: Vacancy[] = [
     featured: true,
   },
 
+  // ── Integralis Partnership ────────────────────────────────────────────────
+  {
+    slug:     "production-worker-lupack-raalte",
+    t:        "Production Worker – Lupack",
+    c:        "production",
+    s:        "€15.24/hr base · €17.37/hr incl. 14% allowance",
+    sm:       609,
+    sx:       694,
+    l:        "Raalte, Netherlands",
+    b:        ["acc", "eng"],
+    featured: true,
+  },
+  {
+    slug:     "window-cleaner-enschede",
+    t:        "Window Cleaner",
+    c:        "cleaning",
+    s:        "€16.08–€18.44/hr gross",
+    sm:       643,
+    sx:       737,
+    l:        "Enschede, Netherlands",
+    b:        ["eng"],
+    featured: true,
+  },
+
   // ── Hospitality ───────────────────────────────────────────────────────────
   { slug: "housekeeper-netherlands",             t: "Housekeeper (1–2 yrs exp.)",                         c: "hospitality", s: "€17.65/h gross", sm: 706,  sx: 0,    l: "Amsterdam / Utrecht / Coast / Tilburg", b: [] },
   { slug: "cook-netherlands",                    t: "Cook (with experience)",                              c: "hospitality", s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
@@ -460,6 +497,8 @@ const CITY_META: Record<string, AddressMeta> = {
   "Kootwijkerbroek":       { streetAddress: "Kootwijkerbroek",        addressLocality: "Kootwijkerbroek",        addressRegion: "Gelderland",     postalCode: "3774" },
   "Losser":                { streetAddress: "Losser",                 addressLocality: "Losser",                 addressRegion: "Overijssel",     postalCode: "7581" },
   "Borculo":               { streetAddress: "Borculo",                addressLocality: "Borculo",                addressRegion: "Gelderland",     postalCode: "7271" },
+  "Raalte":                { streetAddress: "Raalte",                 addressLocality: "Raalte",                 addressRegion: "Overijssel",     postalCode: "8101" },
+  "Enschede":              { streetAddress: "Enschede",               addressLocality: "Enschede",               addressRegion: "Overijssel",     postalCode: "7511" },
   // ── Generic NL fallback ───────────────────────────────────────────────────────
   "Netherlands":           { streetAddress: "Amsterdam",              addressLocality: "Amsterdam",              addressRegion: "Noord-Holland", postalCode: "1011" },
 };
