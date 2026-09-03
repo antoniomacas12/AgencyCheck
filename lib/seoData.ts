@@ -124,6 +124,7 @@ export const CITIES: CityData[] = [
   { name: "Papendrecht",            slug: "papendrecht",            region: "Zuid-Holland",   population: 32000  },
   { name: "Prinsenbeek",            slug: "prinsenbeek",            region: "Noord-Brabant",  population: 10000  },
   { name: "Purmerend",              slug: "purmerend",              region: "Noord-Holland",  population: 81000  },
+  { name: "Raalte",                 slug: "raalte",                 region: "Overijssel",     population: 18500  },
   { name: "Rhenen",                 slug: "rhenen",                 region: "Utrecht",        population: 20000  },
   { name: "Rhoon",                  slug: "rhoon",                  region: "Zuid-Holland",   population: 17000  },
   { name: "Rijsenhout",             slug: "rijsenhout",             region: "Noord-Holland",  population: 4000   },
