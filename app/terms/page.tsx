@@ -299,10 +299,12 @@ export default function TermsPage() {
           <p className="text-xs text-gray-500">
             AgencyCheck is a micro/small enterprise as defined by DSA Art. 33. This reporting
             mechanism does not limit your right to report content directly to national authorities
-            or the competent Digital Services Coordinator designated by Croatia under the DSA.
-            Information on the Croatian DSA supervisory framework is available via the{" "}
-            <a href="https://eudigitalnc.eu" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">
-              EU Digital Services Coordinator network
+            or the Digital Services Coordinator. The competent Digital Services Coordinator in
+            Croatia is <strong>HAKOM</strong> (Croatian Regulatory Authority for Network Industries —
+            Hrvatska regulatorna agencija za mrežne djelatnosti). For more information,
+            visit{" "}
+            <a href="https://www.hakom.hr" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">
+              hakom.hr
             </a>.
           </p>
         </section>

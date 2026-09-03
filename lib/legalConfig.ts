@@ -29,7 +29,7 @@ export const LEGAL = {
     country:  "Croatia",
   },
 
-  // Contact (single inbox for now — create privacy@agencycheck.io alias when ready)
+  // Contact (single inbox — all enquiries via hello@agencycheck.io)
   emailGeneral:  "hello@agencycheck.io",
   emailPrivacy:  "hello@agencycheck.io",
   emailLegal:    "hello@agencycheck.io",
@@ -50,10 +50,14 @@ export const LEGAL = {
 
   // Ministry of Labour registration — confirmed 26 August 2026
   ministryRegistration: {
-    pending:              false,
-    authorityName:        "Croatian Ministry of Labour, Pension System, Family and Social Policy",
-    registrationDate:     "26 August 2026",
-    registrationNumber:   "" as string, // TODO: obtain exact register reference number if issued separately
+    confirmed:  true,
+    date:       "26 August 2026",
+    authority:  "Croatian Ministry of Labour, Pension System, Family and Social Policy",
+    // Croatian administrative document identifiers from the confirmation document.
+    // These are internal reference numbers only — NOT a separate business registration ID.
+    // Do NOT display these publicly; they are for internal record-keeping only.
+    klasa:      "102-02/26-03/31",
+    urbroj:     "524-04-01-02/3-26-2",
     /**
      * Approved wording (use exactly as written):
      * "AgencyCheck is registered in Croatia for employment-related activities and is entered

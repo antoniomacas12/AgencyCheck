@@ -171,7 +171,7 @@ const SECTIONS: Section[] = [
       { id: "j1", label: "legalConfig.ts — legalName confirmed (Croatian Obrt)", note: "EU E-Commerce Directive requires the real legal entity name on Footer, Privacy, and Terms pages. Current value: AgencyCheck, obrt za poslovne usluge, vl. Antonio Maćaš" },
       { id: "j2", label: "legalConfig.ts — OIB, MBO, obrtnicaNumber confirmed", note: "Croatian business identifiers for legal identity disclosure. OIB: 59683153877, MBO: 99352117, Obrtnica: 14010402288" },
       { id: "j3", label: "legalConfig.ts — Croatian address confirmed", note: "Registered business address required by EU E-Commerce Directive. Vijenac Salomona Henricha Gutmanna 5A, 31551 Belišće, Croatia." },
-      { id: "j4", label: "Verify Croatian DSC authority for DSA section", note: "The Digital Services Coordinator for Croatia is pending confirmation. Update app/terms/page.tsx when confirmed." },
+      { id: "j4", label: "Croatian DSC authority confirmed — HAKOM", note: "HAKOM (Hrvatska regulatorna agencija za mrežne djelatnosti) is the confirmed Digital Services Coordinator for Croatia. Updated in app/terms/page.tsx." },
       { id: "j5", label: "Verify Privacy Policy email addresses are correct", note: "emailPrivacy, emailLegal, emailAgencies all point to hello@agencycheck.io — ensure this inbox is monitored for GDPR requests." },
       { id: "j6", label: "Verify ABU/SNA certification data is current", note: "Check abu.nl/leden and sna.nl for any agencies listed as ABU/SNA certified. Data may have changed since research date." },
       { id: "j7", label: "Confirm hello@agencycheck.io responds within 30 days to GDPR requests", note: "Under GDPR Art. 12 you must respond to access/deletion requests within one month. Set up a process for this." },

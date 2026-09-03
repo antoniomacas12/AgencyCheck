@@ -53,8 +53,8 @@ export default function CookieNotice() {
         <p className="text-xs text-gray-600 leading-relaxed flex-1">
           <span className="font-semibold text-gray-800">We use one cookie</span> — to remember your
           language preference (EN / PL / RO). No advertising, no tracking, no analytics cookies.{" "}
-          <Link href="/privacy#cookies" className="text-brand-600 underline hover:text-brand-700">
-            Full details in our Privacy Policy
+          <Link href="/cookies" className="text-brand-600 underline hover:text-brand-700">
+            Full details in our Cookie Policy
           </Link>
           .
         </p>

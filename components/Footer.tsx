@@ -229,7 +229,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-500 text-xs">
               <li><Link href="/privacy"          className="hover:text-brand-600">{t("footer.privacy")}</Link></li>
               <li><Link href="/terms"            className="hover:text-brand-600">{t("footer.terms")}</Link></li>
-              <li><Link href="/privacy#cookies"  className="hover:text-brand-600">Cookie Policy</Link></li>
+              <li><Link href="/cookies"  className="hover:text-brand-600">Cookie Policy</Link></li>
             </ul>
           </div>
         </div>
@@ -309,7 +309,7 @@ export default function Footer() {
             <Link href="/transparency"  className="hover:text-brand-600">Legal transparency</Link>
             <Link href="/privacy"          className="hover:text-brand-600">{t("footer.privacy_link")}</Link>
             <Link href="/terms"            className="hover:text-brand-600">{t("footer.terms_link")}</Link>
-            <Link href="/privacy#cookies"  className="hover:text-brand-600">Cookies</Link>
+            <Link href="/cookies"  className="hover:text-brand-600">Cookies</Link>
           </div>
         </div>
       </div>
