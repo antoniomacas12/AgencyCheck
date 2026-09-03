@@ -227,8 +227,9 @@ export default function Footer() {
             </ul>
             <p className="font-semibold text-gray-800 mb-3">{t("footer.legal")}</p>
             <ul className="space-y-2 text-gray-500 text-xs">
-              <li><Link href="/privacy" className="hover:text-brand-600">{t("footer.privacy")}</Link></li>
-              <li><Link href="/terms"   className="hover:text-brand-600">{t("footer.terms")}</Link></li>
+              <li><Link href="/privacy"          className="hover:text-brand-600">{t("footer.privacy")}</Link></li>
+              <li><Link href="/terms"            className="hover:text-brand-600">{t("footer.terms")}</Link></li>
+              <li><Link href="/privacy#cookies"  className="hover:text-brand-600">Cookie Policy</Link></li>
             </ul>
           </div>
         </div>
@@ -284,14 +285,16 @@ export default function Footer() {
 
         {/* Legal entity strip — required by EU E-Commerce Directive */}
         <div className="border-t border-gray-100 pt-4 mb-3">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[10px] text-gray-300">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[10px] text-gray-300 mb-1.5">
             <span>{LEGAL.legalName}</span>
             <span>OIB: {LEGAL.oib}</span>
+            <span>MBO: {LEGAL.mbo}</span>
             {LEGAL.address.street
               ? <span>{LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}, {LEGAL.address.country}</span>
               : null}
             <a href={`mailto:${LEGAL.emailGeneral}`} className="hover:text-gray-400">{LEGAL.emailGeneral}</a>
           </div>
+          <p className="text-[10px] text-gray-300">{LEGAL.ministryWording.short}</p>
         </div>
 
         {/* Bottom bar */}
@@ -304,8 +307,9 @@ export default function Footer() {
             <Link href="/contact"       className="hover:text-brand-600">{t("footer.contact_link")}</Link>
             <Link href="/methodology"   className="hover:text-brand-600">Methodology</Link>
             <Link href="/transparency"  className="hover:text-brand-600">Legal transparency</Link>
-            <Link href="/privacy"       className="hover:text-brand-600">{t("footer.privacy_link")}</Link>
-            <Link href="/terms"         className="hover:text-brand-600">{t("footer.terms_link")}</Link>
+            <Link href="/privacy"          className="hover:text-brand-600">{t("footer.privacy_link")}</Link>
+            <Link href="/terms"            className="hover:text-brand-600">{t("footer.terms_link")}</Link>
+            <Link href="/privacy#cookies"  className="hover:text-brand-600">Cookies</Link>
           </div>
         </div>
       </div>

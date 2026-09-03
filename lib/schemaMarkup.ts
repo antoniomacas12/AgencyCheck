@@ -183,7 +183,9 @@ export function organizationSchema(): object {
     "@context":   "https://schema.org",
     "@type":      "Organization",
     "name":       "AgencyCheck",
+    "legalName":  "AgencyCheck, obrt za poslovne usluge, vl. Antonio Maćaš",
     "url":        BASE_URL,
+    "email":      "hello@agencycheck.io",
     "logo": {
       "@type":  "ImageObject",
       "url":    `${BASE_URL}/logo.png`,
@@ -193,8 +195,11 @@ export function organizationSchema(): object {
     "image":      `${BASE_URL}/logo.png`,
     "description": "Independent platform for agency workers in the Netherlands. Real take-home salary data, unfiltered worker reviews, and housing conditions for 150+ employment agencies.",
     "address": {
-      "@type":          "PostalAddress",
-      "addressCountry": "NL",
+      "@type":           "PostalAddress",
+      "streetAddress":   "Vijenac Salamona Henricha Gutmanna 5A",
+      "addressLocality": "Belišće",
+      "postalCode":      "31551",
+      "addressCountry":  "HR",
     },
     "areaServed": {
       "@type": "Country",

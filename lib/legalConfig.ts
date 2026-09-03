@@ -23,7 +23,7 @@ export const LEGAL = {
   nkdDescription:      "Djelatnosti agencija za zapošljavanje",
 
   address: {
-    street:   "Vijenac Salomona Henricha Gutmanna 5A",
+    street:   "Vijenac Salamona Henricha Gutmanna 5A",
     city:     "Belišće",
     postcode: "31551",
     country:  "Croatia",
@@ -45,13 +45,28 @@ export const LEGAL = {
     complaintUrl: "https://azop.hr/zahtjev-za-utvrdivanje-povrede-prava/",
   },
 
-  // Ministry of Labour registration — PENDING, do not display until confirmed
-  // Once confirmation arrives, fill this object and set pending: false
+  // Business activity start date
+  activityStartDate: "15 September 2026",
+
+  // Ministry of Labour registration — confirmed 26 August 2026
   ministryRegistration: {
-    pending: true,
-    authorityName:       "" as string,
-    registrationNumber:  "" as string,
-    registrationDate:    "" as string,
+    pending:              false,
+    authorityName:        "Croatian Ministry of Labour, Pension System, Family and Social Policy",
+    registrationDate:     "26 August 2026",
+    registrationNumber:   "" as string, // TODO: obtain exact register reference number if issued separately
+    /**
+     * Approved wording (use exactly as written):
+     * "AgencyCheck is registered in Croatia for employment-related activities and is entered
+     *  in the register maintained by the Croatian Ministry of Labour, Pension System, Family
+     *  and Social Policy."
+     * Short: "Registered in Croatia for employment-related activities."
+     */
+  },
+
+  // Approved ministry registration wording (do not paraphrase)
+  ministryWording: {
+    long:  "AgencyCheck is registered in Croatia for employment-related activities and is entered in the register maintained by the Croatian Ministry of Labour, Pension System, Family and Social Policy.",
+    short: "Registered in Croatia for employment-related activities.",
   },
 
   /**

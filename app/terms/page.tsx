@@ -30,10 +30,14 @@ export default function TermsPage() {
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">1. About the platform</h2>
           <p className="mb-2">
-            AgencyCheck is operated by {LEGAL.legalName} (OIB: {LEGAL.oib}), an informational platform
-            providing transparency data about employment agencies. Content
-            includes agency research profiles, worker-submitted reviews, salary reports, and
+            AgencyCheck is operated by {LEGAL.legalName} (OIB: {LEGAL.oib}),
+            registered address: {LEGAL.address.street}, {LEGAL.address.postcode} {LEGAL.address.city}, {LEGAL.address.country}.
+            AgencyCheck is an informational platform providing transparency data about employment agencies.
+            Content includes agency research profiles, worker-submitted reviews, salary reports, and
             issue reports. All content is for informational purposes only.
+          </p>
+          <p className="mb-2 text-xs text-gray-500">
+            {LEGAL.ministryWording.long}
           </p>
           <p>
             Questions about these terms:{" "}
@@ -295,9 +299,11 @@ export default function TermsPage() {
           <p className="text-xs text-gray-500">
             AgencyCheck is a micro/small enterprise as defined by DSA Art. 33. This reporting
             mechanism does not limit your right to report content directly to national authorities
-            or the relevant Digital Services Coordinator.{/* TODO: verify Croatian DSC authority and update before launch */}
-            {" "}The competent Digital Services Coordinator for Croatia is [PENDING VERIFICATION — Croatian DSC authority to be confirmed].
-            This note will be updated once the competent authority has been officially designated.
+            or the competent Digital Services Coordinator designated by Croatia under the DSA.
+            Information on the Croatian DSA supervisory framework is available via the{" "}
+            <a href="https://eudigitalnc.eu" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">
+              EU Digital Services Coordinator network
+            </a>.
           </p>
         </section>
 

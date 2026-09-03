@@ -392,6 +392,10 @@ export default function AboutPage() {
               <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">GDPR data controller</p>
               <p className="text-gray-800">{LEGAL.legalName} · <a href={`mailto:${LEGAL.emailPrivacy}`} className="text-blue-600 underline">{LEGAL.emailPrivacy}</a></p>
             </div>
+            <div className="sm:col-span-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Employment activity registration</p>
+              <p className="text-gray-800 text-xs">{LEGAL.ministryWording.long}</p>
+            </div>
           </div>
         </section>
 

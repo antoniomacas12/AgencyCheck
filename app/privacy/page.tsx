@@ -189,7 +189,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 4 — Cookies */}
-        <section>
+        <section id="cookies">
           <h2 className="text-base font-bold text-gray-900 mb-3">4. Cookies and local storage</h2>
           <p className="mb-3">
             AgencyCheck uses only the minimum necessary cookies and browser storage:
