@@ -4,9 +4,9 @@ import { WA_LINK } from "@/lib/whatsapp";
 import GateLink from "@/components/GateLink";
 
 export const metadata: Metadata = {
-  title: "Tempo-Team Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
+  title: "Tempo-Team Review Netherlands 2026 – Salary, Housing & Worker Experiences",
   description:
-    "Tempo-Team review Netherlands 2026. Workers keep €330–€385/week net after housing (€85–€113/wk), tax and transport. Real salary breakdown, housing quality, and how Tempo-Team compares to OTTO.",
+    "Workers at Tempo-Team Netherlands keep €330–€385/week net after housing (€85–€113/wk), tax and transport. Salary breakdown, housing quality and comparison with OTTO Workforce.",
   alternates: { canonical: "https://agencycheck.io/tempo-team-review" },
   openGraph: {
     title: "Tempo-Team Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
@@ -68,7 +68,7 @@ const breadcrumbSchema = {
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "Tempo-Team Review Netherlands (2026) – Salary, Housing & Real Worker Experiences",
+  headline: "Tempo-Team Review Netherlands 2026 – Salary, Housing & Worker Experiences",
   datePublished: "2026-03-28",
   dateModified:  "2026-04-10",
   author: {

@@ -3,9 +3,9 @@ import Link from "next/link";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schemaMarkup";
 
 export const metadata: Metadata = {
-  title: "Salário na Holanda Líquido 2026 — Quanto Sobra Realmente após Deduções",
+  title: "Salário Líquido na Holanda 2026 — €345–€380/semana Após Imposto e Alojamento",
   description:
-    "Calculadora de salário líquido na Holanda 2026. WML €14,71/hora. Quanto sobra depois de deduzir alojamento, imposto, seguro e transporte? Valores reais por tipo de trabalho: armazém, produção, estufa.",
+    "WML €14,71/hora em 2026. Após imposto, alojamento (~€95/sem) e seguro, trabalhadores ficam com €345–€380 líquido por semana. Valores reais para armazém, produção, estufa e reach truck.",
   keywords: [
     "salário Holanda líquido",
     "quanto se ganha na Holanda",

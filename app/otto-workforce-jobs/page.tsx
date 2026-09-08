@@ -6,7 +6,7 @@ import JobListCard from "@/components/JobListCard";
 export const metadata: Metadata = {
   title: "Otto Workforce Jobs Netherlands — Housing Included | AgencyCheck",
   description:
-    "Browse Otto Workforce vacancies in the Netherlands. Warehouse, production and logistics jobs with housing and transport included. Verified listings for EU foreign workers.",
+    "Otto Workforce warehouse, forklift and production jobs across Tilburg, Venlo and Breda. Housing near site and bus transport included. ABU-certified. Polish, Romanian and Bulgarian staff.",
   alternates: { canonical: "https://agencycheck.io/otto-workforce-jobs" },
   openGraph: {
     title: "Otto Workforce Jobs Netherlands — AgencyCheck",

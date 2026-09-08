@@ -186,7 +186,7 @@ function buildStub(slug: string): EnrichedAgency {
     jobFocus:              [],
     transparencyScore:     0,
     accommodation:         hasHousingReview ? "unverified_claim" : "unknown",
-    supportedCities:       [city],
+    supportedCities:       [city.toLowerCase().replace(/\s+/g, "-")],
     confidenceLevel:       "very_low",
   };
 }
