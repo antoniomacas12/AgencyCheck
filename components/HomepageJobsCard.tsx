@@ -67,6 +67,25 @@ const VP_JOBS = [
   },
 ] as const;
 
+const OPTION_A_JOBS = [
+  {
+    slug:   "auto-detailing-worker-netherlands",
+    title:  "Auto Detailing Worker",
+    salary: "€2,300–€2,400 NET/mo",
+    note:   "Amsterdam / Rotterdam · Private room €15/night · EU + Cat. B licence",
+    icon:   "🚗",
+    href:   "/apply/auto-detailing-worker-netherlands",
+  },
+  {
+    slug:   "tyre-fitter-netherlands",
+    title:  "Tyre Fitter",
+    salary: "€19.00–€20.50/hr gross",
+    note:   "Netherlands · Private room €15/night · Tyre exp. required · EU + Cat. B licence",
+    icon:   "🔧",
+    href:   "/apply/tyre-fitter-netherlands",
+  },
+] as const;
+
 const INTEGRALIS_JOBS = [
   {
     slug:   "production-worker-lupack-raalte",
@@ -404,6 +423,51 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
                   href={job.href}
                   className="flex items-center justify-center gap-2 w-full bg-orange-500/[0.15] hover:bg-orange-500/[0.28] active:scale-[0.97] border border-orange-500/30 text-orange-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
                   style={{ boxShadow: "0 2px 12px rgba(249,115,22,0.10)" }}
+                >
+                  View &amp; Apply →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Option A · Automotive section ───────────────────────── */}
+        <div className="border-t border-white/[0.07] pt-4">
+          <div className="flex flex-wrap items-center gap-1.5 mb-2">
+            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-violet-500/15 text-violet-400 border border-violet-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+              🚗 Option A · Automotive
+            </span>
+            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+              🏠 Housing Avail.
+            </span>
+          </div>
+          <p className="text-[11px] text-gray-400 font-semibold mb-3">
+            Option A · Automotive · Netherlands
+          </p>
+          <div className="space-y-3">
+            {OPTION_A_JOBS.map((job) => (
+              <div
+                key={job.slug}
+                className="rounded-2xl border border-violet-500/20 bg-violet-500/[0.04] px-4 py-4"
+              >
+                {/* Title row */}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl shrink-0">{job.icon}</span>
+                  <div className="min-w-0">
+                    <p className="text-white font-extrabold text-[15px] leading-snug">
+                      {job.title}
+                    </p>
+                    <p className="text-violet-400 font-black text-[13px] mt-0.5">
+                      {job.salary}
+                    </p>
+                  </div>
+                </div>
+                {/* Note */}
+                <p className="text-gray-500 text-[11px] mb-3">{job.note}</p>
+                <Link
+                  href={job.href}
+                  className="flex items-center justify-center gap-2 w-full bg-violet-500/[0.15] hover:bg-violet-500/[0.28] active:scale-[0.97] border border-violet-500/30 text-violet-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
+                  style={{ boxShadow: "0 2px 12px rgba(139,92,246,0.10)" }}
                 >
                   View &amp; Apply →
                 </Link>

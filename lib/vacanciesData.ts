@@ -386,6 +386,30 @@ export const VACANCIES: Vacancy[] = [
     featured: true,
   },
 
+  // ── Option A Partnership — Automotive ────────────────────────────────────
+  {
+    slug:     "auto-detailing-worker-netherlands",
+    t:        "Auto Detailing Worker – Option A",
+    c:        "automotive",
+    s:        "€2,300–€2,400 net/mo",
+    sm:       531,
+    sx:       554,
+    l:        "Amsterdam / Rotterdam, Netherlands",
+    b:        ["acc_ask", "eng"],
+    featured: true,
+  },
+  {
+    slug:     "tyre-fitter-netherlands",
+    t:        "Tyre Fitter – Option A",
+    c:        "automotive",
+    s:        "€19.00–€20.50/hr gross",
+    sm:       760,
+    sx:       820,
+    l:        "Netherlands",
+    b:        ["acc_ask", "eng"],
+    featured: true,
+  },
+
   // ── Hospitality ───────────────────────────────────────────────────────────
   { slug: "housekeeper-netherlands",             t: "Housekeeper (1–2 yrs exp.)",                         c: "hospitality", s: "€17.65/h gross", sm: 706,  sx: 0,    l: "Amsterdam / Utrecht / Coast / Tilburg", b: [] },
   { slug: "cook-netherlands",                    t: "Cook (with experience)",                              c: "hospitality", s: "—",              sm: 0,    sx: 0,    l: "Netherlands",                       b: [] },
