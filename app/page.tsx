@@ -340,13 +340,23 @@ export default async function HomePage() {
             {/* ── Left: copy ─────────────────────────────────────────── */}
             <div className="hero-col-left flex-1 min-w-0 w-full max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-6">
 
-              {/* Identity badge — max-w-full + overflow-hidden prevents the wide
-                  tracking-widest uppercase text from pushing past the mobile viewport */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-1.5 mb-3 max-w-full overflow-hidden">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                <span className="text-[11px] font-semibold tracking-widest uppercase text-gray-300 truncate">
-                  🇳🇱 Netherlands · {totalAgencies} agencies verified
-                </span>
+              {/* ── Leave a review nudge ─────────────────────────────── */}
+              <div className="w-full rounded-2xl border border-amber-400/20 bg-amber-400/[0.04] px-4 py-3.5 mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex shrink-0">
+                    {[1,2,3,4,5].map((s) => (
+                      <svg key={s} viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-amber-400">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-300 text-[12px] font-semibold flex-1 leading-snug">
+                    Worked with a Dutch agency?{" "}
+                    <Link href="/submit-review" className="text-amber-300 font-black hover:underline">
+                      Leave a review →
+                    </Link>
+                  </p>
+                </div>
               </div>
 
               {/* ── JOBS URGENCY BAR ───────────────────────────────── */}
@@ -582,33 +592,6 @@ export default async function HomePage() {
                       </div>
                     </Link>
                   ))}
-                </div>
-              </div>
-
-              {/* ── Leave a review nudge ─────────────────────────────── */}
-              <div className="mt-4 w-full rounded-2xl border border-amber-400/20 bg-amber-400/[0.04] px-4 py-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex shrink-0 mt-0.5">
-                    {[1,2,3,4,5].map((s) => (
-                      <svg key={s} viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-amber-400">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-white font-extrabold text-sm leading-snug mb-1">
-                      Worked with a Dutch agency?
-                    </p>
-                    <p className="text-gray-400 text-[12px] leading-relaxed mb-3">
-                      Your review helps other EU workers avoid bad agencies and find the good ones. Takes 2 minutes.
-                    </p>
-                    <Link
-                      href="/submit-review"
-                      className="inline-flex items-center gap-2 rounded-xl border border-amber-400/30 bg-amber-400/[0.10] hover:bg-amber-400/[0.20] text-amber-300 font-black text-[12px] px-4 py-2.5 transition-all duration-150"
-                    >
-                      ✍️ Leave a review →
-                    </Link>
-                  </div>
                 </div>
               </div>
 
