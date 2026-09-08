@@ -852,5 +852,46 @@
     "badge_acc": "Accommodation included",
     "badge_acc_ask": "Housing available",
     "badge_vog": "Certificate of Conduct (VOG)"
+  },
+  "cookie_notice": {
+    "text": "We use one cookie — to remember your language preference. No advertising, no tracking, no profiling.",
+    "policy_link": "Cookie Policy",
+    "btn": "OK, got it"
+  },
+  "et_costs": {
+    "label": "Good to know",
+    "headline": "ET Costs: You May Take Home More",
+    "subtitle_1": "Some international workers in the Netherlands can receive part of their compensation tax-free for eligible",
+    "subtitle_et": "extraterritorial costs",
+    "subtitle_2": "(ET costs). This can mean a higher net amount even when gross wages look similar.",
+    "example_label": "Illustrative example",
+    "example_period": "/week net",
+    "example_disclaimer": "Example only — not guaranteed. Actual ET reimbursement depends on your employer, contract and individual eligibility.",
+    "toggle_learn": "Learn how ET costs work",
+    "toggle_less": "Show less",
+    "detail_p1_bold": "\"ET costs\" means",
+    "detail_p1_span": "extraterritorial costs",
+    "detail_p1_rest": "— certain additional expenses related to working temporarily outside your home country.",
+    "detail_p2": "Under Dutch payroll rules, qualifying costs can in some situations be reimbursed tax-free by the employer. Examples can include certain relocation, temporary accommodation, travel or administrative costs — depending on the specific situation and applicable payroll rules.",
+    "detail_p3": "The exact arrangement differs between employers and recruitment agencies. AgencyCheck does not determine the ET reimbursement.",
+    "detail_p4": "Always confirm the exact ET arrangement with your recruiter or employer before accepting a job.",
+    "disclaimer": "ℹ️ Information is general only. Exact ET reimbursement depends on the employer, payroll arrangement and individual eligibility. AgencyCheck is not a tax adviser."
+  },
+  "hero_review": {
+    "header": "Worked with a Dutch agency? Leave a quick review.",
+    "agency_placeholder": "Agency name…",
+    "rating_label": "Overall rating:",
+    "rating_poor": "Poor",
+    "rating_below_avg": "Below average",
+    "rating_avg": "Average",
+    "rating_good": "Good",
+    "rating_excellent": "Excellent",
+    "comment_placeholder": "Share your experience — salary, housing, contract clarity…",
+    "btn_submit": "Submit review →",
+    "btn_submitting": "Submitting…",
+    "success_title": "Review published!",
+    "success_body": "Your experience is now live on the",
+    "success_link": "reviews page",
+    "error_msg": "Something went wrong — please try again."
   }
 }

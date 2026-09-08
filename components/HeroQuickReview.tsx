@@ -7,6 +7,7 @@
  */
 
 import { useState, useRef } from "react";
+import { useT, type Locale } from "@/lib/i18n";
 
 const STAR_PATH = "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z";
 
@@ -34,7 +35,13 @@ function StarPicker({ value, onChange }: { value: number; onChange: (v: number) 
   );
 }
 
-export default function HeroQuickReview() {
+interface Props {
+  locale?: Locale;
+}
+
+export default function HeroQuickReview({ locale = "en" }: Props) {
+  const t = useT(locale);
+
   const [agency, setAgency]     = useState("");
   const [comment, setComment]   = useState("");
   const [rating, setRating]     = useState(0);
@@ -45,6 +52,15 @@ export default function HeroQuickReview() {
 
   const showForm  = agency.trim().length >= 2;
   const canSubmit = showForm && comment.trim().length >= 10 && rating >= 1 && !loading;
+
+  const ratingLabels = [
+    "",
+    t("hero_review.rating_poor"),
+    t("hero_review.rating_below_avg"),
+    t("hero_review.rating_avg"),
+    t("hero_review.rating_good"),
+    t("hero_review.rating_excellent"),
+  ];
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -71,7 +87,7 @@ export default function HeroQuickReview() {
       if (!res.ok) throw new Error("Submit failed");
       setDone(true);
     } catch {
-      setError("Something went wrong — please try again.");
+      setError(t("hero_review.error_msg"));
     } finally {
       setLoading(false);
     }
@@ -83,10 +99,10 @@ export default function HeroQuickReview() {
         <div className="flex items-center gap-2.5">
           <span className="text-xl shrink-0">✅</span>
           <div>
-            <p className="text-white font-extrabold text-[13px] leading-snug">Review published!</p>
+            <p className="text-white font-extrabold text-[13px] leading-snug">{t("hero_review.success_title")}</p>
             <p className="text-gray-400 text-[11px] mt-0.5">
-              Your experience is now live on the{" "}
-              <a href="/reviews" className="text-emerald-400 font-bold hover:underline">reviews page</a>.
+              {t("hero_review.success_body")}{" "}
+              <a href="/reviews" className="text-emerald-400 font-bold hover:underline">{t("hero_review.success_link")}</a>.
             </p>
           </div>
         </div>
@@ -107,7 +123,7 @@ export default function HeroQuickReview() {
           ))}
         </div>
         <p className="text-gray-300 text-[12px] font-semibold">
-          Worked with a Dutch agency? Leave a quick review.
+          {t("hero_review.header")}
         </p>
       </div>
 
@@ -117,7 +133,7 @@ export default function HeroQuickReview() {
         value={agency}
         onChange={(e) => setAgency(e.target.value)}
         onFocus={() => setTimeout(() => textareaRef.current?.focus && showForm && textareaRef.current.focus(), 50)}
-        placeholder="Agency name…"
+        placeholder={t("hero_review.agency_placeholder")}
         maxLength={120}
         className="w-full rounded-xl border border-white/[0.10] bg-white/[0.05] text-white placeholder-gray-500 text-[13px] font-medium px-3.5 py-2.5 outline-none focus:border-amber-400/40 focus:bg-white/[0.07] transition-all mb-2"
       />
@@ -127,11 +143,11 @@ export default function HeroQuickReview() {
         <div className="space-y-2">
           {/* Star rating */}
           <div className="flex items-center gap-2">
-            <span className="text-[11px] text-gray-400 shrink-0">Overall rating:</span>
+            <span className="text-[11px] text-gray-400 shrink-0">{t("hero_review.rating_label")}</span>
             <StarPicker value={rating} onChange={setRating} />
             {rating > 0 && (
               <span className="text-[11px] text-amber-400 font-bold ml-1">
-                {["","Poor","Below average","Average","Good","Excellent"][rating]}
+                {ratingLabels[rating]}
               </span>
             )}
           </div>
@@ -141,7 +157,7 @@ export default function HeroQuickReview() {
             ref={textareaRef}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            placeholder="Share your experience — salary, housing, contract clarity…"
+            placeholder={t("hero_review.comment_placeholder")}
             rows={3}
             maxLength={1500}
             className="w-full rounded-xl border border-white/[0.10] bg-white/[0.05] text-white placeholder-gray-500 text-[12px] px-3.5 py-2.5 outline-none focus:border-amber-400/40 focus:bg-white/[0.07] transition-all resize-none"
@@ -154,7 +170,7 @@ export default function HeroQuickReview() {
             disabled={!canSubmit}
             className="w-full flex items-center justify-center gap-2 rounded-xl border border-amber-400/30 bg-amber-400/[0.12] hover:bg-amber-400/[0.22] disabled:opacity-40 disabled:cursor-not-allowed text-amber-300 font-black text-[12px] px-4 py-2.5 transition-all duration-150"
           >
-            {loading ? "Submitting…" : "✍️ Submit review →"}
+            {loading ? t("hero_review.btn_submitting") : `✍️ ${t("hero_review.btn_submit")}`}
           </button>
         </div>
       )}

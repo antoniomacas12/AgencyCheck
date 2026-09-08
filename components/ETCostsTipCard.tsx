@@ -10,17 +10,22 @@
  *   moreJobsOpen — when true the card fades out and becomes non-interactive
  *                  (controlled by the parent section so it never bleeds
  *                   through an expanded More Jobs panel).
+ *   locale       — current locale, defaults to "en"
  */
 
 import { useState } from "react";
+import { useT, type Locale } from "@/lib/i18n";
 
 interface Props {
   /** Pass true when any overlapping panel (e.g. More Jobs) is open */
   moreJobsOpen?: boolean;
+  /** Current locale — passed from HeroRightColumn */
+  locale?: Locale;
 }
 
-export default function ETCostsTipCard({ moreJobsOpen = false }: Props) {
+export default function ETCostsTipCard({ moreJobsOpen = false, locale = "en" }: Props) {
   const [expanded, setExpanded] = useState(false);
+  const t = useT(locale);
 
   // Visible = card is shown; hidden = faded out, non-interactive
   const visible = !moreJobsOpen;
@@ -46,36 +51,33 @@ export default function ETCostsTipCard({ moreJobsOpen = false }: Props) {
               <circle cx="12" cy="12" r="10" />
               <path strokeLinecap="round" d="M12 8h.01M12 12v4" />
             </svg>
-            Good to know
+            {t("et_costs.label")}
           </span>
         </div>
 
         {/* ── Headline ─────────────────────────────────────────────── */}
         <h3 className="text-white font-extrabold text-[15px] leading-snug mb-2">
-          ET Costs: You May Take Home More
+          {t("et_costs.headline")}
         </h3>
 
         {/* ── Subtitle — crawlable for SEO ─────────────────────────── */}
         <p className="text-gray-400 text-[12px] leading-relaxed mb-4">
-          Some international workers in the Netherlands can receive part of
-          their compensation tax-free for eligible{" "}
-          <span className="text-gray-300 font-semibold">extraterritorial costs</span>{" "}
-          (ET costs). This can mean a higher net amount even when gross wages
-          look similar.
+          {t("et_costs.subtitle_1")}{" "}
+          <span className="text-gray-300 font-semibold">{t("et_costs.subtitle_et")}</span>{" "}
+          {t("et_costs.subtitle_2")}
         </p>
 
         {/* ── Example figure ───────────────────────────────────────── */}
         <div className="rounded-xl border border-blue-400/20 bg-blue-400/[0.08] px-4 py-3.5 mb-3">
           <p className="text-[10px] font-black uppercase tracking-widest text-blue-400/70 mb-1">
-            Illustrative example
+            {t("et_costs.example_label")}
           </p>
           <p className="text-white font-black text-2xl leading-none mb-1">
             +€150
-            <span className="text-[13px] font-bold text-gray-400 ml-1">/week net</span>
+            <span className="text-[13px] font-bold text-gray-400 ml-1">{t("et_costs.example_period")}</span>
           </p>
           <p className="text-[11px] text-gray-500 leading-snug">
-            Example only — not guaranteed. Actual ET reimbursement depends on
-            your employer, contract and individual eligibility.
+            {t("et_costs.example_disclaimer")}
           </p>
         </div>
 
@@ -94,7 +96,7 @@ export default function ETCostsTipCard({ moreJobsOpen = false }: Props) {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
-          {expanded ? "Show less" : "Learn how ET costs work"}
+          {expanded ? t("et_costs.toggle_less") : t("et_costs.toggle_learn")}
         </button>
 
         {/* ── Expandable detail ─────────────────────────────────────── */}
@@ -105,34 +107,19 @@ export default function ETCostsTipCard({ moreJobsOpen = false }: Props) {
           >
             <div className="space-y-2 text-[12px] text-gray-400 leading-relaxed">
               <p>
-                <span className="text-white font-bold">"ET costs"</span> means{" "}
-                <span className="text-gray-300">extraterritorial costs</span> —
-                certain additional expenses related to working temporarily
-                outside your home country.
+                <span className="text-white font-bold">{t("et_costs.detail_p1_bold")}</span>{" "}
+                <span className="text-gray-300">{t("et_costs.detail_p1_span")}</span>{" "}
+                {t("et_costs.detail_p1_rest")}
               </p>
-              <p>
-                Under Dutch payroll rules, qualifying costs can in some
-                situations be reimbursed tax-free by the employer. Examples can
-                include certain relocation, temporary accommodation, travel or
-                administrative costs — depending on the specific situation and
-                applicable payroll rules.
-              </p>
-              <p>
-                The exact arrangement differs between employers and recruitment
-                agencies. AgencyCheck does not determine the ET reimbursement.
-              </p>
-              <p className="font-semibold text-gray-300">
-                Always confirm the exact ET arrangement with your recruiter or
-                employer before accepting a job.
-              </p>
+              <p>{t("et_costs.detail_p2")}</p>
+              <p>{t("et_costs.detail_p3")}</p>
+              <p className="font-semibold text-gray-300">{t("et_costs.detail_p4")}</p>
             </div>
 
             {/* Disclaimer */}
             <div className="rounded-lg border border-white/[0.07] bg-white/[0.02] px-3 py-2.5">
               <p className="text-[10px] text-gray-500 leading-snug">
-                ℹ️ Information is general only. Exact ET reimbursement depends
-                on the employer, payroll arrangement and individual eligibility.
-                AgencyCheck is not a tax adviser.
+                {t("et_costs.disclaimer")}
               </p>
             </div>
           </div>

@@ -14,14 +14,15 @@
 import { useState } from "react";
 import HomepageJobsCard from "@/components/HomepageJobsCard";
 import ETCostsTipCard   from "@/components/ETCostsTipCard";
+import type { Locale }  from "@/lib/i18n";
 
-export default function HeroRightColumn({ totalJobs }: { totalJobs: number }) {
+export default function HeroRightColumn({ totalJobs, locale = "en" }: { totalJobs: number; locale?: Locale }) {
   const [moreOpen, setMoreOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-4">
       <HomepageJobsCard totalJobs={totalJobs} onExpandChange={setMoreOpen} />
-      <ETCostsTipCard moreJobsOpen={moreOpen} />
+      <ETCostsTipCard moreJobsOpen={moreOpen} locale={locale} />
     </div>
   );
 }

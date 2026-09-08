@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useT, type Locale } from "@/lib/i18n";
 
 const STORAGE_KEY = "ac_cookie_notice_dismissed";
 
@@ -22,8 +23,14 @@ const STORAGE_KEY = "ac_cookie_notice_dismissed";
  */
 export default function CookieNotice() {
   const [visible, setVisible] = useState(false);
+  const [locale, setLocale] = useState<Locale>("en");
 
   useEffect(() => {
+    // Detect locale from the html lang attribute (set by Next.js per route)
+    const lang = document.documentElement.lang as Locale;
+    if (["en", "nl", "pl", "ro", "pt", "sk", "bg"].includes(lang)) {
+      setLocale(lang);
+    }
     try {
       const dismissed = sessionStorage.getItem(STORAGE_KEY);
       if (!dismissed) setVisible(true);
@@ -31,6 +38,8 @@ export default function CookieNotice() {
       // sessionStorage not available (private browsing restrictions) — just hide
     }
   }, []);
+
+  const t = useT(locale);
 
   const dismiss = () => {
     try {
@@ -51,10 +60,9 @@ export default function CookieNotice() {
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <p className="text-xs text-gray-600 leading-relaxed flex-1">
-          <span className="font-semibold text-gray-800">We use one cookie</span> — to remember your
-          language preference (EN / PL / RO). No advertising, no tracking, no analytics cookies.{" "}
+          {t("cookie_notice.text")}{" "}
           <Link href="/cookies" className="text-brand-600 underline hover:text-brand-700">
-            Full details in our Cookie Policy
+            {t("cookie_notice.policy_link")}
           </Link>
           .
         </p>
@@ -62,7 +70,7 @@ export default function CookieNotice() {
           onClick={dismiss}
           className="shrink-0 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 px-4 py-2 rounded-lg transition-colors"
         >
-          OK, got it
+          {t("cookie_notice.btn")}
         </button>
       </div>
     </div>

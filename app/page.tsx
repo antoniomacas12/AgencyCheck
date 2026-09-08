@@ -53,6 +53,9 @@ export const metadata: Metadata = {
       "nl":        "https://agencycheck.io/nl",
       "pl":        "https://agencycheck.io/pl",
       "ro":        "https://agencycheck.io/ro",
+      "pt":        "https://agencycheck.io/pt",
+      "sk":        "https://agencycheck.io/sk",
+      "bg":        "https://agencycheck.io/bg",
       "x-default": "https://agencycheck.io/",
     },
   },
@@ -342,7 +345,7 @@ export default async function HomePage() {
             <div className="hero-col-left flex-1 min-w-0 w-full max-w-2xl mx-auto lg:mx-0 text-center lg:text-left lg:pt-6">
 
               {/* ── Quick review form ─────────────────────────────────── */}
-              <HeroQuickReview />
+              <HeroQuickReview locale="en" />
 
               {/* ── JOBS URGENCY BAR ───────────────────────────────── */}
               <div className="w-full overflow-hidden">
@@ -603,7 +606,7 @@ export default async function HomePage() {
               </div>
 
               {/* Now Hiring jobs card + ET Costs tip (shared expand state) */}
-              <HeroRightColumn totalJobs={VACANCIES.length} />
+              <HeroRightColumn totalJobs={VACANCIES.length} locale="en" />
 
               {/* Review inline form — below the card */}
               <HeroReviewInline />
