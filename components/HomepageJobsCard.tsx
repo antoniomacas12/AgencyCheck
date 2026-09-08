@@ -7,6 +7,7 @@
  * Applications go through the apply pre-screen (referralMode).
  */
 
+import { useState } from "react";
 import Link from "next/link";
 import ApplyPreScreen from "@/components/ApplyPreScreen";
 
@@ -135,6 +136,7 @@ const DELIBARN_JOB = {
 } as const;
 
 export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
+  const [expanded, setExpanded] = useState(false);
   return (
     <div
       className="relative rounded-2xl border border-emerald-500/25 bg-[#071a0e] overflow-hidden"
@@ -181,96 +183,148 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
           </span>
         </div>
 
-        {/* ── Job cards — compact 4-row list ─────────────────────── */}
-        <div className="space-y-2 mb-4">
-          {JOHMA_JOBS.map((job) => (
-            <div
-              key={job.slug}
-              className="rounded-xl border border-emerald-500/15 bg-emerald-500/[0.04] px-3.5 py-3"
-            >
+        {/* ── Default visible: DeliBarn + Option A x2 + Johma Reach Truck ── */}
+
+        {/* DeliBarn */}
+        <div className="space-y-2 mb-3">
+          <p className="text-[10px] font-black uppercase tracking-widest text-amber-400/70 mb-1">
+            ☀️ Day shift · 4minutes × DeliBarn
+          </p>
+          <div className="rounded-xl border border-amber-500/15 bg-amber-500/[0.04] px-3.5 py-3">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="text-[13px] shrink-0">{DELIBARN_JOB.icon}</span>
+                <p className="text-white font-bold text-[12px] leading-snug truncate">{DELIBARN_JOB.title}</p>
+              </div>
+              <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">{DELIBARN_JOB.salary}</span>
+            </div>
+            <p className="text-gray-600 text-[10px] mb-2">{DELIBARN_JOB.note}</p>
+            <ApplyPreScreen waBase={WA_BASE} jobTitle="Operator (Day Shift) — DeliBarn" source="homepage-card-delibarn" jobId={DELIBARN_JOB.slug} referralMode>
+              {(openFn) => (
+                <button onClick={openFn} className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150" style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}>
+                  {WA_ICON} Apply on WhatsApp
+                </button>
+              )}
+            </ApplyPreScreen>
+          </div>
+        </div>
+
+        {/* Option A — Automotive */}
+        <div className="space-y-2 mb-3">
+          <p className="text-[10px] font-black uppercase tracking-widest text-violet-400/70 mb-1">
+            🚗 Option A · Automotive
+          </p>
+          {OPTION_A_JOBS.map((job) => (
+            <div key={job.slug} className="rounded-xl border border-violet-500/15 bg-violet-500/[0.04] px-3.5 py-3">
               <div className="flex items-center justify-between gap-2 mb-1">
                 <div className="flex items-center gap-1.5 min-w-0">
                   <span className="text-[13px] shrink-0">{job.icon}</span>
-                  <p className="text-white font-bold text-[12px] leading-snug truncate">
-                    {job.title}
-                  </p>
+                  <p className="text-white font-bold text-[12px] leading-snug truncate">{job.title}</p>
                 </div>
-                <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
-                  {job.salary}
-                </span>
+                <span className="text-violet-400 text-[11px] font-black whitespace-nowrap shrink-0">{job.salary}</span>
               </div>
               <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
-
-              <ApplyPreScreen
-                waBase={WA_BASE}
-                jobTitle={`${job.title} — Johma`}
-                source="homepage-card-johma"
-                jobId={job.slug}
-                referralMode
-              >
-                {(openFn) => (
-                  <button
-                    onClick={openFn}
-                    className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
-                    style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}
-                  >
-                    {WA_ICON}
-                    Apply on WhatsApp
-                  </button>
-                )}
-              </ApplyPreScreen>
+              <Link href={job.href} className="flex items-center justify-center gap-1.5 w-full bg-violet-500/[0.12] hover:bg-violet-500/[0.22] border border-violet-500/20 text-violet-200 font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150">
+                View & Apply →
+              </Link>
             </div>
           ))}
         </div>
 
-        {/* ── Verified Partner jobs ──────────────────────────────── */}
-        <div className="border-t border-white/[0.07] pt-4 mb-4">
-          <p className="text-[11px] text-gray-400 font-semibold mb-2">
-            Verified Partner · Netherlands
+        {/* Johma Reach Truck Driver (4th card) */}
+        <div className="space-y-2 mb-4">
+          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400/70 mb-1">
+            ⚡ Urgent · 4minutes × Johma
           </p>
-          <div className="space-y-2">
-            {VP_JOBS.map((job) => (
-              <div
-                key={job.slug}
-                className="rounded-xl border border-white/[0.10] bg-white/[0.03] px-3.5 py-3"
-              >
+          {(() => {
+            const job = JOHMA_JOBS[0];
+            return (
+              <div className="rounded-xl border border-emerald-500/15 bg-emerald-500/[0.04] px-3.5 py-3">
                 <div className="flex items-center justify-between gap-2 mb-1">
                   <div className="flex items-center gap-1.5 min-w-0">
                     <span className="text-[13px] shrink-0">{job.icon}</span>
-                    <p className="text-white font-bold text-[12px] leading-snug truncate">
-                      {job.title}
-                    </p>
+                    <p className="text-white font-bold text-[12px] leading-snug truncate">{job.title}</p>
                   </div>
-                  <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
-                    {job.salary}
-                  </span>
+                  <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">{job.salary}</span>
                 </div>
                 <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
-                <Link
-                  href={job.href}
-                  className="flex items-center justify-center gap-1.5 w-full bg-white/[0.07] hover:bg-white/[0.12] border border-white/[0.10] text-gray-200 font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
-                >
-                  View & Apply →
-                </Link>
+                <ApplyPreScreen waBase={WA_BASE} jobTitle={`${job.title} — Johma`} source="homepage-card-johma" jobId={job.slug} referralMode>
+                  {(openFn) => (
+                    <button onClick={openFn} className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150" style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}>
+                      {WA_ICON} Apply on WhatsApp
+                    </button>
+                  )}
+                </ApplyPreScreen>
               </div>
-            ))}
-          </div>
+            );
+          })()}
         </div>
 
-        {/* ── Footer ─────────────────────────────────────────────── */}
+        {/* ── See more / collapse toggle ──────────────────────────── */}
         <div className="border-t border-white/[0.07] pt-4 mb-4">
-          <Link
-            href="/apply/johma-logistics-operator"
+          <button
+            onClick={() => setExpanded((v) => !v)}
             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.05] hover:bg-emerald-500/[0.12] text-emerald-300 font-black text-[12px] transition-all duration-150"
           >
-            View all {totalJobs} vacancies →
-          </Link>
+            {expanded ? "Show less ↑" : `See more vacancies ↓`}
+          </button>
         </div>
 
-        {/* ── DeliBarn section ────────────────────────────────────── */}
-        <div className="border-t border-white/[0.07] pt-4">
-          <div className="flex items-start justify-between gap-3 mb-3">
-            <div>
+        {/* ── Expandable sections ─────────────────────────────────── */}
+        {expanded && (
+          <>
+            {/* ── Remaining Johma jobs ──────────────────────────────── */}
+            <div className="border-t border-white/[0.07] pt-4 mb-4">
+              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400/70 mb-2">
+                4minutes × Johma · More roles
+              </p>
+              <div className="space-y-2">
+                {JOHMA_JOBS.slice(1).map((job) => (
+                  <div key={job.slug} className="rounded-xl border border-emerald-500/15 bg-emerald-500/[0.04] px-3.5 py-3">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="text-[13px] shrink-0">{job.icon}</span>
+                        <p className="text-white font-bold text-[12px] leading-snug truncate">{job.title}</p>
+                      </div>
+                      <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">{job.salary}</span>
+                    </div>
+                    <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
+                    <ApplyPreScreen waBase={WA_BASE} jobTitle={`${job.title} — Johma`} source="homepage-card-johma" jobId={job.slug} referralMode>
+                      {(openFn) => (
+                        <button onClick={openFn} className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150" style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}>
+                          {WA_ICON} Apply on WhatsApp
+                        </button>
+                      )}
+                    </ApplyPreScreen>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Verified Partner jobs ──────────────────────────────── */}
+            <div className="border-t border-white/[0.07] pt-4 mb-4">
+              <p className="text-[11px] text-gray-400 font-semibold mb-2">Verified Partner · Netherlands</p>
+              <div className="space-y-2">
+                {VP_JOBS.map((job) => (
+                  <div key={job.slug} className="rounded-xl border border-white/[0.10] bg-white/[0.03] px-3.5 py-3">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="text-[13px] shrink-0">{job.icon}</span>
+                        <p className="text-white font-bold text-[12px] leading-snug truncate">{job.title}</p>
+                      </div>
+                      <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">{job.salary}</span>
+                    </div>
+                    <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
+                    <Link href={job.href} className="flex items-center justify-center gap-1.5 w-full bg-white/[0.07] hover:bg-white/[0.12] border border-white/[0.10] text-gray-200 font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150">
+                      View & Apply →
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── DeliBarn section ──────────────────────────────────── */}
+            <div className="border-t border-white/[0.07] pt-4">
               <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
                 <span className="inline-flex items-center gap-1 text-[10px] font-black bg-amber-500/15 text-amber-400 border border-amber-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
                   ☀️ Day shift
@@ -279,202 +333,179 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
                   ✓ Verified
                 </span>
               </div>
-              <p className="text-[11px] text-gray-400 font-semibold">
+              <p className="text-[11px] text-gray-400 font-semibold mb-3">
                 4minutes × DeliBarn · Borculo, Netherlands
               </p>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-amber-500/15 bg-amber-500/[0.04] px-3.5 py-3 mb-3">
-            <div className="flex items-center justify-between gap-2 mb-1">
-              <div className="flex items-center gap-1.5 min-w-0">
-                <span className="text-[13px] shrink-0">{DELIBARN_JOB.icon}</span>
-                <p className="text-white font-bold text-[12px] leading-snug truncate">
-                  {DELIBARN_JOB.title}
-                </p>
-              </div>
-              <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
-                {DELIBARN_JOB.salary}
-              </span>
-            </div>
-            <p className="text-gray-600 text-[10px] mb-2">{DELIBARN_JOB.note}</p>
-
-            <ApplyPreScreen
-              waBase={WA_BASE}
-              jobTitle="Operator (Day Shift) — DeliBarn"
-              source="homepage-card-delibarn"
-              jobId={DELIBARN_JOB.slug}
-              referralMode
-            >
-              {(openFn) => (
-                <button
-                  onClick={openFn}
-                  className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
-                  style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}
-                >
-                  {WA_ICON}
-                  Apply on WhatsApp
-                </button>
-              )}
-            </ApplyPreScreen>
-          </div>
-
-          <Link
-            href="/apply/delibarn-operator"
-            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-amber-500/20 bg-amber-500/[0.04] hover:bg-amber-500/[0.10] text-amber-300 font-black text-[12px] transition-all duration-150"
-          >
-            View DeliBarn job details →
-          </Link>
-        </div>
-
-        {/* ── Hospitality / Hotels section ────────────────────────── */}
-        <div className="border-t border-white/[0.07] pt-4">
-          <div className="flex flex-wrap items-center gap-1.5 mb-2">
-            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-sky-500/15 text-sky-400 border border-sky-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
-              🏨 New · Hotels
-            </span>
-            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
-              🏠 Housing incl.
-            </span>
-          </div>
-          <p className="text-[11px] text-gray-400 font-semibold mb-3">
-            Hospitality · Hotels &amp; Resorts · Netherlands
-          </p>
-          <div className="space-y-3">
-            {HOTEL_JOBS.map((job) => (
-              <div
-                key={job.slug}
-                className="rounded-2xl border border-sky-500/20 bg-sky-500/[0.04] px-4 py-4"
-              >
-                {/* Title row */}
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl shrink-0">{job.icon}</span>
-                  <div className="min-w-0">
-                    <p className="text-white font-extrabold text-[15px] leading-snug">
-                      {job.title}
-                    </p>
-                    <p className="text-sky-400 font-black text-[13px] mt-0.5">
-                      {job.salary}
+              <div className="rounded-xl border border-amber-500/15 bg-amber-500/[0.04] px-3.5 py-3 mb-3">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="text-[13px] shrink-0">{DELIBARN_JOB.icon}</span>
+                    <p className="text-white font-bold text-[12px] leading-snug truncate">
+                      {DELIBARN_JOB.title}
                     </p>
                   </div>
+                  <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">
+                    {DELIBARN_JOB.salary}
+                  </span>
                 </div>
-                {/* Key details row */}
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {job.slug === "cook-chef-de-partie-netherlands" ? (
-                    <>
-                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏨 Hotels &amp; resorts</span>
-                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏠 ~€300/mo housing</span>
-                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🇪🇺 EU citizens</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">⭐ 4–5★ hotels</span>
-                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏠 ~€400/mo housing</span>
-                      <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🇪🇺 EU citizens</span>
-                    </>
+                <p className="text-gray-600 text-[10px] mb-2">{DELIBARN_JOB.note}</p>
+                <ApplyPreScreen
+                  waBase={WA_BASE}
+                  jobTitle="Operator (Day Shift) — DeliBarn"
+                  source="homepage-card-delibarn"
+                  jobId={DELIBARN_JOB.slug}
+                  referralMode
+                >
+                  {(openFn) => (
+                    <button
+                      onClick={openFn}
+                      className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150"
+                      style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}
+                    >
+                      {WA_ICON}
+                      Apply on WhatsApp
+                    </button>
                   )}
-                </div>
-                <Link
-                  href={job.href}
-                  className="flex items-center justify-center gap-2 w-full bg-sky-500/[0.15] hover:bg-sky-500/[0.28] active:scale-[0.97] border border-sky-500/30 text-sky-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
-                  style={{ boxShadow: "0 2px 12px rgba(14,165,233,0.12)" }}
-                >
-                  View &amp; Apply →
-                </Link>
+                </ApplyPreScreen>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ── Integralis Partner section ───────────────────────── */}
-        <div className="border-t border-white/[0.07] pt-4">
-          <div className="flex flex-wrap items-center gap-1.5 mb-2">
-            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-orange-500/15 text-orange-400 border border-orange-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
-              🤝 Integralis Partner
-            </span>
-            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
-              ✓ Verified
-            </span>
-          </div>
-          <p className="text-[11px] text-gray-400 font-semibold mb-3">
-            Integralis · Netherlands
-          </p>
-          <div className="space-y-3">
-            {INTEGRALIS_JOBS.map((job) => (
-              <div
-                key={job.slug}
-                className="rounded-2xl border border-orange-500/20 bg-orange-500/[0.04] px-4 py-4"
+              <Link
+                href="/apply/delibarn-operator"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-amber-500/20 bg-amber-500/[0.04] hover:bg-amber-500/[0.10] text-amber-300 font-black text-[12px] transition-all duration-150"
               >
-                {/* Title row */}
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl shrink-0">{job.icon}</span>
-                  <div className="min-w-0">
-                    <p className="text-white font-extrabold text-[15px] leading-snug">
-                      {job.title}
-                    </p>
-                    <p className="text-orange-400 font-black text-[13px] mt-0.5">
-                      {job.salary}
-                    </p>
-                  </div>
-                </div>
-                {/* Note */}
-                <p className="text-gray-500 text-[11px] mb-3">{job.note}</p>
-                <Link
-                  href={job.href}
-                  className="flex items-center justify-center gap-2 w-full bg-orange-500/[0.15] hover:bg-orange-500/[0.28] active:scale-[0.97] border border-orange-500/30 text-orange-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
-                  style={{ boxShadow: "0 2px 12px rgba(249,115,22,0.10)" }}
-                >
-                  View &amp; Apply →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
+                View DeliBarn job details →
+              </Link>
+            </div>
 
-        {/* ── Option A · Automotive section ───────────────────────── */}
-        <div className="border-t border-white/[0.07] pt-4">
-          <div className="flex flex-wrap items-center gap-1.5 mb-2">
-            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-violet-500/15 text-violet-400 border border-violet-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
-              🚗 Option A · Automotive
-            </span>
-            <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
-              🏠 Housing Avail.
-            </span>
-          </div>
-          <p className="text-[11px] text-gray-400 font-semibold mb-3">
-            Option A · Automotive · Netherlands
-          </p>
-          <div className="space-y-3">
-            {OPTION_A_JOBS.map((job) => (
-              <div
-                key={job.slug}
-                className="rounded-2xl border border-violet-500/20 bg-violet-500/[0.04] px-4 py-4"
-              >
-                {/* Title row */}
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl shrink-0">{job.icon}</span>
-                  <div className="min-w-0">
-                    <p className="text-white font-extrabold text-[15px] leading-snug">
-                      {job.title}
-                    </p>
-                    <p className="text-violet-400 font-black text-[13px] mt-0.5">
-                      {job.salary}
-                    </p>
-                  </div>
-                </div>
-                {/* Note */}
-                <p className="text-gray-500 text-[11px] mb-3">{job.note}</p>
-                <Link
-                  href={job.href}
-                  className="flex items-center justify-center gap-2 w-full bg-violet-500/[0.15] hover:bg-violet-500/[0.28] active:scale-[0.97] border border-violet-500/30 text-violet-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
-                  style={{ boxShadow: "0 2px 12px rgba(139,92,246,0.10)" }}
-                >
-                  View &amp; Apply →
-                </Link>
+            {/* ── Hospitality / Hotels section ──────────────────────── */}
+            <div className="border-t border-white/[0.07] pt-4">
+              <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                <span className="inline-flex items-center gap-1 text-[10px] font-black bg-sky-500/15 text-sky-400 border border-sky-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                  🏨 New · Hotels
+                </span>
+                <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                  🏠 Housing incl.
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
+              <p className="text-[11px] text-gray-400 font-semibold mb-3">
+                Hospitality · Hotels &amp; Resorts · Netherlands
+              </p>
+              <div className="space-y-3">
+                {HOTEL_JOBS.map((job) => (
+                  <div key={job.slug} className="rounded-2xl border border-sky-500/20 bg-sky-500/[0.04] px-4 py-4">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-3xl shrink-0">{job.icon}</span>
+                      <div className="min-w-0">
+                        <p className="text-white font-extrabold text-[15px] leading-snug">{job.title}</p>
+                        <p className="text-sky-400 font-black text-[13px] mt-0.5">{job.salary}</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {job.slug === "cook-chef-de-partie-netherlands" ? (
+                        <>
+                          <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏨 Hotels &amp; resorts</span>
+                          <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏠 ~€300/mo housing</span>
+                          <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🇪🇺 EU citizens</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">⭐ 4–5★ hotels</span>
+                          <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🏠 ~€400/mo housing</span>
+                          <span className="text-[10px] font-bold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">🇪🇺 EU citizens</span>
+                        </>
+                      )}
+                    </div>
+                    <Link
+                      href={job.href}
+                      className="flex items-center justify-center gap-2 w-full bg-sky-500/[0.15] hover:bg-sky-500/[0.28] active:scale-[0.97] border border-sky-500/30 text-sky-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
+                    >
+                      View &amp; Apply →
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Integralis Partner section ─────────────────────────── */}
+            <div className="border-t border-white/[0.07] pt-4">
+              <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                <span className="inline-flex items-center gap-1 text-[10px] font-black bg-orange-500/15 text-orange-400 border border-orange-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                  🤝 Integralis Partner
+                </span>
+                <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                  ✓ Verified
+                </span>
+              </div>
+              <p className="text-[11px] text-gray-400 font-semibold mb-3">
+                Integralis · Netherlands
+              </p>
+              <div className="space-y-3">
+                {INTEGRALIS_JOBS.map((job) => (
+                  <div key={job.slug} className="rounded-2xl border border-orange-500/20 bg-orange-500/[0.04] px-4 py-4">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-3xl shrink-0">{job.icon}</span>
+                      <div className="min-w-0">
+                        <p className="text-white font-extrabold text-[15px] leading-snug">{job.title}</p>
+                        <p className="text-orange-400 font-black text-[13px] mt-0.5">{job.salary}</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-500 text-[11px] mb-3">{job.note}</p>
+                    <Link
+                      href={job.href}
+                      className="flex items-center justify-center gap-2 w-full bg-orange-500/[0.15] hover:bg-orange-500/[0.28] active:scale-[0.97] border border-orange-500/30 text-orange-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
+                    >
+                      View &amp; Apply →
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Option A · Automotive section ─────────────────────── */}
+            <div className="border-t border-white/[0.07] pt-4">
+              <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                <span className="inline-flex items-center gap-1 text-[10px] font-black bg-violet-500/15 text-violet-400 border border-violet-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                  🚗 Option A · Automotive
+                </span>
+                <span className="inline-flex items-center gap-1 text-[10px] font-black bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 rounded-full px-2.5 py-0.5 uppercase tracking-widest">
+                  🏠 Housing Avail.
+                </span>
+              </div>
+              <p className="text-[11px] text-gray-400 font-semibold mb-3">
+                Option A · Automotive · Netherlands
+              </p>
+              <div className="space-y-3">
+                {OPTION_A_JOBS.map((job) => (
+                  <div key={job.slug} className="rounded-2xl border border-violet-500/20 bg-violet-500/[0.04] px-4 py-4">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-3xl shrink-0">{job.icon}</span>
+                      <div className="min-w-0">
+                        <p className="text-white font-extrabold text-[15px] leading-snug">{job.title}</p>
+                        <p className="text-violet-400 font-black text-[13px] mt-0.5">{job.salary}</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-500 text-[11px] mb-3">{job.note}</p>
+                    <Link
+                      href={job.href}
+                      className="flex items-center justify-center gap-2 w-full bg-violet-500/[0.15] hover:bg-violet-500/[0.28] active:scale-[0.97] border border-violet-500/30 text-violet-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
+                    >
+                      View &amp; Apply →
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Browse all CTA ─────────────────────────────────────── */}
+            <div className="border-t border-white/[0.07] pt-4 mt-4">
+              <Link
+                href="/apply"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.05] hover:bg-emerald-500/[0.12] text-emerald-300 font-black text-[12px] transition-all duration-150"
+              >
+                Browse all {totalJobs} vacancies →
+              </Link>
+            </div>
+          </>
+        )}
 
       </div>
     </div>
