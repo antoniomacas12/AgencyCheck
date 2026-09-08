@@ -536,6 +536,55 @@ export default async function HomePage() {
                 </div>
               </div>
 
+              {/* ── Option A Automotive quick-links ──────────────────── */}
+              <div className="mt-4 w-full rounded-2xl border border-violet-500/20 bg-violet-500/[0.04] px-4 py-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-violet-400/70 mb-3">
+                  🚗 New · Automotive Jobs — Netherlands
+                </p>
+                <div className="flex flex-col gap-3">
+                  {[
+                    {
+                      href:   "/apply/auto-detailing-worker-netherlands",
+                      icon:   "🚗",
+                      title:  "Auto Detailing Worker",
+                      salary: "€2,300–€2,400 net/mo",
+                      tags:   ["🏙️ Amsterdam / Rotterdam", "🏠 Housing avail.", "🇪🇺 EU citizens"],
+                    },
+                    {
+                      href:   "/apply/tyre-fitter-netherlands",
+                      icon:   "🔧",
+                      title:  "Tyre Fitter",
+                      salary: "€19.00–€20.50/h gross",
+                      tags:   ["🏠 Housing avail.", "🚗 Tyre exp. required", "🇪🇺 EU citizens"],
+                    },
+                  ].map((j) => (
+                    <Link
+                      key={j.href}
+                      href={j.href}
+                      className="group flex flex-col rounded-2xl border border-white/[0.10] bg-white/[0.03] hover:bg-white/[0.07] px-4 py-4 transition-colors"
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-4xl shrink-0">{j.icon}</span>
+                        <div className="min-w-0">
+                          <p className="text-white font-extrabold text-base leading-snug">{j.title}</p>
+                          <p className="text-violet-400 font-black text-sm mt-0.5">{j.salary}</p>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {j.tags.map((tag) => (
+                          <span key={tag} className="text-[11px] font-semibold bg-white/[0.07] border border-white/[0.10] text-gray-300 rounded-full px-2.5 py-1">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center justify-center gap-2 w-full bg-violet-500/[0.15] group-hover:bg-violet-500/[0.28] border border-violet-500/30 text-violet-200 font-black text-sm px-4 py-3 rounded-xl transition-all duration-150">
+                        View &amp; Apply →
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
             </div>
 
             {/* ── Right: money card ──────────────────────────────────── */}
