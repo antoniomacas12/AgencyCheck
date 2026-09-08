@@ -135,8 +135,19 @@ const DELIBARN_JOB = {
   href:   "/apply/delibarn-operator",
 } as const;
 
-export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
+export default function HomepageJobsCard({
+  totalJobs,
+  onExpandChange,
+}: {
+  totalJobs: number;
+  onExpandChange?: (open: boolean) => void;
+}) {
   const [expanded, setExpanded] = useState(false);
+
+  function toggleExpanded(next: boolean) {
+    setExpanded(next);
+    onExpandChange?.(next);
+  }
   return (
     <div
       className="relative rounded-2xl border border-emerald-500/25 bg-[#071a0e] overflow-hidden"
@@ -263,7 +274,7 @@ export default function HomepageJobsCard({ totalJobs }: { totalJobs: number }) {
         {/* ── See more / collapse toggle ──────────────────────────── */}
         <div className="border-t border-white/[0.07] pt-4 mb-4">
           <button
-            onClick={() => setExpanded((v) => !v)}
+            onClick={() => toggleExpanded(!expanded)}
             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.05] hover:bg-emerald-500/[0.12] text-emerald-300 font-black text-[12px] transition-all duration-150"
           >
             {expanded ? "Show less ↑" : `See more vacancies ↓`}

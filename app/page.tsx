@@ -3,6 +3,7 @@ import Link from "next/link";
 import nDynamic from "next/dynamic";
 import JobsUrgencyBar from "@/components/JobsUrgencyBar";
 import HomepageMoreJobs from "@/components/HomepageMoreJobs";
+import HeroRightColumn from "@/components/HeroRightColumn";
 import JobAlertStrip from "@/components/JobAlertStrip";
 import AgencyCard from "@/components/AgencyCard";
 import WorkerReviewCard from "@/components/WorkerReviewCard";
@@ -33,7 +34,6 @@ const HomepageCalculator          = nDynamic(() => import("@/components/Homepage
 const HomepageLeadForm            = nDynamic(() => import("@/components/HomepageLeadForm"),             { ssr: false });
 const HomepageStickyBar           = nDynamic(() => import("@/components/HomepageStickyBar"),            { ssr: false });
 const HeroReviewInline            = nDynamic(() => import("@/components/HeroReviewInline"),             { ssr: false });
-const HomepageJobsCard            = nDynamic(() => import("@/components/HomepageJobsCard"),             { ssr: false });
 const DeliBarnHeroStrip           = nDynamic(() => import("@/components/DeliBarnHeroStrip"),            { ssr: false });
 const CandidateLeadForm           = nDynamic(() => import("@/components/CandidateLeadForm"),            { ssr: false });
 // LiveActivityFeed is pure client-side — no SSR value, load lazily
@@ -602,8 +602,8 @@ export default async function HomePage() {
                 ))}
               </div>
 
-              {/* Now Hiring jobs card */}
-              <HomepageJobsCard totalJobs={VACANCIES.length} />
+              {/* Now Hiring jobs card + ET Costs tip (shared expand state) */}
+              <HeroRightColumn totalJobs={VACANCIES.length} />
 
               {/* Review inline form — below the card */}
               <HeroReviewInline />
