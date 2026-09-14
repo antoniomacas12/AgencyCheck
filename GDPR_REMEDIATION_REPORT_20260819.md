@@ -515,3 +515,56 @@ The following items from the original scope are either deferred or require owner
 ---
 
 *Report generated: 19 August 2026. All code changes were made against the local workspace only. No production deployment was made. No `prisma db push` was run against production. No candidate records were modified.*
+
+---
+
+## Addendum — GA4 Reintroduction Under Consent Mode v2
+
+**Date:** 15 September 2026
+**Commit:** `6d57ce3` — "Restore GA4 with Consent Mode v2"
+**Deployed to production:** agencycheck.io (Vercel deployment `dpl_AiCjR2ZRvXbGF4A8xeZFbyALnB1h`)
+
+### Context
+
+GA4 was removed on 19 August 2026 (commit `9556f4a`) as part of this GDPR remediation, because it was collecting analytics data without a valid consent mechanism. It has now been reintroduced in a GDPR-compliant configuration using Google Consent Mode v2.
+
+### Implementation
+
+**Files changed:** `app/layout.tsx`, `components/CookieNotice.tsx` (modified), `components/GA4PageTracker.tsx` (new)
+
+**Consent default:** `analytics_storage: denied`, `ad_storage: denied` — established via a `strategy="beforeInteractive"` inline script, which fires before `gtag.js` loads and before any React hydration. GA4 cannot write cookies or send collect requests until the user explicitly accepts.
+
+**User choice:** The cookie banner now presents two equal-weight options — "Decline" and "Accept analytics". This satisfies the Dutch AP strict opt-in interpretation (declining must be as easy as accepting; no pre-selection).
+
+**Persistence:** Consent choice is stored in `localStorage` under the key `ac_analytics_consent` (`'granted'` or `'denied'`). Restored on every subsequent visit before any user interaction.
+
+**On Accept:** `gtag('consent', 'update', { analytics_storage: 'granted' })` fires. GA4 begins tracking. `_ga` and `_ga_3WP6HM9FTL` cookies are set by GA4.
+
+**On Decline:** `gtag('consent', 'update', { analytics_storage: 'denied' })` fires (explicit, matches default). No GA4 cookies written. Site remains fully functional.
+
+**SPA page_view tracking:** `GA4PageTracker` (client component) fires one `page_view` event per route change via `usePathname()`. `send_page_view: false` in the GA4 config prevents duplicate auto-firing on initial load.
+
+**Vercel Analytics:** Unaffected. Continues tracking all visitors regardless of GA4 consent state. Cookieless, no consent required.
+
+### Production Verification (15 September 2026)
+
+All production checks passed:
+
+| Check | Result |
+|---|---|
+| No consent stored → `analytics_storage: denied`, no GA4 cookies | ✅ Verified |
+| Banner shows with Accept / Decline buttons | ✅ Verified |
+| Accept → `analytics_storage: granted`, `_ga` + `_ga_3WP6HM9FTL` cookies set | ✅ Verified |
+| Decline → no cookies written, site fully functional | ✅ Verified |
+| Returning visitor (granted) → consent restored, no banner | ✅ Verified |
+| One `page_view` per page load / SPA navigation, no duplicates | ✅ Verified |
+| /apply page loads, 116 jobs listed, 134 apply links present | ✅ Verified |
+| Vercel Analytics script (`/_vercel/insights/script.js`) active | ✅ Verified |
+| Zero JavaScript console errors | ✅ Verified |
+| Zero React hydration errors | ✅ Verified |
+| SEO files, application routes, API routes unchanged | ✅ Verified |
+
+### Note on Consent Mode v2 Signals
+
+`ad_user_data` and `ad_personalization` are not explicitly set. These signals are only relevant when Google Ads is connected to the GA4 property. AgencyCheck does not currently run Google Ads. If Google Ads is connected in the future, both signals should be added to the `gtag('consent', 'default', {...})` block in `app/layout.tsx` as `'denied'`.
+

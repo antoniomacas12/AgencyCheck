@@ -11,39 +11,92 @@ declare global {
   }
 }
 
-/**
- * Consent storage key in localStorage.
- * Value is 'granted' | 'denied'. Persists across browser sessions.
- */
 const CONSENT_KEY = "ac_analytics_consent";
+const GA4_ID = "G-3WP6HM9FTL";
+const GA4_SCRIPT_ID = "ga4-gtag-script";
 
-function updateGtagConsent(value: "granted" | "denied") {
+/**
+ * Dynamically loads GA4 (gtag.js) after the user explicitly grants consent.
+ * This implements Basic Consent Mode — gtag.js is never requested before consent.
+ *
+ * Sequence (all synchronous before the script tag is appended):
+ *   1. Initialise window.dataLayer and window.gtag queue shim
+ *   2. Queue consent update (analytics granted, all ad signals denied)
+ *   3. Queue GA4 initialisation commands
+ *   4. Queue the initial page_view for currentPathname
+ *   5. Append <script src="gtag.js"> — gtag.js replays the queue on load
+ *
+ * Idempotent: subsequent calls after the script tag exists are no-ops.
+ */
+function loadGA4(currentPathname: string) {
   if (typeof window === "undefined") return;
-  if (typeof window.gtag !== "function") return;
+  // Guard: already loaded — do not append a second gtag.js
+  if (document.getElementById(GA4_SCRIPT_ID)) return;
+
+  // Initialise the dataLayer queue and gtag shim.
+  // gtag.js will replay all commands queued here when it loads.
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== "function") {
+    // Regular function (not arrow) so `arguments` is the Arguments object
+    // that gtag.js expects when it processes the dataLayer queue.
+    window.gtag = function (..._args: unknown[]) {
+      // eslint-disable-next-line prefer-rest-params
+      (window.dataLayer as unknown[]).push(arguments);
+    };
+  }
+
+  // Consent update: grant analytics only.
+  // Ad-related signals remain denied — AgencyCheck does not use Google Ads,
+  // remarketing or ad personalisation.
   window.gtag("consent", "update", {
-    analytics_storage: value,
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
   });
+
+  // Standard GA4 initialisation (queued — replayed by gtag.js on load).
+  // send_page_view: false because we fire the initial page_view explicitly below.
+  window.gtag("js", new Date());
+  window.gtag("config", GA4_ID, { send_page_view: false });
+
+  // Initial page_view for the page the user is on when they consent.
+  // GA4PageTracker skips its first render to avoid duplicating this event;
+  // it handles all subsequent SPA route-change page_views.
+  window.gtag("event", "page_view", {
+    page_path: currentPathname,
+    page_location: window.location.href,
+    page_title: document.title,
+  });
+
+  // Load gtag.js — all queued dataLayer commands above are replayed on load.
+  const script = document.createElement("script");
+  script.id = GA4_SCRIPT_ID;
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
+  document.head.appendChild(script);
 }
 
 /**
- * CookieNotice — GDPR-compliant consent banner for Google Analytics 4.
+ * CookieNotice — GDPR-compliant consent banner (Basic Consent Mode).
+ *
+ * Basic Consent Mode: gtag.js is NOT loaded and no requests reach
+ * googletagmanager.com until the user explicitly clicks "Accept analytics".
  *
  * AgencyCheck uses:
  *   - ac_locale cookie (language preference, necessary — no consent required)
- *   - Google Analytics 4 via Consent Mode v2 (analytics_storage — opt-in)
- *   - Vercel Analytics (cookieless, no consent required)
+ *   - Google Analytics 4 via Basic Consent Mode (explicit opt-in only)
+ *   - Vercel Analytics (cookieless, always active, no consent required)
  *
  * Consent flow:
- *   1. GA4 default is analytics_storage: 'denied' (set in layout.tsx beforeInteractive)
- *   2. On mount, check localStorage for prior choice:
- *      - 'granted' → update gtag consent to granted, hide banner
- *      - 'denied'  → leave gtag at default denied, hide banner
+ *   1. On mount, check localStorage for prior choice:
+ *      - 'granted' → load GA4 immediately (returning visitor)
+ *      - 'denied'  → do nothing; GA4 never loads
  *      - null      → show banner with Accept / Decline
- *   3. Accept → gtag consent update 'granted' + store in localStorage
- *   4. Decline → gtag consent update 'denied' + store in localStorage
- *   5. Banner never reappears once a choice is made (localStorage persists)
+ *   2. Accept → load GA4, store 'granted', hide banner
+ *   3. Decline → store 'denied', hide banner; GA4 never loads
  *
- * Private browsing: localStorage throws → banner hidden, consent stays denied.
+ * Private browsing: localStorage throws → banner hidden; GA4 never loads.
  */
 export default function CookieNotice() {
   const [visible, setVisible] = useState(false);
@@ -58,17 +111,18 @@ export default function CookieNotice() {
     try {
       const stored = localStorage.getItem(CONSENT_KEY);
       if (stored === "granted") {
-        updateGtagConsent("granted");
+        // Returning visitor who previously accepted — load GA4 immediately.
+        loadGA4(window.location.pathname);
         setVisible(false);
       } else if (stored === "denied") {
-        // Consent already denied — default in layout.tsx is already denied
+        // Returning visitor who previously declined — GA4 never loads.
         setVisible(false);
       } else {
-        // No prior choice — show banner
+        // No prior choice — show banner.
         setVisible(true);
       }
     } catch {
-      // localStorage unavailable (private browsing) — hide banner, leave consent denied
+      // localStorage unavailable (private browsing) — hide banner; GA4 never loads.
       setVisible(false);
     }
   }, []);
@@ -79,7 +133,7 @@ export default function CookieNotice() {
     try {
       localStorage.setItem(CONSENT_KEY, "granted");
     } catch { /* ignore */ }
-    updateGtagConsent("granted");
+    loadGA4(window.location.pathname);
     setVisible(false);
   };
 
@@ -87,7 +141,7 @@ export default function CookieNotice() {
     try {
       localStorage.setItem(CONSENT_KEY, "denied");
     } catch { /* ignore */ }
-    updateGtagConsent("denied");
+    // No gtag call needed — GA4 was never loaded; nothing to update.
     setVisible(false);
   };
 
