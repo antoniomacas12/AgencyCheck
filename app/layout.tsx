@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 import "./globals.css";
 import Footer            from "@/components/Footer";
 import LayoutClientShell from "@/components/LayoutClientShell";
+import { GA4PageTracker } from "@/components/GA4PageTracker";
 import { BLUR_PLACEHOLDER_IMAGES } from "@/lib/siteConfig";
 
 const inter = Inter({
@@ -93,10 +95,33 @@ export default function RootLayout({
     // for /pl/*, /ro/*, etc. routes via useEffect after hydration.
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className={`${inter.className} bg-[#0B1F14] flex flex-col min-h-screen overflow-x-hidden${BLUR_PLACEHOLDER_IMAGES ? " blur-placeholder-images" : ""}`}>
+        {/* GA4 Consent Mode v2 — default DENIED, fires before gtag.js loads */}
+        <Script id="ga4-consent-default" strategy="beforeInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            wait_for_update: 500
+          });
+        `}</Script>
         <LayoutClientShell footer={<Footer />}>
           {children}
         </LayoutClientShell>
         <Analytics />
+        {/* GA4 — loads after page is interactive, respects consent default above */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-3WP6HM9FTL"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3WP6HM9FTL', { send_page_view: false });
+        `}</Script>
+        {/* SPA page_view tracking — fires on every App Router route change */}
+        <GA4PageTracker />
       </body>
     </html>
   );
