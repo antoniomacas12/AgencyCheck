@@ -241,55 +241,39 @@ export default function HomepageJobsCard({
           </span>
         </div>
 
-        {/* ── Default visible: DeliBarn + Option A x2 + Johma Reach Truck ── */}
+        {/* ── Default visible: Integralis (top) + Johma Reach Truck ── */}
 
-        {/* DeliBarn */}
-        <div className="space-y-2 mb-3">
-          <p className="text-[10px] font-black uppercase tracking-widest text-amber-400/70 mb-1">
-            ☀️ Day shift · 4minutes × DeliBarn
+        {/* Integralis — always visible */}
+        <div className="space-y-1.5 mb-3">
+          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400/80 mb-1.5">
+            🏭 Integralis Partnership · Now Hiring
           </p>
-          <div className="rounded-xl border border-amber-500/15 bg-amber-500/[0.04] px-3.5 py-3">
-            <div className="flex items-center justify-between gap-2 mb-1">
-              <div className="flex items-center gap-1.5 min-w-0">
-                <span className="text-[13px] shrink-0">{DELIBARN_JOB.icon}</span>
-                <p className="text-white font-bold text-[12px] leading-snug truncate">{DELIBARN_JOB.title}</p>
-              </div>
-              <span className="text-emerald-400 text-[11px] font-black whitespace-nowrap shrink-0">{DELIBARN_JOB.salary}</span>
-            </div>
-            <p className="text-gray-600 text-[10px] mb-2">{DELIBARN_JOB.note}</p>
-            <ApplyPreScreen waBase={WA_BASE} jobTitle="Operator (Day Shift) — DeliBarn" source="homepage-card-delibarn" jobId={DELIBARN_JOB.slug} referralMode>
-              {(openFn) => (
-                <button onClick={openFn} className="flex items-center justify-center gap-1.5 w-full bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150" style={{ boxShadow: "0 2px 10px rgba(37,211,102,0.20)" }}>
-                  {WA_ICON} Apply on WhatsApp
-                </button>
-              )}
-            </ApplyPreScreen>
-          </div>
-        </div>
-
-        {/* Option A — Automotive */}
-        <div className="space-y-2 mb-3">
-          <p className="text-[10px] font-black uppercase tracking-widest text-violet-400/70 mb-1">
-            🚗 Option A · Automotive
-          </p>
-          {OPTION_A_JOBS.map((job) => (
-            <div key={job.slug} className="rounded-xl border border-violet-500/15 bg-violet-500/[0.04] px-3.5 py-3">
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="text-[13px] shrink-0">{job.icon}</span>
-                  <p className="text-white font-bold text-[12px] leading-snug truncate">{job.title}</p>
+          {INTEGRALIS_JOBS.slice(0, 5).map((job) => (
+            <div key={job.slug} className={`rounded-xl border px-3 py-2.5 flex items-center justify-between gap-2 ${job.urgent ? "border-red-500/30 bg-red-500/[0.05]" : "border-emerald-500/15 bg-emerald-500/[0.03]"}`}>
+              <div className="min-w-0 flex items-center gap-2">
+                <span className="text-[13px] shrink-0">{job.icon}</span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1 flex-wrap">
+                    <p className="text-white font-semibold text-[11px] leading-snug truncate">{job.title}</p>
+                    {job.urgent && (
+                      <span className="shrink-0 text-[8px] font-black bg-red-500/20 text-red-400 border border-red-500/30 rounded-full px-1.5 py-0.5 uppercase tracking-wide">Urgent</span>
+                    )}
+                  </div>
+                  <p className={`font-black text-[10px] ${job.urgent ? "text-red-400" : "text-emerald-400"}`}>{job.salary}</p>
                 </div>
-                <span className="text-violet-400 text-[11px] font-black whitespace-nowrap shrink-0">{job.salary}</span>
               </div>
-              <p className="text-gray-600 text-[10px] mb-2">{job.note}</p>
-              <Link href={job.href} className="flex items-center justify-center gap-1.5 w-full bg-violet-500/[0.12] hover:bg-violet-500/[0.22] border border-violet-500/20 text-violet-200 font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150">
-                View & Apply →
-              </Link>
+              <ApplyPreScreen waBase={WA_BASE} jobTitle={job.title} source="homepage-card-integralis" jobId={job.slug} referralMode>
+                {(openFn) => (
+                  <button onClick={openFn} className={`flex items-center gap-1 font-black text-[10px] px-2.5 py-1.5 rounded-lg transition-all duration-150 whitespace-nowrap shrink-0 ${job.urgent ? "bg-red-500 hover:bg-red-400 active:scale-[0.97] text-white" : "bg-[#22C55E] hover:bg-green-400 active:scale-[0.97] text-white"}`}>
+                    {WA_ICON} Apply
+                  </button>
+                )}
+              </ApplyPreScreen>
             </div>
           ))}
         </div>
 
-        {/* Johma Reach Truck Driver (4th card) */}
+        {/* Johma Reach Truck Driver */}
         <div className="space-y-2 mb-4">
           <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400/70 mb-1">
             ⚡ Urgent · 4minutes × Johma
