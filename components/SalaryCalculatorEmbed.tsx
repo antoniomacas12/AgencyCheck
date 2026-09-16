@@ -24,7 +24,7 @@ export default function SalaryCalculatorEmbed({
   const [hours,  setHours]  = useState(defaultHours);
   const [rent,   setRent]   = useState(0);
 
-  const WML = 14.06;
+  const WML = 14.71;
   const hoursPerMonth = (hours * 52) / 12;
   const gross = hourly * hoursPerMonth;
 
@@ -120,7 +120,7 @@ export default function SalaryCalculatorEmbed({
       <div className="bg-white rounded-lg p-3 border border-brand-100 space-y-1.5">
         {[
           { label: "Gross monthly",                                                  value: `€${Math.round(gross).toLocaleString()}`,     color: "text-gray-700" },
-          { label: `Tax + ZVW (≈${Math.round(effectiveRate * 100)}% effective)`,    value: `− €${Math.round(tax).toLocaleString()}`,      color: "text-red-600"  },
+          { label: `Estimated tax (≈${Math.round(effectiveRate * 100)}% effective)`,    value: `− €${Math.round(tax).toLocaleString()}`,      color: "text-red-600"  },
           { label: "Net monthly",                                                    value: `€${Math.round(net).toLocaleString()}`,        color: "text-gray-800 font-semibold" },
           ...(rent > 0 ? [{ label: "Housing deduction", value: `− €${Math.round(rentMo).toLocaleString()}`, color: "text-amber-600" }] : []),
         ].map((row) => (

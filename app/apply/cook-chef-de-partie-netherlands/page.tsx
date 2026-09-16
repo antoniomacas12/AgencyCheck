@@ -263,7 +263,7 @@ export default function CookChefDePartieNetherlandsPage() {
           </p>
           <div className="grid grid-cols-1 gap-3">
             {[
-              { icon: "💶", title: "Above-average kitchen wage",    body: "€17.99–€19.00/hr is well above the Dutch minimum wage for 2026 (€14.06/hr). Kitchen roles rarely pay this well via agency." },
+              { icon: "💶", title: "Above-average kitchen wage",    body: "€17.99–€19.00/hr is well above the Dutch minimum wage for 2026 (€14.71/hr). Kitchen roles rarely pay this well via agency." },
               { icon: "🏠", title: "Housing sorted from day one",   body: "Accommodation ~€300/mo is part of the package. You arrive, you work — no separate flat hunting in the Netherlands." },
               { icon: "📋", title: "Legal Dutch employment",        body: "Full employment contract, Dutch payroll, social insurance, and pension contributions. Everything by the book." },
               { icon: "🌍", title: "International kitchen team",    body: "Hotel and resort kitchens in the Netherlands have international teams. English is the working language." },

@@ -477,7 +477,7 @@
     "breadcrumb_agencies": "Agencies",
     "workers_report_label": "Workers report",
     "workers_report_title": "What workers experience at {agencyName}",
-    "workers_report_badge": "Based on worker reports",
+    "workers_report_badge": "AgencyCheck estimate · SNF/industry data",
     "housing_cost_label": "Weekly housing cost",
     "housing_cost_sub": "Deducted from your salary by the agency",
     "housing_cost_range": "€110–€160/week",

@@ -385,8 +385,9 @@ export default function AboutPage() {
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Croatian business registration</p>
               <p className="text-gray-800">
-                OIB: <span className="font-mono font-bold">{LEGAL.oib}</span> · MBO: {LEGAL.mbo} · {LEGAL.registrationRegister}
+                OIB: <span className="font-mono font-bold">{LEGAL.oib}</span> · EU VAT: <span className="font-mono font-bold">{LEGAL.euVatId}</span> · MBO: {LEGAL.mbo} · {LEGAL.registrationRegister}
               </p>
+              <p className="text-xs text-gray-500 mt-1">AgencyCheck is registered in Croatia (not the Netherlands) — we do not hold a Dutch KvK number.</p>
             </div>
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">GDPR data controller</p>

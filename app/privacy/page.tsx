@@ -184,7 +184,7 @@ export default function PrivacyPage() {
             <li>We do not sell, rent, or share personal data with third parties for marketing purposes</li>
             <li>We do not collect payment information (the platform is free)</li>
             <li>We do not use social media login buttons that enable cross-site tracking</li>
-            <li>We do not use Google Analytics or Meta Pixel</li>
+            <li>We use Google Analytics 4 (GA4) <strong>only with your explicit consent</strong> — GA4 does not load unless you click &ldquo;Accept analytics&rdquo; on the cookie banner. If you decline or ignore the banner, no GA4 data is collected. We do not use Meta Pixel, Google Ads, or any advertising networks.</li>
           </ul>
         </section>
 
@@ -230,6 +230,12 @@ export default function PrivacyPage() {
                   <td className="px-3 py-2 text-gray-600">Session only</td>
                 </tr>
                 <tr>
+                  <td className="px-3 py-2 font-mono text-gray-700">ac_analytics_consent</td>
+                  <td className="px-3 py-2 text-gray-600">localStorage</td>
+                  <td className="px-3 py-2 text-gray-600">Stores your Google Analytics consent choice (&ldquo;granted&rdquo; or &ldquo;denied&rdquo;). Set when you interact with the cookie banner. Controls whether GA4 loads on subsequent visits. Never transmitted to our servers.</td>
+                  <td className="px-3 py-2 text-gray-600">Until you clear browser data or change preference</td>
+                </tr>
+                <tr>
                   <td className="px-3 py-2 font-mono text-gray-700">Tool data (localStorage)</td>
                   <td className="px-3 py-2 text-gray-600">localStorage</td>
                   <td className="px-3 py-2 text-gray-600">Interactive tools (wage calculator, experience submission tracker, shift tracker) save your inputs locally so they persist across visits. All data stays on your device and is never transmitted to our servers.</td>
@@ -239,9 +245,12 @@ export default function PrivacyPage() {
             </table>
           </div>
           <p>
-            No advertising, analytics, or marketing cookies are set. Vercel Analytics operates
-            without cookies (see section 2b). You do not need to accept any cookie banner to
-            use the full platform.
+            No advertising or marketing cookies are set. Vercel Analytics operates
+            without cookies (see section 2b). GA4 analytics cookies are set <strong>only if you
+            explicitly accept analytics</strong> via the cookie banner — you can use the full
+            platform without accepting. Your consent choice is stored under{" "}
+            <code className="text-xs bg-gray-100 px-1 rounded">ac_analytics_consent</code> in
+            localStorage. See our <Link href="/cookies" className="text-brand-600 underline">Cookie Policy</Link> for details.
           </p>
         </section>
 
@@ -349,8 +358,10 @@ export default function PrivacyPage() {
           <p>
             AgencyCheck administrators may create internal reliability notes on candidate interactions
             for recruitment quality purposes. These records contain no special-category data. They are
-            retained for a maximum of 12 months unless required for an active legal matter. You may
-            request access, correction, or deletion of any such records by contacting{" "}
+            retained for a maximum of 12 months unless required for an active legal matter.
+            Under GDPR Article 15 (right of access), you may request a copy of any personal data
+            we hold about you, including any internal notes. You may also request correction or deletion
+            of any such records by contacting{" "}
             <a href={`mailto:${LEGAL.emailPrivacy}`} className="text-brand-600 underline">{LEGAL.emailPrivacy}</a>.
           </p>
         </section>

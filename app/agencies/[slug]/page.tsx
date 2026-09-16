@@ -593,7 +593,8 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
   const cityDisplay   = agency.city !== "unknown" ? agency.city : "Netherlands";
 
   const seedReviews = getReviewsByAgency(params.slug);
-  const reviewCount = seedReviews.length;
+  // Use the larger of seed reviews or static agency reviewCount so "Be the first" doesn't appear when DB reviews exist
+  const reviewCount = Math.max(seedReviews.length, agency.reviewCount ?? 0);
 
   const allQAs    = getQAsForContext(params.slug);
   const seoContent = AGENCY_SEO_CONTENT[params.slug] ?? null;
@@ -1059,7 +1060,7 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
                   </div>
                 ))}
               </div>
-              <ReviewModal agencySlug={params.slug} agencyName={agency.name} reviewCount={0} fullWidth />
+              <ReviewModal agencySlug={params.slug} agencyName={agency.name} reviewCount={reviewCount} fullWidth />
             </div>
           </div>
         )}
@@ -1210,6 +1211,7 @@ export default async function AgencyPage({ params }: { params: { slug: string } 
       {seoContent && (
         <section className="mt-6 mb-6">
           <div className="card p-5">
+            <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-3">AgencyCheck research — based on public data</p>
             <p className="text-sm text-gray-600 leading-relaxed mb-5">{seoContent.intro}</p>
 
             {seoContent.sections.map((sec) => (

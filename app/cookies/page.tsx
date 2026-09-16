@@ -105,6 +105,16 @@ export default function CookiesPage() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 <tr>
+                  <td className="px-3 py-2 font-mono text-gray-700">ac_analytics_consent</td>
+                  <td className="px-3 py-2 text-gray-600">localStorage</td>
+                  <td className="px-3 py-2 text-gray-600">
+                    Stores your Google Analytics consent choice (&ldquo;granted&rdquo; or &ldquo;denied&rdquo;).
+                    Set when you interact with the analytics cookie banner. Controls whether
+                    GA4 loads on this and future visits. Never transmitted to our servers.
+                  </td>
+                  <td className="px-3 py-2 text-gray-600">Until you clear browser data or change preference</td>
+                </tr>
+                <tr>
                   <td className="px-3 py-2 font-mono text-gray-700">ac_device_applied</td>
                   <td className="px-3 py-2 text-gray-600">localStorage</td>
                   <td className="px-3 py-2 text-gray-600">
@@ -184,14 +194,27 @@ export default function CookiesPage() {
           </p>
         </section>
 
-        {/* 6 — No advertising */}
+        {/* 6 — Analytics and advertising */}
         <section>
-          <h2 className="text-base font-bold text-gray-900 mb-3">6. No advertising cookies</h2>
-          <p>
+          <h2 className="text-base font-bold text-gray-900 mb-3">6. Analytics and advertising cookies</h2>
+          <p className="mb-2">
             AgencyCheck does not use advertising networks, retargeting pixels, or behavioural
-            profiling cookies of any kind. We do not use Google Analytics, Meta Pixel, Google
-            Ads, or any similar advertising technology. No data about your visit to AgencyCheck
-            is shared with advertising platforms.
+            profiling cookies. We do not use Meta Pixel, Google Ads, or any similar advertising technology.
+            No data about your visit is shared with advertising platforms.
+          </p>
+          <p className="mb-2">
+            We use <strong>Google Analytics 4 (GA4)</strong> to understand how visitors use this site.
+            GA4 is loaded <strong>only with your explicit consent</strong> — if you click
+            &ldquo;Accept analytics&rdquo; on the cookie banner. If you decline or ignore the banner,
+            GA4 does not load and no analytics data is collected. You can use the full platform
+            without accepting analytics.
+          </p>
+          <p className="text-xs text-gray-500">
+            Your consent choice is stored in localStorage under the key{" "}
+            <code className="text-xs bg-gray-100 px-1 rounded">ac_analytics_consent</code> (value:
+            &ldquo;granted&rdquo; or &ldquo;denied&rdquo;). This is documented in the browser storage table in section 3.
+            See{" "}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-brand-600 underline">Google Analytics privacy policy</a>.
           </p>
         </section>
 

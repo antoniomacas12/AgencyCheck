@@ -7,7 +7,7 @@ import { VERIFIED_AGENCIES } from "@/data/agencies";
 export const metadata: Metadata = {
   title: "Nettoloon Nederland 2026 — Hoeveel Verdien Je Écht als Uitzendkracht",
   description:
-    "Hoeveel nettoloon krijg je als uitzendkracht in Nederland? WML €14,06/uur. Reëel overzicht na belasting, huisvesting, zorgverzekering en vervoer. Per functie: magazijn, productie, serre, reach truck.",
+    "Hoeveel nettoloon krijg je als uitzendkracht in Nederland? WML €14,71/uur. Reëel overzicht na belasting, huisvesting, zorgverzekering en vervoer. Per functie: magazijn, productie, serre, reach truck.",
   alternates: {
     canonical: "https://agencycheck.io/nl/nettoloon-nederland",
     languages: {
@@ -29,19 +29,19 @@ export const metadata: Metadata = {
 export const dynamic = "force-static";
 
 const BREAKDOWN_ROWS = [
-  { label: "Bruto weekloon (WML €14,06 × 40u)",              amount: "+€562", color: "text-green-700",  bg: "bg-green-50"  },
+  { label: "Bruto weekloon (WML €14,71 × 40u)",              amount: "+€588", color: "text-green-700",  bg: "bg-green-50"  },
   { label: "Loonheffing (~10% na heffingskorting)",          amount: "−€58",  color: "text-red-600",   bg: "bg-red-50"    },
   { label: "Huisvesting uitzendbureau (SNF-norm)",           amount: "−€95",  color: "text-red-600",   bg: "bg-red-50"    },
   { label: "Zorgverzekering",                                 amount: "−€35",  color: "text-red-600",   bg: "bg-red-50"    },
   { label: "Vervoer (bus uitzendbureau)",                    amount: "−€25",  color: "text-red-600",   bg: "bg-red-50"    },
   { label: "Administratiekosten",                            amount: "−€25",  color: "text-red-600",   bg: "bg-red-50"    },
-  { label: "💶 Jouw nettoloon per week",                     amount: "€324",  color: "text-green-800", bg: "bg-green-100" },
+  { label: "💶 Jouw nettoloon per week",                     amount: "€350",  color: "text-green-800", bg: "bg-green-100" },
 ];
 
 const JOB_COMPARISON = [
-  { job: "Magazijnmedewerker",      rate: "€14,06",         gross_weekly: "€562", net_weekly: "~€320–€345", housing: "Meestal beschikbaar" },
-  { job: "Productiemedewerker",     rate: "€14,06–€15,50",  gross_weekly: "€562–€620", net_weekly: "~€330–€370", housing: "Meestal beschikbaar" },
-  { job: "Serrewerker",             rate: "€14,06",         gross_weekly: "€562", net_weekly: "~€315–€340", housing: "Seizoensgebonden" },
+  { job: "Magazijnmedewerker",      rate: "€14,71",         gross_weekly: "€588", net_weekly: "~€345–€370", housing: "Meestal beschikbaar" },
+  { job: "Productiemedewerker",     rate: "€14,71–€15,50",  gross_weekly: "€588–€620", net_weekly: "~€355–€395", housing: "Meestal beschikbaar" },
+  { job: "Serrewerker",             rate: "€14,71",         gross_weekly: "€588", net_weekly: "~€340–€365", housing: "Seizoensgebonden" },
   { job: "Reach truck chauffeur",   rate: "€15,50–€17,00",  gross_weekly: "€620–€680", net_weekly: "~€370–€415", housing: "Minder beschikbaar" },
   { job: "Heftruck operator",       rate: "€16,00–€18,00",  gross_weekly: "€640–€720", net_weekly: "~€380–€435", housing: "Zelden" },
 ];
@@ -49,7 +49,7 @@ const JOB_COMPARISON = [
 const FAQS = [
   {
     q: "Wat is het minimumloon in Nederland in 2026?",
-    a: "Het wettelijk minimumloon (WML) in 2026 is €14,06 bruto per uur bij 40 uur per week. Dat is €562 bruto per week. Na belasting en inhoudingen houd je ongeveer €320–€360 netto per week over.",
+    a: "Het wettelijk minimumloon (WML) in 2026 is €14,71 bruto per uur bij 40 uur per week. Dat is €588 bruto per week. Na belasting en inhoudingen houd je ongeveer €345–€385 netto per week over.",
   },
   {
     q: "Mag een uitzendbureau huisvesting inhouden op mijn loon?",
@@ -94,7 +94,7 @@ export default function NettoloonNederland() {
             Hoeveel Verdien Je Écht<br className="hidden sm:block" /> in Nederland? — 2026
           </h1>
           <p className="text-gray-300 text-base leading-relaxed max-w-2xl mb-6">
-            Vacatures adverteren €14,06–€17/uur. Maar dat is bruto, vóór alle inhoudingen.
+            Vacatures adverteren €14,71–€17/uur. Maar dat is bruto, vóór alle inhoudingen.
             Hieronder vind je de reële verdeling — wat er daadwerkelijk op je rekening terechtkomt.
           </p>
           <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-500/30 rounded-xl px-4 py-2 text-emerald-300 text-sm font-bold">
@@ -197,7 +197,7 @@ export default function NettoloonNederland() {
               {
                 step: "2",
                 title: "Controleer het basistarief",
-                text: "Je uurloon mag niet lager zijn dan WML: €14,06 bruto/uur (2026). Lager is illegaal.",
+                text: "Je uurloon mag niet lager zijn dan WML: €14,71 bruto/uur (2026). Lager is illegaal.",
               },
               {
                 step: "3",

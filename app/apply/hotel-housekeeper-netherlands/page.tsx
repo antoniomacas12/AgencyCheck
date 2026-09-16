@@ -253,7 +253,7 @@ export default function HotelHousekeeperNetherlandsPage() {
           </p>
           <div className="grid grid-cols-1 gap-3">
             {[
-              { icon: "💶", title: "Strong hourly rate",            body: "€17.99/hr is significantly above the Dutch minimum wage of €14.06/hr. Housekeeping roles rarely pay this well." },
+              { icon: "💶", title: "Strong hourly rate",            body: "€17.99/hr is significantly above the Dutch minimum wage of €14.71/hr. Housekeeping roles rarely pay this well." },
               { icon: "🏠", title: "Housing from day one",          body: "~€400/mo accommodation is included. Arrive, start work — no separate flat search in the Netherlands." },
               { icon: "⭐", title: "Premium hotel environment",     body: "4–5 star properties. Professional, well-managed teams. Clean, safe working conditions." },
               { icon: "📋", title: "Legal Dutch employment",        body: "Full employment contract, Dutch payroll, social insurance. Everything transparent and legal." },

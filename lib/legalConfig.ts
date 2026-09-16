@@ -15,6 +15,7 @@ export const LEGAL = {
 
   // Croatian business registration
   oib:                 "59683153877",       // Osobni identifikacijski broj
+  euVatId:             "HR59683153877",     // EU VAT ID (OIB prefixed with HR)
   mbo:                 "99352117",           // Matični broj obrta
   obrtnicaNumber:      "14010402288",        // Obrtnica number
   registrationDate:    "19 August 2026",

@@ -6,7 +6,7 @@ import { VERIFIED_AGENCIES } from "@/data/agencies";
 export const metadata: Metadata = {
   title: "Loonstrook Uitgelegd 2026 — Elke Regel op Je Salarisstrook Begrijpen",
   description:
-    "Begrijp elke regel op je Nederlandse loonstrook: brutoloon, loonheffing, heffingskorting, vakantiegeld, ET-toeslag en meer. Met voorbeeldbedragen bij WML (€14,06/uur).",
+    "Begrijp elke regel op je Nederlandse loonstrook: brutoloon, loonheffing, heffingskorting, vakantiegeld, ET-toeslag en meer. Met voorbeeldbedragen bij WML (€14,71/uur).",
   alternates: {
     canonical: "https://agencycheck.io/nl/loonstrook-uitgelegd",
     languages: {
@@ -31,10 +31,10 @@ const LOONSTROOK_FIELDS = [
   {
     term: "Brutoloon",
     label: "Bruto uurloon × gewerkte uren",
-    example: "+€562,40",
+    example: "+€588,40",
     positive: true,
     explain:
-      "Je totale verdiensten vóór inhoudingen. Bij WML (€14,06/uur × 40u/week) is dit €562,40 per week. Dit is het bedrag dat uitzendbureaus adverteren — niet wat je werkelijk op je rekening krijgt.",
+      "Je totale verdiensten vóór inhoudingen. Bij WML (€14,71/uur × 40u/week) is dit €588,40 per week. Dit is het bedrag dat uitzendbureaus adverteren — niet wat je werkelijk op je rekening krijgt.",
   },
   {
     term: "Vakantiegeld (8%)",
@@ -105,7 +105,7 @@ const LOONSTROOK_FIELDS = [
 const FAQS = [
   {
     q: "Waarom is mijn nettoloon zo veel lager dan mijn brutoloon?",
-    a: "Het brutoloon is het totaal vóór belastingen en inhoudingen. Van dat bedrag gaat loonheffing (~10–15%), huisvesting (~€95/week), zorgverzekering (~€35/week) en vervoer (~€25/week) af. Daardoor houd je bij WML van €562 bruto circa €308–€345 netto per week over.",
+    a: "Het brutoloon is het totaal vóór belastingen en inhoudingen. Van dat bedrag gaat loonheffing (~10–15%), huisvesting (~€95/week), zorgverzekering (~€35/week) en vervoer (~€25/week) af. Daardoor houd je bij WML van €588 bruto circa €334–€370 netto per week over.",
   },
   {
     q: "Wat zijn heffingskortingen en waarom zijn ze belangrijk?",
@@ -149,7 +149,7 @@ export default function LoonstrookUitgelegd() {
             Nederlandse Loonstrook<br className="hidden sm:block" /> Uitgelegd — 2026
           </h1>
           <p className="text-gray-300 text-base leading-relaxed max-w-2xl mb-6">
-            Elke regel op je loonstrook uitgelegd met echte bedragen bij WML (€14,06/uur).
+            Elke regel op je loonstrook uitgelegd met echte bedragen bij WML (€14,71/uur).
             Begrijp wat je verdient, wat wordt ingehouden en hoe je controleert of het klopt.
           </p>
         </div>
@@ -188,7 +188,7 @@ export default function LoonstrookUitgelegd() {
           <h2 className="text-lg font-black text-gray-900 mb-4">📋 Controleer je loonstrook</h2>
           <div className="space-y-2">
             {[
-              "Brutoloon is minimaal €14,06/uur (40u/week) of €14,80/uur (38u/week)",
+              "Brutoloon is minimaal €14,71/uur (40u/week) of €15,48/uur (38u/week)",
               "Vakantiegeld (8%) staat als aparte post vermeld",
               "Loonheffing is berekend met jouw BSN — niet het anoniementarief",
               "Heffingskorting wordt toegepast (arbeidskorting + algemene heffingskorting)",

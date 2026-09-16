@@ -14,7 +14,7 @@ import type { JobListing } from "@/lib/jobData";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const WML = 14.06; // Dutch minimum wage 2026 — used to gate salary display
+const WML = 14.71; // Dutch minimum wage 2026 — used to gate salary display
 
 // Popularity ranking for "Most popular" sort (lower = more common)
 const JOB_TYPE_RANK: Record<string, number> = {

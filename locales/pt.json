@@ -477,7 +477,7 @@
     "breadcrumb_agencies": "Agências",
     "workers_report_label": "Relatório de trabalhadores",
     "workers_report_title": "O que vivem os trabalhadores na {agencyName}",
-    "workers_report_badge": "Baseado em dados de trabalhadores",
+    "workers_report_badge": "Estimativa AgencyCheck · dados SNF/setor",
     "housing_cost_label": "Custo semanal do alojamento",
     "housing_cost_sub": "Descontado do teu salário pela agência",
     "housing_cost_range": "110–160 €/semana",

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Minimumloon Nederland 2026 — Uurloon & Nettoloon na Inhoudingen",
     description:
-      "WML 2026: €14,06/uur (40u/week). Wat houdt het uitzendbureau in? Hoeveel nettoloon krijg je écht? Inclusief huisvesting, belasting en vervoer.",
+      "WML 2026: €14,71/uur (40u/week). Wat houdt het uitzendbureau in? Hoeveel nettoloon krijg je écht? Inclusief huisvesting, belasting en vervoer.",
     locale: "nl_NL",
   },
 };
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
 export const dynamic = "force-static";
 
 const WML_RATES = [
-  { period: "Per uur (40u/week)",   gross: "€14,06",   note: "Geldt voor alle werknemers van 21 jaar en ouder, ongeacht nationaliteit" },
-  { period: "Per uur (38u/week)",   gross: "€14,80",   note: "Als de cao een 38-urige werkweek hanteert" },
-  { period: "Per uur (36u/week)",   gross: "€15,62",   note: "Afhankelijk van de cao van de sector" },
-  { period: "Per week (40u)",       gross: "€562,40",  note: "Bruto, vóór loonheffing, premies en inhoudingen" },
-  { period: "Per maand (40u)",      gross: "€2 437",   note: "52 weken × €562,40 ÷ 12" },
-  { period: "Vakantiegeld (8%)",    gross: "+€195/mnd", note: "Opgebouwd per maand, uitbetaald in mei (ABU CAO) of ingebouwd in uurloon" },
+  { period: "Per uur (40u/week)",   gross: "€14,71",   note: "Geldt voor alle werknemers van 21 jaar en ouder, ongeacht nationaliteit" },
+  { period: "Per uur (38u/week)",   gross: "€15,48",   note: "Als de cao een 38-urige werkweek hanteert" },
+  { period: "Per uur (36u/week)",   gross: "€16,34",   note: "Afhankelijk van de cao van de sector" },
+  { period: "Per week (40u)",       gross: "€588,40",  note: "Bruto, vóór loonheffing, premies en inhoudingen" },
+  { period: "Per maand (40u)",      gross: "€2 550",   note: "52 weken × €588,40 ÷ 12" },
+  { period: "Vakantiegeld (8%)",    gross: "+€204/mnd", note: "Opgebouwd per maand, uitbetaald in mei (ABU CAO) of ingebouwd in uurloon" },
 ];
 
 const LEGAL_DEDUCTIONS = [
@@ -81,20 +81,20 @@ const LEGAL_DEDUCTIONS = [
 ];
 
 const NET_EXAMPLE = [
-  { label: "Bruto weekloon (40u @ WML)",                         amount: "+€562",  plus: true  },
+  { label: "Bruto weekloon (40u @ WML)",                         amount: "+€588",  plus: true  },
   { label: "Loonheffing (inkomstenbelasting, met heffingskorting)", amount: "−€58",  plus: false },
   { label: "WW-premie (werkloosheidsverzekering)",                amount: "−€22",   plus: false },
   { label: "ZW/WIA-premies (ziekte/arbeidsongeschiktheid)",       amount: "−€14",   plus: false },
   { label: "Zorgverzekering",                                     amount: "−€40",   plus: false },
   { label: "Huisvesting (SNF-norm, indien van toepassing)",       amount: "−€95",   plus: false },
   { label: "Vervoer (indien geregeld door uitzendbureau)",        amount: "−€25",   plus: false },
-  { label: "Nettoloon (op rekening)",                             amount: "≈ €308", plus: true  },
+  { label: "Nettoloon (op rekening)",                             amount: "≈ €334", plus: true  },
 ];
 
 const FAQS = [
   {
     q: "Wat is het minimumloon in Nederland in 2026?",
-    a: "Het wettelijk minimumloon (WML) in 2026 bedraagt €14,06 bruto per uur voor werknemers van 21 jaar en ouder bij een 40-urige werkweek. Dat is €562,40 bruto per week en circa €2.437 bruto per maand. De tarieven worden op 1 januari en 1 juli elk jaar aangepast op basis van de gemiddelde loonontwikkeling.",
+    a: "Het wettelijk minimumloon (WML) in 2026 bedraagt €14,71 bruto per uur voor werknemers van 21 jaar en ouder bij een 40-urige werkweek. Dat is €588,40 bruto per week en circa €2.550 bruto per maand. De tarieven worden op 1 januari en 1 juli elk jaar aangepast op basis van de gemiddelde loonontwikkeling.",
   },
   {
     q: "Mag een uitzendbureau minder dan het minimumloon betalen door inhoudingen?",
@@ -102,7 +102,7 @@ const FAQS = [
   },
   {
     q: "Wat is vakantiegeld en is het inbegrepen in het minimumloon?",
-    a: "Vakantiegeld is 8% van je bruto jaarloon en is wettelijk verplicht op grond van Art. 15 Wet minimumloon. Voor een fulltime werknemer op WML is dat circa €195 per maand, in mei uitbetaald (ABU CAO). Het is een aanvulling op je reguliere loon — het effectieve uurloon inclusief vakantiegeld bedraagt dus circa €15,18/uur.",
+    a: "Vakantiegeld is 8% van je bruto jaarloon en is wettelijk verplicht op grond van Art. 15 Wet minimumloon. Voor een fulltime werknemer op WML is dat circa €204 per maand, in mei uitbetaald (ABU CAO). Het is een aanvulling op je reguliere loon — het effectieve uurloon inclusief vakantiegeld bedraagt dus circa €15,89/uur.",
   },
   {
     q: "Geldt het minimumloon ook voor buitenlandse EU-werknemers?",
@@ -330,7 +330,7 @@ export default function MinimumloonNederland2026Page() {
             <h2 className="text-2xl font-bold text-gray-900 mb-3">Checklist: betaalt jouw uitzendbureau correct?</h2>
             <div className="bg-white border border-gray-200 rounded-xl divide-y divide-gray-100">
               {[
-                "Je uurloon bedraagt minimaal €14,06 (40u/week) of €14,80 (38u/week)",
+                "Je uurloon bedraagt minimaal €14,71 (40u/week) of €15,48 (38u/week)",
                 "Vakantiegeld (8%) staat als aparte post op je loonstrook",
                 "Loonheffing wordt berekend met je BSN — niet met het anoniementarief",
                 "De huisvestingsinhouding is maximaal €113,50 per week (SNF-maximum)",

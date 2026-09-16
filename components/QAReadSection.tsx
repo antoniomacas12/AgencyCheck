@@ -31,7 +31,7 @@ function AnswerRow({ answer }: { answer: QAAnswer }) {
       <div className="flex-1 min-w-0 pb-1">
         <div className="flex items-center gap-2 mb-1 flex-wrap">
           {answer.authorLabel === "Verified worker" ? (
-            <span className="inline-flex items-center gap-1 text-[9px] font-bold bg-green-100 text-green-700 rounded-full px-1.5 py-0.5">
+            <span className="inline-flex items-center gap-1 text-[9px] font-bold bg-green-100 text-green-700 rounded-full px-1.5 py-0.5" title="Self-reported — submitted by someone claiming to have worked at this agency">
               ✅ {answer.authorLabel}
             </span>
           ) : (

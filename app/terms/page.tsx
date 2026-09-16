@@ -160,11 +160,16 @@ export default function TermsPage() {
         {/* 5 — No affiliation */}
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">6. No affiliation with agencies</h2>
-          <p>
+          <p className="mb-2">
             AgencyCheck is independent and not affiliated with any employment agency, recruiter,
             or staffing organisation. We do not accept payment to add, remove, or alter agency
             profiles. Agency appearances on the platform are based solely on research and worker
             data.
+          </p>
+          <p>
+            AgencyCheck may receive a referral fee from employment agencies when a worker is
+            successfully placed through our matching service. Workers are never charged.
+            This arrangement does not affect agency ratings, search placement, or score calculations.
           </p>
         </section>
 

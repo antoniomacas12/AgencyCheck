@@ -70,9 +70,12 @@ export default function ScoreBadge({
 
       {/* Tier label */}
       {showLabel && (
-        <span className={`text-xs font-semibold ${config.text}`}>
-          {config.label}
-        </span>
+        <div className="text-center">
+          <span className={`text-xs font-semibold ${config.text}`}>
+            {config.label}
+          </span>
+          <p className="text-[10px] text-gray-400 mt-0.5 leading-tight">Data transparency · not a quality rating</p>
+        </div>
       )}
 
       {/* Horizontal score bar */}

@@ -545,7 +545,7 @@ export default async function HomePage() {
                       href:   "/apply/auto-detailing-worker-netherlands",
                       icon:   "🚗",
                       title:  "Auto Detailing Worker",
-                      salary: "€2,300–€2,400 net/mo",
+                      salary: "~€2,300–€2,400 net/mo (est.)",
                       tags:   ["🏙️ Amsterdam / Rotterdam", "🏠 Housing avail.", "🇪🇺 EU citizens"],
                     },
                     {
@@ -940,7 +940,7 @@ export default async function HomePage() {
               {
                 value: `${totalReviews}`,
                 label: "worker reports",
-                sub: "38 verified · 73 worker-reported · 42% rate 1–2 stars",
+                sub: "verified & worker-reported · 42% rate 1–2 stars",
                 color: "text-emerald-400",
               },
               {

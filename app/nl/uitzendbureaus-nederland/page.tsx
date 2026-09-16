@@ -330,7 +330,7 @@ export default function UitzendbureausNederlandPage() {
               "Inhouding boven €113,50/week voor huisvesting — BOVEN SNF-MAXIMUM",
               "Bureau staat niet op de SNF-gecertificeerde lijst (snf.nl)",
               "Geen schriftelijk overzicht van inhoudingen vóór ondertekening",
-              "Uurloon onder €14,06 bruto (WML 2026) — ILLEGAAL",
+              "Uurloon onder €14,71 bruto (WML 2026) — ILLEGAAL",
             ].map((w, i) => (
               <div key={i} className="flex items-start gap-2 text-sm text-red-300">
                 <span className="text-red-400 font-bold shrink-0">✗</span>
