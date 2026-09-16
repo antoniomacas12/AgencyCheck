@@ -42,6 +42,7 @@ import JobsWithAccommodationSection from "@/components/JobsWithAccommodationSect
 import FeaturedJobVerifiedPartner   from "@/components/FeaturedJobVerifiedPartner";
 import FeaturedJobDeliBarn          from "@/components/FeaturedJobDeliBarn";
 import IntegralisHeroSection         from "@/components/IntegralisHeroSection";
+import ApplicationProcessPanel       from "@/components/ApplicationProcessPanel";
 
 export const metadata: Metadata = {
   title: "AgencyCheck – Real Salary, Housing & Job Transparency in the Netherlands",
@@ -586,6 +587,11 @@ export default async function HomePage() {
 
               {/* Review inline form — below the card */}
               <HeroReviewInline />
+
+              {/* Transparency / process panel — fills the empty right space */}
+              <div className="mt-4">
+                <ApplicationProcessPanel />
+              </div>
 
             </div>
           </div>
