@@ -12,6 +12,10 @@ import ApplyBar from "./ApplyBar";
 const DISMISSED_KEY = "ac_sticky_bar_dismissed";
 
 export default function HomepageStickyBar() {
+  // Disabled — too many floating CTAs on the page.
+  return null;
+
+  // eslint-disable-next-line no-unreachable
   const [visible,       setVisible]       = useState(false);
   const [dismissed,     setDismissed]     = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
