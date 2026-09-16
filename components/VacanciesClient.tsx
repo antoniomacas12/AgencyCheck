@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ApplyPreScreen from "@/components/ApplyPreScreen";
+import ApplicationProcessPanel from "@/components/ApplicationProcessPanel";
 import { stripLocalePrefix, useT } from "@/lib/i18n";
 import {
   VACANCIES,
@@ -76,7 +77,11 @@ export default function VacanciesClient() {
 
   return (
     <div className="min-h-screen bg-[#0B1F14]">
-      <div className="max-w-2xl mx-auto px-4 py-8 pb-16">
+      {/* Outer: wide enough for left listings + right panel on desktop */}
+      <div className="max-w-5xl mx-auto px-4 py-8 pb-16 lg:flex lg:gap-8 lg:items-start">
+
+      {/* ── LEFT column: listings ─────────────────────────────────── */}
+      <div className="w-full lg:min-w-0 lg:flex-1 lg:max-w-2xl">
 
         {/* ── Hero ─────────────────────────────────────────────────── */}
         <div className="mb-6">
@@ -278,7 +283,16 @@ export default function VacanciesClient() {
         <p className="text-center text-gray-600 text-[11px] mt-8">
           {t("vacatures.all_positions_note")}
         </p>
+
+      </div>{/* end left column */}
+
+      {/* ── RIGHT column: transparency panel ─────────────────────── */}
+      {/* Desktop: sticky sidebar. Mobile/tablet: flows below listings */}
+      <div className="mt-8 lg:mt-0 lg:w-[272px] xl:w-[296px] shrink-0 lg:sticky lg:top-6 lg:self-start">
+        <ApplicationProcessPanel />
       </div>
+
+      </div>{/* end outer flex wrapper */}
     </div>
   );
 }
