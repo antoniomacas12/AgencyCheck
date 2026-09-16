@@ -89,20 +89,67 @@ const OPTION_A_JOBS = [
 
 const INTEGRALIS_JOBS = [
   {
+    slug:   "integralis-technical-north-netherlands",
+    title:  "Technical Workers — Flange / Fitter / Ironworker",
+    salary: "€763 net/wk",
+    note:   "⚡ URGENT · Week 39 · Delamine & TCA · North Netherlands · VCA+WFPR pref.",
+    icon:   "🔧",
+    href:   "/apply/integralis-technical-north-netherlands",
+    urgent: true,
+  },
+  {
+    slug:   "integralis-machine-operator-hengelo",
+    title:  "Machine Operator — Salt Production",
+    salary: "€3,000–3,500/mo",
+    note:   "Hengelo · 3-shift · Direct contract · VAPRO-A · Accommodation avail.",
+    icon:   "🏭",
+    href:   "/apply/integralis-machine-operator-hengelo",
+    urgent: false,
+  },
+  {
+    slug:   "integralis-logistics-groenlo",
+    title:  "Logistics Employee",
+    salary: "Competitive",
+    note:   "Groenlo · Day shifts · Company car · Cat. B licence · Accommodation avail.",
+    icon:   "📦",
+    href:   "/apply/integralis-logistics-groenlo",
+    urgent: false,
+  },
+  {
+    slug:   "integralis-cleaning-groenlo",
+    title:  "Cleaning Worker",
+    salary: "€14.71/hr",
+    note:   "Groenlo · Offices & sanitary · Company car · Cat. B licence · Accommodation avail.",
+    icon:   "🧹",
+    href:   "/apply/integralis-cleaning-groenlo",
+    urgent: false,
+  },
+  {
+    slug:   "integralis-meat-processing-groenlo",
+    title:  "Meat Processing Worker",
+    salary: "Inquire",
+    note:   "Groenlo · 15+ departments · Slaughterhouse / deboning / packing · Accommodation avail.",
+    icon:   "🥩",
+    href:   "/apply/integralis-meat-processing-groenlo",
+    urgent: false,
+  },
+  {
     slug:   "production-worker-lupack-raalte",
     title:  "Production Worker – Lupack",
-    salary: "€15.24–€17.37/hr gross",
+    salary: "€15.24–€17.37/hr",
     note:   "Zwanenberg Food Group · Raalte · 2-shift · Accommodation avail.",
     icon:   "🏭",
     href:   "/apply/production-worker-lupack-raalte",
+    urgent: false,
   },
   {
     slug:   "window-cleaner-enschede",
     title:  "Window Cleaner",
-    salary: "€16.08–€18.44/hr gross",
+    salary: "€16.08–€18.44/hr",
     note:   "Enschede · Full-time or part-time · Experience required",
     icon:   "🧹",
     href:   "/apply/window-cleaner-enschede",
+    urgent: false,
   },
 ] as const;
 
@@ -451,21 +498,27 @@ export default function HomepageJobsCard({
               </p>
               <div className="space-y-3">
                 {INTEGRALIS_JOBS.map((job) => (
-                  <div key={job.slug} className="rounded-2xl border border-orange-500/20 bg-orange-500/[0.04] px-4 py-4">
-                    <div className="flex items-center gap-3 mb-3">
+                  <div key={job.slug} className={`rounded-2xl border px-4 py-4 ${job.urgent ? "border-red-500/30 bg-red-500/[0.04]" : "border-orange-500/20 bg-orange-500/[0.04]"}`}>
+                    <div className="flex items-center gap-3 mb-2">
                       <span className="text-3xl shrink-0">{job.icon}</span>
-                      <div className="min-w-0">
-                        <p className="text-white font-extrabold text-[15px] leading-snug">{job.title}</p>
-                        <p className="text-orange-400 font-black text-[13px] mt-0.5">{job.salary}</p>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <p className="text-white font-extrabold text-[15px] leading-snug">{job.title}</p>
+                          {job.urgent && (
+                            <span className="shrink-0 text-[9px] font-black bg-red-500/20 text-red-400 border border-red-500/30 rounded-full px-1.5 py-0.5 uppercase tracking-wide">URGENT</span>
+                          )}
+                        </div>
+                        <p className={`font-black text-[13px] mt-0.5 ${job.urgent ? "text-red-400" : "text-orange-400"}`}>{job.salary}</p>
                       </div>
                     </div>
                     <p className="text-gray-500 text-[11px] mb-3">{job.note}</p>
-                    <Link
-                      href={job.href}
-                      className="flex items-center justify-center gap-2 w-full bg-orange-500/[0.15] hover:bg-orange-500/[0.28] active:scale-[0.97] border border-orange-500/30 text-orange-200 font-black text-[13px] px-4 py-3 rounded-xl transition-all duration-150"
-                    >
-                      View &amp; Apply →
-                    </Link>
+                    <ApplyPreScreen waBase={WA_BASE} jobTitle={job.title} source="homepage-card-integralis" jobId={job.slug} referralMode>
+                      {(openFn) => (
+                        <button onClick={openFn} className={`flex items-center justify-center gap-1.5 w-full active:scale-[0.97] text-white font-black text-[11px] px-3 py-2.5 rounded-lg transition-all duration-150 ${job.urgent ? "bg-red-500 hover:bg-red-400" : "bg-[#25D366] hover:bg-[#1ebe5d]"}`} style={{ boxShadow: job.urgent ? "0 2px 10px rgba(239,68,68,0.20)" : "0 2px 10px rgba(37,211,102,0.20)" }}>
+                          {WA_ICON} Apply on WhatsApp
+                        </button>
+                      )}
+                    </ApplyPreScreen>
                   </div>
                 ))}
               </div>
