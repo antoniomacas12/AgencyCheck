@@ -15,76 +15,44 @@ const WA_BASE = "https://wa.me/31649210631";
 
 const MORE_JOBS = [
   {
-    slug:     "integralis-technical-north-netherlands",
-    title:    "Flange Mechanic / Fitter / Ironworker",
-    location: "North Netherlands",
-    salary:   "€763 net/wk",
-    icon:     "🔧",
-    hot:      true,
-    urgent:   true,
+    slug:   "integralis-technical-north-netherlands",
+    title:  "Flange Mechanic / Fitter / Ironworker",
+    note:   "North Netherlands · Delamine & TCA · Week 39",
+    salary: "€763 net/wk",
+    icon:   "🔧",
+    urgent: true,
   },
   {
-    slug:     "integralis-machine-operator-hengelo",
-    title:    "Machine Operator — Salt Production",
-    location: "Hengelo",
-    salary:   "€3,000–3,500/mo",
-    icon:     "🏭",
-    hot:      false,
-    urgent:   false,
+    slug:   "integralis-machine-operator-hengelo",
+    title:  "Machine Operator — Salt Production",
+    note:   "Hengelo · 3-shift · Direct contract",
+    salary: "€3,000–3,500/mo",
+    icon:   "🏭",
+    urgent: false,
   },
   {
-    slug:     "integralis-logistics-groenlo",
-    title:    "Logistics Employee",
-    location: "Groenlo",
-    salary:   "Competitive",
-    icon:     "📦",
-    hot:      false,
-    urgent:   false,
+    slug:   "integralis-logistics-groenlo",
+    title:  "Logistics Employee",
+    note:   "Groenlo · Day shifts · Company car · Cat. B",
+    salary: "Competitive",
+    icon:   "📦",
+    urgent: false,
   },
   {
-    slug:     "integralis-cleaning-groenlo",
-    title:    "Cleaning Worker",
-    location: "Groenlo",
-    salary:   "€14.71/hr",
-    icon:     "🧹",
-    hot:      false,
-    urgent:   false,
+    slug:   "integralis-cleaning-groenlo",
+    title:  "Cleaning Worker",
+    note:   "Groenlo · Offices & sanitary · Company car",
+    salary: "€14.71/hr",
+    icon:   "🧹",
+    urgent: false,
   },
   {
-    slug:     "integralis-meat-processing-groenlo",
-    title:    "Meat Processing Worker",
-    location: "Groenlo",
-    salary:   "Ask on application",
-    icon:     "🥩",
-    hot:      false,
-    urgent:   false,
-  },
-  {
-    slug:     "warehouse-worker-fresh-department",
-    title:    "Warehouse Worker (Fresh dept.)",
-    location: "Netherlands",
-    salary:   "€14.98/h gross",
-    icon:     "📦",
-    hot:      false,
-    urgent:   false,
-  },
-  {
-    slug:     "order-picker-cold-ridderkerk",
-    title:    "Order Picker (cooled 5–7°C)",
-    location: "Ridderkerk",
-    salary:   "€14.71/h gross",
-    icon:     "🧊",
-    hot:      false,
-    urgent:   false,
-  },
-  {
-    slug:     "cnc-milling-operator-oirschot",
-    title:    "CNC Milling Operator",
-    location: "Oirschot",
-    salary:   "€630/wk",
-    icon:     "🏭",
-    hot:      false,
-    urgent:   false,
+    slug:   "integralis-meat-processing-groenlo",
+    title:  "Meat Processing Worker",
+    note:   "Groenlo · 15 departments · Accommodation avail.",
+    salary: "On application",
+    icon:   "🥩",
+    urgent: false,
   },
 ];
 
@@ -114,34 +82,31 @@ export default function HomepageMoreJobs() {
       </div>
 
       {/* Job rows */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         {MORE_JOBS.map((job) => (
           <div
             key={job.slug}
-            className={`rounded-xl border px-4 py-3.5 flex items-center justify-between gap-3 ${job.urgent ? "border-red-500/25 bg-red-500/[0.04]" : "border-white/[0.08] bg-white/[0.03]"}`}
+            className={`rounded-xl border px-3 py-2.5 flex items-center justify-between gap-2 ${job.urgent ? "border-red-500/30 bg-red-500/[0.05]" : "border-white/[0.08] bg-white/[0.02]"}`}
           >
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <span className="text-[13px]">{job.icon}</span>
-                <p className="text-white font-semibold text-[13px] leading-snug truncate">
-                  {job.title}
-                </p>
-                {job.urgent && (
-                  <span className="shrink-0 text-[9px] font-black bg-red-500/20 text-red-400 border border-red-500/30 rounded-full px-1.5 py-0.5 uppercase tracking-wide">
-                    Urgent
-                  </span>
-                )}
-                {!job.urgent && job.hot && (
-                  <span className="shrink-0 text-[9px] font-black bg-orange-500/20 text-orange-400 border border-orange-500/30 rounded-full px-1.5 py-0.5 uppercase tracking-wide">
-                    Hot
-                  </span>
-                )}
+            <div className="min-w-0 flex items-center gap-2">
+              <span className="text-[14px] shrink-0">{job.icon}</span>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1 flex-wrap">
+                  <p className="text-white font-semibold text-[12px] leading-snug truncate">
+                    {job.title}
+                  </p>
+                  {job.urgent && (
+                    <span className="shrink-0 text-[8px] font-black bg-red-500/20 text-red-400 border border-red-500/30 rounded-full px-1.5 py-0.5 uppercase tracking-wide">
+                      Urgent
+                    </span>
+                  )}
+                </div>
+                <p className="text-gray-500 text-[10px] truncate">{job.note}</p>
               </div>
-              <p className="text-gray-500 text-[11px]">📍 {job.location}</p>
             </div>
 
-            <div className="flex flex-col items-end gap-2 shrink-0">
-              <span className={`text-[11px] font-black whitespace-nowrap ${job.urgent ? "text-red-400" : "text-emerald-400"}`}>
+            <div className="flex flex-col items-end gap-1.5 shrink-0">
+              <span className={`text-[10px] font-black whitespace-nowrap ${job.urgent ? "text-red-400" : "text-emerald-400"}`}>
                 {job.salary}
               </span>
               <ApplyPreScreen
@@ -154,7 +119,7 @@ export default function HomepageMoreJobs() {
                 {(openFn) => (
                   <button
                     onClick={openFn}
-                    className={`flex items-center gap-1 font-black text-[11px] px-3 py-1.5 rounded-lg transition-all duration-150 whitespace-nowrap ${job.urgent ? "bg-red-500 hover:bg-red-400 active:scale-[0.97] text-white" : "bg-[#22C55E] hover:bg-green-400 active:scale-[0.97] text-white"}`}
+                    className={`flex items-center gap-1 font-black text-[10px] px-2.5 py-1.5 rounded-lg transition-all duration-150 whitespace-nowrap ${job.urgent ? "bg-red-500 hover:bg-red-400 active:scale-[0.97] text-white" : "bg-[#22C55E] hover:bg-green-400 active:scale-[0.97] text-white"}`}
                   >
                     {WA_ICON_SM}
                     Apply
