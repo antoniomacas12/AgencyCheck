@@ -490,8 +490,51 @@ export default async function HomePage() {
               {/* ── Integralis partnership jobs ───────────────────────── */}
               <IntegralisHeroSection />
 
-              {/* ── Hospitality quick-links ───────────────────────────── */}
-              <div className="mt-4 w-full rounded-2xl border border-emerald-500/25 bg-[#0B1F14] px-4 py-4">
+            </div>
+
+            {/* ── Right: money card ──────────────────────────────────── */}
+            <div className="hero-col-right w-full lg:w-[390px] xl:w-[420px] shrink-0 mx-auto lg:mx-0 lg:sticky lg:top-4 lg:self-start">
+
+              {/* Micro-info bar — desktop only, above the card */}
+              <div className="hidden lg:flex items-center gap-2 flex-wrap mb-4">
+                {[
+                  { color: "bg-emerald-400", label: "Verified agencies" },
+                  { color: "bg-blue-400",    label: "Jobs with housing" },
+                  { color: "bg-amber-400",   label: "Start in 1–7 days" },
+                ].map((p) => (
+                  <span
+                    key={p.label}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.12] bg-white/[0.04] px-3 py-1 text-[11px] font-medium text-gray-400"
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full ${p.color} opacity-75 shrink-0`} />
+                    {p.label}
+                  </span>
+                ))}
+              </div>
+
+              {/* Now Hiring jobs card + ET Costs tip (shared expand state) */}
+              <HeroRightColumn totalJobs={VACANCIES.length} locale="en" />
+
+              {/* Review inline form — below the card */}
+              <HeroReviewInline />
+
+              {/* Transparency / process panel — fills the empty right space */}
+              <div className="mt-4">
+                <ApplicationProcessPanel />
+              </div>
+
+            </div>
+          </div>
+
+          {/* ── Option A Jobs: 2-column grid (desktop) ───────────────── */}
+          {/* Left: Hospitality + Automotive · Right: Food Production      */}
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+            {/* ── Left col: Hospitality + Automotive ───────────────── */}
+            <div className="flex flex-col gap-4">
+
+              {/* Hospitality */}
+              <div className="w-full rounded-2xl border border-emerald-500/25 bg-[#0B1F14] px-4 py-4">
                 <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400/80 mb-1.5">
                   🏨 New · Hospitality Jobs — Netherlands
                 </p>
@@ -525,8 +568,8 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              {/* ── Option A Automotive quick-links ──────────────────── */}
-              <div className="mt-4 w-full rounded-2xl border border-emerald-500/25 bg-[#0B1F14] px-4 py-4">
+              {/* Automotive */}
+              <div className="w-full rounded-2xl border border-emerald-500/25 bg-[#0B1F14] px-4 py-4">
                 <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400/80 mb-1.5">
                   🚗 New · Automotive Jobs — Netherlands
                 </p>
@@ -560,8 +603,12 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              {/* ── Option A Food Production quick-links ─────────────── */}
-              <div className="mt-4 w-full rounded-2xl border border-emerald-500/25 bg-[#0B1F14] px-4 py-4">
+            </div>
+
+            {/* ── Right col: Food Production (Urgent) ──────────────── */}
+            <div className="flex flex-col gap-4">
+
+              <div className="w-full rounded-2xl border border-emerald-500/25 bg-[#0B1F14] px-4 py-4">
                 <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400/80 mb-1.5">
                   🧀 Urgent · Food Production Jobs — Netherlands
                 </p>
@@ -603,39 +650,8 @@ export default async function HomePage() {
 
             </div>
 
-            {/* ── Right: money card ──────────────────────────────────── */}
-            <div className="hero-col-right w-full lg:w-[390px] xl:w-[420px] shrink-0 mx-auto lg:mx-0 lg:sticky lg:top-4 lg:self-start">
-
-              {/* Micro-info bar — desktop only, above the card */}
-              <div className="hidden lg:flex items-center gap-2 flex-wrap mb-4">
-                {[
-                  { color: "bg-emerald-400", label: "Verified agencies" },
-                  { color: "bg-blue-400",    label: "Jobs with housing" },
-                  { color: "bg-amber-400",   label: "Start in 1–7 days" },
-                ].map((p) => (
-                  <span
-                    key={p.label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.12] bg-white/[0.04] px-3 py-1 text-[11px] font-medium text-gray-400"
-                  >
-                    <span className={`w-1.5 h-1.5 rounded-full ${p.color} opacity-75 shrink-0`} />
-                    {p.label}
-                  </span>
-                ))}
-              </div>
-
-              {/* Now Hiring jobs card + ET Costs tip (shared expand state) */}
-              <HeroRightColumn totalJobs={VACANCIES.length} locale="en" />
-
-              {/* Review inline form — below the card */}
-              <HeroReviewInline />
-
-              {/* Transparency / process panel — fills the empty right space */}
-              <div className="mt-4">
-                <ApplicationProcessPanel />
-              </div>
-
-            </div>
           </div>
+
         </div>
       </section>
 
