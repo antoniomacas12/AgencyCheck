@@ -112,7 +112,7 @@ export const CAT_JOB_DESCRIPTIONS: Record<Category, { intro: string; duties: str
     extra: "A relevant automotive or body-repair qualification is expected. Experience with Dutch or European vehicle brands is an advantage. No Dutch language required — technical communication in English is standard.",
   },
   food: {
-    intro: "This food production or agricultural role is based in the Netherlands or Belgium. You will work in a food-safe environment — processing plant, slaughterhouse, fish facility, or farm — with full legal employment and compliance with Dutch food safety standards.",
+    intro: "This food production role is based in the Netherlands. You will work in a food-safe environment — processing plant, slaughterhouse, fish facility, or food factory — with full legal employment and compliance with Dutch food safety standards.",
     duties: [
       "Process, pack, or handle food products according to HACCP and hygiene guidelines",
       "Wear full PPE including waterproof clothing, gloves, and safety boots at all times",
@@ -309,7 +309,7 @@ export const VACANCIES: Vacancy[] = [
   { slug: "ept-driver-logistics-venray",                t: "EPT Driver / General Logistics Worker",                     c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Venray",                            b: ["acc_ask"] },
   { slug: "forklift-driver-ijmuiden",                      t: "Forklift Driver (with valid certificate)",                  c: "warehouse",   s: "€16.05/h gross", sm: 642,  sx: 0,    l: "IJmuiden",                          b: ["acc_ask"] },
   { slug: "forklift-driver-loader-tiel",                   t: "Forklift Driver / Loader / Wrapper",                        c: "warehouse",   s: "€15.29/h gross", sm: 611,  sx: 0,    l: "Tiel",                              b: ["acc_ask"] },
-  { slug: "stable-cleaner-kootwijkerbroek",                t: "Stable Cleaner (with farm experience)",                     c: "food",        s: "€16.25/h gross", sm: 650,  sx: 0,    l: "Kootwijkerbroek",                   b: ["acc_ask"] },
+  // stable-cleaner-kootwijkerbroek removed 2026-09-18 — Option A partner requested removal of all agriculture/farm vacancies
   { slug: "reach-truck-driver-certificate-amsterdam",     t: "Reach Truck Driver with Certificate",                       c: "driving",     s: "€15.35/h gross", sm: 614,  sx: 0,    l: "Amsterdam",                         b: [] },
   { slug: "order-picker-clean-record-amsterdam",          t: "Order Picker (clean criminal record)",                      c: "warehouse",   s: "€14.71/h gross", sm: 588,  sx: 0,    l: "Amsterdam",                         b: ["acc_ask"] },
   // ── Driving Jobs ─────────────────────────────────────────────────────────
@@ -323,7 +323,7 @@ export const VACANCIES: Vacancy[] = [
   { slug: "industrial-painter-trailers-venlo",   t: "Industrial Painter (Trailers & Trucks)",             c: "driving",     s: "€600/wk",        sm: 600,  sx: 600,  l: "Venlo",                             b: [] },
   { slug: "bus-driver-public-transport",         t: "Bus Driver (Public Transport)",                      c: "driving",     s: "€550–€620/wk",   sm: 550,  sx: 620,  l: "Netherlands",                       b: [] },
   { slug: "bus-driver-free-accommodation",       t: "Bus Driver – Free Accommodation",                    c: "driving",     s: "€600–€800/wk",   sm: 600,  sx: 800,  l: "Netherlands",                       b: ["acc"] },
-  { slug: "tractor-driver-green-sector",         t: "Tractor Driver (Green Sector)",                      c: "driving",     s: "€450–€550/wk",   sm: 450,  sx: 550,  l: "Numansdorp",                        b: [] },
+  // tractor-driver-green-sector removed 2026-09-18 — Option A partner requested removal of all agriculture/farm vacancies
   // ── Automotive ───────────────────────────────────────────────────────────
   { slug: "migmag-welder-fitter-truck-trailers", t: "MIG/MAG Welder – Fitter (Truck Trailers)",           c: "automotive",  s: "€600–€750/wk",   sm: 600,  sx: 750,  l: "Netherlands",                       b: [] },
   { slug: "car-mechanic-senior",                 t: "Car Mechanic (min. 5 years exp.)",                   c: "automotive",  s: "€580–€640/wk",   sm: 580,  sx: 640,  l: "Netherlands",                       b: [] },
