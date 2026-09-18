@@ -176,7 +176,7 @@ export default function FeaturedJobVerifiedPartner() {
                     href={`/apply/${job.slug}`}
                     className={`w-full inline-flex items-center justify-center gap-2 font-bold text-sm px-5 py-3 rounded-xl transition-colors active:scale-[0.98] ${
                       isFoodProd
-                        ? "bg-amber-500 hover:bg-amber-400 text-white"
+                        ? "bg-red-500 hover:bg-red-400 text-white"
                         : "bg-[#22C55E] hover:bg-green-400 text-white"
                     }`}
                   >
