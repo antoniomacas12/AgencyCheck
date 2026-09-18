@@ -53,6 +53,8 @@ const nextConfig = {
       { source: "/agencies/otto-work-force/jobs",  destination: "/agencies/otto-workforce/jobs",             permanent: true },
       // Deleted page → nearest equivalent (page removed 2026-05-30; was in sitemap; Google had it indexed)
       { source: "/agencies-with-housing",          destination: "/best-agencies-with-housing-netherlands",   permanent: true },
+      // Old food-production slug → canonical custom page (slug changed 2026-09-18)
+      { source: "/apply/food-production-worker-verified-partner", destination: "/apply/food-production", permanent: true },
       // NOTE: /jobs/netherlands/[slug] is an ACTIVE page route (see app/jobs/netherlands/[slug]/page.tsx).
       // The old redirect "/jobs/netherlands/:slug → /jobs/:slug" has been removed because:
       //   1. Next.js redirects take precedence over pages — the route was never being served.

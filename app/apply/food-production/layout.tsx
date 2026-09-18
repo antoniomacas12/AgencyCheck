@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:       "Food Production Operator — Netherlands | Apply Now",
+  title:       "Food Production Worker – Cheese, Meat, Salads & Sauces | Netherlands | Apply Now",
   description:
-    "Food Production Operator needed in the Netherlands. " +
-    "Fast placement via verified agency partners. Start within 1 week. Apply via WhatsApp.",
+    "Food production jobs in the Netherlands — cheese, meat, salads, sauces & more. " +
+    "€14.99/h gross. 3-shift incl. nights. 0–10°C environment. Accommodation paid. Apply via WhatsApp.",
   keywords: [
-    "food production operator Netherlands",
-    "food industry job Holland",
-    "production operator vacature",
+    "food production worker Netherlands",
+    "cheese production job Netherlands",
+    "meat packing job Holland",
     "food factory job Netherlands",
-    "fast placement food industry NL",
+    "3-shift food production Netherlands",
   ],
   alternates: {
     canonical: "https://agencycheck.io/apply/food-production",
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   openGraph: {
     type:      "website",
     siteName:  "AgencyCheck",
-    title:     "Food Production Operator — Netherlands",
+    title:     "Food Production Worker – Cheese, Meat, Salads & Sauces — Netherlands",
     description:
-      "Fast placement via verified agency partners. Start within 1 week. Apply via WhatsApp.",
+      "€14.99/h gross. 3-shift incl. nights. 0–10°C. Accommodation paid. Apply via WhatsApp.",
   },
   robots: {
     index:  true,

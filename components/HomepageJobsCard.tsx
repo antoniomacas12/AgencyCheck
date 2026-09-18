@@ -59,12 +59,12 @@ const VP_JOBS = [
     href:   "/apply/warehouse-worker-verified-partner",
   },
   {
-    slug:   "food-production-worker-verified-partner",
-    title:  "Food Production Worker (m/f)",
+    slug:   "food-production",
+    title:  "Food Production Worker (Cheese / Meat / Salads)",
     salary: "€14.99/hr gross",
-    note:   "Production lines · ~5°C environment · Housing €147/wk",
-    icon:   "🏭",
-    href:   "/apply/food-production-worker-verified-partner",
+    note:   "Cheese · Meat · Salads · Sauces · 3 shifts incl. nights · 0–10°C · Housing paid",
+    icon:   "🧀",
+    href:   "/apply/food-production",
   },
 ] as const;
 

@@ -227,8 +227,8 @@ export const VACANCIES: Vacancy[] = [
     featured: true,
   },
   {
-    slug:     "food-production-worker-verified-partner",
-    t:        "Food Production Worker (Cheese / Meat / Salads & Sauces) – Netherlands",
+    slug:     "food-production",
+    t:        "Food Production Worker – Cheese, Meat, Salads & Sauces",
     c:        "food",
     s:        "€14.99/h gross",
     sm:       600,
