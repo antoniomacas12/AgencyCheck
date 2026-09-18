@@ -101,59 +101,91 @@ export default function FeaturedJobVerifiedPartner() {
 
         {/* ── Job Cards ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {JOBS.map((job) => (
-            <div
-              key={job.slug}
-              className="rounded-2xl border border-white/[0.10] bg-white/[0.03] flex flex-col"
-            >
-              {/* Card header */}
-              <div className="px-5 pt-5 pb-4 border-b border-white/[0.07]">
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <div className="min-w-0">
-                    <p className="text-white font-extrabold text-[17px] leading-snug">
-                      {job.title}
-                    </p>
-                    <p className="text-gray-500 text-[12px] mt-0.5">
-                      Verified Partner · {job.location}
-                    </p>
+          {JOBS.map((job) => {
+            const isFoodProd = job.slug === "food-production";
+            return (
+              <div
+                key={job.slug}
+                className={`rounded-2xl border flex flex-col ${
+                  isFoodProd
+                    ? "border-amber-400/25 bg-amber-400/[0.03]"
+                    : "border-white/[0.10] bg-white/[0.03]"
+                }`}
+              >
+                {/* Cheese priority strip — food production only */}
+                {isFoodProd && (
+                  <div className="flex items-center gap-2 bg-amber-400/10 border-b border-amber-400/20 rounded-t-2xl px-5 py-2.5">
+                    <span className="text-[13px]">🧀</span>
+                    <span className="text-amber-300 font-black text-[11px] uppercase tracking-wider">
+                      Priority hiring: Cheese Production
+                    </span>
+                    <span className="ml-auto shrink-0">
+                      <span className="text-[9px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30 rounded-full px-2 py-0.5 uppercase tracking-wide">
+                        Urgent demand
+                      </span>
+                    </span>
                   </div>
-                  <span className={`shrink-0 text-[10px] font-bold border rounded-full px-2.5 py-1 ${job.tagColor}`}>
-                    {job.tag}
-                  </span>
+                )}
+
+                {/* Card header */}
+                <div className="px-5 pt-5 pb-4 border-b border-white/[0.07]">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="min-w-0">
+                      <p className="text-white font-extrabold text-[17px] leading-snug">
+                        {job.title}
+                      </p>
+                      <p className="text-gray-500 text-[12px] mt-0.5">
+                        Verified Partner · {job.location}
+                      </p>
+                    </div>
+                    <span className={`shrink-0 text-[10px] font-bold border rounded-full px-2.5 py-1 ${job.tagColor}`}>
+                      {job.tag}
+                    </span>
+                  </div>
+
+                  {/* Salary */}
+                  <div className="flex items-baseline gap-1.5 mb-3">
+                    <span className="text-[#22C55E] font-black text-[26px] leading-none">{job.salary}</span>
+                    <span className="text-gray-500 text-[12px]">/hr gross</span>
+                  </div>
+
+                  <p className="text-gray-400 text-[13px] leading-relaxed">{job.desc}</p>
                 </div>
 
-                {/* Salary */}
-                <div className="flex items-baseline gap-1.5 mb-3">
-                  <span className="text-[#22C55E] font-black text-[26px] leading-none">{job.salary}</span>
-                  <span className="text-gray-500 text-[12px]">/hr gross</span>
+                {/* Bullets */}
+                <div className="px-5 py-4 border-b border-white/[0.07] flex-1">
+                  <ul className="space-y-2">
+                    {isFoodProd && (
+                      <li className="flex items-start gap-2 text-[13px] text-amber-200">
+                        <span className="text-amber-400 shrink-0 font-bold mt-0.5">🧀</span>
+                        Cheese production: cutting, handling, packing — night shifts available, better pay via shift allowances
+                      </li>
+                    )}
+                    {job.bullets.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[13px] text-gray-300">
+                        <span className="text-[#22C55E] shrink-0 font-bold mt-0.5">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <p className="text-gray-400 text-[13px] leading-relaxed">{job.desc}</p>
+                {/* CTA */}
+                <div className="px-5 py-4 flex flex-col gap-2">
+                  <Link
+                    href={`/apply/${job.slug}`}
+                    className={`w-full inline-flex items-center justify-center gap-2 font-bold text-sm px-5 py-3 rounded-xl transition-colors active:scale-[0.98] ${
+                      isFoodProd
+                        ? "bg-amber-500 hover:bg-amber-400 text-white"
+                        : "bg-[#22C55E] hover:bg-green-400 text-white"
+                    }`}
+                  >
+                    {isFoodProd ? "🧀 View Cheese & Food Jobs →" : "View & Apply →"}
+                  </Link>
+                </div>
               </div>
-
-              {/* Bullets */}
-              <div className="px-5 py-4 border-b border-white/[0.07] flex-1">
-                <ul className="space-y-2">
-                  {job.bullets.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-[13px] text-gray-300">
-                      <span className="text-[#22C55E] shrink-0 font-bold mt-0.5">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* CTA */}
-              <div className="px-5 py-4 flex flex-col gap-2">
-                <Link
-                  href={`/apply/${job.slug}`}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#22C55E] hover:bg-green-400 active:scale-[0.98] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors"
-                >
-                  View & Apply →
-                </Link>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* ── Footer note ── */}

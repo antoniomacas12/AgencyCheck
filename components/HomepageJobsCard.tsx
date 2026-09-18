@@ -60,9 +60,9 @@ const VP_JOBS = [
   },
   {
     slug:   "food-production",
-    title:  "Food Production Worker (Cheese / Meat / Salads)",
+    title:  "🧀 Cheese / Meat / Salads — Food Production",
     salary: "€14.99/hr gross",
-    note:   "Cheese · Meat · Salads · Sauces · 3 shifts incl. nights · 0–10°C · Housing paid",
+    note:   "Priority: cheese production (cutting, packing, nights) · 3 shifts · 0–10°C · Housing paid",
     icon:   "🧀",
     href:   "/apply/food-production",
   },
