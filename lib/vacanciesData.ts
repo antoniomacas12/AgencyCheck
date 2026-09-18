@@ -24,6 +24,7 @@ export interface Vacancy {
   l:         string;    // location
   b:         Badge[];   // badges
   featured?: boolean;   // true = shown in "Direct Offer" section at top
+  urgent?:   boolean;   // true = priority vacancy; shown first in listings
 }
 
 export const CAT_LABELS: Record<Category, string> = {
@@ -236,6 +237,7 @@ export const VACANCIES: Vacancy[] = [
     l:        "Netherlands",
     b:        ["acc"],
     featured: true,
+    urgent:   true,
   },
 
   // ── Technical & Construction ──────────────────────────────────────────────
