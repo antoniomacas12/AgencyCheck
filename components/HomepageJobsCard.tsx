@@ -62,7 +62,7 @@ const VP_JOBS = [
     slug:   "food-production",
     title:  "🧀 Cheese / Meat / Salads — Food Production",
     salary: "€14.99/hr gross",
-    note:   "Priority: cheese production (cutting, packing, nights) · 3 shifts · 0–10°C · Housing paid",
+    note:   "Priority: cheese production (cutting, packing, nights) · 3 shifts · 0–10°C · Paid accommodation · shared double room",
     icon:   "🧀",
     href:   "/apply/food-production",
   },
